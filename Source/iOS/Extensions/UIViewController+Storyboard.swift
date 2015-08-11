@@ -8,7 +8,8 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
+	
 	/**
 	Initialize a view controller in storyboard.
 	
