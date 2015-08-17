@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4530D941B822296004576DE /* UIViewController+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4530D931B822296004576DE /* UIViewController+Utility.swift */; };
+		E4530D961B8222AC004576DE /* UINavigationBar+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4530D951B8222AC004576DE /* UINavigationBar+UI.swift */; };
 		E4F3B8751B798FDD006E1BF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3B8741B798FDD006E1BF9 /* AppDelegate.swift */; };
-		E4F3B8771B798FDD006E1BF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3B8761B798FDD006E1BF9 /* ViewController.swift */; };
+		E4F3B8771B798FDD006E1BF9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3B8761B798FDD006E1BF9 /* MainViewController.swift */; };
 		E4F3B87A1B798FDD006E1BF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F3B8781B798FDD006E1BF9 /* Main.storyboard */; };
 		E4F3B87C1B798FDD006E1BF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F3B87B1B798FDD006E1BF9 /* Images.xcassets */; };
 		E4F3B87F1B798FDD006E1BF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F3B87D1B798FDD006E1BF9 /* LaunchScreen.xib */; };
@@ -27,10 +29,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E4530D931B822296004576DE /* UIViewController+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utility.swift"; sourceTree = "<group>"; };
+		E4530D951B8222AC004576DE /* UINavigationBar+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+UI.swift"; sourceTree = "<group>"; };
 		E4F3B86F1B798FDD006E1BF9 /* iOS-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3B8731B798FDD006E1BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4F3B8741B798FDD006E1BF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E4F3B8761B798FDD006E1BF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E4F3B8761B798FDD006E1BF9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E4F3B8791B798FDD006E1BF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4F3B87B1B798FDD006E1BF9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E4F3B87E1B798FDD006E1BF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -81,7 +85,7 @@
 			children = (
 				E4F3B8941B799014006E1BF9 /* iOS */,
 				E4F3B8741B798FDD006E1BF9 /* AppDelegate.swift */,
-				E4F3B8761B798FDD006E1BF9 /* ViewController.swift */,
+				E4F3B8761B798FDD006E1BF9 /* MainViewController.swift */,
 				E4F3B8781B798FDD006E1BF9 /* Main.storyboard */,
 				E4F3B87B1B798FDD006E1BF9 /* Images.xcassets */,
 				E4F3B87D1B798FDD006E1BF9 /* LaunchScreen.xib */,
@@ -128,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				E4F3B8981B7991DB006E1BF9 /* UIViewController+Storyboard.swift */,
+				E4530D931B822296004576DE /* UIViewController+Utility.swift */,
+				E4530D951B8222AC004576DE /* UINavigationBar+UI.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -232,7 +238,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4F3B8771B798FDD006E1BF9 /* ViewController.swift in Sources */,
+				E4F3B8771B798FDD006E1BF9 /* MainViewController.swift in Sources */,
+				E4530D941B822296004576DE /* UIViewController+Utility.swift in Sources */,
+				E4530D961B8222AC004576DE /* UINavigationBar+UI.swift in Sources */,
 				E4F3B8751B798FDD006E1BF9 /* AppDelegate.swift in Sources */,
 				E4F3B8991B7991DB006E1BF9 /* UIViewController+Storyboard.swift in Sources */,
 			);
@@ -432,6 +440,7 @@
 				E4F3B8901B798FDD006E1BF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4F3B8911B798FDD006E1BF9 /* Build configuration list for PBXNativeTarget "iOS-ExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +449,7 @@
 				E4F3B8931B798FDD006E1BF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
