@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChouTi
 
 class MainViewController: UIViewController {
 	

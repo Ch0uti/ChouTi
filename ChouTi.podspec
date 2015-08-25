@@ -24,13 +24,22 @@ Pod::Spec.new do |s|
     ss.summary		 = "A set of common UI views & utilities."
 
     ss.dependency 'ChouTi/Extensions'
-
+    ss.dependency 'ChouTi/SlideController'
+    
   end
 
   s.subspec "Extensions" do |ss|
     ss.summary      = "Extensions of UIKit"
 
     ss.source_files = 'Source/iOS/Extensions/*.*'
+    ss.frameworks   = 'UIKit'
+
+  end
+
+  s.subspec "SlideController" do |ss|
+    ss.summary      = "A left/right slide container view controller"
+
+    ss.source_files = 'Source/iOS/SlideController/*.*'
     ss.frameworks   = 'UIKit'
 
   end

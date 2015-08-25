@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension UINavigationBar {
-	func hideBottomHairline() {
+public extension UINavigationBar {
+	public func hideBottomHairline() {
 		let navigationBarImageView = hairlineImageViewInNavigationBar(self)
 		navigationBarImageView?.hidden = true
 	}
 	
-	func showBottomHairline() {
+	public func showBottomHairline() {
 		let navigationBarImageView = hairlineImageViewInNavigationBar(self)
 		navigationBarImageView?.hidden = false
 	}

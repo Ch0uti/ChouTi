@@ -1,0 +1,20 @@
+PODS:
+  - ChouTi (1.0):
+    - ChouTi/UIChouTi (= 1.0)
+  - ChouTi/Extensions (1.0)
+  - ChouTi/SlideController (1.0)
+  - ChouTi/UIChouTi (1.0):
+    - ChouTi/Extensions
+    - ChouTi/SlideController
+
+DEPENDENCIES:
+  - ChouTi (from `../`)
+
+EXTERNAL SOURCES:
+  ChouTi:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ChouTi: 71ce860e95d5f506cb4577c3b8d9469024023a69
+
+COCOAPODS: 0.38.2
