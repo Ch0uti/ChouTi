@@ -109,6 +109,7 @@ public class SlideController: UIViewController {
 	private var leftViewControllerAdded: Bool = false
 	private var rightViewControllerAdded: Bool = false
 	
+	/// Whether should use screen edge pan gesture
 	public var useScreenEdgePanGestureRecognizer: Bool = true {
 		didSet {
 			if useScreenEdgePanGestureRecognizer {
@@ -127,6 +128,22 @@ public class SlideController: UIViewController {
 	private let leftEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
 	private let rightEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
 	private let tapGestureRecognizer = UITapGestureRecognizer()
+	
+	/// Status bar color when expanded, set nil to clear status bar background color
+	public var statusBarBackgroundColor: UIColor? = nil {
+		didSet {
+			if statusBarBackgroundColor == nil {
+				statusBarBackgroundView.removeFromSuperview()
+			} else {
+				statusBarBackgroundView.backgroundColor = statusBarBackgroundColor
+				view.addSubview(statusBarBackgroundView)
+			}
+		}
+	}
+	
+	private lazy var statusBarBackgroundView: UIView = {
+		return UIView(frame: UIApplication.sharedApplication().statusBarFrame)
+	}()
 	
 	/**
 	Initialize a SlideController with center view controller. Left/Right controller is nil.
@@ -188,6 +205,11 @@ public class SlideController: UIViewController {
 			centerViewController.view.addGestureRecognizer(panGestureRecognizer)
 		}
 		centerViewController.view.addGestureRecognizer(tapGestureRecognizer)
+		
+		if statusBarBackgroundColor != nil {
+			statusBarBackgroundView.backgroundColor = statusBarBackgroundColor!.colorWithAlphaComponent(0.0)
+			view.addSubview(statusBarBackgroundView)
+		}
 	}
 }
 
@@ -283,6 +305,7 @@ extension SlideController {
 	private func animateCenterViewControllerWithXOffset(xOffset: CGFloat, completion: ((Bool) -> Void)? = nil) {
 		let animationClosure: () -> Void = { [unowned self] in
 			self.centerViewController.view.center = CGPoint(x: self.view.center.x + xOffset, y: self.view.center.y)
+			self.statusBarBackgroundView.backgroundColor = self.statusBarBackgroundColor?.colorWithAlphaComponent(abs(xOffset) / self.revealWidth)
 		}
 		
 		if springDampin == 0.0 && initialSpringVelocity == 0.0 {
@@ -360,11 +383,13 @@ extension SlideController: UIGestureRecognizerDelegate {
 			if (leftViewController == nil && resultCenterX >= centerX) || (rightViewController == nil && resultCenterX <= centerX) {
 				recognizer.view!.center.x = centerX
 				recognizer.setTranslation(CGPointZero, inView: view)
+				statusBarBackgroundView.backgroundColor = statusBarBackgroundColor?.colorWithAlphaComponent(min(abs(recognizer.view!.center.x - centerX) / revealWidth, 1.0))
 				return
 			}
 			
 			recognizer.view!.center.x = resultCenterX
 			recognizer.setTranslation(CGPointZero, inView: view)
+			statusBarBackgroundView.backgroundColor = statusBarBackgroundColor?.colorWithAlphaComponent(min(abs(recognizer.view!.center.x - centerX) / revealWidth, 1.0))
 		case .Ended:
 			let velocity = recognizer.velocityInView(view)
 			if velocity.x > 500.0 {
