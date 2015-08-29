@@ -136,6 +136,7 @@ public class SlideController: UIViewController {
 	public override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.whiteColor()
+		
 		panGestureRecognizer.addTarget(self, action: "handlePanGesture:")
 		tapGestureRecognizer.addTarget(self, action: "handleTapGesture:")
 		
@@ -145,6 +146,7 @@ public class SlideController: UIViewController {
 		addChildViewController(centerViewController)
 		view.addSubview(centerViewController.view)
 		centerViewController.didMoveToParentViewController(self)
+		
 		centerViewController.view.addGestureRecognizer(panGestureRecognizer)
 		centerViewController.view.addGestureRecognizer(tapGestureRecognizer)
 	}
