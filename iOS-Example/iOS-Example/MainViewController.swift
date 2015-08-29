@@ -74,23 +74,33 @@ extension MainViewController: UITableViewDelegate {
 			
 			dummyViewController.navigationController?.navigationBar.hideBottomHairline()
 		case 1:
-			let centerVC = UIViewController()
-			centerVC.view.backgroundColor = UIColor.whiteColor()
-			
-			let centerNavi = UINavigationController(rootViewController: centerVC)
+			let centerVC = CenterViewController(nibName: "CenterViewController", bundle: nil)
 			centerVC.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Left", style: UIBarButtonItemStyle.Done, target: self, action: "expandLeft:")
 			centerVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Right", style: UIBarButtonItemStyle.Done, target: self, action: "expandRight:")
 			centerVC.title = "Slide Controller"
 			
-			let leftVC = UIViewController()
-			leftVC.view.backgroundColor = UIColor.redColor()
+			let centerNavi = UINavigationController(rootViewController: centerVC)
 			
-			let rightVC = UIViewController()
+			let leftVC = SideViewController(nibName: "SideViewController", bundle: nil)
+			leftVC.view.backgroundColor = UIColor.redColor()
+			leftVC.label.text = "Left"
+			leftVC.view.frame = UIScreen.mainScreen().bounds
+			
+			let rightVC = SideViewController(nibName: "SideViewController", bundle: nil)
 			rightVC.view.backgroundColor = UIColor.blueColor()
+			rightVC.label.text = "Right"
+			rightVC.view.frame = UIScreen.mainScreen().bounds
 			
 			slideViewController = SlideController(centerViewController: centerNavi, leftViewController: leftVC, rightViewController: rightVC)
+//			slideViewController = SlideController(centerViewController: centerNavi)
+//			slideViewController.rightViewController = rightVC
+//			
 			slideViewController.animationDuration = 0.5
 			slideViewController.springDampin = 1.0
+			
+			centerVC.slideViewController = slideViewController
+			centerVC.leftViewController = leftVC
+			centerVC.rightViewController = rightVC
 			
 			self.presentViewController(slideViewController, animated: true, completion: nil)
 			

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0DCE4258FFA3F3E8881A974D /* Pods_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C361C75F7E904ADB3ACFF966 /* Pods_iOS_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E4D99C2D1B91579100E492F9 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D99C2B1B91579100E492F9 /* CenterViewController.swift */; };
+		E4D99C2E1B91579100E492F9 /* CenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D99C2C1B91579100E492F9 /* CenterViewController.xib */; };
+		E4D99C311B9157A600E492F9 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D99C2F1B9157A600E492F9 /* SideViewController.swift */; };
+		E4D99C321B9157A600E492F9 /* SideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D99C301B9157A600E492F9 /* SideViewController.xib */; };
 		E4F3B8751B798FDD006E1BF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3B8741B798FDD006E1BF9 /* AppDelegate.swift */; };
 		E4F3B8771B798FDD006E1BF9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3B8761B798FDD006E1BF9 /* MainViewController.swift */; };
 		E4F3B87A1B798FDD006E1BF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F3B8781B798FDD006E1BF9 /* Main.storyboard */; };
@@ -30,6 +34,10 @@
 		000276CE65807D5F6CD56CF3 /* Pods-iOS-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-Example/Pods-iOS-Example.release.xcconfig"; sourceTree = "<group>"; };
 		492C2466581580AD4EC14177 /* Pods-iOS-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-Example/Pods-iOS-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C361C75F7E904ADB3ACFF966 /* Pods_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4D99C2B1B91579100E492F9 /* CenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
+		E4D99C2C1B91579100E492F9 /* CenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenterViewController.xib; sourceTree = "<group>"; };
+		E4D99C2F1B9157A600E492F9 /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
+		E4D99C301B9157A600E492F9 /* SideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideViewController.xib; sourceTree = "<group>"; };
 		E4F3B86F1B798FDD006E1BF9 /* iOS-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3B8731B798FDD006E1BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4F3B8741B798FDD006E1BF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +86,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E4D99C2A1B91577400E492F9 /* SlideControllerSupports */ = {
+			isa = PBXGroup;
+			children = (
+				E4D99C2B1B91579100E492F9 /* CenterViewController.swift */,
+				E4D99C2C1B91579100E492F9 /* CenterViewController.xib */,
+				E4D99C2F1B9157A600E492F9 /* SideViewController.swift */,
+				E4D99C301B9157A600E492F9 /* SideViewController.xib */,
+			);
+			path = SlideControllerSupports;
+			sourceTree = "<group>";
+		};
 		E4F3B8661B798FDD006E1BF9 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +122,7 @@
 			children = (
 				E4F3B8741B798FDD006E1BF9 /* AppDelegate.swift */,
 				E4F3B8761B798FDD006E1BF9 /* MainViewController.swift */,
+				E4D99C2A1B91577400E492F9 /* SlideControllerSupports */,
 				E4F3B8781B798FDD006E1BF9 /* Main.storyboard */,
 				E4F3B87B1B798FDD006E1BF9 /* Images.xcassets */,
 				E4F3B87D1B798FDD006E1BF9 /* LaunchScreen.xib */,
@@ -220,6 +240,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4F3B87A1B798FDD006E1BF9 /* Main.storyboard in Resources */,
+				E4D99C321B9157A600E492F9 /* SideViewController.xib in Resources */,
+				E4D99C2E1B91579100E492F9 /* CenterViewController.xib in Resources */,
 				E4F3B87F1B798FDD006E1BF9 /* LaunchScreen.xib in Resources */,
 				E4F3B87C1B798FDD006E1BF9 /* Images.xcassets in Resources */,
 			);
@@ -287,8 +309,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4D99C2D1B91579100E492F9 /* CenterViewController.swift in Sources */,
 				E4F3B8771B798FDD006E1BF9 /* MainViewController.swift in Sources */,
 				E4F3B8751B798FDD006E1BF9 /* AppDelegate.swift in Sources */,
+				E4D99C311B9157A600E492F9 /* SideViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
