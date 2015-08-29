@@ -27,14 +27,26 @@ public class SlideController: UIViewController {
 	public var centerViewController: UIViewController {
 		willSet {
 			removeViewController(centerViewController)
-			centerViewController.view.removeGestureRecognizer(panGestureRecognizer)
+			if useScreenEdgePanGestureRecognizer {
+				centerViewController.view.removeGestureRecognizer(leftEdgePanGestureRecognizer)
+				centerViewController.view.removeGestureRecognizer(rightEdgePanGestureRecognizer)
+			} else {
+				centerViewController.view.removeGestureRecognizer(panGestureRecognizer)
+			}
+			centerViewController.view.removeGestureRecognizer(tapGestureRecognizer)
 		}
 		
 		didSet {
 			addChildViewController(centerViewController)
 			view.addSubview(centerViewController.view)
 			centerViewController.didMoveToParentViewController(self)
-			centerViewController.view.addGestureRecognizer(panGestureRecognizer)
+			if useScreenEdgePanGestureRecognizer {
+				centerViewController.view.addGestureRecognizer(leftEdgePanGestureRecognizer)
+				centerViewController.view.addGestureRecognizer(rightEdgePanGestureRecognizer)
+			} else {
+				centerViewController.view.addGestureRecognizer(panGestureRecognizer)
+			}
+			centerViewController.view.addGestureRecognizer(tapGestureRecognizer)
 		}
 	}
 	
@@ -97,8 +109,24 @@ public class SlideController: UIViewController {
 	private var leftViewControllerAdded: Bool = false
 	private var rightViewControllerAdded: Bool = false
 	
-	private var panGestureRecognizer = UIPanGestureRecognizer()
-	private var tapGestureRecognizer = UITapGestureRecognizer()
+	public var useScreenEdgePanGestureRecognizer: Bool = true {
+		didSet {
+			if useScreenEdgePanGestureRecognizer {
+				centerViewController.view.removeGestureRecognizer(panGestureRecognizer)
+				centerViewController.view.addGestureRecognizer(leftEdgePanGestureRecognizer)
+				centerViewController.view.addGestureRecognizer(rightEdgePanGestureRecognizer)
+			} else {
+				centerViewController.view.removeGestureRecognizer(leftEdgePanGestureRecognizer)
+				centerViewController.view.removeGestureRecognizer(rightEdgePanGestureRecognizer)
+				centerViewController.view.addGestureRecognizer(panGestureRecognizer)
+			}
+		}
+	}
+	
+	private let panGestureRecognizer = UIPanGestureRecognizer()
+	private let leftEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
+	private let rightEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
+	private let tapGestureRecognizer = UITapGestureRecognizer()
 	
 	/**
 	Initialize a SlideController with center view controller. Left/Right controller is nil.
@@ -138,16 +166,27 @@ public class SlideController: UIViewController {
 		view.backgroundColor = UIColor.whiteColor()
 		
 		panGestureRecognizer.addTarget(self, action: "handlePanGesture:")
+		leftEdgePanGestureRecognizer.addTarget(self, action: "handlePanGesture:")
+		leftEdgePanGestureRecognizer.edges = .Left
+		rightEdgePanGestureRecognizer.addTarget(self, action: "handlePanGesture:")
+		rightEdgePanGestureRecognizer.edges = .Right
 		tapGestureRecognizer.addTarget(self, action: "handleTapGesture:")
 		
 		panGestureRecognizer.delegate = self
+		leftEdgePanGestureRecognizer.delegate = self
+		rightEdgePanGestureRecognizer.delegate = self
 		tapGestureRecognizer.delegate = self
 		
 		addChildViewController(centerViewController)
 		view.addSubview(centerViewController.view)
 		centerViewController.didMoveToParentViewController(self)
 		
-		centerViewController.view.addGestureRecognizer(panGestureRecognizer)
+		if useScreenEdgePanGestureRecognizer {
+			centerViewController.view.addGestureRecognizer(leftEdgePanGestureRecognizer)
+			centerViewController.view.addGestureRecognizer(rightEdgePanGestureRecognizer)
+		} else {
+			centerViewController.view.addGestureRecognizer(panGestureRecognizer)
+		}
 		centerViewController.view.addGestureRecognizer(tapGestureRecognizer)
 	}
 }
