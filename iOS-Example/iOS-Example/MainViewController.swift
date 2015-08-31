@@ -102,6 +102,8 @@ extension MainViewController: UITableViewDelegate {
 			slideViewController.leftRevealWidth = 200
 			slideViewController.rightRevealWidth = 100
 			
+			slideViewController.shouldExceedRevealWidth = false
+			
 			centerVC.slideViewController = slideViewController
 			centerVC.leftViewController = leftVC
 			centerVC.rightViewController = rightVC

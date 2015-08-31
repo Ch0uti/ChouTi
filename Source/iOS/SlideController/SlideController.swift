@@ -68,6 +68,7 @@ public class SlideController: UIViewController {
 			}
 		}
 	}
+	
 	/// Right view controller
 	public var rightViewController: UIViewController? {
 		willSet {
@@ -98,6 +99,8 @@ public class SlideController: UIViewController {
 	public var revealWidth: CGFloat = 0.75 * UIScreen.mainScreen().bounds.width
 	public var leftRevealWidth: CGFloat?
 	public var rightRevealWidth: CGFloat?
+	
+	public var shouldExceedRevealWidth: Bool = true
 	
 	/// Reveal animation duration
 	public var animationDuration: NSTimeInterval = 0.25
@@ -310,7 +313,7 @@ extension SlideController {
 			self.statusBarBackgroundView.backgroundColor = self.statusBarBackgroundColor?.colorWithAlphaComponent(abs(xOffset) / (xOffset > 0 ? (self.leftRevealWidth ?? self.revealWidth) : (self.rightRevealWidth ?? self.revealWidth)))
 		}
 		
-		if let springDampin = springDampin, initialSpringVelocity = initialSpringVelocity {
+		if let springDampin = springDampin, initialSpringVelocity = initialSpringVelocity where shouldExceedRevealWidth == true {
 			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: springDampin, initialSpringVelocity: initialSpringVelocity, options: .BeginFromCurrentState | .CurveEaseInOut, animations: animationClosure, completion: completion)
 		} else {
 			UIView.animateWithDuration(animationDuration, animations: animationClosure, completion: completion)
@@ -355,8 +358,12 @@ extension SlideController: UIGestureRecognizerDelegate {
 			}
 		case .Changed:
 			let centerX = view.bounds.width / 2.0
+			let centerXToBe = recognizer.view!.center.x + recognizer.translationInView(view).x
+			
 			if recognizer.view!.center.x > centerX {
 				// Showing left
+				
+				// If there's no left view controller, no need for vc configuration
 				if leftViewController == nil {
 					recognizer.setTranslation(CGPointZero, inView: view)
 					return
@@ -369,6 +376,14 @@ extension SlideController: UIGestureRecognizerDelegate {
 				}
 				
 				statusBarBackgroundView.backgroundColor = statusBarBackgroundColor?.colorWithAlphaComponent(min(abs(recognizer.view!.center.x - centerX) / (leftRevealWidth ?? revealWidth), 1.0))
+				
+				// If revealed width is greater than reveal width set, stop it
+				if shouldExceedRevealWidth == false && (centerXToBe - centerX >= leftRevealWidth ?? revealWidth){
+					recognizer.view!.center.x = centerX + (leftRevealWidth ?? revealWidth)
+					recognizer.setTranslation(CGPointZero, inView: view)
+					return
+				}
+				
 			} else if recognizer.view!.center.x < centerX {
 				// Showing right
 				if rightViewController == nil {
@@ -382,18 +397,23 @@ extension SlideController: UIGestureRecognizerDelegate {
 				}
 				
 				statusBarBackgroundView.backgroundColor = statusBarBackgroundColor?.colorWithAlphaComponent(min(abs(recognizer.view!.center.x - centerX) / (rightRevealWidth ?? revealWidth), 1.0))
+				
+				if shouldExceedRevealWidth == false && (centerX - centerXToBe >= rightRevealWidth ?? revealWidth){
+					recognizer.view!.center.x = centerX - (rightRevealWidth ?? revealWidth)
+					recognizer.setTranslation(CGPointZero, inView: view)
+					return
+				}
 			}
 			
-			let resultCenterX = recognizer.view!.center.x + recognizer.translationInView(view).x
 			// If resultCenterX is invalid, stop
-			if (leftViewController == nil && resultCenterX >= centerX) || (rightViewController == nil && resultCenterX <= centerX) {
+			if (leftViewController == nil && centerXToBe >= centerX) || (rightViewController == nil && centerXToBe <= centerX) {
 				recognizer.view!.center.x = centerX
 				recognizer.setTranslation(CGPointZero, inView: view)
 				statusBarBackgroundView.backgroundColor = statusBarBackgroundColor?.colorWithAlphaComponent(0)
 				return
 			}
 			
-			recognizer.view!.center.x = resultCenterX
+			recognizer.view!.center.x = centerXToBe
 			recognizer.setTranslation(CGPointZero, inView: view)
 		case .Ended:
 			let velocity = recognizer.velocityInView(view)
