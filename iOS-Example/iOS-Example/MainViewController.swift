@@ -99,6 +99,8 @@ extension MainViewController: UITableViewDelegate {
 			slideViewController.springDampin = 1.0
 			
 			slideViewController.statusBarBackgroundColor = UIColor.whiteColor()
+			slideViewController.leftRevealWidth = 200
+			slideViewController.rightRevealWidth = 100
 			
 			centerVC.slideViewController = slideViewController
 			centerVC.leftViewController = leftVC
