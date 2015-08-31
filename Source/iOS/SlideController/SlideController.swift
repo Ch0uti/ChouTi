@@ -310,7 +310,8 @@ extension SlideController {
 	
 	private func animateCenterViewControllerWithXOffset(xOffset: CGFloat, completion: ((Bool) -> Void)? = nil) {
 		let animationClosure: () -> Void = { [unowned self] in
-			self.centerViewController.view.center = CGPoint(x: self.view.center.x + xOffset, y: self.view.center.y)
+			self.centerViewController.view.center = CGPoint(x: self.view.center.x + xOffset, y: self.centerViewController.view.center.y)
+			self.centerViewController.view.frame.origin.y = 0
 			self.statusBarBackgroundView.backgroundColor = self.statusBarBackgroundColor?.colorWithAlphaComponent(abs(xOffset) / (xOffset > 0 ? (self.leftRevealWidth ?? self.revealWidth) : (self.rightRevealWidth ?? self.revealWidth)))
 		}
 		
