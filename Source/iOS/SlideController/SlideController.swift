@@ -180,7 +180,8 @@ public class SlideController: UIViewController {
 	}
 
 	required public init(coder aDecoder: NSCoder) {
-	    fatalError("init(coder:) has not been implemented")
+		self.centerViewController = UIViewController()
+	    super.init(coder: aDecoder)
 	}
 	
 	public override func viewDidLoad() {
