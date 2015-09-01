@@ -38,7 +38,17 @@ public class SlideController: UIViewController {
 		
 		didSet {
 			addChildViewController(centerViewController)
-			view.addSubview(centerViewController.view)
+			
+			// Make sure newly added center view is below status bar
+			view.insertSubview(centerViewController.view, belowSubview: statusBarBackgroundView)
+			// Make sure left/right view is below center view
+			if let leftView = leftViewController?.view {
+				view.insertSubview(leftView, belowSubview: centerViewController.view)
+			}
+			if let rightView = rightViewController?.view {
+				view.insertSubview(rightView, belowSubview: centerViewController.view)
+			}
+			
 			centerViewController.didMoveToParentViewController(self)
 			if useScreenEdgePanGestureRecognizer {
 				centerViewController.view.addGestureRecognizer(leftEdgePanGestureRecognizer)
