@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ZHAutoLinesLabel: UILabel {
-    var contentInset: UIEdgeInsets = UIEdgeInsetsZero {
+public class ZHAutoLinesLabel: UILabel {
+	public var contentInset: UIEdgeInsets = UIEdgeInsetsZero {
         didSet {
             // Force label to update
             let originalText = self.text
@@ -19,12 +19,12 @@ class ZHAutoLinesLabel: UILabel {
         }
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
@@ -35,23 +35,22 @@ class ZHAutoLinesLabel: UILabel {
         self.setContentCompressionResistancePriority(1000, forAxis: .Vertical)
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
-        let targetWidth = CGRectGetWidth(self.bounds)
-        // Once label's widht is changed, update preferredMaxLayoutWidth, this will lead recall textRectForBounds
+        let targetWidth = bounds.width
+		// Once label's widht is changed, update preferredMaxLayoutWidth, this will lead recall textRectForBounds
         if self.preferredMaxLayoutWidth != targetWidth {
             self.preferredMaxLayoutWidth = targetWidth
-            self.superview?.setNeedsLayout()
         }
         self.superview?.setNeedsLayout()
     }
     
-    override func drawTextInRect(rect: CGRect) {
+    public override func drawTextInRect(rect: CGRect) {
         // Rect has been veritcally expanded in textRectForBounds
         super.drawTextInRect(UIEdgeInsetsInsetRect(rect, contentInset))
     }
     
-    override func textRectForBounds(bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+    public override func textRectForBounds(bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         // Use a shrinked rect to calculate new rect, this will lead to a higher rectangle to draw
         // The width is same as preferredMaxLayoutWidth
         // Reference: http://stackoverflow.com/questions/21167226/resizing-a-uilabel-to-accomodate-insets

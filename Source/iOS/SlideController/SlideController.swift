@@ -201,9 +201,12 @@ public class SlideController: UIViewController {
 		panGestureRecognizer.addTarget(self, action: "handlePanGesture:")
 		leftEdgePanGestureRecognizer.addTarget(self, action: "handlePanGesture:")
 		leftEdgePanGestureRecognizer.edges = .Left
+		leftEdgePanGestureRecognizer.cancelsTouchesInView = false
 		rightEdgePanGestureRecognizer.addTarget(self, action: "handlePanGesture:")
 		rightEdgePanGestureRecognizer.edges = .Right
+		rightEdgePanGestureRecognizer.cancelsTouchesInView = false
 		tapGestureRecognizer.addTarget(self, action: "handleTapGesture:")
+		tapGestureRecognizer.cancelsTouchesInView = false
 		
 		panGestureRecognizer.delegate = self
 		leftEdgePanGestureRecognizer.delegate = self
