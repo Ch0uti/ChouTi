@@ -24,6 +24,7 @@ Pod::Spec.new do |s|
     ss.summary		 = "A set of common UI views & utilities."
 
     ss.dependency 'ChouTi/Extensions'
+    ss.dependency 'ChouTi/Protocols'
     ss.dependency 'ChouTi/SlideController'
     
   end
@@ -32,6 +33,14 @@ Pod::Spec.new do |s|
     ss.summary      = "Extensions of UIKit"
 
     ss.source_files = 'Source/iOS/Extensions/*.*'
+    ss.frameworks   = 'UIKit'
+
+  end
+
+  s.subspec "Protocols" do |ss|
+    ss.summary      = "Protocols"
+
+    ss.source_files = 'Source/iOS/Protocols/*.*'
     ss.frameworks   = 'UIKit'
 
   end
