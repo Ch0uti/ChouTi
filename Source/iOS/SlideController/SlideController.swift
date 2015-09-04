@@ -41,6 +41,17 @@ public class SlideController: UIViewController {
 			
 			// Make sure newly added center view is below status bar
 			view.insertSubview(centerViewController.view, belowSubview: statusBarBackgroundView)
+			
+			// New view controller should have a same frame as before
+			switch state {
+			case .LeftExpanded:
+				animateCenterViewControllerWithXOffset(leftRevealWidth ?? revealWidth, animated: false, completion: nil)
+			case .RightExpanded:
+				animateCenterViewControllerWithXOffset(rightRevealWidth ?? revealWidth, animated: false, completion: nil)
+			case .NotExpanded:
+				animateCenterViewControllerWithXOffset(0, animated: false, completion: nil)
+			}
+			
 			// Make sure left/right view is below center view
 			if let leftView = leftViewController?.view {
 				view.insertSubview(leftView, belowSubview: centerViewController.view)
@@ -321,11 +332,17 @@ extension SlideController {
 		})
 	}
 	
-	private func animateCenterViewControllerWithXOffset(xOffset: CGFloat, completion: ((Bool) -> Void)? = nil) {
+	private func animateCenterViewControllerWithXOffset(xOffset: CGFloat, animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
 		let animationClosure: () -> Void = { [unowned self] in
 			self.centerViewController.view.center = CGPoint(x: self.view.center.x + xOffset, y: self.centerViewController.view.center.y)
 			self.centerViewController.view.frame.origin.y = 0
 			self.statusBarBackgroundView.backgroundColor = self.statusBarBackgroundColor?.colorWithAlphaComponent(abs(xOffset) / (xOffset > 0 ? (self.leftRevealWidth ?? self.revealWidth) : (self.rightRevealWidth ?? self.revealWidth)))
+		}
+		
+		if !animated {
+			animationClosure()
+			completion?(true)
+			return
 		}
 		
 		if let springDampin = springDampin, initialSpringVelocity = initialSpringVelocity where shouldExceedRevealWidth == true {
