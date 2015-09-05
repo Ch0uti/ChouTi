@@ -77,4 +77,12 @@ public extension UIImage {
 		
 		return gradientImage
 	}
+	
+	public func scaledImageToSize(size: CGSize) -> UIImage {
+		UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+		drawInRect(CGRectMake(0, 0, size.width, size.height))
+		let newImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		return newImage
+	}
 }
