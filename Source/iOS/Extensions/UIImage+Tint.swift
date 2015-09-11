@@ -1,5 +1,5 @@
 //
-//  UIImage+GradientTintColor.swift
+//  UIImage+Tint.swift
 //  Pods
 //
 //  Created by Honghao Zhang on 2015-09-02.
