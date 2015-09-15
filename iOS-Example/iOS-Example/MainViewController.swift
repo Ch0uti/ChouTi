@@ -39,7 +39,7 @@ extension MainViewController: UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 2
+		return 3
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -54,6 +54,12 @@ extension MainViewController: UITableViewDataSource {
 			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self)) as! UITableViewCell
 			
 			cell.textLabel?.text = "SlideController"
+			
+			return cell
+		case 2:
+			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self)) as! UITableViewCell
+			
+			cell.textLabel?.text = "Table (Grid) Layout"
 			
 			return cell
 		default:
@@ -109,6 +115,10 @@ extension MainViewController: UITableViewDelegate {
 			centerVC.rightViewController = rightVC
 			
 			self.presentViewController(slideViewController, animated: true, completion: nil)
+			
+		case 2:
+			let tableLayoutDemoViewController = TableLayoutDemoViewController()
+			self.presentViewController(tableLayoutDemoViewController, animated: true, completion: nil)
 			
 		default:
 			break

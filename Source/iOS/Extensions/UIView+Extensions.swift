@@ -1,9 +1,8 @@
 //
 //  UIView+Extensions.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2015-09-04.
-//
 //
 
 import UIKit

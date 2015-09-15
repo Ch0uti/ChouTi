@@ -1,15 +1,17 @@
 PODS:
   - ChouTi (1.0):
     - ChouTi/UIChouTi (= 1.0)
+  - ChouTi/AutoLinesLabel (1.0)
+  - ChouTi/CollectionViewLayouts (1.0)
   - ChouTi/Extensions (1.0)
   - ChouTi/Protocols (1.0)
   - ChouTi/SlideController (1.0)
   - ChouTi/UIChouTi (1.0):
+    - ChouTi/AutoLinesLabel
+    - ChouTi/CollectionViewLayouts
     - ChouTi/Extensions
     - ChouTi/Protocols
     - ChouTi/SlideController
-    - ChouTi/ZHAutoLinesLabel
-  - ChouTi/ZHAutoLinesLabel (1.0)
 
 DEPENDENCIES:
   - ChouTi (from `../`)
@@ -19,6 +21,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: d4e88c3f236cc0ed6cf79f78201d19964d2bfd4c
+  ChouTi: 18b0f1adc89d4ec620c09d9e2831439d7a0e9fc4
 
 COCOAPODS: 0.38.2

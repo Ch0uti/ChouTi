@@ -25,8 +25,9 @@ Pod::Spec.new do |s|
 
     ss.dependency 'ChouTi/Extensions'
     ss.dependency 'ChouTi/Protocols'
+    ss.dependency 'ChouTi/CollectionViewLayouts'
     ss.dependency 'ChouTi/SlideController'
-    ss.dependency 'ChouTi/ZHAutoLinesLabel'
+    ss.dependency 'ChouTi/AutoLinesLabel'
     
   end
 
@@ -46,6 +47,14 @@ Pod::Spec.new do |s|
 
   end
 
+  s.subspec "CollectionViewLayouts" do |ss|
+    ss.summary      = "A collection of UICollectionView Layouts"
+
+    ss.source_files = 'Source/iOS/CollectionViewLayouts/*/*.*'
+    ss.frameworks   = 'UIKit'
+
+  end
+
   s.subspec "SlideController" do |ss|
     ss.summary      = "A left/right slide container view controller"
 
@@ -54,10 +63,10 @@ Pod::Spec.new do |s|
 
   end
 
-  s.subspec "ZHAutoLinesLabel" do |ss|
+  s.subspec "AutoLinesLabel" do |ss|
     ss.summary      = "UILabel with contentInset and probide auto lines on iOS7"
 
-    ss.source_files = 'Source/iOS/ZHAutoLinesLabel/*.*'
+    ss.source_files = 'Source/iOS/AutoLinesLabel/*.*'
     ss.frameworks   = 'UIKit'
 
   end

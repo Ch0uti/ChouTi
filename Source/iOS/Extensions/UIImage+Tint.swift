@@ -1,9 +1,8 @@
 //
 //  UIImage+Tint.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2015-09-02.
-//
 //
 
 import UIKit
