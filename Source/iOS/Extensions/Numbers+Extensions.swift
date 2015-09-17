@@ -21,4 +21,3 @@ public extension CGFloat {
 		return CGFloat(M_PI / 180) * self
 	}
 }
-

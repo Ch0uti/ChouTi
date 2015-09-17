@@ -23,13 +23,12 @@ public extension UINavigationBar {
 			return view
 		}
 		
-		if let subviews = view.subviews as? [UIView] {
-			for subview in subviews {
-				if let imageView = hairlineImageViewInNavigationBar(subview) {
-					return imageView
-				}
+		for subview in view.subviews {
+			if let imageView = hairlineImageViewInNavigationBar(subview) {
+				return imageView
 			}
 		}
+		
 		return nil
 	}
 }
