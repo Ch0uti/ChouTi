@@ -9,8 +9,11 @@
 import UIKit
 import ChouTi
 
+@available(iOS 9.0, *)
 class TableLayoutDemoViewController: UIViewController {
 
+	let doneButton = UIButton()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -21,19 +24,33 @@ class TableLayoutDemoViewController: UIViewController {
 		
 		let excelTable = TableCollectionView(frame: CGRectZero, collectionViewLayout: tableLayout)
 		excelTable.tableLayoutDataSource = self
-		excelTable.setTranslatesAutoresizingMaskIntoConstraints(false)
+		excelTable.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(excelTable)
 		
-		let views = ["excelTable": excelTable]
+		doneButton.translatesAutoresizingMaskIntoConstraints = false
+		doneButton.setTitle("Done", forState: UIControlState.Normal)
+		doneButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+		doneButton.addTarget(self, action: "doneButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+		view.addSubview(doneButton)
+		
+		let views = ["excelTable": excelTable, "doneButton": doneButton]
 		var constraints = [NSLayoutConstraint]()
 		
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[excelTable]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views) as! [NSLayoutConstraint]
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[excelTable]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views) as! [NSLayoutConstraint]
+		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[excelTable]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[excelTable]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+		
+		constraints.append(doneButton.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor))
+		constraints.append(doneButton.topAnchor.constraintEqualToAnchor(view.topAnchor, constant: 100))
 		
 		NSLayoutConstraint.activateConstraints(constraints)
     }
+	
+	func doneButtonPressed(sender: UIButton) {
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
 }
 
+@available(iOS 9.0, *)
 extension TableLayoutDemoViewController: TableLayoutDataSource {
 	func numberOfColumnsInCollectionView(collectionView: UICollectionView) -> Int {
 		return 5

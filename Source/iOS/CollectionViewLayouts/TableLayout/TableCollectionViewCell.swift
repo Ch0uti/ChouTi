@@ -15,13 +15,13 @@ class TableCollectionViewCell: UICollectionViewCell {
         commonInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
     
     private func commonInit() {
-        textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(textLabel)
 		
 		setupConstraints()

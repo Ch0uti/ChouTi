@@ -22,7 +22,7 @@ public class TableCollectionView: UICollectionView {
 //        scrollIndicatorInsets = UIEdgeInsetsMake(5, 2, -5, -2)
     }
     
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }

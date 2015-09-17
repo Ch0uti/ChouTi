@@ -15,7 +15,7 @@ public extension UIImage {
 	
 	:returns: A tinted image
 	*/
-	public func tintedVerticallyWithLinearGradientColors(colors: [UIColor], blenMode: CGBlendMode = kCGBlendModeNormal) -> UIImage {
+	public func tintedVerticallyWithLinearGradientColors(colors: [UIColor], blenMode: CGBlendMode = .Normal) -> UIImage {
 		return tintedWithLinearGradientColors(colors, blenMode: blenMode, startPoint: CGPointMake(0.5, 0), endPoint: CGPointMake(0.5, 1))
 	}
 	
@@ -26,7 +26,7 @@ public extension UIImage {
 	
 	:returns: A tinted image
 	*/
-	public func tintedHorizontallyWithLinearGradientColors(colors: [UIColor], blenMode: CGBlendMode = kCGBlendModeNormal) -> UIImage {
+	public func tintedHorizontallyWithLinearGradientColors(colors: [UIColor], blenMode: CGBlendMode = .Normal) -> UIImage {
 		return tintedWithLinearGradientColors(colors, blenMode: blenMode, startPoint: CGPointMake(0, 0.5), endPoint: CGPointMake(1.0, 0.5))
 	}
 	
@@ -46,7 +46,7 @@ public extension UIImage {
 		
 		// Create a context with image size
 		UIGraphicsBeginImageContext(CGSize(width: size.width * scale, height: size.height * scale))
-		let context = UIGraphicsGetCurrentContext()
+		let context = UIGraphicsGetCurrentContext()!
 
 		// Translate and flip graphic to LLO
 		context.flipCoordinatesVertically()
@@ -67,7 +67,7 @@ public extension UIImage {
 		let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), CGColors, nil)
 		let startPoint = CGPoint(x: size.width * scale * startPoint.x, y: size.height * scale * startPoint.y)
 		let endPoint = CGPoint(x: size.width * scale * endPoint.x, y: size.height * scale * endPoint.y)
-		let drawingOptions = CGGradientDrawingOptions(kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation)
+		let drawingOptions = CGGradientDrawingOptions([.DrawsBeforeStartLocation, .DrawsAfterEndLocation])
 		CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, drawingOptions)
 		
 		let gradientImage = UIGraphicsGetImageFromCurrentImageContext()

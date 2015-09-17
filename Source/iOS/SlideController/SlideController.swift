@@ -74,7 +74,7 @@ public class SlideController: UIViewController {
 	public var leftViewController: UIViewController? {
 		willSet {
 			if newValue == nil {
-				animateLeftViewController(shouldExpand: false, completion: { [unowned self] _ -> Void in
+				animateLeftViewControllerShouldExpand(false, completion: { [unowned self] _ -> Void in
 					self.removeViewController(self.leftViewController)
 				})
 			} else {
@@ -93,7 +93,7 @@ public class SlideController: UIViewController {
 	public var rightViewController: UIViewController? {
 		willSet {
 			if newValue == nil {
-				animateRightViewController(shouldExpand: false, completion: { [unowned self] _ -> Void in
+				animateRightViewControllerShouldExpand(false, completion: { [unowned self] _ -> Void in
 					self.removeViewController(self.rightViewController)
 				})
 			} else {
@@ -199,7 +199,7 @@ public class SlideController: UIViewController {
 		self.rightViewController = rightViewController
 	}
 
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		self.centerViewController = UIViewController()
 	    super.init(coder: aDecoder)
 	}
@@ -249,9 +249,9 @@ extension SlideController {
 	public func collapse() {
 		switch state {
 		case .LeftExpanded:
-			animateLeftViewController(shouldExpand: false)
+			animateLeftViewControllerShouldExpand(false)
 		case .RightExpanded:
-			animateRightViewController(shouldExpand: false)
+			animateRightViewControllerShouldExpand(false)
 		default:
 			return
 		}
@@ -269,10 +269,10 @@ extension SlideController {
 			leftViewControllerAdded = true
 		}
 		
-		animateLeftViewController(shouldExpand: !leftViewControllerIsAlreadyExpanded)
+		animateLeftViewControllerShouldExpand(!leftViewControllerIsAlreadyExpanded)
 	}
 	
-	private func animateLeftViewController(#shouldExpand: Bool, completion: ((Bool) -> Void)? = nil) {
+	private func animateLeftViewControllerShouldExpand(shouldExpand: Bool, completion: ((Bool) -> Void)? = nil) {
 		if shouldExpand {
 			state = .LeftExpanded
 			animateCenterViewControllerWithXOffset(leftRevealWidth ?? revealWidth, completion: { [unowned self] finished -> Void in
@@ -301,10 +301,10 @@ extension SlideController {
 			rightViewControllerAdded = true
 		}
 		
-		animateRightViewController(shouldExpand: !rightViewControllerIsAlreadyExpanded)
+		animateRightViewControllerShouldExpand(!rightViewControllerIsAlreadyExpanded)
 	}
 	
-	private func animateRightViewController(#shouldExpand: Bool, completion: ((Bool) -> Void)? = nil) {
+	private func animateRightViewControllerShouldExpand(shouldExpand: Bool, completion: ((Bool) -> Void)? = nil) {
 		if shouldExpand {
 			state = .RightExpanded
 			animateCenterViewControllerWithXOffset(-(rightRevealWidth ?? revealWidth), completion: { [unowned self] finished -> Void in
@@ -345,7 +345,7 @@ extension SlideController {
 		}
 		
 		if let springDampin = springDampin, initialSpringVelocity = initialSpringVelocity where shouldExceedRevealWidth == true {
-			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: springDampin, initialSpringVelocity: initialSpringVelocity, options: .BeginFromCurrentState | .CurveEaseInOut, animations: animationClosure, completion: completion)
+			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: springDampin, initialSpringVelocity: initialSpringVelocity, options: [.BeginFromCurrentState, .CurveEaseInOut], animations: animationClosure, completion: completion)
 		} else {
 			UIView.animateWithDuration(animationDuration, animations: animationClosure, completion: completion)
 		}
@@ -451,14 +451,14 @@ extension SlideController: UIGestureRecognizerDelegate {
 			if velocity.x > 500.0 {
 				// To right, fast enough
 				if leftViewControllerAdded {
-					animateLeftViewController(shouldExpand: true)
+					animateLeftViewControllerShouldExpand(true)
 				} else {
 					animateCenterViewController()
 				}
 			} else if velocity.x < -500.0 {
 				// To left, fast enough
 				if rightViewControllerAdded {
-					animateRightViewController(shouldExpand: true)
+					animateRightViewControllerShouldExpand(true)
 				} else {
 					animateCenterViewController()
 				}
@@ -466,10 +466,10 @@ extension SlideController: UIGestureRecognizerDelegate {
 				// Slow, check half position to determine whether show or not
 				if recognizer.view!.center.x > view.bounds.width {
 					// Showing left
-					animateLeftViewController(shouldExpand: true)
+					animateLeftViewControllerShouldExpand(true)
 				} else if recognizer.view!.center.x < 0 {
 					// Showing right
-					animateRightViewController(shouldExpand: true)
+					animateRightViewControllerShouldExpand(true)
 				} else {
 					// Showing center
 					animateCenterViewController()
@@ -488,7 +488,7 @@ extension SlideController: UIGestureRecognizerDelegate {
 	}
 }
 
-extension SlideController: UIGestureRecognizerDelegate {
+extension SlideController {
 	public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
 		// If one side view controller is nil, stop to reveal it
 		if gestureRecognizer == panGestureRecognizer {

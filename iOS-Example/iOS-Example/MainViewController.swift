@@ -45,19 +45,19 @@ extension MainViewController: UITableViewDataSource {
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		switch indexPath.row {
 		case 0:
-			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self)) as! UITableViewCell
+			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
 			
 			cell.textLabel?.text = "Navigation Bar Hide Hairline"
 			
 			return cell
 		case 1:
-			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self)) as! UITableViewCell
+			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
 			
 			cell.textLabel?.text = "SlideController"
 			
 			return cell
 		case 2:
-			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self)) as! UITableViewCell
+			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
 			
 			cell.textLabel?.text = "Table (Grid) Layout"
 			
@@ -117,8 +117,12 @@ extension MainViewController: UITableViewDelegate {
 			self.presentViewController(slideViewController, animated: true, completion: nil)
 			
 		case 2:
-			let tableLayoutDemoViewController = TableLayoutDemoViewController()
-			self.presentViewController(tableLayoutDemoViewController, animated: true, completion: nil)
+			if #available(iOS 9.0, *) {
+			    let tableLayoutDemoViewController = TableLayoutDemoViewController()
+				self.presentViewController(tableLayoutDemoViewController, animated: true, completion: nil)
+			} else {
+				assertionFailure()
+			}
 			
 		default:
 			break

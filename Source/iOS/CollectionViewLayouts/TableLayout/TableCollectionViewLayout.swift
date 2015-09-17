@@ -21,8 +21,8 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
     
     // SeparatorLine is decorationViews
     
-    public var titleFont: UIFont = UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
-    public var contentFont: UIFont = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+    public var titleFont: UIFont = UIFont.italicSystemFontOfSize(17)
+    public var contentFont: UIFont = UIFont.systemFontOfSize(17)
     
     public var horizontalPadding: CGFloat = 5.0
     public var verticalPadding: CGFloat = 1.0
@@ -58,7 +58,7 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
         self.registerClass(TableCollectionViewSeparatorView.self, forDecorationViewOfKind: kSeparatorViewKind)
     }
     
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -74,20 +74,20 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
         return CGSizeMake(width, maxContentHeight)
     }
         
-    public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         return cellAttrsIndexPathDict[indexPath]
     }
     
-    public override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
-        var attrs = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, withIndexPath: indexPath)
+    public override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+        let attrs = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, withIndexPath: indexPath)
         attrs.hidden = true
         if elementKind == kSeparatorViewKind {
             if indexPath.item == 0 {
                 attrs.hidden = false
                 if indexPath.section == 0 {
-                    var x: CGFloat = 0
-                    var y = titleLabelHeight + verticalPadding * 2
-                    var width = self.collectionViewContentSize().width
+                    let x: CGFloat = 0
+                    let y = titleLabelHeight + verticalPadding * 2
+                    let width = self.collectionViewContentSize().width
                     attrs.frame = CGRectMake(x, y, width, separatorLineWidth)
                 } else {
                     var x: CGFloat = 0
@@ -95,9 +95,9 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
                         x += maxWidthsForSections[sec] + separatorLineWidth + horizontalPadding * 2
                     }
                     x -= separatorLineWidth
-                    var y: CGFloat = 0.0
-                    var width = separatorLineWidth
-                    var height = self.collectionViewContentSize().height
+                    let y: CGFloat = 0.0
+                    let width = separatorLineWidth
+                    let height = self.collectionViewContentSize().height
                     attrs.frame = CGRectMake(x, y, width, height)
                 }
             }
@@ -105,16 +105,16 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
         return attrs
     }
     
-    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attrs = [UICollectionViewLayoutAttributes]()
         let cellIndexPaths = cellIndexPathsForRect(rect)
         for indexPath in cellIndexPaths {
-            attrs.append(self.layoutAttributesForItemAtIndexPath(indexPath))
+            attrs.append(self.layoutAttributesForItemAtIndexPath(indexPath)!)
         }
         
         for sec in 0 ..< sections {
             for row in 0 ..< collectionView!.dataSource!.collectionView(collectionView!, numberOfItemsInSection: sec) {
-                attrs.append(self.layoutAttributesForDecorationViewOfKind(kSeparatorViewKind, atIndexPath: NSIndexPath(forItem: row, inSection: sec)))
+                attrs.append(self.layoutAttributesForDecorationViewOfKind(kSeparatorViewKind, atIndexPath: NSIndexPath(forItem: row, inSection: sec))!)
             }
         }
         
@@ -138,7 +138,7 @@ extension TableCollectionViewLayout {
             for row in 1 ..< items {
                 // row: row - 1, to let row start from 0
                 let content = dataSourceTableLayout.collectionView(collectionView!, layout: self, contentForColumn: col, row: row - 1)
-                var contentWidth = content.zhExactSize(contentFont).width
+                let contentWidth = content.zhExactSize(contentFont).width
                 if contentWidth > maxWidth {
                     maxWidth = contentWidth
                 }
@@ -170,7 +170,7 @@ extension TableCollectionViewLayout {
     }
     
     private func cellAttrisForIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes {
-        var attrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+        let attrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
         
         var x: CGFloat = 0
         for sec in 0 ..< indexPath.section {

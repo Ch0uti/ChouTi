@@ -9,24 +9,24 @@ import UIKit
 
 public extension UIView {
 	public func containSubview(view: UIView) -> Bool {
-		return subviews.filter({$0 as? UIView == view}).count > 0
+		return subviews.filter({$0 == view}).count > 0
 	}
 	
 	public func removeAllSubviews() {
 		for subview in subviews {
-			(subview as? UIView)?.removeFromSuperview()
+			subview.removeFromSuperview()
 		}
 	}
 	
 	public func removeAllSubviewsExceptView(view: UIView) {
-		for subview in subviews.filter({$0 as? UIView != view}) {
-			(subview as? UIView)?.removeFromSuperview()
+		for subview in subviews.filter({$0 != view}) {
+			subview.removeFromSuperview()
 		}
 	}
 	
 	public func removeAllSubviewsExceptViews(views: [UIView]) {
-		for subview in subviews.filter({ contains(views, ($0 as! UIView)) }) {
-			(subview as? UIView)?.removeFromSuperview()
+		for subview in subviews.filter({ views.contains($0) }) {
+			subview.removeFromSuperview()
 		}
 	}
 }

@@ -18,22 +18,22 @@ class SideViewController: UIViewController {
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		println("\(label.text!)ViewController: viewWillAppear")
+		print("\(label.text!)ViewController: viewWillAppear")
 	}
 	
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
-		println("\(label.text!)ViewController: viewDidAppear")
+		print("\(label.text!)ViewController: viewDidAppear")
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		println("\(label.text!)ViewController: viewWillDisappear")
+		print("\(label.text!)ViewController: viewWillDisappear")
 	}
 	
 	override func viewDidDisappear(animated: Bool) {
 		super.viewDidDisappear(animated)
-		println("\(label.text!)ViewController: viewDidDisappear")
+		print("\(label.text!)ViewController: viewDidDisappear")
 	}
 
     override func didReceiveMemoryWarning() {

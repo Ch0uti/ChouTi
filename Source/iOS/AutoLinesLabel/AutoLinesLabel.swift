@@ -20,15 +20,15 @@ public class ZHAutoLinesLabel: UILabel {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        commonInit()
     }
 
-    public required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
+    public required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		commonInit()
     }
-    
-    private func setup() {
+	
+    private func commonInit() {
         // Content is never compressed
         self.setContentCompressionResistancePriority(1000, forAxis: .Horizontal)
         self.setContentCompressionResistancePriority(1000, forAxis: .Vertical)
