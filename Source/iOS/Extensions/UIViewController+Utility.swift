@@ -18,6 +18,10 @@ public extension UIViewController {
     :returns: True if contained, false otherwise
     */
     public func containChildViewController(childViewController: UIViewController) -> Bool {
-        return self.childViewControllers.filter({$0 == childViewController}).count > 0
+		if #available(iOS 9.0, *) {
+			return self.childViewControllers.contains(childViewController)
+		} else {
+			return self.childViewControllers.filter({$0 == childViewController}).count > 0
+		}
     }
 }

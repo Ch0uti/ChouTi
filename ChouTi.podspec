@@ -26,9 +26,12 @@ Pod::Spec.new do |s|
     ss.dependency 'ChouTi/Extensions'
     ss.dependency 'ChouTi/Protocols'
     ss.dependency 'ChouTi/CollectionViewLayouts'
+    ss.dependency 'ChouTi/Animators'
+
     ss.dependency 'ChouTi/SlideController'
     ss.dependency 'ChouTi/AutoLinesLabel'
-    
+    ss.dependency 'ChouTi/SegmentedControl'
+
   end
 
   s.subspec "Extensions" do |ss|
@@ -43,6 +46,14 @@ Pod::Spec.new do |s|
     ss.summary      = "Protocols"
 
     ss.source_files = 'Source/iOS/Protocols/*.*'
+    ss.frameworks   = 'UIKit'
+
+  end
+
+  s.subspec "Animators" do |ss|
+    ss.summary      = "A set of customized view controller transition animators"
+
+    ss.source_files = 'Source/iOS/Animators/*.*'
     ss.frameworks   = 'UIKit'
 
   end
@@ -67,6 +78,14 @@ Pod::Spec.new do |s|
     ss.summary      = "UILabel with contentInset and probide auto lines on iOS7"
 
     ss.source_files = 'Source/iOS/AutoLinesLabel/*.*'
+    ss.frameworks   = 'UIKit'
+
+  end
+
+  s.subspec "SegmentedControl" do |ss|
+    ss.summary      = "Customized Segmented Control, with underscore bars"
+
+    ss.source_files = 'Source/iOS/SegmentedControl/*.*'
     ss.frameworks   = 'UIKit'
 
   end
