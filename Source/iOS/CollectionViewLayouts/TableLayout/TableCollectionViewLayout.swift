@@ -50,17 +50,23 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
     private var maxWidthsForSections = [CGFloat]()
     private var maxContentHeight: CGFloat = 0
     
-    private var kSeparatorViewKind = "Separator"
+    private let separatorViewKind = "Separator"
     
     private var cellAttrsIndexPathDict = [NSIndexPath: UICollectionViewLayoutAttributes]()
-    public override init() {
+	
+	public override init() {
         super.init()
-        self.registerClass(TableCollectionViewSeparatorView.self, forDecorationViewOfKind: kSeparatorViewKind)
+		commmonInit()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+		commmonInit()
     }
+	
+	private func commmonInit() {
+		self.registerClass(TableCollectionViewSeparatorView.self, forDecorationViewOfKind: separatorViewKind)
+	}
     
     public override func prepareLayout() {
         buildMaxWidthsHeight()
@@ -81,7 +87,7 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
     public override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         let attrs = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, withIndexPath: indexPath)
         attrs.hidden = true
-        if elementKind == kSeparatorViewKind {
+        if elementKind == separatorViewKind {
             if indexPath.item == 0 {
                 attrs.hidden = false
                 if indexPath.section == 0 {
@@ -114,7 +120,7 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
         
         for sec in 0 ..< sections {
             for row in 0 ..< collectionView!.dataSource!.collectionView(collectionView!, numberOfItemsInSection: sec) {
-                attrs.append(self.layoutAttributesForDecorationViewOfKind(kSeparatorViewKind, atIndexPath: NSIndexPath(forItem: row, inSection: sec))!)
+                attrs.append(self.layoutAttributesForDecorationViewOfKind(separatorViewKind, atIndexPath: NSIndexPath(forItem: row, inSection: sec))!)
             }
         }
         
@@ -164,6 +170,7 @@ extension TableCollectionViewLayout {
             let items = dataSource.collectionView(collectionView!, numberOfItemsInSection: sec)
             for item in 0 ..< items {
                 let indexPath = NSIndexPath(forItem: item, inSection: sec)
+				
                 cellAttrsIndexPathDict[indexPath] = cellAttrisForIndexPath(indexPath)
             }
         }
@@ -203,8 +210,6 @@ extension TableCollectionViewLayout {
         
         var fromSectionIndex = -1
         var endSectionIndex = -1
-        var fromRowIndex = -1
-        var endRowIndex = -1
         
         // Determin section
         var calX: CGFloat = 0.0
@@ -225,41 +230,45 @@ extension TableCollectionViewLayout {
         if endSectionIndex == -1 {
             endSectionIndex = sections - 1
         }
-        
+		
+		// Create array of indexPaths
+		var indexPaths = [NSIndexPath]()
+		
         // Determin row
-        var calY: CGFloat = 0.0
-        let rowsCount = dataSource.collectionView(collectionView!, numberOfItemsInSection: 0)
-        for row in 0 ..< rowsCount {
-            var nextHeight: CGFloat = 0.0
-            if row == 0 {
-                nextHeight = titleLabelHeight + verticalPadding * 2 + separatorLineWidth
-            } else {
-                nextHeight = contentLabelHeight + verticalPadding * 2
-            }
-            if calY < rectTop && rectTop <= (calY + nextHeight) {
-                fromRowIndex = row
-            }
-            if calY < rectBottom && rectBottom <= (calY + nextHeight) {
-                endRowIndex = row
-                break
-            }
-            calY += nextHeight
-        }
-        if fromRowIndex == -1 {
-            fromRowIndex = 0
-        }
-        if endRowIndex == -1 {
-            endRowIndex = rowsCount - 1
-        }
-        
-        // Create array of indexPaths
-        var indexPaths = [NSIndexPath]()
-        for sec in fromSectionIndex ... endSectionIndex {
-            for row in fromRowIndex ... endRowIndex {
-                indexPaths.append(NSIndexPath(forItem: row, inSection: sec))
-            }
-        }
-        
+		for sec in 0 ..< sections {
+			var fromRowIndex = -1
+			var endRowIndex = -1
+			var calY: CGFloat = 0.0
+			let rowsCount = dataSource.collectionView(collectionView!, numberOfItemsInSection: sec)
+			
+			for row in 0 ..< rowsCount {
+				let nextHeight: CGFloat
+				if row == 0 {
+					nextHeight = titleLabelHeight + verticalPadding * 2 + separatorLineWidth
+				} else {
+					nextHeight = contentLabelHeight + verticalPadding * 2
+				}
+				if calY < rectTop && rectTop <= (calY + nextHeight) {
+					fromRowIndex = row
+				}
+				if calY < rectBottom && rectBottom <= (calY + nextHeight) {
+					endRowIndex = row
+					break
+				}
+				calY += nextHeight
+			}
+			if fromRowIndex == -1 {
+				fromRowIndex = 0
+			}
+			if endRowIndex == -1 {
+				endRowIndex = rowsCount - 1
+			}
+			
+			for row in fromRowIndex ... endRowIndex {
+				indexPaths.append(NSIndexPath(forItem: row, inSection: sec))
+			}
+		}
+		
         return indexPaths
     }
 }
