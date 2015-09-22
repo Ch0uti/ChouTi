@@ -242,8 +242,8 @@ public class SegmentedControl: UISegmentedControl {
 		
 		if titlesCount == 1 {
 			let views = ["label": itemLabels[0]]
-			itemConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("|[label]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-			itemConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("V:|[label]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+			itemConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("|[label]|", options: [], metrics: nil, views: views)
+			itemConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("V:|[label]|", options: [], metrics: nil, views: views)
 		} else {
 			for (index, label) in itemLabels.enumerate() {
 				if index == 0 {

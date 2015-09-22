@@ -36,8 +36,8 @@ class TableLayoutDemoViewController: UIViewController {
 		let views = ["excelTable": excelTable, "doneButton": doneButton]
 		var constraints = [NSLayoutConstraint]()
 		
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[excelTable]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[excelTable]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[excelTable]-|", options: [], metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[excelTable]-|", options: [], metrics: nil, views: views)
 		
 		constraints.append(doneButton.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor))
 		constraints.append(doneButton.topAnchor.constraintEqualToAnchor(view.topAnchor, constant: 100))
