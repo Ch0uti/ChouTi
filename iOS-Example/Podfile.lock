@@ -16,6 +16,8 @@ PODS:
     - ChouTi/Protocols
     - ChouTi/SegmentedControl
     - ChouTi/SlideController
+    - ChouTi/Utility
+  - ChouTi/Utility (1.0)
 
 DEPENDENCIES:
   - ChouTi (from `../`)
@@ -25,6 +27,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: 8387c0b034608fd30bd88d7491685f9fbced955f
+  ChouTi: 52b7ab2fb1706f69e1d386e13e17207ed9886862
 
 COCOAPODS: 0.38.2

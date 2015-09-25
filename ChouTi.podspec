@@ -27,6 +27,7 @@ Pod::Spec.new do |s|
     ss.dependency 'ChouTi/Protocols'
     ss.dependency 'ChouTi/CollectionViewLayouts'
     ss.dependency 'ChouTi/Animators'
+    ss.dependency 'ChouTi/Utility'
 
     ss.dependency 'ChouTi/SlideController'
     ss.dependency 'ChouTi/AutoLinesLabel'
@@ -54,6 +55,14 @@ Pod::Spec.new do |s|
     ss.summary      = "A set of customized view controller transition animators"
 
     ss.source_files = 'Source/iOS/Animators/*.*'
+    ss.frameworks   = 'UIKit'
+
+  end
+
+  s.subspec "Utility" do |ss|
+    ss.summary      = "Handy utility functions"
+
+    ss.source_files = 'Source/iOS/Utility/*.*'
     ss.frameworks   = 'UIKit'
 
   end
