@@ -1,25 +1,25 @@
 PODS:
   - ChouTi (1.0):
     - ChouTi/ChouTi (= 1.0)
-    - ChouTi/UIChouTi (= 1.0)
-  - ChouTi/Animators (1.0)
-  - ChouTi/AutoLinesLabel (1.0)
+    - ChouTi/UI (= 1.0)
   - ChouTi/ChouTi (1.0):
-    - ChouTi/Animators
-    - ChouTi/CollectionViewLayouts
-    - ChouTi/Extensions
-    - ChouTi/Protocols
-    - ChouTi/Utility
-  - ChouTi/CollectionViewLayouts (1.0)
-  - ChouTi/Extensions (1.0)
-  - ChouTi/Protocols (1.0)
-  - ChouTi/SegmentedControl (1.0)
-  - ChouTi/SlideController (1.0)
-  - ChouTi/UIChouTi (1.0):
-    - ChouTi/AutoLinesLabel
-    - ChouTi/SegmentedControl
-    - ChouTi/SlideController
-  - ChouTi/Utility (1.0)
+    - ChouTi/ChouTi/Animators (= 1.0)
+    - ChouTi/ChouTi/CollectionViewLayouts (= 1.0)
+    - ChouTi/ChouTi/Extensions (= 1.0)
+    - ChouTi/ChouTi/Protocols (= 1.0)
+    - ChouTi/ChouTi/Utility (= 1.0)
+  - ChouTi/ChouTi/Animators (1.0)
+  - ChouTi/ChouTi/CollectionViewLayouts (1.0)
+  - ChouTi/ChouTi/Extensions (1.0)
+  - ChouTi/ChouTi/Protocols (1.0)
+  - ChouTi/ChouTi/Utility (1.0)
+  - ChouTi/UI (1.0):
+    - ChouTi/UI/AutoLinesLabel (= 1.0)
+    - ChouTi/UI/SegmentedControl (= 1.0)
+    - ChouTi/UI/SlideController (= 1.0)
+  - ChouTi/UI/AutoLinesLabel (1.0)
+  - ChouTi/UI/SegmentedControl (1.0)
+  - ChouTi/UI/SlideController (1.0)
 
 DEPENDENCIES:
   - ChouTi (from `../`)
@@ -29,6 +29,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: 1b7a15532e062b65010655b75a9c9460091236c2
+  ChouTi: 3782b2c6ebe2ddfa070e46b7cf2623eb3428ecb2
 
 COCOAPODS: 0.38.2

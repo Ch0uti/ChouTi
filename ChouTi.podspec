@@ -12,80 +12,71 @@ Pod::Spec.new do |s|
   s.author           = { "Honghao Zhang" => "zhh358@gmail.com" }
   s.source           = { :git => "https://github.com/honghaoz/ChouTi.git", :tag => s.version.to_s }
 
-  s.platform     	 = :ios, '8.0'
-  s.requires_arc 	 = true
+  s.platform     	   = :ios, '8.0'
+  s.requires_arc 	   = true
 
   s.public_header_files = 'Source/**/**/*.h'
-  s.source_files 	 = 'Source/iOS/**/'
+  s.source_files 	   = 'Source/iOS/**/'
 
-  s.default_subspecs = 'ChouTi', 'UIChouTi'
+
+  s.default_subspecs = 'ChouTi', 'UI'
 
   s.subspec "ChouTi" do |ss|
-    ss.summary		 = "A set of common UI views & utilities."
+    ss.summary		 = "A Set of Common UI Utilities."
 
-    ss.dependency 'ChouTi/Extensions'
-    ss.dependency 'ChouTi/Protocols'
-    ss.dependency 'ChouTi/CollectionViewLayouts'
-    ss.dependency 'ChouTi/Animators'
-    ss.dependency 'ChouTi/Utility'
-
-  end
-
-  s.subspec "Extensions" do |ss|
-    ss.summary      = "Extensions of UIKit"
-    ss.source_files = 'Source/iOS/Extensions/*.*'
-    ss.frameworks   = 'UIKit'
-  end
-
-  s.subspec "Protocols" do |ss|
-    ss.summary      = "Protocols"
-    ss.source_files = 'Source/iOS/Protocols/*.*'
-    ss.frameworks   = 'UIKit'
-  end
-
-  s.subspec "CollectionViewLayouts" do |ss|
-    ss.summary      = "A collection of UICollectionView Layouts"
-    ss.source_files = 'Source/iOS/CollectionViewLayouts/*/*.*'
-    ss.frameworks   = 'UIKit'
-  end
-
-  s.subspec "Animators" do |ss|
-    ss.summary      = "A set of customized view controller transition animators"
-    ss.source_files = 'Source/iOS/Animators/*.*'
-    ss.frameworks   = 'UIKit'
-  end
-
-  s.subspec "Utility" do |ss|
-    ss.summary      = "Handy utility functions"
-    ss.source_files = 'Source/iOS/Utility/*.*'
-    ss.frameworks   = 'UIKit'
-  end
-
-
-
-  s.subspec "UIChouTi" do |ss|
-    ss.summary     = "A set of common UI views & utilities."
-
-    ss.dependency 'ChouTi/SlideController'
-    ss.dependency 'ChouTi/AutoLinesLabel'
-    ss.dependency 'ChouTi/SegmentedControl'
-
-    s.subspec "SlideController" do |ss|
-      ss.summary      = "A left/right slide container view controller"
-      ss.source_files = 'Source/iOS/UI/SlideController/*.*'
-      ss.frameworks   = 'UIKit'
+    ss.subspec "Extensions" do |sss|
+      sss.summary      = "Extensions"
+      sss.source_files = 'Source/iOS/Extensions/*.*'
+      sss.frameworks   = 'UIKit'
     end
 
-    s.subspec "AutoLinesLabel" do |ss|
-      ss.summary      = "UILabel with contentInset and probide auto lines on iOS7"
-      ss.source_files = 'Source/iOS/UI/AutoLinesLabel/*.*'
-      ss.frameworks   = 'UIKit'
+    ss.subspec "Protocols" do |sss|
+      sss.summary      = "Protocols"
+      sss.source_files = 'Source/iOS/Protocols/*.*'
+      sss.frameworks   = 'UIKit'
     end
 
-    s.subspec "SegmentedControl" do |ss|
-      ss.summary      = "Customized Segmented Control, with underscore bars"
-      ss.source_files = 'Source/iOS/UI/SegmentedControl/*.*'
-      ss.frameworks   = 'UIKit'
+    ss.subspec "CollectionViewLayouts" do |sss|
+      sss.summary      = "A collection of UICollectionView Layouts"
+      sss.source_files = 'Source/iOS/CollectionViewLayouts/*/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
+    ss.subspec "Animators" do |sss|
+      sss.summary      = "A set of customized view controller transition animators"
+      sss.source_files = 'Source/iOS/Animators/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
+    ss.subspec "Utility" do |sss|
+      sss.summary      = "Handy utility functions"
+      sss.source_files = 'Source/iOS/Utility/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
+  end
+
+
+
+  s.subspec "UI" do |ss|
+    ss.summary     = "UI Views & ViewControllers"
+
+    ss.subspec "SlideController" do |sss|
+      sss.summary      = "A left/right slide container view controller"
+      sss.source_files = 'Source/iOS/UI/SlideController/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
+    ss.subspec "AutoLinesLabel" do |sss|
+      sss.summary      = "UILabel with contentInset and probide auto lines on iOS7"
+      sss.source_files = 'Source/iOS/UI/AutoLinesLabel/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
+    ss.subspec "SegmentedControl" do |sss|
+      sss.summary      = "Customized Segmented Control, with underscore bars"
+      sss.source_files = 'Source/iOS/UI/SegmentedControl/*.*'
+      sss.frameworks   = 'UIKit'
     end
 
   end
