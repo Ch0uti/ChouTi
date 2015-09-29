@@ -1,22 +1,24 @@
 PODS:
   - ChouTi (1.0):
+    - ChouTi/ChouTi (= 1.0)
     - ChouTi/UIChouTi (= 1.0)
   - ChouTi/Animators (1.0)
   - ChouTi/AutoLinesLabel (1.0)
+  - ChouTi/ChouTi (1.0):
+    - ChouTi/Animators
+    - ChouTi/CollectionViewLayouts
+    - ChouTi/Extensions
+    - ChouTi/Protocols
+    - ChouTi/Utility
   - ChouTi/CollectionViewLayouts (1.0)
   - ChouTi/Extensions (1.0)
   - ChouTi/Protocols (1.0)
   - ChouTi/SegmentedControl (1.0)
   - ChouTi/SlideController (1.0)
   - ChouTi/UIChouTi (1.0):
-    - ChouTi/Animators
     - ChouTi/AutoLinesLabel
-    - ChouTi/CollectionViewLayouts
-    - ChouTi/Extensions
-    - ChouTi/Protocols
     - ChouTi/SegmentedControl
     - ChouTi/SlideController
-    - ChouTi/Utility
   - ChouTi/Utility (1.0)
 
 DEPENDENCIES:
@@ -27,6 +29,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: 52b7ab2fb1706f69e1d386e13e17207ed9886862
+  ChouTi: 1b7a15532e062b65010655b75a9c9460091236c2
 
 COCOAPODS: 0.38.2

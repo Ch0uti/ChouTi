@@ -39,7 +39,7 @@ extension MainViewController: UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 3
+		return 4
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -60,6 +60,12 @@ extension MainViewController: UITableViewDataSource {
 			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
 			
 			cell.textLabel?.text = "Table (Grid) Layout"
+			
+			return cell
+		case 3:
+			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
+			
+			cell.textLabel?.text = "Page Controller"
 			
 			return cell
 		default:
@@ -123,6 +129,9 @@ extension MainViewController: UITableViewDelegate {
 			} else {
 				assertionFailure()
 			}
+			
+		case 3:			
+			self.navigationController?.pushViewController(PageViewDemoController(), animated: true)
 			
 		default:
 			break
