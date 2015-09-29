@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct OrderedDictionary<KeyType: Hashable, ValueType> {
-	typealias ArrayType = [KeyType]
-	typealias DictionaryType = [KeyType: ValueType]
+public struct OrderedDictionary<KeyType: Hashable, ValueType> {
+	public typealias ArrayType = [KeyType]
+	public typealias DictionaryType = [KeyType: ValueType]
 	
-	var array = ArrayType()
-	var dictionary = DictionaryType()
+	public var array = ArrayType()
+	public var dictionary = DictionaryType()
 	
-	var count: Int { return array.count }
+	public var count: Int { return array.count }
 	
-	subscript(key: KeyType) -> ValueType? {
+	public subscript(key: KeyType) -> ValueType? {
 		get {
 			return dictionary[key]
 		}
@@ -32,7 +32,7 @@ struct OrderedDictionary<KeyType: Hashable, ValueType> {
 		}
 	}
 	
-	subscript(index: Int) -> (KeyType, ValueType) {
+	public subscript(index: Int) -> (KeyType, ValueType) {
 		get {
 			precondition(index < array.count, "index out of bounds")
 			
@@ -45,7 +45,7 @@ struct OrderedDictionary<KeyType: Hashable, ValueType> {
 }
 
 extension OrderedDictionary {
-	mutating func insert(value: ValueType, forKey key: KeyType, atIndex index: Int) -> ValueType? {
+	public mutating func insert(value: ValueType, forKey key: KeyType, atIndex index: Int) -> ValueType? {
 		var adjustedIndex = index
 		
 		let existingValue = dictionary[key]
@@ -64,7 +64,7 @@ extension OrderedDictionary {
 		return existingValue
 	}
 	
-	mutating func removeAtIndex(index: Int) -> (KeyType, ValueType) {
+	public mutating func removeAtIndex(index: Int) -> (KeyType, ValueType) {
 		precondition(index < array.count, "index out of bounds")
 		
 		let key = array.removeAtIndex(index)
