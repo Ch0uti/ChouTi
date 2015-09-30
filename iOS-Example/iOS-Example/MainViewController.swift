@@ -120,6 +120,8 @@ extension MainViewController: UITableViewDelegate {
 			centerVC.leftViewController = leftVC
 			centerVC.rightViewController = rightVC
 			
+			slideViewController.toggleLeftViewController()
+			
 			self.presentViewController(slideViewController, animated: true, completion: nil)
 			
 		case 2:
