@@ -18,8 +18,12 @@ public class SlideController: UIViewController {
 	*/
 	public enum SlideState {
 		case NotExpanded
+		case LeftExpanding
 		case LeftExpanded
+		case LeftCollapsing
+		case RightExpanding
 		case RightExpanded
+		case RightCollapsing
 	}
 	
 	/// Center view controller
@@ -43,9 +47,9 @@ public class SlideController: UIViewController {
 			
 			// New view controller should have a same frame as before
 			switch state {
-			case .LeftExpanded:
+			case .LeftExpanding, .LeftExpanded, .LeftCollapsing:
 				animateCenterViewControllerWithXOffset(leftRevealWidth ?? revealWidth, animated: false, completion: nil)
-			case .RightExpanded:
+			case .RightExpanding, .RightExpanded, .RightCollapsing:
 				animateCenterViewControllerWithXOffset(rightRevealWidth ?? revealWidth, animated: false, completion: nil)
 			case .NotExpanded:
 				animateCenterViewControllerWithXOffset(0, animated: false, completion: nil)
@@ -75,16 +79,16 @@ public class SlideController: UIViewController {
 		willSet {
 			if newValue == nil {
 				animateLeftViewControllerShouldExpand(false, completion: { [unowned self] _ -> Void in
-					self.removeViewController(self.leftViewController)
+					self.removeViewController(self.leftViewController!)
 				})
 			} else {
-				removeViewController(leftViewController)
+				removeViewController(leftViewController!)
 			}
 		}
 		
 		didSet {
 			if state == .LeftExpanded {
-				addViewController(leftViewController)
+				addViewController(leftViewController!)
 			}
 		}
 	}
@@ -94,16 +98,16 @@ public class SlideController: UIViewController {
 		willSet {
 			if newValue == nil {
 				animateRightViewControllerShouldExpand(false, completion: { [unowned self] _ -> Void in
-					self.removeViewController(self.rightViewController)
+					self.removeViewController(self.rightViewController!)
 				})
 			} else {
-				removeViewController(rightViewController)
+				removeViewController(rightViewController!)
 			}
 		}
 		
 		didSet {
 			if state == .RightExpanded {
-				addViewController(rightViewController)
+				addViewController(rightViewController!)
 			}
 		}
 	}
@@ -124,6 +128,7 @@ public class SlideController: UIViewController {
 	
 	/// Reveal animation duration
 	public var animationDuration: NSTimeInterval = 0.25
+	private var animated: Bool { return animationDuration > 0.0 }
 	
 	/// Initial spring velocity of animation
 	public var initialSpringVelocity: CGFloat?
@@ -204,6 +209,10 @@ public class SlideController: UIViewController {
 	    super.init(coder: aDecoder)
 	}
 	
+	public override func shouldAutomaticallyForwardAppearanceMethods() -> Bool {
+		return false
+	}
+	
 	public override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.whiteColor()
@@ -249,9 +258,9 @@ extension SlideController {
 	public func collapse() {
 		switch state {
 		case .LeftExpanded:
-			animateLeftViewControllerShouldExpand(false)
+			toggleLeftViewController()
 		case .RightExpanded:
-			animateRightViewControllerShouldExpand(false)
+			toggleRightViewController()
 		default:
 			return
 		}
@@ -262,28 +271,33 @@ extension SlideController {
 	*/
 	public func toggleLeftViewController() {
 		if leftViewController == nil { return }
-		let leftViewControllerIsAlreadyExpanded = (state == .LeftExpanded)
-		if !leftViewControllerIsAlreadyExpanded {
-			replaceViewController(rightViewController, withViewController: leftViewController)
-			rightViewControllerAdded = false
-			leftViewControllerAdded = true
+		let leftViewControllerShouldExapnd = (state != .LeftExpanded)
+		if leftViewControllerShouldExapnd {
+			leftViewController?.beginAppearanceTransition(true, animated: animated)
+		} else {
+			leftViewController?.beginAppearanceTransition(false, animated: animated)
 		}
 		
-		animateLeftViewControllerShouldExpand(!leftViewControllerIsAlreadyExpanded)
+		animateLeftViewControllerShouldExpand(leftViewControllerShouldExapnd) { [unowned self] _ in
+			self.leftViewController?.endAppearanceTransition()
+		}
 	}
 	
 	private func animateLeftViewControllerShouldExpand(shouldExpand: Bool, completion: ((Bool) -> Void)? = nil) {
 		if shouldExpand {
-			state = .LeftExpanded
+			replaceViewController(rightViewController, withViewController: leftViewController)
+			rightViewControllerAdded = false
+			leftViewControllerAdded = true
+			
+			state = .LeftExpanding
 			animateCenterViewControllerWithXOffset(leftRevealWidth ?? revealWidth, completion: { [unowned self] finished -> Void in
 				self.leftViewController?.didMoveToParentViewController(self)
+				self.state = .LeftExpanded
 				completion?(finished)
 			})
 		} else {
-			animateCenterViewControllerWithXOffset(0.0, completion: { [unowned self] finished -> Void in
-				self.state = .NotExpanded
-				self.removeViewController(self.leftViewController)
-				self.leftViewControllerAdded = false
+			state = .LeftCollapsing
+			animateCenterViewController({ finished in
 				completion?(finished)
 			})
 		}
@@ -294,40 +308,55 @@ extension SlideController {
 	*/
 	public func toggleRightViewController() {
 		if rightViewController == nil { return }
-		let rightViewControllerIsAlreadyExpanded = (state == .RightExpanded)
-		if !rightViewControllerIsAlreadyExpanded {
-			replaceViewController(leftViewController, withViewController: rightViewController)
-			leftViewControllerAdded = false
-			rightViewControllerAdded = true
+		let rightViewControllerShouldExapnd = (state != .RightExpanded)
+		if rightViewControllerShouldExapnd {
+			rightViewController?.beginAppearanceTransition(true, animated: animated)
+		} else {
+			rightViewController?.beginAppearanceTransition(false, animated: animated)
 		}
 		
-		animateRightViewControllerShouldExpand(!rightViewControllerIsAlreadyExpanded)
+		animateRightViewControllerShouldExpand(rightViewControllerShouldExapnd) { [unowned self] _ in
+			self.rightViewController?.endAppearanceTransition()
+		}
 	}
 	
 	private func animateRightViewControllerShouldExpand(shouldExpand: Bool, completion: ((Bool) -> Void)? = nil) {
 		if shouldExpand {
-			state = .RightExpanded
+			replaceViewController(leftViewController, withViewController: rightViewController)
+			leftViewControllerAdded = false
+			rightViewControllerAdded = true
+			
+			state = .RightExpanding
 			animateCenterViewControllerWithXOffset(-(rightRevealWidth ?? revealWidth), completion: { [unowned self] finished -> Void in
 				self.rightViewController?.didMoveToParentViewController(self)
+				self.state = .RightExpanded
 				completion?(finished)
 			})
 		} else {
-			animateCenterViewControllerWithXOffset(0.0, completion: { [unowned self] finished -> Void in
-				self.state = .NotExpanded
-				self.removeViewController(self.rightViewController)
-				self.rightViewControllerAdded = false
+			state = .RightCollapsing
+			animateCenterViewController({ finished in
 				completion?(finished)
 			})
 		}
 	}
 	
-	private func animateCenterViewController() {
-		animateCenterViewControllerWithXOffset(0.0, completion: { [unowned self] _ -> Void in
+	/**
+	Go to state .NotExpanded
+	*/
+	private func animateCenterViewController(completion: ((Bool) -> Void)? = nil) {
+		animateCenterViewControllerWithXOffset(0.0, completion: { [unowned self] finished -> Void in
+			switch self.state {
+			case .LeftExpanding, .LeftExpanded:
+				self.removeViewController(self.leftViewController!)
+				self.leftViewControllerAdded = false
+			case .RightExpanding, .RightExpanded:
+				self.removeViewController(self.rightViewController!)
+				self.rightViewControllerAdded = false
+			default:
+				break
+			}
+			completion?(finished)
 			self.state = .NotExpanded
-			self.removeViewController(self.leftViewController)
-			self.leftViewControllerAdded = false
-			self.removeViewController(self.rightViewController)
-			self.rightViewControllerAdded = false
 		})
 	}
 	
@@ -360,23 +389,24 @@ extension SlideController {
 	}
 	
 	private func replaceViewController(viewController: UIViewController?, withViewController: UIViewController?) {
-		removeViewController(viewController)
-		addViewController(withViewController)
-	}
-	
-	private func addViewController(viewController: UIViewController?) {
-		if let viewController = viewController {
-			addChildViewController(viewController)
-			view.insertSubview(viewController.view, belowSubview: centerViewController.view)
+		if let viewController = viewController where containChildViewController(viewController) {
+			removeViewController(viewController)
+		}
+		
+		if let withViewController = withViewController where !containChildViewController(withViewController) {
+			addViewController(withViewController)
 		}
 	}
 	
-	private func removeViewController(viewController: UIViewController?) {
-		if let viewController = viewController {
-			viewController.willMoveToParentViewController(nil)
-			viewController.view.removeFromSuperview()
-			viewController.removeFromParentViewController()
-		}
+	private func removeViewController(viewController: UIViewController) {
+		viewController.willMoveToParentViewController(nil)
+		viewController.view.removeFromSuperview()
+		viewController.removeFromParentViewController()
+	}
+	
+	private func addViewController(viewController: UIViewController) {
+		addChildViewController(viewController)
+		view.insertSubview(viewController.view, belowSubview: centerViewController.view)
 	}
 }
 
@@ -384,8 +414,32 @@ extension SlideController: UIGestureRecognizerDelegate {
 	func handlePanGesture(recognizer: UIPanGestureRecognizer) {
 		switch recognizer.state {
 		case .Began:
-			if state == .NotExpanded {
+			switch state {
+			case .NotExpanded:
+				// If going to expand
 				showShadowForCenterViewController(true)
+				let velocity = recognizer.velocityInView(view)
+				if velocity.x > 0 {
+					// Show left
+					leftViewController?.beginAppearanceTransition(true, animated: true)
+					state = .LeftExpanding
+				} else if velocity.x < 0 {
+					// Show right
+					rightViewController?.beginAppearanceTransition(true, animated: true)
+					state = .RightExpanding
+				} else {
+					assertionFailure()
+				}
+			case .LeftExpanded:
+				// If going to collapse from left
+				leftViewController?.beginAppearanceTransition(false, animated: true)
+				state = .LeftCollapsing
+			case .RightExpanded:
+				// If going to collapse from right
+				rightViewController?.beginAppearanceTransition(false, animated: true)
+				state = .RightCollapsing
+			default:
+				assertionFailure()
 			}
 		case .Changed:
 			let centerX = view.bounds.width / 2.0
@@ -451,39 +505,77 @@ extension SlideController: UIGestureRecognizerDelegate {
 			if velocity.x > 500.0 {
 				// To right, fast enough
 				if leftViewControllerAdded {
-					animateLeftViewControllerShouldExpand(true)
+					animateLeftViewControllerShouldExpand(true) { [unowned self] _ in
+						self.leftViewController?.endAppearanceTransition()
+					}
 				} else {
-					animateCenterViewController()
+					fallthrough
 				}
 			} else if velocity.x < -500.0 {
 				// To left, fast enough
 				if rightViewControllerAdded {
-					animateRightViewControllerShouldExpand(true)
+					animateRightViewControllerShouldExpand(true) { [unowned self] _ in
+						self.rightViewController?.endAppearanceTransition()
+					}
 				} else {
-					animateCenterViewController()
+					fallthrough
 				}
 			} else {
 				// Slow, check half position to determine whether show or not
 				if recognizer.view!.center.x > view.bounds.width {
 					// Showing left
-					animateLeftViewControllerShouldExpand(true)
+					switch self.state {
+					case .LeftCollapsing:
+						self.leftViewController?.beginAppearanceTransition(true, animated: true)
+					default:
+						break
+					}
+					animateLeftViewControllerShouldExpand(true) { [unowned self] _ in
+						self.leftViewController?.endAppearanceTransition()
+					}
 				} else if recognizer.view!.center.x < 0 {
 					// Showing right
-					animateRightViewControllerShouldExpand(true)
+					switch self.state {
+					case .RightCollapsing:
+						self.rightViewController?.beginAppearanceTransition(true, animated: true)
+					default:
+						break
+					}
+					animateRightViewControllerShouldExpand(true) { [unowned self] _ in
+						self.rightViewController?.endAppearanceTransition()
+					}
 				} else {
 					// Showing center
-					animateCenterViewController()
+					fallthrough
 				}
 			}
 		default:
-			animateCenterViewController()
+			switch self.state {
+			case .LeftExpanding:
+				self.leftViewController?.beginAppearanceTransition(false, animated: true)
+			case .RightExpanding:
+				self.rightViewController?.beginAppearanceTransition(false, animated: true)
+			default:
+				break
+			}
+			
+			animateCenterViewController({ [unowned self] _ in
+				switch self.state {
+				case .LeftExpanding, .LeftCollapsing:
+					self.leftViewController?.endAppearanceTransition()
+				case .RightExpanding, .RightCollapsing:
+					self.rightViewController?.endAppearanceTransition()
+				default:
+					assertionFailure()
+				}
+			})
 		}
 	}
 	
 	func handleTapGesture(recognizer: UITapGestureRecognizer) {
 		// Tap center view controller to collapse
 		if state != .NotExpanded {
-			animateCenterViewController()
+			collapse()
 		}
 	}
 }
