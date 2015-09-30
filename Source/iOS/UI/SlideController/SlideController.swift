@@ -199,6 +199,7 @@ public class SlideController: UIViewController {
 	private var rightViewControllerAdded: Bool = false
 	
 	private var isVisible: Bool { return isViewLoaded() && (view.window != nil) }
+	private var isAnimating: Bool = false
 	
 	/// Whether should use screen edge pan gesture
 	public var useScreenEdgePanGestureRecognizer: Bool = true {
@@ -389,6 +390,7 @@ extension SlideController {
 	*/
 	public func toggleLeftViewController() {
 		if leftViewController == nil { return }
+		if isAnimating { return }
 		let leftViewControllerShouldExapnd = (state != .LeftExpanded)
 		if leftViewControllerShouldExapnd {
 			beginViewController(leftViewController, appearanceTransition: true, animated: animated)
@@ -401,6 +403,7 @@ extension SlideController {
 		animateLeftViewControllerShouldExpand(leftViewControllerShouldExapnd) { [unowned self] _ in
 			self.endViewControllerAppearanceTransition(self.leftViewController)
 			self.endViewControllerAppearanceTransition(self.centerViewController)
+			self.isAnimating = false
 		}
 	}
 	
@@ -429,6 +432,7 @@ extension SlideController {
 	*/
 	public func toggleRightViewController() {
 		if rightViewController == nil { return }
+		if isAnimating { return }
 		let rightViewControllerShouldExapnd = (state != .RightExpanded)
 		if rightViewControllerShouldExapnd {
 			beginViewController(rightViewController, appearanceTransition: true, animated: animated)
@@ -489,6 +493,7 @@ extension SlideController {
 			self.centerViewController.view.center = CGPoint(x: self.view.center.x + xOffset, y: self.centerViewController.view.center.y)
 			self.centerViewController.view.frame.origin.y = 0
 			self.statusBarBackgroundView.backgroundColor = self.statusBarBackgroundColor?.colorWithAlphaComponent(abs(xOffset) / (xOffset > 0 ? (self.leftRevealWidth ?? self.revealWidth) : (self.rightRevealWidth ?? self.revealWidth)))
+			self.isAnimating = false
 		}
 		
 		if !animated {
@@ -498,8 +503,10 @@ extension SlideController {
 		}
 		
 		if let springDampin = springDampin, initialSpringVelocity = initialSpringVelocity where shouldExceedRevealWidth == true {
+			isAnimating = true
 			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: springDampin, initialSpringVelocity: initialSpringVelocity, options: [.BeginFromCurrentState, .CurveEaseInOut], animations: animationClosure, completion: completion)
 		} else {
+			isAnimating = true
 			UIView.animateWithDuration(animationDuration, animations: animationClosure, completion: completion)
 		}
 	}
