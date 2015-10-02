@@ -7,80 +7,63 @@
 //
 
 import UIKit
+import ChouTi
 
-class PageViewDemoController: UIViewController {
+//class PageViewDemoController: UIViewController {
+//	
+//	let menuPageViewController = MenuPageViewController()
+//	
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//		self.view.backgroundColor = UIColor.whiteColor()
+//		
+//		menuPageViewController.viewControllers = [UIViewController(), UIViewController(), UIViewController()]
+//		
+//		setupViews()
+//    }
+//	
+//	private func setupViews() {
+//	}
+//	
+//	override func viewDidAppear(animated: Bool) {
+//		super.viewDidAppear(animated)
+//	}
+//}
 
-	let pageController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-	
-	let vc1 = UIViewController()
-	let vc2 = UIViewController()
-	let vc3 = UIViewController()
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		
-		vc1.view.backgroundColor = UIColor.redColor()
-		vc2.view.backgroundColor = UIColor.greenColor()
-		vc3.view.backgroundColor = UIColor.yellowColor()
-		
-		pageController.setViewControllers([vc2], direction: .Forward, animated: true) { (_) -> Void in
-			print("done")
-		}
-		
-		pageController.doubleSided = true
-		pageController.dataSource = self
-		
-		pageController.view.subviews.forEach({ subview in
-			if let scrollView = subview as? UIScrollView {
-				print("found")
-				scrollView.delegate = self
-			}
-		})
-		
-		addChildViewController(pageController)
-		view.addSubview(pageController.view)
-		pageController.didMoveToParentViewController(self)
-    }
-}
 
-extension PageViewDemoController: UIScrollViewDelegate {
-	func scrollViewDidScroll(scrollView: UIScrollView) {
-		print(scrollView.contentOffset)
-	}
-}
 
-extension PageViewDemoController: UIPageViewControllerDataSource {
-	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-		switch viewController {
-		case vc1:
-			return nil
-		case vc2:
-			return vc1
-		case vc3:
-			return vc2
-		default:
-			return nil
-		}
-	}
-	
-	func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-		switch viewController {
-		case vc1:
-			return vc2
-		case vc2:
-			return vc3
-		case vc3:
-			return nil
-		default:
-			return nil
-		}
-	}
-	
-	func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-		return 3
-	}
-	
-	func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-		return 1
-	}
-}
+
+//class DemoViewController: UIViewController {
+//	
+//	let label = UILabel()
+//	
+//	override func viewDidLoad() {
+//		super.viewDidLoad()
+//	}
+//	
+//	override func viewWillAppear(animated: Bool) {
+//		super.viewWillAppear(animated)
+//		print("\(label.text!)ViewController: viewWillAppear")
+//	}
+//	
+//	override func viewDidAppear(animated: Bool) {
+//		super.viewDidAppear(animated)
+//		print("\(label.text!)ViewController: viewDidAppear")
+//	}
+//	
+//	override func viewWillDisappear(animated: Bool) {
+//		super.viewWillDisappear(animated)
+//		print("\(label.text!)ViewController: viewWillDisappear")
+//	}
+//	
+//	override func viewDidDisappear(animated: Bool) {
+//		super.viewDidDisappear(animated)
+//		print("\(label.text!)ViewController: viewDidDisappear")
+//	}
+//	
+//	override func didReceiveMemoryWarning() {
+//		super.didReceiveMemoryWarning()
+//		// Dispose of any resources that can be recreated.
+//	}
+//}
+

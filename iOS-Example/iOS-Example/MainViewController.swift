@@ -132,8 +132,12 @@ extension MainViewController: UITableViewDelegate {
 				assertionFailure()
 			}
 			
-		case 3:			
-			self.navigationController?.pushViewController(PageViewDemoController(), animated: true)
+		case 3:
+			let demoMenuPageViewController = MenuPageViewController()
+			demoMenuPageViewController.viewControllers = [UIViewController(), UIViewController(), UIViewController()]
+			
+			self.presentViewController(demoMenuPageViewController, animated: true, completion: nil)
+//			self.navigationController?.pushViewController(MenuPageViewController(), animated: true)
 			
 		default:
 			break

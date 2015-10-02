@@ -15,9 +15,11 @@ PODS:
   - ChouTi/ChouTi/Utility (1.0)
   - ChouTi/UI (1.0):
     - ChouTi/UI/AutoLinesLabel (= 1.0)
+    - ChouTi/UI/MenuPageViewController (= 1.0)
     - ChouTi/UI/SegmentedControl (= 1.0)
     - ChouTi/UI/SlideController (= 1.0)
   - ChouTi/UI/AutoLinesLabel (1.0)
+  - ChouTi/UI/MenuPageViewController (1.0)
   - ChouTi/UI/SegmentedControl (1.0)
   - ChouTi/UI/SlideController (1.0)
 
@@ -29,6 +31,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: 3782b2c6ebe2ddfa070e46b7cf2623eb3428ecb2
+  ChouTi: c7c9742ef19de9e2f20cd8454b89128d957f5ec4
 
 COCOAPODS: 0.38.2

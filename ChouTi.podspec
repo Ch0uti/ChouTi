@@ -79,6 +79,12 @@ Pod::Spec.new do |s|
       sss.frameworks   = 'UIKit'
     end
 
+    ss.subspec "MenuPageViewController" do |sss|
+      sss.summary      = "PageViewController with header titles"
+      sss.source_files = 'Source/iOS/UI/MenuPageViewController/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
   end
 
   
