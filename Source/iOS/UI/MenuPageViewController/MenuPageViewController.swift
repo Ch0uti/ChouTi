@@ -9,22 +9,7 @@
 import UIKit
 
 public class MenuPageViewController: UIViewController {
-
-	public var selectedIndex: Int = 0
-	public var selectedViewController: UIViewController {
-		return viewControllers[selectedIndex]
-	}
-	public var viewControllers = [UIViewController]() {
-		willSet {
-			willReplaceOldViewControllers(viewControllers, withNewViewControllers: newValue)
-		}
-		didSet {
-			didReplaceOldViewControllers(oldValue, withNewViewControllers: viewControllers)
-		}
-	}
-	
 	public var menuTitleHeight: CGFloat = 44.0
-	public var pageSpacing: CGFloat = 10.0
 	
 	private let menuCollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
 	private let pageScrollView = UIScrollView()
@@ -92,22 +77,6 @@ public class MenuPageViewController: UIViewController {
 	public override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 	}
-	
-	private func willReplaceOldViewControllers(oldViewControllers: [UIViewController], withNewViewControllers newViewControllers: [UIViewController]) {
-		for viewController in oldViewControllers {
-//			viewController.beginAppearanceTransition(false, animated: false)
-			removeViewController(viewController)
-//			viewController.endAppearanceTransition()
-		}
-	}
-	
-	private func didReplaceOldViewControllers(oldViewControllers: [UIViewController], withNewViewControllers newViewControllers: [UIViewController]) {
-		for viewController in newViewControllers {
-//			viewController.beginAppearanceTransition(true, animated: false)
-			addViewController(viewController)
-//			viewController.endAppearanceTransition()
-		}
-	}
 }
 
 
@@ -135,7 +104,7 @@ extension MenuPageViewController: UICollectionViewDataSource {
 	}
 	
 	public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return viewControllers.count
+		return 3
 	}
 	
 	public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

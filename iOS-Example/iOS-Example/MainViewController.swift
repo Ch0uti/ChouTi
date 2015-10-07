@@ -133,11 +133,26 @@ extension MainViewController: UITableViewDelegate {
 			}
 			
 		case 3:
-			let demoMenuPageViewController = MenuPageViewController()
-			demoMenuPageViewController.viewControllers = [UIViewController(), UIViewController(), UIViewController()]
+			let demoMenuPageViewController = PageViewController()
+			let vc1 = SideViewController(nibName: "SideViewController", bundle: nil)
+			vc1.view.backgroundColor = UIColor.blueColor()
+			vc1.label.text = "vc1"
+			vc1.view.frame = UIScreen.mainScreen().bounds
 			
-			self.presentViewController(demoMenuPageViewController, animated: true, completion: nil)
-//			self.navigationController?.pushViewController(MenuPageViewController(), animated: true)
+			let vc2 = SideViewController(nibName: "SideViewController", bundle: nil)
+			vc2.view.backgroundColor = UIColor.redColor()
+			vc2.label.text = "vc2"
+			vc1.view.frame = UIScreen.mainScreen().bounds
+			
+			let vc3 = SideViewController(nibName: "SideViewController", bundle: nil)
+			vc3.view.backgroundColor = UIColor.greenColor()
+			vc3.label.text = "vc3"
+			vc3.view.frame = UIScreen.mainScreen().bounds
+			
+			demoMenuPageViewController.viewControllers = [vc1, vc2, vc3]
+			
+//			self.presentViewController(demoMenuPageViewController, animated: true, completion: nil)
+			self.navigationController?.pushViewController(demoMenuPageViewController, animated: true)
 			
 		default:
 			break
