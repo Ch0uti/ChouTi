@@ -173,15 +173,24 @@ extension PageViewController {
 // MARK: - UIScrollViewDelegate
 extension PageViewController: UIScrollViewDelegate {
 	public func scrollViewDidScroll(scrollView: UIScrollView) {
-//		print("did scroll")
 		if scrollView.contentOffset.y != 0 {
 			scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
 		}
 		
 		if !isDragging {
+			print("Moving forward: \(scrollViewMovingForward)")
+			
 			let willSelectedIndex = Int(willEndDraggingTargetContentOffset) / Int(view.bounds.width)
 			let willSelectedViewController = viewControllers[willSelectedIndex]
 			
+			// If current appearing view controller is not will selected view controller, state is mismatched. End all
+			let appearingViewControllers = viewControllers.filter { $0.isAppearing == true }
+			assert(appearingViewControllers.count <= 1)
+			if let willAppearViewController = appearingViewControllers.first where willAppearViewController !== willSelectedViewController {
+				willAppearViewController.endAppearanceTransition()
+			}
+			
+			// If the view controller moving to appearance call is not called. call it
 			if willSelectedViewController.isAppearing == nil {
 				print("sssss")
 				willSelectedViewController.beginAppearanceTransition(true, animated: true)

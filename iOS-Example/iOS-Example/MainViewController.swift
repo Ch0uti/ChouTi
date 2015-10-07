@@ -149,7 +149,11 @@ extension MainViewController: UITableViewDelegate {
 			vc3.label.text = "vc3"
 			vc3.view.frame = UIScreen.mainScreen().bounds
 			
-			demoMenuPageViewController.viewControllers = [vc1, vc2, vc3]
+			let vc4 = SideViewController(nibName: "SideViewController", bundle: nil)
+			vc4.view.backgroundColor = UIColor.purpleColor()
+			vc4.label.text = "vc4"
+			
+			demoMenuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
 			
 //			self.presentViewController(demoMenuPageViewController, animated: true, completion: nil)
 			self.navigationController?.pushViewController(demoMenuPageViewController, animated: true)
