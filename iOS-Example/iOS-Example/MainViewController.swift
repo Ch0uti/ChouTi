@@ -155,6 +155,22 @@ extension MainViewController: UITableViewDelegate {
 			
 			demoMenuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
 			
+			delay(seconds: 0.5, completion: { _ in
+				demoMenuPageViewController.setSelectedIndex(1, animated: true)
+			})
+			
+			delay(seconds: 1.0, completion: { _ in
+				demoMenuPageViewController.setSelectedIndex(3, animated: true)
+			})
+			
+			delay(seconds: 1.5, completion: { _ in
+				demoMenuPageViewController.setSelectedIndex(0, animated: true)
+			})
+			
+			delay(seconds: 2.0, completion: { _ in
+				demoMenuPageViewController.setSelectedIndex(2, animated: true)
+			})
+			
 //			self.presentViewController(demoMenuPageViewController, animated: true, completion: nil)
 			self.navigationController?.pushViewController(demoMenuPageViewController, animated: true)
 			

@@ -12,11 +12,22 @@ public class PageViewController : UIViewController {
 	// MARK: - Public
 	public var selectedIndex: Int = 0 {
 		didSet {
-			// TODO: SetSelectedIndex animated
+			setSelectedIndex(selectedIndex, animated: false)
 		}
 	}
+	
 	public var selectedViewController: UIViewController {
 		return viewControllers[selectedIndex]
+	}
+	
+	private var _selectedIndex: Int = 0 {
+		didSet {
+			selectedIndex = _selectedIndex
+		}
+	}
+	
+	private var _selectedViewController: UIViewController {
+		return viewControllers[_selectedIndex]
 	}
 	
 	public var viewControllers = [UIViewController]() {
@@ -32,31 +43,38 @@ public class PageViewController : UIViewController {
 	// MARK: - Private
 	// MARK: - Getting forward/backward view controllers
 	private var forwardViewController: UIViewController? {
-		return (selectedIndex + 1 < viewControllers.count) ? viewControllers[selectedIndex + 1] : nil
+		return (_selectedIndex + 1 < viewControllers.count) ? viewControllers[_selectedIndex + 1] : nil
 	}
 	
 	private var backwardViewController: UIViewController? {
-		return selectedIndex - 1 >= 0 ? viewControllers[selectedIndex - 1] : nil
+		return _selectedIndex - 1 >= 0 ? viewControllers[_selectedIndex - 1] : nil
 	}
 	
 	// MARK: - Dragging related
 	private var isDragging: Bool = false
-	private var beginDraggingContentOffsetX: CGFloat = 0.0 {
+	private var beginDraggingContentOffsetX: CGFloat? {
 		didSet {
-			// Round off begin content offset x
-			beginDraggingContentOffsetX = CGFloat(Int(beginDraggingContentOffsetX) / Int(view.bounds.width)) * view.bounds.width
+			if let offsetX = beginDraggingContentOffsetX {
+				// Round off begin content offset x
+				if offsetX % view.bounds.width == 0 { return }
+				beginDraggingContentOffsetX = CGFloat(Int(offsetX) / Int(view.bounds.width)) * view.bounds.width
+			}
 		}
 	}
-	private var willEndDraggingTargetContentOffsetX: CGFloat = 0.0
+	private var willEndDraggingTargetContentOffsetX: CGFloat?
 	
-	private var draggingOffsetX: CGFloat { return pageScrollView.contentOffset.x - beginDraggingContentOffsetX }
+	private var draggingOffsetX: CGFloat? { return beginDraggingContentOffsetX == nil ? nil : pageScrollView.contentOffset.x - beginDraggingContentOffsetX! }
 	private var draggingForward: Bool? {
+		guard let draggingOffsetX = draggingOffsetX else { return nil }
+		
 		if draggingOffsetX == 0 {
 			return nil
 		} else {
 			return draggingOffsetX > 0
 		}
 	}
+	
+	private var isVisible: Bool { return isViewLoaded() && (view.window != nil) }
 	
 	// MARK: - Properties
 	private let pageScrollView = UIScrollView()
@@ -97,22 +115,22 @@ public class PageViewController : UIViewController {
 	
 	public override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		selectedViewController.beginAppearanceTransition(true, animated: animated)
+		_selectedViewController.beginAppearanceTransition(true, animated: animated)
 	}
 	
 	public override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
-		selectedViewController.endAppearanceTransition()
+		_selectedViewController.endAppearanceTransition()
 	}
 	
 	public override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		selectedViewController.beginAppearanceTransition(false, animated: animated)
+		_selectedViewController.beginAppearanceTransition(false, animated: animated)
 	}
 	
 	public override func viewDidDisappear(animated: Bool) {
 		super.viewDidDisappear(animated)
-		selectedViewController.endAppearanceTransition()
+		_selectedViewController.endAppearanceTransition()
 	}
 	
 	private func willReplaceOldViewControllers(oldViewControllers: [UIViewController], withNewViewControllers newViewControllers: [UIViewController]) {
@@ -134,6 +152,31 @@ public class PageViewController : UIViewController {
 		pageScrollView.contentSize = CGSize(width: view.bounds.width * CGFloat(viewControllers.count), height: view.bounds.height)
 		for (index, viewController) in viewControllers.enumerate() {
 			viewController.view.frame = CGRect(x: CGFloat(index) * view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
+		}
+	}
+	
+	public func setSelectedIndex(index: Int, animated: Bool, completion: (Bool -> Void)? = nil) {
+		precondition(0 <= index && index < viewControllers.count, "selected index: \(index) out of range")
+		if _selectedIndex == index { return }
+		
+		let width = view.bounds.width
+		let newOffsetX = CGFloat(index) * width
+		
+		pageScrollView.setContentOffset(CGPoint(x: newOffsetX, y: 0), animated: animated)
+		if animated {
+			if isVisible {
+				_selectedViewController.beginAppearanceTransition(false, animated: true)
+				viewControllers[index].beginAppearanceTransition(true, animated: true)
+			}
+		} else {
+			if isVisible {
+				_selectedViewController.beginAppearanceTransition(false, animated: false)
+				_selectedViewController.endAppearanceTransition()
+				
+				viewControllers[index].beginAppearanceTransition(true, animated: false)
+				viewControllers[index].endAppearanceTransition()
+			}
+			_selectedIndex = index
 		}
 	}
 }
@@ -161,6 +204,7 @@ extension PageViewController : UIScrollViewDelegate {
 		}
 		
 		if !isDragging {
+			guard let willEndDraggingTargetContentOffsetX =  willEndDraggingTargetContentOffsetX else { return }
 			let willSelectedIndex = Int(willEndDraggingTargetContentOffsetX) / Int(view.bounds.width)
 			let willSelectedViewController = viewControllers[willSelectedIndex]
 			
@@ -177,8 +221,8 @@ extension PageViewController : UIScrollViewDelegate {
 			}
 			
 			// If selected view controller disappearing call is not called, call it
-			if selectedViewController.isAppearing == nil {
-				selectedViewController.beginAppearanceTransition(false, animated: true)
+			if _selectedViewController.isAppearing == nil {
+				_selectedViewController.beginAppearanceTransition(false, animated: true)
 			}
 			
 			return
@@ -199,7 +243,7 @@ extension PageViewController : UIScrollViewDelegate {
 			return
 		}
 		
-		selectedViewController.beginAppearanceTransition(false, animated: true)
+		_selectedViewController.beginAppearanceTransition(false, animated: true)
 		
 		if draggingForward {
 			if backwardViewController?.isAppearing != nil {
@@ -227,8 +271,11 @@ extension PageViewController : UIScrollViewDelegate {
 		viewControllers.filter { $0.isAppearing != nil }.forEach { $0.endAppearanceTransition() }
 		
 		if let willAppearViewController = appearingViewControllers.first {
-			selectedIndex = viewControllers.indexOf(willAppearViewController)!
+			_selectedIndex = viewControllers.indexOf(willAppearViewController)!
 		}
+		
+		beginDraggingContentOffsetX = nil
+		willEndDraggingTargetContentOffsetX = nil
 		
 		isDragging = true
 		beginDraggingContentOffsetX = scrollView.contentOffset.x
@@ -236,11 +283,12 @@ extension PageViewController : UIScrollViewDelegate {
 	
 	public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 		isDragging = false
+		guard let beginDraggingContentOffsetX = beginDraggingContentOffsetX else { return }
 		willEndDraggingTargetContentOffsetX = targetContentOffset.memory.x
 		if willEndDraggingTargetContentOffsetX == beginDraggingContentOffsetX {
 			// If will end equals begin dragging content offset x,
 			// which means dragging cancels
-			selectedViewController.beginAppearanceTransition(true, animated: true)
+			_selectedViewController.beginAppearanceTransition(true, animated: true)
 			
 			if forwardViewController?.isAppearing != nil {
 				forwardViewController?.beginAppearanceTransition(false, animated: true)
@@ -256,7 +304,9 @@ extension PageViewController : UIScrollViewDelegate {
 		// If dragging ends at separator point, clean state
 		if scrollView.contentOffset.x % view.bounds.width == 0 {
 			viewControllers.filter { $0.isAppearing != nil }.forEach { $0.endAppearanceTransition() }
-			selectedIndex = Int(scrollView.contentOffset.x) / Int(view.bounds.width)
+			_selectedIndex = Int(scrollView.contentOffset.x) / Int(view.bounds.width)
+			beginDraggingContentOffsetX = nil
+			willEndDraggingTargetContentOffsetX = nil
 			assert(viewControllers.filter { $0.isAppearing != nil }.count == 0)
 		}
 	}
@@ -265,6 +315,7 @@ extension PageViewController : UIScrollViewDelegate {
 		// If for some reasons, scrollView.contentOffset.x is not matched with willEndDraggingTargetContentOffset
 		// End current transitions
 		// Add missing transitions
+		guard let willEndDraggingTargetContentOffsetX = willEndDraggingTargetContentOffsetX else { return }
 		if willEndDraggingTargetContentOffsetX != scrollView.contentOffset.x {
 			let appearingViewControllers = viewControllers.filter { $0.isAppearing == true }
 			assert(appearingViewControllers.count <= 1)
@@ -273,24 +324,32 @@ extension PageViewController : UIScrollViewDelegate {
 			viewControllers.filter { $0.isAppearing != nil }.forEach { $0.endAppearanceTransition() }
 			
 			if let willAppearViewController = appearingViewControllers.first {
-				selectedIndex = viewControllers.indexOf(willAppearViewController)!
+				_selectedIndex = viewControllers.indexOf(willAppearViewController)!
 				
 				// Add missing transitions
-				selectedViewController.beginAppearanceTransition(false, animated: false)
-				selectedViewController.endAppearanceTransition()
+				_selectedViewController.beginAppearanceTransition(false, animated: false)
+				_selectedViewController.endAppearanceTransition()
 				
 				let willSelectedIndex = Int(scrollView.contentOffset.x) / Int(view.bounds.width)
 				let willSelectedViewController = viewControllers[willSelectedIndex]
 				willSelectedViewController.beginAppearanceTransition(true, animated: false)
 				willSelectedViewController.endAppearanceTransition()
-				selectedIndex = willSelectedIndex
+				_selectedIndex = willSelectedIndex
 			}
 		} else {
 			viewControllers.filter { $0.isAppearing != nil }.forEach { $0.endAppearanceTransition() }
-			selectedIndex = Int(scrollView.contentOffset.x) / Int(view.bounds.width)
+			_selectedIndex = Int(scrollView.contentOffset.x) / Int(view.bounds.width)
 		}
 		
+		beginDraggingContentOffsetX = nil
+		self.willEndDraggingTargetContentOffsetX = nil
+		
 		assert(viewControllers.filter { $0.isAppearing != nil }.count == 0)
+	}
+	
+	public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+		viewControllers.filter { $0.isAppearing != nil }.forEach { $0.endAppearanceTransition() }
+		_selectedIndex = Int(scrollView.contentOffset.x) / Int(view.bounds.width)
 	}
 }
 
@@ -368,7 +427,9 @@ extension UIViewController {
 	}
 	
 	func zhh_endAppearanceTransition() {
-		self.zhh_endAppearanceTransition()
-		self.isAppearing = nil
+		if isAppearing != nil {
+			self.zhh_endAppearanceTransition()
+			self.isAppearing = nil
+		}
 	}
 }
