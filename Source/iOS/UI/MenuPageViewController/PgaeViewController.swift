@@ -8,7 +8,13 @@
 
 import UIKit
 
+public protocol PageViewControllerDelegate: class {
+	func pageViewController(pageViewController: PageViewController, didSelectViewController: UIViewController)
+}
+
 public class PageViewController : UIViewController {
+	// TODO: Handling rotations
+	
 	// MARK: - Public
 	public var selectedIndex: Int = 0 {
 		didSet {
@@ -23,6 +29,7 @@ public class PageViewController : UIViewController {
 	private var _selectedIndex: Int = 0 {
 		didSet {
 			selectedIndex = _selectedIndex
+			delegate?.pageViewController(self, didSelectViewController: _selectedViewController)
 		}
 	}
 	
@@ -36,9 +43,13 @@ public class PageViewController : UIViewController {
 			setupChildViewControllerViews(newValue)
 		}
 		didSet {
+			_selectedIndex = 0
+			pageScrollView.contentOffset = CGPoint(x: 0, y: 0)
 			didReplaceOldViewControllers(oldValue, withNewViewControllers: viewControllers)
 		}
 	}
+	
+	public weak var delegate: PageViewControllerDelegate?
 	
 	// MARK: - Private
 	// MARK: - Getting forward/backward view controllers
@@ -77,7 +88,7 @@ public class PageViewController : UIViewController {
 	private var isVisible: Bool { return isViewLoaded() && (view.window != nil) }
 	
 	// MARK: - Properties
-	private let pageScrollView = UIScrollView()
+	internal let pageScrollView = UIScrollView()
 	
 	// MARK: - Override
 	public override func shouldAutomaticallyForwardAppearanceMethods() -> Bool {
@@ -138,13 +149,21 @@ public class PageViewController : UIViewController {
 			removeViewController(viewController)
 		}
 		
+		if isVisible {
+			_selectedViewController.beginAppearanceTransition(false, animated: false)
+			_selectedViewController.endAppearanceTransition()
+		}
+		
 		for viewController in newViewControllers {
 			addViewController(viewController)
 		}
 	}
 	
 	private func didReplaceOldViewControllers(oldViewControllers: [UIViewController], withNewViewControllers newViewControllers: [UIViewController]) {
-		//
+		if isVisible {
+			_selectedViewController.beginAppearanceTransition(true, animated: false)
+			_selectedViewController.endAppearanceTransition()
+		}
 	}
 	
 	private func setupChildViewControllerViews(viewControllers: [UIViewController]) {
