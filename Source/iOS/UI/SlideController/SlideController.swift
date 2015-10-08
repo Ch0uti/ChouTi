@@ -26,6 +26,8 @@ public class SlideController: UIViewController {
 		case RightCollapsing
 	}
 	
+	// TODO: Handling rotations
+	
 	/// Center view controller
 	public var centerViewController: UIViewController {
 		willSet {
