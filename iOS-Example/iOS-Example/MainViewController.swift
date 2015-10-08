@@ -39,7 +39,7 @@ extension MainViewController: UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 4
+		return 5
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -65,7 +65,13 @@ extension MainViewController: UITableViewDataSource {
 		case 3:
 			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
 			
-			cell.textLabel?.text = "Page Controller"
+			cell.textLabel?.text = "Page View Controller"
+			
+			return cell
+		case 4:
+			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
+			
+			cell.textLabel?.text = "Menu Page View Controller"
 			
 			return cell
 		default:
@@ -171,8 +177,41 @@ extension MainViewController: UITableViewDelegate {
 				demoMenuPageViewController.setSelectedIndex(2, animated: true)
 			})
 			
+			delay(seconds: 3.5, completion: { _ in
+				demoMenuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
+			})
+			
 //			self.presentViewController(demoMenuPageViewController, animated: true, completion: nil)
 			self.navigationController?.pushViewController(demoMenuPageViewController, animated: true)
+			
+		case 4:
+			let menuPageViewController = MenuPageViewController()
+			
+			let vc1 = SideViewController(nibName: "SideViewController", bundle: nil)
+			vc1.view.backgroundColor = UIColor.blueColor()
+			vc1.label.text = "vc1"
+			vc1.view.frame = UIScreen.mainScreen().bounds
+			
+			let vc2 = SideViewController(nibName: "SideViewController", bundle: nil)
+			vc2.view.backgroundColor = UIColor.redColor()
+			vc2.label.text = "vc2"
+			vc1.view.frame = UIScreen.mainScreen().bounds
+			
+			let vc3 = SideViewController(nibName: "SideViewController", bundle: nil)
+			vc3.view.backgroundColor = UIColor.greenColor()
+			vc3.label.text = "vc3"
+			vc3.view.frame = UIScreen.mainScreen().bounds
+			
+			let vc4 = SideViewController(nibName: "SideViewController", bundle: nil)
+			vc4.view.backgroundColor = UIColor.purpleColor()
+			vc4.label.text = "vc4"
+			
+			menuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
+			
+			menuPageViewController.view.frame = CGRect(x: 0, y: 44 + 20, width: menuPageViewController.view.frame.width, height: menuPageViewController.view.frame.height - (44 + 20))
+			
+			self.presentViewController(menuPageViewController, animated: true, completion: nil)
+//			self.navigationController?.pushViewController(menuPageViewController, animated: true)
 			
 		default:
 			break

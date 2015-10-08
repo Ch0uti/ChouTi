@@ -11,8 +11,15 @@ import UIKit
 public class MenuPageViewController: UIViewController {
 	public var menuTitleHeight: CGFloat = 44.0
 	
+	public var viewControllers = [UIViewController]() {
+		didSet {
+			pageViewController.viewControllers = viewControllers
+		}
+	}
+	
 	private let menuCollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
-	private let pageScrollView = UIScrollView()
+	
+	private let pageViewController = PageViewController()
 	
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,34 +29,35 @@ public class MenuPageViewController: UIViewController {
     }
 	
 	private func setupViews() {
+		// menuCollectionView
 		menuCollectionView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(menuCollectionView)
 		
 		MenuTitleCollectionViewCell.registerInCollectionView(menuCollectionView)
 		
-		menuCollectionView.backgroundColor = UIColor.lightGrayColor()
+		menuCollectionView.backgroundColor = UIColor.whiteColor()
 		menuCollectionView.dataSource = self
 		menuCollectionView.delegate = self
 		
 		menuCollectionView.scrollEnabled = true
 		menuCollectionView.bounces = true
 		menuCollectionView.alwaysBounceHorizontal = true
+		menuCollectionView.alwaysBounceVertical = false
 		menuCollectionView.directionalLockEnabled = true
 		
-		menuCollectionView.allowsMultipleSelection = false
+		menuCollectionView.scrollsToTop = false
 		menuCollectionView.showsHorizontalScrollIndicator = false
 		menuCollectionView.showsVerticalScrollIndicator = false
 		
-		pageScrollView.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(pageScrollView)
-		pageScrollView.directionalLockEnabled = true
-		pageScrollView.delegate = self
-		pageScrollView.scrollEnabled = true
-		pageScrollView.bounces = true
-		pageScrollView.alwaysBounceHorizontal = true
-		pageScrollView.directionalLockEnabled = true
-		pageScrollView.showsHorizontalScrollIndicator = false
-		pageScrollView.showsVerticalScrollIndicator = false
+		menuCollectionView.allowsMultipleSelection = false
+		
+		// pageViewController
+		addChildViewController(pageViewController)
+		pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(pageViewController.view)
+		pageViewController.didMoveToParentViewController(self)
+		
+		pageViewController.pageScrollView.delegate = self
 		
 		setupConstraints()
 	}
@@ -57,13 +65,13 @@ public class MenuPageViewController: UIViewController {
 	private func setupConstraints() {
 		view.layoutMargins = UIEdgeInsetsZero
 		
-		let views = ["menuCollectionView": menuCollectionView, "pageScrollView": pageScrollView]
+		let views = ["menuCollectionView": menuCollectionView, "pageView": pageViewController.view]
 		let metrics = ["menuTitleHeight": menuTitleHeight]
 		
 		var constraints = [NSLayoutConstraint]()
 		
 		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[menuCollectionView]|", options: [], metrics: metrics, views: views)
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[menuCollectionView(menuTitleHeight)][pageScrollView]|", options: [.AlignAllLeading, .AlignAllTrailing], metrics: metrics, views: views)
+		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[menuCollectionView(menuTitleHeight)][pageView]|", options: [.AlignAllLeading, .AlignAllTrailing], metrics: metrics, views: views)
 		
 		NSLayoutConstraint.activateConstraints(constraints)
 	}
@@ -110,7 +118,7 @@ extension MenuPageViewController: UICollectionViewDataSource {
 	public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MenuTitleCollectionViewCell.identifier(), forIndexPath: indexPath) as! MenuTitleCollectionViewCell
 		
-		cell.titleLabel.text = "Haha"
+		cell.titleLabel.text = "Test"
 		
 		return cell
 	}
@@ -128,8 +136,42 @@ extension MenuPageViewController: UICollectionViewDelegate {
 // MARK: - UIScrollViewDelegate
 extension MenuPageViewController: UIScrollViewDelegate {
 	public func scrollViewDidScroll(scrollView: UIScrollView) {
-		if scrollView.contentOffset.y != 0 {
-			scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
+		if scrollView === menuCollectionView {
+			if scrollView.contentOffset.y != 0 {
+				scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
+			}
+		}
+		
+		if scrollView === pageViewController.pageScrollView {
+			print("scrollViewOffset: \(scrollView.contentOffset.x)")
+			
+			let menuOffset = menuCollectionView.contentOffset
+			menuCollectionView.setContentOffset(CGPoint(x: menuOffset.x + 1, y: menuOffset.y), animated: false)
+			pageViewController.scrollViewDidScroll(scrollView)
+		}
+	}
+	
+	public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+		if scrollView === pageViewController.pageScrollView {
+			pageViewController.scrollViewWillBeginDragging(scrollView)
+		}
+	}
+	
+	public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+		if scrollView === pageViewController.pageScrollView {
+			pageViewController.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+		}
+	}
+	
+	public func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+		if scrollView === pageViewController.pageScrollView {
+			pageViewController.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+		}
+	}
+	
+	public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+		if scrollView === pageViewController.pageScrollView {
+			pageViewController.scrollViewDidEndDecelerating(scrollView)
 		}
 	}
 }
