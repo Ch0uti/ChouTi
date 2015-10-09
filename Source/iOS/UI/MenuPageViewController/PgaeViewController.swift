@@ -10,7 +10,7 @@ import UIKit
 
 public protocol PageViewControllerDataSource: class {
 	func numberOfViewControllersInPageViewController(pageViewController: PageViewController) -> Int
-	func viewControllerForIndex(index: Int, inPageViewController pageViewController: PageViewController) -> UIViewController
+	func pageViewController(pageViewController: PageViewController, viewControllerForIndex index: Int) -> UIViewController
 }
 
 public protocol PageViewControllerDelegate: class {
@@ -21,6 +21,13 @@ public class PageViewController : UIViewController {
 	// TODO: Handling rotations
 	
 	// MARK: - Public
+	
+	public var scrollEnabled: Bool = true {
+		didSet {
+			pageScrollView.scrollEnabled = scrollEnabled
+		}
+	}
+	
 	/// Current selected index.
 	public var selectedIndex: Int = 0 {
 		didSet {
@@ -134,6 +141,7 @@ public class PageViewController : UIViewController {
 	private var isInTransition: Bool = false
 	
 	private var isVisible: Bool { return isViewLoaded() && (view.window != nil) }
+
 	
 	
 	// MARK: - Init
@@ -183,6 +191,73 @@ public class PageViewController : UIViewController {
 	}
 }
 
+
+// MARK: - Override
+extension PageViewController {
+	public override func shouldAutomaticallyForwardAppearanceMethods() -> Bool {
+		return false
+	}
+	
+	public override func viewDidLoad() {
+		super.viewDidLoad()
+		setupViews()
+		
+		if let dataSource = dataSource {
+			setupViewControllersWithDataSource(dataSource)
+		} else if loadedViewControllers == nil {
+			fatalError("dataSource is nil and no view controllers provided")
+		}
+	}
+	
+	private func setupViews() {
+		view.addSubview(pageScrollView)
+		pageScrollView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+		pageScrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+		pageScrollView.delegate = self
+		
+		pageScrollView.pagingEnabled = true
+		pageScrollView.scrollEnabled = scrollEnabled
+		pageScrollView.bounces = true
+		pageScrollView.alwaysBounceHorizontal = true
+		pageScrollView.alwaysBounceVertical = false
+		pageScrollView.directionalLockEnabled = true
+		pageScrollView.scrollsToTop = false
+		pageScrollView.showsHorizontalScrollIndicator = false
+		pageScrollView.showsVerticalScrollIndicator = false
+		
+		// TODO: Those two proerties need to be tested
+		pageScrollView.delaysContentTouches = false
+		pageScrollView.canCancelContentTouches = true
+		
+		pageScrollView.contentInset = UIEdgeInsetsZero
+		automaticallyAdjustsScrollViewInsets = false
+	}
+	
+	public override func viewWillAppear(animated: Bool) {
+		_selectedViewController.beginAppearanceTransition(true, animated: animated)
+		isInTransition = true
+		super.viewWillAppear(animated)
+	}
+	
+	public override func viewDidAppear(animated: Bool) {
+		_selectedViewController.endAppearanceTransition()
+		isInTransition = false
+		super.viewDidAppear(animated)
+	}
+	
+	public override func viewWillDisappear(animated: Bool) {
+		_selectedViewController.beginAppearanceTransition(false, animated: animated)
+		isInTransition = true
+		super.viewWillDisappear(animated)
+	}
+	
+	public override func viewDidDisappear(animated: Bool) {
+		_selectedViewController.endAppearanceTransition()
+		isInTransition = false
+		super.viewDidDisappear(animated)
+	}
+}
+
 // MARK: - Getting View Controller
 extension PageViewController {
 	// MARK: - Getting forward/backward view controllers
@@ -223,7 +298,7 @@ extension PageViewController {
 			} else {
 				// view controller is available, is not in transition, load on demand
 				if !isInTransition && _selectedIndex != index {
-					loadedViewControllers[index] = dataSource!.viewControllerForIndex(index, inPageViewController: self)
+					loadedViewControllers[index] = dataSource!.pageViewController(self, viewControllerForIndex: index)
 				}
 			}
 			
@@ -248,7 +323,7 @@ extension PageViewController {
 		precondition(viewControllers == nil && dataSource != nil)
 		if fromIndex > toIndex { return }
 		for i in fromIndex ... toIndex {
-			let viewController = dataSource!.viewControllerForIndex(i, inPageViewController: self)
+			let viewController = dataSource!.pageViewController(self, viewControllerForIndex: i)
 			if i < loadedViewControllers.count {
 				loadedViewControllers[i] = viewController
 			} else {
@@ -312,72 +387,6 @@ extension PageViewController {
 		
 		loadViewControllerFromIndex(0, toIndex: selectedIndex)
 		setSelectedIndex(selectedIndex, animated: false)
-	}
-}
-
-// MARK: - Override
-extension PageViewController {
-	public override func shouldAutomaticallyForwardAppearanceMethods() -> Bool {
-		return false
-	}
-	
-	public override func viewDidLoad() {
-		super.viewDidLoad()
-		setupViews()
-		
-		if let dataSource = dataSource {
-			setupViewControllersWithDataSource(dataSource)
-		} else if loadedViewControllers == nil {
-			fatalError("dataSource is nil and no view controllers provided")
-		}
-	}
-	
-	private func setupViews() {
-		view.addSubview(pageScrollView)
-		pageScrollView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-		pageScrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-		pageScrollView.delegate = self
-		
-		pageScrollView.pagingEnabled = true
-		pageScrollView.scrollEnabled = true
-		pageScrollView.bounces = true
-		pageScrollView.alwaysBounceHorizontal = true
-		pageScrollView.alwaysBounceVertical = false
-		pageScrollView.directionalLockEnabled = true
-		pageScrollView.scrollsToTop = false
-		pageScrollView.showsHorizontalScrollIndicator = false
-		pageScrollView.showsVerticalScrollIndicator = false
-		
-		// TODO: Those two proerties need to be tested
-		pageScrollView.delaysContentTouches = false
-		pageScrollView.canCancelContentTouches = true
-		
-		pageScrollView.contentInset = UIEdgeInsetsZero
-		automaticallyAdjustsScrollViewInsets = false
-	}
-	
-	public override func viewWillAppear(animated: Bool) {
-		_selectedViewController.beginAppearanceTransition(true, animated: animated)
-		isInTransition = true
-		super.viewWillAppear(animated)
-	}
-	
-	public override func viewDidAppear(animated: Bool) {
-		_selectedViewController.endAppearanceTransition()
-		isInTransition = false
-		super.viewDidAppear(animated)
-	}
-	
-	public override func viewWillDisappear(animated: Bool) {
-		_selectedViewController.beginAppearanceTransition(false, animated: animated)
-		isInTransition = true
-		super.viewWillDisappear(animated)
-	}
-	
-	public override func viewDidDisappear(animated: Bool) {
-		_selectedViewController.endAppearanceTransition()
-		isInTransition = false
-		super.viewDidDisappear(animated)
 	}
 }
 

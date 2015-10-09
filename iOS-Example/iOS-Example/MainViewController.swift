@@ -168,6 +168,8 @@ extension MainViewController: UITableViewDelegate {
 			demoMenuPageViewController.dataSource = self
 			demoMenuPageViewController.delegate = self
 			
+//			demoMenuPageViewController.scrollEnabled = false
+			
 			demoMenuPageViewController.setSelectedIndex(2, animated: true)
 			
 			delay(seconds: 0.5, completion: { _ in
@@ -215,7 +217,7 @@ extension MainViewController : PageViewControllerDataSource {
 		return dummyViewControllers.count
 	}
 	
-	func viewControllerForIndex(index: Int, inPageViewController pageViewController: PageViewController) -> UIViewController {
+	func pageViewController(pageViewController: PageViewController, viewControllerForIndex index: Int) -> UIViewController {
 		print("asking for index: \(index)")
 		return dummyViewControllers[index]
 	}
