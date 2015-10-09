@@ -164,32 +164,24 @@ extension MainViewController: UITableViewDelegate {
 			dummyViewControllers = [vc1, vc2, vc3, vc4]
 			
 //			demoMenuPageViewController.viewControllers = dummyViewControllers
-//			
+			
 			demoMenuPageViewController.dataSource = self
+			demoMenuPageViewController.delegate = self
 			
-//			delay(seconds: 0.5, completion: { _ in
-//				demoMenuPageViewController.setSelectedIndex(1, animated: true)
-//			})
-//			
-//			delay(seconds: 1.0, completion: { _ in
-//				demoMenuPageViewController.setSelectedIndex(3, animated: true)
-//			})
-//			
-//			delay(seconds: 1.5, completion: { _ in
-//				demoMenuPageViewController.setSelectedIndex(0, animated: true)
-//			})
-//			
-//			delay(seconds: 2.0, completion: { _ in
-//				demoMenuPageViewController.setSelectedIndex(2, animated: true)
-//			})
-//			
-//			delay(seconds: 3.5, completion: { _ in
-//				demoMenuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
-//			})
+			demoMenuPageViewController.setSelectedIndex(2, animated: true)
 			
-//			delay(seconds: 4.0, completion: { _ in
-//				demoMenuPageViewController.dataSource = self
-//			})
+			delay(seconds: 0.5, completion: { _ in
+				demoMenuPageViewController.setSelectedIndex(1, animated: true)
+			})
+			
+			delay(seconds: 1.0, completion: { _ in
+				demoMenuPageViewController.setSelectedIndex(3, animated: true)
+			})
+			
+			delay(seconds: 4.0, completion: { _ in
+				self.dummyViewControllers! += self.dummyViewControllers!
+				print("self.dumycount: \(self.dummyViewControllers.count)")
+			})
 			
 //			self.presentViewController(demoMenuPageViewController, animated: true, completion: nil)
 			self.navigationController?.pushViewController(demoMenuPageViewController, animated: true)
@@ -224,7 +216,13 @@ extension MainViewController : PageViewControllerDataSource {
 	}
 	
 	func viewControllerForIndex(index: Int, inPageViewController pageViewController: PageViewController) -> UIViewController {
-		print("index: \(index)")
+		print("asking for index: \(index)")
 		return dummyViewControllers[index]
+	}
+}
+
+extension MainViewController : PageViewControllerDelegate {
+	func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
+		print("did selected: \(selectedIndex)")
 	}
 }
