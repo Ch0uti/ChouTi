@@ -167,28 +167,28 @@ extension MainViewController: UITableViewDelegate {
 //			
 			demoMenuPageViewController.dataSource = self
 			
-			delay(seconds: 0.5, completion: { _ in
-				demoMenuPageViewController.setSelectedIndex(1, animated: true)
-			})
-			
-			delay(seconds: 1.0, completion: { _ in
-				demoMenuPageViewController.setSelectedIndex(3, animated: true)
-			})
-			
-			delay(seconds: 1.5, completion: { _ in
-				demoMenuPageViewController.setSelectedIndex(0, animated: true)
-			})
-			
-			delay(seconds: 2.0, completion: { _ in
-				demoMenuPageViewController.setSelectedIndex(2, animated: true)
-			})
-			
-			delay(seconds: 3.5, completion: { _ in
-				demoMenuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
-			})
+//			delay(seconds: 0.5, completion: { _ in
+//				demoMenuPageViewController.setSelectedIndex(1, animated: true)
+//			})
+//			
+//			delay(seconds: 1.0, completion: { _ in
+//				demoMenuPageViewController.setSelectedIndex(3, animated: true)
+//			})
+//			
+//			delay(seconds: 1.5, completion: { _ in
+//				demoMenuPageViewController.setSelectedIndex(0, animated: true)
+//			})
+//			
+//			delay(seconds: 2.0, completion: { _ in
+//				demoMenuPageViewController.setSelectedIndex(2, animated: true)
+//			})
+//			
+//			delay(seconds: 3.5, completion: { _ in
+//				demoMenuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
+//			})
 			
 //			delay(seconds: 4.0, completion: { _ in
-				demoMenuPageViewController.dataSource = self
+//				demoMenuPageViewController.dataSource = self
 //			})
 			
 //			self.presentViewController(demoMenuPageViewController, animated: true, completion: nil)
@@ -224,6 +224,7 @@ extension MainViewController : PageViewControllerDataSource {
 	}
 	
 	func viewControllerForIndex(index: Int, inPageViewController pageViewController: PageViewController) -> UIViewController {
+		print("index: \(index)")
 		return dummyViewControllers[index]
 	}
 }
