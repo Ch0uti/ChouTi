@@ -15,6 +15,8 @@ class MainViewController: UIViewController {
 	
 	var slideViewController: SlideController!
 	
+	var dummyViewControllers: [UIViewController]!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupTableView()
@@ -159,7 +161,11 @@ extension MainViewController: UITableViewDelegate {
 			vc4.view.backgroundColor = UIColor.purpleColor()
 			vc4.label.text = "vc4"
 			
-			demoMenuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
+			dummyViewControllers = [vc1, vc2, vc3, vc4]
+			
+//			demoMenuPageViewController.viewControllers = dummyViewControllers
+//			
+			demoMenuPageViewController.dataSource = self
 			
 			delay(seconds: 0.5, completion: { _ in
 				demoMenuPageViewController.setSelectedIndex(1, animated: true)
@@ -181,32 +187,17 @@ extension MainViewController: UITableViewDelegate {
 				demoMenuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
 			})
 			
+//			delay(seconds: 4.0, completion: { _ in
+				demoMenuPageViewController.dataSource = self
+//			})
+			
 //			self.presentViewController(demoMenuPageViewController, animated: true, completion: nil)
 			self.navigationController?.pushViewController(demoMenuPageViewController, animated: true)
 			
 		case 4:
 			let menuPageViewController = MenuPageViewController()
 			
-			let vc1 = SideViewController(nibName: "SideViewController", bundle: nil)
-			vc1.view.backgroundColor = UIColor.blueColor()
-			vc1.label.text = "vc1"
-			vc1.view.frame = UIScreen.mainScreen().bounds
-			
-			let vc2 = SideViewController(nibName: "SideViewController", bundle: nil)
-			vc2.view.backgroundColor = UIColor.redColor()
-			vc2.label.text = "vc2"
-			vc1.view.frame = UIScreen.mainScreen().bounds
-			
-			let vc3 = SideViewController(nibName: "SideViewController", bundle: nil)
-			vc3.view.backgroundColor = UIColor.greenColor()
-			vc3.label.text = "vc3"
-			vc3.view.frame = UIScreen.mainScreen().bounds
-			
-			let vc4 = SideViewController(nibName: "SideViewController", bundle: nil)
-			vc4.view.backgroundColor = UIColor.purpleColor()
-			vc4.label.text = "vc4"
-			
-			menuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
+//			menuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
 			
 			menuPageViewController.view.frame = CGRect(x: 0, y: 44 + 20, width: menuPageViewController.view.frame.width, height: menuPageViewController.view.frame.height - (44 + 20))
 			
@@ -224,5 +215,15 @@ extension MainViewController: UITableViewDelegate {
 	
 	func expandRight(sender: AnyObject) {
 		slideViewController.toggleRightViewController()
+	}
+}
+
+extension MainViewController : PageViewControllerDataSource {
+	func numberOfViewControllersInPageViewController(pageViewController: PageViewController) -> Int {
+		return dummyViewControllers.count
+	}
+	
+	func viewControllerForIndex(index: Int, inPageViewController pageViewController: PageViewController) -> UIViewController {
+		return dummyViewControllers[index]
 	}
 }

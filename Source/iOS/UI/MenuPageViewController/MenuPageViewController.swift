@@ -8,10 +8,22 @@
 
 import UIKit
 
+// TODO: Adopting delegates
+public protocol MenuPageViewControllerDataSource {
+	func numberOfMenusInMenuPageViewController(menuPageViewController: MenuPageViewController) -> Int
+	func menuViewForIndex(index: Int, inMenuPageViewController menuPageViewController: MenuPageViewController) -> UIView
+	func viewControllerForIndex(index: Int, inMenuPageViewController menuPageViewController: MenuPageViewController) -> UIViewController
+}
+
+public protocol MenuPageViewControllerDelegate {
+	
+}
+
 public class MenuPageViewController: UIViewController {
 	public var menuTitleHeight: CGFloat = 44.0
 	
-	public var viewControllers = [UIViewController]() {
+	private var numberOfMenus: Int = 0
+	private var viewControllers = [UIViewController]() {
 		didSet {
 			pageViewController.viewControllers = viewControllers
 		}
