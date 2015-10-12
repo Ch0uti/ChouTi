@@ -11,23 +11,21 @@ import UIKit
 // TODO: Adopting delegates
 public protocol MenuPageViewControllerDataSource {
 	func numberOfMenusInMenuPageViewController(menuPageViewController: MenuPageViewController) -> Int
-	func menuViewForIndex(index: Int, inMenuPageViewController menuPageViewController: MenuPageViewController) -> UIView
-	func viewControllerForIndex(index: Int, inMenuPageViewController menuPageViewController: MenuPageViewController) -> UIViewController
+	func menuPageViewController(menuPageViewController: MenuPageViewController, menuViewForIndex index: Int) -> UIView
+	func menuPageViewController(menuPageViewController: MenuPageViewController, viewControllerForIndex index: Int) -> UIViewController
 }
 
 public protocol MenuPageViewControllerDelegate {
-	
+	func menuPageViewController(menuPageViewController: MenuPageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController)
 }
 
 public class MenuPageViewController: UIViewController {
+	
+	// MARK: - Public
 	public var menuTitleHeight: CGFloat = 44.0
 	
+	// MARK: - Private
 	private var numberOfMenus: Int = 0
-	private var viewControllers = [UIViewController]() {
-		didSet {
-			pageViewController.viewControllers = viewControllers
-		}
-	}
 	
 	private let menuCollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
 	
