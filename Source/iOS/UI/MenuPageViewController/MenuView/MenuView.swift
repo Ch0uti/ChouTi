@@ -11,12 +11,12 @@ import UIKit
 public protocol MenuViewDataSource: class {
 	func numberOfMenusInMenuView(menuView: MenuView) -> Int
 	func menuView(menuView: MenuView, menuViewForIndex index: Int) -> UIView
-	func menuView(menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat
 }
 
 
 
 public protocol MenuViewDelegate: class {
+	func menuView(menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat
 	func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int)
 }
 
@@ -133,4 +133,16 @@ extension MenuView : UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension MenuView : UICollectionViewDelegate {
 	
+}
+
+
+
+extension MenuView : UICollectionViewDelegateFlowLayout {
+	public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+		guard let delegate = delegate else {
+			fatalError("delegate is nil.")
+		}
+		
+		return CGSize(width: delegate.menuView(self, menuWidthForIndex: indexPath.item), height: bounds.height)
+	}
 }

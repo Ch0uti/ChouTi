@@ -73,6 +73,12 @@ extension MainViewController: UITableViewDataSource {
 		case 4:
 			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
 			
+			cell.textLabel?.text = "Menu View"
+			
+			return cell
+		case 5:
+			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
+			
 			cell.textLabel?.text = "Menu Page View Controller"
 			
 			return cell
@@ -189,6 +195,34 @@ extension MainViewController: UITableViewDelegate {
 			self.navigationController?.pushViewController(demoMenuPageViewController, animated: true)
 			
 		case 4:
+			
+			let viewController = UIViewController()
+			
+			viewController.view.backgroundColor = UIColor.whiteColor()
+			
+			let menuView = MenuView()
+			menuView.translatesAutoresizingMaskIntoConstraints = false
+			
+			menuView.backgroundColor = UIColor.lightGrayColor()
+			
+			viewController.view.addSubview(menuView)
+			
+			if #available(iOS 9.0, *) {
+			    menuView.centerXAnchor.constraintEqualToAnchor(viewController.view.centerXAnchor).active = true
+				menuView.centerYAnchor.constraintEqualToAnchor(viewController.view.centerYAnchor).active = true
+				
+				menuView.widthAnchor.constraintEqualToConstant(200)
+				menuView.heightAnchor.constraintEqualToConstant(100)
+			} else {
+			    // Fallback on earlier versions
+			}
+			
+			menuView.dataSource = self
+			menuView.delegate = self
+			
+			self.navigationController?.pushViewController(viewController, animated: true)
+			
+		case 5:
 			let menuPageViewController = MenuPageViewController()
 			
 //			menuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
@@ -226,5 +260,24 @@ extension MainViewController : PageViewControllerDataSource {
 extension MainViewController : PageViewControllerDelegate {
 	func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
 		print("did selected: \(selectedIndex)")
+	}
+}
+
+extension MainViewController : MenuViewDataSource {
+	func numberOfMenusInMenuView(menuView: MenuView) -> Int {
+		return 4
+	}
+	func menuView(menuView: MenuView, menuViewForIndex index: Int) -> UIView {
+		return UIView()
+	}
+}
+
+extension MainViewController : MenuViewDelegate {
+	func menuView(menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat {
+		return 50
+	}
+	
+	func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int) {
+		//
 	}
 }
