@@ -9,14 +9,38 @@
 import UIKit
 
 public protocol MenuViewDataSource: class {
+	/**
+	Quering for number of menus
+	
+	- parameter menuView: the menuView
+	
+	- returns: number of menus
+	*/
 	func numberOfMenusInMenuView(menuView: MenuView) -> Int
-	func menuView(menuView: MenuView, menuViewForIndex index: Int) -> UIView
+	
+	/**
+	Asking for view for menu view
+	
+	- parameter menuView:    the menuView
+	- parameter index:       menuView index
+	- parameter contentView: contentView of the menuView, this could be nil. If it's not nil, delegate can add returned view on the contentView, which enable delegte to use AutoLayout to setup view layout
+	
+	- returns: A view
+	*/
+	func menuView(menuView: MenuView, menuViewForIndex index: Int, contentView: UIView?) -> UIView
 }
 
-
-
 public protocol MenuViewDelegate: class {
+	/**
+	Quering for width for a menu view
+	
+	- parameter menuView: the menu view
+	- parameter index:    index
+	
+	- returns: width for the menu view
+	*/
 	func menuView(menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat
+	
 	func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int)
 }
 
@@ -32,6 +56,11 @@ public class MenuView : UIView {
 	// MARK: - Public
 	public var menuCollectionView: UICollectionView!
 	public let menuCollectionViewLayout = UICollectionViewFlowLayout()
+	
+	public var spacingsBetweenMenus: CGFloat {
+		get { return menuCollectionViewLayout.minimumLineSpacing }
+		set { menuCollectionViewLayout.minimumLineSpacing = newValue }
+	}
 	
 	public weak var dataSource: MenuViewDataSource?
 	public weak var delegate: MenuViewDelegate?
@@ -55,7 +84,9 @@ public class MenuView : UIView {
 	private func commonInit() {
 		// Layout
 		menuCollectionViewLayout.scrollDirection = .Horizontal
+		menuCollectionViewLayout.minimumLineSpacing = 0.0
 		menuCollectionViewLayout.minimumInteritemSpacing = 0.0
+		menuCollectionViewLayout.sectionInset = UIEdgeInsetsZero
 		
 		// Collection View
 		menuCollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: menuCollectionViewLayout)
@@ -65,7 +96,7 @@ public class MenuView : UIView {
 		
 		menuCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(UICollectionViewCell))
 		
-		menuCollectionView.backgroundColor = UIColor.whiteColor()
+		menuCollectionView.backgroundColor = UIColor.clearColor()
 		menuCollectionView.dataSource = self
 		menuCollectionView.delegate = self
 		
@@ -80,6 +111,8 @@ public class MenuView : UIView {
 		menuCollectionView.showsVerticalScrollIndicator = false
 		
 		menuCollectionView.allowsMultipleSelection = false
+		
+		menuCollectionView.contentInset = UIEdgeInsetsZero
 		
 		setupConstraints()
 	}
@@ -108,6 +141,7 @@ public class MenuView : UIView {
 // MARK: - UICollectionViewDataSource
 extension MenuView : UICollectionViewDataSource {
 	public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+		checkForNegativeHeight(collectionView)
 		return 1
 	}
 	
@@ -117,12 +151,18 @@ extension MenuView : UICollectionViewDataSource {
 	
 	public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NSStringFromClass(UICollectionViewCell), forIndexPath: indexPath)
+
+		cell.layoutMargins = UIEdgeInsetsZero
+		cell.contentView.removeAllSubviews()
+		cell.contentView.layoutMargins = UIEdgeInsetsZero
 		
-		guard let view = dataSource?.menuView(self, menuViewForIndex: indexPath.item) else {
+		guard let view = dataSource?.menuView(self, menuViewForIndex: indexPath.item, contentView: cell.contentView) else {
 			fatalError("MenuView: dataSource is nil.")
 		}
 		
-		cell.contentView.addSubview(view)
+		if !cell.contentView.containSubview(view) {
+			cell.contentView.addSubview(view)
+		}
 		
 		return cell
 	}
@@ -139,10 +179,37 @@ extension MenuView : UICollectionViewDelegate {
 
 extension MenuView : UICollectionViewDelegateFlowLayout {
 	public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-		guard let delegate = delegate else {
-			fatalError("delegate is nil.")
+		let height = checkForNegativeHeight(collectionView)
+		// Expecting from delegate for width
+		if let delegate = delegate {
+			return CGSize(width: delegate.menuView(self, menuWidthForIndex: indexPath.item), height: height)
 		}
 		
-		return CGSize(width: delegate.menuView(self, menuWidthForIndex: indexPath.item), height: bounds.height)
+		// If no delegate, use view width
+		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
+		
+		let view = dataSource.menuView(self, menuViewForIndex: indexPath.item, contentView: nil)
+		return CGSize(width: view.bounds.width, height: height)
+	}
+}
+
+
+
+extension MenuView {
+	private func checkForNegativeHeight(collectionView: UICollectionView) -> CGFloat {
+		let topInsetBottomInsetToMinus = menuCollectionView.contentInset.top + menuCollectionView.contentInset.bottom
+		if collectionView.bounds.height == 0 {
+			return 0.0
+		}
+		
+		let height = collectionView.bounds.height - topInsetBottomInsetToMinus
+		
+		if height <= 0 {
+			NSLog("collectionView's contentInset top + bottom is not zero, this results a non-positive menu view height")
+			NSLog("The collectionView is \(collectionView)")
+			NSLog("Are you leaving `automaticallyAdjustsScrollViewInsets` set to `true` in the view controller setting up the MenuView?")
+		}
+		
+		return height
 	}
 }

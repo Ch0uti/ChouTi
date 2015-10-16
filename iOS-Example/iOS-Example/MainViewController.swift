@@ -15,8 +15,6 @@ class MainViewController: UIViewController {
 	
 	var slideViewController: SlideController!
 	
-	var dummyViewControllers: [UIViewController]!
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupTableView()
@@ -41,7 +39,7 @@ extension MainViewController: UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 5
+		return 6
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -147,90 +145,13 @@ extension MainViewController: UITableViewDelegate {
 			}
 			
 		case 3:
-			let demoMenuPageViewController = PageViewController()
-			let vc1 = SideViewController(nibName: "SideViewController", bundle: nil)
-			vc1.view.backgroundColor = UIColor.blueColor()
-			vc1.label.text = "vc1"
-			vc1.view.frame = UIScreen.mainScreen().bounds
-			
-			let vc2 = SideViewController(nibName: "SideViewController", bundle: nil)
-			vc2.view.backgroundColor = UIColor.redColor()
-			vc2.label.text = "vc2"
-			vc1.view.frame = UIScreen.mainScreen().bounds
-			
-			let vc3 = SideViewController(nibName: "SideViewController", bundle: nil)
-			vc3.view.backgroundColor = UIColor.greenColor()
-			vc3.label.text = "vc3"
-			vc3.view.frame = UIScreen.mainScreen().bounds
-			
-			let vc4 = SideViewController(nibName: "SideViewController", bundle: nil)
-			vc4.view.backgroundColor = UIColor.purpleColor()
-			vc4.label.text = "vc4"
-			
-			dummyViewControllers = [vc1, vc2, vc3, vc4]
-			
-//			demoMenuPageViewController.viewControllers = dummyViewControllers
-			
-			demoMenuPageViewController.dataSource = self
-			demoMenuPageViewController.delegate = self
-			
-//			demoMenuPageViewController.scrollEnabled = false
-			
-			demoMenuPageViewController.setSelectedIndex(2, animated: true)
-			
-			delay(seconds: 0.5, completion: { _ in
-				demoMenuPageViewController.setSelectedIndex(1, animated: true)
-			})
-			
-			delay(seconds: 1.0, completion: { _ in
-				demoMenuPageViewController.setSelectedIndex(3, animated: true)
-			})
-			
-			delay(seconds: 4.0, completion: { _ in
-				self.dummyViewControllers! += self.dummyViewControllers!
-				print("self.dumycount: \(self.dummyViewControllers.count)")
-			})
-			
-//			self.presentViewController(demoMenuPageViewController, animated: true, completion: nil)
-			self.navigationController?.pushViewController(demoMenuPageViewController, animated: true)
+			self.navigationController?.pushViewController(PageViewDemoController(), animated: true)
 			
 		case 4:
-			
-			let viewController = UIViewController()
-			
-			viewController.view.backgroundColor = UIColor.whiteColor()
-			
-			let menuView = MenuView()
-			menuView.translatesAutoresizingMaskIntoConstraints = false
-			
-			menuView.backgroundColor = UIColor.lightGrayColor()
-			
-			viewController.view.addSubview(menuView)
-			
-			if #available(iOS 9.0, *) {
-			    menuView.centerXAnchor.constraintEqualToAnchor(viewController.view.centerXAnchor).active = true
-				menuView.centerYAnchor.constraintEqualToAnchor(viewController.view.centerYAnchor).active = true
-				
-				menuView.widthAnchor.constraintEqualToConstant(200)
-				menuView.heightAnchor.constraintEqualToConstant(100)
-			} else {
-			    // Fallback on earlier versions
-			}
-			
-			menuView.dataSource = self
-			menuView.delegate = self
-			
-			self.navigationController?.pushViewController(viewController, animated: true)
+			self.navigationController?.pushViewController(MenuViewDemoController(), animated: true)
 			
 		case 5:
-			let menuPageViewController = MenuPageViewController()
-			
-//			menuPageViewController.viewControllers = [vc1, vc2, vc3, vc4]
-			
-			menuPageViewController.view.frame = CGRect(x: 0, y: 44 + 20, width: menuPageViewController.view.frame.width, height: menuPageViewController.view.frame.height - (44 + 20))
-			
-			self.presentViewController(menuPageViewController, animated: true, completion: nil)
-//			self.navigationController?.pushViewController(menuPageViewController, animated: true)
+			self.navigationController?.pushViewController(MenuPageDemoViewController(), animated: true)
 			
 		default:
 			break
@@ -246,38 +167,4 @@ extension MainViewController: UITableViewDelegate {
 	}
 }
 
-extension MainViewController : PageViewControllerDataSource {
-	func numberOfViewControllersInPageViewController(pageViewController: PageViewController) -> Int {
-		return dummyViewControllers.count
-	}
-	
-	func pageViewController(pageViewController: PageViewController, viewControllerForIndex index: Int) -> UIViewController {
-		print("asking for index: \(index)")
-		return dummyViewControllers[index]
-	}
-}
 
-extension MainViewController : PageViewControllerDelegate {
-	func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
-		print("did selected: \(selectedIndex)")
-	}
-}
-
-extension MainViewController : MenuViewDataSource {
-	func numberOfMenusInMenuView(menuView: MenuView) -> Int {
-		return 4
-	}
-	func menuView(menuView: MenuView, menuViewForIndex index: Int) -> UIView {
-		return UIView()
-	}
-}
-
-extension MainViewController : MenuViewDelegate {
-	func menuView(menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat {
-		return 50
-	}
-	
-	func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int) {
-		//
-	}
-}

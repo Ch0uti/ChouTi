@@ -20,6 +20,8 @@
 		E4F3B87C1B798FDD006E1BF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F3B87B1B798FDD006E1BF9 /* Images.xcassets */; };
 		E4F3B87F1B798FDD006E1BF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F3B87D1B798FDD006E1BF9 /* LaunchScreen.xib */; };
 		E4F3B88B1B798FDD006E1BF9 /* iOS_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3B88A1B798FDD006E1BF9 /* iOS_ExampleTests.swift */; };
+		E4F4FE091BD02E99009511A7 /* MenuViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4FE081BD02E99009511A7 /* MenuViewDemoController.swift */; settings = {ASSET_TAGS = (); }; };
+		E4F4FE0D1BD03EEE009511A7 /* MenuPageDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4FE0C1BD03EEE009511A7 /* MenuPageDemoViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		E4F3B8841B798FDD006E1BF9 /* iOS-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3B8891B798FDD006E1BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4F3B88A1B798FDD006E1BF9 /* iOS_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExampleTests.swift; sourceTree = "<group>"; };
+		E4F4FE081BD02E99009511A7 /* MenuViewDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewDemoController.swift; sourceTree = "<group>"; };
+		E4F4FE0C1BD03EEE009511A7 /* MenuPageDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageDemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +132,9 @@
 				E4F3B8761B798FDD006E1BF9 /* MainViewController.swift */,
 				E4D99C2A1B91577400E492F9 /* SlideControllerSupports */,
 				E452D6B91BA74782002EF9E5 /* TableLayoutDemoViewController.swift */,
+				E4F4FE081BD02E99009511A7 /* MenuViewDemoController.swift */,
 				E44E945B1BBAF2EE00801A24 /* PageViewDemoController.swift */,
+				E4F4FE0C1BD03EEE009511A7 /* MenuPageDemoViewController.swift */,
 				E4F3B8781B798FDD006E1BF9 /* Main.storyboard */,
 				E4F3B87B1B798FDD006E1BF9 /* Images.xcassets */,
 				E4F3B87D1B798FDD006E1BF9 /* LaunchScreen.xib */,
@@ -316,7 +322,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4F4FE091BD02E99009511A7 /* MenuViewDemoController.swift in Sources */,
 				E4D99C2D1B91579100E492F9 /* CenterViewController.swift in Sources */,
+				E4F4FE0D1BD03EEE009511A7 /* MenuPageDemoViewController.swift in Sources */,
 				E452D6BA1BA74782002EF9E5 /* TableLayoutDemoViewController.swift in Sources */,
 				E44E945C1BBAF2EE00801A24 /* PageViewDemoController.swift in Sources */,
 				E4F3B8771B798FDD006E1BF9 /* MainViewController.swift in Sources */,

@@ -8,12 +8,12 @@
 
 import UIKit
 
-public protocol PageViewControllerDataSource: class {
+public protocol PageViewControllerDataSource : class {
 	func numberOfViewControllersInPageViewController(pageViewController: PageViewController) -> Int
 	func pageViewController(pageViewController: PageViewController, viewControllerForIndex index: Int) -> UIViewController
 }
 
-public protocol PageViewControllerDelegate: class {
+public protocol PageViewControllerDelegate : class {
 	func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController)
 }
 
