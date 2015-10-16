@@ -48,7 +48,7 @@ public protocol MenuViewDelegate: class {
 
 public class MenuView : UIView {
 	// MARK: - Enums
-	enum ScollingOption {
+	public enum ScrollingOption {
 		case InBounds
 		case Center
 	}
@@ -64,6 +64,8 @@ public class MenuView : UIView {
 	
 	public weak var dataSource: MenuViewDataSource?
 	public weak var delegate: MenuViewDelegate?
+	
+	public var scrollingOption: ScrollingOption = .InBounds
 	
 	// MARK: - Private
 	private var numberOfMenus: Int {
@@ -177,24 +179,49 @@ extension MenuView : UICollectionViewDelegate {
 
 
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MenuView : UICollectionViewDelegateFlowLayout {
 	public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 		let height = checkForNegativeHeight(collectionView)
-		// Expecting from delegate for width
-		if let delegate = delegate {
-			return CGSize(width: delegate.menuView(self, menuWidthForIndex: indexPath.item), height: height)
-		}
+		let width = menuWidthForIndex(indexPath.item)
 		
-		// If no delegate, use view width
-		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
-		
-		let view = dataSource.menuView(self, menuViewForIndex: indexPath.item, contentView: nil)
-		return CGSize(width: view.bounds.width, height: height)
+		return CGSize(width: width, height: height)
 	}
 }
 
 
 
+extension MenuView {
+	public func scrollWithSelectedIndex(index: Int, withOffsetPercent percent: CGFloat = 0.0, animated: Bool = false) {
+		let targetContentOffset = contentOffsetForIndex(index, offsetPercent: percent)
+		menuCollectionView.setContentOffset(targetContentOffset, animated: animated)
+	}
+	
+	private func contentOffsetForIndex(index: Int, offsetPercent: CGFloat) -> CGPoint {
+		precondition(0 <= index && index <= dataSource?.numberOfMenusInMenuView(self), "invalid index: \(index)")
+		
+		var targetOffsetX: CGFloat = 0.0
+		var i = 0
+		while i < index {
+			targetOffsetX += menuWidthForIndex(i) + spacingsBetweenMenus
+			i++
+		}
+		
+		if offsetPercent < 0 {
+			// -1.0 ... 0.0
+			targetOffsetX += (menuWidthForIndex(max(index - 1, 0)) + spacingsBetweenMenus) * offsetPercent
+		} else {
+			// 0.0 ... 1.0
+			targetOffsetX += (menuWidthForIndex(index) + spacingsBetweenMenus) * offsetPercent
+		}
+
+		return CGPoint(x: targetOffsetX, y: 0)
+	}
+}
+
+
+
+// MARK: - Helpers
 extension MenuView {
 	private func checkForNegativeHeight(collectionView: UICollectionView) -> CGFloat {
 		let topInsetBottomInsetToMinus = menuCollectionView.contentInset.top + menuCollectionView.contentInset.bottom
@@ -211,5 +238,17 @@ extension MenuView {
 		}
 		
 		return height
+	}
+	
+	private func menuWidthForIndex(index: Int) -> CGFloat {
+		// Expecting from delegate for width
+		if let delegate = delegate {
+			return delegate.menuView(self, menuWidthForIndex: index)
+		}
+		
+		// If no delegate, use view width
+		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
+		
+		return dataSource.menuView(self, menuViewForIndex: index, contentView: nil).bounds.width
 	}
 }

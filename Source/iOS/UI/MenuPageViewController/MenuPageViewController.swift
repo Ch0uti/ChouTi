@@ -59,6 +59,8 @@ public class MenuPageViewController : UIViewController {
 		pageViewController.delegate = self
 		
 		automaticallyAdjustsScrollViewInsets = false
+		
+		menuView.spacingsBetweenMenus = 20.0
 	}
 }
 
@@ -132,10 +134,10 @@ extension MenuPageViewController : UIScrollViewDelegate {
 		}
 		
 		if scrollView === pageViewController.pageScrollView {
-			print("scrollViewOffset: \(scrollView.contentOffset.x)")
+			let scrollOffset = scrollView.contentOffset.x - CGFloat(pageViewController.selectedIndex) * view.bounds.width
+			let scrollOffsetPercent = scrollOffset / view.bounds.width
+			menuView.scrollWithSelectedIndex(pageViewController.selectedIndex, withOffsetPercent: scrollOffsetPercent)
 			
-			let menuOffset = menuView.menuCollectionView.contentOffset
-			menuView.menuCollectionView.setContentOffset(CGPoint(x: menuOffset.x + 1, y: menuOffset.y), animated: false)
 			pageViewController.scrollViewDidScroll(scrollView)
 		}
 	}
