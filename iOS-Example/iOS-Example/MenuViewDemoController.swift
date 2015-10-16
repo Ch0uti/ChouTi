@@ -22,7 +22,7 @@ class MenuViewDemoController: UIViewController {
 		menuView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(menuView)
 		
-		menuView.backgroundColor = UIColor.yellowColor()
+		menuView.backgroundColor = UIColor.random()
 		menuView.spacingsBetweenMenus = 10.0
 		
 		if #available(iOS 9.0, *) {
@@ -71,6 +71,10 @@ extension MenuViewDemoController : MenuViewDelegate {
 	}
 	
 	func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int) {
-		//
+		print("did selected: \(selectedIndex)")
+	}
+	
+	func menuView(menuView: MenuView, didScrollToOffset offset: CGFloat) {
+		print("did scroll to: \(offset)")
 	}
 }

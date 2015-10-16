@@ -29,6 +29,15 @@ public class MenuPageViewController : UIViewController {
 	// MARK: - Public
 	public var menuTitleHeight: CGFloat = 44.0
 	
+	public let menuView = MenuView()
+	public let pageViewController = PageViewController()
+	
+	public var selectedIndex: Int = 0 {
+		didSet {
+			setSelectedIndex(selectedIndex, animated: false)
+		}
+	}
+	
 	public weak var dataSource: MenuPageViewControllerDataSource?
 	public weak var delegate: MenuPageViewControllerDelegate?
 	
@@ -37,9 +46,6 @@ public class MenuPageViewController : UIViewController {
 		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
 		return dataSource.numberOfMenusInMenuPageViewController(self)
 	}
-	
-	private let menuView = MenuView()
-	private let pageViewController = PageViewController()
 		
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -61,6 +67,10 @@ public class MenuPageViewController : UIViewController {
 		automaticallyAdjustsScrollViewInsets = false
 		
 		menuView.spacingsBetweenMenus = 20.0
+	}
+	
+	public func setSelectedIndex(index: Int, animated: Bool, completion: (Bool -> Void)? = nil) {
+		pageViewController.setSelectedIndex(index, animated: animated, completion: completion)
 	}
 }
 
@@ -134,10 +144,6 @@ extension MenuPageViewController : UIScrollViewDelegate {
 		}
 		
 		if scrollView === pageViewController.pageScrollView {
-			let scrollOffset = scrollView.contentOffset.x - CGFloat(pageViewController.selectedIndex) * view.bounds.width
-			let scrollOffsetPercent = scrollOffset / view.bounds.width
-			menuView.scrollWithSelectedIndex(pageViewController.selectedIndex, withOffsetPercent: scrollOffsetPercent)
-			
 			pageViewController.scrollViewDidScroll(scrollView)
 		}
 	}
@@ -163,6 +169,12 @@ extension MenuPageViewController : UIScrollViewDelegate {
 	public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
 		if scrollView === pageViewController.pageScrollView {
 			pageViewController.scrollViewDidEndDecelerating(scrollView)
+		}
+	}
+	
+	public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+		if scrollView === pageViewController.pageScrollView {
+			pageViewController.scrollViewDidEndScrollingAnimation(scrollView)
 		}
 	}
 }
@@ -200,8 +212,10 @@ extension MenuPageViewController : MenuViewDelegate {
 	}
 	
 	public func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int) {
-		
+		setSelectedIndex(selectedIndex, animated: true)
 	}
+	
+	public func menuView(menuView: MenuView, didScrollToOffset offset: CGFloat) { }
 }
 
 
@@ -224,6 +238,10 @@ extension MenuPageViewController : PageViewControllerDataSource {
 
 // MARK: - PageViewControllerDelegate
 extension MenuPageViewController : PageViewControllerDelegate {
+	public func pageViewController(pageViewController: PageViewController, didScrollWithSelectedIndex selectedIndex: Int, offsetPercent: CGFloat) {
+		menuView.scrollWithSelectedIndex(pageViewController.selectedIndex, withOffsetPercent: offsetPercent)
+	}
+	
 	public func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
 		delegate?.menuPageViewController(self, didSelectIndex: selectedIndex, selectedViewController: selectedViewController)
 	}

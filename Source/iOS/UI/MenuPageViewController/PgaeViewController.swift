@@ -14,6 +14,14 @@ public protocol PageViewControllerDataSource : class {
 }
 
 public protocol PageViewControllerDelegate : class {
+	/**
+	Page view controller
+	
+	- parameter pageViewController: the page view controller
+	- parameter selectedIndex:      current selected index
+	- parameter offsetPercent:      offset in percent, 0 means the selected view controller is in center. -1.0 means left view controller of selected view controller is in center
+	*/
+	func pageViewController(pageViewController: PageViewController, didScrollWithSelectedIndex selectedIndex: Int, offsetPercent: CGFloat)
 	func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController)
 }
 
@@ -412,6 +420,10 @@ extension PageViewController : UIScrollViewDelegate {
 		if scrollView.contentOffset.y != 0 {
 			scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
 		}
+		
+		let scrollOffset = scrollView.contentOffset.x - CGFloat(selectedIndex) * view.bounds.width
+		let scrollOffsetPercent = scrollOffset / view.bounds.width
+		delegate?.pageViewController(self, didScrollWithSelectedIndex: selectedIndex, offsetPercent: scrollOffsetPercent)
 		
 		if !isDragging {
 			guard let willEndDraggingTargetContentOffsetX =  willEndDraggingTargetContentOffsetX else { return }

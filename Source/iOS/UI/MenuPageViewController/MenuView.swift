@@ -41,6 +41,8 @@ public protocol MenuViewDelegate: class {
 	*/
 	func menuView(menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat
 	
+	func menuView(menuView: MenuView, didScrollToOffset offset: CGFloat)
+	
 	func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int)
 }
 
@@ -48,6 +50,7 @@ public protocol MenuViewDelegate: class {
 
 public class MenuView : UIView {
 	// MARK: - Enums
+	// TODO: to complete
 	public enum ScrollingOption {
 		case InBounds
 		case Center
@@ -59,7 +62,10 @@ public class MenuView : UIView {
 	
 	public var spacingsBetweenMenus: CGFloat {
 		get { return menuCollectionViewLayout.minimumLineSpacing }
-		set { menuCollectionViewLayout.minimumLineSpacing = newValue }
+		set {
+			menuCollectionViewLayout.minimumLineSpacing = newValue
+			menuCollectionView.contentInset = UIEdgeInsets(top: 0.0, left: newValue, bottom: 0.0, right: newValue)
+		}
 	}
 	
 	public weak var dataSource: MenuViewDataSource?
@@ -111,6 +117,8 @@ public class MenuView : UIView {
 		menuCollectionView.scrollsToTop = false
 		menuCollectionView.showsHorizontalScrollIndicator = false
 		menuCollectionView.showsVerticalScrollIndicator = false
+		
+		menuCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
 		
 		menuCollectionView.allowsMultipleSelection = false
 		
@@ -174,7 +182,9 @@ extension MenuView : UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension MenuView : UICollectionViewDelegate {
-	
+	public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+		delegate?.menuView(self, didSelectIndex: indexPath.item)
+	}
 }
 
 
@@ -191,31 +201,29 @@ extension MenuView : UICollectionViewDelegateFlowLayout {
 
 
 
+extension MenuView : UIScrollViewDelegate {
+	public func scrollViewDidScroll(scrollView: UIScrollView) {
+		delegate?.menuView(self, didScrollToOffset: scrollView.contentOffset.x)
+	}
+	
+	public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+		let closestIndex = closestIndexForOffsetX(targetContentOffset.memory.x)
+		targetContentOffset.memory = contentOffsetForIndex(closestIndex)
+	}
+	
+	private func scrollToClosestIndexForContentOffset(contentOffset: CGPoint) {
+		let closestIndex = closestIndexForOffsetX(contentOffset.x)
+		let targetContentOffset = contentOffsetForIndex(closestIndex)
+		menuCollectionView.setContentOffset(targetContentOffset, animated: true)
+	}
+}
+
+
+
 extension MenuView {
 	public func scrollWithSelectedIndex(index: Int, withOffsetPercent percent: CGFloat = 0.0, animated: Bool = false) {
 		let targetContentOffset = contentOffsetForIndex(index, offsetPercent: percent)
 		menuCollectionView.setContentOffset(targetContentOffset, animated: animated)
-	}
-	
-	private func contentOffsetForIndex(index: Int, offsetPercent: CGFloat) -> CGPoint {
-		precondition(0 <= index && index <= dataSource?.numberOfMenusInMenuView(self), "invalid index: \(index)")
-		
-		var targetOffsetX: CGFloat = 0.0
-		var i = 0
-		while i < index {
-			targetOffsetX += menuWidthForIndex(i) + spacingsBetweenMenus
-			i++
-		}
-		
-		if offsetPercent < 0 {
-			// -1.0 ... 0.0
-			targetOffsetX += (menuWidthForIndex(max(index - 1, 0)) + spacingsBetweenMenus) * offsetPercent
-		} else {
-			// 0.0 ... 1.0
-			targetOffsetX += (menuWidthForIndex(index) + spacingsBetweenMenus) * offsetPercent
-		}
-
-		return CGPoint(x: targetOffsetX, y: 0)
 	}
 }
 
@@ -240,7 +248,7 @@ extension MenuView {
 		return height
 	}
 	
-	private func menuWidthForIndex(index: Int) -> CGFloat {
+	public func menuWidthForIndex(index: Int) -> CGFloat {
 		// Expecting from delegate for width
 		if let delegate = delegate {
 			return delegate.menuView(self, menuWidthForIndex: index)
@@ -250,5 +258,49 @@ extension MenuView {
 		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
 		
 		return dataSource.menuView(self, menuViewForIndex: index, contentView: nil).bounds.width
+	}
+	
+	public func contentOffsetForIndex(index: Int, offsetPercent: CGFloat = 0.0) -> CGPoint {
+		precondition(0 <= index && index <= dataSource?.numberOfMenusInMenuView(self), "invalid index: \(index)")
+		
+		var targetOffsetX: CGFloat = 0.0
+		var i = 0
+		while i < index {
+			targetOffsetX += menuWidthForIndex(i) + spacingsBetweenMenus
+			i++
+		}
+		
+		if offsetPercent < 0 {
+			// -1.0 ... 0.0
+			targetOffsetX += (menuWidthForIndex(max(index - 1, 0)) + spacingsBetweenMenus) * offsetPercent
+		} else {
+			// 0.0 ... 1.0
+			targetOffsetX += (menuWidthForIndex(index) + spacingsBetweenMenus) * offsetPercent
+		}
+		
+		// This adjust half spacing between menu
+		targetOffsetX -= spacingsBetweenMenus / 2.0
+		
+		return CGPoint(x: targetOffsetX, y: 0)
+	}
+	
+	public func closestIndexForOffsetX(offsetX: CGFloat) -> Int {
+		var separatorPoint: CGFloat = 0.0
+		var index = 0
+		while index < numberOfMenus {
+			if index == 0 {
+				separatorPoint = menuWidthForIndex(index) / 2.0
+			} else {
+				separatorPoint += (menuWidthForIndex(index - 1) + menuWidthForIndex(index)) / 2.0 + spacingsBetweenMenus
+			}
+			
+			if offsetX <= separatorPoint {
+				return index
+			}
+			
+			index++
+		}
+		
+		return index - 1
 	}
 }
