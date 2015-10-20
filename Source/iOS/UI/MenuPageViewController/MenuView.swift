@@ -52,7 +52,8 @@ public class MenuView : UIView {
 	// MARK: - Enums
 	// TODO: to complete
 	public enum ScrollingOption {
-		case InBounds
+		case None
+		case Leading
 		case Center
 	}
 	
@@ -64,14 +65,36 @@ public class MenuView : UIView {
 		get { return menuCollectionViewLayout.minimumLineSpacing }
 		set {
 			menuCollectionViewLayout.minimumLineSpacing = newValue
-			menuCollectionView.contentInset = UIEdgeInsets(top: 0.0, left: newValue, bottom: 0.0, right: newValue)
+			switch scrollingOption {
+			case .None: break
+			case .Leading: menuCollectionView.contentInset = UIEdgeInsets(top: 0.0, left: newValue, bottom: 0.0, right: newValue)
+			case .Center: break
+			}
 		}
 	}
 	
 	public weak var dataSource: MenuViewDataSource?
 	public weak var delegate: MenuViewDelegate?
 	
-	public var scrollingOption: ScrollingOption = .InBounds
+	public var scrollingOption: ScrollingOption = .Center
+	
+	// TODO: turn scroll enable turn when ready
+	public var scrollEnabled: Bool = false {
+		didSet {
+			menuCollectionView.scrollEnabled = scrollEnabled
+		}
+	}
+	
+	private var _selectedIndex: Int = 0
+	public var selectedIndex: Int {
+		get { return _selectedIndex }
+		set {
+			precondition(0 <= newValue && newValue < numberOfMenus, "Invalid selectedIndex: \(newValue)")
+			setSelectedIndex(newValue, animated: false)
+		}
+	}
+	
+	private var isVisible: Bool { return (window != nil) }
 	
 	// MARK: - Private
 	private var numberOfMenus: Int {
@@ -108,7 +131,7 @@ public class MenuView : UIView {
 		menuCollectionView.dataSource = self
 		menuCollectionView.delegate = self
 		
-		menuCollectionView.scrollEnabled = true
+		menuCollectionView.scrollEnabled = scrollEnabled
 		menuCollectionView.bounces = true
 		menuCollectionView.alwaysBounceHorizontal = true
 		menuCollectionView.alwaysBounceVertical = false
@@ -143,6 +166,23 @@ public class MenuView : UIView {
 		}
 		
 		NSLayoutConstraint.activateConstraints(constraints)
+	}
+	
+	public func setSelectedIndex(index: Int, animated: Bool) {
+		if _selectedIndex == index { return }
+		_selectedIndex = index
+//		switch scrollingOption {
+//		case .None:
+//		case .Leading:
+//			menuCollectionView.contentInset = UIEdgeInsets(top: 0.0, left: 400, bottom: 0.0, right: 400)
+//		case .Center:
+//			
+//		}
+		if isVisible {
+			menuCollectionView.setContentOffset(contentOffsetForIndex(index), animated: animated)
+		}
+		
+		delegate?.menuView(self, didSelectIndex: index)
 	}
 }
 
@@ -183,7 +223,7 @@ extension MenuView : UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension MenuView : UICollectionViewDelegate {
 	public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		delegate?.menuView(self, didSelectIndex: indexPath.item)
+		setSelectedIndex(indexPath.item, animated: true)
 	}
 }
 
@@ -203,18 +243,17 @@ extension MenuView : UICollectionViewDelegateFlowLayout {
 
 extension MenuView : UIScrollViewDelegate {
 	public func scrollViewDidScroll(scrollView: UIScrollView) {
+//		print("offset: \(scrollView.contentOffset.x)")
 		delegate?.menuView(self, didScrollToOffset: scrollView.contentOffset.x)
 	}
 	
 	public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+		print("scrollViewWillEndDragging: \(targetContentOffset.memory)")
+		print("velocity: \(velocity)")
 		let closestIndex = closestIndexForOffsetX(targetContentOffset.memory.x)
+		print("index: \(closestIndex), offset: \(contentOffsetForIndex(closestIndex))")
 		targetContentOffset.memory = contentOffsetForIndex(closestIndex)
-	}
-	
-	private func scrollToClosestIndexForContentOffset(contentOffset: CGPoint) {
-		let closestIndex = closestIndexForOffsetX(contentOffset.x)
-		let targetContentOffset = contentOffsetForIndex(closestIndex)
-		menuCollectionView.setContentOffset(targetContentOffset, animated: true)
+		setSelectedIndex(closestIndex, animated: true)
 	}
 }
 
@@ -281,10 +320,24 @@ extension MenuView {
 		// This adjust half spacing between menu
 		targetOffsetX -= spacingsBetweenMenus / 2.0
 		
+		switch scrollingOption {
+		case .None: break
+		case .Leading: break
+		case .Center: targetOffsetX -= (bounds.width - menuWidthForIndex(index) - spacingsBetweenMenus) / 2.0
+		}
+		
 		return CGPoint(x: targetOffsetX, y: 0)
 	}
 	
-	public func closestIndexForOffsetX(offsetX: CGFloat) -> Int {
+	public func closestIndexForOffsetX(var offsetX: CGFloat) -> Int {
+		switch scrollingOption {
+		case .None: break
+		case .Leading: break
+		case .Center:
+			// FIXME: calculation is bad
+			offsetX += (bounds.width - menuWidthForIndex(0)) / 2.0
+		}
+		
 		var separatorPoint: CGFloat = 0.0
 		var index = 0
 		while index < numberOfMenus {

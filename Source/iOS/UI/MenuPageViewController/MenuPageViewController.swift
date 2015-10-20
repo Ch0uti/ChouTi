@@ -32,8 +32,11 @@ public class MenuPageViewController : UIViewController {
 	public let menuView = MenuView()
 	public let pageViewController = PageViewController()
 	
-	public var selectedIndex: Int = 0 {
-		didSet {
+	private var _selectedIndex: Int = 0
+	public var selectedIndex: Int {
+		get { return _selectedIndex }
+		set {
+			precondition(0 <= newValue && newValue < numberOfMenus, "Invalid selectedIndex: \(newValue)")
 			setSelectedIndex(selectedIndex, animated: false)
 		}
 	}
@@ -66,10 +69,13 @@ public class MenuPageViewController : UIViewController {
 		
 		automaticallyAdjustsScrollViewInsets = false
 		
-		menuView.spacingsBetweenMenus = 20.0
+		menuView.spacingsBetweenMenus = 10.0
 	}
 	
 	public func setSelectedIndex(index: Int, animated: Bool, completion: (Bool -> Void)? = nil) {
+		if _selectedIndex == index { return }
+		_selectedIndex = index
+		menuView.setSelectedIndex(index, animated: animated)
 		pageViewController.setSelectedIndex(index, animated: animated, completion: completion)
 	}
 }
@@ -114,6 +120,12 @@ extension MenuPageViewController {
 		
 		NSLayoutConstraint.activateConstraints(constraints)
 	}
+	
+//	public override func viewDidLayoutSubviews() {
+//		super.viewDidLayoutSubviews()
+//		print("viewDidLayoutSubviews")
+//		setSelectedIndex(selectedIndex, animated: false)
+//	}
 }
 
 
@@ -212,7 +224,9 @@ extension MenuPageViewController : MenuViewDelegate {
 	}
 	
 	public func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int) {
-		setSelectedIndex(selectedIndex, animated: true)
+		_selectedIndex = selectedIndex
+		print("menuView: didSelect: \(selectedIndex)")
+		pageViewController.setSelectedIndex(selectedIndex, animated: true, completion: nil)
 	}
 	
 	public func menuView(menuView: MenuView, didScrollToOffset offset: CGFloat) { }
@@ -243,6 +257,9 @@ extension MenuPageViewController : PageViewControllerDelegate {
 	}
 	
 	public func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
+		_selectedIndex = selectedIndex
+		menuView.setSelectedIndex(selectedIndex, animated: true)
+		print("page View controller: didSelected: \(selectedIndex)")
 		delegate?.menuPageViewController(self, didSelectIndex: selectedIndex, selectedViewController: selectedViewController)
 	}
 }

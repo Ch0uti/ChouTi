@@ -18,8 +18,7 @@ class MenuPageDemoViewController : UIViewController {
     override func viewDidLoad() {
 		view.backgroundColor = UIColor.whiteColor()
 		
-		menuPageViewController.dataSource = self
-		menuPageViewController.delegate = self
+		menuPageViewController.menuView.spacingsBetweenMenus = 60
 		
 		let vc1 = SideViewController(nibName: "SideViewController", bundle: nil)
 		vc1.view.backgroundColor = UIColor.random()
@@ -40,7 +39,20 @@ class MenuPageDemoViewController : UIViewController {
 		vc4.view.backgroundColor = UIColor.random()
 		vc4.label.text = "vc4"
 		
-		dummyViewControllers = [vc1, vc2, vc3, vc4]
+		let vc5 = SideViewController(nibName: "SideViewController", bundle: nil)
+		vc5.view.backgroundColor = UIColor.random()
+		vc5.label.text = "vc5"
+		
+		let vc6 = SideViewController(nibName: "SideViewController", bundle: nil)
+		vc6.view.backgroundColor = UIColor.random()
+		vc6.label.text = "vc6"
+		
+		dummyViewControllers = [vc1, vc2, vc3, vc4, vc5, vc6]
+		
+		menuPageViewController.dataSource = self
+		menuPageViewController.delegate = self
+		
+		menuPageViewController.selectedIndex = 2
 		
 		self.automaticallyAdjustsScrollViewInsets = false
 		
