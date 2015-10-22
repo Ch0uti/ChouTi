@@ -65,11 +65,11 @@ public class MenuView : UIView {
 		get { return menuCollectionViewLayout.minimumLineSpacing }
 		set {
 			menuCollectionViewLayout.minimumLineSpacing = newValue
-			switch scrollingOption {
-			case .None: break
-			case .Leading: menuCollectionView.contentInset = UIEdgeInsets(top: 0.0, left: newValue, bottom: 0.0, right: newValue)
-			case .Center: break
-			}
+//			switch scrollingOption {
+//			case .None: break
+//			case .Leading: menuCollectionView.contentInset = UIEdgeInsets(top: 0.0, left: newValue, bottom: 0.0, right: newValue)
+//			case .Center: break
+//			}
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class MenuView : UIView {
 	
 	public var scrollingOption: ScrollingOption = .Center
 	
-	// TODO: turn scroll enable turn when ready
+	// TODO: turn scroll enable turn when ready, contentInset updating is not completed
 	public var scrollEnabled: Bool = false {
 		didSet {
 			menuCollectionView.scrollEnabled = scrollEnabled
@@ -96,10 +96,18 @@ public class MenuView : UIView {
 	
 	private var isVisible: Bool { return (window != nil) }
 	
+	/// Observer hack
+	private var observerRemoved: Bool = false
+	
 	// MARK: - Private
 	private var numberOfMenus: Int {
 		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
 		return dataSource.numberOfMenusInMenuView(self)
+	}
+	
+	public convenience init(scrollingOption: ScrollingOption) {
+		self.init(frame: CGRectZero)
+		self.scrollingOption = scrollingOption
 	}
 	
 	public override init(frame: CGRect) {
@@ -147,6 +155,9 @@ public class MenuView : UIView {
 		
 		menuCollectionView.contentInset = UIEdgeInsetsZero
 		
+		// Observe contentSize to update contentOffset when menu is first shown
+		menuCollectionView.addObserver(self, forKeyPath: "contentSize", options: [.New, .Old], context: nil)
+		
 		setupConstraints()
 	}
 	
@@ -168,6 +179,12 @@ public class MenuView : UIView {
 		NSLayoutConstraint.activateConstraints(constraints)
 	}
 	
+	deinit {
+		if !observerRemoved {
+			menuCollectionView.removeObserver(self, forKeyPath: "contentSize", context: nil)
+		}
+	}
+	
 	public func setSelectedIndex(index: Int, animated: Bool) {
 		if _selectedIndex == index { return }
 		_selectedIndex = index
@@ -183,6 +200,23 @@ public class MenuView : UIView {
 		}
 		
 		delegate?.menuView(self, didSelectIndex: index)
+	}
+	
+	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+		guard let change = change as? [String : NSValue] else { return }
+		if object === menuCollectionView {
+			guard let oldContentSize = change[NSKeyValueChangeOldKey]?.CGSizeValue() else { return }
+			guard let newContentSize = change[NSKeyValueChangeNewKey]?.CGSizeValue() else { return }
+			// If this is the first time size changed, which means view firstly appears
+			if oldContentSize == CGSizeZero && newContentSize != CGSizeZero {
+				// In this case, update content size
+				menuCollectionView.setContentOffset(contentOffsetForIndex(selectedIndex), animated: false)
+				if !observerRemoved {
+					menuCollectionView.removeObserver(self, forKeyPath: "contentSize", context: nil)
+					observerRemoved = true
+				}
+			}
+		}
 	}
 }
 
@@ -248,10 +282,10 @@ extension MenuView : UIScrollViewDelegate {
 	}
 	
 	public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-		print("scrollViewWillEndDragging: \(targetContentOffset.memory)")
-		print("velocity: \(velocity)")
+//		print("scrollViewWillEndDragging: \(targetContentOffset.memory)")
+//		print("velocity: \(velocity)")
 		let closestIndex = closestIndexForOffsetX(targetContentOffset.memory.x)
-		print("index: \(closestIndex), offset: \(contentOffsetForIndex(closestIndex))")
+//		print("index: \(closestIndex), offset: \(contentOffsetForIndex(closestIndex))")
 		targetContentOffset.memory = contentOffsetForIndex(closestIndex)
 		setSelectedIndex(closestIndex, animated: true)
 	}
@@ -312,7 +346,7 @@ extension MenuView {
 		if offsetPercent < 0 {
 			// -1.0 ... 0.0
 			targetOffsetX += (menuWidthForIndex(max(index - 1, 0)) + spacingsBetweenMenus) * offsetPercent
-		} else {
+		} else if offsetPercent > 0 {
 			// 0.0 ... 1.0
 			targetOffsetX += (menuWidthForIndex(index) + spacingsBetweenMenus) * offsetPercent
 		}

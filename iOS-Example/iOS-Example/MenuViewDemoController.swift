@@ -11,6 +11,9 @@ import ChouTi
 
 class MenuViewDemoController: UIViewController {
 
+	let leadingMenuView = MenuView(scrollingOption: .Leading)
+	let centerMenuView = MenuView(scrollingOption: .Center)
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -18,25 +21,39 @@ class MenuViewDemoController: UIViewController {
 		
 		automaticallyAdjustsScrollViewInsets = false
 		
-		let menuView = MenuView()
-		menuView.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(menuView)
+		leadingMenuView.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(leadingMenuView)
 		
-		menuView.backgroundColor = UIColor.random()
-		menuView.spacingsBetweenMenus = 10.0
+		leadingMenuView.backgroundColor = UIColor.random()
+		leadingMenuView.spacingsBetweenMenus = 10.0
+		
+		centerMenuView.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(centerMenuView)
+		
+		centerMenuView.backgroundColor = UIColor.random()
+		centerMenuView.spacingsBetweenMenus = 10.0
 		
 		if #available(iOS 9.0, *) {
-			menuView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
-			menuView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+			leadingMenuView.bottomAnchor.constraintEqualToAnchor(centerMenuView.topAnchor, constant: -20.0).active = true
+			leadingMenuView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
 			
-			menuView.widthAnchor.constraintEqualToConstant(250).active = true
-			menuView.heightAnchor.constraintEqualToConstant(100).active = true
+			leadingMenuView.widthAnchor.constraintEqualToConstant(300).active = true
+			leadingMenuView.heightAnchor.constraintEqualToConstant(100).active = true
+			
+			centerMenuView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+			centerMenuView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+			
+			centerMenuView.widthAnchor.constraintEqualToConstant(300).active = true
+			centerMenuView.heightAnchor.constraintEqualToConstant(100).active = true
 		} else {
 			// Fallback on earlier versions
 		}
 		
-		menuView.dataSource = self
-		menuView.delegate = self
+		leadingMenuView.dataSource = self
+		leadingMenuView.delegate = self
+		
+		centerMenuView.dataSource = self
+		centerMenuView.delegate = self
 	}
 }
 
