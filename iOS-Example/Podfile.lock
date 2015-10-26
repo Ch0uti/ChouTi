@@ -1,9 +1,6 @@
 PODS:
   - ChouTi (1.0):
-    - ChouTi/App-Extension-API-Unsafe (= 1.0)
-    - ChouTi/ChouTi (= 1.0)
-    - ChouTi/UI (= 1.0)
-    - ChouTi/UI-App-Extension-API-Unsafe (= 1.0)
+    - ChouTi/Unsafe (= 1.0)
   - ChouTi/App-Extension-API-Unsafe (1.0)
   - ChouTi/ChouTi (1.0):
     - ChouTi/ChouTi/Animators (= 1.0)
@@ -26,6 +23,11 @@ PODS:
   - ChouTi/UI/AutoLinesLabel (1.0)
   - ChouTi/UI/MenuPageViewController (1.0)
   - ChouTi/UI/SegmentedControl (1.0)
+  - ChouTi/Unsafe (1.0):
+    - ChouTi/App-Extension-API-Unsafe
+    - ChouTi/ChouTi
+    - ChouTi/UI
+    - ChouTi/UI-App-Extension-API-Unsafe
 
 DEPENDENCIES:
   - ChouTi (from `../`)
@@ -35,6 +37,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: 42e9b8f276890ad47ec016087b462ad797fc58d8
+  ChouTi: 7fa31c83e6b3852938541e932f425349737605a0
 
 COCOAPODS: 0.39.0

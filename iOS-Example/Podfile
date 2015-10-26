@@ -7,5 +7,9 @@ target 'iOS-Example' do
 
 pod 'ChouTi', :path => '../'
 # pod 'ChouTi', :git => 'https://github.com/honghaoz/ChouTi'
+# pod 'ChouTi/Unsafe'
+# pod 'ChouTi/Unsafe', :path => '../'
+# pod 'ChouTi/Safe', :path => '../'
+
 
 end
