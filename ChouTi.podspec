@@ -19,15 +19,9 @@ Pod::Spec.new do |s|
   s.source_files 	   = 'Source/iOS/**/'
 
 
-  s.default_subspecs = "Unsafe"
+  s.default_subspecs = "All"
 
-  s.subspec "Safe" do |ss|
-    ss.summary       = "App extension API compatible"
-    ss.dependency "ChouTi/ChouTi"
-    ss.dependency "ChouTi/UI"
-  end
-
-  s.subspec "Unsafe" do |ss|
+  s.subspec "All" do |ss|
     ss.summary       = "App extension API not compatible"
 
     ss.dependency "ChouTi/ChouTi"
@@ -35,6 +29,12 @@ Pod::Spec.new do |s|
 
     ss.dependency "ChouTi/App-Extension-API-Unsafe"
     ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
+  end
+
+  s.subspec "Safe" do |ss|
+    ss.summary       = "App extension API compatible"
+    ss.dependency "ChouTi/ChouTi"
+    ss.dependency "ChouTi/UI"
   end
 
 
