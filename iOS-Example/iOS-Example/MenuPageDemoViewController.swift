@@ -52,7 +52,7 @@ class MenuPageDemoViewController : UIViewController {
 		menuPageViewController.dataSource = self
 		menuPageViewController.delegate = self
 		
-		menuPageViewController.selectedIndex = 2
+		menuPageViewController.selectedIndex = 4
 		
 		self.automaticallyAdjustsScrollViewInsets = false
 		

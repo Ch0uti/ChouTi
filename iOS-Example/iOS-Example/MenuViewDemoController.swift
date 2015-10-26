@@ -31,6 +31,7 @@ class MenuViewDemoController: UIViewController {
 		view.addSubview(centerMenuView)
 		
 		centerMenuView.backgroundColor = UIColor.random()
+		
 		centerMenuView.spacingsBetweenMenus = 10.0
 		
 		if #available(iOS 9.0, *) {
@@ -54,6 +55,8 @@ class MenuViewDemoController: UIViewController {
 		
 		centerMenuView.dataSource = self
 		centerMenuView.delegate = self
+		
+		leadingMenuView.selectedIndex = 2
 	}
 }
 

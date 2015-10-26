@@ -37,7 +37,7 @@ public class MenuPageViewController : UIViewController {
 		get { return _selectedIndex }
 		set {
 			precondition(0 <= newValue && newValue < numberOfMenus, "Invalid selectedIndex: \(newValue)")
-			setSelectedIndex(selectedIndex, animated: false)
+			setSelectedIndex(newValue, animated: false)
 		}
 	}
 	

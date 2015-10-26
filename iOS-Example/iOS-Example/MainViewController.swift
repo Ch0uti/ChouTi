@@ -18,6 +18,8 @@ class MainViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupTableView()
+		
+		title = "抽屉(ChouTi) Demo"
 	}
 	
 	func setupTableView() {
