@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0DCE4258FFA3F3E8881A974D /* Pods_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C361C75F7E904ADB3ACFF966 /* Pods_iOS_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E44E945C1BBAF2EE00801A24 /* PageViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E945B1BBAF2EE00801A24 /* PageViewDemoController.swift */; settings = {ASSET_TAGS = (); }; };
+		0DCE4258FFA3F3E8881A974D /* Pods_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C361C75F7E904ADB3ACFF966 /* Pods_iOS_Example.framework */; };
+		E44E945C1BBAF2EE00801A24 /* PageViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E945B1BBAF2EE00801A24 /* PageViewDemoController.swift */; };
 		E452D6BA1BA74782002EF9E5 /* TableLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E452D6B91BA74782002EF9E5 /* TableLayoutDemoViewController.swift */; };
 		E4D99C2D1B91579100E492F9 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D99C2B1B91579100E492F9 /* CenterViewController.swift */; };
 		E4D99C2E1B91579100E492F9 /* CenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D99C2C1B91579100E492F9 /* CenterViewController.xib */; };
@@ -20,8 +20,8 @@
 		E4F3B87C1B798FDD006E1BF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F3B87B1B798FDD006E1BF9 /* Images.xcassets */; };
 		E4F3B87F1B798FDD006E1BF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F3B87D1B798FDD006E1BF9 /* LaunchScreen.xib */; };
 		E4F3B88B1B798FDD006E1BF9 /* iOS_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3B88A1B798FDD006E1BF9 /* iOS_ExampleTests.swift */; };
-		E4F4FE091BD02E99009511A7 /* MenuViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4FE081BD02E99009511A7 /* MenuViewDemoController.swift */; settings = {ASSET_TAGS = (); }; };
-		E4F4FE0D1BD03EEE009511A7 /* MenuPageDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4FE0C1BD03EEE009511A7 /* MenuPageDemoViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E4F4FE091BD02E99009511A7 /* MenuViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4FE081BD02E99009511A7 /* MenuViewDemoController.swift */; };
+		E4F4FE0D1BD03EEE009511A7 /* MenuPageDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4FE0C1BD03EEE009511A7 /* MenuPageDemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

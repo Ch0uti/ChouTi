@@ -19,7 +19,9 @@ Pod::Spec.new do |s|
   s.source_files 	   = 'Source/iOS/**/'
 
 
-  s.default_subspecs = 'ChouTi', 'UI'
+  s.default_subspecs = 'ChouTi', 'UI', 'App-Extension-API-Unsafe', 'UI-App-Extension-API-Unsafe'
+
+
 
   s.subspec "ChouTi" do |ss|
     ss.summary		 = "A Set of Common UI Utilities."
@@ -58,14 +60,17 @@ Pod::Spec.new do |s|
 
 
 
+  s.subspec "App-Extension-API-Unsafe" do |ss|
+    ss.summary     = "Components which are not app extension compatible"
+
+    # To be added
+
+  end
+
+
+
   s.subspec "UI" do |ss|
     ss.summary     = "UI Views & ViewControllers"
-
-    ss.subspec "SlideController" do |sss|
-      sss.summary      = "A left/right slide container view controller"
-      sss.source_files = 'Source/iOS/UI/SlideController/*.*'
-      sss.frameworks   = 'UIKit'
-    end
 
     ss.subspec "AutoLinesLabel" do |sss|
       sss.summary      = "UILabel with contentInset and probide auto lines on iOS7"
@@ -87,6 +92,17 @@ Pod::Spec.new do |s|
 
   end
 
-  
+
+
+  s.subspec "UI-App-Extension-API-Unsafe" do |ss|
+    ss.summary     = "UI components which are not app extension compatible"
+
+    ss.subspec "SlideController" do |sss|
+      sss.summary      = "A left/right slide container view controller"
+      sss.source_files = 'Source/iOS/UI/SlideController/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+    
+  end
 
 end
