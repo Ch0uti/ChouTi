@@ -143,7 +143,7 @@ public class PageViewController : UIViewController {
 	
 	
 	// MARK: - Properties
-	internal let pageScrollView = UIScrollView()
+	var pageScrollView = UIScrollView()
 	
 	/// When dragging/scrolling/appearing ongoing, this property will be true
 	private var isInTransition: Bool = false
@@ -155,11 +155,6 @@ public class PageViewController : UIViewController {
 	// MARK: - Init
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-	}
-	
-	public convenience init(viewControllers: [UIViewController]) {
-		self.init()
-		self.viewControllers = viewControllers
 	}
 	
 	public required init?(coder aDecoder: NSCoder) {
@@ -234,8 +229,8 @@ extension PageViewController {
 		pageScrollView.showsVerticalScrollIndicator = false
 		
 		// TODO: Those two proerties need to be tested
-		pageScrollView.delaysContentTouches = false
-		pageScrollView.canCancelContentTouches = true
+//		pageScrollView.delaysContentTouches = false
+//		pageScrollView.canCancelContentTouches = false
 		
 		pageScrollView.contentInset = UIEdgeInsetsZero
 		automaticallyAdjustsScrollViewInsets = false
@@ -265,6 +260,8 @@ extension PageViewController {
 		super.viewDidDisappear(animated)
 	}
 }
+
+
 
 // MARK: - Getting View Controller
 extension PageViewController {
