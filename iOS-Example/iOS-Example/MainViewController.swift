@@ -168,5 +168,3 @@ extension MainViewController: UITableViewDelegate {
 		slideViewController.toggleRightViewController()
 	}
 }
-
-

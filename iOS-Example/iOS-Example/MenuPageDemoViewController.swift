@@ -28,7 +28,7 @@ class MenuPageDemoViewController : UIViewController {
 		let vc2 = SideViewController(nibName: "SideViewController", bundle: nil)
 		vc2.view.backgroundColor = UIColor.random()
 		vc2.label.text = "vc2"
-		vc1.view.frame = UIScreen.mainScreen().bounds
+		vc2.view.frame = UIScreen.mainScreen().bounds
 		
 		let vc3 = SideViewController(nibName: "SideViewController", bundle: nil)
 		vc3.view.backgroundColor = UIColor.random()
@@ -38,6 +38,7 @@ class MenuPageDemoViewController : UIViewController {
 		let vc4 = SideViewController(nibName: "SideViewController", bundle: nil)
 		vc4.view.backgroundColor = UIColor.random()
 		vc4.label.text = "vc4"
+		vc4.view.userInteractionEnabled = false
 		
 		let vc5 = SideViewController(nibName: "SideViewController", bundle: nil)
 		vc5.view.backgroundColor = UIColor.random()

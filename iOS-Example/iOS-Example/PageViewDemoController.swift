@@ -9,11 +9,14 @@
 import UIKit
 import ChouTi
 
-class PageViewDemoController: PageViewController {
+class PageViewDemoController: UIViewController {
 	
+	let pageViewController = PageViewController()
 	var dummyViewControllers: [UIViewController]!
 	
     override func viewDidLoad() {
+		super.viewDidLoad()
+		
 		self.view.backgroundColor = UIColor.whiteColor()
 		
 		let vc1 = SideViewController(nibName: "SideViewController", bundle: nil)
@@ -24,7 +27,7 @@ class PageViewDemoController: PageViewController {
 		let vc2 = SideViewController(nibName: "SideViewController", bundle: nil)
 		vc2.view.backgroundColor = UIColor.random()
 		vc2.label.text = "vc2"
-		vc1.view.frame = UIScreen.mainScreen().bounds
+		vc2.view.frame = UIScreen.mainScreen().bounds
 		
 		let vc3 = SideViewController(nibName: "SideViewController", bundle: nil)
 		vc3.view.backgroundColor = UIColor.random()
@@ -39,24 +42,29 @@ class PageViewDemoController: PageViewController {
 		
 		// demoMenuPageViewController.viewControllers = dummyViewControllers
 		
-		self.dataSource = self
-		self.delegate = self
+		pageViewController.dataSource = self
+		pageViewController.delegate = self
 		
-		// demoMenuPageViewController.scrollEnabled = false
-		super.viewDidLoad()
+//		self.automaticallyAdjustsScrollViewInsets = false
 		
-		self.setSelectedIndex(2, animated: true)
+		addChildViewController(pageViewController)
+//		let frame = pageViewController.view.frame
+//		pageViewController.view.frame = CGRect(x: frame.origin.x, y: frame.origin.y + 22 + 44, width: frame.width, height: frame.height)
+		view.addSubview(pageViewController.view)
+		pageViewController.didMoveToParentViewController(self)
+		
+		pageViewController.setSelectedIndex(2, animated: true)
 	}
 	
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		
 		delay(seconds: 0.5, completion: { _ in
-			self.setSelectedIndex(1, animated: true)
+			self.pageViewController.setSelectedIndex(1, animated: true)
 		})
 		
 		delay(seconds: 1.0, completion: { _ in
-			self.setSelectedIndex(3, animated: true)
+			self.pageViewController.setSelectedIndex(3, animated: true)
 		})
 		
 		delay(seconds: 4.0, completion: { _ in

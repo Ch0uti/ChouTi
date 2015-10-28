@@ -25,6 +25,9 @@ public protocol PageViewControllerDelegate : class {
 	func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController)
 }
 
+// FIXME: Rotations
+// FIXME: Potention bug: set selected index animated while draging
+
 public class PageViewController : UIViewController {
 	// TODO: Handling rotations
 	
@@ -69,7 +72,7 @@ public class PageViewController : UIViewController {
 		didSet {
 			if let viewControllers = viewControllers {
 				_selectedIndex = 0
-				pageScrollView.contentOffset = CGPoint(x: 0, y: 0)
+				pageScrollView.contentOffset = CGPoint(x: 0, y: pageScrollView.contentOffset.y)
 				didReplaceOldViewControllers(oldValue, withNewViewControllers: viewControllers)
 			}
 		}
@@ -106,7 +109,7 @@ public class PageViewController : UIViewController {
 			if !isInTransition {
 				let updatedCount = dataSource!.numberOfViewControllersInPageViewController(self)
 				if lastRecoredViewControllersCount != updatedCount {
-					pageScrollView.contentSize = CGSize(width: view.bounds.width * CGFloat(updatedCount), height: view.bounds.height)
+					pageScrollView.contentSize = CGSize(width: view.bounds.width * CGFloat(updatedCount), height: 0)
 					lastRecoredViewControllersCount = updatedCount
 				}
 			}
@@ -172,7 +175,7 @@ public class PageViewController : UIViewController {
 		let width = view.bounds.width
 		let newOffsetX = CGFloat(index) * width
 		
-		pageScrollView.setContentOffset(CGPoint(x: newOffsetX, y: 0), animated: animated)
+		pageScrollView.setContentOffset(CGPoint(x: newOffsetX, y: pageScrollView.contentOffset.y), animated: animated)
 		if animated {
 			isInTransition = true
 			if isVisible {
@@ -369,7 +372,7 @@ extension PageViewController {
 	// ViewControllers Setups
 	private func setupChildViewControllerViews(viewControllers: [UIViewController]) {
 		// TODO: layoutSubviews may need to update contentSize
-		pageScrollView.contentSize = CGSize(width: view.bounds.width * CGFloat(viewControllers.count), height: view.bounds.height)
+		pageScrollView.contentSize = CGSize(width: view.bounds.width * CGFloat(viewControllers.count), height: 0)
 		for (index, viewController) in viewControllers.enumerate() {
 			viewController.view.frame = CGRect(x: CGFloat(index) * view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
 		}
@@ -388,7 +391,7 @@ extension PageViewController {
 		loadedViewControllers = []
 		
 		let count = dataSource.numberOfViewControllersInPageViewController(self)
-		pageScrollView.contentSize = CGSize(width: view.bounds.width * CGFloat(count), height: view.bounds.height)
+		pageScrollView.contentSize = CGSize(width: view.bounds.width * CGFloat(count), height: 0)
 		
 		loadViewControllerFromIndex(0, toIndex: selectedIndex)
 		setSelectedIndex(selectedIndex, animated: false)
@@ -413,10 +416,7 @@ extension PageViewController {
 // MARK: - UIScrollViewDelegate
 extension PageViewController : UIScrollViewDelegate {
 	public func scrollViewDidScroll(scrollView: UIScrollView) {
-		// Disable vertical scrolling
-		if scrollView.contentOffset.y != 0 {
-			scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
-		}
+		// Vertical scrolling is disabled
 		
 		let scrollOffset = scrollView.contentOffset.x - CGFloat(selectedIndex) * view.bounds.width
 		let scrollOffsetPercent = scrollOffset / view.bounds.width
