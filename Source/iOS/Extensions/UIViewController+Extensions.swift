@@ -1,5 +1,5 @@
 //
-//  UIViewController+Extension.swift
+//  UIViewController+Extensions.swift
 //  Pods
 //
 //  Created by Honghao Zhang on 2015-10-28.

@@ -1,5 +1,5 @@
 //
-//  UINavigationBar+Extension.swift
+//  UINavigationBar+Extensions.swift
 //  ChouTi
 //
 //  Created by Honghao Zhang on 2015-08-17.
