@@ -225,7 +225,6 @@ extension MenuPageViewController : MenuViewDelegate {
 	
 	public func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int) {
 		_selectedIndex = selectedIndex
-		print("menuView: didSelect: \(selectedIndex)")
 		pageViewController.setSelectedIndex(selectedIndex, animated: true, completion: nil)
 	}
 	
@@ -259,7 +258,6 @@ extension MenuPageViewController : PageViewControllerDelegate {
 	public func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
 		_selectedIndex = selectedIndex
 		menuView.setSelectedIndex(selectedIndex, animated: true)
-		print("page View controller: didSelected: \(selectedIndex)")
 		delegate?.menuPageViewController(self, didSelectIndex: selectedIndex, selectedViewController: selectedViewController)
 	}
 }

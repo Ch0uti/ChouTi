@@ -77,6 +77,7 @@ public class MenuView : UIView {
 	public weak var delegate: MenuViewDelegate?
 	
 	public var scrollingOption: ScrollingOption = .Center
+	public var autoScrollingEnabled: Bool = true
 	
 	// TODO: turn scroll enable turn when ready, contentInset updating is not completed
 	public var scrollEnabled: Bool = false {
@@ -294,8 +295,8 @@ extension MenuView : UIScrollViewDelegate {
 
 
 extension MenuView {
-	public func scrollWithSelectedIndex(index: Int, withOffsetPercent percent: CGFloat = 0.0, animated: Bool = false) {
-		let targetContentOffset = contentOffsetForIndex(index, offsetPercent: percent)
+	public func scrollWithSelectedIndex(index: Int, withOffsetPercent percent: CGFloat = 0.0, animated: Bool = false, ignoreAutoScrollingEnabled: Bool = false) {
+		let targetContentOffset = contentOffsetForIndex(index, offsetPercent: percent, ignoreAutoScrollingEnabled: ignoreAutoScrollingEnabled)
 		menuCollectionView.setContentOffset(targetContentOffset, animated: animated)
 	}
 }
@@ -333,8 +334,12 @@ extension MenuView {
 		return dataSource.menuView(self, menuViewForIndex: index, contentView: nil).bounds.width
 	}
 	
-	public func contentOffsetForIndex(index: Int, offsetPercent: CGFloat = 0.0) -> CGPoint {
+	public func contentOffsetForIndex(index: Int, offsetPercent: CGFloat = 0.0, ignoreAutoScrollingEnabled: Bool = false) -> CGPoint {
 		precondition(0 <= index && index <= dataSource?.numberOfMenusInMenuView(self), "invalid index: \(index)")
+		
+		if !ignoreAutoScrollingEnabled && autoScrollingEnabled == false {
+			return menuCollectionView.contentOffset
+		}
 		
 		var targetOffsetX: CGFloat = 0.0
 		var i = 0
@@ -389,5 +394,21 @@ extension MenuView {
 		}
 		
 		return index - 1
+	}
+	
+	public func menuCollectionViewCellForIndex(index: Int) -> UICollectionViewCell? {
+		return menuCollectionView.cellForItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0))
+	}
+	
+	public func menuViewForIndex(index: Int) -> UIView? {
+		guard let cell = menuCollectionViewCellForIndex(index) else {
+			return nil
+		}
+		
+		guard cell.contentView.subviews.count == 1 else {
+			return cell.contentView.subviews.last
+		}
+		
+		return cell.contentView.subviews.first!
 	}
 }
