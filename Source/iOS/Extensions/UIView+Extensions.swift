@@ -46,3 +46,30 @@ public extension UIView {
 		}
 	}
 }
+
+public extension UIView {
+	public func frameRectInView(view: UIView?) -> CGRect {
+		return self.convertRect(self.bounds, toView: view)
+	}
+}
+
+// MARK: - Auto Layout
+public extension UIView {
+	public func fullSizeInSuperview() {
+		guard let superview = self.superview else {
+			fatalError("superview is nil")
+		}
+		
+		if #available(iOSApplicationExtension 9.0, *) {
+		    self.topAnchor.constraintEqualToAnchor(superview.topAnchor).active = true
+			self.leadingAnchor.constraintEqualToAnchor(superview.leadingAnchor).active = true
+			self.bottomAnchor.constraintEqualToAnchor(superview.bottomAnchor).active = true
+			self.trailingAnchor.constraintEqualToAnchor(superview.trailingAnchor).active = true
+		} else {
+			NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: 0.0).active = true
+			NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: superview, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
+			NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: superview, attribute: .Bottom, multiplier: 1.0, constant: 0.0).active = true
+			NSLayoutConstraint(item: self, attribute: .Trailing, relatedBy: .Equal, toItem: superview, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
+		}
+	}
+}
