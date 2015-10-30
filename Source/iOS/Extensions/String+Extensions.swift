@@ -49,6 +49,17 @@ public extension String {
 		return regex.stringByReplacingMatchesInString(self, options: [], range: NSRange(location: 0, length: self.characters.count), withTemplate: template)
 	}
 	
+	/**
+	Strips leading and trailing white-space from a string, replaces sequences of whitespace characters by a single space, and returns the resulting string.
+	
+	- returns: Normalized string
+	*/
+	public func normalizeSpaces() -> String {
+		let whiteSpacesExceptLastOne = NSRegularExpression.whiteSpacesExceptLastOne()
+		let tabNewlineSpaceRegex = NSRegularExpression.tabNewlineSpaceRegex()
+		return self.replaceRegex(whiteSpacesExceptLastOne, withString: "").replaceRegex(tabNewlineSpaceRegex, withString: " ").trimmed()
+	}
+	
 	public func removeTabsAndReplaceNewlineWithEmptySpace() -> String {
 		let tabRegex = NSRegularExpression.tabRegex()
 		let newLineRegex = NSRegularExpression.newlineRegex()
