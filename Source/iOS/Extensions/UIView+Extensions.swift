@@ -60,7 +60,7 @@ public extension UIView {
 			fatalError("superview is nil")
 		}
 		
-		if #available(iOSApplicationExtension 9.0, *) {
+		if #available(iOS 9.0, *) {
 		    self.topAnchor.constraintEqualToAnchor(superview.topAnchor).active = true
 			self.leadingAnchor.constraintEqualToAnchor(superview.leadingAnchor).active = true
 			self.bottomAnchor.constraintEqualToAnchor(superview.bottomAnchor).active = true
