@@ -35,4 +35,8 @@ public extension NSRegularExpression {
 		
 		return try! NSRegularExpression(pattern: "\(whiteSpacePattern)+(?=\(whiteSpacePattern)*\(whiteSpacePattern){1})", options: [])
 	}
+	
+	public class func percentNumberRegex() -> NSRegularExpression {
+		return try! NSRegularExpression(pattern: "([\\d|.])+(?=%)", options: [])
+	}
 }
