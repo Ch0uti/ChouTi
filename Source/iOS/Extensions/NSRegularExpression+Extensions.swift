@@ -33,6 +33,6 @@ public extension NSRegularExpression {
 		
 		let whiteSpacePattern = "(\\r\\n|\\r|\\n|\\t| )"
 		
-		return try! NSRegularExpression(pattern: "\(whiteSpacePattern)+(?=[^\(whiteSpacePattern)]*\(whiteSpacePattern){1})", options: [])
+		return try! NSRegularExpression(pattern: "\(whiteSpacePattern)+(?=\(whiteSpacePattern)*\(whiteSpacePattern){1})", options: [])
 	}
 }
