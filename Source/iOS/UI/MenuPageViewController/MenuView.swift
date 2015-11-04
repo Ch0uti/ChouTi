@@ -95,7 +95,7 @@ public class MenuView : UIView {
 		}
 	}
 	
-	private var isVisible: Bool { return (window != nil) }
+	public var zh_isVisible: Bool { return (window != nil) }
 	
 	/// Observer hack
 	private var observerRemoved: Bool = false
@@ -196,7 +196,7 @@ public class MenuView : UIView {
 //		case .Center:
 //			
 //		}
-		if isVisible {
+		if zh_isVisible {
 			menuCollectionView.setContentOffset(contentOffsetForIndex(index), animated: animated)
 		}
 		

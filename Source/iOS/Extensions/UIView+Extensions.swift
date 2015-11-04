@@ -55,10 +55,13 @@ public extension UIView {
 
 // MARK: - Auto Layout
 public extension UIView {
+	
 	public func fullSizeInSuperview() {
 		guard let superview = self.superview else {
 			fatalError("superview is nil")
 		}
+		
+		translatesAutoresizingMaskIntoConstraints = false
 		
 		if #available(iOS 9.0, *) {
 		    self.topAnchor.constraintEqualToAnchor(superview.topAnchor).active = true
@@ -72,4 +75,38 @@ public extension UIView {
 			NSLayoutConstraint(item: self, attribute: .Trailing, relatedBy: .Equal, toItem: superview, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
 		}
 	}
+	
+	public func fullSizeMarginInSuperview() {
+		guard let superview = self.superview else {
+			fatalError("superview is nil")
+		}
+		
+		translatesAutoresizingMaskIntoConstraints = false
+
+		NSLayoutConstraint(item: self, attribute: .TopMargin, relatedBy: .Equal, toItem: superview, attribute: .TopMargin, multiplier: 1.0, constant: 0.0).active = true
+		NSLayoutConstraint(item: self, attribute: .LeadingMargin, relatedBy: .Equal, toItem: superview, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0).active = true
+		NSLayoutConstraint(item: self, attribute: .BottomMargin, relatedBy: .Equal, toItem: superview, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0).active = true
+		NSLayoutConstraint(item: self, attribute: .TrailingMargin, relatedBy: .Equal, toItem: superview, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0).active = true
+	}
+	
+	public func centerInSuperview() {
+		guard let superview = self.superview else {
+			fatalError("superview is nil")
+		}
+		
+		translatesAutoresizingMaskIntoConstraints = false
+		
+		if #available(iOS 9.0, *) {
+			self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor).active = true
+			self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor).active = true
+		} else {
+			NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: superview, attribute: .CenterX, multiplier: 1.0, constant: 0.0).active = true
+			NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: superview, attribute: .CenterY, multiplier: 1.0, constant: 0.0).active = true
+		}
+	}
 }
+
+public extension UIView {
+	public var isVisible: Bool { return (window != nil) }
+}
+
