@@ -14,6 +14,13 @@ import UIKit
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, contentForColumn column: Int, row: Int) -> String
 }
 
+@objc public protocol TableLayoutDelegate {
+	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, widthForColumn column: Int) -> CGFloat
+	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, heightForRow row: Int) -> CGFloat
+	
+//	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, ) -> CGFloat
+}
+
 public class TableCollectionViewLayout: UICollectionViewLayout {
     // NSIndexPath.item == 0, for title cells
     // NSIndexPath.item >  0, for content cells
@@ -23,7 +30,13 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
     
     public var titleFont: UIFont = UIFont.italicSystemFontOfSize(17)
     public var contentFont: UIFont = UIFont.systemFontOfSize(17)
-    
+	
+	public var titleTextColor: UIColor = UIColor(white: 0.5, alpha: 1.0)
+    public var contentTextColor: UIColor = UIColor(white: 0.5, alpha: 1.0)
+	
+	public var titleTextAlignment: NSTextAlignment = .Center
+	public var contentTextAlignment: NSTextAlignment = .Center
+	
     public var horizontalPadding: CGFloat = 5.0
     public var verticalPadding: CGFloat = 1.0
     public var separatorLineWidth: CGFloat = 1.0
@@ -134,7 +147,7 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
 
 // MARK: Helper functions
 extension TableCollectionViewLayout {
-    private func buildMaxWidthsHeight() {
+	func buildMaxWidthsHeight() {
         // Calculate MaxWidths
         maxWidthsForSections.removeAll(keepCapacity: false)
         for col in 0 ..< sections {

@@ -15,16 +15,27 @@ public class TableCollectionView: UICollectionView {
     
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        self.dataSource = self
-        self.registerClass(TableCollectionViewCell.self, forCellWithReuseIdentifier: kCellIdentifier)
-        
-        self.backgroundColor = UIColor.clearColor()
-//        scrollIndicatorInsets = UIEdgeInsetsMake(5, 2, -5, -2)
+		commonInit()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+		commonInit()
     }
+	
+	private func commonInit() {
+		self.dataSource = self
+		self.registerClass(TableCollectionViewCell.self, forCellWithReuseIdentifier: kCellIdentifier)
+		
+		self.backgroundColor = UIColor.clearColor()
+		//        scrollIndicatorInsets = UIEdgeInsetsMake(5, 2, -5, -2)
+	}
+	
+	public override func intrinsicContentSize() -> CGSize {
+		let layout = self.collectionViewLayout as! TableCollectionViewLayout
+		layout.buildMaxWidthsHeight()
+		return layout.collectionViewContentSize()
+	}
 }
 
 extension TableCollectionView: UICollectionViewDataSource {
@@ -38,15 +49,21 @@ extension TableCollectionView: UICollectionViewDataSource {
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(kCellIdentifier, forIndexPath: indexPath) as! TableCollectionViewCell
+		
+		let layout = self.collectionViewLayout as! TableCollectionViewLayout
+		
         if indexPath.item == 0 {
-            cell.textLabel.font = (self.collectionViewLayout as! TableCollectionViewLayout).titleFont
+            cell.textLabel.font = layout.titleFont
+			cell.textLabel.textColor = layout.titleTextColor
+			cell.textLabel.textAlignment = layout.titleTextAlignment
             cell.textLabel.text = tableLayoutDataSource.collectionView(collectionView, layout: collectionView.collectionViewLayout as! TableCollectionViewLayout, titleForColumn: indexPath.section)
         } else {
-            cell.textLabel.font = (self.collectionViewLayout as! TableCollectionViewLayout).contentFont
+			cell.textLabel.font = layout.contentFont
+			cell.textLabel.textColor = layout.contentTextColor
+			cell.textLabel.textAlignment = layout.contentTextAlignment
             cell.textLabel.text = tableLayoutDataSource.collectionView(collectionView, layout: collectionView.collectionViewLayout as! TableCollectionViewLayout, contentForColumn: indexPath.section, row: indexPath.item - 1)
         }
-        cell.textLabel.textColor = UIColor(white: 0.5, alpha: 1.0)
-        cell.textLabel.textAlignment = .Center
+		
         return cell
     }
 }
