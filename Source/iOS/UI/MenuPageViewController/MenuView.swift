@@ -219,6 +219,10 @@ public class MenuView : UIView {
 			}
 		}
 	}
+	
+	public func reload() {
+		menuCollectionView.reloadData()
+	}
 }
 
 
