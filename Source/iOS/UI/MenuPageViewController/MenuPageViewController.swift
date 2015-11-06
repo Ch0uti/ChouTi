@@ -36,8 +36,11 @@ public class MenuPageViewController : UIViewController {
 	public var selectedIndex: Int {
 		get { return _selectedIndex }
 		set {
-			precondition(0 <= newValue && newValue < numberOfMenus, "Invalid selectedIndex: \(newValue)")
-			setSelectedIndex(newValue, animated: false)
+			let isValidIndex = (0 <= newValue && newValue < numberOfMenus)
+			assert(isValidIndex, "Invalid selectedIndex: \(newValue)")
+			if isValidIndex {
+				setSelectedIndex(newValue, animated: false)
+			}
 		}
 	}
 	
@@ -77,6 +80,11 @@ public class MenuPageViewController : UIViewController {
 		_selectedIndex = index
 		menuView.setSelectedIndex(index, animated: animated)
 		pageViewController.setSelectedIndex(index, animated: animated, completion: completion)
+	}
+	
+	public func reload() {
+		menuView.reload()
+		pageViewController.reloadViewControllers()
 	}
 }
 
