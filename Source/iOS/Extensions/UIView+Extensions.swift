@@ -110,3 +110,25 @@ public extension UIView {
 	public var isVisible: Bool { return (window != nil) }
 }
 
+public extension UIView {
+	public func setHidden(hidden: Bool, animated: Bool = false, duration: NSTimeInterval = 0.25, completion: ((Bool) -> ())? = nil) {
+		if !animated {
+			alpha = hidden ? 0.0 : 1.0
+			self.hidden = hidden
+			completion?(true)
+		} else {
+			// If to visible, set hidden to false first, then animate alpha
+			if !hidden {
+				self.hidden = hidden
+			}
+			
+			UIView.animateWithDuration(duration, animations: {
+				self.alpha = hidden ? 0.0 : 1.0
+				}, completion: { (finished) -> Void in
+					self.hidden = hidden
+					completion?(finished)
+			})
+		}
+	}
+}
+
