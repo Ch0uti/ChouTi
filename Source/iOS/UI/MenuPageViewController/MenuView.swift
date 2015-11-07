@@ -79,6 +79,8 @@ public class MenuView : UIView {
 	public var scrollingOption: ScrollingOption = .Center
 	public var autoScrollingEnabled: Bool = true
 	
+	public var menuAlwaysCentered: Bool = false
+	
 	// TODO: turn scroll enable turn when ready, contentInset updating is not completed
 	public var scrollEnabled: Bool = false {
 		didSet {
@@ -158,6 +160,7 @@ public class MenuView : UIView {
 		
 		// Observe contentSize to update contentOffset when menu is first shown
 		menuCollectionView.addObserver(self, forKeyPath: "contentSize", options: [.New, .Old], context: nil)
+		menuCollectionView.addObserver(self, forKeyPath: "contentOffset", options: [.New, .Old], context: nil)
 		
 		setupConstraints()
 	}
@@ -184,6 +187,7 @@ public class MenuView : UIView {
 		if !observerRemoved {
 			menuCollectionView.removeObserver(self, forKeyPath: "contentSize", context: nil)
 		}
+		menuCollectionView.removeObserver(self, forKeyPath: "contentOffset", context: nil)
 	}
 	
 	public func setSelectedIndex(index: Int, animated: Bool) {
@@ -206,15 +210,27 @@ public class MenuView : UIView {
 	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
 		guard let change = change as? [String : NSValue] else { return }
 		if object === menuCollectionView {
-			guard let oldContentSize = change[NSKeyValueChangeOldKey]?.CGSizeValue() else { return }
-			guard let newContentSize = change[NSKeyValueChangeNewKey]?.CGSizeValue() else { return }
-			// If this is the first time size changed, which means view firstly appears
-			if oldContentSize == CGSizeZero && newContentSize != CGSizeZero {
-				// In this case, update content size
-				menuCollectionView.setContentOffset(contentOffsetForIndex(selectedIndex), animated: false)
-				if !observerRemoved {
-					menuCollectionView.removeObserver(self, forKeyPath: "contentSize", context: nil)
-					observerRemoved = true
+			if keyPath == "contentSize" {
+				guard let oldContentSize = change[NSKeyValueChangeOldKey]?.CGSizeValue() else { return }
+				guard let newContentSize = change[NSKeyValueChangeNewKey]?.CGSizeValue() else { return }
+				// If this is the first time size changed, which means view firstly appears
+				if oldContentSize == CGSizeZero && newContentSize != CGSizeZero {
+					// In this case, update content size
+					menuCollectionView.setContentOffset(contentOffsetForIndex(selectedIndex), animated: false)
+					if !observerRemoved {
+						menuCollectionView.removeObserver(self, forKeyPath: "contentSize", context: nil)
+						observerRemoved = true
+					}
+				}
+			}
+			
+			if keyPath == "contentOffset" {
+				if menuAlwaysCentered {
+					let newContentOffset = change[NSKeyValueChangeNewKey]!.CGPointValue()
+					let targetContentOffset = contentOffsetForIndex(numberOfMenus / 2, offsetPercent: 0.0, ignoreAutoScrollingEnabled: true)
+					if abs(targetContentOffset.x - newContentOffset.x) > 1.0 {
+						menuCollectionView.setContentOffset(targetContentOffset, animated: false)
+					}
 				}
 			}
 		}
@@ -300,6 +316,7 @@ extension MenuView : UIScrollViewDelegate {
 
 extension MenuView {
 	public func scrollWithSelectedIndex(index: Int, withOffsetPercent percent: CGFloat = 0.0, animated: Bool = false, ignoreAutoScrollingEnabled: Bool = false) {
+		if index < 0 || index >= dataSource?.numberOfMenusInMenuView(self) { return }
 		let targetContentOffset = contentOffsetForIndex(index, offsetPercent: percent, ignoreAutoScrollingEnabled: ignoreAutoScrollingEnabled)
 		menuCollectionView.setContentOffset(targetContentOffset, animated: animated)
 	}

@@ -52,6 +52,8 @@ public class MenuPageViewController : UIViewController {
 		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
 		return dataSource.numberOfMenusInMenuPageViewController(self)
 	}
+	
+	private var isUpdatingSelectedIndex: Bool = false
 		
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -78,8 +80,11 @@ public class MenuPageViewController : UIViewController {
 	public func setSelectedIndex(index: Int, animated: Bool, completion: (Bool -> Void)? = nil) {
 		if _selectedIndex == index { return }
 		_selectedIndex = index
+		
+		isUpdatingSelectedIndex = true
 		menuView.setSelectedIndex(index, animated: animated)
 		pageViewController.setSelectedIndex(index, animated: animated, completion: completion)
+		isUpdatingSelectedIndex = false
 	}
 	
 	public func reload() {
@@ -232,8 +237,11 @@ extension MenuPageViewController : MenuViewDelegate {
 	}
 	
 	public func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int) {
-		_selectedIndex = selectedIndex
-		pageViewController.setSelectedIndex(selectedIndex, animated: true, completion: nil)
+		// If selectedIndex updating is caused by selection of MenuPageVC, don't update pageVC
+		if !isUpdatingSelectedIndex {
+			_selectedIndex = selectedIndex
+			pageViewController.setSelectedIndex(selectedIndex, animated: true, completion: nil)
+		}
 	}
 	
 	public func menuView(menuView: MenuView, didScrollToOffset offset: CGFloat) { }
@@ -264,8 +272,12 @@ extension MenuPageViewController : PageViewControllerDelegate {
 	}
 	
 	public func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
-		_selectedIndex = selectedIndex
-		menuView.setSelectedIndex(selectedIndex, animated: true)
+		// If selectedIndex updating is caused by selection of MenuPageVC, don't update
+		if !isUpdatingSelectedIndex {
+			_selectedIndex = selectedIndex
+			menuView.setSelectedIndex(selectedIndex, animated: true)
+		}
+
 		delegate?.menuPageViewController(self, didSelectIndex: selectedIndex, selectedViewController: selectedViewController)
 	}
 }

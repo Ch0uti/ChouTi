@@ -40,7 +40,7 @@ public class PageViewController : UIViewController {
 	}
 	
 	/// Current selected index.
-	public var selectedIndex: Int = 0 {
+	public var selectedIndex: Int = -1 {
 		didSet {
 			setSelectedIndex(selectedIndex, animated: false)
 		}
@@ -171,7 +171,9 @@ public class PageViewController : UIViewController {
 	// MARK: - SetSelectedIndex
 	private var setSelectedIndexCompletion: (Bool -> Void)?
 	public func setSelectedIndex(index: Int, animated: Bool, completion: (Bool -> Void)? = nil) {
-		precondition(0 <= index && index < viewControllersCount, "selected index: \(index) out of range")
+		if index < 0 || index >= viewControllersCount {
+			return
+		}
 		if _selectedIndex == index { return }
 		
 		let width = view.bounds.width
@@ -410,6 +412,15 @@ extension PageViewController {
 		
 		loadViewControllerFromIndex(0, toIndex: selectedIndex)
 		setSelectedIndex(selectedIndex, animated: false)
+		
+		// Give some delay and check whether selectedIndex is still -1. 
+		// If so, means after updating dataSource, selectedIndex is not set.
+		// So 0 then
+		delay(seconds: 0.001) { () -> () in
+			if self.dataSource!.numberOfViewControllersInPageViewController(self) > 0 && self._selectedIndex == -1 {
+				self.setSelectedIndex(0, animated: false)
+			}
+		}
 	}
 }
 
