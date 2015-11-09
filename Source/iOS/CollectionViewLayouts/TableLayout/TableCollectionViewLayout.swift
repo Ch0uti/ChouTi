@@ -17,8 +17,6 @@ import UIKit
 @objc public protocol TableLayoutDelegate {
 	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, widthForColumn column: Int) -> CGFloat
 	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, heightForRow row: Int) -> CGFloat
-	
-//	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, ) -> CGFloat
 }
 
 public class TableCollectionViewLayout: UICollectionViewLayout {
@@ -27,7 +25,8 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
     // However, for TableLayoutDataSource, column and row start from zero
     
     // SeparatorLine is decorationViews
-    
+	
+	// MARK: - Appearance Customization
     public var titleFont: UIFont = UIFont.italicSystemFontOfSize(17)
     public var contentFont: UIFont = UIFont.systemFontOfSize(17)
 	
@@ -45,17 +44,23 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
             TableCollectionViewSeparatorView.separatorColor = separatorColor
         }
     }
-    
+	
+	// MARK: -
     private var titleLabelHeight: CGFloat { return "Zhang".zhExactSize(titleFont).height }
     private var contentLabelHeight: CGFloat { return "Honghao".zhExactSize(contentFont).height }
-    
+	
+	// MARK: - DataSource/Delegate
     public var dataSource: UICollectionViewDataSource {
         return self.collectionView!.dataSource!
     }
     public var dataSourceTableLayout: TableLayoutDataSource {
         return (self.collectionView! as! TableCollectionView).tableLayoutDataSource
     }
-    
+	
+	public var delegate: TableLayoutDelegate? {
+		return (self.collectionView! as! TableCollectionView).tableLayoutDelegate
+	}
+	
     public var sections: Int {
         return dataSource.numberOfSectionsInCollectionView!(collectionView!)
     }
@@ -65,8 +70,9 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
     
     private let separatorViewKind = "Separator"
     
-    private var cellAttrsIndexPathDict = [NSIndexPath: UICollectionViewLayoutAttributes]()
+    private var cellAttrsIndexPathDict = [NSIndexPath : UICollectionViewLayoutAttributes]()
 	
+	// MARK: - Init
 	public override init() {
         super.init()
 		commmonInit()
@@ -80,7 +86,8 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
 	private func commmonInit() {
 		self.registerClass(TableCollectionViewSeparatorView.self, forDecorationViewOfKind: separatorViewKind)
 	}
-    
+	
+	// MARK: - Override
     public override func prepareLayout() {
         buildMaxWidthsHeight()
         buildCellAttrsDict()
@@ -132,8 +139,12 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
         }
         
         for sec in 0 ..< sections {
-            for row in 0 ..< collectionView!.dataSource!.collectionView(collectionView!, numberOfItemsInSection: sec) {
-                attrs.append(self.layoutAttributesForDecorationViewOfKind(separatorViewKind, atIndexPath: NSIndexPath(forItem: row, inSection: sec))!)
+            for row in 0 ..< dataSource.collectionView(collectionView!, numberOfItemsInSection: sec) {
+				if let attr = layoutAttributesForDecorationViewOfKind(separatorViewKind, atIndexPath: NSIndexPath(forItem: row, inSection: sec)) {
+					attrs.append(attr)
+				} else {
+					print("warning: layoutAttributesForDecorationViewOfKind: \(separatorViewKind), for item: \(row), section: \(sec) is nil")
+				}
             }
         }
         
@@ -150,6 +161,7 @@ extension TableCollectionViewLayout {
 	func buildMaxWidthsHeight() {
         // Calculate MaxWidths
         maxWidthsForSections.removeAll(keepCapacity: false)
+		
         for col in 0 ..< sections {
             let title = dataSourceTableLayout.collectionView(collectionView!, layout: self, titleForColumn: col)
             var maxWidth = title.zhExactSize(titleFont).width
@@ -179,6 +191,7 @@ extension TableCollectionViewLayout {
     
     private func buildCellAttrsDict() {
         cellAttrsIndexPathDict.removeAll(keepCapacity: false)
+		
         for sec in 0 ..< sections {
             let items = dataSource.collectionView(collectionView!, numberOfItemsInSection: sec)
             for item in 0 ..< items {

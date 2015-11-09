@@ -10,11 +10,16 @@ import UIKit
 public class TableCollectionView: UICollectionView {
     
     public weak var tableLayoutDataSource: TableLayoutDataSource!
-    
-    private var kCellIdentifier = "Cell"
-    
+	public weak var tableLayoutDelegate: TableLayoutDelegate?
+	
+	private var tableLayout: TableCollectionViewLayout {
+		return self.collectionViewLayout as! TableCollectionViewLayout
+	}
+	
+	// MARK: - Override
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+		precondition(layout is TableCollectionViewLayout, "layout must be a TableCollectionViewLayout class")
 		commonInit()
     }
     
@@ -24,17 +29,15 @@ public class TableCollectionView: UICollectionView {
     }
 	
 	private func commonInit() {
-		self.dataSource = self
-		self.registerClass(TableCollectionViewCell.self, forCellWithReuseIdentifier: kCellIdentifier)
+		TableCollectionViewCell.registerInCollectionView(self)
 		
+		self.dataSource = self
 		self.backgroundColor = UIColor.clearColor()
-		//        scrollIndicatorInsets = UIEdgeInsetsMake(5, 2, -5, -2)
 	}
 	
 	public override func intrinsicContentSize() -> CGSize {
-		let layout = self.collectionViewLayout as! TableCollectionViewLayout
-		layout.buildMaxWidthsHeight()
-		return layout.collectionViewContentSize()
+		tableLayout.buildMaxWidthsHeight()
+		return tableLayout.collectionViewContentSize()
 	}
 }
 
@@ -48,19 +51,17 @@ extension TableCollectionView: UICollectionViewDataSource {
     }
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(kCellIdentifier, forIndexPath: indexPath) as! TableCollectionViewCell
-		
-		let layout = self.collectionViewLayout as! TableCollectionViewLayout
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(TableCollectionViewCell.identifier(), forIndexPath: indexPath) as! TableCollectionViewCell
 		
         if indexPath.item == 0 {
-            cell.textLabel.font = layout.titleFont
-			cell.textLabel.textColor = layout.titleTextColor
-			cell.textLabel.textAlignment = layout.titleTextAlignment
+            cell.textLabel.font = tableLayout.titleFont
+			cell.textLabel.textColor = tableLayout.titleTextColor
+			cell.textLabel.textAlignment = tableLayout.titleTextAlignment
             cell.textLabel.text = tableLayoutDataSource.collectionView(collectionView, layout: collectionView.collectionViewLayout as! TableCollectionViewLayout, titleForColumn: indexPath.section)
         } else {
-			cell.textLabel.font = layout.contentFont
-			cell.textLabel.textColor = layout.contentTextColor
-			cell.textLabel.textAlignment = layout.contentTextAlignment
+			cell.textLabel.font = tableLayout.contentFont
+			cell.textLabel.textColor = tableLayout.contentTextColor
+			cell.textLabel.textAlignment = tableLayout.contentTextAlignment
             cell.textLabel.text = tableLayoutDataSource.collectionView(collectionView, layout: collectionView.collectionViewLayout as! TableCollectionViewLayout, contentForColumn: indexPath.section, row: indexPath.item - 1)
         }
 		
