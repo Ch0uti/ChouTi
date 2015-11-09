@@ -8,12 +8,14 @@
 import UIKit
 
 public extension UILabel {
+	
 	/**
 	Get exact size for UILabel, computed with text and font on this label
 	
-	:returns: CGSize for this label
+	- returns: CGSize for this label
 	*/
-	public func exactSize() -> CGSize {
+	@available(*, deprecated=1.0)
+	public func exactSize_deprecated() -> CGSize {
 		if let text = text {
 			let text: NSString = text
 			var newSize = text.sizeWithAttributes([NSFontAttributeName: font])
@@ -23,6 +25,17 @@ public extension UILabel {
 		} else {
 			return CGSizeZero
 		}
+	}
+	
+	public func exactSize(preferredMaxWidth preferredMaxWidth: CGFloat? = nil, shouldUseCeil: Bool = false) -> CGSize {
+		var size = self.sizeThatFits(CGSize(width: preferredMaxWidth ?? 0, height: 0))
+		
+		if shouldUseCeil {
+			size.width = ceil(size.width)
+			size.height = ceil(size.height)
+		}
+		
+		return size
 	}
 	
 	/**
