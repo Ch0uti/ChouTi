@@ -53,7 +53,7 @@ public class TextTableCollectionView: UICollectionView {
     public weak var textTableDataSource: TextTableCollectionViewDataSource!
 	public weak var textTableDelegate: TextTableCollectionViewDelegate?
 	
-	private var tableLayout: TableCollectionViewLayout!
+	public var tableLayout: TableCollectionViewLayout!
 	
 	// MARK: - Override
 	public convenience init() {
