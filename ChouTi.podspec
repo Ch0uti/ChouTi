@@ -67,7 +67,7 @@ Pod::Spec.new do |s|
     end
 
     ss.subspec "Utility" do |sss|
-      sss.summary      = "Handy utility functions"
+      sss.summary      = "Handy utility functions/constants"
       sss.source_files = 'Source/iOS/Utility/*.*'
       sss.frameworks   = 'UIKit'
     end
