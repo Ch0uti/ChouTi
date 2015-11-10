@@ -1,5 +1,5 @@
 //
-//  TableCollectionViewCell.swift
+//  TextTableCollectionViewCell.swift
 //  ChouTi
 //
 //  Created by Honghao Zhang on 3/1/15.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableCollectionViewCell: UICollectionViewCell {
+class TextTableCollectionViewCell: UICollectionViewCell {
     var textLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -33,12 +33,12 @@ class TableCollectionViewCell: UICollectionViewCell {
 	}
 }
 
-extension TableCollectionViewCell {
+extension TextTableCollectionViewCell {
 	class func identifier() -> String {
-		return NSStringFromClass(TableCollectionViewCell.self)
+		return NSStringFromClass(TextTableCollectionViewCell.self)
 	}
 	
 	class func registerInCollectionView(collectionView: UICollectionView) {
-		collectionView.registerClass(TableCollectionViewCell.self, forCellWithReuseIdentifier: TableCollectionViewCell.identifier())
+		collectionView.registerClass(TextTableCollectionViewCell.self, forCellWithReuseIdentifier: TextTableCollectionViewCell.identifier())
 	}
 }

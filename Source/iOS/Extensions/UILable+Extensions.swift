@@ -28,7 +28,7 @@ public extension UILabel {
 	}
 	
 	public func exactSize(preferredMaxWidth preferredMaxWidth: CGFloat? = nil, shouldUseCeil: Bool = false) -> CGSize {
-		var size = self.sizeThatFits(CGSize(width: preferredMaxWidth ?? 0, height: 0))
+		var size = self.sizeThatFits(CGSize(width: preferredMaxWidth ?? preferredMaxLayoutWidth, height: 0))
 		
 		if shouldUseCeil {
 			size.width = ceil(size.width)

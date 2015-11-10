@@ -7,9 +7,43 @@
 
 import UIKit
 
+// This layout provides a grid like layout (or excel table?)
+
+//   #  |  title |   date   |   detail
+// -----+--------+----------+-----------
+//   1  |  foo   |    bar   |  something
+//   2  |  foo   |    bar   |   (image)
+//   3  |  foo   |    bar   |  something
+
 public protocol TableLayoutDataSource : class {
-	func numberOfColumns() -> Int
-	func numberOfRowsInColumn(column: Int) -> Int
+	/**
+	Get number of columns
+	
+	- parameter tableLayout: the tableLayout
+	
+	- returns: number of columns
+	*/
+	func numberOfColumnsInTableLayout(tableLayout: TableCollectionViewLayout) -> Int
+	
+	/**
+	Get number of rows in one column
+	
+	- parameter tableLayout: the tableLayout
+	- parameter column:      column index, from 0 ... numberOfColumns
+	
+	- returns: number of rows in the column
+	*/
+	func tableLayout(tableLayout: TableCollectionViewLayout, numberOfRowsInColumn column: Int) -> Int
+	
+	/**
+	Preferred size for the cell at the column and the row
+	
+	- parameter tableLayout: the tableLayout
+	- parameter column:      column index, from 0 ... numberOfColumns
+	- parameter row:         row index, begin with 0
+	
+	- returns: Size for the cell
+	*/
 	func tableLayout(tableLayout: TableCollectionViewLayout, sizeForColumn column: Int, row: Int) -> CGSize
 }
 
@@ -30,10 +64,10 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
     public weak var dataSourceTableLayout: TableLayoutDataSource!
 	
 	public func numberOfColumns() -> Int {
-		return dataSourceTableLayout.numberOfColumns()
+		return dataSourceTableLayout.numberOfColumnsInTableLayout(self)
 	}
 	public func numberOfRowsInColumn(column: Int) -> Int {
-		return dataSourceTableLayout.numberOfRowsInColumn(column)
+		return dataSourceTableLayout.tableLayout(self, numberOfRowsInColumn: column)
 	}
 	
     private var maxWidthForColumn = [CGFloat]()
@@ -141,7 +175,7 @@ extension TableCollectionViewLayout {
         for col in 0 ..< columns {
 			var maxWidth: CGFloat = 0
 			var height: CGFloat = 0
-			let rows = dataSourceTableLayout.numberOfRowsInColumn(col)
+			let rows = numberOfRowsInColumn(col)
             for row in 0 ..< rows {
 				let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: col, row: row)
 				let width = size.width
@@ -161,7 +195,7 @@ extension TableCollectionViewLayout {
 		// Calculate max number of rows
 		maxNumberOfRows = 0
 		for col in 0 ..< columns {
-			let rows = dataSourceTableLayout.numberOfRowsInColumn(col)
+			let rows = numberOfRowsInColumn(col)
 			if rows > maxNumberOfRows {
 				maxNumberOfRows = rows
 			}
@@ -205,7 +239,6 @@ extension TableCollectionViewLayout {
 		
 		// Until now, we have frame for full size cell.
 		// the frame for the cell should have size from dataSource and put it in center
-		
 		let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: indexPath.section, row: indexPath.item)
         attrs.bounds = CGRectMake(0, 0, size.width, size.height)
         attrs.center = CGPoint(x: x + maxWidth / 2.0, y: y + maxHeight / 2.0)

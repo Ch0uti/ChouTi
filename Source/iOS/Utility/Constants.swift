@@ -24,7 +24,7 @@ public var isIOS7: Bool = !isIOS8
 public let isIOS8: Bool = floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1
 #endif
 
-//public var screenWidth: CGFloat { return UIScreen.mainScreen().bounds.size.width }
+public var screenWidth: CGFloat { return UIScreen.mainScreen().bounds.size.width }
 public var screenHeight: CGFloat { return UIScreen.mainScreen().bounds.size.height }
 
 public var screenSize: CGSize { return UIScreen.mainScreen().bounds.size }
