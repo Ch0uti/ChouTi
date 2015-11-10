@@ -7,35 +7,16 @@
 
 import UIKit
 
-@objc public protocol TableLayoutDataSource {
-    func numberOfColumnsInCollectionView(collectionView: UICollectionView) -> Int
-    func collectionView(collectionView: UICollectionView, numberOfRowsInColumn column: Int) -> Int
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, titleForColumn column: Int) -> String
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, contentForColumn column: Int, row: Int) -> String
-}
-
-@objc public protocol TableLayoutDelegate {
-	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, widthForColumn column: Int) -> CGFloat
-	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, heightForRow row: Int) -> CGFloat
+public protocol TableLayoutDataSource : class {
+	func numberOfColumns() -> Int
+	func numberOfRowsInColumn(column: Int) -> Int
+	func tableLayout(tableLayout: TableCollectionViewLayout, sizeForColumn column: Int, row: Int) -> CGSize
 }
 
 public class TableCollectionViewLayout: UICollectionViewLayout {
-    // NSIndexPath.item == 0, for title cells
-    // NSIndexPath.item >  0, for content cells
-    // However, for TableLayoutDataSource, column and row start from zero
-    
     // SeparatorLine is decorationViews
 	
-	// MARK: - Appearance Customization
-    public var titleFont: UIFont = UIFont.italicSystemFontOfSize(17)
-    public var contentFont: UIFont = UIFont.systemFontOfSize(17)
-	
-	public var titleTextColor: UIColor = UIColor(white: 0.5, alpha: 1.0)
-    public var contentTextColor: UIColor = UIColor(white: 0.5, alpha: 1.0)
-	
-	public var titleTextAlignment: NSTextAlignment = .Center
-	public var contentTextAlignment: NSTextAlignment = .Center
-	
+	// MARK: - Appearance Customization	
     public var horizontalPadding: CGFloat = 5.0
     public var verticalPadding: CGFloat = 1.0
     public var separatorLineWidth: CGFloat = 1.0
@@ -45,32 +26,24 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
         }
     }
 	
-	// MARK: -
-    private var titleLabelHeight: CGFloat { return "Zhang".zhExactSize(titleFont).height }
-    private var contentLabelHeight: CGFloat { return "Honghao".zhExactSize(contentFont).height }
-	
 	// MARK: - DataSource/Delegate
-    public var dataSource: UICollectionViewDataSource {
-        return self.collectionView!.dataSource!
-    }
-    public var dataSourceTableLayout: TableLayoutDataSource {
-        return (self.collectionView! as! TableCollectionView).tableLayoutDataSource
-    }
+    public weak var dataSourceTableLayout: TableLayoutDataSource!
 	
-	public var delegate: TableLayoutDelegate? {
-		return (self.collectionView! as! TableCollectionView).tableLayoutDelegate
+	public func numberOfColumns() -> Int {
+		return dataSourceTableLayout.numberOfColumns()
+	}
+	public func numberOfRowsInColumn(column: Int) -> Int {
+		return dataSourceTableLayout.numberOfRowsInColumn(column)
 	}
 	
-    public var sections: Int {
-        return dataSource.numberOfSectionsInCollectionView!(collectionView!)
-    }
-    
-    private var maxWidthsForSections = [CGFloat]()
-    private var maxContentHeight: CGFloat = 0
+    private var maxWidthForColumn = [CGFloat]()
+	private var maxHeightForRow = [CGFloat]()
+	
+	private var maxNumberOfRows: Int = 0
+	/// Max height, not include paddings/separatorWidth
+	private var maxHeight: CGFloat = 0
     
     private let separatorViewKind = "Separator"
-    
-    private var cellAttrsIndexPathDict = [NSIndexPath : UICollectionViewLayoutAttributes]()
 	
 	// MARK: - Init
 	public override init() {
@@ -90,60 +63,62 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
 	// MARK: - Override
     public override func prepareLayout() {
         buildMaxWidthsHeight()
-        buildCellAttrsDict()
     }
     
     public override func collectionViewContentSize() -> CGSize {
-        var width: CGFloat = maxWidthsForSections.reduce(0, combine: +)
-        width += CGFloat(sections - 1) * separatorLineWidth
-        width += CGFloat(sections) * horizontalPadding * 2
+        var width: CGFloat = maxWidthForColumn.reduce(0, combine: +)
+        width += CGFloat(numberOfColumns() - 1) * separatorLineWidth
+        width += CGFloat(numberOfColumns()) * horizontalPadding * 2
+		let maxContentHeight = maxHeight + separatorLineWidth + verticalPadding * 2 * CGFloat(maxNumberOfRows)
         return CGSizeMake(width, maxContentHeight)
     }
         
     public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        return cellAttrsIndexPathDict[indexPath]
+        return cellAttrisForIndexPath(indexPath)
     }
     
     public override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        let attrs = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, withIndexPath: indexPath)
-        attrs.hidden = true
         if elementKind == separatorViewKind {
             if indexPath.item == 0 {
-                attrs.hidden = false
+				let attrs = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, withIndexPath: indexPath)
+				// Section 0 decoration view (separator line) is horizontal line
                 if indexPath.section == 0 {
                     let x: CGFloat = 0
-                    let y = titleLabelHeight + verticalPadding * 2
-                    let width = self.collectionViewContentSize().width
+                    let y = maxHeightForRow[0] + verticalPadding * 2
+                    let width = collectionViewContentSize().width
                     attrs.frame = CGRectMake(x, y, width, separatorLineWidth)
                 } else {
                     var x: CGFloat = 0
                     for sec in 0 ..< indexPath.section {
-                        x += maxWidthsForSections[sec] + separatorLineWidth + horizontalPadding * 2
+                        x += maxWidthForColumn[sec] + separatorLineWidth + horizontalPadding * 2
                     }
                     x -= separatorLineWidth
                     let y: CGFloat = 0.0
                     let width = separatorLineWidth
-                    let height = self.collectionViewContentSize().height
+                    let height = collectionViewContentSize().height
                     attrs.frame = CGRectMake(x, y, width, height)
                 }
+				
+				return attrs
             }
         }
-        return attrs
+		
+		return nil
     }
     
     public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attrs = [UICollectionViewLayoutAttributes]()
         let cellIndexPaths = cellIndexPathsForRect(rect)
         for indexPath in cellIndexPaths {
-            attrs.append(self.layoutAttributesForItemAtIndexPath(indexPath)!)
+            attrs.append(cellAttrisForIndexPath(indexPath))
         }
-        
-        for sec in 0 ..< sections {
-            for row in 0 ..< dataSource.collectionView(collectionView!, numberOfItemsInSection: sec) {
+		
+		let columns = numberOfColumns()
+        for sec in 0 ..< columns {
+			let rows = numberOfRowsInColumn(sec)
+            for row in 0 ..< rows {
 				if let attr = layoutAttributesForDecorationViewOfKind(separatorViewKind, atIndexPath: NSIndexPath(forItem: row, inSection: sec)) {
 					attrs.append(attr)
-				} else {
-					print("warning: layoutAttributesForDecorationViewOfKind: \(separatorViewKind), for item: \(row), section: \(sec) is nil")
 				}
             }
         }
@@ -159,72 +134,82 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
 // MARK: Helper functions
 extension TableCollectionViewLayout {
 	func buildMaxWidthsHeight() {
-        // Calculate MaxWidths
-        maxWidthsForSections.removeAll(keepCapacity: false)
+        maxWidthForColumn.removeAll()
+		maxHeight = 0
 		
-        for col in 0 ..< sections {
-            let title = dataSourceTableLayout.collectionView(collectionView!, layout: self, titleForColumn: col)
-            var maxWidth = title.zhExactSize(titleFont).width
-            let items = dataSource.collectionView(collectionView!, numberOfItemsInSection: col)
-            for row in 1 ..< items {
-                // row: row - 1, to let row start from 0
-                let content = dataSourceTableLayout.collectionView(collectionView!, layout: self, contentForColumn: col, row: row - 1)
-                let contentWidth = content.zhExactSize(contentFont).width
-                if contentWidth > maxWidth {
-                    maxWidth = contentWidth
+		let columns = numberOfColumns()
+        for col in 0 ..< columns {
+			var maxWidth: CGFloat = 0
+			var height: CGFloat = 0
+			let rows = dataSourceTableLayout.numberOfRowsInColumn(col)
+            for row in 0 ..< rows {
+				let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: col, row: row)
+				let width = size.width
+				height += size.height
+                if width > maxWidth {
+                    maxWidth = width
                 }
             }
-            maxWidthsForSections.append(maxWidth)
+			
+            maxWidthForColumn.append(maxWidth)
+			
+			if height > maxHeight {
+				maxHeight = height
+			}
         }
-        
-        // Calculate Max Height
-        var maxItemsCount = 0
-        for i in 0 ..< sections {
-            let itemsCount = dataSource.collectionView(collectionView!, numberOfItemsInSection: i)
-            if maxItemsCount < itemsCount {
-                maxItemsCount = itemsCount
-            }
-        }
-        
-        maxContentHeight = titleLabelHeight + verticalPadding * 2 + separatorLineWidth + CGFloat(maxItemsCount - 1) * (contentLabelHeight + verticalPadding * 2)
-    }
-    
-    private func buildCellAttrsDict() {
-        cellAttrsIndexPathDict.removeAll(keepCapacity: false)
 		
-        for sec in 0 ..< sections {
-            let items = dataSource.collectionView(collectionView!, numberOfItemsInSection: sec)
-            for item in 0 ..< items {
-                let indexPath = NSIndexPath(forItem: item, inSection: sec)
-				
-                cellAttrsIndexPathDict[indexPath] = cellAttrisForIndexPath(indexPath)
-            }
-        }
+		// Calculate max number of rows
+		maxNumberOfRows = 0
+		for col in 0 ..< columns {
+			let rows = dataSourceTableLayout.numberOfRowsInColumn(col)
+			if rows > maxNumberOfRows {
+				maxNumberOfRows = rows
+			}
+		}
+		
+		// Calculate max height for row
+		maxHeightForRow.removeAll()
+		for row in 0 ..< maxNumberOfRows {
+			var maxHeight: CGFloat = 0
+			for col in 0 ..< columns {
+				let rowsInColumn = numberOfRowsInColumn(col)
+				if row < rowsInColumn {
+					let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: col, row: row)
+					if size.height > maxHeight {
+						maxHeight = size.height
+					}
+				}
+			}
+			maxHeightForRow.append(maxHeight)
+		}
     }
-    
+	
     private func cellAttrisForIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes {
         let attrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-        
-        var x: CGFloat = 0
-        for sec in 0 ..< indexPath.section {
-            x += maxWidthsForSections[sec] + separatorLineWidth + horizontalPadding * 2
-        }
-        var y: CGFloat = 0
-        let width: CGFloat = maxWidthsForSections[indexPath.section] + horizontalPadding * 2
-        var height =  dataSourceTableLayout.collectionView(collectionView!, layout: self, titleForColumn: indexPath.section).zhExactSize(titleFont).height + verticalPadding * 2
-        
-        if indexPath.item > 0 {
-            y = dataSourceTableLayout.collectionView(collectionView!, layout: self, titleForColumn: indexPath.section).zhExactSize(titleFont).height + verticalPadding * 2 + separatorLineWidth
-            for item in 1 ..< indexPath.item {
-                y += dataSourceTableLayout.collectionView(collectionView!, layout: self, contentForColumn: indexPath.section, row: item).zhExactSize(contentFont).height + verticalPadding * 2.0
-            }
-            
-            // row: indexPath.item - 1, to let row start from 0
-            height = dataSourceTableLayout.collectionView(collectionView!, layout: self, contentForColumn: indexPath.section, row: indexPath.item - 1).zhExactSize(contentFont).height + verticalPadding * 2
-        }
-        
-        attrs.frame = CGRectMake(x, y, width, height)
-        
+		// Calculate Cell size with max width and max height
+		let maxWidth = maxWidthForColumn[indexPath.section] + horizontalPadding * 2
+		let maxHeight = maxHeightForRow[indexPath.row] + verticalPadding * 2
+		
+		var x: CGFloat = 0
+		for sec in 0 ..< indexPath.section {
+			x += maxWidthForColumn[sec] + separatorLineWidth + horizontalPadding * 2
+		}
+		
+		var y: CGFloat = 0
+		for row in 0 ..< indexPath.item {
+			y += maxHeightForRow[row] + verticalPadding * 2
+			if row == 0 {
+				y += separatorLineWidth
+			}
+		}
+		
+		// Until now, we have frame for full size cell.
+		// the frame for the cell should have size from dataSource and put it in center
+		
+		let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: indexPath.section, row: indexPath.item)
+        attrs.bounds = CGRectMake(0, 0, size.width, size.height)
+        attrs.center = CGPoint(x: x + maxWidth / 2.0, y: y + maxHeight / 2.0)
+		
         return attrs
     }
 
@@ -239,13 +224,14 @@ extension TableCollectionViewLayout {
         
         // Determin section
         var calX: CGFloat = 0.0
-        for sec in 0 ..< sections {
-            let nextWidth = maxWidthsForSections[sec] + horizontalPadding * 2 + separatorLineWidth
+		let columns = numberOfColumns()
+        for col in 0 ..< columns {
+            let nextWidth = maxWidthForColumn[col] + horizontalPadding * 2 + separatorLineWidth
             if calX < rectLeft && rectLeft <= (calX + nextWidth) {
-                fromSectionIndex = sec
+                fromSectionIndex = col
             }
             if calX < rectRight && rectRight <= (calX + nextWidth) {
-                endSectionIndex = sec
+                endSectionIndex = col
                 break
             }
             calX += nextWidth
@@ -254,25 +240,23 @@ extension TableCollectionViewLayout {
             fromSectionIndex = 0
         }
         if endSectionIndex == -1 {
-            endSectionIndex = sections - 1
+            endSectionIndex = columns - 1
         }
 		
 		// Create array of indexPaths
 		var indexPaths = [NSIndexPath]()
 		
-        // Determin row
-		for sec in 0 ..< sections {
+		// Determin row
+		for col in fromSectionIndex ... endSectionIndex {
 			var fromRowIndex = -1
 			var endRowIndex = -1
 			var calY: CGFloat = 0.0
-			let rowsCount = dataSource.collectionView(collectionView!, numberOfItemsInSection: sec)
+			let rowsCount = numberOfRowsInColumn(col)
 			
 			for row in 0 ..< rowsCount {
-				let nextHeight: CGFloat
+				var nextHeight = maxHeightForRow[row]
 				if row == 0 {
-					nextHeight = titleLabelHeight + verticalPadding * 2 + separatorLineWidth
-				} else {
-					nextHeight = contentLabelHeight + verticalPadding * 2
+					nextHeight += separatorLineWidth
 				}
 				if calY < rectTop && rectTop <= (calY + nextHeight) {
 					fromRowIndex = row
@@ -283,6 +267,7 @@ extension TableCollectionViewLayout {
 				}
 				calY += nextHeight
 			}
+			
 			if fromRowIndex == -1 {
 				fromRowIndex = 0
 			}
@@ -291,22 +276,10 @@ extension TableCollectionViewLayout {
 			}
 			
 			for row in fromRowIndex ... endRowIndex {
-				indexPaths.append(NSIndexPath(forItem: row, inSection: sec))
+				indexPaths.append(NSIndexPath(forItem: row, inSection: col))
 			}
 		}
 		
         return indexPaths
-    }
-}
-
-extension String {
-    func zhExactSize(font: UIFont) -> CGSize {
-        var newSize = self.sizeWithAttributes([NSFontAttributeName: font])
-        if self.isEmpty {
-            newSize = " ".sizeWithAttributes([NSFontAttributeName: font])
-        }
-        newSize.width = ceil(newSize.width)
-        newSize.height = ceil(newSize.height)
-        return newSize
     }
 }
