@@ -104,6 +104,27 @@ public extension UIView {
 			NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: superview, attribute: .CenterY, multiplier: 1.0, constant: 0.0).active = true
 		}
 	}
+	
+	public func constraintWidth(width: CGFloat) {
+		if #available(iOS 9.0, *) {
+			self.widthAnchor.constraintEqualToConstant(width).active = true
+		} else {
+			NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: width).active = true
+		}
+	}
+	
+	public func constraintHeight(height: CGFloat) {
+		if #available(iOS 9.0, *) {
+			self.heightAnchor.constraintEqualToConstant(height).active = true
+		} else {
+			NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: height).active = true
+		}
+	}
+	
+	public func constraintToSize(size: CGSize) {
+		constraintWidth(size.width)
+		constraintHeight(size.height)
+	}
 }
 
 public extension UIView {

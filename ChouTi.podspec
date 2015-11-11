@@ -88,9 +88,17 @@ Pod::Spec.new do |s|
   s.subspec "UI" do |ss|
     ss.summary     = "UI Views & ViewControllers"
 
+    ss.source_files = 'Source/iOS/UI/*.*'
+
     ss.subspec "AutoLinesLabel" do |sss|
       sss.summary      = "UILabel with contentInset and probide auto lines on iOS7"
       sss.source_files = 'Source/iOS/UI/AutoLinesLabel/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
+    ss.subspec "UITableViewCell" do |sss|
+      sss.summary      = "Customized UITableViewCells"
+      sss.source_files = 'Source/iOS/UI/UITableViewCell/*.*'
       sss.frameworks   = 'UIKit'
     end
 
@@ -104,6 +112,13 @@ Pod::Spec.new do |s|
       sss.summary      = "PageViewController with header titles"
       sss.source_files = 'Source/iOS/UI/MenuPageViewController/*.*'
       sss.frameworks   = 'UIKit'
+    end
+
+    ss.subspec "LoadingMorphingLabel" do |sss|
+      sss.summary      = "Showing a list of text in loop"
+      sss.source_files = 'Source/iOS/UI/LoadingMorphingLabel/*.*'
+      sss.frameworks   = 'UIKit'
+      sss.dependency 'LTMorphingLabel', '~> 0.0.8'
     end
 
   end
