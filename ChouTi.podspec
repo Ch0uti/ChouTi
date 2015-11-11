@@ -41,6 +41,7 @@ Pod::Spec.new do |s|
 
   s.subspec "ChouTi" do |ss|
     ss.summary		 = "A Set of Common UI Utilities."
+    ss.source_files = 'Source/iOS/*.swift'
 
     ss.subspec "Extensions" do |sss|
       sss.summary      = "Extensions"

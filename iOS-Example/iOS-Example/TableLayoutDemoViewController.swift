@@ -13,17 +13,23 @@ import ChouTi
 class TableLayoutDemoViewController: UIViewController {
 
 	let doneButton = UIButton()
+
+	let columns = Int.random(5, 20)
+	var rows = [Int : Int]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		view.backgroundColor = UIColor.whiteColor()
 		
-		let tableLayout = TableCollectionViewLayout()
-		tableLayout.separatorLineWidth = 0.5
+		for c in 0 ..< columns {
+			rows[c] = Int.random(1, 30)
+		}
 		
-		let excelTable = TableCollectionView(frame: CGRectZero, collectionViewLayout: tableLayout)
-		excelTable.tableLayoutDataSource = self
+		let excelTable = TextTableCollectionView()
+		excelTable.textTableDataSource = self
+		excelTable.separatorLineWidth = 0.5
+		
 		excelTable.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(excelTable)
 		
@@ -51,20 +57,20 @@ class TableLayoutDemoViewController: UIViewController {
 }
 
 @available(iOS 9.0, *)
-extension TableLayoutDemoViewController: TableLayoutDataSource {
-	func numberOfColumnsInCollectionView(collectionView: UICollectionView) -> Int {
-		return 5
+extension TableLayoutDemoViewController : TextTableCollectionViewDataSource {
+	func numberOfColumnsInTableCollectionView(tableCollectionView: TextTableCollectionView) -> Int {
+		return columns
 	}
 	
-	func collectionView(collectionView: UICollectionView, numberOfRowsInColumn column: Int) -> Int {
-		return column + 1
+	func tableCollectionView(tableCollectionView: TextTableCollectionView, numberOfRowsInColumn column: Int) -> Int {
+		return rows[column]!
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, titleForColumn column: Int) -> String {
+	func tableCollectionView(tableCollectionView: TextTableCollectionView, layout collectionViewLayout: TableCollectionViewLayout, titleForColumn column: Int) -> String {
 		return "Title123"
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: TableCollectionViewLayout, contentForColumn column: Int, row: Int) -> String {
+	func tableCollectionView(tableCollectionView: TextTableCollectionView, layout collectionViewLayout: TableCollectionViewLayout, contentForColumn column: Int, row: Int) -> String {
 		return "Content456"
 	}
 }

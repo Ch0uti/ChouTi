@@ -9,6 +9,13 @@
 import Foundation
 
 public extension NSDate {
+	/**
+	Get a random day within days before today
+	
+	- parameter days: days before
+	
+	- returns: new NSDate
+	*/
 	public class func randomWithinDaysBeforeToday(days: Int) -> NSDate {
 		let today = NSDate()
 		
@@ -34,7 +41,11 @@ public extension NSDate {
 		}
 		return rndDate1
 	}
+	/**
+	Get a random NSDate object, date is after 1970
 	
+	- returns: a random NSDate
+	*/
 	public static func random() -> NSDate {
 		let randomTime = NSTimeInterval(arc4random_uniform(UInt32.max))
 		return NSDate(timeIntervalSince1970: randomTime)

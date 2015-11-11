@@ -1,5 +1,5 @@
 //
-//  UIImage+Tint.swift
+//  UIImage+Extensions.swift
 //  ChouTi
 //
 //  Created by Honghao Zhang on 2015-09-02.
@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Tint with Gradient Colors
 public extension UIImage {
 	/**
 	Create a gradient color tinted image from top to bottom
@@ -76,12 +77,63 @@ public extension UIImage {
 		
 		return gradientImage
 	}
+}
+
+// MARK: - Resize
+public extension UIImage {
+	/**
+	Get a new scalled image with max width or max heigth
 	
-	public func scaledImageToSize(size: CGSize) -> UIImage {
+	- parameter maxWidth:  max width
+	- parameter maxHeight: max height
+	
+	- returns: image with new size
+	*/
+	public func scaledToMaxWidth(maxWidth: CGFloat, maxHeight: CGFloat) -> UIImage {
+		let oldWidth = self.size.width
+		let oldHeight = self.size.height
+		
+		let scaleFactor = (oldWidth > oldHeight) ? maxWidth / oldWidth : maxHeight / oldHeight
+		
+		let newWidth = oldWidth * scaleFactor
+		let newHeight = oldHeight * scaleFactor
+		
+		let newSize = CGSize(width: newWidth, height: newHeight)
+		
+		return self.scaledToSize(newSize)
+	}
+	
+	/**
+	Get a new scaled image with new size.
+	
+	- parameter size: new size
+	
+	- returns: image with new size.
+	*/
+	public func scaledToSize(size: CGSize) -> UIImage {
 		UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-		drawInRect(CGRectMake(0, 0, size.width, size.height))
+		
+		drawInRect(CGRect(x: 0, y: 0, width: size.width, height: size.height))
 		let newImage = UIGraphicsGetImageFromCurrentImageContext()
+		
 		UIGraphicsEndImageContext()
 		return newImage
+	}
+}
+
+// MARK: - Factory Methods
+public extension UIImage {
+	public class func imageWithColor(color: UIColor) -> UIImage {
+		let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+		UIGraphicsBeginImageContext(rect.size)
+		let context = UIGraphicsGetCurrentContext()
+		
+		CGContextSetFillColorWithColor(context, color.CGColor)
+		CGContextFillRect(context, rect)
+		
+		let image = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		return image
 	}
 }

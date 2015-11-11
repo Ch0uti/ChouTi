@@ -40,6 +40,7 @@ public extension String {
 
 // MARK: - Regex Related
 public extension String {
+	
 	public func isEmail() -> Bool {
 		let emailRegex = try! NSRegularExpression(pattern: "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", options: [.CaseInsensitive])
 		return emailRegex.firstMatchInString(self, options:[], range: self.fullNSRange()) != nil

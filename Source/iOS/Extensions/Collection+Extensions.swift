@@ -9,6 +9,11 @@
 import Foundation
 
 public extension Array {
+	/**
+	Return a random item from the array
+	
+	- returns: a random item in the array
+	*/
 	public func randomItem() -> Element {
 		let index = Int(arc4random_uniform(UInt32(self.count)))
 		return self[index]

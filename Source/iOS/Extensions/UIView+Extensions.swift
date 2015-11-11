@@ -8,6 +8,14 @@
 import UIKit
 
 public extension UIView {
+	
+	/**
+	Directy contaitns a view, not recursively
+	
+	- parameter view: child view
+	
+	- returns: true for directly contains, otherwise false
+	*/
 	public func containSubview(view: UIView) -> Bool {
 		if #available(iOS 9.0, *) {
 			return subviews.contains(view)
