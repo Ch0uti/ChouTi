@@ -136,4 +136,22 @@ public extension UIImage {
 		
 		return image
 	}
+	
+	public class func imageWithBorderRectangle(size: CGSize, borderWidth: CGFloat, borderColor: UIColor, fillColor: UIColor = UIColor.clearColor()) -> UIImage {
+		UIGraphicsBeginImageContext(size)
+		let context = UIGraphicsGetCurrentContext()
+		let rect = CGRect(origin: CGPointZero, size: size)
+		
+		CGContextSetFillColorWithColor(context, fillColor.CGColor)
+		CGContextFillRect(context, rect)
+		
+		CGContextSetStrokeColorWithColor(context, borderColor.CGColor)
+		CGContextSetLineWidth(context, borderWidth)
+		CGContextStrokeRect(context, rect)
+		
+		let image = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		return image
+	}
 }
