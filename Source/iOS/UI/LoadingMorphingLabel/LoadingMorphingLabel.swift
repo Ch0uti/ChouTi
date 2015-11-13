@@ -17,11 +17,23 @@ public class LoadingMorphingLabel: UIView {
 		}
 	}
 	private var _loopCount: Int = 10
+	
 	public var delayDuration: NSTimeInterval = 2.0
+	public var morphingDuration: Float {
+		get { return morphingLabel.morphingDuration }
+		set { morphingLabel.morphingDuration = newValue }
+	}
+	
+	public var morphingEffect: LTMorphingEffect {
+		get { return morphingLabel.morphingEffect }
+		set { morphingLabel.morphingEffect = newValue }
+	}
+	
 	public var texts = [String]()
 	public let morphingLabel = LTMorphingLabel()
 	
-	private var currentTextIndex: Int = 0
+	public var currentTextIndex: Int = 0
+	private var isAnimating: Bool = false
 	
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -43,19 +55,23 @@ public class LoadingMorphingLabel: UIView {
 	
 	public func startLoop() {
 		_loopCount = loopCount
+		if isAnimating { return }
 		showTextIndex(currentTextIndex)
 	}
 	
-	public func ednLoop() {
+	public func endLoop() {
 		_loopCount = 0
 	}
 	
 	private func showTextIndex(index: Int) {
 		if _loopCount-- > 0 {
-			morphingLabel.text = texts[currentTextIndex % texts.count]
+			isAnimating = true
+			morphingLabel.text = texts[currentTextIndex++ % texts.count]
 			delay(seconds: delayDuration, completion: {
-				self.showTextIndex(++self.currentTextIndex)
+				self.showTextIndex(self.currentTextIndex)
 			})
+		} else {
+			isAnimating = false
 		}
 	}
 	

@@ -46,4 +46,23 @@ public extension CGFloat {
 	public static func random(lower: CGFloat = 0, _ upper: CGFloat = 1) -> CGFloat {
 		return CGFloat(Float(arc4random()) / Float(UINT32_MAX)) * (upper - lower) + lower
 	}
+	
+	/**
+	Get a safe multuplier for NSLayoutConstraint
+	
+	- returns: a safe multipler, which is not zero
+	*/
+	public func safeMulpilter() -> CGFloat {
+		return Swift.max(CGFloat(0.0001), self)
+	}
+	
+	public mutating func normalize() {
+		self = Swift.min( Swift.max(CGFloat(0), self), CGFloat(1))
+	}
+	
+	public func toNumber(rightNumber: CGFloat, withPercent percent: CGFloat) -> CGFloat {
+		var span = rightNumber - self
+		span *= percent
+		return self + span
+	}
 }

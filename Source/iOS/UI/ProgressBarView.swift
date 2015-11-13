@@ -27,7 +27,7 @@ public class ProgressBarView: UIView {
 	
 	public weak var delegate: ProgressBarViewDelegate?
 	
-	public var percent: CGFloat = 0.001 {
+	public var percent: CGFloat = 0.0 {
 		didSet {
 			precondition(0.0 <= percent && percent <= 1.0, "Percetn must in range 0.0 to 1.0, inclusive.")
 			setNeedsLayout()			
@@ -60,18 +60,19 @@ public class ProgressBarView: UIView {
 	public override func layoutSubviews() {
 		super.layoutSubviews()
 		
+		CATransaction.begin()
 		if animated {
-			CATransaction.begin()
 			CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
 			CATransaction.setAnimationDuration(animationDuration)
 			
 			forgroundMeterLayer.frame = CGRect(x: 0.0, y: 0.0, width: bounds.width * percent, height: bounds.height)
-			
-			CATransaction.commit()
 		} else {
-			forgroundMeterLayer.actions = ["frame" : NSNull()]
+			CATransaction.setDisableActions(true)
+			
 			forgroundMeterLayer.frame = CGRect(x: 0.0, y: 0.0, width: bounds.width * percent, height: bounds.height)
 		}
+		
+		CATransaction.commit()
 		
 		layer.cornerRadius = bounds.height / 2.0
 		forgroundMeterLayer.cornerRadius = bounds.height / 2.0
