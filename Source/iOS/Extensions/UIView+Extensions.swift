@@ -161,3 +161,56 @@ public extension UIView {
 	}
 }
 
+public extension UIView {
+	public func addDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, dimmedViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.6), completion: ((Bool) -> ())? = nil) {
+		let overlayView = UIView()
+		overlayView.frame = self.bounds
+		overlayView.backgroundColor = dimmedViewBackgroundColor
+
+		// Get a non conflicting random tage
+		var randomTag = Int.random(142301, 19900918)
+		while let _ = viewWithTag(randomTag) {
+			randomTag = Int.random(142301, 19900918)
+		}
+		
+		overlayView.tag = randomTag
+		// Let self keep the generated random tag, used for retriving the overlay view
+		self.zhAttachedObject = randomTag
+		
+		if !animated {
+			self.addSubview(overlayView)
+			completion?(true)
+			return
+		}
+		
+		overlayView.alpha = 0.0
+		self.addSubview(overlayView)
+		UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState] , animations: {
+			overlayView.alpha = 1.0
+			}) { (finished) -> Void in
+				completion?(finished)
+		}
+	}
+	
+	public func removeDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, completion: ((Bool) -> ())? = nil) {
+		guard let tagForOverlayView = zhAttachedObject as? Int else {
+			print("ERROR: Tag for dimmed overlay view is not existed")
+			completion?(false)
+			return
+		}
+		
+		let overlayView = self.viewWithTag(tagForOverlayView)
+		if !animated {
+			overlayView?.removeFromSuperview()
+			completion?(true)
+			return
+		}
+		
+		UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
+			overlayView?.alpha = 0.0
+			}) { (finished) -> Void in
+				overlayView?.removeFromSuperview()
+				completion?(finished)
+		}
+	}
+}

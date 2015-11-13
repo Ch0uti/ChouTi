@@ -36,6 +36,7 @@ public var is3_5InchScreen: Bool { return screenHeight ~= 480.0 }
 public var is4InchScreen: Bool { return screenHeight ~= 568.0 }
 public var isIphone6: Bool { return screenHeight ~= 667.0 }
 public var isIphone6Plus: Bool { return screenHeight ~= 736.0 }
+public var is320ScreenWidth: Bool { return screenWidth ~= 320.0 }
 
 //
 //var keyWindow: UIWindow { return UIApplication.sharedApplication().keyWindow! }
