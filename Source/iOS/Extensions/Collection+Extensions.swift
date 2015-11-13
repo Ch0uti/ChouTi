@@ -18,4 +18,17 @@ public extension Array {
 		let index = Int(arc4random_uniform(UInt32(self.count)))
 		return self[index]
 	}
+	
+	/**
+	Shuffle the array
+	*/
+	public mutating func shuffle() {
+		if count == 0 {
+			return
+		}
+		for i in 0..<(count - 1) {
+			let j = Int(arc4random_uniform(UInt32(count - i))) + i
+			swap(&self[i], &self[j])
+		}
+	}
 }
