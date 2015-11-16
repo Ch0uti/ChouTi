@@ -8,7 +8,7 @@
 import UIKit
 
 public extension UIView {
-	
+
 	/**
 	Directy contaitns a view, not recursively
 	
@@ -162,55 +162,120 @@ public extension UIView {
 }
 
 public extension UIView {
+	// MARK: - Dimmed Overlay View
+	private struct zhDimmedOverlayViewKey {
+		static var Key = "zhDimmedOverlayViewKey"
+	}
+	
+	private var zhDimmedOverlayView: UIView? {
+		get { return objc_getAssociatedObject(self, &zhDimmedOverlayViewKey.Key) as? UIView }
+		set { objc_setAssociatedObject(self, &zhDimmedOverlayViewKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+	}
+	
 	public func addDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, dimmedViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.6), completion: ((Bool) -> ())? = nil) {
-		let overlayView = UIView()
-		overlayView.frame = self.bounds
-		overlayView.backgroundColor = dimmedViewBackgroundColor
-
-		// Get a non conflicting random tage
-		var randomTag = Int.random(142301, 19900918)
-		while let _ = viewWithTag(randomTag) {
-			randomTag = Int.random(142301, 19900918)
+		if zhDimmedOverlayView != nil {
+			print("warning: found existing dimmed overlay view")
 		}
 		
-		overlayView.tag = randomTag
-		// Let self keep the generated random tag, used for retriving the overlay view
-		self.zhAttachedObject = randomTag
+		let overlayView = UIView()
+		overlayView.translatesAutoresizingMaskIntoConstraints = false
+		overlayView.backgroundColor = dimmedViewBackgroundColor
+
+		// Let self keep the reference to the view, used for retriving the overlay view
+		zhDimmedOverlayView = overlayView
 		
 		if !animated {
 			self.addSubview(overlayView)
+			overlayView.fullSizeInSuperview()
 			completion?(true)
-			return
-		}
-		
-		overlayView.alpha = 0.0
-		self.addSubview(overlayView)
-		UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState] , animations: {
-			overlayView.alpha = 1.0
-			}) { (finished) -> Void in
-				completion?(finished)
+		} else {
+			overlayView.alpha = 0.0
+			self.addSubview(overlayView)
+			overlayView.fullSizeInSuperview()
+			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState] , animations: {
+				overlayView.alpha = 1.0
+				}) { (finished) -> Void in
+					completion?(finished)
+			}
 		}
 	}
 	
 	public func removeDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, completion: ((Bool) -> ())? = nil) {
-		guard let tagForOverlayView = zhAttachedObject as? Int else {
-			print("ERROR: Tag for dimmed overlay view is not existed")
+		guard let overlayView = zhDimmedOverlayView else {
+			print("error: dimmed overlay view is not existed")
 			completion?(false)
 			return
 		}
 		
-		let overlayView = self.viewWithTag(tagForOverlayView)
 		if !animated {
-			overlayView?.removeFromSuperview()
+			overlayView.removeFromSuperview()
 			completion?(true)
 			return
 		}
 		
 		UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
-			overlayView?.alpha = 0.0
+			overlayView.alpha = 0.0
 			}) { (finished) -> Void in
-				overlayView?.removeFromSuperview()
+				overlayView.removeFromSuperview()
 				completion?(finished)
+		}
+	}
+	
+	// MARK: - Blurred Overlay View
+	private struct zhBlurredOverlayViewKey {
+		static var Key = "zhBlurredOverlayViewKey"
+	}
+	
+	private var zhBlurredOverlayView: UIView? {
+		get { return objc_getAssociatedObject(self, &zhBlurredOverlayViewKey.Key) as? UIView }
+		set { objc_setAssociatedObject(self, &zhBlurredOverlayViewKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+	}
+	
+	public func addBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) {
+		if zhBlurredOverlayView != nil {
+			print("warning: found existing blurred overlay view")
+		}
+		
+		let overlayView = UIVisualEffectView(effect: UIBlurEffect(style: blurEffectStyle))
+		overlayView.translatesAutoresizingMaskIntoConstraints = false
+		overlayView.backgroundColor = blurredViewBackgroundColor
+		
+		// Let self keep the reference to the view, used for retriving the overlay view
+		zhBlurredOverlayView = overlayView
+		
+		if !animated {
+			self.addSubview(overlayView)
+			overlayView.fullSizeInSuperview()
+			completion?(true)
+		} else {
+			overlayView.alpha = 0.0
+			self.addSubview(overlayView)
+			overlayView.fullSizeInSuperview()
+			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState] , animations: {
+				overlayView.alpha = 1.0
+				}) { (finished) -> Void in
+					completion?(finished)
+			}
+		}
+	}
+	
+	public func removeBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, completion: ((Bool) -> ())? = nil) {
+		guard let overlayView = zhBlurredOverlayView else {
+			print("error: blurred overlay view is not existed")
+			completion?(false)
+			return
+		}
+		
+		if !animated {
+			overlayView.removeFromSuperview()
+			completion?(true)
+		} else {
+			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
+				overlayView.alpha = 0.0
+				}) { (finished) -> Void in
+					overlayView.removeFromSuperview()
+					completion?(finished)
+			}
 		}
 	}
 }
