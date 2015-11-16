@@ -10,7 +10,7 @@ import UIKit
 
 public class TopToBottomPresentingAnimator: Animator {
 	
-	override init() {
+	public override init() {
 		super.init()
 		animationDuration = 0.5
 	}

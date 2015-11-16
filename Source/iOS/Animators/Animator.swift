@@ -9,65 +9,6 @@
 import UIKit
 
 public class Animator: NSObject {
-	
-	// MARK: - Registering/Getting animators
-	
-	/**
-	Customized Animation Types
-	All customized animations should be registered here
-	
-	- LeftToRightSlide:      Slide from left to right
-	- TopToBottomPresenting: Present from top to bottom
-	- FadeInPresenting:      Present as fade in
-	*/
-	@objc public enum AnimationType: Int {
-		case LeftToRightSlide = 1
-		case TopToBottomPresenting = 2
-		case FadeInPresenting = 3
-		
-		static func animatorForType(type: AnimationType) -> Animator {
-			switch type {
-			case .LeftToRightSlide: return LeftToRightSlideAnimator()
-			case .TopToBottomPresenting: return TopToBottomPresentingAnimator()
-			case .FadeInPresenting: return FadeInPresentingAnimator()
-			}
-		}
-		
-		static func animatorWithClassTypeForAnimationType(type: AnimationType) -> (Animator, AnyClass) {
-			switch type {
-			case .LeftToRightSlide: return (LeftToRightSlideAnimator(), LeftToRightSlideAnimator.self)
-			case .TopToBottomPresenting: return (TopToBottomPresentingAnimator(), TopToBottomPresentingAnimator.self)
-			case .FadeInPresenting: return (FadeInPresentingAnimator(), FadeInPresentingAnimator.self)
-			}
-		}
-		
-		static func animatorClassTypeForAnimationType(type: AnimationType) -> AnyClass {
-			switch type {
-			case .LeftToRightSlide: return LeftToRightSlideAnimator.self
-			case .TopToBottomPresenting: return TopToBottomPresentingAnimator.self
-			case .FadeInPresenting: return FadeInPresentingAnimator.self
-			}
-		}
-	}
-	
-	/// Get animator for an animation type.
-	/// Discussion: This method is a factory method for Animator. 
-	/// You should use this method or `func animatorWithClassTypeForAnimationType(type: AnimationType) -> (Animator, AnyClass)` to create an Animator
-	class public func animatorForAnimationType(type: AnimationType) -> Animator {
-		return AnimationType.animatorForType(type)
-	}
-	
-	/// Get animator along with its class type for an animation type
-	/// Discussion: This method is a factory method for Animator.
-	/// This method is an extended method to `func animatorForAnimationType(type: AnimationType) -> Animator`. This method returns class type for the animator. Only available in Swift.
-	class public func animatorWithClassTypeForAnimationType(type: AnimationType) -> (Animator, AnyClass) {
-		return AnimationType.animatorWithClassTypeForAnimationType(type)
-	}
-	
-	
-	
-	// MARK: - Properties
-	
 	/// Animation Durations, by default, it's 0.25s
 	public var animationDuration: NSTimeInterval = 0.25
 	

@@ -10,7 +10,7 @@ import UIKit
 
 public class LeftToRightSlideAnimator: Animator {
 	
-	override init() {
+	public override init() {
 		super.init()
 		animationDuration = 0.25
 	}
