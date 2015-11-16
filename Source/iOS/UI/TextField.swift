@@ -8,14 +8,20 @@
 
 import UIKit
 
-class TextField: UITextField {
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
+public class TextField: UITextField {
+	
+	public var textHorizontalPadding: CGFloat = 10.0
+	public var textVerticalPadding: CGFloat = 10.0
+	
+	public override func textRectForBounds(bounds: CGRect) -> CGRect {
+		return CGRectInset(bounds, textHorizontalPadding, textVerticalPadding)
+	}
+	
+	public override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
+		return CGRectInset(bounds, textHorizontalPadding, textVerticalPadding)
+	}
+	
+	public override func editingRectForBounds(bounds: CGRect) -> CGRect {
+		return CGRectInset(bounds, textHorizontalPadding, textVerticalPadding)
+	}
 }
