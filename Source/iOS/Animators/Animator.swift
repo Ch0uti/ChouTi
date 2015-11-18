@@ -89,3 +89,15 @@ extension Animator {
 		return presenting ? fromViewController : toViewController
 	}
 }
+
+extension Animator : UIViewControllerTransitioningDelegate {
+	public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		self.presenting = true
+		return self
+	}
+	
+	public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		self.presenting = false
+		return self
+	}
+}

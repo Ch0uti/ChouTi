@@ -15,7 +15,7 @@ public class DropPresentingAnimator: Animator {
 		animationDuration = 0.5
 	}
 	
-    public var presentingViewSize: CGSize!
+    public var presentingViewSize = CGSize(width: 300, height: 200)
 	
     public override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 		super.animateTransition(transitionContext)
@@ -30,7 +30,10 @@ public class DropPresentingAnimator: Animator {
 			}
 			
             presentingView.tintAdjustmentMode = .Dimmed
-			presentingView.addBlurredOverlayView(animated: true, duration: animationDuration)
+			let overlayView = presentingView.addBlurredOverlayView(animated: true, duration: animationDuration)
+			// FIXME: Not finished
+			let tapGesture = UITapGestureRecognizer(target: self, action: "dismiss:")
+			overlayView.addGestureRecognizer(tapGesture)
 			
             // Begin Values
 			presentedView.bounds = CGRect(origin: CGPointZero, size: presentingViewSize)
@@ -65,4 +68,10 @@ public class DropPresentingAnimator: Animator {
             })
         }
     }
+}
+
+extension DropPresentingAnimator {
+	func dismiss(sender: AnyObject) {
+		
+	}
 }

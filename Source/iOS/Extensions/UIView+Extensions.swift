@@ -231,7 +231,7 @@ public extension UIView {
 		set { objc_setAssociatedObject(self, &zhBlurredOverlayViewKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
 	}
 	
-	public func addBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) {
+	public func addBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
 		if zhBlurredOverlayView != nil {
 			print("warning: found existing blurred overlay view")
 		}
@@ -257,6 +257,8 @@ public extension UIView {
 					completion?(finished)
 			}
 		}
+		
+		return overlayView
 	}
 	
 	public func removeBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, completion: ((Bool) -> ())? = nil) {
