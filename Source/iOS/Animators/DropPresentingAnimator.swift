@@ -17,6 +17,19 @@ public class DropPresentingAnimator: Animator {
 	
     public var presentingViewSize = CGSize(width: 300, height: 200)
 	
+	// Customize overlay view style
+	public enum OverlayViewStyle {
+		case Dimmed(UIColor)
+		case Blurred(UIBlurEffectStyle, UIColor)
+	}
+	
+	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.5))
+	
+	// Tap to dismiss
+	public var shouldDismissOnTappingOutsideView: Bool = true
+	private weak var dismissTapGesture: UITapGestureRecognizer?
+	private weak var currentPresentedViewController: UIViewController?
+	
     public override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 		super.animateTransition(transitionContext)
 		
@@ -30,10 +43,12 @@ public class DropPresentingAnimator: Animator {
 			}
 			
             presentingView.tintAdjustmentMode = .Dimmed
-			let overlayView = presentingView.addBlurredOverlayView(animated: true, duration: animationDuration)
-			// FIXME: Not finished
-			let tapGesture = UITapGestureRecognizer(target: self, action: "dismiss:")
-			overlayView.addGestureRecognizer(tapGesture)
+			switch overlayViewStyle {
+			case .Blurred(let style, let color):
+				presentingView.addBlurredOverlayView(animated: true, duration: animationDuration, blurEffectStyle: style, blurredViewBackgroundColor: color)
+			case .Dimmed(let color):
+				presentingView.addDimmedOverlayView(animated: true, duration: animationDuration, dimmedViewBackgroundColor: color)
+			}
 			
             // Begin Values
 			presentedView.bounds = CGRect(origin: CGPointZero, size: presentingViewSize)
@@ -46,6 +61,15 @@ public class DropPresentingAnimator: Animator {
 				presentedView.center = containerView.center
 				presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
                 }, completion: { finished -> Void in
+					if let presentedViewController = self.presentedViewController where self.shouldDismissOnTappingOutsideView {
+						if let window = presentedViewController.view.window {
+							self.currentPresentedViewController = presentedViewController
+							let tapGesture = UITapGestureRecognizer(target: self, action: "outsideViewTapped:")
+							window.addGestureRecognizer(tapGesture)
+							self.dismissTapGesture = tapGesture
+						}
+					}
+					
                     transitionContext.completeTransition(true)
             })
         } else {
@@ -58,7 +82,12 @@ public class DropPresentingAnimator: Animator {
 			}
 			
             toView.tintAdjustmentMode = .Normal
-            toView.removeBlurredOverlayView(animated: true, duration: animationDuration)
+			switch overlayViewStyle {
+			case .Blurred:
+				toView.removeBlurredOverlayView(animated: true, duration: animationDuration)
+			case .Dimmed:
+				toView.removeDimmedOverlayView(animated: true, duration: animationDuration)
+			}
 			
             UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
                 fromView.center = CGPoint(x: containerView.bounds.width / 2.0, y: containerView.bounds.height + self.presentingViewSize.height)
@@ -71,7 +100,10 @@ public class DropPresentingAnimator: Animator {
 }
 
 extension DropPresentingAnimator {
-	func dismiss(sender: AnyObject) {
-		
+	func outsideViewTapped(sender: AnyObject) {
+		if let dismissTapGesture = self.dismissTapGesture {
+			currentPresentedViewController?.view.window?.removeGestureRecognizer(dismissTapGesture)
+		}
+		currentPresentedViewController?.dismissViewControllerAnimated(true, completion: nil)
 	}
 }
