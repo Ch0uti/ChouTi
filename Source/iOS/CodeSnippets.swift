@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// MARK: - Programmatically Setup Root View Controller
+// MARK: - Programmatically Setup Root View Controller
 
 //class AppDelegate: UIResponder, UIApplicationDelegate {
 //	
@@ -29,4 +29,26 @@ import Foundation
 
 
 
-// MARK: - 
+// MARK: - Add View Controller
+
+//addChildViewController(viewController)
+//
+//viewController.view.translatesAutoresizingMaskIntoConstraints = false
+//view.addSubview(viewController.view)
+//// TODO: Setup constraints...
+//
+//viewController.didMoveToParentViewController(self)
+
+
+
+// MARK: - Remove View Controller
+
+//viewController.willMoveToParentViewController(nil)
+//viewController.view.removeFromSuperview()
+//viewController.removeFromParentViewController()
+
+
+
+// MARK: - NavigationBar Title Color
+
+//navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
