@@ -209,6 +209,7 @@ public extension UIView {
 		
 		if !animated {
 			overlayView.removeFromSuperview()
+			zhDimmedOverlayView = nil
 			completion?(true)
 			return
 		}
@@ -217,6 +218,7 @@ public extension UIView {
 			overlayView.alpha = 0.0
 			}) { (finished) -> Void in
 				overlayView.removeFromSuperview()
+				self.zhDimmedOverlayView = nil
 				completion?(finished)
 		}
 	}
@@ -270,12 +272,14 @@ public extension UIView {
 		
 		if !animated {
 			overlayView.removeFromSuperview()
+			zhBlurredOverlayView = nil
 			completion?(true)
 		} else {
 			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
 				overlayView.alpha = 0.0
 				}) { (finished) -> Void in
 					overlayView.removeFromSuperview()
+					self.zhBlurredOverlayView = nil
 					completion?(finished)
 			}
 		}
