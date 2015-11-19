@@ -9,15 +9,17 @@ PODS:
   - ChouTi/App-Extension-API-Unsafe (1.0)
   - ChouTi/ChouTi (1.0):
     - ChouTi/ChouTi/Animators (= 1.0)
+    - ChouTi/ChouTi/CodeSnippets (= 1.0)
     - ChouTi/ChouTi/CollectionViewLayouts (= 1.0)
     - ChouTi/ChouTi/Extensions (= 1.0)
     - ChouTi/ChouTi/Protocols (= 1.0)
-    - ChouTi/ChouTi/Utility (= 1.0)
+    - ChouTi/ChouTi/Utilities (= 1.0)
   - ChouTi/ChouTi/Animators (1.0)
+  - ChouTi/ChouTi/CodeSnippets (1.0)
   - ChouTi/ChouTi/CollectionViewLayouts (1.0)
   - ChouTi/ChouTi/Extensions (1.0)
   - ChouTi/ChouTi/Protocols (1.0)
-  - ChouTi/ChouTi/Utility (1.0)
+  - ChouTi/ChouTi/Utilities (1.0)
   - ChouTi/UI (1.0):
     - ChouTi/UI/AutoLinesLabel (= 1.0)
     - ChouTi/UI/LoadingMorphingLabel (= 1.0)
@@ -43,7 +45,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: 3c521ed26de4c302f90bc7074be6e6747b418b09
+  ChouTi: 900612af6a2e4adf6008495280103da33799e756
   LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
 
 COCOAPODS: 0.39.0
