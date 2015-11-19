@@ -33,7 +33,7 @@ PODS:
   - ChouTi/UI/MenuPageViewController (1.0)
   - ChouTi/UI/SegmentedControl (1.0)
   - ChouTi/UI/UITableViewCell (1.0)
-  - LTMorphingLabel (0.0.8)
+  - LTMorphingLabel (0.0.9)
 
 DEPENDENCIES:
   - ChouTi (from `../`)
@@ -43,7 +43,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: b379547c6643fc259e5d518d73e7a9481ef56bd0
-  LTMorphingLabel: 0d2c981d47bb3b57dd03b37c5c13d8d71fc1e97e
+  ChouTi: 3c521ed26de4c302f90bc7074be6e6747b418b09
+  LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
 
 COCOAPODS: 0.39.0
