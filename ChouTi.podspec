@@ -47,7 +47,7 @@ Pod::Spec.new do |s|
 
   s.subspec "ChouTi" do |ss|
     ss.summary		 = "Bag of everything."
-    ss.source_files = 'Source/iOS/*.*'
+    ss.source_files = 'Source/iOS/*.swift'
 
     ss.subspec "Extensions" do |sss|
       sss.summary      = "Extensions"
