@@ -19,9 +19,11 @@
 //		let navigationController = UINavigationController(rootViewController: viewController)
 //		
 //		window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//		window!.rootViewController = navigationController
-//		window!.backgroundColor = .whiteColor()
-//		window!.makeKeyAndVisible()
+//		if let window = window {
+//			window.rootViewController = navigationController
+//			window.backgroundColor = .whiteColor()
+//			window.makeKeyAndVisible()
+//		}
 //		
 //		return true
 //	}

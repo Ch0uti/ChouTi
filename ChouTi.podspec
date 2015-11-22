@@ -18,8 +18,12 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Source/**/**/*.h'
   s.source_files 	   = 'Source/iOS/**/'
 
+  s.xcconfig         = { 'OTHER_SWIFT_FLAGS' => '-D DEBUG' }
 
   s.default_subspecs = "All"
+
+
+  ############ Summary Subspec ############
 
   s.subspec "All" do |ss|
     ss.summary       = "App extension API not compatible"
@@ -39,9 +43,11 @@ Pod::Spec.new do |s|
 
 
 
+  ############ Individual Subspec ############
+
   s.subspec "ChouTi" do |ss|
-    ss.summary		 = "A Set of Common UI Utilities."
-    ss.source_files = 'Source/iOS/*.swift'
+    ss.summary		 = "Bag of everything."
+    ss.source_files = 'Source/iOS/*.*'
 
     ss.subspec "Extensions" do |sss|
       sss.summary      = "Extensions"
@@ -56,7 +62,7 @@ Pod::Spec.new do |s|
     end
 
     ss.subspec "CollectionViewLayouts" do |sss|
-      sss.summary      = "A collection of UICollectionView Layouts"
+      sss.summary      = "UICollectionView Layouts"
       sss.source_files = 'Source/iOS/CollectionViewLayouts/*/*.*'
       sss.frameworks   = 'UIKit'
     end
@@ -67,10 +73,15 @@ Pod::Spec.new do |s|
       sss.frameworks   = 'UIKit'
     end
 
-    ss.subspec "Utility" do |sss|
+    ss.subspec "Utilities" do |sss|
       sss.summary      = "Handy utility functions/constants"
-      sss.source_files = 'Source/iOS/Utility/*.*'
+      sss.source_files = 'Source/iOS/Utilities/*.*'
       sss.frameworks   = 'UIKit'
+    end
+
+    ss.subspec "CodeSnippets" do |sss|
+      sss.summary      = "Some useful and handy code snippets"
+      sss.source_files = 'Source/iOS/CodeSnippets/*.*'
     end
 
   end

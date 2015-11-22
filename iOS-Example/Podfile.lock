@@ -9,15 +9,17 @@ PODS:
   - ChouTi/App-Extension-API-Unsafe (1.0)
   - ChouTi/ChouTi (1.0):
     - ChouTi/ChouTi/Animators (= 1.0)
+    - ChouTi/ChouTi/CodeSnippets (= 1.0)
     - ChouTi/ChouTi/CollectionViewLayouts (= 1.0)
     - ChouTi/ChouTi/Extensions (= 1.0)
     - ChouTi/ChouTi/Protocols (= 1.0)
-    - ChouTi/ChouTi/Utility (= 1.0)
+    - ChouTi/ChouTi/Utilities (= 1.0)
   - ChouTi/ChouTi/Animators (1.0)
+  - ChouTi/ChouTi/CodeSnippets (1.0)
   - ChouTi/ChouTi/CollectionViewLayouts (1.0)
   - ChouTi/ChouTi/Extensions (1.0)
   - ChouTi/ChouTi/Protocols (1.0)
-  - ChouTi/ChouTi/Utility (1.0)
+  - ChouTi/ChouTi/Utilities (1.0)
   - ChouTi/UI (1.0):
     - ChouTi/UI/AutoLinesLabel (= 1.0)
     - ChouTi/UI/LoadingMorphingLabel (= 1.0)
@@ -33,7 +35,7 @@ PODS:
   - ChouTi/UI/MenuPageViewController (1.0)
   - ChouTi/UI/SegmentedControl (1.0)
   - ChouTi/UI/UITableViewCell (1.0)
-  - LTMorphingLabel (0.0.8)
+  - LTMorphingLabel (0.0.9)
 
 DEPENDENCIES:
   - ChouTi (from `../`)
@@ -43,7 +45,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: b379547c6643fc259e5d518d73e7a9481ef56bd0
-  LTMorphingLabel: 0d2c981d47bb3b57dd03b37c5c13d8d71fc1e97e
+  ChouTi: 900612af6a2e4adf6008495280103da33799e756
+  LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
 
 COCOAPODS: 0.39.0
