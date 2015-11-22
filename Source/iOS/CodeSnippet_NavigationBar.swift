@@ -11,3 +11,11 @@
 // MARK: - NavigationBar Title Color
 
 //navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+
+
+
+// MARK: - NavigationBat Title View
+
+//let logoImage = UIImage(asset: .Logo).imageWithRenderingMode(.AlwaysTemplate)
+//let logoImageView = UIImageView(image: logoImage)
+//navigationItem.titleView = logoImageView
