@@ -20,4 +20,16 @@ public extension UIFont {
 	public class func helveticaNenueThinFont(fontSize: CGFloat) -> UIFont? {
 		return UIFont(name: "HelveticaNeue-Thin", size: fontSize)
 	}
+	
+	public class func ArialMTFont(fontSize: CGFloat) -> UIFont? {
+		return UIFont(name: "ArialMT", size: fontSize)
+	}
+	
+	public class func AvenirMediumFont(fontSize: CGFloat) -> UIFont? {
+		return UIFont(name: "Avenir-Medium", size: fontSize)
+	}
+	
+	public class func AvenirRomanFont(fontSize: CGFloat) -> UIFont? {
+		return UIFont(name: "Avenir-Roman", size: fontSize)
+	}
 }
