@@ -41,7 +41,7 @@ public extension Array {
 		let right = Int.random(left, count - 1)
 		
 		var result = [Element]()
-		for i in left ..< right {
+		for i in left ... right {
 			result.append(self[i])
 		}
 		
