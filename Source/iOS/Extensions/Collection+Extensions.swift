@@ -31,4 +31,20 @@ public extension Array {
 			swap(&self[i], &self[j])
 		}
 	}
+	
+	public func randomSubset() -> [Element] {
+		if count == 0 {
+			return self
+		}
+		
+		let left = Int.random(0, count - 1)
+		let right = Int.random(left, count - 1)
+		
+		var result = [Element]()
+		for i in left ..< right {
+			result.append(self[i])
+		}
+		
+		return result
+	}
 }
