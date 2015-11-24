@@ -8,19 +8,19 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+public class TableViewCell: UITableViewCell {
 }
 
 extension TableViewCell : TableViewCellInfo {
-	static func identifier() -> String {
+	public static func identifier() -> String {
 		return NSStringFromClass(TableViewCell.self)
 	}
 	
-	static func estimatedRowHeight() -> CGFloat {
+	public static func estimatedRowHeight() -> CGFloat {
 		return 60
 	}
 	
-	static func registerInTableView(tableView: UITableView) {
+	public static func registerInTableView(tableView: UITableView) {
 		tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier())
 	}
 }

@@ -19,9 +19,10 @@
 //tableView.canCancelContentTouches = true
 //tableView.delaysContentTouches = true
 
+//<#TableViewCell#>.registerInTableView(tableView)
 
 
-// MARK: - UITableViewDataSource
+//// MARK: - UITableViewDataSource
 //extension <#Class#> : UITableViewDataSource {
 //	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 //		return <#numberOfSections#>
@@ -39,7 +40,7 @@
 
 
 
-// MARK: - UITableViewDataSource
+//// MARK: - UITableViewDataSource
 //extension <#Class#> : UITableViewDelegate {
 //	// MARK: - Rows
 //	func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
