@@ -9,6 +9,7 @@
 
 
 // MARK: - Table View Setup
+//tableView.translatesAutoresizingMaskIntoConstraints = false
 //tableView.separatorStyle = .None
 //tableView.allowsSelection = false
 //
