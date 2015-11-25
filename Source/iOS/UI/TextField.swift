@@ -96,3 +96,17 @@ public class TextField: UITextField {
 		return CGRectInset(bounds, textHorizontalPadding, textVerticalPadding)
 	}
 }
+
+extension TextField {
+	public override func rightViewRectForBounds(bounds: CGRect) -> CGRect {
+		var rect = super.rightViewRectForBounds(bounds)
+		rect.origin.x -= layoutMargins.right
+		return rect
+	}
+	
+	public override func leftViewRectForBounds(bounds: CGRect) -> CGRect {
+		var rect = super.leftViewRectForBounds(bounds)
+		rect.origin.x += layoutMargins.left
+		return rect
+	}
+}
