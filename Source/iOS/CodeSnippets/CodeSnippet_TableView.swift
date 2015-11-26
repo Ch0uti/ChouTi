@@ -34,7 +34,7 @@
 //	}
 //	
 //	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//		let cell = tableView.dequeueReusableCellWithIdentifier(<#identifier#>) as! <#TableViewCell#>
+//		let cell = tableView.dequeueReusableCellWithIdentifier(<#TableViewCell#>.identifier()) as! <#TableViewCell#>
 //		return cell
 //	}
 //}
@@ -53,6 +53,7 @@
 //		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 //	}
 //	
+//	// MARK: - Section Headers
 //	func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
 //		return <#estimatedHeightForHeaderInSection#>
 //	}
