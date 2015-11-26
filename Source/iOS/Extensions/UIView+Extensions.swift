@@ -285,3 +285,11 @@ public extension UIView {
 		}
 	}
 }
+
+public extension UIView {
+	public func viewCopy() -> UIView {
+		let data: NSData = NSKeyedArchiver.archivedDataWithRootObject(self)
+		let copy = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! UIView
+		return copy
+	}
+}

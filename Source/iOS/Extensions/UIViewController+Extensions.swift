@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 // MARK: - Storyboard
 public extension UIViewController {

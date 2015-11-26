@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 public extension UIFont {
 	public class func helveticaNenueFont(fontSize: CGFloat) -> UIFont? {

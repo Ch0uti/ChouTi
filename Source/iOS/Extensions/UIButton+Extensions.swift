@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 public extension UIButton {
 	public func setBackgroundColor(color: UIColor, forUIControlState state: UIControlState) {
