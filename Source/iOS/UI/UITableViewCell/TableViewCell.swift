@@ -9,29 +9,29 @@
 import UIKit
 
 public class TableViewCell: UITableViewCell {
-    public var height: CGFloat = 44.0 {
-        didSet {
-            heightConstraint?.constant = height
-        }
-    }
-    
-    private var heightConstraint: NSLayoutConstraint?
-    
-    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        commonInit()
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-    
-    private func commonInit() {
-        heightConstraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: height)
-        heightConstraint!.priority = 999
-        heightConstraint!.active = true
-    }
+	public var height: CGFloat = 44.0 {
+		didSet {
+			heightConstraint?.constant = height
+		}
+	}
+	
+	private var heightConstraint: NSLayoutConstraint?
+	
+	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+		super.init(style: style, reuseIdentifier: reuseIdentifier)
+		commonInit()
+	}
+	
+	public required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		commonInit()
+	}
+	
+	private func commonInit() {
+		heightConstraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: height)
+		heightConstraint!.priority = 999
+		heightConstraint!.active = true
+	}
 }
 
 extension TableViewCell : TableViewCellInfo {
