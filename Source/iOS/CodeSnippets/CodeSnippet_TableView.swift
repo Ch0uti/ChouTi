@@ -51,8 +51,13 @@
 //	// MARK: - Selections
 //	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//		tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
 //	}
-//	
+//
+//	func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+//		tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
+//	}
+//
 //	// MARK: - Section Headers
 //	func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
 //		return <#estimatedHeightForHeaderInSection#>

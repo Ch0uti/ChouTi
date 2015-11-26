@@ -63,3 +63,9 @@
 //		tableView.registerClass(<#Cell#>.self, forCellReuseIdentifier: <#Cell#>.identifier())
 //	}
 //}
+
+
+
+
+// MARK: - Common Usage
+//cell.selectionStyle = .None
