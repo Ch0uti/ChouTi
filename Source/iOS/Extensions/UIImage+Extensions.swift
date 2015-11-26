@@ -136,6 +136,16 @@ public extension UIImage {
 		
 		return image
 	}
+    
+    public class func imageWithColor(color: UIColor, size: CGSize) -> UIImage {
+        let rect = CGRectMake(0, 0, size.width, size.height)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 	
 	public class func imageWithBorderRectangle(size: CGSize, borderWidth: CGFloat, borderColor: UIColor, fillColor: UIColor = UIColor.clearColor()) -> UIImage {
 		UIGraphicsBeginImageContext(size)
@@ -154,4 +164,25 @@ public extension UIImage {
 		
 		return image
 	}
+}
+
+// MARK: - Mutating Image
+public extension UIImage {
+    public func imageByApplyingAlpha(alpha: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        let ctx = UIGraphicsGetCurrentContext()
+        
+        let area: CGRect = CGRectMake(0, 0, size.width, size.height);
+        
+        CGContextScaleCTM(ctx, 1, -1)
+        CGContextTranslateCTM(ctx, 0, -area.size.height)
+        CGContextSetBlendMode(ctx, CGBlendMode.Multiply)
+        CGContextSetAlpha(ctx, alpha)
+        CGContextDrawImage(ctx, area, CGImage)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
 }
