@@ -286,7 +286,18 @@ public extension UIView {
 	}
 }
 
+// MARK: - Utility
 public extension UIView {
+	public func firstRespondedViewController() -> UIViewController? {
+		if let viewController = nextResponder() as? UIViewController {
+			return viewController
+		} else if let view = nextResponder() as? UIView {
+			return view.firstRespondedViewController()
+		} else {
+			return nil
+		}
+	}
+	
 	public func viewCopy() -> UIView {
 		let data: NSData = NSKeyedArchiver.archivedDataWithRootObject(self)
 		let copy = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! UIView
