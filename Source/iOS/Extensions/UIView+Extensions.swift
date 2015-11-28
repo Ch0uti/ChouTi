@@ -288,6 +288,11 @@ public extension UIView {
 
 // MARK: - Utility
 public extension UIView {
+	/**
+	Get the view controller presenting this view
+	
+	- returns: the view controller for presenting this view or nil
+	*/
 	public func firstRespondedViewController() -> UIViewController? {
 		if let viewController = nextResponder() as? UIViewController {
 			return viewController
@@ -298,6 +303,18 @@ public extension UIView {
 		}
 	}
 	
+	/**
+	Get the view controller presenting this view
+	
+	- returns: the view controller for presenting this view or nil
+	*/
+	public func presentingViewController() -> UIViewController? {
+		return firstRespondedViewController()
+	}
+}
+
+
+public extension UIView {
 	public func viewCopy() -> UIView {
 		let data: NSData = NSKeyedArchiver.archivedDataWithRootObject(self)
 		let copy = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! UIView
