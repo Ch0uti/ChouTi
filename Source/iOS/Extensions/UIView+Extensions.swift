@@ -303,12 +303,8 @@ public extension UIView {
 		}
 	}
 	
-	/**
-	Get the view controller presenting this view
-	
-	- returns: the view controller for presenting this view or nil
-	*/
-	public func presentingViewController() -> UIViewController? {
+	/// Get the view controller presenting this view
+	public var presentingViewController: UIViewController? {
 		return firstRespondedViewController()
 	}
 }
