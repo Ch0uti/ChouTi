@@ -41,7 +41,7 @@ extension MainViewController: UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 6
+		return 7
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -80,6 +80,12 @@ extension MainViewController: UITableViewDataSource {
 			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
 			
 			cell.textLabel?.text = "Menu Page View Controller"
+			
+			return cell
+		case 6:
+			let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(UITableViewCell.self))!
+			
+			cell.textLabel?.text = "Image Picker View Demo Controller"
 			
 			return cell
 		default:
@@ -154,6 +160,13 @@ extension MainViewController: UITableViewDelegate {
 			
 		case 5:
 			self.navigationController?.pushViewController(MenuPageDemoViewController(), animated: true)
+			
+		case 6:
+			if #available(iOS 9.0, *) {
+			    self.navigationController?.pushViewController(ImagePickerDemoViewController(), animated: true)
+			} else {
+			    // Fallback on earlier versions
+			}
 			
 		default:
 			break

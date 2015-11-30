@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
 
   s.default_subspecs = "All"
 
+  s.resource_bundle = { ['Resources' => 'Resources/*/*.png'] }
 
   ############ Summary Subspec ############
 
