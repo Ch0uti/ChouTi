@@ -8,13 +8,13 @@
 
 import Foundation
 
-public extension UIImage {
+extension UIImage {
 	
-	public enum ImageAssets: String {
+	enum ImageAssets: String {
 		case Camera = "Camera"
 	}
 	
-	public convenience init!(asset: ImageAssets) {
+	convenience init!(asset: ImageAssets) {
 		self.init(named: asset.rawValue, inBundle: Resource.bundle, compatibleWithTraitCollection: nil)
 	}
 }
