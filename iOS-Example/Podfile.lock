@@ -1,4 +1,5 @@
 PODS:
+  - Bolts/Tasks (1.5.0)
   - ChouTi (1.0):
     - ChouTi/All (= 1.0)
   - ChouTi/All (1.0):
@@ -20,6 +21,8 @@ PODS:
   - ChouTi/ChouTi/Extensions (1.0)
   - ChouTi/ChouTi/Protocols (1.0)
   - ChouTi/ChouTi/Utilities (1.0)
+  - ChouTi/Parse (1.0):
+    - Parse
   - ChouTi/UI (1.0):
     - ChouTi/UI/AutoLinesLabel (= 1.0)
     - ChouTi/UI/LoadingMorphingLabel (= 1.0)
@@ -36,16 +39,21 @@ PODS:
   - ChouTi/UI/SegmentedControl (1.0)
   - ChouTi/UI/UITableViewCell (1.0)
   - LTMorphingLabel (0.0.9)
+  - Parse (1.10.0):
+    - Bolts/Tasks (~> 1.5)
 
 DEPENDENCIES:
   - ChouTi (from `../`)
+  - ChouTi/Parse (from `../`)
 
 EXTERNAL SOURCES:
   ChouTi:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: 26484e824f213aecfda00f308e19e66dfa673d29
+  Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
+  ChouTi: a43ff9b1784fe8add7455cca680ce26335189a84
   LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
+  Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
 
 COCOAPODS: 0.39.0

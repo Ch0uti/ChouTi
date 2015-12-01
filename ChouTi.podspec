@@ -34,6 +34,7 @@ Pod::Spec.new do |s|
 
     ss.dependency "ChouTi/App-Extension-API-Unsafe"
     ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
+
   end
 
   s.subspec "Safe" do |ss|
@@ -149,4 +150,17 @@ Pod::Spec.new do |s|
     
   end
 
+
+
+  ############ ChouTi for Third Party Subspec ############
+
+  s.subspec "Parse" do |ss|
+    
+    ss.summary     = "Utilities for Parse"
+    ss.source_files = 'Source/iOS/ThirdParty/Parse/*.*'
+    ss.dependency 'Parse'
+    ss.vendored_frameworks = 'Parse'
+    
+  end
+  
 end

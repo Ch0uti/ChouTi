@@ -11,5 +11,6 @@ pod 'ChouTi', :path => '../'
 # pod 'ChouTi/Unsafe', :path => '../'
 # pod 'ChouTi/Safe', :path => '../'
 
+pod 'ChouTi/Parse', :path => '../'
 
 end
