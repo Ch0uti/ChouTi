@@ -22,19 +22,21 @@ PODS:
   - ChouTi/ChouTi/Utilities (1.0)
   - ChouTi/UI (1.0):
     - ChouTi/UI/AutoLinesLabel (= 1.0)
+    - ChouTi/UI/DropDownMenu (= 1.0)
     - ChouTi/UI/LoadingMorphingLabel (= 1.0)
     - ChouTi/UI/MenuPageViewController (= 1.0)
     - ChouTi/UI/SegmentedControl (= 1.0)
-    - ChouTi/UI/UITableViewCell (= 1.0)
+    - ChouTi/UI/TableViewCells (= 1.0)
   - ChouTi/UI-App-Extension-API-Unsafe (1.0):
     - ChouTi/UI-App-Extension-API-Unsafe/SlideController (= 1.0)
   - ChouTi/UI-App-Extension-API-Unsafe/SlideController (1.0)
   - ChouTi/UI/AutoLinesLabel (1.0)
+  - ChouTi/UI/DropDownMenu (1.0)
   - ChouTi/UI/LoadingMorphingLabel (1.0):
     - LTMorphingLabel (~> 0.0.8)
   - ChouTi/UI/MenuPageViewController (1.0)
   - ChouTi/UI/SegmentedControl (1.0)
-  - ChouTi/UI/UITableViewCell (1.0)
+  - ChouTi/UI/TableViewCells (1.0)
   - LTMorphingLabel (0.0.9)
 
 DEPENDENCIES:
@@ -45,7 +47,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: a43ff9b1784fe8add7455cca680ce26335189a84
+  ChouTi: f1e4fe86bd6315c75ff02420b44b3d58da7bf2ee
   LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
 
 COCOAPODS: 0.39.0

@@ -110,9 +110,9 @@ Pod::Spec.new do |s|
       sss.frameworks   = 'UIKit'
     end
 
-    ss.subspec "UITableViewCell" do |sss|
+    ss.subspec "TableViewCells" do |sss|
       sss.summary      = "Customized UITableViewCells"
-      sss.source_files = 'Source/iOS/UI/UITableViewCell/*.*'
+      sss.source_files = 'Source/iOS/UI/TableViewCells/*.*'
       sss.frameworks   = 'UIKit'
     end
 
@@ -133,6 +133,12 @@ Pod::Spec.new do |s|
       sss.source_files = 'Source/iOS/UI/LoadingMorphingLabel/*.*'
       sss.frameworks   = 'UIKit'
       sss.dependency 'LTMorphingLabel', '~> 0.0.8'
+    end
+
+    ss.subspec "DropDownMenu" do |sss|
+      sss.summary      = "A drop down menu presented in full screen with blur background"
+      sss.source_files = 'Source/iOS/UI/DropDownMenu/*.*'
+      sss.frameworks   = 'UIKit'
     end
 
   end
