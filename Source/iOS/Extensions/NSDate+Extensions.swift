@@ -50,5 +50,55 @@ public extension NSDate {
 		let randomTime = NSTimeInterval(arc4random_uniform(UInt32.max))
 		return NSDate(timeIntervalSince1970: randomTime)
 	}
+}
+
+
+
+// MARK: - Comparison
+public extension NSDate {
+	public func isEarlierThanDate(date: NSDate) -> Bool {
+		if self.compare(date) == .OrderedAscending {
+			return true
+		} else {
+			return false
+		}
+	}
 	
+	public func isBeforeDate(date: NSDate) -> Bool {
+		return isEarlierThanDate(date)
+	}
+	
+	public func isLaterThanDate(date: NSDate) -> Bool {
+		if self.compare(date) == .OrderedDescending {
+			return true
+		} else {
+			return false
+		}
+	}
+	
+	public func isAfterDate(date: NSDate) -> Bool {
+		return isLaterThanDate(date)
+	}
+}
+
+
+public extension NSDate {
+	public func dateByAddingDays(daysToAdd: Double) -> NSDate {
+		let secondsInDays: NSTimeInterval = daysToAdd * 60 * 60 * 24
+		return self.dateByAddingTimeInterval(secondsInDays)
+	}
+	
+	public func dateByAddingHours(hoursToAdd: Double) -> NSDate {
+		let secondsInHours: NSTimeInterval = hoursToAdd * 60 * 60
+		return self.dateByAddingTimeInterval(secondsInHours)
+	}
+	
+	public func dateByAddingMinutes(minutesToAdd: Double) -> NSDate {
+		let secondsInMinutes: NSTimeInterval = minutesToAdd * 60
+		return self.dateByAddingTimeInterval(secondsInMinutes)
+	}
+	
+	public func dateByAddingSeconds(secondsToAdd: Double) -> NSDate {
+		return self.dateByAddingTimeInterval(secondsToAdd)
+	}
 }

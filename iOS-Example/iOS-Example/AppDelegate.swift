@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
+		
+		let earlierDate = NSDate()
+		let afterDate = earlierDate.dateByAddingDays(10)
+		
+		let isEarlier = earlierDate.isEarlierThanDate(afterDate)
+		assert(isEarlier)
+		
+		let isLater = afterDate.isLaterThanDate(earlierDate)
+		assert(isLater)
+		
 		return true
 	}
 
