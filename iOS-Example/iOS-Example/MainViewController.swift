@@ -167,6 +167,16 @@ class MainViewController: UIViewController {
 			})
 		)
 		
+		otherRows.append(
+			TableViewRow(title: "TableViewSectionRow Demo",
+				subtitle: "Demo for handy table view sections and rows management",
+				tableView: tableView,
+				cellSelectAction: { indexPath, cell in
+					self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+					self.navigationController?.pushViewController(TableViewSectionRowDemoViewController(), animated: true)
+			})
+		)
+		
 		sections.append(
 			TableViewSection(headerTitle: "Miscellaneous", rows: otherRows, tableView: tableView)
 		)

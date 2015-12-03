@@ -34,6 +34,8 @@ public extension UITableView {
 	}
 }
 
+
+
 // MARK: - TableView DataSource Methods
 extension UITableView : UITableViewDataSource {
 	public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -117,6 +119,10 @@ extension UITableView : UITableViewDataSource {
 
 // MARK: - TableView Delegate Methods
 extension UITableView : UITableViewDelegate {
+	public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return UITableViewAutomaticDimension
+	}
+	
 	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		guard let row = rowForIndexPath(indexPath) else {
 			print("row not found")

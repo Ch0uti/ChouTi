@@ -8,6 +8,8 @@
 
 import UIKit
 
+// FIXME: Height is not settable
+
 public class SeparatorCell: UITableViewCell {
 
 	public var separatorView: UIView = UIView() {
@@ -57,7 +59,7 @@ extension SeparatorCell : TableViewCellInfo {
 	}
 	
 	static public func estimatedRowHeight() -> CGFloat {
-		return 16.5
+		return 1//16.5
 	}
 	
 	static public func registerInTableView(tableView: UITableView) {
