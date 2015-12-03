@@ -6,6 +6,19 @@
 //  Copyright (c) 2015 Honghao Zhang. All rights reserved.
 //
 
+// Sample Usage:
+//let <#animator#> = DropPresentingAnimator()
+//
+//<#animator#>.animationDuration = 0.75
+//<#animator#>.shouldDismissOnTappingOutsideView = true
+//<#animator#>.presentingViewSize = CGSize(width: ceil(screenWidth * 0.7), height: 160)
+//<#animator#>.overlayViewStyle = .Dimmed(UIColor(white: 0.2, alpha: 1.0))
+//
+//<#presentedViewController#>.modalPresentationStyle = .Custom
+//<#presentedViewController#>.transitioningDelegate = animator
+//
+//presentViewController(<#presentedViewController#>, animated: true, completion: nil)
+
 import UIKit
 
 public class DropPresentingAnimator: Animator {
@@ -65,6 +78,7 @@ public class DropPresentingAnimator: Animator {
 						if let window = presentedViewController.view.window {
 							self.currentPresentedViewController = presentedViewController
 							let tapGesture = UITapGestureRecognizer(target: self, action: "outsideViewTapped:")
+							tapGesture.delegate = self
 							window.addGestureRecognizer(tapGesture)
 							self.dismissTapGesture = tapGesture
 						}
@@ -97,6 +111,22 @@ public class DropPresentingAnimator: Animator {
             })
         }
     }
+}
+
+extension DropPresentingAnimator : UIGestureRecognizerDelegate {
+	public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+		guard let currentPresentedViewController = self.currentPresentedViewController else {
+			return true
+		}
+		
+		// Disable tap action for presented view area
+		let locationOnPresentingView = gestureRecognizer.locationInView(currentPresentedViewController.view)
+		if currentPresentedViewController.view.bounds.contains(locationOnPresentingView) {
+			return false
+		} else {
+			return true
+		}
+	}
 }
 
 extension DropPresentingAnimator {
