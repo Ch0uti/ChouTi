@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChouTi
 
 class SideViewController: UIViewController {
 
@@ -16,11 +17,32 @@ class SideViewController: UIViewController {
         super.viewDidLoad()
 		
 		let tableView = UITableView(frame: CGRect(x: 50, y: 50, width: UIScreen.mainScreen().bounds.width - 100, height: 240))
-		tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "id")
-		tableView.dataSource = self
-		tableView.delegate = self
 		self.view.addSubview(tableView)
 		tableView.userInteractionEnabled = true
+		
+		tableView.sections = [TableViewSection(headerTitle: "Test",
+			rows: [
+				TableViewRow(title: "Test",
+					cellConfiguration: { cell in
+						cell.detailTextLabel?.text = "Test"
+					},
+					tableView: tableView
+				),
+				TableViewRow(title: "Test",
+					cellConfiguration: { cell in
+						cell.detailTextLabel?.text = "Test2"
+					},
+					tableView: tableView
+				),
+				TableViewRow(title: "Test",
+					cellConfiguration: { cell in
+						cell.detailTextLabel?.text = "Test3"
+					},
+					tableView: tableView
+				)
+			],
+			tableView: tableView)
+		]
     }
 	
 	override func viewWillAppear(animated: Bool) {
@@ -52,26 +74,4 @@ class SideViewController: UIViewController {
 //		super.endAppearanceTransition()
 //		print("\(label.text!)ViewController: endAppearanceTransition")
 //	}
-}
-
-extension SideViewController : UITableViewDataSource {
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return 1
-	}
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 4
-	}
-	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("id")
-		cell?.textLabel?.text = "test"
-		
-		return cell!
-	}
-}
-
-extension SideViewController : UITableViewDelegate {
-	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		print("selected: \(indexPath.row)")
-	}
 }

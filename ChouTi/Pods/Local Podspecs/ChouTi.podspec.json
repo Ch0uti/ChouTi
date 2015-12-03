@@ -1,0 +1,180 @@
+{
+  "name": "ChouTi",
+  "version": "1.0",
+  "summary": "Chou Ti (抽屉) - My personal toolkit for iOS/OSX development.",
+  "description": "Chou Ti (抽屉) - My personal toolkit for iOS/OSX development.\nIt contains common classes, extensions used in multiple projects",
+  "homepage": "https://github.com/honghaoz/ChouTi",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Honghao Zhang": "zhh358@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/honghaoz/ChouTi.git",
+    "tag": "1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "public_header_files": "Source/**/**/*.h",
+  "source_files": "Source/iOS/**/",
+  "xcconfig": {
+    "OTHER_SWIFT_FLAGS": "-D DEBUG"
+  },
+  "default_subspecs": "All",
+  "resource_bundles": {
+    "Resources": "Resources/*/*.png"
+  },
+  "subspecs": [
+    {
+      "name": "All",
+      "summary": "App extension API not compatible",
+      "dependencies": {
+        "ChouTi/ChouTi": [
+
+        ],
+        "ChouTi/UI": [
+
+        ],
+        "ChouTi/App-Extension-API-Unsafe": [
+
+        ],
+        "ChouTi/UI-App-Extension-API-Unsafe": [
+
+        ]
+      }
+    },
+    {
+      "name": "Safe",
+      "summary": "App extension API compatible",
+      "dependencies": {
+        "ChouTi/ChouTi": [
+
+        ],
+        "ChouTi/UI": [
+
+        ]
+      }
+    },
+    {
+      "name": "ChouTi",
+      "summary": "Bag of everything.",
+      "source_files": "Source/iOS/*.swift",
+      "subspecs": [
+        {
+          "name": "Extensions",
+          "summary": "Extensions",
+          "source_files": "Source/iOS/Extensions/*.*",
+          "frameworks": "UIKit"
+        },
+        {
+          "name": "Protocols",
+          "summary": "Protocols",
+          "source_files": "Source/iOS/Protocols/*.*",
+          "frameworks": "UIKit"
+        },
+        {
+          "name": "CollectionViewLayouts",
+          "summary": "UICollectionView Layouts",
+          "source_files": "Source/iOS/CollectionViewLayouts/*/*.*",
+          "frameworks": "UIKit"
+        },
+        {
+          "name": "Animators",
+          "summary": "A set of customized view controller transition animators",
+          "source_files": "Source/iOS/Animators/*.*",
+          "frameworks": "UIKit"
+        },
+        {
+          "name": "Utilities",
+          "summary": "Handy utility functions/constants",
+          "source_files": "Source/iOS/Utilities/*.*",
+          "frameworks": "UIKit"
+        },
+        {
+          "name": "CodeSnippets",
+          "summary": "Some useful and handy code snippets",
+          "source_files": "Source/iOS/CodeSnippets/*.*"
+        }
+      ]
+    },
+    {
+      "name": "App-Extension-API-Unsafe",
+      "summary": "Components which are not app extension compatible"
+    },
+    {
+      "name": "UI",
+      "summary": "UI Views & ViewControllers",
+      "source_files": "Source/iOS/UI/*.*",
+      "subspecs": [
+        {
+          "name": "AutoLinesLabel",
+          "summary": "UILabel with contentInset and probide auto lines on iOS7",
+          "source_files": "Source/iOS/UI/AutoLinesLabel/*.*",
+          "frameworks": "UIKit"
+        },
+        {
+          "name": "TableViewCells",
+          "summary": "Customized UITableViewCells",
+          "source_files": "Source/iOS/UI/TableViewCells/*.*",
+          "frameworks": "UIKit"
+        },
+        {
+          "name": "SegmentedControl",
+          "summary": "Customized Segmented Control, with underscore bars",
+          "source_files": "Source/iOS/UI/SegmentedControl/*.*",
+          "frameworks": "UIKit"
+        },
+        {
+          "name": "MenuPageViewController",
+          "summary": "PageViewController with header titles",
+          "source_files": "Source/iOS/UI/MenuPageViewController/*.*",
+          "frameworks": "UIKit"
+        },
+        {
+          "name": "LoadingMorphingLabel",
+          "summary": "Showing a list of text in loop",
+          "source_files": "Source/iOS/UI/LoadingMorphingLabel/*.*",
+          "frameworks": "UIKit",
+          "dependencies": {
+            "LTMorphingLabel": [
+              "~> 0.0.8"
+            ]
+          }
+        },
+        {
+          "name": "DropDownMenu",
+          "summary": "A drop down menu presented in full screen with blur background",
+          "source_files": "Source/iOS/UI/DropDownMenu/*.*",
+          "frameworks": "UIKit"
+        }
+      ]
+    },
+    {
+      "name": "UI-App-Extension-API-Unsafe",
+      "summary": "UI components which are not app extension compatible",
+      "subspecs": [
+        {
+          "name": "SlideController",
+          "summary": "A left/right slide container view controller",
+          "source_files": "Source/iOS/UI/SlideController/*.*",
+          "frameworks": "UIKit"
+        }
+      ]
+    },
+    {
+      "name": "Parse",
+      "summary": "Utilities for Parse",
+      "source_files": "Source/iOS/ThirdParty/Parse/*.*",
+      "dependencies": {
+        "Parse": [
+
+        ]
+      },
+      "vendored_frameworks": "Parse"
+    }
+  ]
+}

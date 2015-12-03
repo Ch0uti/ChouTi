@@ -1,0 +1,20 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+platform :ios, '8.0'
+
+link_with 'ChouTi', 'ChouTiTests'
+
+pod 'ChouTi', :path => '../'
+
+# target 'ChouTi' do
+#
+# 	pod 'ChouTi', :path => '../'
+#
+# end
+
+# target 'ChouTiTests' do
+#
+#	pod 'ChouTi', :path => '../'
+#
+# end

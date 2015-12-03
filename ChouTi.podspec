@@ -78,7 +78,12 @@ Pod::Spec.new do |s|
     ss.subspec "Utilities" do |sss|
       sss.summary      = "Handy utility functions/constants"
       sss.source_files = 'Source/iOS/Utilities/*.*'
-      sss.frameworks   = 'UIKit'
+
+      sss.subspec "TableViewSectionRow" do |ssss|
+        ssss.summary      = "Table view sections/rows utility"
+        ssss.source_files = 'Source/iOS/Utilities/TableViewSectionRow/*.*'
+      end
+
     end
 
     ss.subspec "CodeSnippets" do |sss|

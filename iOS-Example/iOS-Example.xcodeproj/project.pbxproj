@@ -10,6 +10,7 @@
 		0DCE4258FFA3F3E8881A974D /* Pods_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C361C75F7E904ADB3ACFF966 /* Pods_iOS_Example.framework */; };
 		E44E945C1BBAF2EE00801A24 /* PageViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E945B1BBAF2EE00801A24 /* PageViewDemoController.swift */; };
 		E452D6BA1BA74782002EF9E5 /* TableLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E452D6B91BA74782002EF9E5 /* TableLayoutDemoViewController.swift */; };
+		E4A49FB61C0FF1E700CE1710 /* HideNavigationBarBottomLineDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A49FB51C0FF1E700CE1710 /* HideNavigationBarBottomLineDemoViewController.swift */; };
 		E4D99C2D1B91579100E492F9 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D99C2B1B91579100E492F9 /* CenterViewController.swift */; };
 		E4D99C2E1B91579100E492F9 /* CenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D99C2C1B91579100E492F9 /* CenterViewController.xib */; };
 		E4D99C311B9157A600E492F9 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D99C2F1B9157A600E492F9 /* SideViewController.swift */; };
@@ -41,6 +42,7 @@
 		C361C75F7E904ADB3ACFF966 /* Pods_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44E945B1BBAF2EE00801A24 /* PageViewDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewDemoController.swift; sourceTree = "<group>"; };
 		E452D6B91BA74782002EF9E5 /* TableLayoutDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableLayoutDemoViewController.swift; sourceTree = "<group>"; };
+		E4A49FB51C0FF1E700CE1710 /* HideNavigationBarBottomLineDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarBottomLineDemoViewController.swift; sourceTree = "<group>"; };
 		E4D99C2B1B91579100E492F9 /* CenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		E4D99C2C1B91579100E492F9 /* CenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenterViewController.xib; sourceTree = "<group>"; };
 		E4D99C2F1B9157A600E492F9 /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				E4F3B8741B798FDD006E1BF9 /* AppDelegate.swift */,
 				E4F3B8761B798FDD006E1BF9 /* MainViewController.swift */,
+				E4A49FB51C0FF1E700CE1710 /* HideNavigationBarBottomLineDemoViewController.swift */,
 				E4D99C2A1B91577400E492F9 /* SlideControllerSupports */,
 				E452D6B91BA74782002EF9E5 /* TableLayoutDemoViewController.swift */,
 				E4F4FE081BD02E99009511A7 /* MenuViewDemoController.swift */,
@@ -331,6 +334,7 @@
 				E452D6BA1BA74782002EF9E5 /* TableLayoutDemoViewController.swift in Sources */,
 				E44E945C1BBAF2EE00801A24 /* PageViewDemoController.swift in Sources */,
 				E4F3B8771B798FDD006E1BF9 /* MainViewController.swift in Sources */,
+				E4A49FB61C0FF1E700CE1710 /* HideNavigationBarBottomLineDemoViewController.swift in Sources */,
 				E4E603111C0BE3C3005740B6 /* ImagePickerDemoViewController.swift in Sources */,
 				E4F3B8751B798FDD006E1BF9 /* AppDelegate.swift in Sources */,
 				E4D99C311B9157A600E492F9 /* SideViewController.swift in Sources */,
