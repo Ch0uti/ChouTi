@@ -126,11 +126,38 @@ class MainViewController: UIViewController {
 			)
 		}
 		
+		viewRows.append(
+			TableViewRow(title: "Drop Down Menu Picker",
+				tableView: tableView,
+				cellSelectAction: { indexPath, cell in
+					self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+					self.navigationController?.pushViewController(DropDownMenuDemoViewController(), animated: true)
+				}
+			)
+		)
+		
 		sections.append(
 			TableViewSection(headerTitle: "Views", rows: viewRows, tableView: tableView)
 		)
 		
 		
+		
+		// MARK: - Animators
+		var animatorRows = [TableViewRowType]()
+		animatorRows.append(
+			TableViewRow(title: "Drop Presenting Animator",
+				subtitle: "Path style drop down presenting",
+				tableView: tableView,
+				cellSelectAction: { (indexPath, cell) -> Void in
+					self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+					self.navigationController?.pushViewController(DropPresentingDemoViewController(), animated: true)
+				}
+			)
+		)
+		
+		sections.append(
+			TableViewSection(headerTitle: "Animators", rows: animatorRows, tableView: tableView)
+		)
 		
 		// MARK: - UICollectionView Layouts Section
 		var layoutRows = [TableViewRowType]()
