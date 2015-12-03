@@ -22,24 +22,35 @@ class SideViewController: UIViewController {
 		
 		tableView.sections = [TableViewSection(headerTitle: "Test",
 			rows: [
-				TableViewRow(title: "Test",
-					cellConfiguration: { cell in
-						cell.detailTextLabel?.text = "Test"
+				TableViewRow(title: "Test Cell",
+					subtitle: ".Value1",
+					cellInitialization: { indexPath in
+						var cell = tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier())
+						if cell == nil {
+							cell = TableViewCell(style: .Value1, reuseIdentifier: TableViewCell.identifier())
+						}
+						return cell!
 					},
 					tableView: tableView
 				),
 				TableViewRow(title: "Test",
-					cellConfiguration: { cell in
-						cell.detailTextLabel?.text = "Test2"
+					subtitle: ".Value2",
+					cellInitialization: { indexPath in
+						var cell = tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier())
+						if cell == nil {
+							cell = TableViewCell(style: .Value2, reuseIdentifier: TableViewCell.identifier())
+						}
+						return cell!
 					},
 					tableView: tableView
 				),
 				TableViewRow(title: "Test",
-					cellConfiguration: { cell in
-						cell.detailTextLabel?.text = "Test3"
-					},
+					subtitle: "By default Cell Style is .Subtitle",
 					tableView: tableView
-				)
+				),
+				TableViewRow(title: "我是一个Cell的主标题",
+					subtitle: "我是副标题",
+					tableView: tableView)
 			],
 			tableView: tableView)
 		]

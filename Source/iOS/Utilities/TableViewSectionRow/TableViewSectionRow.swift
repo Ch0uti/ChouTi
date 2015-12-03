@@ -27,6 +27,7 @@ public struct TableViewRow: TableViewRowType {
 	public weak var tableView: UITableView?
 	public var title: String?
 	public var subtitle: String?
+	public var cellInitialization: (NSIndexPath -> UITableViewCell)?
 	public var cellConfiguration: (UITableViewCell -> Void)?
 	public var cellSelectAction: CellSelectionActionBlock?
 	public var cellDeselectAction: CellSelectionActionBlock?
@@ -35,10 +36,12 @@ public struct TableViewRow: TableViewRowType {
 		setupDefaultCellConfiguration()
 	}
 	
-	public init(title: String?, subtitle: String? = nil, cellConfiguration: (UITableViewCell -> Void)? = nil, tableView: UITableView, cellSelectAction: CellSelectionActionBlock? = nil, cellDeselectAction: CellSelectionActionBlock? = nil) {
+	public init(title: String?, subtitle: String? = nil, cellInitialization: (NSIndexPath -> UITableViewCell)? = nil, cellConfiguration: (UITableViewCell -> Void)? = nil, tableView: UITableView, cellSelectAction: CellSelectionActionBlock? = nil, cellDeselectAction: CellSelectionActionBlock? = nil) {
 		self.tableView = tableView
 		self.title = title
 		self.subtitle = subtitle
+		
+		self.cellInitialization = cellInitialization
 		
 		if let cellConfiguration = cellConfiguration {
 			self.cellConfiguration = cellConfiguration

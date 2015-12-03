@@ -50,14 +50,26 @@ extension UITableView : UITableViewDataSource {
 	}
 	
 	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell = tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier())
-		if cell == nil {
-			cell = TableViewCell(style: .Subtitle, reuseIdentifier: TableViewCell.identifier())
+		guard let row = rowForIndexPath(indexPath) else {
+			print("row not found")
+			return UITableViewCell()
 		}
 		
-		tableView.tableView(tableView, cellConfigurationForCell: cell!, atIndexPath: indexPath)
+		var cell: UITableViewCell! = nil
 		
-		return cell!
+		if let cellConfiguration = row.cellInitialization {
+			cell = cellConfiguration(indexPath)
+		} else {
+			cell = tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier())
+			
+			if cell == nil {
+				cell = TableViewCell(style: .Subtitle, reuseIdentifier: TableViewCell.identifier())
+			}
+		}
+		
+		tableView.tableView(tableView, cellConfigurationForCell: cell, atIndexPath: indexPath)
+		
+		return cell
 	}
 	
 	public func tableView(tableView: UITableView, cellConfigurationForCell cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
