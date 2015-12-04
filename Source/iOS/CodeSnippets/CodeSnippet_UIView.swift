@@ -23,14 +23,17 @@
 //	}
 //	
 //	private func commonInit() {
-//		// TODO: Setup view hierarchy
-//		
-//		<#view#>.translatesAutoresizingMaskIntoConstraints = false
-//		addSubview(<#view#>)
-//		
+//		setupViews()
 //		setupConstraints()
 //	}
-//	
+//
+//	private func setupViews() {
+//		// TODO: Setup view hierarchy
+//
+//		<#view#>.translatesAutoresizingMaskIntoConstraints = false
+//		addSubview(<#view#>)
+//	}
+//
 //	private func setupConstraints() {
 //		preservesSuperviewLayoutMargins = false
 //		layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
