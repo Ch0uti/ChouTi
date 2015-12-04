@@ -172,7 +172,7 @@ public extension UIView {
 		set { objc_setAssociatedObject(self, &zhDimmedOverlayViewKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
 	}
 	
-	public func addDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, dimmedViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.6), completion: ((Bool) -> ())? = nil) {
+	public func addDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, dimmedViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.6), completion: ((Bool) -> ())? = nil) {
 		if zhDimmedOverlayView != nil {
 			print("warning: found existing dimmed overlay view")
 		}
@@ -200,7 +200,7 @@ public extension UIView {
 		}
 	}
 	
-	public func removeDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, completion: ((Bool) -> ())? = nil) {
+	public func removeDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, completion: ((Bool) -> ())? = nil) {
 		guard let overlayView = zhDimmedOverlayView else {
 			print("error: dimmed overlay view is not existed")
 			completion?(false)
@@ -233,7 +233,7 @@ public extension UIView {
 		set { objc_setAssociatedObject(self, &zhBlurredOverlayViewKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
 	}
 	
-	public func addBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
+	public func addBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
 		if zhBlurredOverlayView != nil {
 			print("warning: found existing blurred overlay view")
 		}
@@ -263,7 +263,7 @@ public extension UIView {
 		return overlayView
 	}
 	
-	public func removeBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 0.5, velocity: CGFloat = 0.5, completion: ((Bool) -> ())? = nil) {
+	public func removeBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, completion: ((Bool) -> ())? = nil) {
 		guard let overlayView = zhBlurredOverlayView else {
 			print("error: blurred overlay view is not existed")
 			completion?(false)

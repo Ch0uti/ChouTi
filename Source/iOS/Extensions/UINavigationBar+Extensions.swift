@@ -32,3 +32,51 @@ public extension UINavigationBar {
 		return nil
 	}
 }
+
+
+// MARK: - Customization of navigation bar title
+public extension UINavigationBar {
+	var titleTextColor: UIColor? {
+		set {
+			if let titleTextColor = newValue {
+				if titleTextAttributes != nil {
+					titleTextAttributes?[NSForegroundColorAttributeName] = titleTextColor
+				} else {
+					titleTextAttributes = [NSForegroundColorAttributeName: titleTextColor]
+				}
+			} else {
+				titleTextAttributes?.removeValueForKey(NSForegroundColorAttributeName)
+			}
+		}
+
+		get {
+			if let titleTextAttributes = titleTextAttributes {
+				return titleTextAttributes[NSForegroundColorAttributeName] as? UIColor
+			} else {
+				return nil
+			}
+		}
+	}
+	
+	var titleTextFont: UIFont? {
+		set {
+			if let titleTextFont = newValue {
+				if titleTextAttributes != nil {
+					titleTextAttributes?[NSFontAttributeName] = titleTextFont
+				} else {
+					titleTextAttributes = [NSFontAttributeName: titleTextFont]
+				}
+			} else {
+				titleTextAttributes?.removeValueForKey(NSFontAttributeName)
+			}
+		}
+		
+		get {
+			if let titleTextAttributes = titleTextAttributes {
+				return titleTextAttributes[NSFontAttributeName] as? UIFont
+			} else {
+				return nil
+			}
+		}
+	}
+}
