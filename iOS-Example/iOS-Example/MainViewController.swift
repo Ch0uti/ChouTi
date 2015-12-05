@@ -17,9 +17,12 @@ class MainViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		setupTableView()
 		
 		title = "抽屉(ChouTi) Demo"
+		navigationController?.navigationBar.titleTextColor = UIColor(red:252/255.0, green:43/255.0, blue:27/255.0, alpha:255/255.0)
+		navigationController?.navigationBar.titleTextFont = UIFont.boldSystemFontOfSize(18)
 	}
 	
 	func setupTableView() {

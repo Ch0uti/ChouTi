@@ -15,16 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		// Override point for customization after application launch.
 		
-		let earlierDate = NSDate()
-		let afterDate = earlierDate.dateByAddingDays(10)
-		
-		let isEarlier = earlierDate.isEarlierThanDate(afterDate)
-		assert(isEarlier)
-		
-		let isLater = afterDate.isLaterThanDate(earlierDate)
-		assert(isLater)
+		window?.tintColor = UIColor(red:252/255.0, green:43/255.0, blue:27/255.0, alpha:255/255.0)
 		
 		return true
 	}

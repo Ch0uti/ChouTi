@@ -36,104 +36,351 @@ public class DropPresentingAnimator: Animator {
 		case Blurred(UIBlurEffectStyle, UIColor)
 	}
 	
-	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.5))
+	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.85))
 	
 	// Tap to dismiss
 	public var shouldDismissOnTappingOutsideView: Bool = true
+	
+	// Drag to dismiss (interactive)
+	public var allowDragToDismiss: Bool = true
+	
+	// MARK: - Private
 	private weak var dismissTapGesture: UITapGestureRecognizer?
+	private weak var longPressGesture: UILongPressGestureRecognizer?
 	private weak var currentPresentedViewController: UIViewController?
 	
-    public override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+	private var panBeginLocation: CGPoint?
+	private var interactiveAnimationDraggingRange: CGFloat?
+	private var interactiveAnimationTransformAngel: CGFloat?
+}
+
+
+
+// MARK: - UIViewControllerAnimatedTransitioning
+extension DropPresentingAnimator {
+	public override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 		super.animateTransition(transitionContext)
 		
-        if presenting {
-			guard
-				let presentingView = self.presentingViewController?.view,
-				let presentedView = self.presentedViewController?.view,
-				let containerView = self.containerView else {
-					NSLog("ERROR: Cannot get view from UIViewControllerContextTransitioning")
-					return
-			}
-			
-            presentingView.tintAdjustmentMode = .Dimmed
-			switch overlayViewStyle {
-			case .Blurred(let style, let color):
-				presentingView.addBlurredOverlayView(animated: true, duration: animationDuration, blurEffectStyle: style, blurredViewBackgroundColor: color)
-			case .Dimmed(let color):
-				presentingView.addDimmedOverlayView(animated: true, duration: animationDuration, dimmedViewBackgroundColor: color)
-			}
-			
-            // Begin Values
-			presentedView.bounds = CGRect(origin: CGPointZero, size: presentingViewSize)
-			presentedView.center = CGPoint(x: containerView.bounds.width / 2.0, y: 0 - presentingViewSize.height / 2.0)
-			presentedView.transform = CGAffineTransformMakeRotation((CGFloat.random(-40, 40) * CGFloat(M_PI)) / 180.0)
-			
-            containerView.addSubview(presentedView)
-			
-            UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
-				presentedView.center = containerView.center
-				presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
-                }, completion: { finished -> Void in
-					if let presentedViewController = self.presentedViewController where self.shouldDismissOnTappingOutsideView {
-						if let window = presentedViewController.view.window {
-							self.currentPresentedViewController = presentedViewController
-							let tapGesture = UITapGestureRecognizer(target: self, action: "outsideViewTapped:")
+		if presenting {
+			presentingAnimation(transitionContext)
+		} else {
+			dismissingAnimation(transitionContext)
+		}
+	}
+	
+	private func presentingAnimation(transitionContext: UIViewControllerContextTransitioning?) {
+		guard let transitionContext = transitionContext else {
+			NSLog("error: transitionContext is nil")
+			return
+		}
+		
+		guard
+			let presentingView = self.presentingViewController?.view,
+			let presentedView = self.presentedViewController?.view,
+			let containerView = self.containerView else {
+				NSLog("error: Cannot get view from UIViewControllerContextTransitioning")
+				return
+		}
+		
+		presentingView.tintAdjustmentMode = .Dimmed
+		switch overlayViewStyle {
+		case .Blurred(let style, let color):
+			presentingView.addBlurredOverlayView(animated: true, duration: animationDuration / 2.0, blurEffectStyle: style, blurredViewBackgroundColor: color)
+		case .Dimmed(let color):
+			presentingView.addDimmedOverlayView(animated: true, duration: animationDuration / 2.0, dimmedViewBackgroundColor: color)
+		}
+		
+		// Begin Values
+		presentedView.bounds = CGRect(origin: CGPointZero, size: presentingViewSize)
+		presentedView.center = CGPoint(x: containerView.bounds.width / 2.0, y: 0 - presentingViewSize.height / 2.0)
+		presentedView.transform = CGAffineTransformMakeRotation((CGFloat.random(-40, 40) * CGFloat(M_PI)) / 180.0)
+		
+		containerView.addSubview(presentedView)
+		
+		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+			presentedView.center = containerView.center
+			presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
+			}, completion: { [unowned self] finished -> Void in
+				self.currentPresentedViewController = self.presentedViewController
+				
+				// Adding gestures to presenting view controller
+				if let presentingViewController = self.presentingViewController {
+					if let window = presentingViewController.view.window {
+						if self.shouldDismissOnTappingOutsideView {
+							let tapGesture = UITapGestureRecognizer(target: self, action: "windowTapped:")
 							tapGesture.delegate = self
 							window.addGestureRecognizer(tapGesture)
 							self.dismissTapGesture = tapGesture
 						}
+						
+						if self.allowDragToDismiss {
+							let longPressGesture = UILongPressGestureRecognizer(target: self, action: "windowPanned:")
+							longPressGesture.minimumPressDuration = 0.01
+							longPressGesture.delegate = self
+							window.addGestureRecognizer(longPressGesture)
+							self.longPressGesture = longPressGesture
+						}
 					}
-					
-                    transitionContext.completeTransition(true)
-            })
-        } else {
-			guard
-				let toView = self.toViewController?.view,
-				let fromView = self.fromViewController?.view,
-				let containerView = self.containerView else {
-					NSLog("ERROR: Cannot get view from UIViewControllerContextTransitioning")
-					return
-			}
+				}
+				
+				transitionContext.completeTransition(finished)
+		})
+	}
+	
+	private func dismissingAnimation(transitionContext: UIViewControllerContextTransitioning?) {
+		guard let transitionContext = transitionContext else {
+			NSLog("error: transitionContext is nil")
+			return
+		}
+		
+		guard
+			let toView = self.toViewController?.view,
+			let fromView = self.fromViewController?.view,
+			let containerView = self.containerView else {
+				NSLog("ERROR: Cannot get view from UIViewControllerContextTransitioning")
+				return
+		}
+		
+		toView.tintAdjustmentMode = .Normal
+		switch overlayViewStyle {
+		case .Blurred:
+			toView.removeBlurredOverlayView(animated: true, duration: animationDuration * 0.8)
+		case .Dimmed:
+			toView.removeDimmedOverlayView(animated: true, duration: animationDuration * 0.8)
+		}
+		
+		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: {
+			fromView.center = CGPoint(x: containerView.bounds.width / 2.0, y: containerView.bounds.height + self.presentingViewSize.height)
+			fromView.transform = CGAffineTransformMakeRotation((self.interactiveAnimationTransformAngel ?? CGFloat.random(-40, 40) * CGFloat(M_PI)) / 180.0)
+			}, completion: { finished -> Void in
+				transitionContext.completeTransition(finished)
+		})
+	}
+	
+	public override func animationEnded(transitionCompleted: Bool) {
+		panBeginLocation = nil
+		interactiveAnimationDraggingRange = nil
+		interactiveAnimationTransformAngel = nil
+		
+		if transitionCompleted == false {
+			return
+		}
+		
+		if presenting {
+			// Nothing to clear for presenting
+		} else {
+			// Clean up for dismissing
 			
-            toView.tintAdjustmentMode = .Normal
-			switch overlayViewStyle {
-			case .Blurred:
-				toView.removeBlurredOverlayView(animated: true, duration: animationDuration)
-			case .Dimmed:
-				toView.removeDimmedOverlayView(animated: true, duration: animationDuration)
+			// Clean up gestures
+			if let tapGesture = self.dismissTapGesture {
+				presentingViewController?.view.window?.removeGestureRecognizer(tapGesture)
 			}
+			dismissTapGesture = nil
 			
-            UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-                fromView.center = CGPoint(x: containerView.bounds.width / 2.0, y: containerView.bounds.height + self.presentingViewSize.height)
-                fromView.transform = CGAffineTransformMakeRotation((CGFloat.random(-40, 40) * CGFloat(M_PI)) / 180.0)
-                }, completion: { finished -> Void in
-                    transitionContext.completeTransition(true)
-            })
-        }
-    }
+			if let longPressGesture = self.longPressGesture {
+				presentingViewController?.view.window?.removeGestureRecognizer(longPressGesture)
+			}
+			longPressGesture = nil
+			
+			currentPresentedViewController = nil
+		}
+		
+		// Call super.animationEnded at end to avoid clear transitionContext
+		super.animationEnded(transitionCompleted)
+	}
 }
 
+
+
+// MARK: - UIGestureRecognizerDelegate
 extension DropPresentingAnimator : UIGestureRecognizerDelegate {
 	public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
 		guard let currentPresentedViewController = self.currentPresentedViewController else {
 			return true
 		}
 		
+		let locationInPresentingView = gestureRecognizer.locationInView(currentPresentedViewController.view)
+		
 		// Disable tap action for presented view area
-		let locationOnPresentingView = gestureRecognizer.locationInView(currentPresentedViewController.view)
-		if currentPresentedViewController.view.bounds.contains(locationOnPresentingView) {
-			return false
-		} else {
-			return true
+		if let tapGesture = gestureRecognizer as? UITapGestureRecognizer where tapGesture == self.dismissTapGesture {
+			if currentPresentedViewController.view.bounds.contains(locationInPresentingView) {
+				return false
+			} else {
+				return true
+			}
+		}
+		
+		// Only enable pan gesture
+		if let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer where longPressGesture == self.longPressGesture {
+			if currentPresentedViewController.view.bounds.contains(locationInPresentingView) {
+				return true
+			} else {
+				return false
+			}
+		}
+		
+		return true
+	}
+}
+
+
+
+// MARK: - Actions
+extension DropPresentingAnimator {
+	func windowTapped(sender: AnyObject) {
+		interactive = false
+		currentPresentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func windowPanned(sender: AnyObject) {
+		guard let currentPresentedViewController = self.currentPresentedViewController else {
+			return
+		}
+		
+		if let longPressGesture = sender as? UILongPressGestureRecognizer where longPressGesture == self.longPressGesture {
+			let locationInWindow = longPressGesture.locationInView(currentPresentedViewController.view.window)
+			
+			switch longPressGesture.state {
+			case .Began:
+				panBeginLocation = locationInWindow
+				interactive = true
+				currentPresentedViewController.dismissViewControllerAnimated(true, completion: nil)
+				
+			case .Changed:
+				guard let panBeginLocation = panBeginLocation else {
+					NSLog("warning: pan begin location is nil")
+					return
+				}
+				
+				guard let interactiveAnimationDraggingRange = interactiveAnimationDraggingRange else {
+					NSLog("error: interactiveAnimationDraggingRange is nil")
+					return
+				}
+				
+				let yOffset = locationInWindow.y - panBeginLocation.y
+				let progress = yOffset / interactiveAnimationDraggingRange
+				
+				updateInteractiveTransition(locationInWindow, percentComplete: progress)
+
+			case .Ended:
+				guard let panBeginLocation = panBeginLocation else {
+					NSLog("warning: pan begin location is nil")
+					return
+				}
+				
+				guard let interactiveAnimationDraggingRange = interactiveAnimationDraggingRange else {
+					NSLog("error: interactiveAnimationDraggingRange is nil")
+					return
+				}
+				
+				let yOffset = locationInWindow.y - panBeginLocation.y
+				let progress = yOffset / interactiveAnimationDraggingRange
+				
+				if progress > 0.5 {
+					finishInteractiveTransition()
+				} else {
+					cancelInteractiveTransition()
+				}
+				
+			default:
+				cancelInteractiveTransition()
+			}
 		}
 	}
 }
 
+
+
+// MARK: - UIViewControllerInteractiveTransitioning
 extension DropPresentingAnimator {
-	func outsideViewTapped(sender: AnyObject) {
-		if let dismissTapGesture = self.dismissTapGesture {
-			currentPresentedViewController?.view.window?.removeGestureRecognizer(dismissTapGesture)
+	public override func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
+		super.startInteractiveTransition(transitionContext)
+		guard let currentPresentedViewController = self.currentPresentedViewController else {
+			return
 		}
-		currentPresentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+		
+		guard let window = currentPresentedViewController.view.window else {
+			NSLog("warning: current presented view controller has no window")
+			return
+		}
+		
+		interactiveAnimationDraggingRange = window.bounds.height - currentPresentedViewController.view.center.y
+		interactiveAnimationTransformAngel = CGFloat.random(-40, 40)
+	}
+	
+	// MARK: - Interactive Animations
+	
+	private func updateInteractiveTransition(draggingLocation: CGPoint, percentComplete: CGFloat) {
+		if transitionContext == nil {
+			NSLog("Warning: transitionContext is nil")
+		}
+		
+		self.transitionContext?.updateInteractiveTransition(percentComplete)
+		guard let panBeginLocation = panBeginLocation else {
+			NSLog("Warning: pan begin location is nil")
+			return
+		}
+		
+		guard
+			let fromView = self.fromViewController?.view,
+			let containerView = self.containerView else {
+				NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
+				return
+		}
+		
+		guard let interactiveAnimationTransformAngel = interactiveAnimationTransformAngel else {
+			NSLog("Error: interactiveAnimationTransformAngel is nil")
+			return
+		}
+		
+		let yOffset = draggingLocation.y - panBeginLocation.y
+		let beginPoint = containerView.center
+		
+		fromView.center = CGPoint(x: beginPoint.x, y: beginPoint.y + yOffset)
+		fromView.transform = CGAffineTransformMakeRotation((interactiveAnimationTransformAngel * CGFloat(M_PI)) / 180.0 *  percentComplete)
+	}
+	
+	private func cancelInteractiveTransition() {
+		if transitionContext == nil {
+			NSLog("Warning: transitionContext is nil")
+		}
+		
+		if currentPresentedViewController == nil {
+			NSLog("Warning: currentPresentedViewController is nil")
+		}
+		
+		transitionContext?.cancelInteractiveTransition()
+		
+		if presenting {
+			// If cancel presenting, which will dismiss
+			currentPresentedViewController?.beginAppearanceTransition(false, animated: true)
+		} else {
+			// If cancel dismissing, which will present
+			currentPresentedViewController?.beginAppearanceTransition(true, animated: true)
+		}
+
+		guard
+			let presentedView = self.presentedViewController?.view,
+			let containerView = self.containerView else {
+				NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
+				return
+		}
+		
+		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+			presentedView.center = containerView.center
+			presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
+			}, completion: { [unowned self] finished in
+				self.currentPresentedViewController?.endAppearanceTransition()
+				self.transitionContext?.completeTransition(false)
+		})
+	}
+	
+	private func finishInteractiveTransition() {
+		if transitionContext == nil {
+			NSLog("Warning: transitionContext is nil")
+		}
+		
+		self.transitionContext?.finishInteractiveTransition()
+		dismissingAnimation(transitionContext)
 	}
 }

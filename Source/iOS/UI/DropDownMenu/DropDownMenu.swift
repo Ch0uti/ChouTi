@@ -11,6 +11,8 @@ import UIKit
 public class DropDownMenu: UIControl {
 	public let textLabel = UILabel()
 	
+	private let animator = DroDownMenuAnimator()
+	
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 		commonInit()
@@ -22,15 +24,16 @@ public class DropDownMenu: UIControl {
 	}
 
 	private func commonInit() {
+		setupViews()
+		setupConstraints()
+		setupActions()
+	}
+	
+	private func setupViews() {
 		textLabel.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(textLabel)
-
+		
 		textLabel.text = "Menu Text"
-		
-		let tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
-		self.addGestureRecognizer(tapGesture)
-		
-		setupConstraints()
 	}
 
 	private func setupConstraints() {
@@ -41,30 +44,42 @@ public class DropDownMenu: UIControl {
 			"textLabel" : textLabel
 		]
 
-		let metrics: [String : CGFloat] = [
-			"vertical_spacing" : 4.0
-		]
+		let metrics: [String : CGFloat] = [:]
 
 		var constraints = [NSLayoutConstraint]()
 
 		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[textLabel]-|", options: [], metrics: metrics, views: views)
 		
-		let topConstraint = NSLayoutConstraint(item: textLabel, attribute: .Top, relatedBy: .GreaterThanOrEqual, toItem: self, attribute: .TopMargin, multiplier: 1.0, constant: 0.0)
-		topConstraint.priority = 500
-		let bottomConstraint = NSLayoutConstraint(item: textLabel, attribute: .Bottom, relatedBy: .LessThanOrEqual, toItem: self, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0)
-		bottomConstraint.priority = 500
-		
-		constraints += [topConstraint, bottomConstraint]
-		
 		constraints += [NSLayoutConstraint(item: textLabel, attribute: .CenterY, relatedBy: .GreaterThanOrEqual, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0)]
 		
 		NSLayoutConstraint.activateConstraints(constraints)
+	}
+	
+	private func setupActions() {
+		self.addTarget(self, action: "tapped:forEvent:", forControlEvents: .TouchUpInside)
+	}
+	
+	func tapped(sender: AnyObject, forEvent event: UIEvent) {
+//		if !isExpandingOngoing {
+//			expanded = !expanded
+//		}
+		
+		let dummyViewController = UIViewController()
+		dummyViewController.view.backgroundColor = UIColor(red:255/255.0, green:186/255.0, blue:1/255.0, alpha:255/255.0)
+		dummyViewController.view.layer.cornerRadius = 4.0
+		
+		dummyViewController.view.userInteractionEnabled = true
+		
+		dummyViewController.modalPresentationStyle = .Custom
+		dummyViewController.transitioningDelegate = animator
+		
+		presentingViewController?.presentViewController(dummyViewController, animated: true, completion: nil)
 	}
 }
 
 extension DropDownMenu {
 	func tapped(sender: AnyObject) {
-//		let 
+		
 //		presentingViewController.
 	}
 }

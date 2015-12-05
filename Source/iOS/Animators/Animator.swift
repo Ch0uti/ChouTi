@@ -6,23 +6,32 @@
 //
 //
 
+// Sample Usage:
+//<#presentedViewController#>.modalPresentationStyle = .Custom
+//<#presentedViewController#>.transitioningDelegate = animator
+//
+//presentViewController(<#presentedViewController#>, animated: true, completion: nil)
+
 import UIKit
 
-public class Animator: NSObject {
+public class Animator : NSObject {
 	/// Animation Durations, by default, it's 0.25s
 	public var animationDuration: NSTimeInterval = 0.25
 	
 	/// Boolean flag reflects whether it's a presenting animation or dismissing animation
 	public var presenting: Bool = true
 	
+	/// Boolean flag reflects whether the animation is interactive
+	public var interactive: Bool = false
+	
 	/// Current transitionContext, private usage.
-	private weak var transitionContext: UIViewControllerContextTransitioning?
+	weak var transitionContext: UIViewControllerContextTransitioning?
 }
 
 
 
 // MARK: - UIViewControllerAnimatedTransitioning
-extension Animator: UIViewControllerAnimatedTransitioning {
+extension Animator : UIViewControllerAnimatedTransitioning {
 	/**
 	Get duration for the transition animation
 	Discussion: If you want to change the duration, just update the `animationDuration` property
@@ -45,6 +54,24 @@ extension Animator: UIViewControllerAnimatedTransitioning {
 	*/
 	public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 		// Update current transitionContext
+		self.transitionContext = transitionContext
+	}
+	
+	public func animationEnded(transitionCompleted: Bool) {
+		if transitionCompleted == false {
+			return
+		}
+		
+		interactive = false
+		transitionContext = nil
+	}
+}
+
+
+
+// MARK: - UIViewControllerInteractiveTransitioning
+extension Animator : UIViewControllerInteractiveTransitioning{
+	public func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
 		self.transitionContext = transitionContext
 	}
 }
@@ -90,6 +117,9 @@ extension Animator {
 	}
 }
 
+
+
+// MARK: - UIViewControllerTransitioningDelegate
 extension Animator : UIViewControllerTransitioningDelegate {
 	public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 		self.presenting = true
@@ -99,5 +129,15 @@ extension Animator : UIViewControllerTransitioningDelegate {
 	public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 		self.presenting = false
 		return self
+	}
+	
+	public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+		self.presenting = true
+		return interactive ? self : nil
+	}
+	
+	public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+		self.presenting = false
+		return interactive ? self : nil
 	}
 }

@@ -21,7 +21,7 @@ class DropPresentingDemoViewController: UIViewController {
 		animator.animationDuration = 0.75
 		animator.shouldDismissOnTappingOutsideView = true
 		animator.presentingViewSize = CGSize(width: ceil(screenWidth * 0.7), height: 160)
-		animator.overlayViewStyle = .Dimmed(UIColor(white: 0.2, alpha: 1.0))
+		animator.overlayViewStyle = .Dimmed(UIColor(white: 0.0, alpha: 0.85))
 		
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +35,10 @@ class DropPresentingDemoViewController: UIViewController {
 		button.setTitle("Present!", forState: .Normal)
 		button.titleLabel?.font = UIFont.systemFontOfSize(22)
 		
-		button.constraintToSize(CGSize(width: 160, height: 60))
+		button.clipsToBounds = true
+		button.layer.cornerRadius = 25
+		
+		button.constraintToSize(CGSize(width: 160, height: 50))
 		button.centerInSuperview()
 		
 		button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
@@ -44,7 +47,7 @@ class DropPresentingDemoViewController: UIViewController {
 	func buttonTapped(sender: AnyObject) {
 		let dummyViewController = UIViewController()
 		dummyViewController.view.backgroundColor = UIColor(red:255/255.0, green:186/255.0, blue:1/255.0, alpha:255/255.0)
-		dummyViewController.view.layer.cornerRadius = 4.0
+		dummyViewController.view.layer.cornerRadius = 8.0
 		
 		dummyViewController.view.userInteractionEnabled = true
 		
