@@ -276,6 +276,12 @@ extension DropPresentingAnimator {
 				let yOffset = locationInWindow.y - panBeginLocation.y
 				let progress = yOffset / interactiveAnimationDraggingRange
 				
+				// If dragging speed is large enough, finish the dismiss transition
+				if longPressGesture.velocityInAttachedView().y > 1000 {
+					finishInteractiveTransition()
+					return
+				}
+				
 				if progress > 0.5 {
 					finishInteractiveTransition()
 				} else {
@@ -309,7 +315,6 @@ extension DropPresentingAnimator {
 	}
 	
 	// MARK: - Interactive Animations
-	
 	private func updateInteractiveTransition(draggingLocation: CGPoint, percentComplete: CGFloat) {
 		if transitionContext == nil {
 			NSLog("Warning: transitionContext is nil")

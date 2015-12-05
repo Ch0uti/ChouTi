@@ -286,6 +286,50 @@ public extension UIView {
 	}
 }
 
+
+
+// MARK: - addGestureRecognizer Swizzling
+public extension UIView {
+	// Swizzling addGestureRecognizer(_: UIGestureRecognizer)
+	public override class func initialize() {
+		struct Static {
+			static var addGestureRecognizerToken: dispatch_once_t = 0
+		}
+		
+		// make sure this isn't a subclass
+		if self !== UIView.self {
+			return
+		}
+		
+		dispatch_once(&Static.addGestureRecognizerToken) {
+			let originalSelector = Selector("addGestureRecognizer:")
+			let swizzledSelector = Selector("zhh_addGestureRecognizer:")
+			
+			let originalMethod = class_getInstanceMethod(self, originalSelector)
+			let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+			
+			let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+			
+			if didAddMethod {
+				class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+			} else {
+				method_exchangeImplementations(originalMethod, swizzledMethod);
+			}
+		}
+	}
+	
+	func zhh_addGestureRecognizer(gestureRecognizer: UIGestureRecognizer) {
+		self.zhh_addGestureRecognizer(gestureRecognizer)
+		gestureRecognizer.attachedView = self
+		
+		if let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer {
+			longPressGesture.setupForDetectingVelocity()
+		}
+	}
+}
+
+
+
 // MARK: - Utility
 public extension UIView {
 	/**
