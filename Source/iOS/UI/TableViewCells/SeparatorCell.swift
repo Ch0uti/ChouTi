@@ -1,6 +1,6 @@
 //
 //  SeparatorCell.swift
-//  FidoUsage
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2015-11-04.
 //  Copyright © 2015 Honghao Zhang. All rights reserved.

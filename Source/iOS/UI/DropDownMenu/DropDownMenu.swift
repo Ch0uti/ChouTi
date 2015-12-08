@@ -11,7 +11,7 @@ import UIKit
 public class DropDownMenu: UIControl {
 	public let textLabel = UILabel()
 	
-	private let animator = DroDownMenuAnimator()
+	private let animator = DropDownMenuAnimator()
 	
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -24,6 +24,8 @@ public class DropDownMenu: UIControl {
 	}
 
 	private func commonInit() {
+		animator.dropDownMenu = self
+		
 		setupViews()
 		setupConstraints()
 		setupActions()

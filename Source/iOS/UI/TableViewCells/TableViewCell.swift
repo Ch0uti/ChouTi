@@ -3,7 +3,7 @@
 //  ChouTi
 //
 //  Created by Honghao Zhang on 2015-11-19.
-//  Copyright © 2015 DogSync. All rights reserved.
+//  Copyright © 2015 Honghao Zhang. All rights reserved.
 //
 
 import UIKit

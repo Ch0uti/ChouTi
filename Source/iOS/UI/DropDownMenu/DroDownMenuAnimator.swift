@@ -1,5 +1,5 @@
 //
-//  DroDownMenuAnimator.swift
+//  DropDownMenuAnimator.swift
 //  Pods
 //
 //  Created by Honghao Zhang on 2015-12-03.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class DroDownMenuAnimator: Animator {
+public class DropDownMenuAnimator: Animator {
 	
 	public override init() {
 		super.init()
@@ -29,7 +29,7 @@ public class DroDownMenuAnimator: Animator {
 	private weak var currentPresentedViewController: UIViewController?
 	
 	// Drop Down Menu Related
-	public var dropDownMenu: DropDownMenu?
+	public weak var dropDownMenu: DropDownMenu?
 	
 	public override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 		super.animateTransition(transitionContext)
@@ -43,12 +43,20 @@ public class DroDownMenuAnimator: Animator {
 					return
 			}
 			
+			guard let dropDownMenu = dropDownMenu else {
+				NSLog("dropDownMenu is nil")
+				return
+			}
+			
 			presentingView.tintAdjustmentMode = .Dimmed
+			if presentingView.window!.containSubview(dropDownMenu) {
+				//
+			}
 			switch overlayViewStyle {
 			case .Blurred(let style, let color):
-				presentingView.addBlurredOverlayView(animated: true, duration: animationDuration, blurEffectStyle: style, blurredViewBackgroundColor: color)
+				presentingView.window?.insertBlurredOverlayViewBelowSubview(dropDownMenu, animated: true, duration: animationDuration / 2.0, blurEffectStyle: style, blurredViewBackgroundColor: color)
 			case .Dimmed(let color):
-				presentingView.addDimmedOverlayView(animated: true, duration: animationDuration, dimmedViewBackgroundColor: color)
+				presentingView.window?.insertDimmedOverlayViewBelowSubview(dropDownMenu, animated: true, duration: animationDuration / 2.0, dimmedViewBackgroundColor: color)
 			}
 			
 			presentedView.alpha = 0.0
@@ -57,7 +65,7 @@ public class DroDownMenuAnimator: Animator {
 			// Begin Values
 			containerView.addSubview(presentedView)
 			
-			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
+			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
 				presentedView.center = containerView.center
 				presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
 				}, completion: { finished -> Void in
@@ -98,7 +106,7 @@ public class DroDownMenuAnimator: Animator {
 	}
 }
 
-extension DroDownMenuAnimator : UIGestureRecognizerDelegate {
+extension DropDownMenuAnimator : UIGestureRecognizerDelegate {
 	public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
 		guard let currentPresentedViewController = self.currentPresentedViewController else {
 			return true
@@ -114,7 +122,7 @@ extension DroDownMenuAnimator : UIGestureRecognizerDelegate {
 	}
 }
 
-extension DroDownMenuAnimator {
+extension DropDownMenuAnimator {
 	func outsideViewTapped(sender: AnyObject) {
 		if let dismissTapGesture = self.dismissTapGesture {
 			currentPresentedViewController?.view.window?.removeGestureRecognizer(dismissTapGesture)

@@ -172,7 +172,25 @@ public extension UIView {
 		set { objc_setAssociatedObject(self, &zhDimmedOverlayViewKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
 	}
 	
-	public func addDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, dimmedViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.6), completion: ((Bool) -> ())? = nil) {
+	public func addDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, dimmedViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.6), completion: ((Bool) -> ())? = nil) -> UIView {
+		return _setupDimmedOverlayView({ [unowned self] overlayView in
+			self.addSubview(overlayView)
+			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, dimmedViewBackgroundColor: dimmedViewBackgroundColor, completion: completion)
+	}
+	
+	public func insertDimmedOverlayViewBelowSubview(belowSubview: UIView, animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, dimmedViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), completion: ((Bool) -> ())? = nil) -> UIView {
+		return _setupDimmedOverlayView({ [unowned self] overlayView in
+			self.insertSubview(overlayView, belowSubview: belowSubview)
+			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, dimmedViewBackgroundColor: dimmedViewBackgroundColor, completion: completion)
+	}
+	
+	public func insertDimmedOverlayViewAboveSubview(aboveSubview: UIView, animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, dimmedViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), completion: ((Bool) -> ())? = nil) -> UIView {
+		return _setupDimmedOverlayView({ [unowned self] overlayView in
+			self.insertSubview(overlayView, aboveSubview: aboveSubview)
+			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, dimmedViewBackgroundColor: dimmedViewBackgroundColor, completion: completion)
+	}
+	
+	private func _setupDimmedOverlayView(viewConfiguration: (UIView -> Void), animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, dimmedViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), completion: ((Bool) -> ())? = nil) -> UIView {
 		if zhDimmedOverlayView != nil {
 			print("warning: found existing dimmed overlay view")
 		}
@@ -180,17 +198,17 @@ public extension UIView {
 		let overlayView = UIView()
 		overlayView.translatesAutoresizingMaskIntoConstraints = false
 		overlayView.backgroundColor = dimmedViewBackgroundColor
-
+		
 		// Let self keep the reference to the view, used for retriving the overlay view
 		zhDimmedOverlayView = overlayView
 		
 		if !animated {
-			self.addSubview(overlayView)
+			viewConfiguration(overlayView)
 			overlayView.fullSizeInSuperview()
 			completion?(true)
 		} else {
 			overlayView.alpha = 0.0
-			self.addSubview(overlayView)
+			viewConfiguration(overlayView)
 			overlayView.fullSizeInSuperview()
 			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState] , animations: {
 				overlayView.alpha = 1.0
@@ -198,6 +216,8 @@ public extension UIView {
 					completion?(finished)
 			}
 		}
+		
+		return overlayView
 	}
 	
 	public func removeDimmedOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, completion: ((Bool) -> ())? = nil) {
@@ -234,6 +254,24 @@ public extension UIView {
 	}
 	
 	public func addBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
+		return _setupBlurredOverlayView({ [unowned self] overlayView in
+			self.addSubview(overlayView)
+			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle, completion: completion)
+	}
+	
+	public func insertBlurredOverlayViewBelowSubview(belowSubview: UIView, animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
+		return _setupBlurredOverlayView({ [unowned self] overlayView in
+			self.insertSubview(overlayView, belowSubview: belowSubview)
+			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle, completion: completion)
+	}
+	
+	public func insertBlurredOverlayViewAboveSubview(aboveSubview: UIView, animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
+		return _setupBlurredOverlayView({ [unowned self] overlayView in
+			self.insertSubview(overlayView, aboveSubview: aboveSubview)
+			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle, completion: completion)
+	}
+	
+	private func _setupBlurredOverlayView(viewConfiguration: (UIView -> Void), animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
 		if zhBlurredOverlayView != nil {
 			print("warning: found existing blurred overlay view")
 		}
@@ -246,12 +284,12 @@ public extension UIView {
 		zhBlurredOverlayView = overlayView
 		
 		if !animated {
-			self.addSubview(overlayView)
+			viewConfiguration(overlayView)
 			overlayView.fullSizeInSuperview()
 			completion?(true)
 		} else {
 			overlayView.alpha = 0.0
-			self.addSubview(overlayView)
+			viewConfiguration(overlayView)
 			overlayView.fullSizeInSuperview()
 			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState] , animations: {
 				overlayView.alpha = 1.0
