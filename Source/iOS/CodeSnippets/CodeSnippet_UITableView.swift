@@ -1,5 +1,5 @@
 //
-//  CodeSnippet_TableView.swift
+//  CodeSnippet_UITableView.swift
 //  Pods
 //
 //  Created by Honghao Zhang on 2015-11-18.
