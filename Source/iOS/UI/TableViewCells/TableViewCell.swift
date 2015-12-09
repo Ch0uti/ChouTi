@@ -17,6 +17,22 @@ public class TableViewCell: UITableViewCell {
 	
 	private var heightConstraint: NSLayoutConstraint?
 	
+	public var selectedAccessoryView: UIView? {
+		didSet {
+			if selectedAccessoryType != .None {
+				selectedAccessoryType = .None
+			}
+		}
+	}
+	
+	public var selectedAccessoryType: UITableViewCellAccessoryType = .None {
+		didSet {
+			if selectedAccessoryView != nil {
+				selectedAccessoryView = nil
+			}
+		}
+	}
+	
 	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		commonInit()
@@ -31,6 +47,18 @@ public class TableViewCell: UITableViewCell {
 		heightConstraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: height)
 		heightConstraint!.priority = 999
 		heightConstraint!.active = true
+	}
+	
+	public override func setSelected(selected: Bool, animated: Bool) {
+		super.setSelected(selected, animated: animated)
+		
+		if selectedAccessoryType != .None {
+			accessoryType = selected ? selectedAccessoryType : .None
+		}
+		
+		if selectedAccessoryView != nil {
+			accessoryView = selected ? selectedAccessoryView : nil
+		}
 	}
 }
 
