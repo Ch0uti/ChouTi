@@ -26,7 +26,7 @@ class DropDownMenuDemoViewController: UIViewController {
 		if let navigationBar = navigationController?.navigationBar {
 			menu.translatesAutoresizingMaskIntoConstraints = false
 			menu.backgroundColor = UIColor(white: 0.8, alpha: 1.0) //UIColor(red:26/255.0, green:25/255.0, blue:38/255.0, alpha:255/255.0)
-			menu.textLabel.text = "ESL ESEA EU Season 2"
+			menu.textLabel.text = "Option 1"
 			menu.textLabel.textColor = UIColor(red:81/255.0, green:45/255.0, blue:168/255.0, alpha:255/255.0)
 			
 			menu.setHidden(true)

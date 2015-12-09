@@ -87,7 +87,7 @@ extension DropPresentingAnimator {
 		case .Blurred(let style, let color):
 			presentingView.addBlurredOverlayView(animated: true, duration: animationDuration / 2.0, blurEffectStyle: style, blurredViewBackgroundColor: color)
 		case .Dimmed(let color):
-			presentingView.addDimmedOverlayView(animated: true, duration: animationDuration / 2.0, dimmedViewBackgroundColor: color)
+			presentingView.addOverlayView(animated: true, duration: animationDuration / 2.0, overlayViewBackgroundColor: color)
 		}
 		
 		// Begin Values
@@ -146,7 +146,7 @@ extension DropPresentingAnimator {
 		case .Blurred:
 			toView.removeBlurredOverlayView(animated: true, duration: animationDuration * 0.8)
 		case .Dimmed:
-			toView.removeDimmedOverlayView(animated: true, duration: animationDuration * 0.8)
+			toView.removeOverlayView(animated: true, duration: animationDuration * 0.8)
 		}
 		
 		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: {
@@ -376,7 +376,7 @@ extension DropPresentingAnimator {
 			presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
 			}, completion: { [unowned self] finished in
 				self.currentPresentedViewController?.endAppearanceTransition()
-				self.transitionContext?.completeTransition(false)
+				self.transitionContext?.completeTransition(finished)
 		})
 	}
 	

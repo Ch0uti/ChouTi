@@ -49,15 +49,18 @@ public class DropDownMenuAnimator: Animator {
 			}
 			
 			presentingView.tintAdjustmentMode = .Dimmed
-			if presentingView.window!.containSubview(dropDownMenu) {
-				//
-			}
+			
+			let overlayView: UIView
 			switch overlayViewStyle {
 			case .Blurred(let style, let color):
-				presentingView.window?.insertBlurredOverlayViewBelowSubview(dropDownMenu, animated: true, duration: animationDuration / 2.0, blurEffectStyle: style, blurredViewBackgroundColor: color)
+				overlayView = presentingView.addBlurredOverlayView(animated: true, duration: animationDuration / 2.0, blurEffectStyle: style, blurredViewBackgroundColor: color)
 			case .Dimmed(let color):
-				presentingView.window?.insertDimmedOverlayViewBelowSubview(dropDownMenu, animated: true, duration: animationDuration / 2.0, dimmedViewBackgroundColor: color)
+				overlayView = presentingView.addOverlayView(animated: true, duration: animationDuration / 2.0, overlayViewBackgroundColor: color)
 			}
+			
+			let dup = dropDownMenu.viewCopy() as! DropDownMenu
+			overlayView.addSubview(dup)
+			dup.centerInSuperview()
 			
 			presentedView.alpha = 0.0
 			presentedView.bounds = CGRectZero
@@ -95,7 +98,7 @@ public class DropDownMenuAnimator: Animator {
 			case .Blurred:
 				toView.removeBlurredOverlayView(animated: true, duration: animationDuration)
 			case .Dimmed:
-				toView.removeDimmedOverlayView(animated: true, duration: animationDuration)
+				toView.removeOverlayView(animated: true, duration: animationDuration)
 			}
 			
 			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
