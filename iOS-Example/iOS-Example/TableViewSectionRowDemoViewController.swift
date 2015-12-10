@@ -69,7 +69,7 @@ class TableViewSectionRowDemoViewController: UIViewController {
 						return cell!
 					},
 					cellConfiguration: { (cell) -> Void in
-						(cell as? TableViewCell)?.height = 200
+						(cell as? TableViewCell)?.cellHeight = 200
 						cell.textLabel?.text = "Click on Me"
 						cell.textLabel?.font = UIFont.boldSystemFontOfSize(22)
 						

@@ -10,6 +10,7 @@
 
 // MARK: - Table View Setup
 //tableView.translatesAutoresizingMaskIntoConstraints = false
+//<#view#>.addSubview(tableView)
 //tableView.separatorStyle = .None
 //tableView.allowsSelection = false
 //
