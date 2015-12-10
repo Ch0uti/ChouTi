@@ -9,9 +9,9 @@
 import UIKit
 
 public class TableViewCell: UITableViewCell {
-	public var height: CGFloat = 44.0 {
+	public var cellHeight: CGFloat = 44.0 {
 		didSet {
-			heightConstraint?.constant = height
+			heightConstraint?.constant = cellHeight
 		}
 	}
 	
@@ -44,8 +44,8 @@ public class TableViewCell: UITableViewCell {
 	}
 	
 	private func commonInit() {
-		heightConstraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: height)
-		heightConstraint!.priority = 999
+		heightConstraint = NSLayoutConstraint(item: contentView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: cellHeight)
+		heightConstraint!.priority = 500
 		heightConstraint!.active = true
 	}
 	
@@ -63,15 +63,15 @@ public class TableViewCell: UITableViewCell {
 }
 
 extension TableViewCell : TableViewCellInfo {
-	public static func identifier() -> String {
+	public class func identifier() -> String {
 		return NSStringFromClass(TableViewCell.self)
 	}
 	
-	public static func estimatedRowHeight() -> CGFloat {
+	public class func estimatedRowHeight() -> CGFloat {
 		return 44.0
 	}
 	
-	public static func registerInTableView(tableView: UITableView) {
+	public class func registerInTableView(tableView: UITableView) {
 		tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier())
 	}
 }
