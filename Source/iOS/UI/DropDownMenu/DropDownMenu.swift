@@ -15,7 +15,9 @@ public class DropDownMenu: UIControl {
 	public let textLabel = UILabel()
 //	public let indicatorView: UIView?
 	
-	private let animator = DropDownMenuAnimator()
+	public let overlayViewStyle: DropDownMenuAnimator.OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.6))
+	
+	private let menuAnimator = DropDownMenuAnimator()
 	
 	private var isExpanding: Bool = false
 	
@@ -38,7 +40,8 @@ public class DropDownMenu: UIControl {
 	}
 
 	private func commonInit() {
-		animator.dropDownMenu = self
+		menuAnimator.dropDownMenu = self
+		menuAnimator.overlayViewStyle = overlayViewStyle
 		
 		setupViews()
 		setupConstraints()
@@ -95,47 +98,25 @@ public class DropDownMenu: UIControl {
 	}
 	
 	func tapped(sender: AnyObject, forEvent event: UIEvent) {
-//		if isExpanding { return }
-//		
-//		if expanded {
-//			// Collapse
-//		} else {
-//			// Expand
-//		}
-//		
-//		let overlayView = self.window?.insertOverlayViewBelowSubview(wrapperView, animated: true, overlayViewBackgroundColor: UIColor(white: 0.0, alpha: 0.6))
-//		setupWrapperViewConstraints()
+		if isExpanding { return }
 		
-//			addOverlayView(animated: true, overlayViewBackgroundColor: UIColor(white: 0.0, alpha: 0.6), completion: nil)
-		
-//		overlayView!.addSubview(self.wrapperView)
-//		var constraints = [NSLayoutConstraint]()
-//		constraints += [self.wrapperTopConstraint, self.wrapperLeadingConstraint, self.wrapperBottomConstraint, self.wrapperTrailingConstraint]
-//		NSLayoutConstraint.activateConstraints(constraints)
-		
-		
-		
-		
-//		if !isExpandingOngoing {
-//			expanded = !expanded
-//		}
-		
-		let dummyViewController = UIViewController()
-		dummyViewController.view.backgroundColor = UIColor(red:255/255.0, green:186/255.0, blue:1/255.0, alpha:255/255.0)
-		dummyViewController.view.layer.cornerRadius = 4.0
-		
-		dummyViewController.view.userInteractionEnabled = true
-		
-		dummyViewController.modalPresentationStyle = .Custom
-		dummyViewController.transitioningDelegate = animator
-		
-		presentingViewController?.presentViewController(dummyViewController, animated: true, completion: nil)
+		if expanded {
+			// Collapse
+		} else {
+			// Expand
+			let pickerViewController = DropDownMenuPickerViewController()
+			pickerViewController.view.userInteractionEnabled = true
+			
+			pickerViewController.modalPresentationStyle = .Custom
+			pickerViewController.transitioningDelegate = menuAnimator
+			
+			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: nil)
+		}
 	}
 }
 
-extension DropDownMenu {
-	func tapped(sender: AnyObject) {
-		
-//		presentingViewController.
-	}
-}
+//extension DropDownMenu {
+//	func tapped(sender: AnyObject) {
+//		
+//	}
+//}

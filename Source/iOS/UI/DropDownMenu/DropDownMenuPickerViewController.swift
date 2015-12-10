@@ -8,28 +8,87 @@
 
 import UIKit
 
-class DropDownMenuPickerViewController: UIViewController {
+class DropDownMenuPickerViewController : UIViewController {
+	
+	let tableView = UITableView()
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		setupViews()
+		setupConstraints()
+	}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	private func setupViews() {
+		tableView.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(tableView)
+		
+		tableView.separatorStyle = .None
+		tableView.allowsSelection = false
+		
+		tableView.dataSource = self
+		tableView.delegate = self
+		tableView.rowHeight = UITableViewAutomaticDimension
+		
+		tableView.canCancelContentTouches = true
+		tableView.delaysContentTouches = true
+		
+		TableViewCell.registerInTableView(tableView)
+	}
 
-        // Do any additional setup after loading the view.
-    }
+	private func setupConstraints() {
+		let views = [
+			"tableView" : tableView
+		]
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+		let metrics: [String : CGFloat] = [:]
 
-    /*
-    // MARK: - Navigation
+		var constraints = [NSLayoutConstraint]()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]|", options: [], metrics: metrics, views: views)
+		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", options: [], metrics: metrics, views: views)
+		
+		NSLayoutConstraint.activateConstraints(constraints)
+	}
+}
 
+
+
+// MARK: - UITableViewDataSource
+extension DropDownMenuPickerViewController : UITableViewDataSource {
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return 1
+	}
+
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 10
+	}
+
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier()) as! TableViewCell
+		
+		cell.textLabel?.text = "LOL"
+		cell.cellHeight = 80.0
+		
+		return cell
+	}
+}
+
+
+
+// MARK: - UITableViewDataSource
+extension DropDownMenuPickerViewController : UITableViewDelegate {
+	// MARK: - Rows
+	func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return TableViewCell.estimatedRowHeight()
+	}
+
+	// MARK: - Selections
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+	}
+
+	func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+		tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
+	}
 }

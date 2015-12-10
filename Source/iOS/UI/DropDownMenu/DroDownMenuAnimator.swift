@@ -23,6 +23,10 @@ public class DropDownMenuAnimator: Animator {
 	
 	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.5))
 	
+	/// Whether presenting view should be dimmed when preseting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.
+	public var shouldDimPresentedView: Bool = false
+	
+	/// View tag for transparent overlay view, this transparent view is used for floating menu view
 	private let transparentOverlayViewTag: Int = 998
 	
 	// Tap to dismiss
@@ -52,10 +56,12 @@ public class DropDownMenuAnimator: Animator {
 			}
 			
 			// Begining settings
-			presentingView.tintAdjustmentMode = .Dimmed
+			if shouldDimPresentedView {
+				presentingView.tintAdjustmentMode = .Dimmed
+			}
 			
-			presentedView.alpha = 0.0
-			presentedView.bounds = CGRectZero
+			let menuFrame = dropDownMenu.frameRectInView(containerView)
+			presentedView.frame = CGRect(x: 0, y: menuFrame.bottom, width: containerView.width, height: containerView.height - menuFrame.bottom)
 			
 			containerView.addSubview(presentedView)
 			
@@ -74,11 +80,12 @@ public class DropDownMenuAnimator: Animator {
 			dropDownMenu.switchBackgroundColorWithAnotherView(dropDownMenu.wrapperView)
 			dropDownMenu.setupWrapperViewConstraints()
 
-			// Presenting animation
+			// Presenting animations
 			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
-				presentedView.center = containerView.center
-				presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
+//				presentedView.center = containerView.center
+//				presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
 				}, completion: { finished -> Void in
+					// TODO: Handle tapping
 					if let presentedViewController = self.presentedViewController where self.shouldDismissOnTappingOutsideView {
 						if let window = presentedViewController.view.window {
 							self.currentPresentedViewController = presentedViewController
@@ -105,7 +112,9 @@ public class DropDownMenuAnimator: Animator {
 			}
 			
 			// Begining settings
-			toView.tintAdjustmentMode = .Normal
+			if shouldDimPresentedView {
+				toView.tintAdjustmentMode = .Normal
+			}
 			
 			// Restore menu wrapper view closure
 			let restoreMenu = {
