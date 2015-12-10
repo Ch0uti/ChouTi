@@ -38,6 +38,9 @@ public class DropPresentingAnimator: Animator {
 	
 	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.85))
 	
+	/// Whether presenting view should be dimmed when preseting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.
+	public var shouldDimPresentedView: Bool = false
+	
 	// Tap to dismiss
 	public var shouldDismissOnTappingOutsideView: Bool = true
 	
@@ -69,8 +72,9 @@ extension DropPresentingAnimator {
 	}
 	
 	private func presentingAnimation(transitionContext: UIViewControllerContextTransitioning?) {
+		// Necessary setup for presenting
 		guard let transitionContext = transitionContext else {
-			NSLog("error: transitionContext is nil")
+			NSLog("Error: transitionContext is nil")
 			return
 		}
 		
@@ -78,11 +82,11 @@ extension DropPresentingAnimator {
 			let presentingView = self.presentingViewController?.view,
 			let presentedView = self.presentedViewController?.view,
 			let containerView = self.containerView else {
-				NSLog("error: Cannot get view from UIViewControllerContextTransitioning")
+				NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
 				return
 		}
 		
-		presentingView.tintAdjustmentMode = .Dimmed
+		// Add darker overlay view
 		switch overlayViewStyle {
 		case .Blurred(let style, let color):
 			presentingView.addBlurredOverlayView(animated: true, duration: animationDuration / 2.0, blurEffectStyle: style, blurredViewBackgroundColor: color)
@@ -91,12 +95,17 @@ extension DropPresentingAnimator {
 		}
 		
 		// Begin Values
+		if shouldDimPresentedView {
+			presentingView.tintAdjustmentMode = .Dimmed
+		}
+		
 		presentedView.bounds = CGRect(origin: CGPointZero, size: presentingViewSize)
 		presentedView.center = CGPoint(x: containerView.bounds.width / 2.0, y: 0 - presentingViewSize.height / 2.0)
 		presentedView.transform = CGAffineTransformMakeRotation((CGFloat.random(-40, 40) * CGFloat(M_PI)) / 180.0)
 		
 		containerView.addSubview(presentedView)
 		
+		// Presenting animations
 		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
 			presentedView.center = containerView.center
 			presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
@@ -128,8 +137,9 @@ extension DropPresentingAnimator {
 	}
 	
 	private func dismissingAnimation(transitionContext: UIViewControllerContextTransitioning?) {
+		// Necessary setup for dismissing
 		guard let transitionContext = transitionContext else {
-			NSLog("error: transitionContext is nil")
+			NSLog("Error: transitionContext is nil")
 			return
 		}
 		
@@ -137,11 +147,16 @@ extension DropPresentingAnimator {
 			let toView = self.toViewController?.view,
 			let fromView = self.fromViewController?.view,
 			let containerView = self.containerView else {
-				NSLog("ERROR: Cannot get view from UIViewControllerContextTransitioning")
+				NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
 				return
 		}
 		
-		toView.tintAdjustmentMode = .Normal
+		// Begining settings
+		if shouldDimPresentedView {
+			toView.tintAdjustmentMode = .Normal
+		}
+		
+		// Remove overlay view
 		switch overlayViewStyle {
 		case .Blurred:
 			toView.removeBlurredOverlayView(animated: true, duration: animationDuration * 0.8)
@@ -149,6 +164,7 @@ extension DropPresentingAnimator {
 			toView.removeOverlayView(animated: true, duration: animationDuration * 0.8)
 		}
 		
+		// Dismissing animations
 		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: {
 			fromView.center = CGPoint(x: containerView.bounds.width / 2.0, y: containerView.bounds.height + self.presentingViewSize.height)
 			fromView.transform = CGAffineTransformMakeRotation((self.interactiveAnimationTransformAngel ?? CGFloat.random(-40, 40) * CGFloat(M_PI)) / 180.0)
@@ -248,12 +264,12 @@ extension DropPresentingAnimator {
 				
 			case .Changed:
 				guard let panBeginLocation = panBeginLocation else {
-					NSLog("warning: pan begin location is nil")
+					NSLog("Warning: pan begin location is nil")
 					return
 				}
 				
 				guard let interactiveAnimationDraggingRange = interactiveAnimationDraggingRange else {
-					NSLog("error: interactiveAnimationDraggingRange is nil")
+					NSLog("Error: interactiveAnimationDraggingRange is nil")
 					return
 				}
 				
@@ -264,12 +280,12 @@ extension DropPresentingAnimator {
 
 			case .Ended:
 				guard let panBeginLocation = panBeginLocation else {
-					NSLog("warning: pan begin location is nil")
+					NSLog("Warning: pan begin location is nil")
 					return
 				}
 				
 				guard let interactiveAnimationDraggingRange = interactiveAnimationDraggingRange else {
-					NSLog("error: interactiveAnimationDraggingRange is nil")
+					NSLog("Error: interactiveAnimationDraggingRange is nil")
 					return
 				}
 				
@@ -306,7 +322,7 @@ extension DropPresentingAnimator {
 		}
 		
 		guard let window = currentPresentedViewController.view.window else {
-			NSLog("warning: current presented view controller has no window")
+			NSLog("Warning: current presented view controller has no window")
 			return
 		}
 		
