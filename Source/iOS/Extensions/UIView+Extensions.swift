@@ -172,74 +172,176 @@ public extension UIView {
 		set { objc_setAssociatedObject(self, &zhOverlayViewKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
 	}
 	
-	public func addOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.6), completion: ((Bool) -> ())? = nil) -> UIView {
+	public func addOverlayView(animated animated: Bool = true,
+		duration: NSTimeInterval = 0.5,
+		delay: NSTimeInterval = 0.0,
+		dampingRatio: CGFloat = 1.0,
+		velocity: CGFloat = 1.0,
+		overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.6),
+		viewTag: Int? = nil,
+		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, overlayViewBackgroundColor: UIColor) -> ())? = nil,
+		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
+	{
 		return _setupOverlayView({ [unowned self] overlayView in
 			self.addSubview(overlayView)
-			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, overlayViewBackgroundColor: overlayViewBackgroundColor, completion: completion)
+			},
+			animated: animated,
+			duration: duration,
+			delay: delay,
+			dampingRatio: dampingRatio,
+			velocity: velocity,
+			overlayViewBackgroundColor: overlayViewBackgroundColor,
+			viewTag: viewTag,
+			beginning: beginning,
+			completion: completion
+		)
 	}
 	
-	public func insertOverlayViewBelowSubview(belowSubview: UIView, animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), completion: ((Bool) -> ())? = nil) -> UIView {
+	public func insertOverlayViewBelowSubview(belowSubview: UIView,
+		animated: Bool = true,
+		duration: NSTimeInterval = 0.5,
+		delay: NSTimeInterval = 0.0,
+		dampingRatio: CGFloat = 1.0,
+		velocity: CGFloat = 1.0,
+		overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
+		viewTag: Int? = nil,
+		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, overlayViewBackgroundColor: UIColor) -> ())? = nil,
+		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
+	{
 		return _setupOverlayView({ [unowned self] overlayView in
 			self.insertSubview(overlayView, belowSubview: belowSubview)
-			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, overlayViewBackgroundColor: overlayViewBackgroundColor, completion: completion)
+			},
+			animated: animated,
+			duration: duration,
+			delay: delay,
+			dampingRatio: dampingRatio,
+			velocity: velocity,
+			overlayViewBackgroundColor: overlayViewBackgroundColor,
+			viewTag: viewTag,
+			beginning: beginning,
+			completion: completion
+		)
 	}
 	
-	public func insertOverlayViewAboveSubview(aboveSubview: UIView, animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), completion: ((Bool) -> ())? = nil) -> UIView {
+	public func insertOverlayViewAboveSubview(aboveSubview: UIView,
+		animated: Bool = true,
+		duration: NSTimeInterval = 0.5,
+		delay: NSTimeInterval = 0.0,
+		dampingRatio: CGFloat = 1.0,
+		velocity: CGFloat = 1.0,
+		overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
+		viewTag: Int? = nil,
+		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, overlayViewBackgroundColor: UIColor) -> ())? = nil,
+		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
+	{
 		return _setupOverlayView({ [unowned self] overlayView in
 			self.insertSubview(overlayView, aboveSubview: aboveSubview)
-			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, overlayViewBackgroundColor: overlayViewBackgroundColor, completion: completion)
+			}, animated: animated,
+			duration: duration,
+			delay: delay,
+			dampingRatio: dampingRatio,
+			velocity: velocity,
+			overlayViewBackgroundColor: overlayViewBackgroundColor,
+			viewTag: viewTag,
+			beginning: beginning,
+			completion: completion
+		)
 	}
 	
-	private func _setupOverlayView(viewConfiguration: (UIView -> Void), animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), completion: ((Bool) -> ())? = nil) -> UIView {
-		if zhOverlayView != nil {
-			print("warning: found existing overlay view")
-		}
-		
+	private func _setupOverlayView(viewConfiguration: (UIView -> Void),
+		animated: Bool = true,
+		duration: NSTimeInterval = 0.5,
+		delay: NSTimeInterval = 0.0,
+		dampingRatio: CGFloat = 1.0,
+		velocity: CGFloat = 1.0,
+		overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
+		viewTag: Int? = nil,
+		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, overlayViewBackgroundColor: UIColor) -> ())? = nil,
+		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
+	{
 		let overlayView = UIView()
 		overlayView.translatesAutoresizingMaskIntoConstraints = false
 		overlayView.backgroundColor = overlayViewBackgroundColor
 		
-		// Let self keep the reference to the view, used for retriving the overlay view
-		zhOverlayView = overlayView
+		if let viewTag = viewTag {
+			if viewWithTag(viewTag) != nil {
+				print("Warning: found existing overlay view with same tag: \(viewTag)")
+			}
+			
+			overlayView.tag = viewTag
+		} else {
+			if zhOverlayView != nil {
+				print("Warning: found existing overlay view")
+			}
+
+			// Let self keep the reference to the view, used for retriving the overlay view
+			zhOverlayView = overlayView
+		}
 		
 		if !animated {
 			viewConfiguration(overlayView)
 			overlayView.fullSizeInSuperview()
-			completion?(true)
+			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, overlayViewBackgroundColor: overlayViewBackgroundColor)
+			completion?(overlayView: overlayView)
 		} else {
 			overlayView.alpha = 0.0
 			viewConfiguration(overlayView)
 			overlayView.fullSizeInSuperview()
+			
+			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, overlayViewBackgroundColor: overlayViewBackgroundColor)
+			
 			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState] , animations: {
 				overlayView.alpha = 1.0
 				}) { (finished) -> Void in
-					completion?(finished)
+					completion?(overlayView: overlayView)
 			}
 		}
 		
 		return overlayView
 	}
 	
-	public func removeOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, completion: ((Bool) -> ())? = nil) {
-		guard let overlayView = zhOverlayView else {
-			print("error: overlay view is not existed")
-			completion?(false)
-			return
+	public func removeOverlayView(animated animated: Bool = true,
+		duration: NSTimeInterval = 0.5,
+		delay: NSTimeInterval = 0.0,
+		dampingRatio: CGFloat = 1.0,
+		velocity: CGFloat = 1.0,
+		viewTag: Int? = nil,
+		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat) -> ())? = nil,
+		completion: ((Bool) -> ())? = nil)
+	{
+		let overlayView: UIView
+		if let viewTag = viewTag {
+			guard let theOverlayView = viewWithTag(viewTag) else {
+				print("Error: overlay view is not existed")
+				beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
+				completion?(false)
+				return
+			}
+			overlayView = theOverlayView
+		} else {
+			guard let theOverlayView = zhOverlayView else {
+				print("Error: overlay view is not existed")
+				beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
+				completion?(false)
+				return
+			}
+			overlayView = theOverlayView
 		}
 		
 		if !animated {
 			overlayView.removeFromSuperview()
 			zhOverlayView = nil
+			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
 			completion?(true)
-			return
-		}
-		
-		UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
-			overlayView.alpha = 0.0
-			}) { (finished) -> Void in
-				overlayView.removeFromSuperview()
-				self.zhOverlayView = nil
-				completion?(finished)
+		} else {
+			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
+			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
+				overlayView.alpha = 0.0
+				}) { (finished) -> Void in
+					overlayView.removeFromSuperview()
+					self.zhOverlayView = nil
+					completion?(finished)
+			}
 		}
 	}
 	
@@ -253,25 +355,26 @@ public extension UIView {
 		set { objc_setAssociatedObject(self, &zhBlurredOverlayViewKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
 	}
 	
-	public func addBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
+	public func addBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, viewTag: Int? = nil, beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, blurredViewBackgroundColor: UIColor, blurEffectStyle: UIBlurEffectStyle) -> ())? = nil, completion: ((overlayView: UIView) -> ())? = nil) -> UIView {
 		return _setupBlurredOverlayView({ [unowned self] overlayView in
 			self.addSubview(overlayView)
-			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle, completion: completion)
+			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle, viewTag: viewTag, beginning: beginning, completion: completion)
 	}
 	
-	public func insertBlurredOverlayViewBelowSubview(belowSubview: UIView, animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
+	public func insertBlurredOverlayViewBelowSubview(belowSubview: UIView, animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, viewTag: Int? = nil, beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, blurredViewBackgroundColor: UIColor, blurEffectStyle: UIBlurEffectStyle) -> ())? = nil, completion: ((overlayView: UIView) -> ())? = nil) -> UIView {
 		return _setupBlurredOverlayView({ [unowned self] overlayView in
 			self.insertSubview(overlayView, belowSubview: belowSubview)
-			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle, completion: completion)
+			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle, viewTag: viewTag, beginning: beginning, completion: completion)
 	}
 	
-	public func insertBlurredOverlayViewAboveSubview(aboveSubview: UIView, animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
+	public func insertBlurredOverlayViewAboveSubview(aboveSubview: UIView, animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, viewTag: Int? = nil, beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, blurredViewBackgroundColor: UIColor, blurEffectStyle: UIBlurEffectStyle) -> ())? = nil, completion: ((overlayView: UIView) -> ())? = nil) -> UIView {
 		return _setupBlurredOverlayView({ [unowned self] overlayView in
 			self.insertSubview(overlayView, aboveSubview: aboveSubview)
-			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle, completion: completion)
+			}, animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle, viewTag: viewTag, beginning: beginning, completion: completion)
 	}
 	
-	private func _setupBlurredOverlayView(viewConfiguration: (UIView -> Void), animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, completion: ((Bool) -> ())? = nil) -> UIView {
+	private func _setupBlurredOverlayView(viewConfiguration: (UIView -> Void), animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5), blurEffectStyle: UIBlurEffectStyle = .Dark, viewTag: Int? = nil, beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, blurredViewBackgroundColor: UIColor, blurEffectStyle: UIBlurEffectStyle) -> ())? = nil, completion: ((overlayView: UIView) -> ())? = nil) -> UIView {
+		
 		if zhBlurredOverlayView != nil {
 			print("warning: found existing blurred overlay view")
 		}
@@ -280,39 +383,72 @@ public extension UIView {
 		overlayView.translatesAutoresizingMaskIntoConstraints = false
 		overlayView.backgroundColor = blurredViewBackgroundColor
 		
-		// Let self keep the reference to the view, used for retriving the overlay view
-		zhBlurredOverlayView = overlayView
+		if let viewTag = viewTag {
+			if viewWithTag(viewTag) != nil {
+				print("Warning: found existing blurred overlay view with same tag: \(viewTag)")
+			}
+			
+			overlayView.tag = viewTag
+		} else {
+			if zhBlurredOverlayView != nil {
+				print("warning: found existing blurred overlay view")
+			}
+			
+			// Let self keep the reference to the view, used for retriving the overlay view
+			zhBlurredOverlayView = overlayView
+		}
 		
 		if !animated {
 			viewConfiguration(overlayView)
 			overlayView.fullSizeInSuperview()
-			completion?(true)
+			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle)
+			completion?(overlayView: overlayView)
 		} else {
 			overlayView.alpha = 0.0
 			viewConfiguration(overlayView)
 			overlayView.fullSizeInSuperview()
+			
+			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle)
+			completion?(overlayView: overlayView)
+			
 			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState] , animations: {
 				overlayView.alpha = 1.0
 				}) { (finished) -> Void in
-					completion?(finished)
+					completion?(overlayView: overlayView)
 			}
 		}
 		
 		return overlayView
 	}
 	
-	public func removeBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, completion: ((Bool) -> ())? = nil) {
-		guard let overlayView = zhBlurredOverlayView else {
-			print("error: blurred overlay view is not existed")
-			completion?(false)
-			return
+	public func removeBlurredOverlayView(animated animated: Bool = true, duration: NSTimeInterval = 0.5, delay: NSTimeInterval = 0.0, dampingRatio: CGFloat = 1.0, velocity: CGFloat = 1.0, viewTag: Int? = nil, beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat) -> ())? = nil, completion: ((Bool) -> ())? = nil) {
+		
+		let overlayView: UIView
+		if let viewTag = viewTag {
+			guard let theOverlayView = viewWithTag(viewTag) else {
+				print("Error: blurred overlay view is not existed")
+				beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
+				completion?(false)
+				return
+			}
+			overlayView = theOverlayView
+		} else {
+			guard let theOverlayView = zhBlurredOverlayView else {
+				print("error: blurred overlay view is not existed")
+				beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
+				completion?(false)
+				return
+			}
+			overlayView = theOverlayView
 		}
 		
 		if !animated {
 			overlayView.removeFromSuperview()
 			zhBlurredOverlayView = nil
+			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
 			completion?(true)
 		} else {
+			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
 			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
 				overlayView.alpha = 0.0
 				}) { (finished) -> Void in
@@ -393,9 +529,23 @@ public extension UIView {
 
 
 public extension UIView {
+	
+	/**
+	Get a copy of the view. Note: this is not workinhg as expected
+	
+	- returns: A copy of the View
+	*/
 	public func viewCopy() -> UIView {
 		let data: NSData = NSKeyedArchiver.archivedDataWithRootObject(self)
 		let copy = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! UIView
 		return copy
+	}
+}
+
+public extension UIView {
+	public func switchBackgroundColorWithAnotherView(anotherView: UIView) {
+		let anotherViewBackgroundColor = anotherView.backgroundColor
+		anotherView.backgroundColor = backgroundColor
+		backgroundColor = anotherViewBackgroundColor
 	}
 }

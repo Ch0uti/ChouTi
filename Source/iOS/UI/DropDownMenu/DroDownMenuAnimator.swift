@@ -23,6 +23,8 @@ public class DropDownMenuAnimator: Animator {
 	
 	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.5))
 	
+	private let transparentOverlayViewTag: Int = 998
+	
 	// Tap to dismiss
 	public var shouldDismissOnTappingOutsideView: Bool = true
 	private weak var dismissTapGesture: UITapGestureRecognizer?
@@ -35,6 +37,7 @@ public class DropDownMenuAnimator: Animator {
 		super.animateTransition(transitionContext)
 		
 		if presenting {
+			// Necessary setup for presenting
 			guard
 				let presentingView = self.presentingViewController?.view,
 				let presentedView = self.presentedViewController?.view,
@@ -48,27 +51,31 @@ public class DropDownMenuAnimator: Animator {
 				return
 			}
 			
+			// Begining settings
 			presentingView.tintAdjustmentMode = .Dimmed
-			
-			let overlayView: UIView
-			switch overlayViewStyle {
-			case .Blurred(let style, let color):
-				overlayView = presentingView.addBlurredOverlayView(animated: true, duration: animationDuration / 2.0, blurEffectStyle: style, blurredViewBackgroundColor: color)
-			case .Dimmed(let color):
-				overlayView = presentingView.addOverlayView(animated: true, duration: animationDuration / 2.0, overlayViewBackgroundColor: color)
-			}
-			
-			let dup = dropDownMenu.viewCopy() as! DropDownMenu
-			overlayView.addSubview(dup)
-			dup.centerInSuperview()
 			
 			presentedView.alpha = 0.0
 			presentedView.bounds = CGRectZero
 			
-			// Begin Values
 			containerView.addSubview(presentedView)
 			
-			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+			// Add darker overlay view
+			switch overlayViewStyle {
+			case .Blurred(let style, let color):
+				presentingView.addBlurredOverlayView(animated: true, duration: animationDuration, blurEffectStyle: style, blurredViewBackgroundColor: color)
+			case .Dimmed(let color):
+				presentingView.addOverlayView(animated: true, duration: animationDuration, overlayViewBackgroundColor: color)
+			}
+			
+			// Add a transparent overlay view, this view is used for floating menu view
+			let transparentOverlayView = presentingView.addOverlayView(animated: false, overlayViewBackgroundColor: UIColor.clearColor(), viewTag: transparentOverlayViewTag)
+			// Keep menu view at the top (dropDownMenu.wrapperView is the containerView for all subviews)
+			transparentOverlayView.addSubview(dropDownMenu.wrapperView)
+			dropDownMenu.switchBackgroundColorWithAnotherView(dropDownMenu.wrapperView)
+			dropDownMenu.setupWrapperViewConstraints()
+
+			// Presenting animation
+			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
 				presentedView.center = containerView.center
 				presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
 				}, completion: { finished -> Void in
@@ -85,26 +92,49 @@ public class DropDownMenuAnimator: Animator {
 					transitionContext.completeTransition(true)
 			})
 		} else {
+			// Necessary setup for dismissing
 			guard
-				let toView = self.toViewController?.view,
-				let fromView = self.fromViewController?.view,
-				let containerView = self.containerView else {
+				let toView = self.toViewController?.view else {
 					NSLog("ERROR: Cannot get view from UIViewControllerContextTransitioning")
 					return
 			}
 			
-			toView.tintAdjustmentMode = .Normal
-			switch overlayViewStyle {
-			case .Blurred:
-				toView.removeBlurredOverlayView(animated: true, duration: animationDuration)
-			case .Dimmed:
-				toView.removeOverlayView(animated: true, duration: animationDuration)
+			guard let dropDownMenu = dropDownMenu else {
+				NSLog("dropDownMenu is nil")
+				return
 			}
 			
-			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-				}, completion: { finished -> Void in
+			// Begining settings
+			toView.tintAdjustmentMode = .Normal
+			
+			// Restore menu wrapper view closure
+			let restoreMenu = {
+				dropDownMenu.addSubview(dropDownMenu.wrapperView)
+				dropDownMenu.switchBackgroundColorWithAnotherView(dropDownMenu.wrapperView)
+				dropDownMenu.setupWrapperViewConstraints()
+				toView.removeOverlayView(animated: false, viewTag: self.transparentOverlayViewTag)
+			}
+			
+			// Remove overlay view
+			switch overlayViewStyle {
+			case .Blurred:
+				toView.removeBlurredOverlayView(animated: true, duration: animationDuration, completion: { _ in
+					restoreMenu()
 					transitionContext.completeTransition(true)
-			})
+				})
+			case .Dimmed:
+				toView.removeOverlayView(animated: true, duration: animationDuration, completion: { _ in
+					restoreMenu()
+					transitionContext.completeTransition(true)
+				})
+			}
+			
+//			UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: { () -> Void in
+//				// No animations
+//				toView.tintAdjustmentMode = .Normal
+//				}, completion: { finished -> Void in
+//					transitionContext.completeTransition(true)
+//			})
 		}
 	}
 }
