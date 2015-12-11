@@ -64,74 +64,109 @@ public extension UIView {
 // MARK: - Auto Layout
 public extension UIView {
 	
-	public func fullSizeInSuperview() {
+	public func fullSizeInSuperview() -> [NSLayoutConstraint] {
 		guard let superview = self.superview else {
 			fatalError("superview is nil")
 		}
 		
 		translatesAutoresizingMaskIntoConstraints = false
+		var constraints = [NSLayoutConstraint]()
 		
 		if #available(iOS 9.0, *) {
-		    self.topAnchor.constraintEqualToAnchor(superview.topAnchor).active = true
-			self.leadingAnchor.constraintEqualToAnchor(superview.leadingAnchor).active = true
-			self.bottomAnchor.constraintEqualToAnchor(superview.bottomAnchor).active = true
-			self.trailingAnchor.constraintEqualToAnchor(superview.trailingAnchor).active = true
+		    constraints += [
+				self.topAnchor.constraintEqualToAnchor(superview.topAnchor),
+				self.leadingAnchor.constraintEqualToAnchor(superview.leadingAnchor),
+				self.bottomAnchor.constraintEqualToAnchor(superview.bottomAnchor),
+				self.trailingAnchor.constraintEqualToAnchor(superview.trailingAnchor)
+			]
 		} else {
-			NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: 0.0).active = true
-			NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: superview, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
-			NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: superview, attribute: .Bottom, multiplier: 1.0, constant: 0.0).active = true
-			NSLayoutConstraint(item: self, attribute: .Trailing, relatedBy: .Equal, toItem: superview, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
+			constraints += [
+				NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: 0.0),
+				NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: superview, attribute: .Leading, multiplier: 1.0, constant: 0.0),
+				NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: superview, attribute: .Bottom, multiplier: 1.0, constant: 0.0),
+				NSLayoutConstraint(item: self, attribute: .Trailing, relatedBy: .Equal, toItem: superview, attribute: .Trailing, multiplier: 1.0, constant: 0.0)
+			]
 		}
+		
+		NSLayoutConstraint.activateConstraints(constraints)
+		return constraints
 	}
 	
-	public func fullSizeMarginInSuperview() {
+	public func fullSizeMarginInSuperview() -> [NSLayoutConstraint] {
 		guard let superview = self.superview else {
 			fatalError("superview is nil")
 		}
 		
 		translatesAutoresizingMaskIntoConstraints = false
-
-		NSLayoutConstraint(item: self, attribute: .TopMargin, relatedBy: .Equal, toItem: superview, attribute: .TopMargin, multiplier: 1.0, constant: 0.0).active = true
-		NSLayoutConstraint(item: self, attribute: .LeadingMargin, relatedBy: .Equal, toItem: superview, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0).active = true
-		NSLayoutConstraint(item: self, attribute: .BottomMargin, relatedBy: .Equal, toItem: superview, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0).active = true
-		NSLayoutConstraint(item: self, attribute: .TrailingMargin, relatedBy: .Equal, toItem: superview, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0).active = true
+		var constraints = [NSLayoutConstraint]()
+		
+		constraints += [
+			NSLayoutConstraint(item: self, attribute: .TopMargin, relatedBy: .Equal, toItem: superview, attribute: .TopMargin, multiplier: 1.0, constant: 0.0),
+			NSLayoutConstraint(item: self, attribute: .LeadingMargin, relatedBy: .Equal, toItem: superview, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0),
+			NSLayoutConstraint(item: self, attribute: .BottomMargin, relatedBy: .Equal, toItem: superview, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0),
+			NSLayoutConstraint(item: self, attribute: .TrailingMargin, relatedBy: .Equal, toItem: superview, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0)
+		]
+		
+		NSLayoutConstraint.activateConstraints(constraints)
+		return constraints
 	}
 	
-	public func centerInSuperview() {
+	public func centerInSuperview() -> [NSLayoutConstraint] {
 		guard let superview = self.superview else {
 			fatalError("superview is nil")
 		}
 		
 		translatesAutoresizingMaskIntoConstraints = false
+		var constraints = [NSLayoutConstraint]()
 		
 		if #available(iOS 9.0, *) {
-			self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor).active = true
-			self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor).active = true
+			constraints += [
+				self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor),
+				self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor)
+			]
 		} else {
-			NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: superview, attribute: .CenterX, multiplier: 1.0, constant: 0.0).active = true
-			NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: superview, attribute: .CenterY, multiplier: 1.0, constant: 0.0).active = true
+			constraints += [
+				NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: superview, attribute: .CenterX, multiplier: 1.0, constant: 0.0),
+				NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: superview, attribute: .CenterY, multiplier: 1.0, constant: 0.0)
+			]
 		}
+		
+		NSLayoutConstraint.activateConstraints(constraints)
+		return constraints
 	}
 	
-	public func constraintWidth(width: CGFloat) {
+	public func constraintWidth(width: CGFloat) -> NSLayoutConstraint {
+		let constraint: NSLayoutConstraint
+		
+		translatesAutoresizingMaskIntoConstraints = false
+		
 		if #available(iOS 9.0, *) {
-			self.widthAnchor.constraintEqualToConstant(width).active = true
+			constraint = self.widthAnchor.constraintEqualToConstant(width)
 		} else {
-			NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: width).active = true
+			constraint = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: width)
 		}
+		
+		constraint.active = true
+		return constraint
 	}
 	
-	public func constraintHeight(height: CGFloat) {
+	public func constraintHeight(height: CGFloat) -> NSLayoutConstraint {
+		let constraint: NSLayoutConstraint
+		
+		translatesAutoresizingMaskIntoConstraints = false
+		
 		if #available(iOS 9.0, *) {
-			self.heightAnchor.constraintEqualToConstant(height).active = true
+			constraint = self.heightAnchor.constraintEqualToConstant(height)
 		} else {
-			NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: height).active = true
+			constraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: height)
 		}
+		
+		constraint.active = true
+		return constraint
 	}
 	
-	public func constraintToSize(size: CGSize) {
-		constraintWidth(size.width)
-		constraintHeight(size.height)
+	public func constraintToSize(size: CGSize) -> [NSLayoutConstraint] {
+		return [constraintWidth(size.width), constraintHeight(size.height)]
 	}
 }
 
@@ -337,7 +372,7 @@ public extension UIView {
 			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
 			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
 				overlayView.alpha = 0.0
-				}) { (finished) -> Void in
+				}) { [unowned self] (finished) -> Void in
 					overlayView.removeFromSuperview()
 					self.zhOverlayView = nil
 					completion?(finished)
@@ -535,7 +570,7 @@ public extension UIView {
 			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
 			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
 				overlayView.alpha = 0.0
-				}) { (finished) -> Void in
+				}) { [unowned self] (finished) -> Void in
 					overlayView.removeFromSuperview()
 					self.zhBlurredOverlayView = nil
 					completion?(finished)

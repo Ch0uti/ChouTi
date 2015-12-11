@@ -21,7 +21,7 @@ class DropPresentingDemoViewController: UIViewController {
 		animator.animationDuration = 0.75
 		animator.shouldDismissOnTappingOutsideView = true
 		animator.presentingViewSize = CGSize(width: ceil(screenWidth * 0.7), height: 160)
-		animator.overlayViewStyle = .Dimmed(UIColor(white: 0.0, alpha: 0.85))
+		animator.overlayViewStyle = .Normal(UIColor(white: 0.0, alpha: 0.85))
 		
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false

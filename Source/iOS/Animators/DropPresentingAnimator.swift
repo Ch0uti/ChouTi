@@ -32,7 +32,7 @@ public class DropPresentingAnimator: Animator {
 	
 	// Customize overlay view style
 	public enum OverlayViewStyle {
-		case Dimmed(UIColor)
+		case Normal(UIColor)
 		case Blurred(UIBlurEffectStyle, UIColor)
 	}
 	
@@ -90,7 +90,7 @@ extension DropPresentingAnimator {
 		switch overlayViewStyle {
 		case .Blurred(let style, let color):
 			presentingView.addBlurredOverlayView(animated: true, duration: animationDuration / 2.0, blurEffectStyle: style, blurredViewBackgroundColor: color)
-		case .Dimmed(let color):
+		case .Normal(let color):
 			presentingView.addOverlayView(animated: true, duration: animationDuration / 2.0, overlayViewBackgroundColor: color)
 		}
 		
@@ -160,7 +160,7 @@ extension DropPresentingAnimator {
 		switch overlayViewStyle {
 		case .Blurred:
 			toView.removeBlurredOverlayView(animated: true, duration: animationDuration * 0.8)
-		case .Dimmed:
+		case .Normal:
 			toView.removeOverlayView(animated: true, duration: animationDuration * 0.8)
 		}
 		
@@ -243,7 +243,11 @@ extension DropPresentingAnimator : UIGestureRecognizerDelegate {
 
 // MARK: - Actions
 extension DropPresentingAnimator {
-	func windowTapped(sender: AnyObject) {
+	func dismisscurrentPresentedViewController() {
+		windowTapped(dismissTapGesture)
+	}
+	
+	func windowTapped(sender: AnyObject?) {
 		interactive = false
 		currentPresentedViewController?.dismissViewControllerAnimated(true, completion: nil)
 	}
