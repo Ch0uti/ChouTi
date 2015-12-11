@@ -24,7 +24,7 @@
 //		// TODO: Setup view hierarchy
 //		
 //		<#view#>.translatesAutoresizingMaskIntoConstraints = false
-//		addSubview(<#view#>)
+//		contentView.addSubview(<#view#>)
 //
 //		setupConstraints()
 //	}
