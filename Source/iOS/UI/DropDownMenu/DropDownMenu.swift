@@ -9,26 +9,105 @@
 import UIKit
 
 public class DropDownMenu: UIControl {
+	
+	// MARK: - Public
+	public let textLabel = UILabel()
+	// TODO: Include arrow image asset
+//	public let indicatorView: UIView?
+	
+	// Customize overlay view style
+	public enum OverlayViewStyle {
+		case Normal(UIColor)
+		case Blurred(UIBlurEffectStyle, UIColor)
+	}
+	
+	/// overlayViewStyle is the blurred/dimmed view behind the menu picker view
+	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.4)) {
+		didSet {
+			menuAnimator.overlayViewStyle = overlayViewStyle
+		}
+	}
+	
+	/// whether the menu is expanded
+	public private(set) var expanded: Bool = false
+	
+	public var animationDuration: NSTimeInterval = 0.5
+	
+	public var selectedIndex: Int = 0 {
+		didSet {
+			// TODO: Wrap this into extension
+			if textLabel.layer.animationForKey("TextTransition") == nil {
+				// Add transition (must be called after myLabel has been displayed)
+				let animation = CATransition()
+				animation.duration = animationDuration / 2.0
+				animation.type = kCATransitionFade
+				animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+				textLabel.layer.addAnimation(animation, forKey: "TextTransition")
+			}
+			
+			textLabel.text = dataSource.dropDownMenu(self, optionTitleForIndex: selectedIndex)
+		}
+	}
+	
+	public var optionTextColor: UIColor? {
+		didSet {
+			pickerViewController.optionTextColor = optionTextColor
+		}
+	}
+	
+	public var optionTextFont: UIFont? {
+		didSet {
+			pickerViewController.optionTextFont = optionTextFont
+		}
+	}
+	
+	public var optionTextAlignment: NSTextAlignment = .Left {
+		didSet {
+			pickerViewController.optionTextAlignment = optionTextAlignment
+		}
+	}
+	
+	public var optionCellBackgroundColor: UIColor? {
+		didSet {
+			pickerViewController.optionCellBackgroundColor = optionCellBackgroundColor
+		}
+	}
+	
+	public var optionSeparatorColor: UIColor? {
+		didSet {
+			pickerViewController.optionSeparatorColor = optionSeparatorColor
+		}
+	}
+	
+	public weak var dataSource: DropDownMenuDataSource!
+	public weak var delegate: DropDownMenuDelegate?
+	
+	
+	
+	// MARK: - Internal
 	/// wrapperView is the common super view for all subviews like label and indicator
 	let wrapperView = UIView()
 	
-	public let textLabel = UILabel()
-//	public let indicatorView: UIView?
+	let pickerViewController = DropDownMenuPickerViewController()
 	
-	public let overlayViewStyle: DropDownMenuAnimator.OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.6))
 	
-	private let menuAnimator = DropDownMenuAnimator()
 	
-	private var isExpanding: Bool = false
+	// MARK: - Private
+	/// the animator operates the presenting of menu picker view
+	let menuAnimator = DropDownMenuAnimator()
 	
-	public private(set) var expanded: Bool = false
+	/// whether is expading or collapsing
+	private var isAnimating: Bool = false
 	
 	// Constraints
-	var wrapperTopConstraint: NSLayoutConstraint!
-	var wrapperLeadingConstraint: NSLayoutConstraint!
-	var wrapperBottomConstraint: NSLayoutConstraint!
-	var wrapperTrailingConstraint: NSLayoutConstraint!
+	private var wrapperTopConstraint: NSLayoutConstraint!
+	private var wrapperLeadingConstraint: NSLayoutConstraint!
+	private var wrapperBottomConstraint: NSLayoutConstraint!
+	private var wrapperTrailingConstraint: NSLayoutConstraint!
 	
+	
+	
+	// MARK: - Setups
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 		commonInit()
@@ -42,6 +121,13 @@ public class DropDownMenu: UIControl {
 	private func commonInit() {
 		menuAnimator.dropDownMenu = self
 		menuAnimator.overlayViewStyle = overlayViewStyle
+		menuAnimator.animationDuration = animationDuration
+		
+		pickerViewController.dropDownMenu = self
+		pickerViewController.animationDuration = animationDuration
+		
+		pickerViewController.modalPresentationStyle = .Custom
+		pickerViewController.transitioningDelegate = menuAnimator
 		
 		setupViews()
 		setupConstraints()
@@ -49,6 +135,9 @@ public class DropDownMenu: UIControl {
 	}
 	
 	private func setupViews() {
+		backgroundColor = UIColor(red: 255.0 / 255.0, green: 186.0 / 255.0, blue: 1.0 / 255.0, alpha: 255.0 / 255.0)
+		textLabel.textColor = UIColor.whiteColor()
+		
 		wrapperView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(wrapperView)
 		
@@ -87,36 +176,35 @@ public class DropDownMenu: UIControl {
 		NSLayoutConstraint.activateConstraints(constraints)
 	}
 	
+	private func setupActions() {
+		self.addTarget(self, action: "tapped:forEvent:", forControlEvents: .TouchUpInside)
+	}
+	
 	func setupWrapperViewConstraints() {
 		var constraints = [NSLayoutConstraint]()
 		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint]
 		NSLayoutConstraint.activateConstraints(constraints)
 	}
-	
-	private func setupActions() {
-		self.addTarget(self, action: "tapped:forEvent:", forControlEvents: .TouchUpInside)
-	}
-	
+}
+
+
+
+// MARK: - Actions
+extension DropDownMenu {
 	func tapped(sender: AnyObject, forEvent event: UIEvent) {
-		if isExpanding { return }
+		if isAnimating { return }
 		
 		if expanded {
 			// Collapse
+			// This is already handled by animator tap gesture, nothing to do here
 		} else {
 			// Expand
-			let pickerViewController = DropDownMenuPickerViewController()
 			pickerViewController.view.userInteractionEnabled = true
 			
-			pickerViewController.modalPresentationStyle = .Custom
-			pickerViewController.transitioningDelegate = menuAnimator
-			
-			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: nil)
+			isAnimating = true
+			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: { finished in
+				self.isAnimating = false
+			})
 		}
 	}
 }
-
-//extension DropDownMenu {
-//	func tapped(sender: AnyObject) {
-//		
-//	}
-//}

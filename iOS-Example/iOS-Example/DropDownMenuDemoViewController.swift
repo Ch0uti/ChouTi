@@ -11,8 +11,8 @@ import ChouTi
 
 class DropDownMenuDemoViewController: UIViewController {
 
-	let menu = DropDownMenu()
-	let zhMenu = ZHDropDownMenu()
+	let navigationBarMenu = DropDownMenu()
+	let smallMenu = DropDownMenu()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,49 +24,66 @@ class DropDownMenuDemoViewController: UIViewController {
 		super.viewDidAppear(animated)
 		
 		if let navigationBar = navigationController?.navigationBar {
-			menu.translatesAutoresizingMaskIntoConstraints = false
-			menu.backgroundColor = UIColor(white: 0.8, alpha: 1.0) //UIColor(red:26/255.0, green:25/255.0, blue:38/255.0, alpha:255/255.0)
-			menu.textLabel.text = "Option 1"
-			menu.textLabel.textColor = UIColor(red:81/255.0, green:45/255.0, blue:168/255.0, alpha:255/255.0)
+			navigationBarMenu.setHidden(true)
 			
-			menu.setHidden(true)
+			navigationBarMenu.translatesAutoresizingMaskIntoConstraints = false
+			navigationBarMenu.dataSource = self
+			navigationBarMenu.delegate = self
 			
-			zhMenu.translatesAutoresizingMaskIntoConstraints = false
-			view.addSubview(zhMenu)
+			navigationBarMenu.selectedIndex = 2
 			
-			view.addSubview(menu)
+			view.addSubview(navigationBarMenu)
 			
 			var constraints = [NSLayoutConstraint]()
 			
-			constraints += [NSLayoutConstraint(item: menu, attribute: .Top, relatedBy: .Equal, toItem: navigationBar, attribute: .Bottom, multiplier: 1.0, constant: 0.0)]
-			constraints += [NSLayoutConstraint(item: menu, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0)]
-			constraints += [NSLayoutConstraint(item: menu, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0)]
+			// navigationBarMenu
+			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .Top, relatedBy: .Equal, toItem: navigationBar, attribute: .Bottom, multiplier: 1.0, constant: 0.0)]
+			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0)]
+			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0)]
 			
-			constraints += [NSLayoutConstraint(item: menu, attribute: .Height, relatedBy: .Equal, toItem: navigationBar, attribute: .Height, multiplier: 1.2, constant: 0.0)]
+			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .Height, relatedBy: .Equal, toItem: navigationBar, attribute: .Height, multiplier: 1.0, constant: 0.0)]
 			
-			zhMenu.centerInSuperview()
-			zhMenu.dataSource = self
+			// smallMenu
+			smallMenu.translatesAutoresizingMaskIntoConstraints = false
+			smallMenu.dataSource = self
+			smallMenu.delegate = self
+			smallMenu.selectedIndex = 0
+			smallMenu.backgroundColor = UIColor.purpleColor()
+			view.addSubview(smallMenu)
+			
+			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .Top, relatedBy: .Equal, toItem: navigationBar, attribute: .Bottom, multiplier: 1.0, constant: 100.0)]
+			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 100.0)]
+			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -100.0)]
+			
+			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: 60.0)]
 			
 			NSLayoutConstraint.activateConstraints(constraints)
 			
-			menu.setHidden(false, animated: true)
+			navigationBarMenu.setHidden(false, animated: true)
 		}
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
 		
-		menu.setHidden(true, animated: true, duration: 1.0, completion: { finished in
-			self.menu.removeFromSuperview()
+		navigationBarMenu.setHidden(true, animated: true, duration: 1.0, completion: { finished in
+			self.navigationBarMenu.removeFromSuperview()
 		})
 	}
 }
 
-extension DropDownMenuDemoViewController : ZHDropDownMenuDataSource {
-	func numberOfItemsInDropDownMenu(menu: ZHDropDownMenu) -> Int {
-		return 10
+extension DropDownMenuDemoViewController : DropDownMenuDataSource {
+	func numberOfOptionsInDropDownMenu(dropDownMenu: DropDownMenu) -> Int {
+		return 4
 	}
-	func zhDropDownMenu(menu: ZHDropDownMenu, itemTitleForIndex index: Int) -> String {
-		return "sss123-abc"
+	
+	func dropDownMenu(dropDownMenu: DropDownMenu, optionTitleForIndex index: Int) -> String {
+		return "Option \(index)"
+	}
+}
+
+extension DropDownMenuDemoViewController : DropDownMenuDelegate {
+	func dropDownMenu(dropDownMenu: DropDownMenu, didSelectedIndex index: Int) {
+		print("dropDownMenu didSelectedIndex: \(index)")
 	}
 }
