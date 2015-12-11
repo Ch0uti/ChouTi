@@ -56,7 +56,7 @@
 //	}
 //	
 //	static func estimatedRowHeight() -> CGFloat {
-//		return 60
+//		return 44.0
 //	}
 //	
 //	static func registerInTableView(tableView: UITableView) {
