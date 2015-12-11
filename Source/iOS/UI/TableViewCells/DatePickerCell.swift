@@ -8,21 +8,13 @@
 
 import UIKit
 
-class DatePickerCell : UITableViewCell {
+public class DatePickerCell : TableViewCell {
 
-	let datePicker = UIDatePicker()
+	public let datePicker = UIDatePicker()
 	
-	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-		super.init(style: style, reuseIdentifier: reuseIdentifier)
-		commonInit()
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		commonInit()
-	}
-	
-	private func commonInit() {
+	override func commonInit() {
+		super.commonInit()
+		
 		setupViews()
 		setupConstraints()
 	}
@@ -49,16 +41,16 @@ class DatePickerCell : UITableViewCell {
 	}
 }
 
-extension DatePickerCell : TableViewCellInfo {
-	static func identifier() -> String {
+extension DatePickerCell {
+	public override class func identifier() -> String {
 		return NSStringFromClass(DatePickerCell.self)
 	}
 	
-	static func estimatedRowHeight() -> CGFloat {
+	public override class func estimatedRowHeight() -> CGFloat {
 		return 200.0
 	}
 	
-	static func registerInTableView(tableView: UITableView) {
+	public override class func registerInTableView(tableView: UITableView) {
 		tableView.registerClass(DatePickerCell.self, forCellReuseIdentifier: DatePickerCell.identifier())
 	}
 }

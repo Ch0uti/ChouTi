@@ -7,6 +7,8 @@
 
 import UIKit
 
+// Use `class` instead of `static` to let subclass override class method
+// Reference: http://stackoverflow.com/questions/29636633/static-vs-class-functions-variables-in-swift-classes
 public protocol TableViewCellInfo {
     static func identifier() -> String
 	// return NSStringFromClass(<#Cell#>.self)

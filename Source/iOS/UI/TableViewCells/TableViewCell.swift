@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TableViewCell: UITableViewCell {
+public class TableViewCell : UITableViewCell {
 	public var cellHeight: CGFloat = 44.0 {
 		didSet {
 			heightConstraint?.constant = cellHeight
@@ -43,7 +43,7 @@ public class TableViewCell: UITableViewCell {
 		commonInit()
 	}
 	
-	private func commonInit() {
+	func commonInit() {
 		heightConstraint = NSLayoutConstraint(item: contentView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: cellHeight)
 		heightConstraint!.priority = 500
 		heightConstraint!.active = true

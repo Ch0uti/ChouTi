@@ -10,7 +10,7 @@ import UIKit
 
 // FIXME: Height is not settable
 
-public class SeparatorCell: UITableViewCell {
+public class SeparatorCell: TableViewCell {
 
 	public var separatorView: UIView = UIView() {
 		didSet {
@@ -18,17 +18,9 @@ public class SeparatorCell: UITableViewCell {
 		}
 	}
 	
-	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-		super.init(style: style, reuseIdentifier: reuseIdentifier)
-		commonInit()
-	}
-	
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		commonInit()
-	}
-	
-	private func commonInit() {
+	override func commonInit() {
+		super.commonInit()
+		
 		separatorView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(separatorView)
 		separatorView.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
@@ -53,16 +45,16 @@ public class SeparatorCell: UITableViewCell {
 	}
 }
 
-extension SeparatorCell : TableViewCellInfo {
-	static public  func identifier() -> String {
+extension SeparatorCell {
+	public override class func identifier() -> String {
 		return NSStringFromClass(SeparatorCell.self)
 	}
 	
-	static public func estimatedRowHeight() -> CGFloat {
+	public override class func estimatedRowHeight() -> CGFloat {
 		return 1//16.5
 	}
 	
-	static public func registerInTableView(tableView: UITableView) {
+	public override class func registerInTableView(tableView: UITableView) {
 		tableView.registerClass(SeparatorCell.self, forCellReuseIdentifier: SeparatorCell.identifier())
 	}
 }
