@@ -20,7 +20,7 @@ public extension NSDate {
 		let today = NSDate()
 		
 		guard let gregorian = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) else {
-			print("no calendar \"NSCalendarIdentifierGregorian\" found")
+			NSLog("Error: no calendar \"NSCalendarIdentifierGregorian\" found")
 			return today
 		}
 		
@@ -36,7 +36,7 @@ public extension NSDate {
 		offsetComponents.second = Int(r4)
 		
 		guard let rndDate1 = gregorian.dateByAddingComponents(offsetComponents, toDate: today, options: []) else {
-			print("randoming failed")
+			NSLog("Error: randoming failed")
 			return today
 		}
 		return rndDate1
@@ -100,5 +100,115 @@ public extension NSDate {
 	
 	public func dateByAddingSeconds(secondsToAdd: Double) -> NSDate {
 		return self.dateByAddingTimeInterval(secondsToAdd)
+	}
+}
+
+
+public extension NSDate {
+	private var gregorianCalendar: NSCalendar {
+		guard let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian) else {
+			NSLog("Error: no calendar \"NSCalendarIdentifierGregorian\" found")
+			return NSCalendar.currentCalendar()
+		}
+		
+		return calendar
+	}
+	
+	public var year: Int {
+		return gregorianCalendar.components(.Year, fromDate: self).year
+	}
+	
+	public func yearInTimeZone(timeZone: NSTimeZone) -> Int {
+		let calendar = gregorianCalendar
+		calendar.timeZone = timeZone
+		return yearInCalendar(calendar)
+	}
+	
+	public func yearInCalendar(calendar: NSCalendar) -> Int {
+		return calendar.components(.Year, fromDate: self).year
+	}
+	
+	public var month: Int {
+		return gregorianCalendar.components(.Month, fromDate: self).month
+	}
+	
+	public func monthInTimeZone(timeZone: NSTimeZone) -> Int {
+		let calendar = gregorianCalendar
+		calendar.timeZone = timeZone
+		return monthInCalendar(calendar)
+	}
+	
+	public func monthInCalendar(calendar: NSCalendar) -> Int {
+		return calendar.components(.Month, fromDate: self).month
+	}
+	
+	public var day: Int {
+		return gregorianCalendar.components(.Day, fromDate: self).day
+	}
+	
+	public func dayInTimeZone(timeZone: NSTimeZone) -> Int {
+		let calendar = gregorianCalendar
+		calendar.timeZone = timeZone
+		return dayInCalendar(calendar)
+	}
+	
+	public func dayInCalendar(calendar: NSCalendar) -> Int {
+		return calendar.components(.Day, fromDate: self).day
+	}
+	
+	public var hour: Int {
+		return gregorianCalendar.components(.Hour, fromDate: self).hour
+	}
+	
+	public func hourInTimeZone(timeZone: NSTimeZone) -> Int {
+		let calendar = gregorianCalendar
+		calendar.timeZone = timeZone
+		return hourInCalendar(calendar)
+	}
+	
+	public func hourInCalendar(calendar: NSCalendar) -> Int {
+		return calendar.components(.Hour, fromDate: self).hour
+	}
+	
+	public var minute: Int {
+		return gregorianCalendar.components(.Minute, fromDate: self).minute
+	}
+	
+	public func minuteInTimeZone(timeZone: NSTimeZone) -> Int {
+		let calendar = gregorianCalendar
+		calendar.timeZone = timeZone
+		return minuteInCalendar(calendar)
+	}
+	
+	public func minuteInCalendar(calendar: NSCalendar) -> Int {
+		return calendar.components(.Minute, fromDate: self).minute
+	}
+	
+	public var second: Int {
+		return gregorianCalendar.components(.Second, fromDate: self).second
+	}
+	
+	public func secondInTimeZone(timeZone: NSTimeZone) -> Int {
+		let calendar = gregorianCalendar
+		calendar.timeZone = timeZone
+		return secondInCalendar(calendar)
+	}
+	
+	public func secondInCalendar(calendar: NSCalendar) -> Int {
+		return calendar.components(.Second, fromDate: self).second
+	}
+	
+	public var weekday: Int {
+		return gregorianCalendar.components(.Weekday, fromDate: self).weekday
+	}
+	
+	public func weekdayInTimeZone(timeZone: NSTimeZone) -> Int {
+		let calendar = gregorianCalendar
+		calendar.timeZone = timeZone
+		return weekdayInCalendar(calendar)
+	}
+	
+	public func weekdayInCalendar(calendar: NSCalendar) -> Int {
+		return calendar.components(.Weekday, fromDate: self).weekday
 	}
 }
