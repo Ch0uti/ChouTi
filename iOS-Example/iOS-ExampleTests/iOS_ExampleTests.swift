@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+import ChouTi
 
 class iOS_ExampleTests: XCTestCase {
     
