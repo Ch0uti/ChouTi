@@ -14,6 +14,8 @@ public class DatePickerViewController : UIViewController {
 	public let datePicker = UIDatePicker()
 	private let slideUpAnimator = SlideUpAnimator()
 	
+	public var overlayViewStyle: OverlayViewStyle = .Normal(UIColor(white: 0.0, alpha: 0.75))
+	
 	public weak var delegate: DatePickerViewControllerDelagte?
 	
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -28,6 +30,7 @@ public class DatePickerViewController : UIViewController {
 	
 	private func commonInit() {
 		slideUpAnimator.presentingViewHeight = 264.0 // 44.0 + 220.0
+		slideUpAnimator.overlayViewStyle = overlayViewStyle
 		
 		modalPresentationStyle = .Custom
 		transitioningDelegate = slideUpAnimator

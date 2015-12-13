@@ -25,6 +25,7 @@ PODS:
   - ChouTi/UI (1.0):
     - ChouTi/UI/AutoLinesLabel (= 1.0)
     - ChouTi/UI/CollectionViewCells (= 1.0)
+    - ChouTi/UI/DatePickerViewController (= 1.0)
     - ChouTi/UI/DropDownMenu (= 1.0)
     - ChouTi/UI/LoadingMorphingLabel (= 1.0)
     - ChouTi/UI/MenuPageViewController (= 1.0)
@@ -35,6 +36,7 @@ PODS:
   - ChouTi/UI-App-Extension-API-Unsafe/SlideController (1.0)
   - ChouTi/UI/AutoLinesLabel (1.0)
   - ChouTi/UI/CollectionViewCells (1.0)
+  - ChouTi/UI/DatePickerViewController (1.0)
   - ChouTi/UI/DropDownMenu (1.0)
   - ChouTi/UI/LoadingMorphingLabel (1.0):
     - LTMorphingLabel (~> 0.0.8)
@@ -48,10 +50,10 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   ChouTi:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  ChouTi: eeb460a48b67589c52adc97033c1e745696f8c90
+  ChouTi: 036a635cd99d943697d6a49bc436bcb4b30efca9
   LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
 
 COCOAPODS: 0.39.0

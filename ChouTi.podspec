@@ -34,7 +34,6 @@ Pod::Spec.new do |s|
 
     ss.dependency "ChouTi/App-Extension-API-Unsafe"
     ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
-
   end
 
   s.subspec "Safe" do |ss|
@@ -106,7 +105,6 @@ Pod::Spec.new do |s|
 
   s.subspec "UI" do |ss|
     ss.summary     = "UI Views & ViewControllers"
-
     ss.source_files = 'Source/iOS/UI/*.*'
 
     ss.subspec "AutoLinesLabel" do |sss|
@@ -149,6 +147,12 @@ Pod::Spec.new do |s|
     ss.subspec "DropDownMenu" do |sss|
       sss.summary      = "A drop down menu presented in full screen with blur background"
       sss.source_files = 'Source/iOS/UI/DropDownMenu/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
+    ss.subspec "DatePickerViewController" do |sss|
+      sss.summary      = "A slide up date picker view controller"
+      sss.source_files = 'Source/iOS/UI/DatePickerViewController/*.*'
       sss.frameworks   = 'UIKit'
     end
 

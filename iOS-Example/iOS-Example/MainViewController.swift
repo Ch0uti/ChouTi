@@ -20,7 +20,7 @@ class MainViewController: UIViewController {
 		
 		setupTableView()
 		
-		title = "抽屉(ChouTi) Demo"
+		title = "🗄 抽屉(ChouTi) Demo"
 		navigationController?.navigationBar.titleTextColor = UIColor(red:252/255.0, green:43/255.0, blue:27/255.0, alpha:255/255.0)
 		navigationController?.navigationBar.titleTextFont = UIFont.boldSystemFontOfSize(18)
 	}
@@ -108,6 +108,7 @@ class MainViewController: UIViewController {
 		
 		viewRows.append(
 			TableViewRow(title: "Menu View",
+				subtitle: "Horizontal Menu View",
 				tableView: tableView,
 				cellSelectAction: { indexPath, cell in
 					self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -118,7 +119,7 @@ class MainViewController: UIViewController {
 		
 		if #available(iOS 9.0, *) {
 			viewRows.append(
-				TableViewRow(title: "Image Picker View Demo Controller",
+				TableViewRow(title: "📷 Image Picker View Demo Controller",
 					subtitle: "Handy Image Selection View",
 					tableView: tableView,
 					cellSelectAction: { indexPath, cell in
@@ -140,7 +141,8 @@ class MainViewController: UIViewController {
 		)
 		
 		viewRows.append(
-			TableViewRow(title: "Date Picker View Controller",
+			TableViewRow(title: "📅 Date Picker View Controller",
+				subtitle: "A Slide Up Date Picker View Controller",
 				tableView: tableView,
 				cellSelectAction: { indexPath, cell in
 					self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -177,7 +179,7 @@ class MainViewController: UIViewController {
 		
 		if #available(iOS 9.0, *) {
 			layoutRows.append(
-				TableViewRow(title: "Table (Grid) Layout",
+				TableViewRow(title: "├┼┤ Table (Grid) Layout",
 					subtitle: "Excel Layout",
 					tableView: tableView,
 					cellSelectAction: { indexPath, cell in
