@@ -198,6 +198,7 @@ public extension UIView {
 
 public extension UIView {
 	// MARK: - Overlay View
+	
 	private struct zhOverlayViewKey {
 		static var Key = "zhOverlayViewKey"
 	}
@@ -213,7 +214,7 @@ public extension UIView {
 		dampingRatio: CGFloat = 1.0,
 		velocity: CGFloat = 1.0,
 		overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.6),
-		viewTag: Int? = nil,
+		viewKeyPointer: UnsafePointer<String> = nil,
 		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, overlayViewBackgroundColor: UIColor) -> ())? = nil,
 		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
 	{
@@ -226,7 +227,7 @@ public extension UIView {
 			dampingRatio: dampingRatio,
 			velocity: velocity,
 			overlayViewBackgroundColor: overlayViewBackgroundColor,
-			viewTag: viewTag,
+			viewKeyPointer: viewKeyPointer,
 			beginning: beginning,
 			completion: completion
 		)
@@ -239,7 +240,7 @@ public extension UIView {
 		dampingRatio: CGFloat = 1.0,
 		velocity: CGFloat = 1.0,
 		overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
-		viewTag: Int? = nil,
+		viewKeyPointer: UnsafePointer<String> = nil,
 		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, overlayViewBackgroundColor: UIColor) -> ())? = nil,
 		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
 	{
@@ -252,7 +253,7 @@ public extension UIView {
 			dampingRatio: dampingRatio,
 			velocity: velocity,
 			overlayViewBackgroundColor: overlayViewBackgroundColor,
-			viewTag: viewTag,
+			viewKeyPointer: viewKeyPointer,
 			beginning: beginning,
 			completion: completion
 		)
@@ -265,7 +266,7 @@ public extension UIView {
 		dampingRatio: CGFloat = 1.0,
 		velocity: CGFloat = 1.0,
 		overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
-		viewTag: Int? = nil,
+		viewKeyPointer: UnsafePointer<String> = nil,
 		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, overlayViewBackgroundColor: UIColor) -> ())? = nil,
 		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
 	{
@@ -277,7 +278,7 @@ public extension UIView {
 			dampingRatio: dampingRatio,
 			velocity: velocity,
 			overlayViewBackgroundColor: overlayViewBackgroundColor,
-			viewTag: viewTag,
+			viewKeyPointer: viewKeyPointer,
 			beginning: beginning,
 			completion: completion
 		)
@@ -290,7 +291,7 @@ public extension UIView {
 		dampingRatio: CGFloat = 1.0,
 		velocity: CGFloat = 1.0,
 		overlayViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
-		viewTag: Int? = nil,
+		viewKeyPointer: UnsafePointer<String> = nil,
 		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, overlayViewBackgroundColor: UIColor) -> ())? = nil,
 		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
 	{
@@ -298,12 +299,12 @@ public extension UIView {
 		overlayView.translatesAutoresizingMaskIntoConstraints = false
 		overlayView.backgroundColor = overlayViewBackgroundColor
 		
-		if let viewTag = viewTag {
-			if viewWithTag(viewTag) != nil {
-				print("Warning: found existing overlay view with same tag: \(viewTag)")
+		if viewKeyPointer != nil {
+			if getAssociatedViewForKeyPointer(viewKeyPointer) != nil {
+				print("Warning: found existing overlay view with viewKeyPointer: \(viewKeyPointer)")
 			}
 			
-			overlayView.tag = viewTag
+			setAssociatedView(overlayView, forKeyPointer: viewKeyPointer)
 		} else {
 			if zhOverlayView != nil {
 				print("Warning: found existing overlay view")
@@ -340,13 +341,13 @@ public extension UIView {
 		delay: NSTimeInterval = 0.0,
 		dampingRatio: CGFloat = 1.0,
 		velocity: CGFloat = 1.0,
-		viewTag: Int? = nil,
+		viewKeyPointer: UnsafePointer<String> = nil,
 		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat) -> ())? = nil,
 		completion: ((Bool) -> ())? = nil)
 	{
 		let overlayView: UIView
-		if let viewTag = viewTag {
-			guard let theOverlayView = viewWithTag(viewTag) else {
+		if viewKeyPointer != nil {
+			guard let theOverlayView = getAssociatedViewForKeyPointer(viewKeyPointer) else {
 				print("Error: overlay view is not existed")
 				beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
 				completion?(false)
@@ -365,7 +366,12 @@ public extension UIView {
 		
 		if !animated {
 			overlayView.removeFromSuperview()
-			zhOverlayView = nil
+			if viewKeyPointer != nil {
+				clearAssociatedViewForKeyPointer(viewKeyPointer)
+			} else {
+				zhOverlayView = nil
+			}
+			
 			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
 			completion?(true)
 		} else {
@@ -374,7 +380,11 @@ public extension UIView {
 				overlayView.alpha = 0.0
 				}) { [unowned self] (finished) -> Void in
 					overlayView.removeFromSuperview()
-					self.zhOverlayView = nil
+					if viewKeyPointer != nil {
+						self.clearAssociatedViewForKeyPointer(viewKeyPointer)
+					} else {
+						self.zhOverlayView = nil
+					}
 					completion?(finished)
 			}
 		}
@@ -397,7 +407,7 @@ public extension UIView {
 		velocity: CGFloat = 1.0,
 		blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
 		blurEffectStyle: UIBlurEffectStyle = .Dark,
-		viewTag: Int? = nil,
+		viewKeyPointer: UnsafePointer<String> = nil,
 		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, blurredViewBackgroundColor: UIColor, blurEffectStyle: UIBlurEffectStyle) -> ())? = nil,
 		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
 	{
@@ -411,7 +421,7 @@ public extension UIView {
 			velocity: velocity,
 			blurredViewBackgroundColor: blurredViewBackgroundColor,
 			blurEffectStyle: blurEffectStyle,
-			viewTag: viewTag,
+			viewKeyPointer: viewKeyPointer,
 			beginning: beginning,
 			completion: completion
 		)
@@ -425,7 +435,7 @@ public extension UIView {
 		velocity: CGFloat = 1.0,
 		blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
 		blurEffectStyle: UIBlurEffectStyle = .Dark,
-		viewTag: Int? = nil,
+		viewKeyPointer: UnsafePointer<String> = nil,
 		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, blurredViewBackgroundColor: UIColor, blurEffectStyle: UIBlurEffectStyle) -> ())? = nil,
 		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
 	{
@@ -439,7 +449,7 @@ public extension UIView {
 			velocity: velocity,
 			blurredViewBackgroundColor: blurredViewBackgroundColor,
 			blurEffectStyle: blurEffectStyle,
-			viewTag: viewTag,
+			viewKeyPointer: viewKeyPointer,
 			beginning: beginning,
 			completion: completion
 		)
@@ -453,7 +463,7 @@ public extension UIView {
 		velocity: CGFloat = 1.0,
 		blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
 		blurEffectStyle: UIBlurEffectStyle = .Dark,
-		viewTag: Int? = nil,
+		viewKeyPointer: UnsafePointer<String> = nil,
 		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, blurredViewBackgroundColor: UIColor, blurEffectStyle: UIBlurEffectStyle) -> ())? = nil,
 		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
 	{
@@ -467,7 +477,7 @@ public extension UIView {
 			velocity: velocity,
 			blurredViewBackgroundColor: blurredViewBackgroundColor,
 			blurEffectStyle: blurEffectStyle,
-			viewTag: viewTag,
+			viewKeyPointer: viewKeyPointer,
 			beginning: beginning,
 			completion: completion
 		)
@@ -481,7 +491,7 @@ public extension UIView {
 		velocity: CGFloat = 1.0,
 		blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
 		blurEffectStyle: UIBlurEffectStyle = .Dark,
-		viewTag: Int? = nil,
+		viewKeyPointer: UnsafePointer<String> = nil,
 		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat, blurredViewBackgroundColor: UIColor, blurEffectStyle: UIBlurEffectStyle) -> ())? = nil,
 		completion: ((overlayView: UIView) -> ())? = nil) -> UIView
 	{
@@ -494,12 +504,12 @@ public extension UIView {
 		overlayView.translatesAutoresizingMaskIntoConstraints = false
 		overlayView.backgroundColor = blurredViewBackgroundColor
 		
-		if let viewTag = viewTag {
-			if viewWithTag(viewTag) != nil {
-				print("Warning: found existing blurred overlay view with same tag: \(viewTag)")
+		if viewKeyPointer != nil {
+			if getAssociatedViewForKeyPointer(viewKeyPointer) != nil {
+				print("Warning: found existing blurred overlay view with viewKeyPointer: \(viewKeyPointer)")
 			}
 			
-			overlayView.tag = viewTag
+			setAssociatedView(overlayView, forKeyPointer: viewKeyPointer)
 		} else {
 			if zhBlurredOverlayView != nil {
 				print("warning: found existing blurred overlay view")
@@ -537,14 +547,14 @@ public extension UIView {
 		delay: NSTimeInterval = 0.0,
 		dampingRatio: CGFloat = 1.0,
 		velocity: CGFloat = 1.0,
-		viewTag: Int? = nil,
+		viewKeyPointer: UnsafePointer<String> = nil,
 		beginning: ((animated: Bool, duration: NSTimeInterval, delay: NSTimeInterval, dampingRatio: CGFloat, velocity: CGFloat) -> ())? = nil,
 		completion: ((Bool) -> ())? = nil)
 	{
 		
 		let overlayView: UIView
-		if let viewTag = viewTag {
-			guard let theOverlayView = viewWithTag(viewTag) else {
+		if viewKeyPointer != nil {
+			guard let theOverlayView = getAssociatedViewForKeyPointer(viewKeyPointer) else {
 				print("Error: blurred overlay view is not existed")
 				beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
 				completion?(false)
@@ -563,7 +573,11 @@ public extension UIView {
 		
 		if !animated {
 			overlayView.removeFromSuperview()
-			zhBlurredOverlayView = nil
+			if viewKeyPointer != nil {
+				clearAssociatedViewForKeyPointer(viewKeyPointer)
+			} else {
+				zhBlurredOverlayView = nil
+			}
 			beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity)
 			completion?(true)
 		} else {
@@ -572,10 +586,27 @@ public extension UIView {
 				overlayView.alpha = 0.0
 				}) { [unowned self] (finished) -> Void in
 					overlayView.removeFromSuperview()
-					self.zhBlurredOverlayView = nil
+					if viewKeyPointer != nil {
+						self.clearAssociatedViewForKeyPointer(viewKeyPointer)
+					} else {
+						self.zhBlurredOverlayView = nil
+					}
 					completion?(finished)
 			}
 		}
+	}
+	
+	// MARK: - Helper Methos
+	private func setAssociatedView(view: UIView, forKeyPointer keyPointer: UnsafePointer<String>) {
+		objc_setAssociatedObject(self, keyPointer, view, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+	}
+	
+	private func getAssociatedViewForKeyPointer(keyPointer: UnsafePointer<String>) -> UIView? {
+		return objc_getAssociatedObject(self, keyPointer) as? UIView
+	}
+	
+	private func clearAssociatedViewForKeyPointer(keyPointer: UnsafePointer<String>) {
+		objc_setAssociatedObject(self, keyPointer, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 	}
 }
 

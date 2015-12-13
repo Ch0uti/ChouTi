@@ -20,8 +20,10 @@ class DropDownMenuAnimator: Animator {
 	/// Whether presenting view should be dimmed when presenting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.
 	var shouldDimPresentedView: Bool = false
 	
-	/// View tag for transparent overlay view, this transparent view is used for floating menu view
-	private let transparentOverlayViewTag: Int = 998
+	/// View key for transparent overlay view, this transparent view is used for floating menu view
+	struct TransparentOverlayViewKey {
+		static var Key = "zhTransparentOverlayViewKey"
+	}
 	
 	// Tap to dismiss
 	var shouldDismissOnTappingOutsideView: Bool = true
@@ -67,7 +69,7 @@ class DropDownMenuAnimator: Animator {
 			}
 			
 			// Add a transparent overlay view, this view is used for floating menu view
-			let transparentOverlayView = presentingView.addOverlayView(animated: false, overlayViewBackgroundColor: UIColor.clearColor(), viewTag: transparentOverlayViewTag)
+			let transparentOverlayView = presentingView.addOverlayView(animated: false, overlayViewBackgroundColor: UIColor.clearColor(), viewKeyPointer: &TransparentOverlayViewKey.Key)
 			
 			// Keep menu view at the top (dropDownMenu.wrapperView is the containerView for all subviews)
 			transparentOverlayView.addSubview(dropDownMenu.wrapperView)
@@ -115,7 +117,7 @@ class DropDownMenuAnimator: Animator {
 				dropDownMenu.addSubview(dropDownMenu.wrapperView)
 				dropDownMenu.switchBackgroundColorWithAnotherView(dropDownMenu.wrapperView)
 				dropDownMenu.setupWrapperViewConstraints()
-				toView.removeOverlayView(animated: false, viewTag: self.transparentOverlayViewTag)
+				toView.removeOverlayView(animated: false, viewKeyPointer: &TransparentOverlayViewKey.Key)
 			}
 			
 			// Remove overlay view
