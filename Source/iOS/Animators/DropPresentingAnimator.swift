@@ -30,12 +30,6 @@ public class DropPresentingAnimator: Animator {
 	
     public var presentingViewSize = CGSize(width: 300, height: 200)
 	
-	// Customize overlay view style
-	public enum OverlayViewStyle {
-		case Normal(UIColor)
-		case Blurred(UIBlurEffectStyle, UIColor)
-	}
-	
 	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.85))
 	
 	/// Whether presenting view should be dimmed when preseting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.

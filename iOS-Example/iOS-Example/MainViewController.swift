@@ -139,6 +139,16 @@ class MainViewController: UIViewController {
 			)
 		)
 		
+		viewRows.append(
+			TableViewRow(title: "Date Picker View Controller",
+				tableView: tableView,
+				cellSelectAction: { indexPath, cell in
+					self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+					self.navigationController?.pushViewController(DatePickerViewControllerDemoViewController(), animated: true)
+				}
+			)
+		)
+		
 		sections.append(
 			TableViewSection(headerTitle: "Views", rows: viewRows, tableView: tableView)
 		)
