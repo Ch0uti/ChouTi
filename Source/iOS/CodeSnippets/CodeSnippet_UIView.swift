@@ -29,7 +29,6 @@
 //
 //	private func setupViews() {
 //		// TODO: Setup view hierarchy
-//
 //		<#view#>.translatesAutoresizingMaskIntoConstraints = false
 //		addSubview(<#view#>)
 //	}

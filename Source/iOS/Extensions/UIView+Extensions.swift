@@ -174,6 +174,9 @@ public extension UIView {
 	public var isVisible: Bool { return (window != nil) }
 }
 
+
+
+// MARK: - Set Hiddem
 public extension UIView {
 	public func setHidden(hidden: Bool, animated: Bool = false, duration: NSTimeInterval = 0.25, completion: ((Bool) -> ())? = nil) {
 		if !animated {
@@ -196,8 +199,10 @@ public extension UIView {
 	}
 }
 
+
+
+// MARK: - Overlay View
 public extension UIView {
-	// MARK: - Overlay View
 	
 	private struct zhOverlayViewKey {
 		static var Key = "zhOverlayViewKey"

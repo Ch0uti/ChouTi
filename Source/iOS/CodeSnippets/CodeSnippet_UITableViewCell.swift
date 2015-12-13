@@ -21,14 +21,16 @@
 //	}
 //	
 //	private func commonInit() {
-//		// TODO: Setup view hierarchy
-//		
-//		<#view#>.translatesAutoresizingMaskIntoConstraints = false
-//		contentView.addSubview(<#view#>)
-//
+//		setupViews()
 //		setupConstraints()
 //	}
-//	
+//
+//	private func setupViews() {
+//		// TODO: Setup view hierarchy
+//		<#view#>.translatesAutoresizingMaskIntoConstraints = false
+//		contentView.addSubview(<#view#>)
+//	}
+//
 //	private func setupConstraints() {
 //		preservesSuperviewLayoutMargins = false
 //		layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -37,7 +39,7 @@
 //			"view" : <#view#>
 //		]
 //
-//		let metrics = [
+//		let metrics: [String : CGFloat] = [
 //			"vertical_spacing" : 4.0
 //		]
 //
@@ -51,15 +53,15 @@
 //}
 //
 //extension <#Cell#> : TableViewCellInfo {
-//	static func identifier() -> String {
+//	class func identifier() -> String {
 //		return NSStringFromClass(<#Cell#>.self)
 //	}
 //	
-//	static func estimatedRowHeight() -> CGFloat {
+//	class func estimatedRowHeight() -> CGFloat {
 //		return 44.0
 //	}
 //	
-//	static func registerInTableView(tableView: UITableView) {
+//	class func registerInTableView(tableView: UITableView) {
 //		tableView.registerClass(<#Cell#>.self, forCellReuseIdentifier: <#Cell#>.identifier())
 //	}
 //}
