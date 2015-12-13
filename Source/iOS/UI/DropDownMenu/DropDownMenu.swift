@@ -15,12 +15,6 @@ public class DropDownMenu: UIControl {
 	// TODO: Include arrow image asset
 //	public let indicatorView: UIView?
 	
-	// Customize overlay view style
-	public enum OverlayViewStyle {
-		case Normal(UIColor)
-		case Blurred(UIBlurEffectStyle, UIColor)
-	}
-	
 	/// overlayViewStyle is the blurred/dimmed view behind the menu picker view
 	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.4)) {
 		didSet {
