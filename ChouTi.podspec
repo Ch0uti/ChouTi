@@ -121,6 +121,12 @@ Pod::Spec.new do |s|
       sss.frameworks   = 'UIKit'
     end
 
+    ss.subspec "CollectionViewCells" do |sss|
+      sss.summary      = "Customized UICollectionViewCells"
+      sss.source_files = 'Source/iOS/UI/CollectionViewCells/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
     ss.subspec "SegmentedControl" do |sss|
       sss.summary      = "Customized Segmented Control, with underscore bars"
       sss.source_files = 'Source/iOS/UI/SegmentedControl/*.*'
