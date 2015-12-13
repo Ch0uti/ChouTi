@@ -34,6 +34,9 @@ public class DatePickerViewController : UIViewController {
 		
 		modalPresentationStyle = .Custom
 		transitioningDelegate = slideUpAnimator
+		
+		topToolBar.barTintColor = UIColor.blackColor()
+		topToolBar.tintColor = UIColor.whiteColor()
 	}
 	
 	public override func viewDidLoad() {
@@ -48,9 +51,6 @@ public class DatePickerViewController : UIViewController {
 	private func setupViews() {
 		topToolBar.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(topToolBar)
-		
-		topToolBar.barTintColor = UIColor.blackColor()
-		topToolBar.tintColor = UIColor.whiteColor()
 		
 		let cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel:")
 		let spaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
