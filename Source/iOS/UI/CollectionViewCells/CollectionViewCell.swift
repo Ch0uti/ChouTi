@@ -22,14 +22,20 @@ public class CollectionViewCell : UICollectionViewCell {
 		commonInit()
 	}
 
-	private func commonInit() {
+	public func commonInit() {
 		setupViews()
 		setupConstraints()
 	}
 	
 	private func setupViews() {
+		backgroundColor = UIColor.whiteColor()
+		
 		textLabel.translatesAutoresizingMaskIntoConstraints = false
 		contentView.addSubview(textLabel)
+		
+		let selectedBackgroundView = UIView()
+		selectedBackgroundView.backgroundColor = UIColor(white: 0.0, alpha: 0.25)
+		self.selectedBackgroundView = selectedBackgroundView
 	}
 
 	private func setupConstraints() {
@@ -51,6 +57,5 @@ extension CollectionViewCell : CollectionViewCellInfo {
 	
 	public class func registerInCollectionView(collectionView: UICollectionView) {
 		collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier())
-		collectionView.scrollEnabled = false
 	}
 }
