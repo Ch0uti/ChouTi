@@ -22,15 +22,38 @@ public extension UITableView {
 		
 		set {
 			let object = StructWrapper<[TableViewSectionType]>.objectFromStruct(newValue)
+			if object == nil {
+				tearUp()
+			} else {
+				setup()
+			}
 			objc_setAssociatedObject(self, &zhSectionsKey.Key, object, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-			if dataSource == nil {
-				dataSource = self
-			}
-			
-			if delegate == nil {
-				delegate = self
-			}
 		}
+	}
+	
+	private func setup() {
+		if dataSource == nil {
+			dataSource = self
+		}
+		
+		if delegate == nil {
+			delegate = self
+		}
+		
+		TableViewCell.registerInTableView(self)
+		TableViewCellValue1.registerInTableView(self)
+		TableViewCellValue2.registerInTableView(self)
+		TableViewCellSubtitle.registerInTableView(self)
+	}
+	
+	private func tearUp() {
+		dataSource = nil
+		delegate = nil
+		
+		TableViewCell.unregisterInTableView(self)
+		TableViewCellValue1.unregisterInTableView(self)
+		TableViewCellValue2.unregisterInTableView(self)
+		TableViewCellSubtitle.unregisterInTableView(self)
 	}
 }
 
@@ -44,7 +67,7 @@ extension UITableView : UITableViewDataSource {
 	
 	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		guard let section = sectionForIndex(section) else {
-			print("warning: no sections in \(self)")
+			print("Warning: no sections in \(self)")
 			return 0
 		}
 		
@@ -53,7 +76,7 @@ extension UITableView : UITableViewDataSource {
 	
 	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		guard let row = rowForIndexPath(indexPath) else {
-			print("row not found")
+			print("Error: row not found")
 			return UITableViewCell()
 		}
 		
@@ -62,11 +85,7 @@ extension UITableView : UITableViewDataSource {
 		if let cellConfiguration = row.cellInitialization {
 			cell = cellConfiguration(indexPath)
 		} else {
-			cell = tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier())
-			
-			if cell == nil {
-				cell = TableViewCell(style: .Subtitle, reuseIdentifier: TableViewCell.identifier())
-			}
+			cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellSubtitle.identifier()) as! TableViewCellSubtitle
 		}
 		
 		tableView.tableView(tableView, cellConfigurationForCell: cell, atIndexPath: indexPath)
@@ -76,7 +95,7 @@ extension UITableView : UITableViewDataSource {
 	
 	public func tableView(tableView: UITableView, cellConfigurationForCell cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		guard let row = rowForIndexPath(indexPath) else {
-			print("row not found")
+			print("Error: row not found")
 			return
 		}
 		
@@ -85,7 +104,7 @@ extension UITableView : UITableViewDataSource {
 	
 	public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
 		guard let sections = sections else {
-			print("warning: no sections in \(self)")
+			print("Warning: no sections in \(self)")
 			return nil
 		}
 		
@@ -99,7 +118,7 @@ extension UITableView : UITableViewDataSource {
 	
 	public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		guard let section = sectionForIndex(section) else {
-			print("warning: no sections in \(self)")
+			print("Warning: no sections in \(self)")
 			return nil
 		}
 		
@@ -108,7 +127,7 @@ extension UITableView : UITableViewDataSource {
 	
 	public func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 		guard let section = sectionForIndex(section) else {
-			print("warning: no sections in \(self)")
+			print("Warning: no sections in \(self)")
 			return nil
 		}
 		
@@ -125,7 +144,7 @@ extension UITableView : UITableViewDelegate {
 	
 	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		guard let row = rowForIndexPath(indexPath) else {
-			print("row not found")
+			print("Error: row not found")
 			return
 		}
 		
@@ -135,7 +154,7 @@ extension UITableView : UITableViewDelegate {
 	
 	public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
 		guard let row = rowForIndexPath(indexPath) else {
-			print("row not found")
+			print("Error: row not found")
 			return
 		}
 		
@@ -147,7 +166,7 @@ extension UITableView : UITableViewDelegate {
 public extension UITableView {
 	public func sectionForIndex(index: Int) -> TableViewSectionType? {
 		guard let sections = sections else {
-			print("warning: no sections in \(self)")
+			print("Warning: no sections in \(self)")
 			return nil
 		}
 		
@@ -155,25 +174,25 @@ public extension UITableView {
 			let section = sections[index]
 			return section
 		} else {
-			print("warning: seciton index out of range")
+			print("Warning: seciton index out of range")
 			return nil
 		}
 	}
 	
 	public func rowForIndexPath(indexPath: NSIndexPath) -> TableViewRowType? {
 		guard let sections = sections else {
-			print("warning: no sections in \(self)")
+			print("Warning: no sections in \(self)")
 			return nil
 		}
 		
 		guard indexPath.section < sections.count else {
-			print("warning: seciton index out of range")
+			print("Warning: seciton index out of range")
 			return nil
 		}
 		
 		let section = sections[indexPath.section]
 		guard indexPath.row < section.rows.count else {
-			print("warning: row index out of range")
+			print("Warning: row index out of range")
 			return nil
 		}
 		

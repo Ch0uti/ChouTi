@@ -1,5 +1,5 @@
 //
-//  TableViewSectionRow.swift
+//  TableViewRow.swift
 //  Pods
 //
 //  Created by Honghao Zhang on 2015-12-02.
@@ -8,22 +8,7 @@
 
 import Foundation
 
-public struct TableViewSection: TableViewSectionType {
-	public weak var tableView: UITableView?
-	public var headerTitle: String?
-	public var footerTitle: String?
-	public var shouldShowIndex: Bool = false
-	public var rows: [TableViewRowType] = []
-	
-	public init() {}
-	public init(headerTitle: String? = nil, rows: [TableViewRowType], tableView: UITableView) {
-		self.tableView = tableView
-		self.headerTitle = headerTitle
-		self.rows = rows
-	}
-}
-
-public struct TableViewRow: TableViewRowType {
+public struct TableViewRow : TableViewRowType {
 	public weak var tableView: UITableView?
 	public var title: String?
 	public var subtitle: String?
