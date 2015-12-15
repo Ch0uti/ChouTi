@@ -84,17 +84,21 @@ extension DatePickerViewController {
 			NSLog("Error: datePicket is nil")
 			return
 		}
-		delegate?.datePickerViewController(self, datePicker: datePicker, didScrollToDate: datePicker.date)
+		delegate?.datePickerViewController?(self, datePicker: datePicker, didScrollToDate: datePicker.date)
 	}
 	
 	func done(sender: AnyObject?) {
-		slideUpAnimator.dismisscurrentPresentedViewController()
-		delegate?.datePickerViewController(self, doneWithDate: datePicker.date)
+		delegate?.datePickerViewController?(self, willDoneWithDate: datePicker.date)
+		dismissViewControllerAnimated(true, completion: { [unowned self] in
+			self.delegate?.datePickerViewController?(self, didDoneWithDate: self.datePicker.date)
+		})
 	}
 	
 	func cancel(sender: AnyObject?) {
-		slideUpAnimator.dismisscurrentPresentedViewController()
-		delegate?.datePickerViewController(self, didCancelWithDate: datePicker.date)
+		delegate?.datePickerViewController?(self, willCancelWithDate: datePicker.date)
+		dismissViewControllerAnimated(true, completion: { [unowned self] in
+			self.delegate?.datePickerViewController?(self, didCancelWithDate: self.datePicker.date)
+		})
 	}
 }
 

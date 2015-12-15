@@ -50,7 +50,7 @@ extension DatePickerViewControllerDemoViewController : DatePickerViewControllerD
 		print("didScrollToDate: \(date)")
 	}
 	
-	func datePickerViewController(datePickerViewController: DatePickerViewController, doneWithDate date: NSDate) {
+	func datePickerViewController(datePickerViewController: DatePickerViewController, didDoneWithDate date: NSDate) {
 		print("doneWithDate: \(date)")
 	}
 	

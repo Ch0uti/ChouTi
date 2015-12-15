@@ -55,7 +55,7 @@ extension SlideUpAnimator {
 				return
 		}
 		
-		// Begining settings
+		// Initial settings
 		if shouldDimPresentedView {
 			presentingView.tintAdjustmentMode = .Dimmed
 		}
@@ -140,7 +140,7 @@ extension SlideUpAnimator {
 				return
 		}
 		
-		// Begining settings
+		// Initial settings
 		if shouldDimPresentedView {
 			toView.tintAdjustmentMode = .Normal
 		}
@@ -218,10 +218,6 @@ extension SlideUpAnimator : UIGestureRecognizerDelegate {
 
 // MARK: - Actions
 extension SlideUpAnimator {
-	public func dismisscurrentPresentedViewController() {
-		windowTapped(dismissTapGesture)
-	}
-	
 	func windowTapped(sender: AnyObject?) {
 		interactive = false
 		currentPresentedViewController?.dismissViewControllerAnimated(true, completion: nil)

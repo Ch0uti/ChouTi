@@ -8,8 +8,11 @@
 
 import UIKit
 
-public protocol DatePickerViewControllerDelagte : class {
-	func datePickerViewController(datePickerViewController: DatePickerViewController, datePicker: UIDatePicker, didScrollToDate date: NSDate)
-	func datePickerViewController(datePickerViewController: DatePickerViewController, doneWithDate date: NSDate)
-	func datePickerViewController(datePickerViewController: DatePickerViewController, didCancelWithDate date: NSDate)
+@objc public protocol DatePickerViewControllerDelagte : class {
+	optional func datePickerViewController(datePickerViewController: DatePickerViewController, datePicker: UIDatePicker, didScrollToDate date: NSDate)
+	optional func datePickerViewController(datePickerViewController: DatePickerViewController, willDoneWithDate date: NSDate)
+	optional func datePickerViewController(datePickerViewController: DatePickerViewController, didDoneWithDate date: NSDate)
+	
+	optional func datePickerViewController(datePickerViewController: DatePickerViewController, willCancelWithDate date: NSDate)
+	optional func datePickerViewController(datePickerViewController: DatePickerViewController, didCancelWithDate date: NSDate)
 }
