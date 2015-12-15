@@ -65,9 +65,12 @@ public class TableViewCell : UITableViewCell {
 	}
 }
 
+
+
+// MARK: - TableViewCellInfo
 extension TableViewCell : TableViewCellInfo {
 	public class func identifier() -> String {
-		return NSStringFromClass(TableViewCell.self)
+		return String(self)
 	}
 	
 	public class func estimatedRowHeight() -> CGFloat {
@@ -75,6 +78,10 @@ extension TableViewCell : TableViewCellInfo {
 	}
 	
 	public class func registerInTableView(tableView: UITableView) {
-		tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier())
+		tableView.registerClass(self, forCellReuseIdentifier: identifier())
+	}
+	
+	public class func unregisterInTableView(tableView: UITableView) {
+		tableView.registerClass(nil, forCellReuseIdentifier: identifier())
 	}
 }

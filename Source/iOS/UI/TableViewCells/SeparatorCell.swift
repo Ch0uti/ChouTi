@@ -46,15 +46,7 @@ public class SeparatorCell: TableViewCell {
 }
 
 extension SeparatorCell {
-	public override class func identifier() -> String {
-		return NSStringFromClass(SeparatorCell.self)
-	}
-	
 	public override class func estimatedRowHeight() -> CGFloat {
-		return 1//16.5
-	}
-	
-	public override class func registerInTableView(tableView: UITableView) {
-		tableView.registerClass(SeparatorCell.self, forCellReuseIdentifier: SeparatorCell.identifier())
+		return 0.5
 	}
 }

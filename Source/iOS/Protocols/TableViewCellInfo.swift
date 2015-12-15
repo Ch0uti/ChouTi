@@ -13,7 +13,7 @@ import UIKit
 public protocol TableViewCellInfo {
 	/**
 	Default cell reuse identifier for cell
-	Sample: return NSStringFromClass(<#Cell#>.self)
+	Sample: return String(self)
 	
 	- returns: a cell reuse identifier
 	*/
@@ -30,9 +30,28 @@ public protocol TableViewCellInfo {
 	
 	/**
 	Register in table view helper methods
-	Sample: tableView.registerClass(<#Cell#>.self, forCellReuseIdentifier: <#Cell#>.identifier())
+	Sample: tableView.registerClass(self, forCellReuseIdentifier: identifier())
 	
 	- parameter tableView: target table view to use this cell
 	*/
     static func registerInTableView(tableView: UITableView)
 }
+
+
+
+// Sample Implementation:
+
+// MARK: - TableViewCellInfo
+//extension <#TableViewCell#> : TableViewCellInfo {
+//	public class func identifier() -> String {
+//		return String(self)
+//	}
+//	
+//	public class func estimatedRowHeight() -> CGFloat {
+//		return 44.0
+//	}
+//	
+//	public class func registerInTableView(tableView: UITableView) {
+//		tableView.registerClass(self, forCellReuseIdentifier: identifier())
+//	}
+//}

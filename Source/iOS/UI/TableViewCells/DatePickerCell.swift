@@ -42,15 +42,7 @@ public class DatePickerCell : TableViewCell {
 }
 
 extension DatePickerCell {
-	public override class func identifier() -> String {
-		return NSStringFromClass(DatePickerCell.self)
-	}
-	
 	public override class func estimatedRowHeight() -> CGFloat {
 		return 200.0
-	}
-	
-	public override class func registerInTableView(tableView: UITableView) {
-		tableView.registerClass(DatePickerCell.self, forCellReuseIdentifier: DatePickerCell.identifier())
 	}
 }
