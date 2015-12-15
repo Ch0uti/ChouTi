@@ -2,7 +2,7 @@
 //  DatePickerViewControllerDelagte.swift
 //  Pods
 //
-//  Created by Honghao_Zhang on 2015-12-12.
+//  Created by Honghao Zhang on 2015-12-12.
 //
 //
 

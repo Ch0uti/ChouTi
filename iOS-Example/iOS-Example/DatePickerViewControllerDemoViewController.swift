@@ -2,7 +2,7 @@
 //  DatePickerViewControllerDemoViewController.swift
 //  iOS-Example
 //
-//  Created by Honghao_Zhang on 2015-12-12.
+//  Created by Honghao Zhang on 2015-12-12.
 //  Copyright © 2015 Honghao Zhang. All rights reserved.
 //
 

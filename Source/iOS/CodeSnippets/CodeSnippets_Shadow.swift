@@ -2,7 +2,7 @@
 //  CodeSnippets_Shadow.swift
 //  Pods
 //
-//  Created by Honghao_Zhang on 2015-12-13.
+//  Created by Honghao Zhang on 2015-12-13.
 //
 //
 
