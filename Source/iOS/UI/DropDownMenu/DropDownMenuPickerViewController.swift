@@ -10,12 +10,16 @@ import UIKit
 
 class DropDownMenuPickerViewController : UIViewController {
 	
+	/// Table view for options
 	let tableView = UITableView()
 	
+	/// The drop down menu using this picker view controller
 	weak var dropDownMenu: DropDownMenu?
 	
+	/// Sliding up/down animation duration. By default is 0.5s
 	var animationDuration: NSTimeInterval = 0.5
 	
+	/// Option cell height. By default is 44.0
 	var optionCellHeight: CGFloat = 44.0 {
 		didSet {
 			tableViewHeightConstraint?.constant = ceil(optionCellHeight * CGFloat(numberOfOptions))
@@ -23,6 +27,7 @@ class DropDownMenuPickerViewController : UIViewController {
 	}
 	
 	private var _optionTextColor: UIColor?
+	/// Menu options text color
 	var optionTextColor: UIColor? {
 		get {
 			return _optionTextColor ?? UIColor.blackColor()
@@ -34,6 +39,7 @@ class DropDownMenuPickerViewController : UIViewController {
 	}
 	
 	private var _optionTextFont: UIFont?
+	/// Menu options text font
 	var optionTextFont: UIFont? {
 		get {
 			return _optionTextFont ?? dropDownMenu?.textLabel.font
@@ -44,6 +50,7 @@ class DropDownMenuPickerViewController : UIViewController {
 	}
 	
 	private var _optionTextAlignment: NSTextAlignment?
+	/// Menu options text alignment
 	var optionTextAlignment: NSTextAlignment {
 		get {
 			return _optionTextAlignment ?? dropDownMenu?.textLabel.textAlignment ?? .Left
@@ -54,6 +61,7 @@ class DropDownMenuPickerViewController : UIViewController {
 	}
 	
 	private var _optionCellBackgroundColor: UIColor?
+	/// Menu options cell background color
 	var optionCellBackgroundColor: UIColor? {
 		get {
 			return _optionCellBackgroundColor ?? UIColor.whiteColor()
@@ -69,6 +77,7 @@ class DropDownMenuPickerViewController : UIViewController {
 			tableView.separatorColor = _optionSeparatorColor
 		}
 	}
+	/// Color for separator between options
 	var optionSeparatorColor: UIColor? {
 		get {
 			return _optionSeparatorColor ?? UIColor(white: 0.75, alpha: 1.0)
@@ -165,10 +174,12 @@ class DropDownMenuPickerViewController : UIViewController {
 		super.viewDidLayoutSubviews()
 		view.layoutIfNeeded()
 		
+		// Expand options table view here because table view size is layouted
 		expandOptions()
 	}
 	
 	override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
+		// Collapse options then dismiss
 		collapseOptions({ _ in
 			super.dismissViewControllerAnimated(flag, completion: completion)
 		})
@@ -179,6 +190,12 @@ class DropDownMenuPickerViewController : UIViewController {
 
 // MARK: - Animations
 extension DropDownMenuPickerViewController {
+	
+	/**
+	Expand options list
+	
+	- parameter completion: optional completion block
+	*/
 	func expandOptions(completion: ((Bool) -> Void)? = nil) {
 		if isExpanded {
 			completion?(false)
@@ -196,6 +213,11 @@ extension DropDownMenuPickerViewController {
 		})
 	}
 	
+	/**
+	Collapse options list
+	
+	- parameter completion: optional completion block
+	*/
 	func collapseOptions(completion: ((Bool) -> Void)? = nil) {
 		if !isExpanded {
 			completion?(false)
@@ -253,9 +275,7 @@ extension DropDownMenuPickerViewController : UITableViewDataSource {
 		cell.backgroundColor = UIColor.clearColor()
 		
 		// Full width separator
-		cell.preservesSuperviewLayoutMargins = false
-		cell.separatorInset = UIEdgeInsetsZero
-		cell.layoutMargins = UIEdgeInsetsZero
+		cell.enableFullWidthSeparator()
 		
 		return cell
 	}
@@ -271,6 +291,16 @@ extension DropDownMenuPickerViewController : UITableViewDelegate {
 	}
 
 	// MARK: - Selections
+	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+		guard let dropDownMenu = dropDownMenu else {
+			assertionFailure("Error: dropDownMenu is nil")
+			return indexPath
+		}
+		
+		dropDownMenu.delegate?.dropDownMenu?(dropDownMenu, willSelectedIndex: indexPath.row)
+		return indexPath
+	}
+	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		guard let dropDownMenu = dropDownMenu else {
@@ -280,8 +310,8 @@ extension DropDownMenuPickerViewController : UITableViewDelegate {
 		
 		collapseOptions { _ in
 			dropDownMenu.selectedIndex = indexPath.row
-			dropDownMenu.delegate?.dropDownMenu(dropDownMenu, didSelectedIndex: indexPath.row)
-			dropDownMenu.menuAnimator.dismisscurrentPresentedViewController()
+			dropDownMenu.delegate?.dropDownMenu?(dropDownMenu, didSelectedIndex: indexPath.row)
+			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 	}
 }

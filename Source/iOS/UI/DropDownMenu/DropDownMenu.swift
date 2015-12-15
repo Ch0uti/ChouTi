@@ -11,86 +11,96 @@ import UIKit
 public class DropDownMenu: UIControl {
 	
 	// MARK: - Public
+	
+	/// The main text label showing current selected option
 	public let textLabel = UILabel()
-	// TODO: Include arrow image asset
+	
+	// TODO: Include arrow image asset in Pods
 //	public let indicatorView: UIView?
 	
-	/// overlayViewStyle is the blurred/dimmed view behind the menu picker view
+	/// overlayViewStyle is for the blurred/dimmed view behind the menu picker view
 	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.4)) {
 		didSet {
 			menuAnimator.overlayViewStyle = overlayViewStyle
 		}
 	}
 	
-	/// whether the menu is expanded
+	/// Whether the menu is expanded
 	public private(set) var expanded: Bool = false
 	
+	/// Drop down animation duration
 	public var animationDuration: NSTimeInterval = 0.5
 	
+	/// Current selected index
 	public var selectedIndex: Int = 0 {
 		didSet {
-			// TODO: Wrap this into extension
-			if textLabel.layer.animationForKey("TextTransition") == nil {
-				// Add transition (must be called after myLabel has been displayed)
-				let animation = CATransition()
-				animation.duration = animationDuration / 2.0
-				animation.type = kCATransitionFade
-				animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-				textLabel.layer.addAnimation(animation, forKey: "TextTransition")
-			}
-			
+			textLabel.addFadeTransitionAnimation(animationDuration / 2.0)
 			textLabel.text = dataSource.dropDownMenu(self, optionTitleForIndex: selectedIndex)
 		}
 	}
 	
+	/// Menu options text color
 	public var optionTextColor: UIColor? {
 		didSet {
 			pickerViewController.optionTextColor = optionTextColor
 		}
 	}
 	
+	/// Menu options text font
 	public var optionTextFont: UIFont? {
 		didSet {
 			pickerViewController.optionTextFont = optionTextFont
 		}
 	}
 	
+	/// Menu options text alignment
 	public var optionTextAlignment: NSTextAlignment = .Left {
 		didSet {
 			pickerViewController.optionTextAlignment = optionTextAlignment
 		}
 	}
 	
+	/// Menu options cell background color
 	public var optionCellBackgroundColor: UIColor? {
 		didSet {
 			pickerViewController.optionCellBackgroundColor = optionCellBackgroundColor
 		}
 	}
 	
+	/// Color for separator between options
 	public var optionSeparatorColor: UIColor? {
 		didSet {
 			pickerViewController.optionSeparatorColor = optionSeparatorColor
 		}
 	}
 	
+	/// DropDownMenuDataSource for drop down menu, must be set
 	public weak var dataSource: DropDownMenuDataSource!
+	
+	/// DropDownMenuDelegate for drop down menu
 	public weak var delegate: DropDownMenuDelegate?
 	
 	
 	
 	// MARK: - Internal
+	
 	/// wrapperView is the common super view for all subviews like label and indicator
+	//	Discussion:
+	//		When menu is expanded, this wrapper view will be added on this overlay view with same position
+	//		This will make the user feels the menu is not moved and options are sliding behind the menu
 	let wrapperView = UIView()
 	
+	/// Options picker view controller, this is essentially a table view controller
 	let pickerViewController = DropDownMenuPickerViewController()
 	
 	
 	
 	// MARK: - Private
-	/// the animator operates the presenting of menu picker view
+	
+	/// The animator operates the presenting of menu options picker view controller
 	let menuAnimator = DropDownMenuAnimator()
 	
-	/// whether is expading or collapsing
+	/// Whether is expading or collapsing
 	private var isAnimating: Bool = false
 	
 	// Constraints
@@ -129,6 +139,7 @@ public class DropDownMenu: UIControl {
 	}
 	
 	private func setupViews() {
+		// Some default styles
 		backgroundColor = UIColor(red: 255.0 / 255.0, green: 186.0 / 255.0, blue: 1.0 / 255.0, alpha: 255.0 / 255.0)
 		textLabel.textColor = UIColor.whiteColor()
 		
@@ -174,6 +185,9 @@ public class DropDownMenu: UIControl {
 		self.addTarget(self, action: "tapped:forEvent:", forControlEvents: .TouchUpInside)
 	}
 	
+	/**
+	Add constrains for wrapper, this should be called once wrapper is moved in view hierarchy
+	*/
 	func setupWrapperViewConstraints() {
 		var constraints = [NSLayoutConstraint]()
 		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint]
