@@ -39,3 +39,19 @@
 //		NSLayoutConstraint.activateConstraints(constraints)
 //	}
 //}
+
+
+
+// MARK: - Detecting Poping or Pushing
+
+//override func viewWillDisappear(animated: Bool) {
+//	super.viewWillDisappear(animated)
+//	
+//	if isMovingFromParentViewController() {
+//		// This view controller will be poped
+//	} else if isMovingToParentViewController() {
+//		// Some View Controller will push onto
+//	} else {
+//		print("Warning: view controller: \(self) is not poping or being pushed")
+//	}
+//}
