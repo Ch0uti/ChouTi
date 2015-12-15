@@ -11,12 +11,28 @@ import UIKit
 // Reference: http://stackoverflow.com/questions/29636633/static-vs-class-functions-variables-in-swift-classes
 
 public protocol TableViewCellInfo {
-	// return NSStringFromClass(<#Cell#>.self)
+	/**
+	Default cell reuse identifier for cell
+	Sample: return NSStringFromClass(<#Cell#>.self)
+	
+	- returns: a cell reuse identifier
+	*/
     static func identifier() -> String
 	
-	// return <#RowHeight#>
+	/**
+	Default estimated row height
+	Sample: return <#RowHeight#>
+	
+	- returns: estimated row height
+	*/
+	
     static func estimatedRowHeight() -> CGFloat
 	
-	// tableView.registerClass(<#Cell#>.self, forCellReuseIdentifier: <#Cell#>.identifier())
+	/**
+	Register in table view helper methods
+	Sample: tableView.registerClass(<#Cell#>.self, forCellReuseIdentifier: <#Cell#>.identifier())
+	
+	- parameter tableView: target table view to use this cell
+	*/
     static func registerInTableView(tableView: UITableView)
 }

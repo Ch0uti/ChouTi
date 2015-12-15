@@ -9,6 +9,9 @@
 import UIKit
 
 public class TableViewCell : UITableViewCell {
+	
+	/// Cell height, this is the constant for height constraint (500 priority).
+	//	Discussion: You can fully specify cell's height to ignore cell height (Use constraints with priorty greater than 500)
 	public var cellHeight: CGFloat = 44.0 {
 		didSet {
 			heightConstraint?.constant = cellHeight
