@@ -9,9 +9,24 @@
 import UIKit
 
 public protocol CollectionViewCellInfo {
-	// return NSStringFromClass(<#Cell#>.self)
+	// return String(self)
 	static func identifier() -> String
 	
-	// collectionView.registerClass(<#Cell#>.self, forCellWithReuseIdentifier: <#Cell#>.identifier())
+	// collectionView.registerClass(self, forCellWithReuseIdentifier: identifier())
 	static func registerInCollectionView(collectionView: UICollectionView)
 }
+
+
+
+// Sample Implementation:
+
+//// MARK: - CollectionViewCellInfo
+//extension <#CollectionViewCell#> : CollectionViewCellInfo {
+//	public class func identifier() -> String {
+//		return String(self)
+//	}
+//	
+//	public class func registerInCollectionView(collectionView: UICollectionView) {
+//		collectionView.registerClass(self, forCellWithReuseIdentifier: identifier())
+//	}
+//}

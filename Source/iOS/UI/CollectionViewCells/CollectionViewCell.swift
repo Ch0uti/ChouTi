@@ -50,12 +50,15 @@ public class CollectionViewCell : UICollectionViewCell {
 	}
 }
 
+
+
+// MARK: - CollectionViewCellInfo
 extension CollectionViewCell : CollectionViewCellInfo {
 	public class func identifier() -> String {
-		return NSStringFromClass(CollectionViewCell.self)
+		return String(self)
 	}
 	
 	public class func registerInCollectionView(collectionView: UICollectionView) {
-		collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier())
+		collectionView.registerClass(self, forCellWithReuseIdentifier: identifier())
 	}
 }
