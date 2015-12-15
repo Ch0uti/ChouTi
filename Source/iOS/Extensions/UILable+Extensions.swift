@@ -52,3 +52,25 @@ public extension UILabel {
 		}
 	}
 }
+
+
+
+// MARK: - Animations
+public extension UILabel {
+	
+	/**
+	Add a fade in/out text transition animation
+	Note: Must be called after label has been displayed
+	
+	- parameter animationDuration: transition animation duration
+	*/
+	public func addFadeTransitionAnimation(animationDuration: NSTimeInterval = 0.25) {
+		if layer.animationForKey(kCATransitionFade) == nil {
+			let animation = CATransition()
+			animation.duration = animationDuration
+			animation.type = kCATransitionFade
+			animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+			layer.addAnimation(animation, forKey: kCATransitionFade)
+		}
+	}
+}
