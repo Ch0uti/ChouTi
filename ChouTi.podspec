@@ -78,9 +78,9 @@ Pod::Spec.new do |s|
       sss.summary      = "Handy utility functions/constants"
       sss.source_files = 'Source/iOS/Utilities/*.*'
 
-      sss.subspec "TableViewSectionRow" do |ssss|
+      sss.subspec "TableView+SectionRowExtensions" do |ssss|
         ssss.summary      = "Table view sections/rows utility"
-        ssss.source_files = 'Source/iOS/Utilities/TableViewSectionRow/*.*'
+        ssss.source_files = 'Source/iOS/Utilities/TableView+SectionRowExtensions/*.*'
       end
 
     end

@@ -210,12 +210,12 @@ class MainViewController: UIViewController {
 		)
 		
 		otherRows.append(
-			TableViewRow(title: "TableViewSectionRow Demo",
+			TableViewRow(title: "TableView+SectionRowExtension Demo",
 				subtitle: "Demo for handy table view sections and rows management",
 				tableView: tableView,
 				cellSelectAction: { indexPath, cell in
 					self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-					self.navigationController?.pushViewController(TableViewSectionRowDemoViewController(), animated: true)
+					self.navigationController?.pushViewController(TableViewSectionRowExtensionDemoViewController(), animated: true)
 			})
 		)
 		

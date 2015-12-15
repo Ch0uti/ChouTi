@@ -1,5 +1,5 @@
 //
-//  TableViewSectionRowDemoViewController.swift
+//  TableViewSectionRowExtensionDemoViewController.swift
 //  iOS-Example
 //
 //  Created by Honghao Zhang on 2015-12-02.
@@ -9,7 +9,7 @@
 import UIKit
 import ChouTi
 
-class TableViewSectionRowDemoViewController: UIViewController {
+class TableViewSectionRowExtensionDemoViewController: UIViewController {
 
 	let tableView = UITableView()
 	
@@ -37,11 +37,7 @@ class TableViewSectionRowDemoViewController: UIViewController {
 				TableViewRow(title: "Cell with .Value2 Style",
 					subtitle: "Detail Text",
 					cellInitialization: { indexPath in
-						var cell = self.tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier())
-						if cell == nil {
-							cell = TableViewCell(style: .Value2, reuseIdentifier: TableViewCell.identifier())
-						}
-						return cell!
+						return self.tableView.dequeueReusableCellWithIdentifier(TableViewCellValue2.identifier())!
 					},
 					tableView: tableView
 				),

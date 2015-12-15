@@ -20,8 +20,8 @@ PODS:
   - ChouTi/ChouTi/Extensions (1.0)
   - ChouTi/ChouTi/Protocols (1.0)
   - ChouTi/ChouTi/Utilities (1.0):
-    - ChouTi/ChouTi/Utilities/TableViewSectionRow (= 1.0)
-  - ChouTi/ChouTi/Utilities/TableViewSectionRow (1.0)
+    - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (= 1.0)
+  - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (1.0)
   - ChouTi/UI (1.0):
     - ChouTi/UI/AutoLinesLabel (= 1.0)
     - ChouTi/UI/CollectionViewCells (= 1.0)
@@ -53,7 +53,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  ChouTi: 036a635cd99d943697d6a49bc436bcb4b30efca9
+  ChouTi: b9e17fa46b5e5ab2ad00dbe93a3e164f4488c2f5
   LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
 
 COCOAPODS: 0.39.0
