@@ -10,6 +10,7 @@
 		022596C41C1D5A74000A150F /* NSDate+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022596C31C1D5A74000A150F /* NSDate+ExtensionsTests.swift */; };
 		022596C81C1DEA3C000A150F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022596C71C1DEA3C000A150F /* CoreLocation.framework */; };
 		025B29581C1D04440011FF86 /* DatePickerViewControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B29571C1D04440011FF86 /* DatePickerViewControllerDemoViewController.swift */; };
+		028421991C1F357B00879512 /* NSObject+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028421981C1F357B00879512 /* NSObject+ExtensionsTests.swift */; };
 		0DCE4258FFA3F3E8881A974D /* Pods_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C361C75F7E904ADB3ACFF966 /* Pods_iOS_Example.framework */; };
 		E402421A1C10E2C3005B33E9 /* DropPresentingDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40242191C10E2C3005B33E9 /* DropPresentingDemoViewController.swift */; };
 		E44E945C1BBAF2EE00801A24 /* PageViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E945B1BBAF2EE00801A24 /* PageViewDemoController.swift */; };
@@ -47,6 +48,7 @@
 		022596C31C1D5A74000A150F /* NSDate+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		022596C71C1DEA3C000A150F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		025B29571C1D04440011FF86 /* DatePickerViewControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewControllerDemoViewController.swift; sourceTree = "<group>"; };
+		028421981C1F357B00879512 /* NSObject+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		492C2466581580AD4EC14177 /* Pods-iOS-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-Example/Pods-iOS-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C361C75F7E904ADB3ACFF966 /* Pods_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40242191C10E2C3005B33E9 /* DropPresentingDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropPresentingDemoViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				E4F3B88A1B798FDD006E1BF9 /* iOS_ExampleTests.swift */,
 				022596C31C1D5A74000A150F /* NSDate+ExtensionsTests.swift */,
+				028421981C1F357B00879512 /* NSObject+ExtensionsTests.swift */,
 				E4F3B8881B798FDD006E1BF9 /* Supporting Files */,
 			);
 			path = "iOS-ExampleTests";
@@ -368,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				028421991C1F357B00879512 /* NSObject+ExtensionsTests.swift in Sources */,
 				022596C41C1D5A74000A150F /* NSDate+ExtensionsTests.swift in Sources */,
 				E4F3B88B1B798FDD006E1BF9 /* iOS_ExampleTests.swift in Sources */,
 			);
