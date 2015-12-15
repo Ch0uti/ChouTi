@@ -145,7 +145,7 @@ extension DropPresentingAnimator {
 				return
 		}
 		
-		// Begining settings
+		// Initial settings
 		if shouldDimPresentedView {
 			toView.tintAdjustmentMode = .Normal
 		}
@@ -331,7 +331,7 @@ extension DropPresentingAnimator {
 	// MARK: - Interactive Animations
 	private func updateInteractiveTransition(draggingLocation: CGPoint, percentComplete: CGFloat) {
 		if transitionContext == nil {
-			NSLog("Warning: transitionContext is nil")
+			NSLog("Fatal warning: transitionContext is nil")
 		}
 		
 		self.transitionContext?.updateInteractiveTransition(percentComplete)
@@ -361,7 +361,7 @@ extension DropPresentingAnimator {
 	
 	private func cancelInteractiveTransition() {
 		if transitionContext == nil {
-			NSLog("Warning: transitionContext is nil")
+			NSLog("Fatal warning: transitionContext is nil")
 		}
 		
 		if currentPresentedViewController == nil {
@@ -390,7 +390,7 @@ extension DropPresentingAnimator {
 			presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
 			}, completion: { [unowned self] finished in
 				self.currentPresentedViewController?.endAppearanceTransition()
-				self.transitionContext?.completeTransition(finished)
+				self.transitionContext?.completeTransition(false)
 		})
 	}
 	
