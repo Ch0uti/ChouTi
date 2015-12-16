@@ -32,4 +32,12 @@ public extension UIFont {
 	public class func AvenirRomanFont(fontSize: CGFloat) -> UIFont? {
 		return UIFont(name: "Avenir-Roman", size: fontSize)
 	}
+	
+	public class func AvenirHeavyFont(fontSize: CGFloat) -> UIFont? {
+		return UIFont(name: "Avenir-Heavy", size: fontSize)
+	}
+	
+	public class func AvenirBookFont(fontSize: CGFloat) -> UIFont? {
+		return UIFont(name: "Avenir-Book", size: fontSize)
+	}
 }
