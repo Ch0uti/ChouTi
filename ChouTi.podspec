@@ -115,7 +115,7 @@ Pod::Spec.new do |s|
 
     ss.subspec "TableViewCells" do |sss|
       sss.summary      = "Customized UITableViewCells"
-      sss.source_files = 'Source/iOS/UI/TableViewCells/*.*'
+      sss.source_files = 'Source/iOS/UI/TableViewCells/**/*.*'
       sss.frameworks   = 'UIKit'
     end
 
