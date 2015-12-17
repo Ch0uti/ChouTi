@@ -6,4 +6,16 @@
 //
 //
 
-import Foundation
+import UIKit
+
+public extension UITableView {
+	public func clearSelectedIndexPaths(animated animated: Bool) {
+		guard let selectedIndexPaths = indexPathsForSelectedRows else {
+			return
+		}
+		
+		selectedIndexPaths.forEach { [unowned self] in
+			self.deselectRowAtIndexPath($0, animated: animated)
+		}
+	}
+}
