@@ -42,7 +42,7 @@
 
 
 
-//// MARK: - UITableViewDataSource
+//// MARK: - UITableViewDelegate
 //extension <#Class#> : UITableViewDelegate {
 //	// MARK: - Rows
 //	func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
