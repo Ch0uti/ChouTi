@@ -11,6 +11,8 @@ import ChouTi
 
 class DatePickerViewControllerDemoViewController : UIViewController {
 	
+	let resultLabel = UILabel()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -35,6 +37,19 @@ class DatePickerViewControllerDemoViewController : UIViewController {
 		button.centerInSuperview()
 		
 		button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+		
+		resultLabel.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(resultLabel)
+		resultLabel.font = UIFont.AvenirMediumFont(21)
+		resultLabel.textColor = UIColor.blackColor()
+		resultLabel.text = "Select a date."
+		
+		if #available(iOS 9.0, *) {
+		    resultLabel.topAnchor.constraintEqualToAnchor(button.bottomAnchor, constant: 40).active = true
+			resultLabel.centerXAnchor.constraintEqualToAnchor(button.centerXAnchor).active = true
+		} else {
+		    // Fallback on earlier versions
+		}
 	}
 	
 	func buttonTapped(sender: AnyObject) {
@@ -50,8 +65,11 @@ extension DatePickerViewControllerDemoViewController : DatePickerViewControllerD
 		print("didScrollToDate: \(date)")
 	}
 	
-	func datePickerViewController(datePickerViewController: DatePickerViewController, didDoneWithDate date: NSDate) {
+	func datePickerViewController(datePickerViewController: DatePickerViewController, willDoneWithDate date: NSDate) {
 		print("doneWithDate: \(date)")
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "hh:mm a, EEE, MMM d, yyyy"
+		resultLabel.text = dateFormatter.stringFromDate(date)
 	}
 	
 	func datePickerViewController(datePickerViewController: DatePickerViewController, didCancelWithDate date: NSDate) {
