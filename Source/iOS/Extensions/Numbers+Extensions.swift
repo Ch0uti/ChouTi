@@ -17,6 +17,26 @@ public extension Int {
 	public static func random(lower: Int = 0, _ upper: Int = 100) -> Int {
 		return lower + Int(arc4random_uniform(UInt32(upper - lower + 1)))
 	}
+	
+	public var ordinalNumberAbbreviation: String {
+		var suffix: String = ""
+		let ones: Int = self % 10
+		let tens: Int = (self / 10) % 10
+		
+		if (tens == 1) {
+			suffix = "th"
+		} else if (ones == 1) {
+			suffix = "st"
+		} else if (ones == 2) {
+			suffix = "nd"
+		} else if (ones == 3) {
+			suffix = "rd"
+		} else {
+			suffix = "th"
+		}
+		
+		return "\(self)\(suffix)"
+	}
 }
 
 public extension Double {
