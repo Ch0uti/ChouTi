@@ -48,4 +48,32 @@ public protocol DropDownMenuDataSource : class {
 	- parameter index:        option index in option list.
 	*/
 	optional func dropDownMenu(dropDownMenu: DropDownMenu, didSelectedIndex index: Int)
+	
+	/**
+	Tells the delegate that the drop down menu is about to expand.
+	
+	- parameter dropDownMenu: the drop down menu.
+	*/
+	optional func dropDownMenuWillExpand(dropDownMenu: DropDownMenu)
+	
+	/**
+	Tells the delegate that the drop down menu has expanded.
+	
+	- parameter dropDownMenu: the drop down menu.
+	*/
+	optional func dropDownMenuDidExpand(dropDownMenu: DropDownMenu)
+	
+	/**
+	Tells the delegate that the drop down menu is about to collapse.
+	
+	- parameter dropDownMenu: the drop down menu.
+	*/
+	optional func dropDownMenuWillCollapse(dropDownMenu: DropDownMenu)
+	
+	/**
+	Tells the delegate that the drop down menu has collapsed.
+	
+	- parameter dropDownMenu: the drop down menu.
+	*/
+	optional func dropDownMenuDidCollapse(dropDownMenu: DropDownMenu)
 }

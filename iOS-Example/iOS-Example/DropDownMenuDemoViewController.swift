@@ -90,4 +90,20 @@ extension DropDownMenuDemoViewController : DropDownMenuDelegate {
 	func dropDownMenu(dropDownMenu: DropDownMenu, didSelectedIndex index: Int) {
 		print("dropDownMenu didSelectedIndex: \(index)")
 	}
+	
+	func dropDownMenuWillExpand(dropDownMenu: DropDownMenu) {
+		print("dropDownMenuWillExpand")
+	}
+	
+	func dropDownMenuDidExpand(dropDownMenu: DropDownMenu) {
+		print("dropDownMenuDidExpand")
+	}
+	
+	func dropDownMenuWillCollapse(dropDownMenu: DropDownMenu) {
+		print("dropDownMenuWillCollapse")
+	}
+	
+	func dropDownMenuDidCollapse(dropDownMenu: DropDownMenu) {
+		print("dropDownMenuDidCollapse")
+	}
 }

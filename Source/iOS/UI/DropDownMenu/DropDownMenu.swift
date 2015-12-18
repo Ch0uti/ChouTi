@@ -209,6 +209,7 @@ extension DropDownMenu {
 			// Expand
 			pickerViewController.view.userInteractionEnabled = true
 			
+			delegate?.dropDownMenuWillExpand?(self)
 			isAnimating = true
 			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: { finished in
 				self.isAnimating = false

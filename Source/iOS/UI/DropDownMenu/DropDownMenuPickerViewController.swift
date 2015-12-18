@@ -88,6 +88,7 @@ class DropDownMenuPickerViewController : UIViewController {
 	}
 	
 	private(set) var isExpanded: Bool = false
+	private var isAnimating: Bool = false
 	
 	private var tableViewHeightConstraint: NSLayoutConstraint!
 	private var expandedConstraints = [NSLayoutConstraint]()
@@ -197,7 +198,7 @@ extension DropDownMenuPickerViewController {
 	- parameter completion: optional completion block
 	*/
 	func expandOptions(completion: ((Bool) -> Void)? = nil) {
-		if isExpanded {
+		if isExpanded || isAnimating {
 			completion?(false)
 			return
 		}
@@ -205,10 +206,19 @@ extension DropDownMenuPickerViewController {
 		NSLayoutConstraint.deactivateConstraints(collapsedConstraints)
 		NSLayoutConstraint.activateConstraints(expandedConstraints)
 		
+		isAnimating = true
 		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
 			self.view.layoutIfNeeded()
 		}, completion: { finished in
 			self.isExpanded = true
+			self.isAnimating = false
+			
+			if let dropDownMenu = self.dropDownMenu {
+				dropDownMenu.delegate?.dropDownMenuDidExpand?(dropDownMenu)
+			} else {
+				print("Warning: drop down menu in picker view controller is nil")
+			}
+			
 			completion?(finished)
 		})
 	}
@@ -219,7 +229,7 @@ extension DropDownMenuPickerViewController {
 	- parameter completion: optional completion block
 	*/
 	func collapseOptions(completion: ((Bool) -> Void)? = nil) {
-		if !isExpanded {
+		if !isExpanded || isAnimating {
 			completion?(false)
 			return
 		}
@@ -227,10 +237,27 @@ extension DropDownMenuPickerViewController {
 		NSLayoutConstraint.deactivateConstraints(expandedConstraints)
 		NSLayoutConstraint.activateConstraints(collapsedConstraints)
 		
+		if let dropDownMenu = dropDownMenu {
+			dropDownMenu.delegate?.dropDownMenuWillCollapse?(dropDownMenu)
+		} else {
+			print("Warning: drop down menu in picker view controller is nil")
+		}
+		
+		isAnimating = true
+		
+		// Since the dim background dim out animation is executed after collapsing, to speed up the whole animation, here used 2 / 3 of duration
 		UIView.animateWithDuration(animationDuration * 2 / 3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
 			self.view.layoutIfNeeded()
 		}, completion: { finished in
 			self.isExpanded = false
+			self.isAnimating = false
+			
+			if let dropDownMenu = self.dropDownMenu {
+				dropDownMenu.delegate?.dropDownMenuDidCollapse?(dropDownMenu)
+			} else {
+				print("Warning: drop down menu in picker view controller is nil")
+			}
+			
 			completion?(finished)
 		})
 	}
@@ -283,7 +310,7 @@ extension DropDownMenuPickerViewController : UITableViewDataSource {
 
 
 
-// MARK: - UITableViewDataSource
+// MARK: - UITableViewDelegate
 extension DropDownMenuPickerViewController : UITableViewDelegate {
 	// MARK: - Rows
 	func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
