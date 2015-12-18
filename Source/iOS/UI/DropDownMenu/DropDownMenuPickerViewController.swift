@@ -16,6 +16,8 @@ class DropDownMenuPickerViewController : UIViewController {
 	/// The drop down menu using this picker view controller
 	weak var dropDownMenu: DropDownMenu?
 	
+	var statusBarStyle: UIStatusBarStyle = .Default
+	
 	/// Sliding up/down animation duration. By default is 0.5s
 	var animationDuration: NSTimeInterval = 0.5
 	
@@ -96,6 +98,10 @@ class DropDownMenuPickerViewController : UIViewController {
 	
 	private var numberOfOptions: Int {
 		return tableView(tableView, numberOfRowsInSection: 0)
+	}
+	
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return statusBarStyle
 	}
 	
 	override func viewDidLoad() {

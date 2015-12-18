@@ -18,6 +18,12 @@ public class DropDownMenu: UIControl {
 	// TODO: Include arrow image asset in Pods
 //	public let indicatorView: UIView?
 	
+	public var statusBarStyle: UIStatusBarStyle = .Default {
+		didSet {
+			pickerViewController.statusBarStyle = statusBarStyle
+		}
+	}
+	
 	/// overlayViewStyle is for the blurred/dimmed view behind the menu picker view
 	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.4)) {
 		didSet {
@@ -128,6 +134,7 @@ public class DropDownMenu: UIControl {
 		menuAnimator.animationDuration = animationDuration
 		
 		pickerViewController.dropDownMenu = self
+		pickerViewController.statusBarStyle = statusBarStyle
 		pickerViewController.animationDuration = animationDuration
 		
 		pickerViewController.modalPresentationStyle = .Custom

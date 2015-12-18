@@ -49,6 +49,7 @@ class DropDownMenuDemoViewController: UIViewController {
 			smallMenu.delegate = self
 			smallMenu.selectedIndex = 0
 			smallMenu.backgroundColor = UIColor.purpleColor()
+			smallMenu.statusBarStyle = .LightContent
 			view.addSubview(smallMenu)
 			
 			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .Top, relatedBy: .Equal, toItem: navigationBar, attribute: .Bottom, multiplier: 1.0, constant: 100.0)]
