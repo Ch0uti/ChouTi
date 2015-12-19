@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		022596C41C1D5A74000A150F /* NSDate+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022596C31C1D5A74000A150F /* NSDate+ExtensionsTests.swift */; };
 		022596C81C1DEA3C000A150F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022596C71C1DEA3C000A150F /* CoreLocation.framework */; };
+		022994121C24BF8A0002DD88 /* OperationsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022994111C24BF8A0002DD88 /* OperationsDemoViewController.swift */; };
 		025B29581C1D04440011FF86 /* DatePickerViewControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B29571C1D04440011FF86 /* DatePickerViewControllerDemoViewController.swift */; };
 		028421991C1F357B00879512 /* NSObject+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028421981C1F357B00879512 /* NSObject+ExtensionsTests.swift */; };
 		0DCE4258FFA3F3E8881A974D /* Pods_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C361C75F7E904ADB3ACFF966 /* Pods_iOS_Example.framework */; };
@@ -47,6 +48,7 @@
 		000276CE65807D5F6CD56CF3 /* Pods-iOS-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-Example/Pods-iOS-Example.release.xcconfig"; sourceTree = "<group>"; };
 		022596C31C1D5A74000A150F /* NSDate+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		022596C71C1DEA3C000A150F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		022994111C24BF8A0002DD88 /* OperationsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsDemoViewController.swift; sourceTree = "<group>"; };
 		025B29571C1D04440011FF86 /* DatePickerViewControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewControllerDemoViewController.swift; sourceTree = "<group>"; };
 		028421981C1F357B00879512 /* NSObject+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		492C2466581580AD4EC14177 /* Pods-iOS-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-Example/Pods-iOS-Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				E40242191C10E2C3005B33E9 /* DropPresentingDemoViewController.swift */,
 				E4A49FB91C10D20D00CE1710 /* DropDownMenuDemoViewController.swift */,
 				025B29571C1D04440011FF86 /* DatePickerViewControllerDemoViewController.swift */,
+				022994111C24BF8A0002DD88 /* OperationsDemoViewController.swift */,
 				E4F3B8781B798FDD006E1BF9 /* Main.storyboard */,
 				E4F3B87B1B798FDD006E1BF9 /* Images.xcassets */,
 				E4F3B87D1B798FDD006E1BF9 /* LaunchScreen.xib */,
@@ -355,6 +358,7 @@
 				E4A49FBA1C10D20D00CE1710 /* DropDownMenuDemoViewController.swift in Sources */,
 				E4D99C2D1B91579100E492F9 /* CenterViewController.swift in Sources */,
 				E4F4FE0D1BD03EEE009511A7 /* MenuPageDemoViewController.swift in Sources */,
+				022994121C24BF8A0002DD88 /* OperationsDemoViewController.swift in Sources */,
 				E452D6BA1BA74782002EF9E5 /* TableLayoutDemoViewController.swift in Sources */,
 				E44E945C1BBAF2EE00801A24 /* PageViewDemoController.swift in Sources */,
 				E402421A1C10E2C3005B33E9 /* DropPresentingDemoViewController.swift in Sources */,

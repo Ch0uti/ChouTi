@@ -83,6 +83,12 @@ Pod::Spec.new do |s|
         ssss.source_files = 'Source/iOS/Utilities/TableView+SectionRowExtensions/*.*'
       end
 
+      sss.subspec "Operations" do |ssss|
+        ssss.summary      = "NSOperations with Join functionality"
+        ssss.source_files = 'Source/iOS/Utilities/Operations/*.*'
+        ssss.dependency 'Operations'
+      end
+
     end
 
     ss.subspec "CodeSnippets" do |sss|
