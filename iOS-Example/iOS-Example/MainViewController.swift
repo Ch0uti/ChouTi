@@ -219,6 +219,16 @@ class MainViewController: UIViewController {
 			})
 		)
 		
+		otherRows.append(
+			TableViewRow(title: "Operations",
+				subtitle: "Demo for using Operations (NSOperations)",
+				tableView: tableView,
+				cellSelectAction: { indexPath, cell in
+					self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+					self.navigationController?.pushViewController(OperationsDemoViewController(), animated: true)
+			})
+		)
+		
 		sections.append(
 			TableViewSection(headerTitle: "Miscellaneous", rows: otherRows, tableView: tableView)
 		)
@@ -228,7 +238,6 @@ class MainViewController: UIViewController {
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		self.navigationController?.navigationBar.showBottomHairline()
 	}
 	
 	func expandLeft(sender: AnyObject) {

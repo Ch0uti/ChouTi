@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import Operations
+//
+//class Operation: NSOperation {
+//	init(operationBlock: Void -> Void, completionBlock: (finished: Bool) -> Void) {
+//		super.init()
+//	}
+//}
 
-class Operation: NSOperation {
-	init(operationBlock: Void -> Void, completionBlock: (finished: Bool) -> Void) {
-		super.init()
-	}
-}
+//public extension NSOperationQueue {
+//
+//}

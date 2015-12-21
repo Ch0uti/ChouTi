@@ -7,29 +7,67 @@
 //
 
 import UIKit
+import ChouTi
+import Operations
 
 class OperationsDemoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		
+		view.backgroundColor = UIColor.whiteColor()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		multipleTasksDemo()
+	}
+	
+	private func multipleTasksDemo() {
+		let queue = OperationQueue()
+		
+		let operation1 = BlockOperation { (continueWithError: (error: ErrorType?) -> Void) -> Void in
+			print("111: started")
+			print("1: queue: count: \(queue.operationCount)")
+			delay(seconds: 1, completion: { () -> () in
+				print("111")
+				continueWithError(error: nil)
+			})
+		}
+		operation1.completionBlock = {
+			print("111: completed")
+			print("1: queue: count: \(queue.operationCount)")
+		}
+		
+		let operation2 = BlockOperation { (continueWithError: (error: ErrorType?) -> Void) -> Void in
+			print("222: started")
+			print("2: queue: count: \(queue.operationCount)")
+			delay(seconds: 2, completion: { () -> () in
+				print("222")
+				continueWithError(error: nil)
+			})
+		}
+		operation2.completionBlock = {
+			print("222: completed")
+			print("2: queue: count: \(queue.operationCount)")
+		}
+		
+		let operation3 = BlockOperation { (continueWithError: (error: ErrorType?) -> Void) -> Void in
+			print("333: started")
+			print("3: queue: count: \(queue.operationCount)")
+			delay(seconds: 3, completion: { () -> () in
+				print("333")
+				continueWithError(error: nil)
+			})
+		}
+		operation3.completionBlock = {
+			print("333: completed")
+			print("3: queue: count: \(queue.operationCount)")
+		}
+		
+		queue.addOperation(operation1)
+		queue.addOperation(operation2)
+		queue.addOperation(operation3)
+	}
 }
