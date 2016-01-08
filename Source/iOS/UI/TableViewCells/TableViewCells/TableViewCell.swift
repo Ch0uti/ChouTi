@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TableViewCell : UITableViewCell {
+public class TableViewCell: UITableViewCell {
 	
 	/// Cell height, this is the constant for height constraint (500 priority).
 	//	Discussion: You can fully specify cell's height to ignore cell height (Use constraints with priorty greater than 500)
@@ -46,7 +46,7 @@ public class TableViewCell : UITableViewCell {
 		commonInit()
 	}
 	
-	func commonInit() {
+	public func commonInit() {
 		heightConstraint = NSLayoutConstraint(item: contentView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: cellHeight)
 		heightConstraint!.priority = 500
 		heightConstraint!.active = true

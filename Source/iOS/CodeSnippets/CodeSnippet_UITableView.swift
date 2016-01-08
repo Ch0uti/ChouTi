@@ -46,7 +46,7 @@
 //extension <#Class#> : UITableViewDelegate {
 //	// MARK: - Rows
 //	func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//		return UITableViewAutomaticDimension
+//		return <#TableViewCell#>.estimatedRowHeight()
 //	}
 //	
 //	// MARK: - Selections

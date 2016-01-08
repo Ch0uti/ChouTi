@@ -12,7 +12,7 @@ public class DatePickerCell : TableViewCell {
 
 	public let datePicker = UIDatePicker()
 	
-	override func commonInit() {
+	override public func commonInit() {
 		super.commonInit()
 		
 		setupViews()

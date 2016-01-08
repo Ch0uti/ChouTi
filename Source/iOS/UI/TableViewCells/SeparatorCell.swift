@@ -18,7 +18,7 @@ public class SeparatorCell: TableViewCell {
 		}
 	}
 	
-	override func commonInit() {
+	override public func commonInit() {
 		super.commonInit()
 		
 		separatorView.translatesAutoresizingMaskIntoConstraints = false
