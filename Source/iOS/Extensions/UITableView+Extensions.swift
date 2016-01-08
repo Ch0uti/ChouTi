@@ -18,4 +18,8 @@ public extension UITableView {
 			self.deselectRowAtIndexPath($0, animated: animated)
 		}
 	}
+	
+	public func scrollsToTop(animated: Bool) {
+		setContentOffset(CGPoint(x: 0.0, y: -contentInset.top), animated: animated)
+	}
 }
