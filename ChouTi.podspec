@@ -27,17 +27,18 @@ Pod::Spec.new do |s|
   ############ Summary Subspec ############
 
   s.subspec "All" do |ss|
-    ss.summary       = "App extension API not compatible"
+    # 'App extension API not compatible'
 
     ss.dependency "ChouTi/ChouTi"
     ss.dependency "ChouTi/UI"
 
-    ss.dependency "ChouTi/App-Extension-API-Unsafe"
+    # ss.dependency "ChouTi/App-Extension-API-Unsafe"
     ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
   end
 
   s.subspec "Safe" do |ss|
-    ss.summary       = "App extension API compatible"
+    # "App extension API compatible"
+
     ss.dependency "ChouTi/ChouTi"
     ss.dependency "ChouTi/UI"
   end
@@ -47,44 +48,42 @@ Pod::Spec.new do |s|
   ############ Individual Subspec ############
 
   s.subspec "ChouTi" do |ss|
-    ss.summary		 = "Bag of everything."
+    # "Bag of everything."
     ss.source_files = 'Source/iOS/*.swift'
 
     ss.subspec "Extensions" do |sss|
-      sss.summary      = "Extensions"
       sss.source_files = 'Source/iOS/Extensions/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "Protocols" do |sss|
-      sss.summary      = "Protocols"
       sss.source_files = 'Source/iOS/Protocols/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "CollectionViewLayouts" do |sss|
-      sss.summary      = "UICollectionView Layouts"
+      # "UICollectionView Layouts"
       sss.source_files = 'Source/iOS/CollectionViewLayouts/*/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "Animators" do |sss|
-      sss.summary      = "A set of customized view controller transition animators"
+      # "A set of customized view controller transition animators"
       sss.source_files = 'Source/iOS/Animators/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "Utilities" do |sss|
-      sss.summary      = "Handy utility functions/constants"
+      # "Handy utility functions/constants"
       sss.source_files = 'Source/iOS/Utilities/*.*'
 
       sss.subspec "TableView+SectionRowExtensions" do |ssss|
-        ssss.summary      = "Table view sections/rows utility"
+        # "Table view sections/rows utility"
         ssss.source_files = 'Source/iOS/Utilities/TableView+SectionRowExtensions/*.*'
       end
 
       sss.subspec "Operations" do |ssss|
-        ssss.summary      = "NSOperations with Join functionality"
+        # "NSOperations with Join functionality"
         ssss.source_files = 'Source/iOS/Utilities/Operations/*.*'
         ssss.dependency 'Operations'
       end
@@ -92,7 +91,7 @@ Pod::Spec.new do |s|
     end
 
     ss.subspec "CodeSnippets" do |sss|
-      sss.summary      = "Some useful and handy code snippets"
+      # "Some useful and handy code snippets"
       sss.source_files = 'Source/iOS/CodeSnippets/*.*'
     end
 
@@ -100,64 +99,64 @@ Pod::Spec.new do |s|
 
 
 
-  s.subspec "App-Extension-API-Unsafe" do |ss|
-    ss.summary     = "Components which are not app extension compatible"
-
-    # To be added
-
-  end
+  # s.subspec "App-Extension-API-Unsafe" do |ss|
+  #  # "Components which are not app extension compatible"
+  #
+  #  # To be added
+  #
+  # end
 
 
 
   s.subspec "UI" do |ss|
-    ss.summary     = "UI Views & ViewControllers"
+    # "UI Views & ViewControllers"
     ss.source_files = 'Source/iOS/UI/*.*'
 
     ss.subspec "AutoLinesLabel" do |sss|
-      sss.summary      = "UILabel with contentInset and probide auto lines on iOS7"
+      # "UILabel with contentInset and probide auto lines on iOS7"
       sss.source_files = 'Source/iOS/UI/AutoLinesLabel/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "TableViewCells" do |sss|
-      sss.summary      = "Customized UITableViewCells"
+      # "Customized UITableViewCells"
       sss.source_files = 'Source/iOS/UI/TableViewCells/**/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "CollectionViewCells" do |sss|
-      sss.summary      = "Customized UICollectionViewCells"
+      # "Customized UICollectionViewCells"
       sss.source_files = 'Source/iOS/UI/CollectionViewCells/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "SegmentedControl" do |sss|
-      sss.summary      = "Customized Segmented Control, with underscore bars"
+      # "Customized Segmented Control, with underscore bars"
       sss.source_files = 'Source/iOS/UI/SegmentedControl/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "MenuPageViewController" do |sss|
-      sss.summary      = "PageViewController with header titles"
+      # "PageViewController with header titles"
       sss.source_files = 'Source/iOS/UI/MenuPageViewController/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "LoadingMorphingLabel" do |sss|
-      sss.summary      = "Showing a list of text in loop"
+      # "Showing a list of text in loop"
       sss.source_files = 'Source/iOS/UI/LoadingMorphingLabel/*.*'
       sss.frameworks   = 'UIKit'
       sss.dependency 'LTMorphingLabel', '~> 0.0.8'
     end
 
     ss.subspec "DropDownMenu" do |sss|
-      sss.summary      = "A drop down menu presented in full screen with blur background"
+      # "A drop down menu presented in full screen with blur background"
       sss.source_files = 'Source/iOS/UI/DropDownMenu/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "DatePickerViewController" do |sss|
-      sss.summary      = "A slide up date picker view controller"
+      # "A slide up date picker view controller"
       sss.source_files = 'Source/iOS/UI/DatePickerViewController/*.*'
       sss.frameworks   = 'UIKit'
     end
@@ -167,10 +166,10 @@ Pod::Spec.new do |s|
 
 
   s.subspec "UI-App-Extension-API-Unsafe" do |ss|
-    ss.summary     = "UI components which are not app extension compatible"
+    # "UI components which are not app extension compatible"
 
     ss.subspec "SlideController" do |sss|
-      sss.summary      = "A left/right slide container view controller"
+      # "A left/right slide container view controller"
       sss.source_files = 'Source/iOS/UI/SlideController/*.*'
       sss.frameworks   = 'UIKit'
     end
@@ -182,8 +181,8 @@ Pod::Spec.new do |s|
   ############ ChouTi for Third Party Subspec ############
 
   s.subspec "Parse" do |ss|
-    
-    ss.summary     = "Utilities for Parse"
+    # "Utilities for Parse"
+
     ss.source_files = 'Source/iOS/ThirdParty/Parse/*.*'
     ss.dependency 'Parse'
     ss.vendored_frameworks = 'Parse'

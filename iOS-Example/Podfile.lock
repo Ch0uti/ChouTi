@@ -1,12 +1,11 @@
 PODS:
+  - Bolts/Tasks (1.5.1)
   - ChouTi (1.0):
     - ChouTi/All (= 1.0)
   - ChouTi/All (1.0):
-    - ChouTi/App-Extension-API-Unsafe
     - ChouTi/ChouTi
     - ChouTi/UI
     - ChouTi/UI-App-Extension-API-Unsafe
-  - ChouTi/App-Extension-API-Unsafe (1.0)
   - ChouTi/ChouTi (1.0):
     - ChouTi/ChouTi/Animators (= 1.0)
     - ChouTi/ChouTi/CodeSnippets (= 1.0)
@@ -25,6 +24,8 @@ PODS:
   - ChouTi/ChouTi/Utilities/Operations (1.0):
     - Operations
   - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (1.0)
+  - ChouTi/Parse (1.0):
+    - Parse
   - ChouTi/UI (1.0):
     - ChouTi/UI/AutoLinesLabel (= 1.0)
     - ChouTi/UI/CollectionViewCells (= 1.0)
@@ -47,20 +48,27 @@ PODS:
   - ChouTi/UI/SegmentedControl (1.0)
   - ChouTi/UI/TableViewCells (1.0)
   - LTMorphingLabel (0.0.9)
-  - Operations (2.4.1):
-    - Operations/Standard (= 2.4.1)
-  - Operations/Standard (2.4.1)
+  - Operations (2.5.1):
+    - Operations/Standard (= 2.5.1)
+  - Operations/Standard (2.5.1)
+  - Parse (1.11.0):
+    - Bolts/Tasks (~> 1.5)
 
 DEPENDENCIES:
   - ChouTi (from `../`)
+  - ChouTi/Parse (from `../`)
 
 EXTERNAL SOURCES:
   ChouTi:
     :path: ../
 
 SPEC CHECKSUMS:
-  ChouTi: 25216469b724b20c03c6620f801528c321b6b2ba
+  Bolts: a12663244b1d3351c738882e71902fc74db54f64
+  ChouTi: 1b1f15f5c1ad58618f80890e46842bacf6bc9c76
   LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
-  Operations: 728e069c0c736c321ba1e0ead42dbf2006366773
+  Operations: 3c646c48620ac4b6c624d825d42c1e684ecb6a53
+  Parse: 886af46a0a677402f6374bb97ac212e795f70afe
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 9ddce36900e94a2b2c9b993b504568ae49016662
+
+COCOAPODS: 1.0.0.beta.2
