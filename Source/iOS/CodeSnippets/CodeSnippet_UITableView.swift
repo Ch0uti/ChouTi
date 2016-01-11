@@ -24,6 +24,11 @@
 //<#TableViewCell#>.registerInTableView(tableView)
 
 
+// MARK: - Optional
+//// Remove extra separator lines in table view
+//// Ref: http://stackoverflow.com/questions/1369831/eliminate-extra-separators-below-uitableview-in-iphone-sdk
+//tableView.tableFooterView = UIView()
+
 //// MARK: - UITableViewDataSource
 //extension <#Class#> : UITableViewDataSource {
 //	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
