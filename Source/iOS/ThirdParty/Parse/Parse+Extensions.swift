@@ -15,6 +15,7 @@ public extension Parse {
 	typealias PFObjectConfigurationBlock = PFObject? -> Void
 	typealias PFObjectConfigurationAndSaveBridge = (object: PFObject?, configuration: PFObjectConfigurationBlock?, save: VoidBlock) -> Void
 	
+	/// This default implementation for PFObjectConfigurationAndSaveBridge will call configuration then call save.
 	static var defaultConfigurationAndSaveBridge: PFObjectConfigurationAndSaveBridge {
 		return { object, configuration, save in
 			configuration?(object)
@@ -22,6 +23,20 @@ public extension Parse {
 		}
 	}
 	
+	/**
+	Update for PFObject with unique id
+	Discussion: this is useful for updating unique object. 
+	E.g. User["id"] = "some_unique_id"
+	`className` is `User`
+	`uniqueIdKey` is `"id"`
+	`uniqueId` is `"some_unique_id"`
+	
+	- parameter className:      Parse class name
+	- parameter uniqueIdKey:    Key in the class, this should be the key for filed of unique id
+	- parameter uniqueId:       Valie in the class, this should be the unique id
+	- parameter configuration:  configuration block for the found object
+	- parameter saveCompletion: save completion
+	*/
 	public static func updateObjectWithClassName(className: String,
 		uniqueIdKey: String,
 		uniqueId: String,
@@ -64,6 +79,19 @@ public extension Parse {
 		}
 	}
 	
+	/**
+	Find for PFObject with unique id
+	Discussion: this is useful for finding unique object.
+	E.g. User["id"] = "some_unique_id"
+	`className` is `User`
+	`uniqueIdKey` is `"id"`
+	`uniqueId` is `"some_unique_id"`
+	
+	- parameter className:   Parse class name
+	- parameter uniqueIdKey: Key in the class, this should be the key for filed of unique id
+	- parameter uniqueId:    Valie in the class, this should be the unique id
+	- parameter completion:  configuration block for the found object
+	*/
 	public static func findObjectWithClassName(className: String,
 		uniqueIdKey: String,
 		uniqueId: String,
