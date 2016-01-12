@@ -8,6 +8,9 @@
 
 import UIKit
 import Operations
+
+// TODO: Imporve Operations
+
 //
 //class Operation: NSOperation {
 //	init(operationBlock: Void -> Void, completionBlock: (finished: Bool) -> Void) {

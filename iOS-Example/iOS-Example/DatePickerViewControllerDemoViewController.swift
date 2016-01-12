@@ -54,7 +54,10 @@ class DatePickerViewControllerDemoViewController : UIViewController {
 	
 	func buttonTapped(sender: AnyObject) {
 		let pickerViewController = DatePickerViewController()
-		pickerViewController.datePicker.setDate(NSDate().dateByAddingDays(2), animated: true)
+		pickerViewController.datePicker.setDate(NSDate(), animated: true)
+		pickerViewController.datePicker.datePickerMode = .DateAndTime
+		pickerViewController.datePicker.minimumDate = NSDate().dateByAddingDays(-30)
+		pickerViewController.datePicker.maximumDate = NSDate().dateByAddingDays(30)
 		pickerViewController.delegate = self
 		presentViewController(pickerViewController, animated: true, completion: nil)
 	}
