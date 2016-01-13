@@ -9,6 +9,18 @@
 import Foundation
 
 public extension NSCalendar {
+	class public func gregorianCalendar() -> NSCalendar {
+		guard let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian) else {
+			NSLog("Error: no calendar \"NSCalendarIdentifierGregorian\" found")
+			return NSCalendar.currentCalendar()
+		}
+		
+		return calendar
+	}
+}
+
+
+public extension NSCalendar {
 	static public func weekdayNameFromWeekdayNumber(number: Int) -> String? {
 		switch number {
 		case 0:

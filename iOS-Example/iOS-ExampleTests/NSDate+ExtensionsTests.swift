@@ -24,7 +24,9 @@ class NSDate_ExtensionsTests: XCTestCase {
 		XCTAssertTrue(NSDate().isEarlierThanDate(NSDate(timeIntervalSinceNow: 20)))
 	}
 	
-	func testForYearComponent() {
-		XCTAssertEqual(NSDate(timeIntervalSince1970: 100).yearInTimeZone(NSTimeZone(forSecondsFromGMT: 1)), 1970)
+	func testForComponents() {
+		let date = NSDate()
+		let dateWithUpdatedYear = date.dateByUpdatingUnit(.Year, newValue: 1900)
+		XCTAssertEqual(dateWithUpdatedYear?.year, 1900)
 	}
 }
