@@ -9,6 +9,11 @@
 import UIKit
 
 public extension UITableView {
+	/**
+	Clear selected index pathes
+	
+	- parameter animated: whether the deselection is animated
+	*/
 	public func clearSelectedIndexPaths(animated animated: Bool) {
 		guard let selectedIndexPaths = indexPathsForSelectedRows else {
 			return
@@ -17,9 +22,5 @@ public extension UITableView {
 		selectedIndexPaths.forEach { [unowned self] in
 			self.deselectRowAtIndexPath($0, animated: animated)
 		}
-	}
-	
-	public func scrollsToTop(animated: Bool) {
-		setContentOffset(CGPoint(x: 0.0, y: -contentInset.top), animated: animated)
 	}
 }
