@@ -10,19 +10,29 @@ import Foundation
 import Parse
 
 public extension PFFile {
-	public func getImageInBackgroundWithBlock(completion: (image: UIImage?, error: NSError?) -> Void, progressBlock: PFProgressBlock? = nil) {
+	
+	/**
+	*Asynchronously* gets image from the PFFile
+	
+	This method will execute the progressBlock periodically with the percent progress.
+	`progressBlock` will get called with `100` before `resultBlock` is called.
+	
+	- parameter resultBlock:   The result block for getting the image
+	- parameter progressBlock: The block should have the following argument signature: ^(int percentDone)
+	*/
+	public func getImageInBackgroundWithBlock(resultBlock: (image: UIImage?, error: NSError?) -> Void, progressBlock: PFProgressBlock? = nil) {
 		getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) in
 			guard error == nil else {
-				completion(image: nil, error: error)
+				resultBlock(image: nil, error: error)
 				return
 			}
 			
 			guard let imageData = imageData, let image = UIImage(data:imageData) else {
-				completion(image: nil, error: NSError(domain: "get image failed", code: -1, userInfo: nil))
+				resultBlock(image: nil, error: NSError(domain: "get image failed", code: -1, userInfo: nil))
 				return
 			}
 			
-			completion(image: image, error: error)
+			resultBlock(image: image, error: error)
 			
 		}, progressBlock: progressBlock)
 	}

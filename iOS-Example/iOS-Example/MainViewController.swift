@@ -215,7 +215,9 @@ class MainViewController: UIViewController {
 				tableView: tableView,
 				cellSelectAction: { indexPath, cell in
 					self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-					self.navigationController?.pushViewController(TableViewSectionRowExtensionDemoViewController(), animated: true)
+					let demoController = TableViewSectionRowExtensionDemoViewController()
+					demoController.title = "TableView+SectionRowExtension"
+					self.navigationController?.pushViewController(demoController, animated: true)
 			})
 		)
 		

@@ -268,12 +268,62 @@ public extension UIView {
 public extension UIView {
 	/// Width for self
 	public var width: CGFloat {
-		return bounds.width
+		get { return bounds.width }
+		set { bounds.size.width = newValue }
 	}
 	
 	/// Height for self
 	public var height: CGFloat {
-		return bounds.height
+		get { return bounds.height }
+		set { bounds.size.height = newValue }
+	}
+	
+	/// x of frame
+	public var x: CGFloat {
+		get { return frame.x }
+		set { frame.x = newValue }
+	}
+	
+	/// y of frame
+	public var y: CGFloat {
+		get { return frame.y }
+		set { frame.y = newValue }
+	}
+	
+	/// top of frame, which is y
+	public var top: CGFloat {
+		get { return frame.top }
+		set { frame.top = newValue }
+	}
+	
+	/// bottom of frame, which is y + height
+	public var bottom: CGFloat {
+		get { return frame.bottom }
+		set { frame.bottom = newValue }
+	}
+	
+	/// left of frame, which is x
+	public var left: CGFloat {
+		get { return frame.left }
+		set { frame.left = newValue }
+	}
+	
+	/// right of frame, which is x + width
+	public var right: CGFloat {
+		get { return frame.right }
+		set { frame.right = newValue }
+	}
+	
+	/// leading of frame, in Right-to-Left, leading is right
+	public var leading: CGFloat {
+		get { return frame.leading }
+		set { frame.leading = newValue }
+	}
+	
+	/// trailing of frame, in Right-to-Left, trailing is left
+	public var trailing: CGFloat {
+		get { return frame.trailing }
+		set { frame.trailing = newValue }
 	}
 	
 	/**
