@@ -278,6 +278,12 @@ public extension UIView {
 		set { bounds.size.height = newValue }
 	}
 	
+	/// Size
+	public var size: CGSize {
+		get { return bounds.size }
+		set { bounds.size = newValue }
+	}
+	
 	/// x of frame
 	public var x: CGFloat {
 		get { return frame.x }
