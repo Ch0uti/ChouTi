@@ -10,9 +10,6 @@ import UIKit
 
 public class TextField: UITextField {
 	
-	public var textHorizontalPadding: CGFloat = 10.0
-	public var textVerticalPadding: CGFloat = 10.0
-	
 	public var cursorColor: UIColor? {
 		didSet {
 			tintColor = cursorColor
@@ -85,15 +82,27 @@ public class TextField: UITextField {
 	}
 	
 	public override func textRectForBounds(bounds: CGRect) -> CGRect {
-		return CGRectInset(bounds, textHorizontalPadding, textVerticalPadding)
+		return customizedTextRectForBounds(bounds)
 	}
 	
 	public override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
-		return CGRectInset(bounds, textHorizontalPadding, textVerticalPadding)
+		return customizedTextRectForBounds(bounds)
 	}
 	
 	public override func editingRectForBounds(bounds: CGRect) -> CGRect {
-		return CGRectInset(bounds, textHorizontalPadding, textVerticalPadding)
+		return customizedTextRectForBounds(bounds)
+	}
+	
+	private func customizedTextRectForBounds(bounds: CGRect) -> CGRect {
+		var textRect = bounds
+		let leftViewRect = leftViewRectForBounds(bounds)
+		let rightViewRect = rightViewRectForBounds(bounds)
+		
+		textRect.origin.x = leftViewRect.right + layoutMargins.left
+		textRect.origin.y = layoutMargins.top
+		textRect.size.width = textRect.width - (leftViewRect.right + layoutMargins.left) - (layoutMargins.right * 2 + rightViewRect.width)
+		textRect.size.height = textRect.height - layoutMargins.top - layoutMargins.bottom
+		return textRect
 	}
 }
 
