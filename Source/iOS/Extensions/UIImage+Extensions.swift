@@ -82,7 +82,7 @@ public extension UIImage {
 // MARK: - Resize
 public extension UIImage {
 	/**
-	Get a new scalled image with max width or max heigth
+	Get a new scalled image with max width or max heigth, image size ratio is kept.
 	
 	- parameter maxWidth:  max width
 	- parameter maxHeight: max height
@@ -104,7 +104,7 @@ public extension UIImage {
 	}
 	
 	/**
-	Get a new scaled image with new size.
+	Get a new scaled image with new size, image size ratio is not kept.
 	
 	- parameter size: new size
 	
@@ -123,6 +123,13 @@ public extension UIImage {
 
 // MARK: - Factory Methods
 public extension UIImage {
+	/**
+	Get a UIImage instance with color, size is 1.0 * 1.0
+	
+	- parameter color: color of the image
+	
+	- returns: new UIImage with the color provided
+	*/
 	public class func imageWithColor(color: UIColor) -> UIImage {
 		let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
 		UIGraphicsBeginImageContext(rect.size)
@@ -137,6 +144,14 @@ public extension UIImage {
 		return image
 	}
 	
+	/**
+	Get a UIImage instance with color and size
+	
+	- parameter color: color of the image
+	- parameter size:  size of the image
+	
+	- returns: new UIImage with the color provided
+	*/
 	public class func imageWithColor(color: UIColor, size: CGSize) -> UIImage {
 		let rect = CGRectMake(0, 0, size.width, size.height)
 		UIGraphicsBeginImageContextWithOptions(size, false, 0)

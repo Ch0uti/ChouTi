@@ -18,6 +18,20 @@ public extension NSObject {
 		set { objc_setAssociatedObject(self, &zhAssociateObjectKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
 	}
 	
+	/**
+	set an associated object for key pointer
+	Example usage:
+	private struct SomeKey {
+		static var Key = "RandomKey"
+	}
+	
+	setAssociatedObejct(someObject, forKeyPointer: &SomeKey.Key)
+	
+	- parameter object:  an object to be associated
+	- parameter pointer: pointer
+	
+	- returns: old associated object if existed
+	*/
 	public func setAssociatedObejct(object: AnyObject, forKeyPointer pointer: UnsafePointer<String> = nil) -> AnyObject? {
 		if pointer == nil {
 			let currentAssociatedObject = associatedObject
