@@ -1,5 +1,5 @@
 PODS:
-  - Bolts/Tasks (1.5.1)
+  - Bolts/Tasks (1.6.0)
   - ChouTi (1.0):
     - ChouTi/All (= 1.0)
   - ChouTi/All (1.0):
@@ -33,6 +33,7 @@ PODS:
     - ChouTi/UI/DropDownMenu (= 1.0)
     - ChouTi/UI/LoadingMorphingLabel (= 1.0)
     - ChouTi/UI/MenuPageViewController (= 1.0)
+    - ChouTi/UI/NavigationBarStatusBar (= 1.0)
     - ChouTi/UI/SegmentedControl (= 1.0)
     - ChouTi/UI/TableViewCells (= 1.0)
   - ChouTi/UI-App-Extension-API-Unsafe (1.0):
@@ -45,13 +46,14 @@ PODS:
   - ChouTi/UI/LoadingMorphingLabel (1.0):
     - LTMorphingLabel (~> 0.0.8)
   - ChouTi/UI/MenuPageViewController (1.0)
+  - ChouTi/UI/NavigationBarStatusBar (1.0)
   - ChouTi/UI/SegmentedControl (1.0)
   - ChouTi/UI/TableViewCells (1.0)
   - LTMorphingLabel (0.0.9)
   - Operations (2.5.1):
     - Operations/Standard (= 2.5.1)
   - Operations/Standard (2.5.1)
-  - Parse (1.11.0):
+  - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
 
 DEPENDENCIES:
@@ -63,11 +65,11 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Bolts: a12663244b1d3351c738882e71902fc74db54f64
-  ChouTi: 1b1f15f5c1ad58618f80890e46842bacf6bc9c76
+  Bolts: f52a250053bb517ca874523c3913776359ab3def
+  ChouTi: cfbeb0c1e64114fe1b8f5342349597e39e954f8e
   LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
   Operations: 3c646c48620ac4b6c624d825d42c1e684ecb6a53
-  Parse: 886af46a0a677402f6374bb97ac212e795f70afe
+  Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
 
 PODFILE CHECKSUM: 9ddce36900e94a2b2c9b993b504568ae49016662
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0211A3F61C4B300C00895A84 /* NavigationBarStatusBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211A3F51C4B300C00895A84 /* NavigationBarStatusBarDemoViewController.swift */; };
 		022596C41C1D5A74000A150F /* NSDate+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022596C31C1D5A74000A150F /* NSDate+ExtensionsTests.swift */; };
 		022596C81C1DEA3C000A150F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022596C71C1DEA3C000A150F /* CoreLocation.framework */; };
 		022994121C24BF8A0002DD88 /* OperationsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022994111C24BF8A0002DD88 /* OperationsDemoViewController.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0211A3F51C4B300C00895A84 /* NavigationBarStatusBarDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarStatusBarDemoViewController.swift; sourceTree = "<group>"; };
 		022596C31C1D5A74000A150F /* NSDate+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		022596C71C1DEA3C000A150F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		022994111C24BF8A0002DD88 /* OperationsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsDemoViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				E4A49FB91C10D20D00CE1710 /* DropDownMenuDemoViewController.swift */,
 				025B29571C1D04440011FF86 /* DatePickerViewControllerDemoViewController.swift */,
 				022994111C24BF8A0002DD88 /* OperationsDemoViewController.swift */,
+				0211A3F51C4B300C00895A84 /* NavigationBarStatusBarDemoViewController.swift */,
 				E4F3B8781B798FDD006E1BF9 /* Main.storyboard */,
 				E4F3B87B1B798FDD006E1BF9 /* Images.xcassets */,
 				E4F3B87D1B798FDD006E1BF9 /* LaunchScreen.xib */,
@@ -365,6 +368,7 @@
 				E4F3B8771B798FDD006E1BF9 /* MainViewController.swift in Sources */,
 				E4A49FB81C10038D00CE1710 /* TableViewSectionRowExtensionDemoViewController.swift in Sources */,
 				E4A49FB61C0FF1E700CE1710 /* HideNavigationBarBottomLineDemoViewController.swift in Sources */,
+				0211A3F61C4B300C00895A84 /* NavigationBarStatusBarDemoViewController.swift in Sources */,
 				E4E603111C0BE3C3005740B6 /* ImagePickerDemoViewController.swift in Sources */,
 				E4F3B8751B798FDD006E1BF9 /* AppDelegate.swift in Sources */,
 				E4D99C311B9157A600E492F9 /* SideViewController.swift in Sources */,

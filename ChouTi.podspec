@@ -161,6 +161,12 @@ Pod::Spec.new do |s|
       sss.frameworks   = 'UIKit'
     end
 
+    ss.subspec "NavigationBarStatusBar" do |sss|
+      # "A drop down status bar under navigation bar"
+      sss.source_files = 'Source/iOS/UI/NavigationBarStatusBar/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
   end
 
 

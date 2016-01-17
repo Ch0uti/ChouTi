@@ -151,6 +151,17 @@ class MainViewController: UIViewController {
 			)
 		)
 		
+		viewRows.append(
+			TableViewRow(title: "Navigation Bar with Status Bar",
+				subtitle: "Drop down style status bar under navigation bar",
+				tableView: tableView,
+				cellSelectAction: { (indexPath, cell) -> Void in
+					self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+					self.navigationController?.pushViewController(NavigationBarStatusBarDemoViewController(), animated: true)
+				}
+			)
+		)
+		
 		sections.append(
 			TableViewSection(headerTitle: "Views", rows: viewRows, tableView: tableView)
 		)
