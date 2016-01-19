@@ -81,7 +81,11 @@ public extension UINavigationBar {
 }
 
 public extension UINavigationBar {
-	public func showStatusBarWithText(text: String, animated: Bool, animationDuration: NSTimeInterval = 0.3, autoDismiss: Bool = false, displayingDuration: NSTimeInterval = 2.0, completion: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
+	public func showStatusBarWithText(text: String, animated: Bool, animationDuration: NSTimeInterval = 0.3, completion: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
+		return showStatusBarWithText(text, animated: animated, animationDuration: animationDuration, completion: completion, autoDismiss: false, displayingDuration: 0.0, dismissCompletion: nil)
+	}
+	
+	public func showStatusBarWithText(text: String, animated: Bool, animationDuration: NSTimeInterval = 0.3, completion: ((Bool) -> Void)? = nil, autoDismiss: Bool, displayingDuration: NSTimeInterval, dismissCompletion: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
 		if autoDismiss {
 			delay(seconds: displayingDuration, completion: {
 				self.dismissStatusBar(true)

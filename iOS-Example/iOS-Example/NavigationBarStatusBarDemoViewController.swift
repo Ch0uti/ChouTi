@@ -23,6 +23,7 @@ class NavigationBarStatusBarDemoViewController: UIViewController {
 		let statusBar = navigationController?.navigationBar.showStatusBarWithText("Hello, World!", animated: true, autoDismiss: true, displayingDuration: 2)
 		statusBar?.backgroundColor = UIColor(red:66/255.0, green:173/255.0, blue:212/255.0, alpha:255/255.0)
 		statusBar?.titleLabel.textColor = UIColor(red:252/255.0, green:186/255.0, blue:2/255.0, alpha:255/255.0)
+		statusBar?.statusBarHeight = 30.0
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
