@@ -13,16 +13,19 @@ PODS:
     - ChouTi/ChouTi/Extensions (= 1.0)
     - ChouTi/ChouTi/Protocols (= 1.0)
     - ChouTi/ChouTi/Utilities (= 1.0)
+  - ChouTi/ChouTi-Extra (1.0):
+    - ChouTi/ChouTi-Extra/Utilities (= 1.0)
+  - ChouTi/ChouTi-Extra/Utilities (1.0):
+    - ChouTi/ChouTi-Extra/Utilities/Operations (= 1.0)
+  - ChouTi/ChouTi-Extra/Utilities/Operations (1.0):
+    - Operations
   - ChouTi/ChouTi/Animators (1.0)
   - ChouTi/ChouTi/CodeSnippets (1.0)
   - ChouTi/ChouTi/CollectionViewLayouts (1.0)
   - ChouTi/ChouTi/Extensions (1.0)
   - ChouTi/ChouTi/Protocols (1.0)
   - ChouTi/ChouTi/Utilities (1.0):
-    - ChouTi/ChouTi/Utilities/Operations (= 1.0)
     - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (= 1.0)
-  - ChouTi/ChouTi/Utilities/Operations (1.0):
-    - Operations
   - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (1.0)
   - ChouTi/Parse (1.0):
     - Parse
@@ -31,7 +34,6 @@ PODS:
     - ChouTi/UI/CollectionViewCells (= 1.0)
     - ChouTi/UI/DatePickerViewController (= 1.0)
     - ChouTi/UI/DropDownMenu (= 1.0)
-    - ChouTi/UI/LoadingMorphingLabel (= 1.0)
     - ChouTi/UI/MenuPageViewController (= 1.0)
     - ChouTi/UI/NavigationBarStatusBar (= 1.0)
     - ChouTi/UI/SegmentedControl (= 1.0)
@@ -43,13 +45,10 @@ PODS:
   - ChouTi/UI/CollectionViewCells (1.0)
   - ChouTi/UI/DatePickerViewController (1.0)
   - ChouTi/UI/DropDownMenu (1.0)
-  - ChouTi/UI/LoadingMorphingLabel (1.0):
-    - LTMorphingLabel (~> 0.0.8)
   - ChouTi/UI/MenuPageViewController (1.0)
   - ChouTi/UI/NavigationBarStatusBar (1.0)
   - ChouTi/UI/SegmentedControl (1.0)
   - ChouTi/UI/TableViewCells (1.0)
-  - LTMorphingLabel (0.0.9)
   - Operations (2.5.1):
     - Operations/Standard (= 2.5.1)
   - Operations/Standard (2.5.1)
@@ -58,6 +57,7 @@ PODS:
 
 DEPENDENCIES:
   - ChouTi (from `../`)
+  - ChouTi/ChouTi-Extra (from `../`)
   - ChouTi/Parse (from `../`)
 
 EXTERNAL SOURCES:
@@ -66,11 +66,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
-  ChouTi: cfbeb0c1e64114fe1b8f5342349597e39e954f8e
-  LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
+  ChouTi: 7e2fab5ebbc12f844dbe14bb06e1cc3859a6c912
   Operations: 3c646c48620ac4b6c624d825d42c1e684ecb6a53
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
 
-PODFILE CHECKSUM: 9ddce36900e94a2b2c9b993b504568ae49016662
+PODFILE CHECKSUM: b0d2ae765d1cd92506a9e0808e8d970c0bb153d5
 
 COCOAPODS: 1.0.0.beta.2

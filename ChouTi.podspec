@@ -82,12 +82,6 @@ Pod::Spec.new do |s|
         ssss.source_files = 'Source/iOS/Utilities/TableView+SectionRowExtensions/*.*'
       end
 
-      sss.subspec "Operations" do |ssss|
-        # "NSOperations with Join functionality"
-        ssss.source_files = 'Source/iOS/Utilities/Operations/*.*'
-        ssss.dependency 'Operations'
-      end
-
     end
 
     ss.subspec "CodeSnippets" do |sss|
@@ -142,13 +136,6 @@ Pod::Spec.new do |s|
       sss.frameworks   = 'UIKit'
     end
 
-    ss.subspec "LoadingMorphingLabel" do |sss|
-      # "Showing a list of text in loop"
-      sss.source_files = 'Source/iOS/UI/LoadingMorphingLabel/*.*'
-      sss.frameworks   = 'UIKit'
-      sss.dependency 'LTMorphingLabel', '~> 0.0.8'
-    end
-
     ss.subspec "DropDownMenu" do |sss|
       # "A drop down menu presented in full screen with blur background"
       sss.source_files = 'Source/iOS/UI/DropDownMenu/*.*'
@@ -178,6 +165,38 @@ Pod::Spec.new do |s|
       # "A left/right slide container view controller"
       sss.source_files = 'Source/iOS/UI/SlideController/*.*'
       sss.frameworks   = 'UIKit'
+    end
+    
+  end
+
+
+  ############ Components require Third Party Subspec ############
+
+  s.subspec "ChouTi-Extra" do |ss|
+
+    ss.subspec "Utilities" do |sss|
+
+      sss.subspec "Operations" do |ssss|
+        # "NSOperations with Join functionality"
+        ssss.source_files = 'Source/iOS/Utilities/Operations/*.*'
+        ssss.dependency 'Operations'
+      end
+
+    end
+
+  end
+
+
+  ############ UI Components require Third Party Subspec ############
+
+  s.subspec "UI-Extra" do |ss|
+    # "UI Components require Third Party supports"
+
+    ss.subspec "LoadingMorphingLabel" do |sss|
+      # "Showing a list of text in loop"
+      sss.source_files = 'Source/iOS/UI/LoadingMorphingLabel/*.*'
+      sss.frameworks   = 'UIKit'
+      sss.dependency 'LTMorphingLabel', '~> 0.0.8'
     end
     
   end
