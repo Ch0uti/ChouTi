@@ -77,7 +77,18 @@ public extension UIColor {
 		let alpha = randomAlpha ? CGFloat.random() : 1.0
 		return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: alpha)
 	}
+}
+
+public extension UIColor {
+	/**
+	Get color between two colors, with percentage
 	
+	- parameter minColor: color on one end
+	- parameter maxColor: color on the other end
+	- parameter percent:  percentage from minColor
+	
+	- returns: <#return value description#>
+	*/
 	public class func colorBetweenMinColor(minColor: UIColor, maxColor: UIColor, percent: CGFloat) -> UIColor {
 		let (leftR, leftG, leftB, leftA) = minColor.getRGBAComponents()
 		let (rightR, rightG, rightB, rightA) = maxColor.getRGBAComponents()
