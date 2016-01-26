@@ -87,9 +87,9 @@ public extension UINavigationBar {
 	
 	public func showStatusBarWithText(text: String, animated: Bool, animationDuration: NSTimeInterval = 0.3, completion: ((Bool) -> Void)? = nil, autoDismiss: Bool, displayingDuration: NSTimeInterval, dismissCompletion: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
 		if autoDismiss {
-			delay(seconds: displayingDuration, completion: {
+			delay(displayingDuration) {
 				self.dismissStatusBar(true)
-			})
+			}
 		}
 		
 		if isShowingStatusBar {

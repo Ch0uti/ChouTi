@@ -30,10 +30,10 @@ class OperationsDemoViewController: UIViewController {
 		let operation1 = BlockOperation { (continueWithError: (error: ErrorType?) -> Void) -> Void in
 			print("111: started")
 			print("1: queue: count: \(queue.operationCount)")
-			delay(seconds: 1, completion: { () -> () in
+			delay(1) {
 				print("111")
 				continueWithError(error: nil)
-			})
+			}
 		}
 		operation1.completionBlock = {
 			print("111: completed")
@@ -43,10 +43,10 @@ class OperationsDemoViewController: UIViewController {
 		let operation2 = BlockOperation { (continueWithError: (error: ErrorType?) -> Void) -> Void in
 			print("222: started")
 			print("2: queue: count: \(queue.operationCount)")
-			delay(seconds: 2, completion: { () -> () in
+			delay(2) {
 				print("222")
 				continueWithError(error: nil)
-			})
+			}
 		}
 		operation2.completionBlock = {
 			print("222: completed")
@@ -56,10 +56,10 @@ class OperationsDemoViewController: UIViewController {
 		let operation3 = BlockOperation { (continueWithError: (error: ErrorType?) -> Void) -> Void in
 			print("333: started")
 			print("3: queue: count: \(queue.operationCount)")
-			delay(seconds: 3, completion: { () -> () in
+			delay(3) {
 				print("333")
 				continueWithError(error: nil)
-			})
+			}
 		}
 		operation3.completionBlock = {
 			print("333: completed")

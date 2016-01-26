@@ -416,7 +416,7 @@ extension PageViewController {
 		// Give some delay and check whether selectedIndex is still -1. 
 		// If so, means after updating dataSource, selectedIndex is not set.
 		// So 0 then
-		delay(seconds: 0.001) { () -> () in
+		delay(0.001) {
 			if self.dataSource!.numberOfViewControllersInPageViewController(self) > 0 && self._selectedIndex == -1 {
 				self.setSelectedIndex(0, animated: false)
 			}
