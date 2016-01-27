@@ -32,6 +32,11 @@ public extension Array {
 		}
 	}
 	
+	/**
+	Return a random subset
+	
+	- returns: a random subset
+	*/
 	public func randomSubset() -> [Element] {
 		if count == 0 {
 			return self
