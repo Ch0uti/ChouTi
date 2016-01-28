@@ -103,7 +103,9 @@ public extension UIColor {
 }
 
 // MARK: - HEX Colors
-// Optional Pod: pod 'UIColor_Hex_Swift' ( https://github.com/yeahdongcn/UIColor-Hex-Swift )
+// Optional Pod: 
+//   pod 'UIColor_Hex_Swift' ( https://github.com/yeahdongcn/UIColor-Hex-Swift )
+//   pod 'SwiftHEXColors' ( https://github.com/thii/SwiftHEXColors )
 public extension UIColor {
     /**
      UIColor(hexString: "#CC0000")
