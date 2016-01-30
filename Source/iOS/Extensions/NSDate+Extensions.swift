@@ -320,7 +320,7 @@ public extension NSDate {
 		return calendar.dateFromComponents(components)
 	}
 	
-	public func dateByUpdatingUnit(unit: NSCalendarUnit, newValue: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
+	public func dateBySettingUnit(unit: NSCalendarUnit, newValue: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
 		
 		let calendar = calendar ?? NSCalendar.gregorianCalendar()
 		var year = yearInCalendar(calendar, inTimeZone: timeZone)
@@ -361,31 +361,31 @@ public extension NSDate {
 		return NSDate.dateWithYear(year, month: month, day: day, hour: hour, minute: minute, second: second, nanosecond: nanosecond, inTimeZone: timeZone, calendar: calendar)
 	}
 	
-	public func dateByUpdatingYear(year: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
-		return dateByUpdatingUnit(.Year, newValue: year, inTimeZone: timeZone, calendar: calendar)
+	public func dateBySettingYear(year: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
+		return dateBySettingUnit(.Year, newValue: year, inTimeZone: timeZone, calendar: calendar)
 	}
 	
-	public func dateByUpdatingMonth(month: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
-		return dateByUpdatingUnit(.Month, newValue: month, inTimeZone: timeZone, calendar: calendar)
+	public func dateBySettingMonth(month: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
+		return dateBySettingUnit(.Month, newValue: month, inTimeZone: timeZone, calendar: calendar)
 	}
 	
-	public func dateByUpdatingDay(day: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
-		return dateByUpdatingUnit(.Day, newValue: day, inTimeZone: timeZone, calendar: calendar)
+	public func dateBySettingDay(day: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
+		return dateBySettingUnit(.Day, newValue: day, inTimeZone: timeZone, calendar: calendar)
 	}
 	
-	public func dateByUpdatingHour(hour: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
-		return dateByUpdatingUnit(.Hour, newValue: hour, inTimeZone: timeZone, calendar: calendar)
+	public func dateBySettingHour(hour: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
+		return dateBySettingUnit(.Hour, newValue: hour, inTimeZone: timeZone, calendar: calendar)
 	}
 	
-	public func dateByUpdatingMinute(minute: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
-		return dateByUpdatingUnit(.Minute, newValue: minute, inTimeZone: timeZone, calendar: calendar)
+	public func dateBySettingMinute(minute: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
+		return dateBySettingUnit(.Minute, newValue: minute, inTimeZone: timeZone, calendar: calendar)
 	}
 	
-	public func dateByUpdatingSecond(second: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
-		return dateByUpdatingUnit(.Second, newValue: second, inTimeZone: timeZone, calendar: calendar)
+	public func dateBySettingSecond(second: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
+		return dateBySettingUnit(.Second, newValue: second, inTimeZone: timeZone, calendar: calendar)
 	}
 	
-	public func dateByUpdatingNanosecond(nanosecond: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
-		return dateByUpdatingUnit(.Nanosecond, newValue: nanosecond, inTimeZone: timeZone, calendar: calendar)
+	public func dateBySettingNanosecond(nanosecond: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
+		return dateBySettingUnit(.Nanosecond, newValue: nanosecond, inTimeZone: timeZone, calendar: calendar)
 	}
 }
