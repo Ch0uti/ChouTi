@@ -2,11 +2,9 @@ PODS:
   - ChouTi (1.0):
     - ChouTi/All (= 1.0)
   - ChouTi/All (1.0):
-    - ChouTi/App-Extension-API-Unsafe
     - ChouTi/ChouTi
     - ChouTi/UI
     - ChouTi/UI-App-Extension-API-Unsafe
-  - ChouTi/App-Extension-API-Unsafe (1.0)
   - ChouTi/ChouTi (1.0):
     - ChouTi/ChouTi/Animators (= 1.0)
     - ChouTi/ChouTi/CodeSnippets (= 1.0)
@@ -19,35 +17,40 @@ PODS:
   - ChouTi/ChouTi/CollectionViewLayouts (1.0)
   - ChouTi/ChouTi/Extensions (1.0)
   - ChouTi/ChouTi/Protocols (1.0)
-  - ChouTi/ChouTi/Utilities (1.0)
+  - ChouTi/ChouTi/Utilities (1.0):
+    - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (= 1.0)
+  - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (1.0)
   - ChouTi/UI (1.0):
     - ChouTi/UI/AutoLinesLabel (= 1.0)
+    - ChouTi/UI/CollectionViewCells (= 1.0)
+    - ChouTi/UI/DatePickerViewController (= 1.0)
     - ChouTi/UI/DropDownMenu (= 1.0)
-    - ChouTi/UI/LoadingMorphingLabel (= 1.0)
     - ChouTi/UI/MenuPageViewController (= 1.0)
+    - ChouTi/UI/NavigationBarStatusBar (= 1.0)
     - ChouTi/UI/SegmentedControl (= 1.0)
     - ChouTi/UI/TableViewCells (= 1.0)
   - ChouTi/UI-App-Extension-API-Unsafe (1.0):
     - ChouTi/UI-App-Extension-API-Unsafe/SlideController (= 1.0)
   - ChouTi/UI-App-Extension-API-Unsafe/SlideController (1.0)
   - ChouTi/UI/AutoLinesLabel (1.0)
+  - ChouTi/UI/CollectionViewCells (1.0)
+  - ChouTi/UI/DatePickerViewController (1.0)
   - ChouTi/UI/DropDownMenu (1.0)
-  - ChouTi/UI/LoadingMorphingLabel (1.0):
-    - LTMorphingLabel (~> 0.0.8)
   - ChouTi/UI/MenuPageViewController (1.0)
+  - ChouTi/UI/NavigationBarStatusBar (1.0)
   - ChouTi/UI/SegmentedControl (1.0)
   - ChouTi/UI/TableViewCells (1.0)
-  - LTMorphingLabel (0.0.9)
 
 DEPENDENCIES:
   - ChouTi (from `../`)
 
 EXTERNAL SOURCES:
   ChouTi:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  ChouTi: f1e4fe86bd6315c75ff02420b44b3d58da7bf2ee
-  LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
+  ChouTi: 7e2fab5ebbc12f844dbe14bb06e1cc3859a6c912
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: a25b179e9b7fc71622c0a40fba72ba69f516273f
+
+COCOAPODS: 1.0.0.beta.2
