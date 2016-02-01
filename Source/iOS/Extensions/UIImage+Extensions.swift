@@ -187,11 +187,11 @@ public extension UIImage {
 		UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
 		let ctx = UIGraphicsGetCurrentContext()
 		
-		let area: CGRect = CGRectMake(0, 0, size.width, size.height);
+		let area: CGRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
 		
 		CGContextScaleCTM(ctx, 1, -1)
 		CGContextTranslateCTM(ctx, 0, -area.size.height)
-		CGContextSetBlendMode(ctx, CGBlendMode.Multiply)
+		CGContextSetBlendMode(ctx, .Multiply)
 		CGContextSetAlpha(ctx, alpha)
 		CGContextDrawImage(ctx, area, CGImage)
 		
