@@ -3,18 +3,14 @@ use_frameworks!
 
 platform :ios, '8.0'
 
-link_with 'ChouTi', 'ChouTiTests'
+target 'ChouTi' do
 
-pod 'ChouTi', :path => '../'
+  pod 'ChouTi', :path => '../'
 
-# target 'ChouTi' do
-#
-# 	pod 'ChouTi', :path => '../'
-#
-# end
+end
 
-# target 'ChouTiTests' do
-#
-#	pod 'ChouTi', :path => '../'
-#
-# end
+target 'ChouTiTests' do
+
+  pod 'ChouTi', :path => '../'
+
+end

@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIScreen {
-
+    
     public func height() -> CGFloat {
         return UIScreen.mainScreen().bounds.height
     }

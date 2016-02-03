@@ -26,7 +26,7 @@ class NSDate_ExtensionsTests: XCTestCase {
 	
 	func testForComponents() {
 		let date = NSDate()
-		let dateWithUpdatedYear = date.dateByUpdatingUnit(.Year, newValue: 1900)
+		let dateWithUpdatedYear = date.dateBySettingUnit(.Year, newValue: 1900)
 		XCTAssertEqual(dateWithUpdatedYear?.year, 1900)
 	}
 }

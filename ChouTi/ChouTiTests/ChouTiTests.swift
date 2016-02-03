@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import ChouTi
+@testable import ChouTi
 
 class ChouTiTests: XCTestCase {
     
@@ -22,6 +22,8 @@ class ChouTiTests: XCTestCase {
     }
     
     func testExample() {
+		let date = NSDate()
+		date.dateByAddingYears(1)
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 //		let string = "123456abc"
@@ -29,15 +31,7 @@ class ChouTiTests: XCTestCase {
 //		XCTAssertEqual(nsRange.location, 0)
 //		XCTAssertEqual(nsRange.length, 9)
 		
-		XCTAssertEqual(NSDate().isEarlierThanDate(NSDate()), false)
+//		XCTAssertEqual(NSDate().isEarlierThanDate(NSDate()), false)
 		
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
