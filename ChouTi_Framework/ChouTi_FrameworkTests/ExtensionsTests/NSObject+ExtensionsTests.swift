@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import ChouTi
+@testable import ChouTi_Framework
 
 class NSObject_ExtensionsTests: ChouTi_FrameworkTests {
 	var host: NSObject!

@@ -7,7 +7,8 @@
 //
 
 import XCTest
-import ChouTi
+@testable import ChouTi_Framework
+import ChouTi 
 
 class Dictionary_ExtensionsTests: ChouTi_FrameworkTests {
     

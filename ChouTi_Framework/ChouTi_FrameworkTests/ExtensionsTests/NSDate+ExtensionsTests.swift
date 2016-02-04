@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import ChouTi
+@testable import ChouTi_Framework
 
 class NSDate_ExtensionsTests: ChouTi_FrameworkTests {
 	

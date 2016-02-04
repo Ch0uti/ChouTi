@@ -11,6 +11,4 @@ end
 
 target 'ChouTi_FrameworkTests' do
 
-  pod 'ChouTi/All', :path => '../'
-
 end

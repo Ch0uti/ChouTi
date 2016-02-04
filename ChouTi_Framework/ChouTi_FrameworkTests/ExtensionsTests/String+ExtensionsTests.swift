@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import ChouTi
+@testable import ChouTi_Framework
 
 class String_ExtensionsTest: ChouTi_FrameworkTests {
 

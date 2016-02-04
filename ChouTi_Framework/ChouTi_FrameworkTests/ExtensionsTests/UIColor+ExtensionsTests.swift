@@ -7,8 +7,7 @@
 //
 
 import XCTest
-import ChouTi
-import Parse
+@testable import ChouTi_Framework
 
 class UIColor_ExtensionsTests: ChouTi_FrameworkTests {
     

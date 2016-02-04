@@ -82,18 +82,3 @@ strip_invalid_archs() {
   fi
 }
 
-
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-ChouTi_FrameworkTests/Bolts.framework"
-  install_framework "Pods-ChouTi_FrameworkTests/ChouTi.framework"
-  install_framework "Pods-ChouTi_FrameworkTests/LTMorphingLabel.framework"
-  install_framework "Pods-ChouTi_FrameworkTests/Operations.framework"
-  install_framework "Pods-ChouTi_FrameworkTests/Parse.framework"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-ChouTi_FrameworkTests/Bolts.framework"
-  install_framework "Pods-ChouTi_FrameworkTests/ChouTi.framework"
-  install_framework "Pods-ChouTi_FrameworkTests/LTMorphingLabel.framework"
-  install_framework "Pods-ChouTi_FrameworkTests/Operations.framework"
-  install_framework "Pods-ChouTi_FrameworkTests/Parse.framework"
-fi
