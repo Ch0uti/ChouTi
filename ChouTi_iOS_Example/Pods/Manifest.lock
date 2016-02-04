@@ -1,11 +1,7 @@
 PODS:
   - Bolts/Tasks (1.6.0)
   - ChouTi (1.0):
-    - ChouTi/All (= 1.0)
-  - ChouTi/All (1.0):
-    - ChouTi/ChouTi
-    - ChouTi/UI
-    - ChouTi/UI-App-Extension-API-Unsafe
+    - ChouTi/Unsafe (= 1.0)
   - ChouTi/ChouTi (1.0):
     - ChouTi/ChouTi/Animators (= 1.0)
     - ChouTi/ChouTi/CodeSnippets (= 1.0)
@@ -49,6 +45,10 @@ PODS:
   - ChouTi/UI/NavigationBarStatusBar (1.0)
   - ChouTi/UI/SegmentedControl (1.0)
   - ChouTi/UI/TableViewCells (1.0)
+  - ChouTi/Unsafe (1.0):
+    - ChouTi/ChouTi
+    - ChouTi/UI
+    - ChouTi/UI-App-Extension-API-Unsafe
   - Operations (2.5.1):
     - Operations/Standard (= 2.5.1)
   - Operations/Standard (2.5.1)
@@ -66,7 +66,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
-  ChouTi: 7e2fab5ebbc12f844dbe14bb06e1cc3859a6c912
+  ChouTi: c76de41f0450a280583da9c88fee2dab01c6e16c
   Operations: 3c646c48620ac4b6c624d825d42c1e684ecb6a53
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
 

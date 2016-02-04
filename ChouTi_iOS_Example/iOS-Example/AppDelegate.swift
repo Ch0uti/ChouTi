@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChouTi
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

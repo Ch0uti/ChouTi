@@ -24,13 +24,36 @@
   "xcconfig": {
     "OTHER_SWIFT_FLAGS": "-D DEBUG"
   },
-  "default_subspecs": "All",
+  "default_subspecs": "Unsafe",
   "resource_bundles": {
     "Resources": "Resources/*/*.png"
   },
   "subspecs": [
     {
       "name": "All",
+      "dependencies": {
+        "ChouTi/ChouTi": [
+
+        ],
+        "ChouTi/UI": [
+
+        ],
+        "ChouTi/UI-App-Extension-API-Unsafe": [
+
+        ],
+        "ChouTi/ChouTi-Extra": [
+
+        ],
+        "ChouTi/UI-Extra": [
+
+        ],
+        "ChouTi/Parse": [
+
+        ]
+      }
+    },
+    {
+      "name": "Unsafe",
       "dependencies": {
         "ChouTi/ChouTi": [
 
