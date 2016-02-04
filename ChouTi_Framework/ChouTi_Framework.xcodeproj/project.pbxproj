@@ -1,0 +1,540 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02B2918F1C630313002CA980 /* ChouTi_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 02B2918E1C630313002CA980 /* ChouTi_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02B291961C630313002CA980 /* ChouTi_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02B2918B1C630313002CA980 /* ChouTi_Framework.framework */; };
+		02B2919B1C630313002CA980 /* ChouTi_FrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B2919A1C630313002CA980 /* ChouTi_FrameworkTests.swift */; };
+		02B291A71C630365002CA980 /* String+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B291A61C630365002CA980 /* String+ExtensionsTests.swift */; };
+		02B291AC1C6303E0002CA980 /* Dictionary+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B291A81C6303E0002CA980 /* Dictionary+ExtensionsTests.swift */; };
+		02B291AD1C6303E0002CA980 /* NSDate+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B291A91C6303E0002CA980 /* NSDate+ExtensionsTests.swift */; };
+		02B291AE1C6303E0002CA980 /* NSObject+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B291AA1C6303E0002CA980 /* NSObject+ExtensionsTests.swift */; };
+		02B291AF1C6303E0002CA980 /* UIColor+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B291AB1C6303E0002CA980 /* UIColor+ExtensionsTests.swift */; };
+		295DDA6F34711CD028589F1C /* Pods_ChouTi_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD34F94A42383D8D7B0AC536 /* Pods_ChouTi_Framework.framework */; };
+		A9E2C2C60E57EB62AF969A4F /* Pods_ChouTi_FrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344CA3A8836CC2A57DEC5ABB /* Pods_ChouTi_FrameworkTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		02B291971C630313002CA980 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02B291821C630313002CA980 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02B2918A1C630313002CA980;
+			remoteInfo = ChouTi_Framework;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02B2918B1C630313002CA980 /* ChouTi_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ChouTi_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		02B2918E1C630313002CA980 /* ChouTi_Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChouTi_Framework.h; sourceTree = "<group>"; };
+		02B291901C630313002CA980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02B291951C630313002CA980 /* ChouTi_FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChouTi_FrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		02B2919A1C630313002CA980 /* ChouTi_FrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChouTi_FrameworkTests.swift; sourceTree = "<group>"; };
+		02B2919C1C630313002CA980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02B291A61C630365002CA980 /* String+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		02B291A81C6303E0002CA980 /* Dictionary+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		02B291A91C6303E0002CA980 /* NSDate+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		02B291AA1C6303E0002CA980 /* NSObject+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		02B291AB1C6303E0002CA980 /* UIColor+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		1586180CD5951C577043AACD /* Pods-ChouTi_FrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi_FrameworkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi_FrameworkTests/Pods-ChouTi_FrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
+		2FB78591CFF8DC2DA8774DFB /* Pods-ChouTi_Framework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi_Framework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi_Framework/Pods-ChouTi_Framework.debug.xcconfig"; sourceTree = "<group>"; };
+		344CA3A8836CC2A57DEC5ABB /* Pods_ChouTi_FrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_FrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC4EC132B89282066A48E583 /* Pods-ChouTi_FrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi_FrameworkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi_FrameworkTests/Pods-ChouTi_FrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F76D817AE873FD4D2E2C1CFE /* Pods-ChouTi_Framework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi_Framework.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi_Framework/Pods-ChouTi_Framework.release.xcconfig"; sourceTree = "<group>"; };
+		FD34F94A42383D8D7B0AC536 /* Pods_ChouTi_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		02B291871C630313002CA980 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				295DDA6F34711CD028589F1C /* Pods_ChouTi_Framework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02B291921C630313002CA980 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02B291961C630313002CA980 /* ChouTi_Framework.framework in Frameworks */,
+				A9E2C2C60E57EB62AF969A4F /* Pods_ChouTi_FrameworkTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		02B291811C630313002CA980 = {
+			isa = PBXGroup;
+			children = (
+				02B2918D1C630313002CA980 /* ChouTi_Framework */,
+				02B291991C630313002CA980 /* ChouTi_FrameworkTests */,
+				02B2918C1C630313002CA980 /* Products */,
+				60A16374C243C4461A14929D /* Pods */,
+				97CBAA74F721ECAB00B067DA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		02B2918C1C630313002CA980 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				02B2918B1C630313002CA980 /* ChouTi_Framework.framework */,
+				02B291951C630313002CA980 /* ChouTi_FrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		02B2918D1C630313002CA980 /* ChouTi_Framework */ = {
+			isa = PBXGroup;
+			children = (
+				02B2918E1C630313002CA980 /* ChouTi_Framework.h */,
+				02B291901C630313002CA980 /* Info.plist */,
+			);
+			path = ChouTi_Framework;
+			sourceTree = "<group>";
+		};
+		02B291991C630313002CA980 /* ChouTi_FrameworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				02B2919A1C630313002CA980 /* ChouTi_FrameworkTests.swift */,
+				02B291A51C630365002CA980 /* ExtensionsTests */,
+				02B2919C1C630313002CA980 /* Info.plist */,
+			);
+			path = ChouTi_FrameworkTests;
+			sourceTree = "<group>";
+		};
+		02B291A51C630365002CA980 /* ExtensionsTests */ = {
+			isa = PBXGroup;
+			children = (
+				02B291A61C630365002CA980 /* String+ExtensionsTests.swift */,
+				02B291A81C6303E0002CA980 /* Dictionary+ExtensionsTests.swift */,
+				02B291A91C6303E0002CA980 /* NSDate+ExtensionsTests.swift */,
+				02B291AA1C6303E0002CA980 /* NSObject+ExtensionsTests.swift */,
+				02B291AB1C6303E0002CA980 /* UIColor+ExtensionsTests.swift */,
+			);
+			path = ExtensionsTests;
+			sourceTree = "<group>";
+		};
+		60A16374C243C4461A14929D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2FB78591CFF8DC2DA8774DFB /* Pods-ChouTi_Framework.debug.xcconfig */,
+				F76D817AE873FD4D2E2C1CFE /* Pods-ChouTi_Framework.release.xcconfig */,
+				BC4EC132B89282066A48E583 /* Pods-ChouTi_FrameworkTests.debug.xcconfig */,
+				1586180CD5951C577043AACD /* Pods-ChouTi_FrameworkTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		97CBAA74F721ECAB00B067DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD34F94A42383D8D7B0AC536 /* Pods_ChouTi_Framework.framework */,
+				344CA3A8836CC2A57DEC5ABB /* Pods_ChouTi_FrameworkTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		02B291881C630313002CA980 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02B2918F1C630313002CA980 /* ChouTi_Framework.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		02B2918A1C630313002CA980 /* ChouTi_Framework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02B2919F1C630313002CA980 /* Build configuration list for PBXNativeTarget "ChouTi_Framework" */;
+			buildPhases = (
+				A35DDCB97AA99FEAB29570D5 /* Check Pods Manifest.lock */,
+				02B291861C630313002CA980 /* Sources */,
+				02B291871C630313002CA980 /* Frameworks */,
+				02B291881C630313002CA980 /* Headers */,
+				02B291891C630313002CA980 /* Resources */,
+				CE29E28504AA7E927270648E /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChouTi_Framework;
+			productName = ChouTi_Framework;
+			productReference = 02B2918B1C630313002CA980 /* ChouTi_Framework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		02B291941C630313002CA980 /* ChouTi_FrameworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02B291A21C630313002CA980 /* Build configuration list for PBXNativeTarget "ChouTi_FrameworkTests" */;
+			buildPhases = (
+				5C0B9A0427910997BE8C8846 /* Check Pods Manifest.lock */,
+				02B291911C630313002CA980 /* Sources */,
+				02B291921C630313002CA980 /* Frameworks */,
+				02B291931C630313002CA980 /* Resources */,
+				8D283D25CD771E5AA98218C2 /* Embed Pods Frameworks */,
+				05382A84F39E63B7061CD34A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				02B291981C630313002CA980 /* PBXTargetDependency */,
+			);
+			name = ChouTi_FrameworkTests;
+			productName = ChouTi_FrameworkTests;
+			productReference = 02B291951C630313002CA980 /* ChouTi_FrameworkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		02B291821C630313002CA980 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Honghao Zhang";
+				TargetAttributes = {
+					02B2918A1C630313002CA980 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					02B291941C630313002CA980 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 02B291851C630313002CA980 /* Build configuration list for PBXProject "ChouTi_Framework" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 02B291811C630313002CA980;
+			productRefGroup = 02B2918C1C630313002CA980 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				02B2918A1C630313002CA980 /* ChouTi_Framework */,
+				02B291941C630313002CA980 /* ChouTi_FrameworkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		02B291891C630313002CA980 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02B291931C630313002CA980 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05382A84F39E63B7061CD34A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi_FrameworkTests/Pods-ChouTi_FrameworkTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C0B9A0427910997BE8C8846 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8D283D25CD771E5AA98218C2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi_FrameworkTests/Pods-ChouTi_FrameworkTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A35DDCB97AA99FEAB29570D5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CE29E28504AA7E927270648E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi_Framework/Pods-ChouTi_Framework-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		02B291861C630313002CA980 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02B291911C630313002CA980 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02B291AD1C6303E0002CA980 /* NSDate+ExtensionsTests.swift in Sources */,
+				02B291AF1C6303E0002CA980 /* UIColor+ExtensionsTests.swift in Sources */,
+				02B291AE1C6303E0002CA980 /* NSObject+ExtensionsTests.swift in Sources */,
+				02B291A71C630365002CA980 /* String+ExtensionsTests.swift in Sources */,
+				02B291AC1C6303E0002CA980 /* Dictionary+ExtensionsTests.swift in Sources */,
+				02B2919B1C630313002CA980 /* ChouTi_FrameworkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		02B291981C630313002CA980 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02B2918A1C630313002CA980 /* ChouTi_Framework */;
+			targetProxy = 02B291971C630313002CA980 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		02B2919D1C630313002CA980 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		02B2919E1C630313002CA980 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		02B291A01C630313002CA980 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FB78591CFF8DC2DA8774DFB /* Pods-ChouTi_Framework.debug.xcconfig */;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ChouTi_Framework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-Framework";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		02B291A11C630313002CA980 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F76D817AE873FD4D2E2C1CFE /* Pods-ChouTi_Framework.release.xcconfig */;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ChouTi_Framework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-Framework";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		02B291A31C630313002CA980 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC4EC132B89282066A48E583 /* Pods-ChouTi_FrameworkTests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = ChouTi_FrameworkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-FrameworkTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		02B291A41C630313002CA980 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1586180CD5951C577043AACD /* Pods-ChouTi_FrameworkTests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = ChouTi_FrameworkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-FrameworkTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		02B291851C630313002CA980 /* Build configuration list for PBXProject "ChouTi_Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02B2919D1C630313002CA980 /* Debug */,
+				02B2919E1C630313002CA980 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		02B2919F1C630313002CA980 /* Build configuration list for PBXNativeTarget "ChouTi_Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02B291A01C630313002CA980 /* Debug */,
+				02B291A11C630313002CA980 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		02B291A21C630313002CA980 /* Build configuration list for PBXNativeTarget "ChouTi_FrameworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02B291A31C630313002CA980 /* Debug */,
+				02B291A41C630313002CA980 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 02B291821C630313002CA980 /* Project object */;
+}
