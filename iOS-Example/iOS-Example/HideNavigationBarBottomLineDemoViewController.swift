@@ -9,23 +9,23 @@
 import UIKit
 
 class HideNavigationBarBottomLineDemoViewController: UIViewController {
-	override func viewDidLoad() {
-		view.backgroundColor = UIColor.whiteColor()
-	}
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		navigationController?.navigationBar.hideBottomHairline()
-	}
-	
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-		
-		if isMovingFromParentViewController() {
-			// Poped
-			navigationController?.navigationBar.showBottomHairline()
-		} else if isMovingToParentViewController() {
-			// Pushed
-		}
-	}
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor.whiteColor()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.hideBottomHairline()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if isMovingFromParentViewController() {
+            // Poped
+            navigationController?.navigationBar.showBottomHairline()
+        } else if isMovingToParentViewController() {
+            // Pushed
+        }
+    }
 }
