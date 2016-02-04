@@ -67,9 +67,9 @@ public class LoadingMorphingLabel: UIView {
 		if _loopCount-- > 0 {
 			isAnimating = true
 			morphingLabel.text = texts[currentTextIndex++ % texts.count]
-			delay(seconds: delayDuration, completion: {
+			delay(delayDuration) {
 				self.showTextIndex(self.currentTextIndex)
-			})
+			}
 		} else {
 			isAnimating = false
 		}
