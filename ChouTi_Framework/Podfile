@@ -5,12 +5,12 @@ platform :ios, '8.0'
 
 target 'ChouTi_Framework' do
 
-  pod 'ChouTi', :path => '../'
+  pod 'ChouTi/All', :path => '../'
 
 end
 
 target 'ChouTi_FrameworkTests' do
 
-  pod 'ChouTi', :path => '../'
+  pod 'ChouTi/All', :path => '../'
 
 end

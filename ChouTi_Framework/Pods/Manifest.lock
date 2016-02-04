@@ -1,10 +1,12 @@
 PODS:
-  - ChouTi (1.0):
-    - ChouTi/All (= 1.0)
+  - Bolts/Tasks (1.6.0)
   - ChouTi/All (1.0):
     - ChouTi/ChouTi
+    - ChouTi/ChouTi-Extra
+    - ChouTi/Parse
     - ChouTi/UI
     - ChouTi/UI-App-Extension-API-Unsafe
+    - ChouTi/UI-Extra
   - ChouTi/ChouTi (1.0):
     - ChouTi/ChouTi/Animators (= 1.0)
     - ChouTi/ChouTi/CodeSnippets (= 1.0)
@@ -12,6 +14,12 @@ PODS:
     - ChouTi/ChouTi/Extensions (= 1.0)
     - ChouTi/ChouTi/Protocols (= 1.0)
     - ChouTi/ChouTi/Utilities (= 1.0)
+  - ChouTi/ChouTi-Extra (1.0):
+    - ChouTi/ChouTi-Extra/Utilities (= 1.0)
+  - ChouTi/ChouTi-Extra/Utilities (1.0):
+    - ChouTi/ChouTi-Extra/Utilities/Operations (= 1.0)
+  - ChouTi/ChouTi-Extra/Utilities/Operations (1.0):
+    - Operations
   - ChouTi/ChouTi/Animators (1.0)
   - ChouTi/ChouTi/CodeSnippets (1.0)
   - ChouTi/ChouTi/CollectionViewLayouts (1.0)
@@ -20,6 +28,8 @@ PODS:
   - ChouTi/ChouTi/Utilities (1.0):
     - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (= 1.0)
   - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (1.0)
+  - ChouTi/Parse (1.0):
+    - Parse
   - ChouTi/UI (1.0):
     - ChouTi/UI/AutoLinesLabel (= 1.0)
     - ChouTi/UI/CollectionViewCells (= 1.0)
@@ -32,6 +42,10 @@ PODS:
   - ChouTi/UI-App-Extension-API-Unsafe (1.0):
     - ChouTi/UI-App-Extension-API-Unsafe/SlideController (= 1.0)
   - ChouTi/UI-App-Extension-API-Unsafe/SlideController (1.0)
+  - ChouTi/UI-Extra (1.0):
+    - ChouTi/UI-Extra/LoadingMorphingLabel (= 1.0)
+  - ChouTi/UI-Extra/LoadingMorphingLabel (1.0):
+    - LTMorphingLabel (~> 0.0.8)
   - ChouTi/UI/AutoLinesLabel (1.0)
   - ChouTi/UI/CollectionViewCells (1.0)
   - ChouTi/UI/DatePickerViewController (1.0)
@@ -40,17 +54,27 @@ PODS:
   - ChouTi/UI/NavigationBarStatusBar (1.0)
   - ChouTi/UI/SegmentedControl (1.0)
   - ChouTi/UI/TableViewCells (1.0)
+  - LTMorphingLabel (0.0.9)
+  - Operations (2.5.1):
+    - Operations/Standard (= 2.5.1)
+  - Operations/Standard (2.5.1)
+  - Parse (1.12.0):
+    - Bolts/Tasks (~> 1.5)
 
 DEPENDENCIES:
-  - ChouTi (from `../`)
+  - ChouTi/All (from `../`)
 
 EXTERNAL SOURCES:
   ChouTi:
     :path: ../
 
 SPEC CHECKSUMS:
-  ChouTi: 7e2fab5ebbc12f844dbe14bb06e1cc3859a6c912
+  Bolts: f52a250053bb517ca874523c3913776359ab3def
+  ChouTi: c76de41f0450a280583da9c88fee2dab01c6e16c
+  LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
+  Operations: 3c646c48620ac4b6c624d825d42c1e684ecb6a53
+  Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
 
-PODFILE CHECKSUM: f236c01de7aed831958d251edeac8152ad3630e9
+PODFILE CHECKSUM: 75446ea49f562eb60361a9afeb8bddeb8793b2b5
 
 COCOAPODS: 1.0.0.beta.3

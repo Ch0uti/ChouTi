@@ -20,13 +20,25 @@ Pod::Spec.new do |s|
 
   s.xcconfig         = { 'OTHER_SWIFT_FLAGS' => '-D DEBUG' }
 
-  s.default_subspecs = "All"
+  s.default_subspecs = "Unsafe"
 
   s.resource_bundle = { 'Resources' => 'Resources/*/*.png' }
 
   ############ Summary Subspec ############
 
   s.subspec "All" do |ss|
+    ss.dependency "ChouTi/ChouTi"
+    ss.dependency "ChouTi/UI"
+    
+    # ss.dependency "ChouTi/App-Extension-API-Unsafe"
+    ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
+
+    ss.dependency "ChouTi/ChouTi-Extra"
+    ss.dependency "ChouTi/UI-Extra"
+    ss.dependency "ChouTi/Parse"
+  end
+
+  s.subspec "Unsafe" do |ss|
     # 'App extension API not compatible'
 
     ss.dependency "ChouTi/ChouTi"

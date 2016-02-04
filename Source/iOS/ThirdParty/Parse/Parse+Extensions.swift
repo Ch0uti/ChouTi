@@ -37,7 +37,8 @@ public extension Parse {
 	- parameter configuration:  configuration block for the found object
 	- parameter saveCompletion: save completion
 	*/
-	public static func updateObjectWithClassName(className: String,
+    @available(*, deprecated = 9.0, message="RIP, Parse")
+	public class func updateObjectWithClassName(className: String,
 		uniqueIdKey: String,
 		uniqueId: String,
 		configuration: PFObjectConfigurationBlock?,
@@ -92,7 +93,8 @@ public extension Parse {
 	- parameter uniqueId:    Value in the class, this should be the unique id
 	- parameter completion:  configuration block for the found object
 	*/
-	public static func findObjectWithClassName(className: String,
+    @available(*, deprecated = 9.0, message="RIP, Parse")
+	public class func findObjectWithClassName(className: String,
 		uniqueIdKey: String,
 		uniqueId: String,
 		completion: PFObjectConfigurationBlock?)
@@ -139,7 +141,8 @@ public extension Parse {
 	- parameter uniqueId:    Value in the class, this should be the unique id
 	- parameter completion:  result block
 	*/
-	static func removeObjectWithClassName(className: String, uniqueIdKey: String, uniqueId: String, completion: PFBooleanResultBlock?) {
+    @available(*, deprecated = 9.0, message="RIP, Parse")
+	public class func removeObjectWithClassName(className: String, uniqueIdKey: String, uniqueId: String, completion: PFBooleanResultBlock?) {
 		let query = PFQuery(className: className)
 		query.whereKey(uniqueIdKey, equalTo: uniqueId)
 		query.findObjectsInBackgroundWithBlock { objects, error in

@@ -8,6 +8,7 @@
 
 import XCTest
 import ChouTi
+import Parse
 
 class UIColor_ExtensionsTests: ChouTi_FrameworkTests {
     
