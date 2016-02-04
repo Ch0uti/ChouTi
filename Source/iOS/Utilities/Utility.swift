@@ -8,33 +8,33 @@
 import Foundation
 
 /**
-Executes the closure on the main queue after a set amount of seconds.
+Executes the task on the main queue after a set amount of seconds.
 
 - parameter seconds: Delay in seconds
-- parameter closure: Code to execute after delay
+- parameter task: task to execute after delay
 */
-public func delay(seconds: Double, closure: () -> ()) {
-	delayOnMainQueue(seconds, closure: closure)
+public func delay(seconds: NSTimeInterval, task: dispatch_block_t) {
+	delayOnMainQueue(seconds, task: task)
 }
 
 /**
-Executes the closure on the main queue after a set amount of seconds.
+Executes the task on the main queue after a set amount of seconds.
 
 - parameter seconds: Delay in seconds
-- parameter closure: Code to execute after delay
+- parameter task: task to execute after delay
 */
-func delayOnMainQueue(seconds: Double, closure: () -> ()) {
+func delayOnMainQueue(seconds: NSTimeInterval, task: dispatch_block_t) {
 	let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * seconds))
-	dispatch_after(delayTime, dispatch_get_main_queue(), closure)
+	dispatch_after(delayTime, dispatch_get_main_queue(), task)
 }
 
 /**
-Executes the closure on a background queue after a set amount of seconds.
+Executes the task on a background queue after a set amount of seconds.
 
 - parameter seconds: Delay in seconds
-- parameter closure: Code to execute after delay
+- parameter task: task to execute after delay
 */
-func delayOnBackgroundQueue(seconds: Double, closure: () -> ()) {
+func delayOnBackgroundQueue(seconds: NSTimeInterval, task: dispatch_block_t) {
 	let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * seconds))
-	dispatch_after(delayTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), closure)
+	dispatch_after(delayTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), task)
 }

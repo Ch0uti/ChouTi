@@ -59,18 +59,18 @@ class PageViewDemoController: UIViewController {
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		delay(0.5, closure: { _ in
+		delay(0.5) { _ in
 			self.pageViewController.setSelectedIndex(1, animated: true)
-		})
+		}
 		
-		delay(1.0, closure: { _ in
+		delay(1.0) { _ in
 			self.pageViewController.setSelectedIndex(3, animated: true)
-		})
+		}
 		
-		delay(4.0, closure: { _ in
+		delay(4.0) { _ in
 			self.dummyViewControllers! += self.dummyViewControllers!
 			print("self.dumycount: \(self.dummyViewControllers.count)")
-		})
+		}
 	}
 }
 
