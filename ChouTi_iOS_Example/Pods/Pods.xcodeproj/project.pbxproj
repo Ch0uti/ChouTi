@@ -37,7 +37,7 @@
 		0D5FF31E9B51B57CDE1ED8F7C3DF41C2 /* PFObjectSubclassingController.h in Headers */ = {isa = PBXBuildFile; fileRef = EEEB66BE9DFD5C05D1DA230AF6CAFB2A /* PFObjectSubclassingController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0D88C241870AD5E10F7B5C9B34D3CF7C /* PFURLConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1935688292832EAB86EB7C12BA260C9B /* PFURLConstructor.m */; };
 		0E459CCD8F849CE2866D10A8A4C17C13 /* PFPaymentTransactionObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2799FBFE82B2224FB6EEE045CCA618B9 /* PFPaymentTransactionObserver.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0EF893233222ED40BC1F8DF56809E335 /* DatePickerViewControllerDelagte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F89E21399FA41961A554DDF5DCBA32 /* DatePickerViewControllerDelagte.swift */; };
+		0EF893233222ED40BC1F8DF56809E335 /* DatePickerControllerDelagte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F89E21399FA41961A554DDF5DCBA32 /* DatePickerControllerDelagte.swift */; };
 		0F9DFA72EA7C6ECA9CF67483017BD33B /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F6C9C8242A48B449F4BF571CB70E4DC4 /* en.lproj */; };
 		0FD335B00E7676E2EDC2E0BF5AC57AA5 /* BFCancellationToken.h in Headers */ = {isa = PBXBuildFile; fileRef = C115A0E5FD6A888225FDE1E80E7E9F38 /* BFCancellationToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		11332C214E656A6CE25D40D02F7C7769 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AF0BDA18CB5292458530DBBCFACCB5 /* OperationObserver.swift */; };
@@ -321,7 +321,7 @@
 		91BE4ADC90F1C403C592F39C489118B5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ACABDB369FBEB19270444071AB0878 /* Parse.framework */; };
 		91EC905F75B8A0532B0B1ABBCD8F93CD /* PFCloud+Deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BD4AA4C5E2F176FA2328B26BE7B0A /* PFCloud+Deprecated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		920CDE5AB2CDA450C242CB30024906B5 /* PFSQLiteDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2CB8C4E0D70AC1BA170DCFFFC39BE9 /* PFSQLiteDatabase.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		935946A3C0157CE4DDC772F8878EAAE5 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B28A26FFF886318A2E11742926F51C3 /* DatePickerViewController.swift */; };
+		935946A3C0157CE4DDC772F8878EAAE5 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B28A26FFF886318A2E11742926F51C3 /* DatePickerController.swift */; };
 		93877F42710E85626BAFBA90F7A37931 /* Pods-iOS-Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD45C8790110A3EE889E3388AF1F777 /* Pods-iOS-Example-dummy.m */; };
 		9395C432E5C602E7180F41CF131C6721 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4800A2D928AF24122AADFF1C1B469476 /* MenuView.swift */; };
 		9463980688033BDF2C8F0A847A6EEFC1 /* PFURLSessionFileDownloadTaskDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F77C0589614E6B4E37837B5B65C555D8 /* PFURLSessionFileDownloadTaskDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -683,7 +683,7 @@
 		1AD9218B5DE7CC9649EFA16768E24850 /* PFMutableObjectState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFMutableObjectState.h; path = Parse/Internal/Object/State/PFMutableObjectState.h; sourceTree = "<group>"; };
 		1B01C2F28018A42461B20A28008A099A /* CodeSnippet_UITableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeSnippet_UITableView.swift; sourceTree = "<group>"; };
 		1B255901DA405F5582705E2B85C47391 /* PFRESTObjectBatchCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFRESTObjectBatchCommand.h; path = Parse/Internal/Commands/PFRESTObjectBatchCommand.h; sourceTree = "<group>"; };
-		1B28A26FFF886318A2E11742926F51C3 /* DatePickerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		1B28A26FFF886318A2E11742926F51C3 /* DatePickerController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		1BE237948D8107F8C10360C85C3B55BE /* PFSession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFSession.m; path = Parse/PFSession.m; sourceTree = "<group>"; };
 		1C11A34DAD35F40E59AA71AB05F2D9E4 /* PFMutableRelationState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFMutableRelationState.h; path = Parse/Internal/Relation/State/PFMutableRelationState.h; sourceTree = "<group>"; };
 		1C1B0737588C5ED1E165D55B554E547C /* PFCommandCache_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFCommandCache_Private.h; path = Parse/Internal/PFCommandCache_Private.h; sourceTree = "<group>"; };
@@ -964,7 +964,7 @@
 		914A880321C66020115B5F72CF774770 /* Bolts-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bolts-prefix.pch"; sourceTree = "<group>"; };
 		91BFBB077FD795676D0E4B4F8379D573 /* PFURLSessionJSONDataTaskDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFURLSessionJSONDataTaskDelegate.h; path = Parse/Internal/Commands/CommandRunner/URLSession/Session/TaskDelegate/PFURLSessionJSONDataTaskDelegate.h; sourceTree = "<group>"; };
 		938C011E3A75F638C378A0672F862A53 /* BFCancellationTokenSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFCancellationTokenSource.h; path = Bolts/Common/BFCancellationTokenSource.h; sourceTree = "<group>"; };
-		93F89E21399FA41961A554DDF5DCBA32 /* DatePickerViewControllerDelagte.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DatePickerViewControllerDelagte.swift; sourceTree = "<group>"; };
+		93F89E21399FA41961A554DDF5DCBA32 /* DatePickerControllerDelagte.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DatePickerControllerDelagte.swift; sourceTree = "<group>"; };
 		94C56EC162F8EAFD30D99E0A3C808720 /* PFPinningObjectStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFPinningObjectStore.m; path = Parse/Internal/Object/PinningStore/PFPinningObjectStore.m; sourceTree = "<group>"; };
 		94FEB1EA49705C9413A8F4A093E85793 /* PFReachability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFReachability.m; path = Parse/Internal/PFReachability.m; sourceTree = "<group>"; };
 		950CEDE033678918192B37D54CD6EC78 /* PFQueryController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFQueryController.h; path = Parse/Internal/Query/Controller/PFQueryController.h; sourceTree = "<group>"; };
@@ -1318,8 +1318,8 @@
 		05A0E15AA689A680EC2C17AD9A4E5694 /* DatePickerViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1B28A26FFF886318A2E11742926F51C3 /* DatePickerViewController.swift */,
-				93F89E21399FA41961A554DDF5DCBA32 /* DatePickerViewControllerDelagte.swift */,
+				1B28A26FFF886318A2E11742926F51C3 /* DatePickerController.swift */,
+				93F89E21399FA41961A554DDF5DCBA32 /* DatePickerControllerDelagte.swift */,
 			);
 			path = DatePickerViewController;
 			sourceTree = "<group>";
@@ -3475,8 +3475,8 @@
 				5DB5D3068BB0B6A2F18F2756D6DE5034 /* CollectionViewCellInfo.swift in Sources */,
 				89D7829E070723376335AA4F13861162 /* Constants.swift in Sources */,
 				677B944B123CBBB5E894BA34B536EC39 /* DatePickerCell.swift in Sources */,
-				935946A3C0157CE4DDC772F8878EAAE5 /* DatePickerViewController.swift in Sources */,
-				0EF893233222ED40BC1F8DF56809E335 /* DatePickerViewControllerDelagte.swift in Sources */,
+				935946A3C0157CE4DDC772F8878EAAE5 /* DatePickerController.swift in Sources */,
+				0EF893233222ED40BC1F8DF56809E335 /* DatePickerControllerDelagte.swift in Sources */,
 				6BB4AFC42F6BB9F83218CBBA63670AE2 /* DelayTask.swift in Sources */,
 				1382CE25E452B26F2BE6B8FB278BC864 /* Dictionary+Extensions.swift in Sources */,
 				7ED9B1E4B2A1CDF3E1949B388A0F1C1D /* DropDownMenu.swift in Sources */,

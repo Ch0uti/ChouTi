@@ -1,5 +1,5 @@
 //
-//  DatePickerViewControllerDemoViewController.swift
+//  DatePickerControllerDemoViewController.swift
 //  iOS-Example
 //
 //  Created by Honghao Zhang on 2015-12-12.
@@ -9,7 +9,7 @@
 import UIKit
 import ChouTi
 
-class DatePickerViewControllerDemoViewController : UIViewController {
+class DatePickerControllerDemoViewController : UIViewController {
 	
 	let resultLabel = UILabel()
 	
@@ -53,29 +53,29 @@ class DatePickerViewControllerDemoViewController : UIViewController {
 	}
 	
 	func buttonTapped(sender: AnyObject) {
-		let pickerViewController = DatePickerViewController()
-		pickerViewController.datePicker.setDate(NSDate(), animated: true)
-		pickerViewController.datePicker.datePickerMode = .DateAndTime
-		pickerViewController.datePicker.minimumDate = NSDate().dateByAddingDays(-30)
-		pickerViewController.datePicker.maximumDate = NSDate().dateByAddingDays(30)
-		pickerViewController.delegate = self
-		presentViewController(pickerViewController, animated: true, completion: nil)
+		let pickerController = DatePickerController()
+		pickerController.datePicker.setDate(NSDate(), animated: true)
+		pickerController.datePicker.datePickerMode = .DateAndTime
+		pickerController.datePicker.minimumDate = NSDate().dateByAddingDays(-30)
+		pickerController.datePicker.maximumDate = NSDate().dateByAddingDays(30)
+		pickerController.delegate = self
+		presentViewController(pickerController, animated: true, completion: nil)
 	}
 }
 
-extension DatePickerViewControllerDemoViewController : DatePickerViewControllerDelagte {
-	func datePickerViewController(datePickerViewController: DatePickerViewController, datePicker: UIDatePicker, didScrollToDate date: NSDate) {
+extension DatePickerControllerDemoViewController : DatePickerControllerDelagte {
+	func datePickerController(datePickerController: DatePickerController, datePicker: UIDatePicker, didScrollToDate date: NSDate) {
 		print("didScrollToDate: \(date)")
 	}
 	
-	func datePickerViewController(datePickerViewController: DatePickerViewController, willDoneWithDate date: NSDate) {
+	func datePickerController(datePickerController: DatePickerController, willDoneWithDate date: NSDate) {
 		print("doneWithDate: \(date)")
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "hh:mm a, EEE, MMM d, yyyy"
 		resultLabel.text = dateFormatter.stringFromDate(date)
 	}
 	
-	func datePickerViewController(datePickerViewController: DatePickerViewController, didCancelWithDate date: NSDate) {
+	func datePickerController(datePickerController: DatePickerController, didCancelWithDate date: NSDate) {
 		print("didCancelWithDate: \(date)")
 	}
 }

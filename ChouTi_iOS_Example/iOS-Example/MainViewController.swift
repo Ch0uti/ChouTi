@@ -146,7 +146,7 @@ class MainViewController: UIViewController {
                 tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                    self.navigationController?.pushViewController(DatePickerViewControllerDemoViewController(), animated: true)
+                    self.navigationController?.pushViewController(DatePickerControllerDemoViewController(), animated: true)
                 }
             )
         )

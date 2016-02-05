@@ -1,5 +1,5 @@
 //
-//  DatePickerViewController.swift
+//  DatePickerController.swift
 //  Pods
 //
 //  Created by Honghao Zhang on 2015-12-12.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class DatePickerViewController : UIViewController {
+public class DatePickerController : UIViewController {
 	
 	public let topToolBar = UIToolbar()
 	public let datePicker = UIDatePicker()
@@ -16,7 +16,7 @@ public class DatePickerViewController : UIViewController {
 	
 	public var overlayViewStyle: OverlayViewStyle = .Normal(UIColor(white: 0.0, alpha: 0.75))
 	
-	public weak var delegate: DatePickerViewControllerDelagte?
+	public weak var delegate: DatePickerControllerDelagte?
 	
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -78,31 +78,31 @@ public class DatePickerViewController : UIViewController {
 	}
 }
 
-extension DatePickerViewController {
+extension DatePickerController {
 	func dateUpdated(sender: AnyObject?) {
 		guard let datePicker = sender as? UIDatePicker else {
 			NSLog("Error: datePicket is nil")
 			return
 		}
-		delegate?.datePickerViewController?(self, datePicker: datePicker, didScrollToDate: datePicker.date)
+		delegate?.datePickerController?(self, datePicker: datePicker, didScrollToDate: datePicker.date)
 	}
 	
 	func done(sender: AnyObject?) {
-		delegate?.datePickerViewController?(self, willDoneWithDate: datePicker.date)
+		delegate?.datePickerController?(self, willDoneWithDate: datePicker.date)
 		dismissViewControllerAnimated(true, completion: { [unowned self] in
-			self.delegate?.datePickerViewController?(self, didDoneWithDate: self.datePicker.date)
+			self.delegate?.datePickerController?(self, didDoneWithDate: self.datePicker.date)
 		})
 	}
 	
 	func cancel(sender: AnyObject?) {
-		delegate?.datePickerViewController?(self, willCancelWithDate: datePicker.date)
+		delegate?.datePickerController?(self, willCancelWithDate: datePicker.date)
 		dismissViewControllerAnimated(true, completion: { [unowned self] in
-			self.delegate?.datePickerViewController?(self, didCancelWithDate: self.datePicker.date)
+			self.delegate?.datePickerController?(self, didCancelWithDate: self.datePicker.date)
 		})
 	}
 }
 
-extension DatePickerViewController : UIToolbarDelegate {
+extension DatePickerController : UIToolbarDelegate {
 	public func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
 		return .Top
 	}
