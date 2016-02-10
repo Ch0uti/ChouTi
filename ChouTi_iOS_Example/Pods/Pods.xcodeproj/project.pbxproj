@@ -10,6 +10,7 @@
 		009715BC5957ABC2415584F268F7C493 /* PFUserPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 69E9125D1B8C398D3E280296021B7FE6 /* PFUserPrivate.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		01F48D839F16D4EE9FD513679C67F38E /* PFObjectBatchController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ADD82F999119B720344EB1541383BCB /* PFObjectBatchController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		01F668464974161022C28243B005E07D /* PFLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33845C785811012C8C5A8FA620D26CE5 /* PFLocationManager.m */; };
+		023DBAEF1C6501C000FE0B8C /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023DBAEE1C6501C000FE0B8C /* UINavigationController+Extensions.swift */; };
 		034EED491DE995038298C27EFE7578C4 /* PFURLSessionCommandRunner.h in Headers */ = {isa = PBXBuildFile; fileRef = A202BC6B2652A61723E96C49C2C7DEB7 /* PFURLSessionCommandRunner.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		03BEA873BA6B5980C4979ECC6A990F30 /* PFCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FAE2380796C8AD04FB9FA8B52C484 /* PFCloud.m */; };
 		04DDF3ADE1AC84AFB1358BAEF3C42E24 /* PFAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CCC02E57AB3C93A0D3FA30E788A2D8 /* PFAlertView.m */; };
@@ -630,6 +631,7 @@
 		01D1CCC9DBAB7DA03ECADE1EE62E92BF /* Bolts.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Bolts.modulemap; sourceTree = "<group>"; };
 		01D1DEF01385B884F65058435234D1E7 /* BFCancellationToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFCancellationToken.m; path = Bolts/Common/BFCancellationToken.m; sourceTree = "<group>"; };
 		01F9AC53F553F598917364221D8A2D73 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		023DBAEE1C6501C000FE0B8C /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		02A06B6F2A3E56799EFF81749DC1D9A7 /* PFCommandResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFCommandResult.m; path = Parse/Internal/PFCommandResult.m; sourceTree = "<group>"; };
 		02AA4E53192946A2E80E47B70836862A /* PFFile+Synchronous.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PFFile+Synchronous.h"; path = "Parse/PFFile+Synchronous.h"; sourceTree = "<group>"; };
 		02BA185F89242EF6738B74A9285D5789 /* TextTableCollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextTableCollectionView.swift; sourceTree = "<group>"; };
@@ -1479,6 +1481,7 @@
 				01F9AC53F553F598917364221D8A2D73 /* UIImage+Extensions.swift */,
 				C9CE1A2E9BAD66E2198767DAB712AE12 /* UILable+Extensions.swift */,
 				E55B229BD34B0C3C1DC84E4B2A5C9CFC /* UINavigationBar+Extensions.swift */,
+				023DBAEE1C6501C000FE0B8C /* UINavigationController+Extensions.swift */,
 				C319B16F4CB363676D3874ED7217FFED /* UIScreen+Extensions.swift */,
 				776256B80E1E8BFC7977AC47E0276EC8 /* UIScrollView+Extensions.swift */,
 				766AAF05EB9810498332E544AC1072DF /* UISearchBar+Extensions.swift */,
@@ -3558,6 +3561,7 @@
 				FAF43844883E8B2F2FBBCA4AEA29733A /* BFTask.m in Sources */,
 				DA7637DE46E1433D32B263C2D38C7679 /* BFTaskCompletionSource.m in Sources */,
 				A3539B10052E20037C92C7831EA2DAB1 /* Bolts-dummy.m in Sources */,
+				023DBAEF1C6501C000FE0B8C /* UINavigationController+Extensions.swift in Sources */,
 				231997705839D4859CC0DEEF11010E2F /* Bolts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3863,6 +3867,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B23B9E1F1C2DE2E293DC319CBCB43EE /* Bolts.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -4002,6 +4007,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B23B9E1F1C2DE2E293DC319CBCB43EE /* Bolts.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -4021,6 +4027,7 @@
 				PRODUCT_NAME = Bolts;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
