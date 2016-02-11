@@ -550,7 +550,7 @@
 		FCAD5DFC1F699C0C70E3B87AD9F3081C /* PFACLState.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A29DA7F0A6ACA890A93DAFB5143788 /* PFACLState.m */; };
 		FCBF79E064376D697A67E68E552BD48C /* PFHash.m in Sources */ = {isa = PBXBuildFile; fileRef = E95E4CDDA36DC62D9A52D37F6796E1E8 /* PFHash.m */; };
 		FCFA4B78D8B4E98680D44E4A027BB49E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA937DD03108F325FEB5E80ABB294F3 /* Security.framework */; };
-		FCFC1F1789B5965E7B8E42FBD0FBA5C6 /* TableViewCellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423025A3407E520B53EC54738ED104C3 /* TableViewCellInfo.swift */; };
+		FCFC1F1789B5965E7B8E42FBD0FBA5C6 /* TableViewRegistrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423025A3407E520B53EC54738ED104C3 /* TableViewRegistrable.swift */; };
 		FD223FD475D8E143E5618032FAB4F8A8 /* AutoLinesLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E91B6061B064A89C5542B3D68018BB1 /* AutoLinesLabel.swift */; };
 		FDA8F8527352AE6B9B53A122CBBBE54D /* PFObjectController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BFCDD920FCE024815D426ADFE1C78E3 /* PFObjectController_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FDFC31ECCD4CD36021D3E249FCA7E6EF /* PFQueryState_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 4999F45E4F369BF6DA173FBA8BB1E9D8 /* PFQueryState_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -784,7 +784,7 @@
 		415040076BC2B8D9142F1FCA128CF286 /* Parse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Parse.h; path = Parse/Parse.h; sourceTree = "<group>"; };
 		417EC47D2358766A2124E01D34C84BE3 /* ImagePickerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		41F05190C1E06FE84C70A70E7F1AA908 /* TableViewCellValue2.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TableViewCellValue2.swift; sourceTree = "<group>"; };
-		423025A3407E520B53EC54738ED104C3 /* TableViewCellInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TableViewCellInfo.swift; sourceTree = "<group>"; };
+		423025A3407E520B53EC54738ED104C3 /* TableViewRegistrable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TableViewRegistrable.swift; sourceTree = "<group>"; };
 		4235BD411F7D3FF2D53DC46C13EEE6C7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		423D8A987008FCF4CF4007AB66986455 /* Operations-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Operations-dummy.m"; sourceTree = "<group>"; };
 		426DE5F49F3EE6F3418C18A82419FB8D /* PFRESTConfigCommand.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFRESTConfigCommand.m; path = Parse/Internal/Commands/PFRESTConfigCommand.m; sourceTree = "<group>"; };
@@ -2577,7 +2577,7 @@
 			children = (
 				88651B1D5CA2A0BFC0AF2372CCFF3F0D /* Analytics.swift */,
 				55A19D651A47E257C18E3F2D21B170CF /* CollectionViewCellInfo.swift */,
-				423025A3407E520B53EC54738ED104C3 /* TableViewCellInfo.swift */,
+				423025A3407E520B53EC54738ED104C3 /* TableViewRegistrable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -3517,7 +3517,7 @@
 				82601746B5E036DABB43D7C20617D57E /* TableCollectionViewSeparatorView.swift in Sources */,
 				E44640E5859F413DB0333ACF5234FEBA /* TableView+Sections.swift in Sources */,
 				5DAE9950026B65614138FDF4D7DB467F /* TableViewCell.swift in Sources */,
-				FCFC1F1789B5965E7B8E42FBD0FBA5C6 /* TableViewCellInfo.swift in Sources */,
+				FCFC1F1789B5965E7B8E42FBD0FBA5C6 /* TableViewRegistrable.swift in Sources */,
 				0BECDB357BDF4061F96B9BE462B85D7D /* TableViewCellSubtitle.swift in Sources */,
 				956E5BC55C9D052D8C7BDDA5FD31E7A4 /* TableViewCellValue1.swift in Sources */,
 				FE91917D67802708053C6741E377AC36 /* TableViewCellValue2.swift in Sources */,
