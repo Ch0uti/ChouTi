@@ -68,12 +68,12 @@ public class TableViewCell: UITableViewCell {
 
 
 // MARK: - TableViewCellInfo
-extension TableViewCell : TableViewCellInfo {
+extension TableViewCell : TableViewCellRegistrable {
 	public class func identifier() -> String {
 		return String(self)
 	}
 	
-	public class func estimatedRowHeight() -> CGFloat {
+	public class func estimatedHeight() -> CGFloat {
 		return 44.0
 	}
 	

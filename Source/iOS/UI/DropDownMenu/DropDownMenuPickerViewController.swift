@@ -320,7 +320,7 @@ extension DropDownMenuPickerViewController : UITableViewDataSource {
 extension DropDownMenuPickerViewController : UITableViewDelegate {
 	// MARK: - Rows
 	func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		return TableViewCell.estimatedRowHeight()
+		return TableViewCell.estimatedHeight()
 	}
 
 	// MARK: - Selections
