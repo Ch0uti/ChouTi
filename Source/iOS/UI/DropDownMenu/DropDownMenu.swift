@@ -200,6 +200,11 @@ public class DropDownMenu: UIControl {
 		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint]
 		NSLayoutConstraint.activateConstraints(constraints)
 	}
+    
+    public override func willMoveToWindow(newWindow: UIWindow?) {
+        super.willMoveToWindow(newWindow)
+        setupWrapperViewConstraints()
+    }
 }
 
 
