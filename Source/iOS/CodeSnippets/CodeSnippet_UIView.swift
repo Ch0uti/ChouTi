@@ -52,4 +52,8 @@
 //		
 //		NSLayoutConstraint.activateConstraints(constraints)
 //	}
+//    
+//    override class func requiresConstraintBasedLayout() -> Bool {
+//        return true
+//    }
 //}
