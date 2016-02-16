@@ -358,3 +358,16 @@ public extension UIView {
         return copy
     }
 }
+
+public extension UIView {
+    public func toImage() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
+        
+        let context = UIGraphicsGetCurrentContext()!
+        layer.renderInContext(context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+}

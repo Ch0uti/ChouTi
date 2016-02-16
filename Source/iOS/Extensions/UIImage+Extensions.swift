@@ -200,4 +200,16 @@ public extension UIImage {
         
         return newImage
     }
+    
+    public func imageExpandedWithInsets(insets: UIEdgeInsets) -> UIImage {
+        let newSize = CGSize(width: size.width + insets.left + insets.right, height: size.height + insets.top + insets.bottom)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        
+        self.drawInRect(CGRect(x: insets.left, y: insets.top, width: size.width, height: size.height))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
 }
