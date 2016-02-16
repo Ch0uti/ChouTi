@@ -59,7 +59,7 @@
 //		return NSStringFromClass(<#Cell#>.self)
 //	}
 //	
-//	class func estimatedRowHeight() -> CGFloat {
+//	class func estimatedHeight() -> CGFloat {
 //		return 44.0
 //	}
 //	
