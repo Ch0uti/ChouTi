@@ -17,3 +17,8 @@ Finite Machine:
 
 Miscellanous:
   - https://github.com/goktugyil/EZSwiftExtensions
+  - https://github.com/delba/Tactile
+  - https://github.com/JohnEstropia/GCDKit
+
+UIImages:
+  - https://github.com/globchastyy/SwiftUIImageEffects

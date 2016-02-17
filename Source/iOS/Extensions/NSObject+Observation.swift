@@ -75,6 +75,13 @@ public extension NSObject {
     }
     
     // MARK: - Public
+	/**
+	Observe property with keyPath.
+	Note: `dynamic` attribute is necessary for Swift classes
+	
+	- parameter keyPath: keyPath for the property
+	- parameter handler: Observer handler
+	*/
     public func observe(keyPath: String, withHandler handler: ObserverHandler) {
         guard let observer = observer else {
             print("Error: observer is nil")
@@ -84,7 +91,12 @@ public extension NSObject {
         observer.handlerDictionary[keyPath] = handler
         addObserver(observer, forKeyPath: keyPath, options: [.Old, .New], context: &NSObject.ObservingContext.Key)
     }
-    
+	
+	/**
+	Remove the observation for keyPath
+	
+	- parameter keyPath: keyPath of the observation
+	*/
     public func removeObservation(forKeyPath keyPath: String) {
         guard let observer = observer else {
             print("Error: observer is nil")
