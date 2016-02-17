@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "ChouTi"
-  s.version          = "1.0"
+  s.version          = "0.1"
   s.summary          = "Chou Ti (抽屉) - My personal toolkit for iOS/OSX development."
   s.description      = <<-DESC
                        Chou Ti (抽屉) - My personal toolkit for iOS/OSX development.
@@ -35,7 +35,6 @@ Pod::Spec.new do |s|
 
     ss.dependency "ChouTi/ChouTi-Extra"
     ss.dependency "ChouTi/UI-Extra"
-    ss.dependency "ChouTi/Parse"
   end
 
   s.subspec "Unsafe" do |ss|
@@ -55,6 +54,9 @@ Pod::Spec.new do |s|
     ss.dependency "ChouTi/UI"
   end
 
+  s.subspec "Deprecated" do |ss|
+    ss.dependency "ChouTi/Parse"
+  end
 
 
   ############ Individual Subspec ############

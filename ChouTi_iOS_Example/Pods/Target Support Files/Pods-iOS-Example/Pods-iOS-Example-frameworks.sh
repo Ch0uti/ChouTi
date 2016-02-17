@@ -84,14 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-iOS-Example/Bolts.framework"
   install_framework "Pods-iOS-Example/ChouTi.framework"
+  install_framework "Pods-iOS-Example/LTMorphingLabel.framework"
   install_framework "Pods-iOS-Example/Operations.framework"
-  install_framework "Pods-iOS-Example/Parse.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-iOS-Example/Bolts.framework"
   install_framework "Pods-iOS-Example/ChouTi.framework"
+  install_framework "Pods-iOS-Example/LTMorphingLabel.framework"
   install_framework "Pods-iOS-Example/Operations.framework"
-  install_framework "Pods-iOS-Example/Parse.framework"
 fi

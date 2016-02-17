@@ -5,14 +5,12 @@ platform :ios, '8.0'
 
 target 'iOS-Example' do
 
-pod 'ChouTi', :path => '../'
+pod 'ChouTi/All', :path => '../'
 
 # pod 'ChouTi', :git => 'https://github.com/honghaoz/ChouTi'
-# pod 'ChouTi/Unsafe'
 # pod 'ChouTi/Unsafe', :path => '../'
 # pod 'ChouTi/Safe', :path => '../'
-
-pod 'ChouTi/Parse', :path => '../'
+# pod 'ChouTi/Parse', :path => '../'
 
 pod 'ChouTi/ChouTi-Extra', :path => '../'
 

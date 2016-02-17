@@ -1,6 +1,6 @@
 {
   "name": "ChouTi",
-  "version": "1.0",
+  "version": "0.1",
   "summary": "Chou Ti (抽屉) - My personal toolkit for iOS/OSX development.",
   "description": "Chou Ti (抽屉) - My personal toolkit for iOS/OSX development.\nIt contains common classes, extensions used in multiple projects",
   "homepage": "https://github.com/honghaoz/ChouTi",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/honghaoz/ChouTi.git",
-    "tag": "1.0"
+    "tag": "0.1"
   },
   "platforms": {
     "ios": "8.0"
@@ -46,9 +46,6 @@
         ],
         "ChouTi/UI-Extra": [
 
-        ],
-        "ChouTi/Parse": [
-
         ]
       }
     },
@@ -73,6 +70,14 @@
 
         ],
         "ChouTi/UI": [
+
+        ]
+      }
+    },
+    {
+      "name": "Deprecated",
+      "dependencies": {
+        "ChouTi/Parse": [
 
         ]
       }
