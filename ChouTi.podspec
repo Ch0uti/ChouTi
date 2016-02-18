@@ -15,8 +15,13 @@ Pod::Spec.new do |s|
   s.platform     	   = :ios, '8.0'
   s.requires_arc 	   = true
 
-  s.public_header_files = 'Source/**/**/*.h'
-  s.source_files 	   = 'Source/iOS/**/'
+  s.ios.deployment_target = "8.0"
+  # s.osx.deployment_target = "10.9"
+  # s.watchos.deployment_target = "2.0"
+  # s.tvos.deployment_target = "9.0"
+
+  # s.public_header_files = 'Source/**/**/*.h'
+  # s.source_files 	   = 'Source/iOS/**/'
 
   s.xcconfig         = { 'OTHER_SWIFT_FLAGS' => '-D DEBUG' }
 
