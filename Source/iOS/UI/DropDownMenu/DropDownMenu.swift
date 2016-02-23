@@ -15,8 +15,8 @@ public class DropDownMenu: UIControl {
 	/// The main text label showing current selected option
 	public let textLabel = UILabel()
 	
-	// TODO: Include arrow image asset in Pods
-//	public let indicatorView: UIView?
+	/// Indicator view on right side, this usually an arrow, subclass should use this as a container view to add indicator view
+	public let indicatorView = UIView()
 	
 	public var statusBarStyle: UIStatusBarStyle = .Default {
 		didSet {
@@ -32,15 +32,34 @@ public class DropDownMenu: UIControl {
 	}
 	
 	/// Whether the menu is expanded
-	public private(set) var expanded: Bool = false
+	public internal(set) dynamic var expanded: Bool = false
 	
 	/// Drop down animation duration
-	public var animationDuration: NSTimeInterval = 0.5
-	
-	/// Current selected index
-	public var selectedIndex: Int = 0 {
+	public var animationDuration: NSTimeInterval = 0.5 {
 		didSet {
-			textLabel.addFadeTransitionAnimation(animationDuration / 2.0)
+			menuAnimator.animationDuration = animationDuration
+			pickerViewController.animationDuration = animationDuration
+		}
+	}
+    
+    /// placeholder text when no option is selected
+	public var placeholder: String?
+    
+	/// Current selected index
+	public var selectedIndex: Int? {
+		didSet {
+            guard let selectedIndex = selectedIndex else {
+                textLabel.addFadeTransitionAnimation(animationDuration / 2.0)
+                textLabel.text = placeholder
+                return
+            }
+            
+            guard selectedIndex >= 0 else {
+                assertionFailure("Warning: You shouldn't set selectedIndex to negative value")
+                return
+            }
+            
+            textLabel.addFadeTransitionAnimation(animationDuration / 2.0)
 			textLabel.text = dataSource.dropDownMenu(self, optionTitleForIndex: selectedIndex)
 		}
 	}
@@ -160,6 +179,9 @@ public class DropDownMenu: UIControl {
 		wrapperView.addSubview(textLabel)
 		
 		textLabel.text = "Menu Text"
+		
+		indicatorView.translatesAutoresizingMaskIntoConstraints = false
+		wrapperView.addSubview(indicatorView)
 	}
 
 	private func setupConstraints() {
@@ -168,7 +190,8 @@ public class DropDownMenu: UIControl {
 
 		let views = [
 			"wrapperView" : wrapperView,
-			"textLabel" : textLabel
+			"textLabel" : textLabel,
+			"indicatorView" : indicatorView
 		]
 
 		let metrics: [String : CGFloat] = [:]
@@ -182,8 +205,12 @@ public class DropDownMenu: UIControl {
 		
 		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint]
 		
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[textLabel]-|", options: [], metrics: metrics, views: views)
-		constraints += [NSLayoutConstraint(item: textLabel, attribute: .CenterY, relatedBy: .GreaterThanOrEqual, toItem: wrapperView, attribute: .CenterY, multiplier: 1.0, constant: 0.0)]
+		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[textLabel]-[indicatorView]-|", options: [], metrics: metrics, views: views)
+		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[indicatorView]-|", options: [], metrics: metrics, views: views)
+		constraints += [
+			NSLayoutConstraint(item: indicatorView, attribute: .Width, relatedBy: .Equal, toItem: indicatorView, attribute: .Height, multiplier: 1.0, constant: 0.0),
+			NSLayoutConstraint(item: textLabel, attribute: .CenterY, relatedBy: .GreaterThanOrEqual, toItem: wrapperView, attribute: .CenterY, multiplier: 1.0, constant: 0.0)
+			]
 		
 		NSLayoutConstraint.activateConstraints(constraints)
 	}
@@ -208,23 +235,75 @@ public class DropDownMenu: UIControl {
 }
 
 
+// MARK: - State Transition
+extension DropDownMenu {
+	
+	public func set(toExpand toExpand: Bool, animated: Bool) {
+		if isAnimating { return }
+		if expanded == toExpand { return }
+		if toExpand {
+			expand(animated: animated)
+		} else {
+			collapse(animated: animated)
+		}
+	}
+	
+	func willExpand() {
+		delegate?.dropDownMenuWillExpand?(self)
+	}
+	
+	func didExpand() {
+		delegate?.dropDownMenuDidExpand?(self)
+	}
+
+	func willCollapse() {
+		delegate?.dropDownMenuWillCollapse?(self)
+	}
+
+	func didCollapse() {
+		delegate?.dropDownMenuDidCollapse?(self)
+	}
+}
+
+
 
 // MARK: - Actions
 extension DropDownMenu {
 	func tapped(sender: AnyObject, forEvent event: UIEvent) {
-		if isAnimating { return }
-		
-		if expanded {
-			// Collapse
-			// This is already handled by animator tap gesture, nothing to do here
-		} else {
-			// Expand
+		set(toExpand: !expanded, animated: true)
+	}
+	
+	private func expand(animated animated: Bool) {
+		// Access pickerViewController.view here instead of setupViews(), to avoid calling viewDidLoad in pickerViewController
+		if pickerViewController.view.userInteractionEnabled == false {
 			pickerViewController.view.userInteractionEnabled = true
-			
-			delegate?.dropDownMenuWillExpand?(self)
+		}
+		
+		willExpand()
+		
+		if animated {
 			isAnimating = true
 			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: { finished in
 				self.isAnimating = false
+			})
+		} else {
+			let originalAnimationDuration = animationDuration
+			animationDuration = 0.0
+			
+			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: { [unowned self] finished in
+				self.animationDuration = originalAnimationDuration
+			})
+		}
+	}
+
+	private func collapse(animated animated: Bool) {
+		if animated {
+			pickerViewController.dismissViewControllerAnimated(true, completion: nil)
+		} else {
+			let originalAnimationDuration = animationDuration
+			animationDuration = 0.0
+			pickerViewController.dismissViewControllerAnimated(true, completion: { [unowned self] finished in
+				self.animationDuration = originalAnimationDuration
 			})
 		}
 	}

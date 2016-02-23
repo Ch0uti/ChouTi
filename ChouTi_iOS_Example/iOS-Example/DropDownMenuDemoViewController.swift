@@ -84,12 +84,12 @@ extension DropDownMenuDemoViewController : DropDownMenuDataSource {
 }
 
 extension DropDownMenuDemoViewController : DropDownMenuDelegate {
-	func dropDownMenu(dropDownMenu: DropDownMenu, willSelectedIndex index: Int) {
-		print("dropDownMenu willSelectedIndex: \(index)")
+	func dropDownMenu(dropDownMenu: DropDownMenu, willSelectIndex index: Int) {
+		print("dropDownMenu willSelectIndex: \(index)")
 	}
 	
-	func dropDownMenu(dropDownMenu: DropDownMenu, didSelectedIndex index: Int) {
-		print("dropDownMenu didSelectedIndex: \(index)")
+	func dropDownMenu(dropDownMenu: DropDownMenu, didSelectIndex index: Int) {
+		print("dropDownMenu didSelectIndex: \(index)")
 	}
 	
 	func dropDownMenuWillExpand(dropDownMenu: DropDownMenu) {

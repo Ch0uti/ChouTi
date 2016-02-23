@@ -210,7 +210,7 @@ extension DropDownMenuAnimator : UIGestureRecognizerDelegate {
 
 extension DropDownMenuAnimator {
 	func outsideViewTapped(sender: AnyObject?) {
-		currentPresentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+        dropDownMenu?.set(toExpand: false, animated: true)
 	}
 }
 

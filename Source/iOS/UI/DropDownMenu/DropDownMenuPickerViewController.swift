@@ -24,7 +24,8 @@ class DropDownMenuPickerViewController : UIViewController {
 	/// Option cell height. By default is 44.0
 	var optionCellHeight: CGFloat = 44.0 {
 		didSet {
-			tableViewHeightConstraint?.constant = ceil(optionCellHeight * CGFloat(numberOfOptions))
+            // 0.5 is for separator line
+            tableViewHeightConstraint?.constant = ceil((optionCellHeight + 0.5) * CGFloat(numberOfOptions))
 		}
 	}
 	
@@ -89,7 +90,12 @@ class DropDownMenuPickerViewController : UIViewController {
 		}
 	}
 	
-	private(set) var isExpanded: Bool = false
+    private(set) var isExpanded: Bool = false {
+        didSet {
+            dropDownMenu?.expanded = isExpanded
+        }
+    }
+    
 	private var isAnimating: Bool = false
 	
 	private var tableViewHeightConstraint: NSLayoutConstraint!
@@ -136,6 +142,9 @@ class DropDownMenuPickerViewController : UIViewController {
 		tableView.showsVerticalScrollIndicator = false
 		tableView.showsHorizontalScrollIndicator = false
 		
+        // Only scroll when options are not fitting in tableView
+        tableView.alwaysBounceVertical = false
+        
 		TableViewCell.registerInTableView(tableView)
 	}
 
@@ -148,7 +157,7 @@ class DropDownMenuPickerViewController : UIViewController {
 
 		var constraints = [NSLayoutConstraint]()
 
-		tableViewHeightConstraint = NSLayoutConstraint(item: tableView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: ceil(optionCellHeight * CGFloat(numberOfOptions)))
+		tableViewHeightConstraint = NSLayoutConstraint(item: tableView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: ceil((optionCellHeight + 0.5) * CGFloat(numberOfOptions)))
 		tableViewHeightConstraint.priority = 750
 		constraints += [tableViewHeightConstraint]
 		
@@ -186,7 +195,7 @@ class DropDownMenuPickerViewController : UIViewController {
 	}
 	
 	override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
-		// Collapse options then dismiss
+		// Collapse options first then dismiss
 		collapseOptions({ _ in
 			super.dismissViewControllerAnimated(flag, completion: completion)
 		})
@@ -220,7 +229,7 @@ extension DropDownMenuPickerViewController {
 			self.isAnimating = false
 			
 			if let dropDownMenu = self.dropDownMenu {
-				dropDownMenu.delegate?.dropDownMenuDidExpand?(dropDownMenu)
+				dropDownMenu.didExpand()
 			} else {
 				print("Warning: drop down menu in picker view controller is nil")
 			}
@@ -235,7 +244,7 @@ extension DropDownMenuPickerViewController {
 	- parameter completion: optional completion block
 	*/
 	func collapseOptions(completion: ((Bool) -> Void)? = nil) {
-		if !isExpanded || isAnimating {
+		if isExpanded == false || isAnimating {
 			completion?(false)
 			return
 		}
@@ -244,7 +253,7 @@ extension DropDownMenuPickerViewController {
 		NSLayoutConstraint.activateConstraints(collapsedConstraints)
 		
 		if let dropDownMenu = dropDownMenu {
-			dropDownMenu.delegate?.dropDownMenuWillCollapse?(dropDownMenu)
+			dropDownMenu.willCollapse()
 		} else {
 			print("Warning: drop down menu in picker view controller is nil")
 		}
@@ -254,12 +263,12 @@ extension DropDownMenuPickerViewController {
 		// Since the dim background dim out animation is executed after collapsing, to speed up the whole animation, here used 2 / 3 of duration
 		UIView.animateWithDuration(animationDuration * 2 / 3, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
 			self.view.layoutIfNeeded()
-		}, completion: { finished in
+		}, completion: { [unowned self] finished in
 			self.isExpanded = false
 			self.isAnimating = false
 			
 			if let dropDownMenu = self.dropDownMenu {
-				dropDownMenu.delegate?.dropDownMenuDidCollapse?(dropDownMenu)
+                dropDownMenu.didCollapse()
 			} else {
 				print("Warning: drop down menu in picker view controller is nil")
 			}
@@ -306,6 +315,7 @@ extension DropDownMenuPickerViewController : UITableViewDataSource {
 		cell.textLabel?.font = optionTextFont
 		cell.textLabel?.textAlignment = optionTextAlignment
 		cell.backgroundColor = UIColor.clearColor()
+        cell.selectionStyle = .None
 		
 		// Full width separator
 		cell.enableFullWidthSeparator()
@@ -330,7 +340,7 @@ extension DropDownMenuPickerViewController : UITableViewDelegate {
 			return indexPath
 		}
 		
-		dropDownMenu.delegate?.dropDownMenu?(dropDownMenu, willSelectedIndex: indexPath.row)
+		dropDownMenu.delegate?.dropDownMenu?(dropDownMenu, willSelectIndex: indexPath.row)
 		return indexPath
 	}
 	
@@ -340,11 +350,9 @@ extension DropDownMenuPickerViewController : UITableViewDelegate {
 			assertionFailure("Error: dropDownMenu is nil")
 			return
 		}
-		
-		collapseOptions { _ in
-			dropDownMenu.selectedIndex = indexPath.row
-			dropDownMenu.delegate?.dropDownMenu?(dropDownMenu, didSelectedIndex: indexPath.row)
-			self.dismissViewControllerAnimated(true, completion: nil)
-		}
+        
+        dropDownMenu.set(toExpand: false, animated: true)
+        dropDownMenu.selectedIndex = indexPath.row
+		dropDownMenu.delegate?.dropDownMenu?(dropDownMenu, didSelectIndex: indexPath.row)
 	}
 }

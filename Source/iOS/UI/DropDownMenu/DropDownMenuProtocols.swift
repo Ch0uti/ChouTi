@@ -39,7 +39,7 @@ public protocol DropDownMenuDataSource : class {
 	- parameter dropDownMenu: the drop down menu.
 	- parameter index:        option index in option list.
 	*/
-	optional func dropDownMenu(dropDownMenu: DropDownMenu, willSelectedIndex index: Int)
+	optional func dropDownMenu(dropDownMenu: DropDownMenu, willSelectIndex index: Int)
 	
 	/**
 	Tells the delegate that the specified row is now selected.
@@ -47,7 +47,7 @@ public protocol DropDownMenuDataSource : class {
 	- parameter dropDownMenu: the drop down menu.
 	- parameter index:        option index in option list.
 	*/
-	optional func dropDownMenu(dropDownMenu: DropDownMenu, didSelectedIndex index: Int)
+	optional func dropDownMenu(dropDownMenu: DropDownMenu, didSelectIndex index: Int)
 	
 	/**
 	Tells the delegate that the drop down menu is about to expand.
