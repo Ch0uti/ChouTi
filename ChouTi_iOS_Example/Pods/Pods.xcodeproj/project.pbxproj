@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01F4C7BACB0C14BC5264701A7F4A533A /* UserConfirmationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF0445FFA0C089B44F0B4A42F678B27 /* UserConfirmationCondition.swift */; };
+		02C436A61C7D0C6D009665AE /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */; };
 		047A36206569EA52F983892AA218DB3D /* SeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E3FC48777A60B3CB6B7C8955882E3 /* SeparatorCell.swift */; };
 		06D33FEE481E60D9DE037D03389A66C3 /* UIView+OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE21DEB368A4F0CB658B520C87ED9578 /* UIView+OverlayView.swift */; };
 		06FAA4BB00F6C1A9275954253952D8CE /* WebpageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC269F58706AC880D3C569686906112 /* WebpageOperation.swift */; };
@@ -227,6 +228,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
 		065E3FC48777A60B3CB6B7C8955882E3 /* SeparatorCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SeparatorCell.swift; sourceTree = "<group>"; };
 		0B7BF376968A3C99963556D49B30598E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		0BC269F58706AC880D3C569686906112 /* WebpageOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebpageOperation.swift; path = Sources/Features/iOS/WebpageOperation.swift; sourceTree = "<group>"; };
@@ -1157,6 +1159,7 @@
 				2A62E23ABECE641DF9F16C33D00ED220 /* DropPresentingAnimator.swift */,
 				E99CE5150D64343E53D509F3CC9B6720 /* SlideUpAnimator.swift */,
 				D04E5C73EDA0CA7B8DE83A9CFF617465 /* Types.swift */,
+				02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */,
 			);
 			path = Animators;
 			sourceTree = "<group>";
@@ -1839,6 +1842,7 @@
 				4AC752B0252E10E4768EBD8B59B47B31 /* SingleTitleContentPairView.swift in Sources */,
 				D157D9E7031FA310ECE5577849A9C48A /* SlideController.swift in Sources */,
 				A68D6D255700A73EE49938314DF328D2 /* SlideUpAnimator.swift in Sources */,
+				02C436A61C7D0C6D009665AE /* OverlayPresentationController.swift in Sources */,
 				50B810D3F5FF853E641C0E192F03F2CF /* String+Extensions.swift in Sources */,
 				510FE6AD0B0D70BED41659181992C86D /* StructWrapper.swift in Sources */,
 				E21816C472FF92669C38C207B3B290F5 /* TableCollectionViewLayout.swift in Sources */,

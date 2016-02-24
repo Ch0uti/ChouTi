@@ -70,7 +70,7 @@ extension Animator : UIViewControllerAnimatedTransitioning {
 
 
 // MARK: - UIViewControllerInteractiveTransitioning
-extension Animator : UIViewControllerInteractiveTransitioning{
+extension Animator : UIViewControllerInteractiveTransitioning {
 	public func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
 		self.transitionContext = transitionContext
 	}
@@ -140,4 +140,8 @@ extension Animator : UIViewControllerTransitioningDelegate {
 		self.presenting = false
 		return interactive ? self : nil
 	}
+    
+    public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+        return nil
+    }
 }

@@ -21,10 +21,6 @@ public class SlideUpAnimator : Animator {
 	// Tap to dismiss
 	public var shouldDismissOnTappingOutsideView: Bool = true
 	
-	// MARK: - Private
-	private weak var dismissTapGesture: UITapGestureRecognizer?
-	private weak var currentPresentedViewController: UIViewController?
-	
 	private var topConstraint: NSLayoutConstraint!
 	
 	public override init() {
@@ -48,24 +44,10 @@ extension SlideUpAnimator {
 	private func presentingAnimation(transitionContext: UIViewControllerContextTransitioning) {
 		// Necessary setup for presenting
 		guard
-			let presentingView = self.presentingViewController?.view,
 			let presentedView = self.presentedViewController?.view,
 			let containerView = self.containerView else {
 				NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
 				return
-		}
-		
-		// Initial settings
-		if shouldDimPresentedView {
-			presentingView.tintAdjustmentMode = .Dimmed
-		}
-		
-		// Add darker overlay view
-		switch overlayViewStyle {
-		case .Blurred(let style, let color):
-			presentingView.addBlurredOverlayView(animated: true, duration: animationDuration, blurEffectStyle: style, blurredViewBackgroundColor: color)
-		case .Normal(let color):
-			presentingView.addOverlayView(animated: true, duration: animationDuration, overlayViewBackgroundColor: color)
 		}
 		
 		presentedView.translatesAutoresizingMaskIntoConstraints = false
@@ -110,21 +92,8 @@ extension SlideUpAnimator {
 		// Presenting animations
 		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
 			containerView.layoutIfNeeded()
-			}, completion: { [unowned self] finished -> Void in
+			}, completion: { finished in
 				emptyView.removeFromSuperview()
-				self.currentPresentedViewController = self.presentedViewController
-				
-				// Adding gestures to presenting view controller
-				if let presentingViewController = self.presentingViewController {
-					if let window = presentingViewController.view.window {
-						if self.shouldDismissOnTappingOutsideView {
-							let tapGesture = UITapGestureRecognizer(target: self, action: "windowTapped:")
-							tapGesture.delegate = self
-							window.addGestureRecognizer(tapGesture)
-							self.dismissTapGesture = tapGesture
-						}
-					}
-				}
 				
 				transitionContext.completeTransition(finished)
 			})
@@ -133,24 +102,10 @@ extension SlideUpAnimator {
 	private func dismissingAnimation(transitionContext: UIViewControllerContextTransitioning) {
 		// Necessary setup for dismissing
 		guard
-			let toView = self.toViewController?.view,
 			let fromView = self.fromViewController?.view,
 			let containerView = self.containerView else {
 				NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
 				return
-		}
-		
-		// Initial settings
-		if shouldDimPresentedView {
-			toView.tintAdjustmentMode = .Normal
-		}
-		
-		// Remove overlay view
-		switch overlayViewStyle {
-		case .Blurred:
-			toView.removeBlurredOverlayView(animated: true, duration: animationDuration * 0.8)
-		case .Normal:
-			toView.removeOverlayView(animated: true, duration: animationDuration * 0.8)
 		}
 		
 		topConstraint.active = false
@@ -176,50 +131,17 @@ extension SlideUpAnimator {
 		} else {
 			// Clean up for dismissing
 			topConstraint = nil
-			
-			// Clean up gestures
-			if let tapGesture = self.dismissTapGesture {
-				presentingViewController?.view.window?.removeGestureRecognizer(tapGesture)
-			}
-			dismissTapGesture = nil
-			currentPresentedViewController = nil
 		}
 		
 		// Call super.animationEnded at end to avoid clear transitionContext
 		super.animationEnded(transitionCompleted)
 	}
-}
-
-
-
-// MARK: - UIGestureRecognizerDelegate
-extension SlideUpAnimator : UIGestureRecognizerDelegate {
-	public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-		guard let currentPresentedViewController = self.currentPresentedViewController else {
-			return true
-		}
-		
-		let locationInPresentingView = gestureRecognizer.locationInView(currentPresentedViewController.view)
-		
-		// Disable tap action for presented view area
-		if let tapGesture = gestureRecognizer as? UITapGestureRecognizer where tapGesture == self.dismissTapGesture {
-			if currentPresentedViewController.view.bounds.contains(locationInPresentingView) {
-				return false
-			} else {
-				return true
-			}
-		}
-		
-		return true
-	}
-}
-
-
-
-// MARK: - Actions
-extension SlideUpAnimator {
-	func windowTapped(sender: AnyObject?) {
-		interactive = false
-		currentPresentedViewController?.dismissViewControllerAnimated(true, completion: nil)
-	}
+    
+    public override func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+        let overlayPresentationController = OverlayPresentationController(presentedViewController: presented, presentingViewController: presenting, overlayViewStyle: overlayViewStyle)
+        overlayPresentationController.shouldDismissOnTappingOutsideView = shouldDismissOnTappingOutsideView
+        overlayPresentationController.shouldDimPresentedView = shouldDimPresentedView
+        
+        return overlayPresentationController
+    }
 }
