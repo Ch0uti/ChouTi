@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		01F4C7BACB0C14BC5264701A7F4A533A /* UserConfirmationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF0445FFA0C089B44F0B4A42F678B27 /* UserConfirmationCondition.swift */; };
 		02C436A61C7D0C6D009665AE /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */; };
+		02C436A81C7D57B9009665AE /* DropDownMenuPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C436A71C7D57B9009665AE /* DropDownMenuPresentationController.swift */; };
 		047A36206569EA52F983892AA218DB3D /* SeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E3FC48777A60B3CB6B7C8955882E3 /* SeparatorCell.swift */; };
 		06D33FEE481E60D9DE037D03389A66C3 /* UIView+OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE21DEB368A4F0CB658B520C87ED9578 /* UIView+OverlayView.swift */; };
 		06FAA4BB00F6C1A9275954253952D8CE /* WebpageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC269F58706AC880D3C569686906112 /* WebpageOperation.swift */; };
@@ -229,6 +230,7 @@
 
 /* Begin PBXFileReference section */
 		02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
+		02C436A71C7D57B9009665AE /* DropDownMenuPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenuPresentationController.swift; sourceTree = "<group>"; };
 		065E3FC48777A60B3CB6B7C8955882E3 /* SeparatorCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SeparatorCell.swift; sourceTree = "<group>"; };
 		0B7BF376968A3C99963556D49B30598E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		0BC269F58706AC880D3C569686906112 /* WebpageOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebpageOperation.swift; path = Sources/Features/iOS/WebpageOperation.swift; sourceTree = "<group>"; };
@@ -1481,6 +1483,7 @@
 			children = (
 				55B95FA64FF32A3C8DB24376DA5F2EAB /* DropDownMenu.swift */,
 				CED54FFB7F4AC3ADC43CACFDDD0B2F65 /* DropDownMenuAnimator.swift */,
+				02C436A71C7D57B9009665AE /* DropDownMenuPresentationController.swift */,
 				B67836683727B0538C9650C601B58C3A /* DropDownMenuPickerViewController.swift */,
 				A56CFC89B30DAD49C39570FFB4E32CB7 /* DropDownMenuProtocols.swift */,
 			);
@@ -1829,6 +1832,7 @@
 				2E4AEC7C886BBD731FA400267E30D9A6 /* NSDate+Extensions.swift in Sources */,
 				C5024E827A0E78BF4B71029713096B94 /* NSObject+Extensions.swift in Sources */,
 				EAE4B9A74EF1850DAF72C4AE7E13C7FF /* NSObject+Observation.swift in Sources */,
+				02C436A81C7D57B9009665AE /* DropDownMenuPresentationController.swift in Sources */,
 				F70A6F5A07E5F6E8EA1CD0F36B1BEC11 /* NSRegularExpression+Extensions.swift in Sources */,
 				A2F9D8AAEB274DE858D809E4759DE8C6 /* NSTimeZone+Extensions.swift in Sources */,
 				4969711578EA7F26FF9DED804DAED3CB /* Numbers+Extensions.swift in Sources */,
