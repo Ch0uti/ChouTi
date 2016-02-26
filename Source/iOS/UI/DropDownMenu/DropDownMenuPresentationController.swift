@@ -29,6 +29,18 @@ class DropDownMenuPresentationController: OverlayPresentationController {
         containerView.addSubview(dropDownMenu.wrapperView)
         dropDownMenu.switchBackgroundColorWithAnotherView(dropDownMenu.wrapperView)
         dropDownMenu.setupWrapperViewConstraints()
+        
+        // Setup additional base leading/top constaint, this is used for keeping wrapper view same position when dropdown menu is removed somehow
+        // Note: wrapper view size alraedy has base constraints
+        let frame = dropDownMenu.frameRectInView(containerView)
+        
+        let wrapperBaseLeadingConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1.0, constant: frame.origin.x)
+        wrapperBaseLeadingConstraint.priority = 800
+        wrapperBaseLeadingConstraint.active = true
+        
+        let wrapperBaseTopConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView, attribute: .Top, relatedBy: .Equal, toItem: containerView, attribute: .Top, multiplier: 1.0, constant: frame.origin.y)
+        wrapperBaseTopConstraint.priority = 800
+        wrapperBaseTopConstraint.active = true
     }
     
     override func dismissalTransitionWillBegin() {

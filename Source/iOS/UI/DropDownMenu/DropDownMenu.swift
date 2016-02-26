@@ -134,7 +134,8 @@ public class DropDownMenu: UIControl {
 	private var wrapperBottomConstraint: NSLayoutConstraint!
 	private var wrapperTrailingConstraint: NSLayoutConstraint!
 	
-	
+	private var wrapperBaseWidthConstraint: NSLayoutConstraint!
+	private var wrapperBaseHeightConstraint: NSLayoutConstraint!
 	
 	// MARK: - Setups
 	public override init(frame: CGRect) {
@@ -203,7 +204,13 @@ public class DropDownMenu: UIControl {
 		wrapperBottomConstraint = NSLayoutConstraint(item: wrapperView, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
 		wrapperTrailingConstraint = NSLayoutConstraint(item: wrapperView, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0.0)
 		
-		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint]
+		// Setup base width/height constraint for wrapper, this is used for keeping wrapper size if menu (self) is get removed somehow
+		wrapperBaseWidthConstraint = NSLayoutConstraint(item: wrapperView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: 0.0)
+		wrapperBaseWidthConstraint.priority = 800 // 800 is greater 750, which is default content size constraint priority
+		wrapperBaseHeightConstraint = NSLayoutConstraint(item: wrapperView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: 0.0)
+		wrapperBaseHeightConstraint.priority = 800
+		
+		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint, wrapperBaseWidthConstraint, wrapperBaseHeightConstraint]
 		
 		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[textLabel]-[indicatorView]-|", options: [], metrics: metrics, views: views)
 		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[indicatorView]-|", options: [], metrics: metrics, views: views)
@@ -219,10 +226,22 @@ public class DropDownMenu: UIControl {
 		self.addTarget(self, action: "tapped:forEvent:", forControlEvents: .TouchUpInside)
 	}
 	
+	public override func layoutSubviews() {
+		// Update base width/height constraint for wrapper view.
+		wrapperBaseWidthConstraint.constant = bounds.width
+		wrapperBaseHeightConstraint.constant = bounds.height
+
+		super.layoutSubviews()
+	}
+	
 	/**
 	Add constrains for wrapper, this should be called once wrapper is moved in view hierarchy
 	*/
 	func setupWrapperViewConstraints() {
+		if window == nil {
+			return
+		}
+		
 		var constraints = [NSLayoutConstraint]()
 		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint]
 		NSLayoutConstraint.activateConstraints(constraints)
@@ -230,7 +249,10 @@ public class DropDownMenu: UIControl {
     
     public override func willMoveToWindow(newWindow: UIWindow?) {
         super.willMoveToWindow(newWindow)
-        setupWrapperViewConstraints()
+		
+		if newWindow != nil {
+			setupWrapperViewConstraints()
+		}
     }
 }
 
