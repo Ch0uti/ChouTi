@@ -75,7 +75,7 @@ class DropDownMenuDemoViewController: UIViewController {
 
 extension DropDownMenuDemoViewController : DropDownMenuDataSource {
 	func numberOfOptionsInDropDownMenu(dropDownMenu: DropDownMenu) -> Int {
-		return 4
+		return 6
 	}
 	
 	func dropDownMenu(dropDownMenu: DropDownMenu, optionTitleForIndex index: Int) -> String {

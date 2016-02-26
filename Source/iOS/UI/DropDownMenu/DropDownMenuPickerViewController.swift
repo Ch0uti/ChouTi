@@ -127,7 +127,7 @@ class DropDownMenuPickerViewController : UIViewController {
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(tableView)
 		
-		tableView.backgroundColor = optionCellBackgroundColor
+		tableView.backgroundColor = UIColor.clearColor()
 		
 		tableView.separatorStyle = .SingleLine
 		tableView.separatorInset = UIEdgeInsetsZero
@@ -192,6 +192,10 @@ class DropDownMenuPickerViewController : UIViewController {
 		
 		// Expand options table view here because table view size is layouted
 		expandOptions()
+        
+        // Update view size to have same size as tableview
+        let numberOfOptions = tableView(tableView, numberOfRowsInSection: 0)
+        view.frame.size.height = min(ceil((optionCellHeight + 0.5) * CGFloat(numberOfOptions)), screenSize.height - view.top)
 	}
 	
 	override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
@@ -314,7 +318,7 @@ extension DropDownMenuPickerViewController : UITableViewDataSource {
 		cell.textLabel?.textColor = optionTextColor
 		cell.textLabel?.font = optionTextFont
 		cell.textLabel?.textAlignment = optionTextAlignment
-		cell.backgroundColor = UIColor.clearColor()
+		cell.backgroundColor = optionCellBackgroundColor
         cell.selectionStyle = .None
 		
 		// Full width separator
@@ -355,4 +359,18 @@ extension DropDownMenuPickerViewController : UITableViewDelegate {
         dropDownMenu.selectedIndex = indexPath.row
 		dropDownMenu.delegate?.dropDownMenu?(dropDownMenu, didSelectIndex: indexPath.row)
 	}
+}
+
+
+
+// MARK: - UIScrollViewDelegate
+extension DropDownMenuPickerViewController : UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        // If scrolls to top, let table view have same color as cell
+        if scrollView.contentOffset.y <= 0 {
+            tableView.backgroundColor = optionCellBackgroundColor
+        } else {
+            tableView.backgroundColor = UIColor.clearColor()
+        }
+    }
 }
