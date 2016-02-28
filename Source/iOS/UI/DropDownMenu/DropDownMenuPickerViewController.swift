@@ -90,6 +90,9 @@ class DropDownMenuPickerViewController : UIViewController {
 		}
 	}
 	
+    /// an offset cover view, which covers the gap between the menu and the first option cell
+    private let topOffsetView = UIView()
+    
     private(set) var isExpanded: Bool = false {
         didSet {
             dropDownMenu?.expanded = isExpanded
@@ -146,6 +149,10 @@ class DropDownMenuPickerViewController : UIViewController {
         tableView.alwaysBounceVertical = false
         
 		TableViewCell.registerInTableView(tableView)
+        
+        topOffsetView.backgroundColor = optionCellBackgroundColor
+        topOffsetView.frame = CGRect.zero
+        view.insertSubview(topOffsetView, belowSubview: tableView)
 	}
 
 	private func setupConstraints() {
@@ -366,11 +373,11 @@ extension DropDownMenuPickerViewController : UITableViewDelegate {
 // MARK: - UIScrollViewDelegate
 extension DropDownMenuPickerViewController : UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        // If scrolls to top, let table view have same color as cell
+        // If scrolls to top, add an offset cover view, which covers the gap between the menu and the first option cell
         if scrollView.contentOffset.y <= 0 {
-            tableView.backgroundColor = optionCellBackgroundColor
+            topOffsetView.frame = CGRect(x: 0, y: 0, width: tableView.width, height: -scrollView.contentOffset.y)
         } else {
-            tableView.backgroundColor = UIColor.clearColor()
+            topOffsetView.frame = CGRect.zero
         }
     }
 }
