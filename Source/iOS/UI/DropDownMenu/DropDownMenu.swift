@@ -237,11 +237,7 @@ public class DropDownMenu: UIControl {
 	/**
 	Add constrains for wrapper, this should be called once wrapper is moved in view hierarchy
 	*/
-	func setupWrapperViewConstraints() {
-		if window == nil {
-			return
-		}
-		
+	func setupWrapperViewConstraints() {		
 		var constraints = [NSLayoutConstraint]()
 		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint]
 		NSLayoutConstraint.activateConstraints(constraints)

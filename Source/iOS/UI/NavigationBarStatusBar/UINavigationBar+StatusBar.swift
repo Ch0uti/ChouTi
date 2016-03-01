@@ -16,7 +16,7 @@ public extension UINavigationBar {
 		static var Key = "StatusBarKey"
 	}
 	
-	var statusBar: NavigationBarStatusBar {
+	public var statusBar: NavigationBarStatusBar {
 		get {
 			if let bar = getAssociatedObject(forKeyPointer: &StatusBarKey.Key) as? NavigationBarStatusBar {
 				return bar
@@ -64,7 +64,7 @@ public extension UINavigationBar {
 		}
 	}
 	
-	var isShowingStatusBar: Bool {
+	public var isShowingStatusBar: Bool {
 		guard let superview = superview else {
 			NSLog("Error: superview of \(self) is nil")
 			return false
