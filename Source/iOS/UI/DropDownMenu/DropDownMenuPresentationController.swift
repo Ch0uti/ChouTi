@@ -80,7 +80,16 @@ class DropDownMenuPresentationController: OverlayPresentationController {
             return presentedView.frame
         }
         
-        let menuFrame = dropDownMenu.frameRectInView(containerView)
+		var menuFrame = dropDownMenu.frameRectInView(containerView)
+		if #available(iOS 9.0, *) {
+			// Works well
+		} else {
+			// iOS8.4, sometimes frame are shrinked to half. This fixes the frame problem
+			if menuFrame.width * 2 == dropDownMenu.frameRectInView(nil).width {
+				menuFrame = CGRect(x: menuFrame.origin.x * 2, y: menuFrame.origin.y * 2, width: menuFrame.width * 2, height: menuFrame.height * 2)
+			}
+		}
+		
         return CGRect(x: menuFrame.leading, y: menuFrame.bottom, width: menuFrame.width, height: containerView.height - menuFrame.bottom)
     }
 }
