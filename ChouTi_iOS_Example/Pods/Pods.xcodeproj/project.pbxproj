@@ -10,6 +10,7 @@
 		01F4C7BACB0C14BC5264701A7F4A533A /* UserConfirmationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF0445FFA0C089B44F0B4A42F678B27 /* UserConfirmationCondition.swift */; };
 		02C436A61C7D0C6D009665AE /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */; };
 		02C436A81C7D57B9009665AE /* DropDownMenuPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C436A71C7D57B9009665AE /* DropDownMenuPresentationController.swift */; };
+		02F592361C95097800D87DFA /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F592341C95097800D87DFA /* SearchTextField.swift */; };
 		047A36206569EA52F983892AA218DB3D /* SeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E3FC48777A60B3CB6B7C8955882E3 /* SeparatorCell.swift */; };
 		06D33FEE481E60D9DE037D03389A66C3 /* UIView+OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE21DEB368A4F0CB658B520C87ED9578 /* UIView+OverlayView.swift */; };
 		06FAA4BB00F6C1A9275954253952D8CE /* WebpageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC269F58706AC880D3C569686906112 /* WebpageOperation.swift */; };
@@ -231,6 +232,7 @@
 /* Begin PBXFileReference section */
 		02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
 		02C436A71C7D57B9009665AE /* DropDownMenuPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenuPresentationController.swift; sourceTree = "<group>"; };
+		02F592341C95097800D87DFA /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		065E3FC48777A60B3CB6B7C8955882E3 /* SeparatorCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SeparatorCell.swift; sourceTree = "<group>"; };
 		0B7BF376968A3C99963556D49B30598E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		0BC269F58706AC880D3C569686906112 /* WebpageOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebpageOperation.swift; path = Sources/Features/iOS/WebpageOperation.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 				AFA6CDF472BFBD8FF4FAF7D4DAD947F8 /* ProgressBarView.swift */,
 				1E02E2A6A6663F72A9E219D772FD2B6F /* SingleTitleContentPairView.swift */,
 				12EA46577DEF3A0A5257B9B1181EA0DA /* TextField.swift */,
+				02F592341C95097800D87DFA /* SearchTextField.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1884,6 +1887,7 @@
 				06D33FEE481E60D9DE037D03389A66C3 /* UIView+OverlayView.swift in Sources */,
 				8DBFE74A9D6078C0EF930C19A9F704F5 /* UIViewController+Extensions.swift in Sources */,
 				D47FA1958AF08E1E5491C56CE26C0637 /* Utility.swift in Sources */,
+				02F592361C95097800D87DFA /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

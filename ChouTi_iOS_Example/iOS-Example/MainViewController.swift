@@ -162,6 +162,17 @@ class MainViewController: UIViewController {
             )
         )
         
+        viewRows.append(
+            TableViewRow(title: "Search Text Field",
+                subtitle: "",
+                tableView: tableView,
+                cellSelectAction: { (indexPath, cell) -> Void in
+                    self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    self.navigationController?.pushViewController(SearchTextFieldDemoViewController(), animated: true)
+                }
+            )
+        )
+        
         sections.append(
             TableViewSection(headerTitle: "Views", rows: viewRows, tableView: tableView)
         )
