@@ -183,6 +183,13 @@ public extension UIImage {
 
 // MARK: - Mutating Image
 public extension UIImage {
+	/**
+	Apply a new alpha value for an image
+	
+	- parameter alpha: new alpha value
+	
+	- returns: new image with alpha provided
+	*/
     public func imageByApplyingAlpha(alpha: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         let ctx = UIGraphicsGetCurrentContext()
@@ -200,7 +207,45 @@ public extension UIImage {
         
         return newImage
     }
-    
+	
+	/**
+	Apply a new tint color for an image, using the alpha channel
+	
+	- parameter tintColor: new tint color
+	
+	- returns: new image with tint color provided
+	*/
+	public func imageByApplyingTintColor(tintColor: UIColor) -> UIImage {
+		UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+		let ctx = UIGraphicsGetCurrentContext()
+		
+		CGContextTranslateCTM(ctx, 0, size.height)
+		CGContextScaleCTM(ctx, 1.0, -1.0)
+		
+		let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+		
+		// Draw alpha-mask
+		CGContextSetBlendMode(ctx, .Normal)
+		CGContextDrawImage(ctx, rect, CGImage)
+		
+		// Draw tint color, preserving alpha values of original image
+		CGContextSetBlendMode(ctx, .SourceIn)
+		tintColor.setFill()
+		CGContextFillRect(ctx, rect)
+		
+		let newImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		return newImage
+	}
+	
+	/**
+	Expand image with insets
+	
+	- parameter insets: inset want to expand
+	
+	- returns: new expanded image
+	*/
     public func imageExpandedWithInsets(insets: UIEdgeInsets) -> UIImage {
         let newSize = CGSize(width: size.width + insets.left + insets.right, height: size.height + insets.top + insets.bottom)
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
