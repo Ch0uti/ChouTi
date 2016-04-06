@@ -41,7 +41,7 @@ class DropPresentingDemoViewController: UIViewController {
 		button.constraintToSize(CGSize(width: 160, height: 50))
 		button.centerInSuperview()
 		
-		button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+		button.addTarget(self, action: #selector(DropPresentingDemoViewController.buttonTapped(_:)), forControlEvents: .TouchUpInside)
     }
 	
 	func buttonTapped(sender: AnyObject) {

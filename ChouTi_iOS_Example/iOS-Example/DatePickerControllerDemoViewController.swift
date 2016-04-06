@@ -36,7 +36,7 @@ class DatePickerControllerDemoViewController : UIViewController {
 		button.constraintToSize(CGSize(width: 160, height: 50))
 		button.centerInSuperview()
 		
-		button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+		button.addTarget(self, action: #selector(DatePickerControllerDemoViewController.buttonTapped(_:)), forControlEvents: .TouchUpInside)
 		
 		resultLabel.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(resultLabel)

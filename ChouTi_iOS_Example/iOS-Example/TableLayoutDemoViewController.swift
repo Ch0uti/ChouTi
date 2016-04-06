@@ -36,7 +36,7 @@ class TableLayoutDemoViewController: UIViewController {
 		doneButton.translatesAutoresizingMaskIntoConstraints = false
 		doneButton.setTitle("Done", forState: UIControlState.Normal)
 		doneButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-		doneButton.addTarget(self, action: "doneButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+		doneButton.addTarget(self, action: #selector(TableLayoutDemoViewController.doneButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
 		view.addSubview(doneButton)
 		
 		let views = ["excelTable": excelTable, "doneButton": doneButton]

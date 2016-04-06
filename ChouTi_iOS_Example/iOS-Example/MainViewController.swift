@@ -38,8 +38,8 @@ class MainViewController: UIViewController {
                 cellSelectAction: { indexPath, cell in
                     self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let centerVC = CenterViewController(nibName: "CenterViewController", bundle: nil)
-                    centerVC.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Left", style: .Done, target: self, action: "expandLeft:")
-                    centerVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Right", style: .Done, target: self, action: "expandRight:")
+                    centerVC.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Left", style: .Done, target: self, action: #selector(MainViewController.expandLeft(_:)))
+                    centerVC.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Right", style: .Done, target: self, action: #selector(MainViewController.expandRight(_:)))
                     centerVC.title = "Slide Controller"
                     
                     let centerNavi = UINavigationController(rootViewController: centerVC)
