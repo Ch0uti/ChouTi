@@ -1,5 +1,5 @@
 //
-//  UIVisualEffectView.swift
+//  CodeSnippets_UIVisualEffectView.swift
 //  Pods
 //
 //  Created by Honghao Zhang on 2015-11-28.
