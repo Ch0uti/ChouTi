@@ -10,8 +10,8 @@ import UIKit
 
 public class TableViewCell: UITableViewCell {
 	
-	/// Cell height, this is the constant for height constraint (500 priority).
-	//	Discussion: You can fully specify cell's height to ignore cell height (Use constraints with priorty greater than 500)
+	/// Cell height, this is the constant for height constraint (250 priority).
+	//	Discussion: You can fully specify cell's height to ignore cell height (Use constraints with priorty greater than 250)
 	public var cellHeight: CGFloat = 44.0 {
 		didSet {
 			heightConstraint?.constant = cellHeight
@@ -20,21 +20,8 @@ public class TableViewCell: UITableViewCell {
 	
 	private var heightConstraint: NSLayoutConstraint?
 	
-	public var selectedAccessoryView: UIView? {
-		didSet {
-			if selectedAccessoryType != .None {
-				selectedAccessoryType = .None
-			}
-		}
-	}
-	
-	public var selectedAccessoryType: UITableViewCellAccessoryType = .None {
-		didSet {
-			if selectedAccessoryView != nil {
-				selectedAccessoryView = nil
-			}
-		}
-	}
+	public var selectedAccessoryView: UIView?
+	public var selectedAccessoryType: UITableViewCellAccessoryType = .None
 	
 	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -48,8 +35,8 @@ public class TableViewCell: UITableViewCell {
 	
 	public func commonInit() {
 		heightConstraint = NSLayoutConstraint(item: contentView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: cellHeight)
-		heightConstraint!.priority = 500
-		heightConstraint!.active = true
+		heightConstraint?.priority = 250
+		heightConstraint?.active = true
 	}
 	
 	public override func setSelected(selected: Bool, animated: Bool) {
@@ -62,26 +49,5 @@ public class TableViewCell: UITableViewCell {
 		if selectedAccessoryView != nil {
 			accessoryView = selected ? selectedAccessoryView : nil
 		}
-	}
-}
-
-
-
-// MARK: - TableViewCellInfo
-extension TableViewCell : TableViewCellRegistrable {
-	public class func identifier() -> String {
-		return String(self)
-	}
-	
-	public class func estimatedHeight() -> CGFloat {
-		return 44.0
-	}
-	
-	public class func registerInTableView(tableView: UITableView) {
-		tableView.registerClass(self, forCellReuseIdentifier: identifier())
-	}
-	
-	public class func unregisterInTableView(tableView: UITableView) {
-		tableView.registerClass(nil, forCellReuseIdentifier: identifier())
 	}
 }

@@ -54,18 +54,30 @@
 //	}
 //}
 //
-//extension <#Cell#> : TableViewCellInfo {
-//	class func identifier() -> String {
-//		return NSStringFromClass(<#Cell#>.self)
-//	}
-//	
-//	class func estimatedHeight() -> CGFloat {
-//		return 44.0
-//	}
-//	
-//	class func registerInTableView(tableView: UITableView) {
-//		tableView.registerClass(<#Cell#>.self, forCellReuseIdentifier: <#Cell#>.identifier())
-//	}
+//extension <#Cell#> : TableViewCellRegistrable {
+//    public class func estimatedHeight() -> CGFloat {
+//        return 44.0
+//    }
+//    
+//    public class func identifier() -> String {
+//        return String(self)
+//    }
+//    
+//    public class func registerInTableView(tableView: UITableView) {
+//        tableView.registerClass(self, forCellReuseIdentifier: identifier())
+//    }
+//    
+//    public class func registerNib(nib: UINib, inTableView tableView: UITableView) {
+//        tableView.registerNib(nib, forCellReuseIdentifier: identifier())
+//    }
+//    
+//    public class func deregisterInTableView(tableView: UITableView) {
+//        tableView.registerClass(nil, forCellReuseIdentifier: identifier())
+//    }
+//    
+//    public class func deregisterNibInTableView(tableView: UITableView) {
+//        tableView.registerNib(nil, forCellReuseIdentifier: identifier())
+//    }
 //}
 
 

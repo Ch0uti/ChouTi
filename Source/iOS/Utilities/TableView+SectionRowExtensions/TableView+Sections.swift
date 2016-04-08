@@ -50,10 +50,10 @@ public extension UITableView {
 		dataSource = nil
 		delegate = nil
 		
-		TableViewCell.unregisterInTableView(self)
-		TableViewCellValue1.unregisterInTableView(self)
-		TableViewCellValue2.unregisterInTableView(self)
-		TableViewCellSubtitle.unregisterInTableView(self)
+		TableViewCell.deregisterInTableView(self)
+		TableViewCellValue1.deregisterInTableView(self)
+		TableViewCellValue2.deregisterInTableView(self)
+		TableViewCellSubtitle.deregisterInTableView(self)
 	}
 }
 

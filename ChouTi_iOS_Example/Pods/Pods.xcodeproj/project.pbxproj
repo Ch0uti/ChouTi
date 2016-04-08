@@ -10,6 +10,7 @@
 		01F4C7BACB0C14BC5264701A7F4A533A /* UserConfirmationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF0445FFA0C089B44F0B4A42F678B27 /* UserConfirmationCondition.swift */; };
 		02C436A61C7D0C6D009665AE /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */; };
 		02C436A81C7D57B9009665AE /* DropDownMenuPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C436A71C7D57B9009665AE /* DropDownMenuPresentationController.swift */; };
+		02CC01581C9C4C9A00124822 /* CodeSnippets_UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CC01571C9C4C9A00124822 /* CodeSnippets_UISegmentedControl.swift */; };
 		02F592361C95097800D87DFA /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F592341C95097800D87DFA /* SearchTextField.swift */; };
 		047A36206569EA52F983892AA218DB3D /* SeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E3FC48777A60B3CB6B7C8955882E3 /* SeparatorCell.swift */; };
 		06D33FEE481E60D9DE037D03389A66C3 /* UIView+OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE21DEB368A4F0CB658B520C87ED9578 /* UIView+OverlayView.swift */; };
@@ -137,7 +138,7 @@
 		B2FC0986ED1C963BC3F20CFE524BEB1F /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96493806E267EDB32187F686AD79BCE6 /* TableViewSection.swift */; };
 		B43FFAFED5A0F1D4D0C5999EE7D9ACB3 /* DropDownMenuProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56CFC89B30DAD49C39570FFB4E32CB7 /* DropDownMenuProtocols.swift */; };
 		B54B48F9079D473AAD0050CEDC862712 /* TableViewSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80904451DBCADDF3A8066B714445ED9 /* TableViewSectionType.swift */; };
-		B56EEDACF25DA531D5490BA243C82962 /* TableViewRegistrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDD1E922480706257129FE52322F402 /* TableViewRegistrable.swift */; };
+		B56EEDACF25DA531D5490BA243C82962 /* TableView+Registrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDD1E922480706257129FE52322F402 /* TableView+Registrable.swift */; };
 		B6CF275605E73558AF3B8FE316E1863B /* UINavigationBar+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953280144715B337A9A0358F3C2C25CD /* UINavigationBar+StatusBar.swift */; };
 		B9476AE5A6FFBC48F346B1B85D82E643 /* UIGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5933F2A6220A9FD0DAB5E91C41AB60C9 /* UIGestureRecognizer+Extensions.swift */; };
 		BD45229237255F2DA11876F1770DFEC3 /* LTMorphingLabel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 76573CD8DF8BA8BA7EDCA62EC5E19149 /* LTMorphingLabel-dummy.m */; };
@@ -232,6 +233,7 @@
 /* Begin PBXFileReference section */
 		02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
 		02C436A71C7D57B9009665AE /* DropDownMenuPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenuPresentationController.swift; sourceTree = "<group>"; };
+		02CC01571C9C4C9A00124822 /* CodeSnippets_UISegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSnippets_UISegmentedControl.swift; sourceTree = "<group>"; };
 		02F592341C95097800D87DFA /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		065E3FC48777A60B3CB6B7C8955882E3 /* SeparatorCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SeparatorCell.swift; sourceTree = "<group>"; };
 		0B7BF376968A3C99963556D49B30598E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -307,7 +309,7 @@
 		5CB06CCE7BB3083689F903C31ED8490A /* OrderedDictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		5CC0FFA39E360989356E046D17D24D04 /* SlideController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SlideController.swift; sourceTree = "<group>"; };
 		5F033EFEDEBA4879DF00E1D19426D952 /* DatePickerController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
-		5FDD1E922480706257129FE52322F402 /* TableViewRegistrable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TableViewRegistrable.swift; sourceTree = "<group>"; };
+		5FDD1E922480706257129FE52322F402 /* TableView+Registrable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TableView+Registrable.swift"; sourceTree = "<group>"; };
 		62CA71ED9569227DD904F150299C0C7F /* ComposedOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComposedOperation.swift; path = Sources/Core/Shared/ComposedOperation.swift; sourceTree = "<group>"; };
 		6391B346B42291DD9B2FCB801F38F4BB /* NSTimeZone+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSTimeZone+Extensions.swift"; sourceTree = "<group>"; };
 		644FB4EFF8E0117CB7E529E4C77071A5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -766,6 +768,7 @@
 				E65FE9CD9C2D78508CBC3FA66668C1BE /* CodeSnippets_Shadow.swift */,
 				A30D729EEF62D6B6BDAA013B148645B6 /* CodeSnippets_UIDevice.swift */,
 				37600DE541ACAE0260F4C179B5962E98 /* CodeSnippets_UIVisualEffectView.swift */,
+				02CC01571C9C4C9A00124822 /* CodeSnippets_UISegmentedControl.swift */,
 			);
 			path = CodeSnippets;
 			sourceTree = "<group>";
@@ -1121,7 +1124,7 @@
 			children = (
 				B4203CFD305B06ED62EECDD36D22D094 /* Analytics.swift */,
 				13A50E2F8F98CD9FE69420E6A0022C0E /* CollectionViewCellInfo.swift */,
-				5FDD1E922480706257129FE52322F402 /* TableViewRegistrable.swift */,
+				5FDD1E922480706257129FE52322F402 /* TableView+Registrable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1859,7 +1862,7 @@
 				D43E9078FC216670B268A8F0BC3EA2B5 /* TableViewCellSubtitle.swift in Sources */,
 				6B9DB760E37728BAB620EA2E1D45D0D3 /* TableViewCellValue1.swift in Sources */,
 				9157D2243D70FED51A120DB526EAD5EC /* TableViewCellValue2.swift in Sources */,
-				B56EEDACF25DA531D5490BA243C82962 /* TableViewRegistrable.swift in Sources */,
+				B56EEDACF25DA531D5490BA243C82962 /* TableView+Registrable.swift in Sources */,
 				4DEAE58FA318FECC5EC173B8015A5E02 /* TableViewRow.swift in Sources */,
 				903141F99193A4F48AD02A871C1E2D3B /* TableViewRowType.swift in Sources */,
 				B2FC0986ED1C963BC3F20CFE524BEB1F /* TableViewSection.swift in Sources */,
@@ -1867,6 +1870,7 @@
 				4D1F8E0B8478E0515F5EF4A575163066 /* TextField.swift in Sources */,
 				2F3153868FC4FBB80D7BE1C9AB48ABFF /* TextTableCollectionView.swift in Sources */,
 				535CF88FE12AFF5F39846FB7AC8795EE /* TextTableCollectionViewCell.swift in Sources */,
+				02CC01581C9C4C9A00124822 /* CodeSnippets_UISegmentedControl.swift in Sources */,
 				A8A90CCF563BCED903582BADD0F09195 /* Types.swift in Sources */,
 				ACDFC0E0A82E962C34467C0E4CCD100E /* UIButton+Extensions.swift in Sources */,
 				3BC59017C4639BBCCE91D7464C63275B /* UIColor+Extensions.swift in Sources */,
