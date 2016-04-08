@@ -168,6 +168,12 @@ public class SegmentedControl: UISegmentedControl {
 	:param: titles an array of titles
 	*/
 	public func setupWithTitles(titles: [String]) {
+		// If existed titles are same with new titles, return
+		if itemTitles == titles {
+			return
+		}
+		
+		// new titles are different, reset
 		super.removeAllSegments()
 		for (index, title) in titles.enumerate() {
 			super.insertSegmentWithTitle(title, atIndex: index, animated: false)
