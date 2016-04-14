@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01F4C7BACB0C14BC5264701A7F4A533A /* UserConfirmationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF0445FFA0C089B44F0B4A42F678B27 /* UserConfirmationCondition.swift */; };
+		02BCF0221CBF2787002125B6 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF0211CBF2787002125B6 /* UIView+Animations.swift */; };
 		02C436A61C7D0C6D009665AE /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */; };
 		02C436A81C7D57B9009665AE /* DropDownMenuPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C436A71C7D57B9009665AE /* DropDownMenuPresentationController.swift */; };
 		02CC01581C9C4C9A00124822 /* CodeSnippets_UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CC01571C9C4C9A00124822 /* CodeSnippets_UISegmentedControl.swift */; };
@@ -231,6 +232,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02BCF0211CBF2787002125B6 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		02C436A51C7D0C6D009665AE /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
 		02C436A71C7D57B9009665AE /* DropDownMenuPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenuPresentationController.swift; sourceTree = "<group>"; };
 		02CC01571C9C4C9A00124822 /* CodeSnippets_UISegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSnippets_UISegmentedControl.swift; sourceTree = "<group>"; };
@@ -845,6 +847,7 @@
 				B47CE87172B5530357BE8D878296C827 /* UIView+Extensions.swift */,
 				EE21DEB368A4F0CB658B520C87ED9578 /* UIView+OverlayView.swift */,
 				C918C92C82A7D484F9705D26F050C035 /* UIViewController+Extensions.swift */,
+				02BCF0211CBF2787002125B6 /* UIView+Animations.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1888,6 +1891,7 @@
 				560627373DE53E113AFA281797D87BB0 /* UITableView+Extensions.swift in Sources */,
 				990ACEDFE3CF02DB9BA348CE3710214B /* UITableViewCell+Extensions.swift in Sources */,
 				0BF27EB7F83B1F6806CBAD1F98F36373 /* UIView+Extensions.swift in Sources */,
+				02BCF0221CBF2787002125B6 /* UIView+Animations.swift in Sources */,
 				06D33FEE481E60D9DE037D03389A66C3 /* UIView+OverlayView.swift in Sources */,
 				8DBFE74A9D6078C0EF930C19A9F704F5 /* UIViewController+Extensions.swift in Sources */,
 				D47FA1958AF08E1E5491C56CE26C0637 /* Utility.swift in Sources */,
