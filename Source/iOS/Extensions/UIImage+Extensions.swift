@@ -123,16 +123,17 @@ public extension UIImage {
 
 // MARK: - Factory Methods
 public extension UIImage {
-    /**
-     Get a UIImage instance with color, size is 1.0 * 1.0
-     
-     - parameter color: color of the image
-     
-     - returns: new UIImage with the color provided
-     */
-    public class func imageWithColor(color: UIColor) -> UIImage {
-        let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
-        UIGraphicsBeginImageContext(rect.size)
+	/**
+	Get a UIImage instance with color and size
+	
+	- parameter color: color of the image
+	- parameter size:  size of the image, by default is 1.0 * 1.0
+	
+	- returns: new UIImage with the color provided
+	*/
+	public class func imageWithColor(color: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage {
+        let rect = CGRectMake(0.0, 0.0, size.width, size.height)
+		UIGraphicsBeginImageContextWithOptions(size, false, 0)
         let context = UIGraphicsGetCurrentContext()
         
         CGContextSetFillColorWithColor(context, color.CGColor)
@@ -143,25 +144,7 @@ public extension UIImage {
         
         return image
     }
-    
-    /**
-     Get a UIImage instance with color and size
-     
-     - parameter color: color of the image
-     - parameter size:  size of the image
-     
-     - returns: new UIImage with the color provided
-     */
-    public class func imageWithColor(color: UIColor, size: CGSize) -> UIImage {
-        let rect = CGRectMake(0, 0, size.width, size.height)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        color.setFill()
-        UIRectFill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-    
+	
     public class func imageWithBorderRectangle(size: CGSize, borderWidth: CGFloat, borderColor: UIColor, fillColor: UIColor = UIColor.clearColor()) -> UIImage {
         UIGraphicsBeginImageContext(size)
         let context = UIGraphicsGetCurrentContext()
