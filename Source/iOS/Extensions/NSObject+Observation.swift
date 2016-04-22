@@ -8,8 +8,10 @@
 
 import Foundation
 
+// NOTE: Be sure to removeObservation before this object is deallocated
+
 public extension NSObject {
-    typealias ObserverHandler = (oldValue: NSValue, newValue: NSValue) -> Void
+    typealias ObserverHandler = (oldValue: AnyObject, newValue: AnyObject) -> Void
     
     // Observer
     class Observer: NSObject {
@@ -21,7 +23,7 @@ public extension NSObject {
                 return
             }
             
-            guard let change = change as? [String : NSValue] else {
+            guard let change = change else {
                 print("Warning: Observer: change dictionary is nil")
                 return
             }
