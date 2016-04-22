@@ -12,7 +12,7 @@
 //<#animator#>.animationDuration = 0.75
 //<#animator#>.shouldDismissOnTappingOutsideView = true
 //<#animator#>.presentingViewSize = CGSize(width: ceil(screenWidth * 0.7), height: 160)
-//<#animator#>.overlayViewStyle = .Dimmed(UIColor(white: 0.2, alpha: 1.0))
+//<#animator#>.overlayViewStyle = .Blurred(UIColor(white: 0.2, alpha: 1.0))
 //
 //<#presentedViewController#>.modalPresentationStyle = .Custom
 //<#presentedViewController#>.transitioningDelegate = animator
