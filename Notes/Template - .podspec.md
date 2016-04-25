@@ -1,3 +1,4 @@
+This is a reference to https://github.com/liuzhiyi1992/ZYCornerRadius
 ```ruby
 #
 #  Be sure to run `pod spec lint ZYCornerRadius.podspec' to ensure this is a
