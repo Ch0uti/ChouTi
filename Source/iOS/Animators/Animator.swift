@@ -121,6 +121,7 @@ extension Animator {
 
 // MARK: - UIViewControllerTransitioningDelegate
 extension Animator : UIViewControllerTransitioningDelegate {
+    // MARK: - Getting the Transition Animator Objects
 	public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 		self.presenting = true
 		return self
@@ -131,6 +132,7 @@ extension Animator : UIViewControllerTransitioningDelegate {
 		return self
 	}
 	
+    // MARK: - Getting the Interactive Animator Objects
 	public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
 		self.presenting = true
 		return interactive ? self : nil
@@ -141,6 +143,7 @@ extension Animator : UIViewControllerTransitioningDelegate {
 		return interactive ? self : nil
 	}
     
+    // MARK: - Getting the Custom Presentation Controller
     public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
         return nil
     }
