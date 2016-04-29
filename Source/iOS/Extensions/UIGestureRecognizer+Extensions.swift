@@ -8,21 +8,6 @@
 
 import UIKit
 
-// MARK: - Add attachedView
-public extension UIGestureRecognizer {
-    
-    private struct zhAttachedViewKey {
-        static var Key = "zhAttachedViewKey"
-    }
-    
-    public weak var attachedView: UIView? {
-        get { return objc_getAssociatedObject(self, &zhAttachedViewKey.Key) as? UIView }
-        set { objc_setAssociatedObject(self, &zhAttachedViewKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
-    }
-}
-
-
-
 // MARK: - Add Velocity for UILongPressGestureRecognizer
 public extension UILongPressGestureRecognizer {
     private struct zhLastLocationKey {
@@ -63,7 +48,7 @@ public extension UILongPressGestureRecognizer {
     func longPressed(gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
         case .Began:
-            lastLocation = gesture.locationInView(attachedView)
+            lastLocation = gesture.locationInView(view)
             lastUpdatedTimeIntervalSince1970 = NSDate().timeIntervalSince1970
             
         case .Changed:
@@ -77,7 +62,7 @@ public extension UILongPressGestureRecognizer {
                 break
             }
             
-            let currentLocation = gesture.locationInView(attachedView)
+            let currentLocation = gesture.locationInView(view)
             let currentTimeIntervalSince1970 = NSDate().timeIntervalSince1970
             
             let locationOffset = CGPoint(x: currentLocation.x - lastLocation.x, y: currentLocation.y - lastLocation.y)
@@ -85,7 +70,7 @@ public extension UILongPressGestureRecognizer {
             
             _velocity = CGPoint(x: locationOffset.x / CGFloat(timeInterval), y: locationOffset.y / CGFloat(timeInterval))
             
-            self.lastLocation = gesture.locationInView(attachedView)
+            self.lastLocation = gesture.locationInView(view)
             self.lastUpdatedTimeIntervalSince1970 = currentTimeIntervalSince1970
         default:
             lastLocation = nil

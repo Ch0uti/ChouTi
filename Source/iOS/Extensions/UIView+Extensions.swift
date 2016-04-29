@@ -225,7 +225,6 @@ public extension UIView {
     
     func zhh_addGestureRecognizer(gestureRecognizer: UIGestureRecognizer) {
         self.zhh_addGestureRecognizer(gestureRecognizer)
-        gestureRecognizer.attachedView = self
         
         if let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer {
             longPressGesture.setupForDetectingVelocity()
