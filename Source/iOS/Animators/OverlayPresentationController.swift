@@ -8,6 +8,18 @@
 
 import UIKit
 
+/**
+ Overlay View Style
+ 
+ - Normal:  This is a normal overlay view with a customized background color
+ - Blurred: This is blurred overlay view with blur effect style and background color
+ */
+public enum OverlayViewStyle {
+    case Normal(UIColor)
+    case Blurred(UIBlurEffectStyle, UIColor)
+}
+
+/// Base Overlay Presentation Controller
 public class OverlayPresentationController: UIPresentationController {
     
     /// Whether should dismiss presented view when tap out side of presented view
@@ -43,10 +55,6 @@ public class OverlayPresentationController: UIPresentationController {
         self.overlayViewStyle = overlayViewStyle
     }
     
-    override init(presentedViewController: UIViewController, presentingViewController: UIViewController) {
-        super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController)
-    }
-    
     // MARK: - Transition
     public override func presentationTransitionWillBegin() {
         guard let containerView = containerView else {
@@ -75,12 +83,6 @@ public class OverlayPresentationController: UIPresentationController {
     }
     
     public override func dismissalTransitionWillBegin() {
-        // Remove tap gesture
-        if let tapGesture = dismissTapGesture {
-            overlayView.removeGestureRecognizer(tapGesture)
-        }
-        dismissTapGesture = nil
-        
         if shouldDimPresentedView {
             presentingViewController.view.tintAdjustmentMode = .Normal
         }
@@ -100,11 +102,15 @@ public class OverlayPresentationController: UIPresentationController {
         })
         
         presentingViewController.transitionCoordinator()?.notifyWhenInteractionEndsUsingBlock({ [unowned self] (coordinatorContext) in
+            coordinatorContext.completionVelocity()
             if coordinatorContext.isCancelled() == false {
-                UIView.animateWithDuration(Double(1.0 - coordinatorContext.percentComplete()) * coordinatorContext.transitionDuration(), animations: { [unowned self] in
-                    self.overlayView.alpha = 0.0
-                }, completion: { [unowned self] finished in
-                    self.overlayView.removeFromSuperview()
+                let restPercent = Double(1.0 - coordinatorContext.percentComplete())
+                let restDuration = restPercent * coordinatorContext.transitionDuration()
+                
+                UIView.animateWithDuration(restDuration, animations: { [weak self] in
+                    self?.overlayView.alpha = 0.0
+                }, completion: { [weak self] finished in
+                    self?.overlayView.removeFromSuperview()
                 })
             }
         })
@@ -125,6 +131,11 @@ public class OverlayPresentationController: UIPresentationController {
 // MARK: - UIGestureRecognizerDelegate
 extension OverlayPresentationController : UIGestureRecognizerDelegate {
     public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        // Only check for self.dismissTapGesture
+        guard let tapGesture = gestureRecognizer as? UITapGestureRecognizer where tapGesture == dismissTapGesture else {
+            return true
+        }
+        
         if shouldDismissOnTappingOutsideView == false {
             return false
         }
@@ -133,32 +144,13 @@ extension OverlayPresentationController : UIGestureRecognizerDelegate {
             return true
         }
         
-        let locationInPresentingView = gestureRecognizer.locationInView(presentedView)
-        
         // Disable tap action for presented view area
-        if let tapGesture = gestureRecognizer as? UITapGestureRecognizer where tapGesture == self.dismissTapGesture {
-            if presentedView.bounds.contains(locationInPresentingView) {
-                return false
-            } else {
-                return true
-            }
+        let locationInPresentedView = gestureRecognizer.locationInView(presentedView)
+        if presentedView.bounds.contains(locationInPresentedView) {
+            return false
+        } else {
+            return true
         }
-        
-        return true
-    }
-}
-
-// MARK: - Helpers
-extension OverlayPresentationController {
-    private func setupOverlayView() {
-        overlayView.frame = presentingViewController.view.bounds
-        
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "overlayViewTapped:")
-        overlayView.addGestureRecognizer(tapRecognizer)
-    }
-    
-    private func teardownOverlayView() {
-        
     }
 }
 
