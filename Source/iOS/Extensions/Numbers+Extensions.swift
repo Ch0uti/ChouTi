@@ -7,6 +7,26 @@
 
 import Foundation
 
+public extension Comparable {
+    /**
+     Constrain a number to a range
+     E.g. 5.constrainToRange(1, 6) will get 5,
+     5.constrainToRange(1, 3) will get 3,
+     5.constrainToRange(6, 9) will get 6
+     
+     - parameter min: min number
+     - parameter max: max number
+     
+     - returns: number constrained in this range, if self is in the range, self is returned. otherwirse, it will return min or max.
+     */
+    public func constrainToRange(_ min: Self, _ max: Self) -> Self {
+        guard min <= max else {
+            fatalError("Error: min: \(min) is greater than max: \(max)")
+        }
+        return Swift.min(Swift.max(min, self), max)
+    }
+}
+
 public extension Bool {
     /**
      Get a random boolean value
@@ -114,9 +134,22 @@ public extension CGFloat {
         return CGFloat(Float(arc4random()) / Float(UINT32_MAX)) * (upper - lower) + lower
     }
     
-    /// Get a radian degree
-    public var radianDegree: CGFloat {
+    /**
+     Get radians from degrees
+     
+     - returns: radians
+     */
+    public func toRadians() -> CGFloat {
         return CGFloat(M_PI / 180) * self
+    }
+    
+    /**
+     Get degrees from radians
+     
+     - returns: degrees
+     */
+    public func toDegrees() -> CGFloat {
+        return CGFloat(180 / M_PI) * self
     }
     
     /**
@@ -124,7 +157,7 @@ public extension CGFloat {
      
      - returns: a safe multipler, which is not zero
      */
-    public func safeMulpilter() -> CGFloat {
+    public func safeConstraintMulpilter() -> CGFloat {
         return Swift.max(CGFloat(0.0001), self)
     }
     
@@ -132,7 +165,7 @@ public extension CGFloat {
      Normalize a number, which will limit into 0...1
      */
     public mutating func normalize() {
-        self = Swift.min( Swift.max(CGFloat(0), self), CGFloat(1))
+        self = self.constrainToRange(0, 1)
     }
     
     /**
