@@ -41,7 +41,6 @@ extension Animator : UIViewControllerAnimatedTransitioning {
 	- returns: The duration, in seconds, of your custom transition animation.
 	*/
 	public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-		// Update current transitionContext
 		self.transitionContext = transitionContext
 		return animationDuration
 	}
@@ -53,17 +52,12 @@ extension Animator : UIViewControllerAnimatedTransitioning {
 	- parameter transitionContext: transitionContext
 	*/
 	public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-		// Update current transitionContext
 		self.transitionContext = transitionContext
 	}
 	
 	public func animationEnded(transitionCompleted: Bool) {
-		if transitionCompleted == false {
-			return
-		}
-		
-		interactive = false
-		transitionContext = nil
+        interactive = false
+        transitionContext = nil
 	}
 }
 

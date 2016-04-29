@@ -48,12 +48,33 @@ class DropPresentingDemoViewController: UIViewController {
 		let dummyViewController = UIViewController()
 		dummyViewController.view.backgroundColor = UIColor(red:255/255.0, green:186/255.0, blue:1/255.0, alpha:255/255.0)
 		dummyViewController.view.layer.cornerRadius = 8.0
+        
+        let button = UIButton()
+        dummyViewController.view.addSubview(button)
+        
+        button.setBackgroundColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00), forUIControlState: .Normal)
+        button.setBackgroundColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00).colorWithAlphaComponent(0.8), forUIControlState: .Highlighted)
+        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+        
+        button.setTitle("Dismiss", forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(22)
+        
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 25
+        
+        button.addTarget(self, action: #selector(DropPresentingDemoViewController.dismiss(_:)), forControlEvents: .TouchUpInside)
 		
-		dummyViewController.view.userInteractionEnabled = true
-		
+        button.constraintToSize(CGSize(width: 120, height: 50))
+        button.centerInSuperview()
+        
 		dummyViewController.modalPresentationStyle = .Custom
 		dummyViewController.transitioningDelegate = animator
 		
 		presentViewController(dummyViewController, animated: true, completion: nil)
 	}
+    
+    func dismiss(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
