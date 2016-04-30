@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Source/**/**/*.h'
   # s.source_files 	   = 'Source/iOS/**/'
 
-  s.xcconfig         = { 'OTHER_SWIFT_FLAGS' => '-D DEBUG' }
+  # s.xcconfig         = { 'OTHER_SWIFT_FLAGS' => '-D DEBUG' }
 
   s.default_subspecs = "Unsafe"
 
