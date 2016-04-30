@@ -39,7 +39,7 @@ public class DropPresentingAnimator: Animator {
 	public var shouldDismissOnTappingOutsideView: Bool = true
 	
 	// Drag to dismiss (interactive)
-	public var allowDragToDismiss: Bool = true
+	public var allowDragToDismiss: Bool = false
 	
 	// MARK: - Private
     private weak var presentationController: DropPresentingPresentationController?
@@ -77,7 +77,7 @@ extension DropPresentingAnimator {
 		
 		presentedView.bounds = CGRect(origin: CGPointZero, size: presentingViewSize)
 		presentedView.center = CGPoint(x: containerView.bounds.width / 2.0, y: 0 - presentingViewSize.height / 2.0)
-		presentedView.transform = CGAffineTransformMakeRotation((CGFloat.random(-30, 30) * CGFloat(M_PI)) / 180.0)
+		presentedView.transform = CGAffineTransformMakeRotation((CGFloat.random(-15, 15) * CGFloat(M_PI)) / 180.0)
 		
 		containerView.addSubview(presentedView)
         
@@ -107,7 +107,7 @@ extension DropPresentingAnimator {
 		// Dismissing animations
 		UIView.animateWithDuration(animationDuration * Double(1.0 - percentComplete), delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: {
 			fromView.center = CGPoint(x: containerView.bounds.width / 2.0, y: containerView.bounds.height + self.presentingViewSize.height)
-			fromView.transform = CGAffineTransformMakeRotation((self.interactiveAnimationTransformAngel ?? CGFloat.random(-40, 40) * CGFloat(M_PI)) / 180.0)
+			fromView.transform = CGAffineTransformMakeRotation((self.interactiveAnimationTransformAngel ?? CGFloat.random(-15, 15) * CGFloat(M_PI)) / 180.0)
 			}, completion: { finished -> Void in
 				transitionContext.completeTransition(finished)
 		})
