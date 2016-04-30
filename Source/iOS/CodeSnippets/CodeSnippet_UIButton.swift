@@ -20,4 +20,4 @@
 //<#button#>.setTitle("Button Title", forState: .Normal)
 //<#button#>.titleLabel?.font = UIFont.systemFontOfSize(18)
 //
-//<#button#>.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+//<#button#>.addTarget(self, action: #selector(self.dynamicType.buttonTapped(_:)), forControlEvents: .TouchUpInside)
