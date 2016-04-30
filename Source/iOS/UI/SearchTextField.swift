@@ -109,7 +109,7 @@ public class SearchTextField: TextField {
 	
 	private let resultTableView = UITableView()
 	
-	private let searchTextFieldDidEdit = Selector("zhh_searchTextFieldDidEdit:")
+    private let searchTextFieldDidEdit = #selector(SearchTextField.zhh_searchTextFieldDidEdit(_:))
 	
     private var overlayView: UIView?
 	
@@ -225,7 +225,7 @@ extension SearchTextField {
 		overlayView = window.insertOverlayViewBelowSubview(self, animated: false, overlayViewBackgroundColor: UIColor.clearColor())
 		overlayView?.userInteractionEnabled = false
 		
-		let tap = UITapGestureRecognizer(target: self, action: "overlayViewTapped:")
+		let tap = UITapGestureRecognizer(target: self, action: #selector(SearchTextField.overlayViewTapped(_:)))
         overlayView?.addGestureRecognizer(tap)
 	}
     
