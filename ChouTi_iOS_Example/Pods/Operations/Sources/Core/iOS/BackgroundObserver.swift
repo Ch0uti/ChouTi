@@ -45,8 +45,8 @@ public class BackgroundObserver: NSObject {
         super.init()
 
         let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: "didEnterBackground:", name: UIApplicationDidEnterBackgroundNotification, object: .None)
-        nc.addObserver(self, selector: "didBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: .None)
+        nc.addObserver(self, selector: #selector(BackgroundObserver.didEnterBackground(_:)), name: UIApplicationDidEnterBackgroundNotification, object: .None)
+        nc.addObserver(self, selector: #selector(BackgroundObserver.didBecomeActive(_:)), name: UIApplicationDidBecomeActiveNotification, object: .None)
 
         if isInBackground {
             startBackgroundTask()
@@ -88,7 +88,7 @@ public class BackgroundObserver: NSObject {
 extension BackgroundObserver: OperationDidFinishObserver {
 
     /// Conforms to `OperationDidFinishObserver`, will end any background task that has been started.
-    public func operationDidFinish(operation: Operation, errors: [ErrorType]) {
+    public func didFinishOperation(operation: Operation, errors: [ErrorType]) {
         endBackgroundTask()
     }
 }

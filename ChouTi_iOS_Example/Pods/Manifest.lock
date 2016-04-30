@@ -51,9 +51,9 @@ PODS:
   - ChouTi/UI/SegmentedControl (0.1)
   - ChouTi/UI/TableViewCells (0.1)
   - LTMorphingLabel (0.0.9)
-  - Operations (2.6.0):
-    - Operations/Standard (= 2.6.0)
-  - Operations/Standard (2.6.0)
+  - Operations (2.10.0):
+    - Operations/Standard (= 2.10.0)
+  - Operations/Standard (2.10.0)
 
 DEPENDENCIES:
   - ChouTi/All (from `../`)
@@ -64,10 +64,10 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  ChouTi: 02acaf5a48981fb11ce626478b134d6e8a87038b
+  ChouTi: d94eb21fdf6b30e55bf79f95c8e90348fc740791
   LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
-  Operations: 18114beb1805651d218ab077f549aea92e757493
+  Operations: 11f0188d894e441fa16f87264e771c88b3829826
 
 PODFILE CHECKSUM: 11cf008d87e034f6a628ce5f284466aefdce0d0c
 
-COCOAPODS: 1.0.0.beta.3
+COCOAPODS: 1.0.0.beta.8

@@ -71,41 +71,41 @@ Pod::Spec.new do |s|
     ss.source_files = 'Source/iOS/*.swift'
 
     ss.subspec "Extensions" do |sss|
-      sss.source_files = 'Source/iOS/Extensions/*.*'
+      sss.source_files = 'Source/iOS/Extensions/**/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "Protocols" do |sss|
-      sss.source_files = 'Source/iOS/Protocols/*.*'
+      sss.source_files = 'Source/iOS/Protocols/**/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "CollectionViewLayouts" do |sss|
       # "UICollectionView Layouts"
-      sss.source_files = 'Source/iOS/CollectionViewLayouts/*/*.*'
+      sss.source_files = 'Source/iOS/CollectionViewLayouts/**/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "Animators" do |sss|
       # "A set of customized view controller transition animators"
-      sss.source_files = 'Source/iOS/Animators/*.*'
+      sss.source_files = 'Source/iOS/Animators/**/*.*'
       sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "Utilities" do |sss|
       # "Handy utility functions/constants"
-      sss.source_files = 'Source/iOS/Utilities/*.*'
+      sss.source_files = 'Source/iOS/Utilities/**/*.*'
 
       sss.subspec "TableView+SectionRowExtensions" do |ssss|
         # "Table view sections/rows utility"
-        ssss.source_files = 'Source/iOS/Utilities/TableView+SectionRowExtensions/*.*'
+        ssss.source_files = 'Source/iOS/Utilities/TableView+SectionRowExtensions/**/*.*'
       end
 
     end
 
     ss.subspec "CodeSnippets" do |sss|
       # "Some useful and handy code snippets"
-      sss.source_files = 'Source/iOS/CodeSnippets/*.*'
+      sss.source_files = 'Source/iOS/CodeSnippets/**/*.*'
     end
 
   end

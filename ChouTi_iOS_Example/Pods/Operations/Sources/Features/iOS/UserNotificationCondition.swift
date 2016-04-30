@@ -14,26 +14,27 @@ public protocol UserNotificationRegistrarType {
 }
 
 extension UIApplication: UserNotificationRegistrarType {
-    
+
     public func opr_registerUserNotificationSettings(notificationSettings: UIUserNotificationSettings) {
         registerUserNotificationSettings(notificationSettings)
     }
-    
+
     public func opr_currentUserNotificationSettings() -> UIUserNotificationSettings? {
         return currentUserNotificationSettings() ?? .None
     }
 }
 
+// swiftlint:disable variable_name
 private let DidRegisterSettingsNotificationName = "DidRegisterSettingsNotificationName"
 private let NotificationSettingsKey = "NotificationSettingsKey"
-
+// swiftlint:enable variable_name
 
 /**
     A condition for verifying that we can present alerts
     to the user via `UILocalNotification` and/or remote
     notifications.
-    
-    In order to use this condition effectively, it is 
+
+    In order to use this condition effectively, it is
     required that you post a notification from inside the
     UIApplication.sharedApplication()'s delegate method.
 
@@ -102,17 +103,24 @@ public struct UserNotificationCondition: OperationCondition {
     }
 }
 
-public func ==(a: UserNotificationCondition.Error, b: UserNotificationCondition.Error) -> Bool {
-    switch (a, b) {
+public func == (lhs: UserNotificationCondition.Error, rhs: UserNotificationCondition.Error) -> Bool {
+    switch (lhs, rhs) {
     case let (.SettingsNotSufficient(current: aCurrent, desired: aDesired), .SettingsNotSufficient(current: bCurrent, desired: bDesired)):
         return (aCurrent == bCurrent) && (aDesired == bDesired)
     }
 }
-    
+
 public class UserNotificationPermissionOperation: Operation {
 
-    enum NotificationObserver: Selector {
-        case SettingsDidChange = "notificationSettingsDidChange:"
+    enum NotificationObserver {
+        case SettingsDidChange
+
+        var selector: Selector {
+            switch self {
+            case .SettingsDidChange:
+                return #selector(UserNotificationPermissionOperation.notificationSettingsDidChange(_:))
+            }
+        }
     }
 
     let settings: UIUserNotificationSettings
@@ -135,7 +143,7 @@ public class UserNotificationPermissionOperation: Operation {
     public override func execute() {
         NSNotificationCenter
             .defaultCenter()
-            .addObserver(self, selector: NotificationObserver.SettingsDidChange.rawValue, name: DidRegisterSettingsNotificationName, object: nil)
+            .addObserver(self, selector: NotificationObserver.SettingsDidChange.selector, name: DidRegisterSettingsNotificationName, object: nil)
         dispatch_async(Queue.Main.queue, request)
     }
 
@@ -195,4 +203,3 @@ extension UIUserNotificationType: BooleanType {
         return self != []
     }
 }
-

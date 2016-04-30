@@ -21,7 +21,7 @@ internal class ExclusivityManager {
     }
 
     func addOperation(operation: NSOperation, category: String) {
-        dispatch_async(queue) {
+        dispatch_sync(queue) {
             self._addOperation(operation, category: category)
         }
     }
@@ -35,7 +35,7 @@ internal class ExclusivityManager {
     private func _addOperation(operation: NSOperation, category: String) {
         if let op = operation as? Operation {
             op.log.verbose(" >>> \(category)")
-            op.addObserver(FinishedObserver { [unowned self] op, _ in
+            op.addObserver(DidFinishObserver { [unowned self] op, _ in
                 self.removeOperation(op, category: category)
             })
         }
