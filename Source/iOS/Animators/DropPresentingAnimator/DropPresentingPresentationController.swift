@@ -49,6 +49,11 @@ extension DropPresentingPresentationController {
             return super.gestureRecognizerShouldBegin(gestureRecognizer)
         }
         
+        // If animator is nil, which makes no sense to handling gesture
+        guard dropPresentingAnimator != nil else {
+            return false
+        }
+        
         guard let presentedView = presentedView() else {
             return true
         }
