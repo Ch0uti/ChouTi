@@ -69,7 +69,6 @@ extension DropPresentingAnimator {
 		}
 		
 		guard
-			let presentingView = self.presentingViewController?.view,
 			let presentedView = self.presentedViewController?.view,
 			let containerView = self.containerView else {
 				NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
@@ -99,7 +98,6 @@ extension DropPresentingAnimator {
 		}
 		
 		guard
-			let toView = self.toViewController?.view,
 			let fromView = self.fromViewController?.view,
 			let containerView = self.containerView else {
 				NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")

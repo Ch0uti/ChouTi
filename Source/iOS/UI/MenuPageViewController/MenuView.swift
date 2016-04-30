@@ -366,7 +366,7 @@ extension MenuView {
 		var i = 0
 		while i < index {
 			targetOffsetX += menuWidthForIndex(i) + spacingsBetweenMenus
-			i++
+			i += 1
 		}
 		
 		if offsetPercent < 0 {
@@ -389,7 +389,8 @@ extension MenuView {
 		return CGPoint(x: targetOffsetX, y: 0)
 	}
 	
-	public func closestIndexForOffsetX(var offsetX: CGFloat) -> Int {
+	public func closestIndexForOffsetX(offsetX: CGFloat) -> Int {
+        var offsetX = offsetX
 		switch scrollingOption {
 		case .None: break
 		case .Leading: break
@@ -411,7 +412,7 @@ extension MenuView {
 				return index
 			}
 			
-			index++
+			index += 1
 		}
 		
 		return index - 1

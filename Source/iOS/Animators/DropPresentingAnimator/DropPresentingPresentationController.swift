@@ -26,7 +26,7 @@ class DropPresentingPresentationController: OverlayPresentationController {
         
         // Adding gestures to presenting view controller
         if allowDragToDismiss {
-            let longPressGesture = UILongPressGestureRecognizer(target: self, action: "overlayViewPanned:")
+            let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(DropPresentingPresentationController.overlayViewPanned(_:)))
             longPressGesture.minimumPressDuration = 0.1
             longPressGesture.delegate = self
             presentedView()?.addGestureRecognizer(longPressGesture)
@@ -43,7 +43,7 @@ class DropPresentingPresentationController: OverlayPresentationController {
 
 // MARK: - UIGestureRecognizerDelegate
 extension DropPresentingPresentationController {
-    public override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         // Only response to long press gesture
         guard let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer where longPressGesture == self.longPressGesture else {
             return super.gestureRecognizerShouldBegin(gestureRecognizer)

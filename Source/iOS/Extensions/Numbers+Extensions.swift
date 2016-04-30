@@ -19,7 +19,7 @@ public extension Comparable {
      
      - returns: number constrained in this range, if self is in the range, self is returned. otherwirse, it will return min or max.
      */
-    public func constrainToRange(_ min: Self, _ max: Self) -> Self {
+    public func constrainToRange(min: Self, _ max: Self) -> Self {
         guard min <= max else {
             fatalError("Error: min: \(min) is greater than max: \(max)")
         }
