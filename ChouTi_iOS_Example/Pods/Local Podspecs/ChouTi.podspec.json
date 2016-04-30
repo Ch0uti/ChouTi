@@ -19,8 +19,6 @@
     "ios": "8.0"
   },
   "requires_arc": true,
-  "public_header_files": "Source/**/**/*.h",
-  "source_files": "Source/iOS/**/",
   "xcconfig": {
     "OTHER_SWIFT_FLAGS": "-D DEBUG"
   },
@@ -88,37 +86,37 @@
       "subspecs": [
         {
           "name": "Extensions",
-          "source_files": "Source/iOS/Extensions/*.*",
+          "source_files": "Source/iOS/Extensions/**/*.*",
           "frameworks": "UIKit"
         },
         {
           "name": "Protocols",
-          "source_files": "Source/iOS/Protocols/*.*",
+          "source_files": "Source/iOS/Protocols/**/*.*",
           "frameworks": "UIKit"
         },
         {
           "name": "CollectionViewLayouts",
-          "source_files": "Source/iOS/CollectionViewLayouts/*/*.*",
+          "source_files": "Source/iOS/CollectionViewLayouts/**/*.*",
           "frameworks": "UIKit"
         },
         {
           "name": "Animators",
-          "source_files": "Source/iOS/Animators/*.*",
+          "source_files": "Source/iOS/Animators/**/*.*",
           "frameworks": "UIKit"
         },
         {
           "name": "Utilities",
-          "source_files": "Source/iOS/Utilities/*.*",
+          "source_files": "Source/iOS/Utilities/**/*.*",
           "subspecs": [
             {
               "name": "TableView+SectionRowExtensions",
-              "source_files": "Source/iOS/Utilities/TableView+SectionRowExtensions/*.*"
+              "source_files": "Source/iOS/Utilities/TableView+SectionRowExtensions/**/*.*"
             }
           ]
         },
         {
           "name": "CodeSnippets",
-          "source_files": "Source/iOS/CodeSnippets/*.*"
+          "source_files": "Source/iOS/CodeSnippets/iOS.playground/Pages/General.xcplaygroundpage/Contents.swift"
         }
       ]
     },

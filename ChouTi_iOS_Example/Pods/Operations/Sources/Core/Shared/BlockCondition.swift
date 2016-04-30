@@ -14,9 +14,10 @@ An `OperationCondition` which will be satisfied if the block returns true.
 public struct BlockCondition: OperationCondition {
 
     /// The block type which returns a Bool.
-    public typealias ConditionBlockType = () -> Bool
+    public typealias ConditionBlockType = () throws -> Bool
 
-    /// The error used to indicate failure.
+    /// The error used to indicate failure, in the case
+    /// of a false return, without a thrown error.
     public enum Error: ErrorType {
 
         /**
@@ -28,7 +29,7 @@ public struct BlockCondition: OperationCondition {
 
     /**
     The name of the condition.
-    
+
     - parameter name: a constant String `Block Condition`.
     */
     public let name = "Block Condition"
@@ -43,18 +44,18 @@ public struct BlockCondition: OperationCondition {
     let condition: ConditionBlockType
 
     /**
-    Creates a `BlockCondition` with the supplied block. 
-    
+    Creates a `BlockCondition` with the supplied block.
+
     Example like this..
-    
+
         operation.addCondition(BlockCondition { true })
-    
+
     Alternatively
-    
+
         func checkFlag() -> Bool {
             return toDoSomethingOrNot
         }
-    
+
         operation.addCondition(BlockCondition(block: checkFlag))
 
     - parameter block: a `ConditionBlockType`.
@@ -70,17 +71,23 @@ public struct BlockCondition: OperationCondition {
 
     /**
     Evaluates the condition, it will execute the block.
-    
+
     - parameter operation: the attached `Operation`
     - parameter completion: the evaulation completion block, it is given the result.
     */
     public func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
-        completion(condition() ? .Satisfied : .Failed(Error.BlockConditionFailed))
+        do {
+            let result = try condition()
+            completion(result ? .Satisfied : .Failed(Error.BlockConditionFailed))
+        }
+        catch {
+            completion(.Failed(error))
+        }
     }
 }
 
 extension BlockCondition.Error: Equatable { }
 
-public func ==(a: BlockCondition.Error, b: BlockCondition.Error) -> Bool {
+public func == (_: BlockCondition.Error, _: BlockCondition.Error) -> Bool {
     return true // Only one case in the enum
 }

@@ -12,13 +12,13 @@ import Foundation
 
 /**
  # Log Severity
- The log severity of the message, ranging from .Verbose 
+ The log severity of the message, ranging from .Verbose
  through to .Fatal.
 
  The severity of a message is one side of an equality, the other
- being the minimum between either the global severity or the 
- severity of an instance logger. If the message severity 
- is greater than the minimum severity the message string will 
+ being the minimum between either the global severity or the
+ severity of an instance logger. If the message severity
+ is greater than the minimum severity the message string will
  be sent to the logger's block.
 */
 public enum LogSeverity: Int, Comparable {
@@ -71,12 +71,12 @@ public protocol LoggerType {
      The primary log function. The main job of this method
      is to format the message, and send it to its logger
      block, but only if the level is > the minimum severity.
-     
+
      - parameter message: a `String`, the message to log.
      - parameter severity: a `LogSeverity`, the level of the message.
-     - parameter file: a `String`, containing the file (make it default to __FILE__)
-     - parameter function: a `String`, containing the function (make it default to __FUNCTION__)
-     - parameter line: a `Int`, containing the line number (make it default to __LINE__)
+     - parameter file: a `String`, containing the file (make it default to #file)
+     - parameter function: a `String`, containing the function (make it default to #function)
+     - parameter line: a `Int`, containing the line number (make it default to #line)
     */
     func log(@autoclosure message: () -> String, severity: LogSeverity, file: String, function: String, line: Int)
 }
@@ -99,29 +99,29 @@ public extension LoggerType {
     /**
      # Default log function
      The default implementation will create a prefix from the file,
-     function and line info. Only the last path component of the 
-     file is used. If the file is from the Operations framework 
+     function and line info. Only the last path component of the
+     file is used. If the file is from the Operations framework
      itself, the prefix is empty. The idea here is that log output
      looks like this:
-     
+
          $ [MyCustomOperation.swift doTheThing:56], This is my log message
-     
+
      for an operation which is custom to the consumers app.
-     
-     For logs from within Operation's operations, e.g. `UserLocation` 
+
+     For logs from within Operation's operations, e.g. `UserLocation`
      it looks like this:
-     
+
          User Location: did start
          User Location updated last location: <+51.30971096,-0.12562101> +/- 10.00m (speed 0.00 mps / course -1.00) @ 10/11/2015, 16:06:32 Greenwich Mean Time
          User Location: did finish with no errors.
 
      - parameter message: a `String`, the message to log.
      - parameter severity: a `LogSeverity`, the level of the message.
-     - parameter file: a `String`, containing the file (make it default to __FILE__)
-     - parameter function: a `String`, containing the function (make it default to __FUNCTION__)
-     - parameter line: a `Int`, containing the line number (make it default to __LINE__)
+     - parameter file: a `String`, containing the file (make it default to #file)
+     - parameter function: a `String`, containing the function (make it default to #function)
+     - parameter line: a `Int`, containing the line number (make it default to #line)
     */
-    func log(@autoclosure message: () -> String, severity: LogSeverity, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    func log(@autoclosure message: () -> String, severity: LogSeverity, file: String = #file, function: String = #function, line: Int = #line) {
         if LogManager.enabled && enabled && severity >= minimumLogSeverity {
             let _message = messageWithOperationName(message())
             dispatch_async(LogManager.queue) {
@@ -132,13 +132,13 @@ public extension LoggerType {
 
     /**
      Send a .Verbose log message.
-     
+
      - parameter message: a `String`, the message to log.
-     - parameter file: a `String`, containing the file (make it default to __FILE__)
-     - parameter function: a `String`, containing the function (make it default to __FUNCTION__)
-     - parameter line: a `Int`, containing the line number (make it default to __LINE__)
+     - parameter file: a `String`, containing the file (make it default to #file)
+     - parameter function: a `String`, containing the function (make it default to #function)
+     - parameter line: a `Int`, containing the line number (make it default to #line)
     */
-    func verbose(@autoclosure message: () -> String, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    func verbose(@autoclosure message: () -> String, file: String = #file, function: String = #function, line: Int = #line) {
         log(message, severity: .Verbose, file: file, function: function, line: line)
     }
 
@@ -146,11 +146,11 @@ public extension LoggerType {
      Send a .Notice log message.
 
      - parameter message: a `String`, the message to log.
-     - parameter file: a `String`, containing the file (make it default to __FILE__)
-     - parameter function: a `String`, containing the function (make it default to __FUNCTION__)
-     - parameter line: a `Int`, containing the line number (make it default to __LINE__)
+     - parameter file: a `String`, containing the file (make it default to #file)
+     - parameter function: a `String`, containing the function (make it default to #function)
+     - parameter line: a `Int`, containing the line number (make it default to #line)
      */
-    func notice(@autoclosure message: () -> String, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    func notice(@autoclosure message: () -> String, file: String = #file, function: String = #function, line: Int = #line) {
         log(message, severity: .Notice, file: file, function: function, line: line)
     }
 
@@ -158,11 +158,11 @@ public extension LoggerType {
      Send a .Info log message.
 
      - parameter message: a `String`, the message to log.
-     - parameter file: a `String`, containing the file (make it default to __FILE__)
-     - parameter function: a `String`, containing the function (make it default to __FUNCTION__)
-     - parameter line: a `Int`, containing the line number (make it default to __LINE__)
+     - parameter file: a `String`, containing the file (make it default to #file)
+     - parameter function: a `String`, containing the function (make it default to #function)
+     - parameter line: a `Int`, containing the line number (make it default to #line)
      */
-    func info(@autoclosure message: () -> String, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    func info(@autoclosure message: () -> String, file: String = #file, function: String = #function, line: Int = #line) {
         log(message, severity: .Info, file: file, function: function, line: line)
     }
 
@@ -170,11 +170,11 @@ public extension LoggerType {
      Send a .Warning log message.
 
      - parameter message: a `String`, the message to log.
-     - parameter file: a `String`, containing the file (make it default to __FILE__)
-     - parameter function: a `String`, containing the function (make it default to __FUNCTION__)
-     - parameter line: a `Int`, containing the line number (make it default to __LINE__)
+     - parameter file: a `String`, containing the file (make it default to #file)
+     - parameter function: a `String`, containing the function (make it default to #function)
+     - parameter line: a `Int`, containing the line number (make it default to #line)
      */
-    func warning(@autoclosure message: () -> String, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    func warning(@autoclosure message: () -> String, file: String = #file, function: String = #function, line: Int = #line) {
         log(message, severity: .Warning, file: file, function: function, line: line)
     }
 
@@ -182,13 +182,22 @@ public extension LoggerType {
      Send a .Fatal log message.
 
      - parameter message: a `String`, the message to log.
-     - parameter file: a `String`, containing the file (make it default to __FILE__)
-     - parameter function: a `String`, containing the function (make it default to __FUNCTION__)
-     - parameter line: a `Int`, containing the line number (make it default to __LINE__)
+     - parameter file: a `String`, containing the file (make it default to #file)
+     - parameter function: a `String`, containing the function (make it default to #function)
+     - parameter line: a `Int`, containing the line number (make it default to #line)
      */
-    func fatal(@autoclosure message: () -> String, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    func fatal(@autoclosure message: () -> String, file: String = #file, function: String = #function, line: Int = #line) {
         log(message, severity: .Fatal, file: file, function: function, line: line)
     }
+}
+
+public protocol LogManagerType {
+
+    static var enabled: Bool { get set }
+
+    static var severity: LogSeverity { get set }
+
+    static var logger: LoggerBlockType { get set }
 }
 
 /**
@@ -225,15 +234,6 @@ class _Logger<Manager: LogManagerType>: LoggerType {
 }
 
 typealias Logger = _Logger<LogManager>
-
-protocol LogManagerType {
-
-    static var enabled: Bool { get set }
-
-    static var severity: LogSeverity { get set }
-
-    static var logger: LoggerBlockType { get set }
-}
 
 /**
  # LogManager
@@ -299,12 +299,10 @@ public extension NSOperation {
      set, this resorts to the class description.
     */
     var operationName: String {
-        return name ?? "\(self)"
+        return name ?? "Unnamed Operation"
     }
 }
 
-public func <(lhs: LogSeverity, rhs: LogSeverity) -> Bool {
+public func < (lhs: LogSeverity, rhs: LogSeverity) -> Bool {
     return lhs.rawValue < rhs.rawValue
 }
-
-
