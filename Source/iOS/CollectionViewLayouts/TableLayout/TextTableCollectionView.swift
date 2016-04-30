@@ -20,7 +20,6 @@ public protocol TextTableCollectionViewDelegate : class {
 }
 
 
-// TODO: Renamed this collection view
 public class TextTableCollectionView: UICollectionView {
 	
 	// MARK: - Appearance
