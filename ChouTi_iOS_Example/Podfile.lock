@@ -41,7 +41,7 @@ PODS:
   - ChouTi/UI-Extra (0.1):
     - ChouTi/UI-Extra/LoadingMorphingLabel (= 0.1)
   - ChouTi/UI-Extra/LoadingMorphingLabel (0.1):
-    - LTMorphingLabel (~> 0.0.8)
+    - LTMorphingLabel (~> 0.0)
   - ChouTi/UI/AutoLinesLabel (0.1)
   - ChouTi/UI/CollectionViewCells (0.1)
   - ChouTi/UI/DatePickerViewController (0.1)
@@ -50,7 +50,7 @@ PODS:
   - ChouTi/UI/NavigationBarStatusBar (0.1)
   - ChouTi/UI/SegmentedControl (0.1)
   - ChouTi/UI/TableViewCells (0.1)
-  - LTMorphingLabel (0.0.9)
+  - LTMorphingLabel (0.2.0)
   - Operations (2.10.0):
     - Operations/Standard (= 2.10.0)
   - Operations/Standard (2.10.0)
@@ -64,10 +64,10 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  ChouTi: c90637fa1d5e10b4639d0813b9654136b9797b81
-  LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
+  ChouTi: b587f3959bf7758225bee6bb19bd34258dcbc3f5
+  LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   Operations: 11f0188d894e441fa16f87264e771c88b3829826
 
 PODFILE CHECKSUM: 11cf008d87e034f6a628ce5f284466aefdce0d0c
 
-COCOAPODS: 1.0.0.beta.8
+COCOAPODS: 1.0.0.rc.1

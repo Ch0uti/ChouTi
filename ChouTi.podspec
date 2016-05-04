@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
 
   s.default_subspecs = "Unsafe"
 
-  s.resource_bundle = { 'Resources' => 'Resources/*/*.png' }
+  s.resource_bundle = { 'Resources' => 'Resources/**/*.png' }
 
   ############ Summary Subspec ############
 
@@ -215,7 +215,7 @@ Pod::Spec.new do |s|
       # "Showing a list of text in loop"
       sss.source_files = 'Source/iOS/UI/LoadingMorphingLabel/*.*'
       sss.frameworks   = 'UIKit'
-      sss.dependency 'LTMorphingLabel', '~> 0.0.8'
+      sss.dependency 'LTMorphingLabel', '~> 0.0'
     end
     
   end
