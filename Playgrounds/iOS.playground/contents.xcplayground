@@ -2,6 +2,8 @@
 <playground version='6.0' target-platform='ios'>
     <pages>
         <page name='General'/>
+        <page name='Mirror'/>
+        <page name='LeftRightLabelsViewLayout'/>
         <page name='UIButton'/>
     </pages>
 </playground>
