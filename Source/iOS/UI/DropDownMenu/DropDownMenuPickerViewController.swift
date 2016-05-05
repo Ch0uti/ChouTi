@@ -100,7 +100,8 @@ class DropDownMenuPickerViewController : UIViewController {
     }
     
 	private var isAnimating: Bool = false
-	
+	private var didAppear: Bool = false
+
 	private var tableViewHeightConstraint: NSLayoutConstraint!
 	private var expandedConstraints = [NSLayoutConstraint]()
 	private var collapsedConstraints = [NSLayoutConstraint]()
@@ -193,11 +194,21 @@ class DropDownMenuPickerViewController : UIViewController {
 		}
 	}
 	
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		didAppear = true
+	}
+	
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		view.layoutIfNeeded()
 		
-		// Expand options table view here because table view size is layouted
+		// Expand options should be called when picker view is about to appear
+		if didAppear == true {
+			return
+		}
+
+		// Expand options table view here because picker view is about to appear
 		expandOptions()
         
         // Update view size to have same size as tableview
@@ -205,6 +216,12 @@ class DropDownMenuPickerViewController : UIViewController {
         view.frame.size.height = min(ceil((optionCellHeight + 0.5) * CGFloat(numberOfOptions)), screenSize.height - view.top)
 	}
 	
+	override func viewDidDisappear(animated: Bool) {
+		super.viewDidDisappear(animated)
+		
+		didAppear = false
+	}
+
 	override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
 		// Collapse options first then dismiss
 		collapseOptions({ _ in
