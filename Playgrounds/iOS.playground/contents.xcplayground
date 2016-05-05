@@ -3,6 +3,7 @@
     <pages>
         <page name='General'/>
         <page name='Mirror'/>
+        <page name='AlertView'/>
         <page name='LeftRightLabelsViewLayout'/>
         <page name='UIButton'/>
     </pages>

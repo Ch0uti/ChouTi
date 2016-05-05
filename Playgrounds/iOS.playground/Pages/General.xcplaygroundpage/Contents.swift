@@ -23,3 +23,5 @@ struct FlatMapExample {
 		print(result2)
 	}
 }
+
+FlatMapExample()
