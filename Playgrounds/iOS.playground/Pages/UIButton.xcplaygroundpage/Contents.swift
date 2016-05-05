@@ -2,10 +2,12 @@
 
 import UIKit
 import XCPlayground
-import ChouTi
+@testable import ChouTi
 
 class PlaygroundViewController: UIViewController {
     override func viewDidLoad() {
+		super.viewDidLoad()
+		
         view.bounds.size = CGSize(width: 375, height: 667)
         view.backgroundColor = UIColor.whiteColor()
         
