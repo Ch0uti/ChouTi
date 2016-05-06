@@ -90,7 +90,7 @@ extension SlideUpAnimator {
 		topConstraint.active = true
 		
 		// Presenting animations
-		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
 			containerView.layoutIfNeeded()
 			}, completion: { finished in
 				emptyView.removeFromSuperview()
@@ -114,7 +114,7 @@ extension SlideUpAnimator {
 		topConstraint.active = true
 		
 		// Dismissing animations
-		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: {
+		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: {
 			containerView.layoutIfNeeded()
 			}, completion: { finished -> Void in
 				transitionContext.completeTransition(finished)
