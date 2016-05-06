@@ -18,8 +18,9 @@ public class Resource {
 	private var _bundle: NSBundle?
 	
 	public init?() {
-		let podBundle = NSBundle(forClass: self.dynamicType)
+		let podBundle = NSBundle(forClass: Resource.self)
 		guard let bundleURL = podBundle.URLForResource("Resources", withExtension: "bundle") else {
+            assertionFailure("Error: Could not load the bundle (ChouTi)")
 			return
 		}
 		

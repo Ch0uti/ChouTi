@@ -12,7 +12,7 @@ pod 'ChouTi/All', :path => '../'
 # pod 'ChouTi/Safe', :path => '../'
 # pod 'ChouTi/Parse', :path => '../'
 
-pod 'ChouTi/ChouTi-Extra', :path => '../'
+# pod 'ChouTi/ChouTi-Extra', :path => '../'
 
 # pod 'ChouTi/UI/AutoLinesLabel', :path => '../'
 
