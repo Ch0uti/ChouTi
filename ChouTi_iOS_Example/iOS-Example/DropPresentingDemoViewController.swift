@@ -27,8 +27,8 @@ class DropPresentingDemoViewController: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(button)
 		
-		button.setBackgroundColor(UIColor.purpleColor(), forUIControlState: .Normal)
-		button.setBackgroundColor(UIColor.purpleColor().colorWithAlphaComponent(0.8), forUIControlState: .Highlighted)
+		button.setBackgroundColor(UIColor.purpleColor(), forState: .Normal)
+		button.setBackgroundColor(UIColor.purpleColor().colorWithAlphaComponent(0.8), forState: .Highlighted)
 		button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
 		button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
 		
@@ -52,8 +52,8 @@ class DropPresentingDemoViewController: UIViewController {
         let button = UIButton()
         dummyViewController.view.addSubview(button)
         
-        button.setBackgroundColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00), forUIControlState: .Normal)
-        button.setBackgroundColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00).colorWithAlphaComponent(0.8), forUIControlState: .Highlighted)
+        button.setBackgroundColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00), forState: .Normal)
+        button.setBackgroundColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00).colorWithAlphaComponent(0.8), forState: .Highlighted)
         button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         

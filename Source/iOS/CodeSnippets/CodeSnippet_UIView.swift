@@ -34,17 +34,17 @@
 //	}
 //
 //	private func setupConstraints() {
-//		preservesSuperviewLayoutMargins = false
-//		layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//		layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 //		
 //		let views = [
 //			"view" : <#view#>
 //		]
 //		
 //		let metrics: [String : CGFloat] = [
-//			"vertical_spacing" : 4.0
+//			"v_spacing" : 8.0,
+//			"h_spacing" : 8.0
 //		]
-//		
+//
 //		var constraints = [NSLayoutConstraint]()
 //		
 //		// TODO: Add constraints
