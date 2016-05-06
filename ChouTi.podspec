@@ -27,8 +27,6 @@ Pod::Spec.new do |s|
 
   s.default_subspecs = "Unsafe"
 
-  s.resource_bundle = { 'Resources' => 'Resources/**/*.png' }
-
   ############ Summary Subspec ############
 
   s.subspec "All" do |ss|
@@ -124,6 +122,7 @@ Pod::Spec.new do |s|
   s.subspec "UI" do |ss|
     # "UI Views & ViewControllers"
     ss.source_files = 'Source/iOS/UI/*.*'
+    ss.resource_bundle = { 'Resources' => 'Resources/**/*.png' }
 
     ss.subspec "AutoLinesLabel" do |sss|
       # "UILabel with contentInset and probide auto lines on iOS7"
@@ -170,6 +169,12 @@ Pod::Spec.new do |s|
     ss.subspec "NavigationBarStatusBar" do |sss|
       # "A drop down status bar under navigation bar"
       sss.source_files = 'Source/iOS/UI/NavigationBarStatusBar/*.*'
+      sss.frameworks   = 'UIKit'
+    end
+
+    ss.subspec "AlertView" do |sss|
+      # "Mimic UIAlertController's view"
+      sss.source_files = 'Source/iOS/UI/AlertView/*.*'
       sss.frameworks   = 'UIKit'
     end
 
