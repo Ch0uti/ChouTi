@@ -12,8 +12,8 @@
 //<#button#>.translatesAutoresizingMaskIntoConstraints = false
 //view.addSubview(<#button#>)
 //
-//<#button#>.setBackgroundColor(UIColor.blackColor(), forUIControlState: .Normal)
-//<#button#>.setBackgroundColor(UIColor.blackColor().colorWithAlphaComponent(0.8), forUIControlState: .Highlighted)
+//<#button#>.setBackgroundColor(UIColor.blackColor(), forState: .Normal)
+//<#button#>.setBackgroundColor(UIColor.blackColor().colorWithAlphaComponent(0.8), forState: .Highlighted)
 //<#button#>.setTitleColor(UIColor.whiteColor(), forState: .Normal)
 //<#button#>.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
 //
