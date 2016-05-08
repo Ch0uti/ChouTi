@@ -144,6 +144,29 @@ public extension UIImage {
         
         return image
     }
+    
+    /**
+     Get the color for a pixel.
+     
+     - parameter point: the position for the pixel
+     
+     - returns: returns color for the pixel.
+     */
+    public func colorOfPoint(point: CGPoint) -> UIColor {
+        
+        let pixelData = CGDataProviderCopyData(CGImageGetDataProvider(self.CGImage))
+        let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
+        
+        let numberOfColorComponents = 4
+        let pixelInfo: Int = ((Int(size.width) * Int(point.y)) + Int(point.x)) * numberOfColorComponents
+        
+        let b = CGFloat(data[pixelInfo]) / CGFloat(255.0)
+        let g = CGFloat(data[pixelInfo + 1]) / CGFloat(255.0)
+        let r = CGFloat(data[pixelInfo + 2]) / CGFloat(255.0)
+        let a = CGFloat(data[pixelInfo + 3]) / CGFloat(255.0)
+        
+        return UIColor(red: r, green: g, blue: b, alpha: a)
+    }
 	
     public class func imageWithBorderRectangle(size: CGSize, borderWidth: CGFloat, borderColor: UIColor, fillColor: UIColor = UIColor.clearColor()) -> UIImage {
         UIGraphicsBeginImageContext(size)
