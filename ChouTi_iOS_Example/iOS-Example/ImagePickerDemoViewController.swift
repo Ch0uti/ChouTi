@@ -21,9 +21,12 @@ class ImagePickerDemoViewController: UIViewController {
 		
 		imagePickerView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(imagePickerView)
+        
+        imagePickerView.clipsToBounds = true
+        imagePickerView.layer.cornerRadius = 6.0
 		
 		imagePickerView.tintColor = UIColor.redColor()
-		
+        
 		let views = [
 			"imagePickerView" : imagePickerView
 		]
