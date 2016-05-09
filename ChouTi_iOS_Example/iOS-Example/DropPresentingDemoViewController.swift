@@ -23,20 +23,19 @@ class DropPresentingDemoViewController: UIViewController {
 		animator.presentingViewSize = CGSize(width: ceil(screenWidth * 0.7), height: 160)
 		animator.overlayViewStyle = .Normal(UIColor(white: 0.0, alpha: 0.85))
 		
-		let button = UIButton()
+		let button = Button()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(button)
 		
-		button.setBackgroundColor(UIColor.purpleColor(), forState: .Normal)
-		button.setBackgroundColor(UIColor.purpleColor().colorWithAlphaComponent(0.8), forState: .Highlighted)
+		button.setBackgroundColor(UIColor.redColor(), forState: .Normal)
+		button.setBackgroundColor(UIColor.redColor().colorWithAlphaComponent(0.8), forState: .Highlighted)
 		button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
 		button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-		
+        
+        button.setCornerRadius(.Relative(percent: 0.3, attribute: .Height), forState: .Normal)
+        
 		button.setTitle("Present!", forState: .Normal)
 		button.titleLabel?.font = UIFont.systemFontOfSize(22)
-		
-		button.clipsToBounds = true
-		button.layer.cornerRadius = 25
 		
 		button.constraintToSize(CGSize(width: 160, height: 50))
 		button.centerInSuperview()

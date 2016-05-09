@@ -18,6 +18,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.view.clipsToBounds = true
+        navigationController?.view.layer.cornerRadius = 8.0
+        
         setupTableView()
         
         title = "🗄 抽屉(ChouTi) Demo"
