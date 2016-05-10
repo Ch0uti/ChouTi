@@ -73,15 +73,15 @@ extension AlertViewButton {
         .Default : { button in
             button.titleLabel?.font = UIFont.systemFontOfSize(17)
             button.setBorderWidth(0.0, forState: .Normal)
-            button.setBackgroundColor(button.tintColor, forState: .Normal)
-            button.setBackgroundColor(button.tintColor.darkerColor(), forState: .Highlighted)
+            button.setBackgroundImageWithColor(button.tintColor, forState: .Normal)
+            button.setBackgroundImageWithColor(button.tintColor.darkerColor(), forState: .Highlighted)
             button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         },
         
         .Cancel : { button in
             button.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
             button.setBorderWidth(2.0, forState: .Normal)
-            button.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+            button.setBackgroundImageWithColor(UIColor.clearColor(), forState: .Normal)
             button.setTitleColor(button.tintColor, forState: .Normal)
             button.setTitleColor(button.tintColor.darkerColor(), forState: .Highlighted)
             button.setBorderColor(button.tintColor, forState: .Normal)
@@ -92,8 +92,8 @@ extension AlertViewButton {
             button.titleLabel?.font = UIFont.systemFontOfSize(17)
             button.setBorderWidth(0.0, forState: .Normal)
             let dangerRedColor = UIColor(red:0.75, green:0.15, blue:0.17, alpha:1.00)
-            button.setBackgroundColor(dangerRedColor, forState: .Normal)
-            button.setBackgroundColor(dangerRedColor.darkerColor(), forState: .Highlighted)
+            button.setBackgroundImageWithColor(dangerRedColor, forState: .Normal)
+            button.setBackgroundImageWithColor(dangerRedColor.darkerColor(), forState: .Highlighted)
             button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         }
     ]}()

@@ -92,7 +92,7 @@ extension DropPresentingPresentationController {
             let sinValue = (locationInContainerView.x - topCenter.x) / (locationInContainerView.y - topCenter.y)
             let angel = asin(sinValue).toDegrees()
             
-            dropPresentingAnimator?.interactiveAnimationTransformAngel = angel.constrainToRange(-30, 30)
+            dropPresentingAnimator?.interactiveAnimationTransformAngel = angel.normalize(-30, 30)
             
             presentingViewController.dismissViewControllerAnimated(true, completion: nil)
             

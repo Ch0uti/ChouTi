@@ -58,7 +58,7 @@ public class Button: UIButton {
     private lazy var borderColorForState: [UInt : UIColor] = { [:] }()
     private lazy var borderWidthForState: [UInt : CGFloat] = { [:] }()
     private lazy var cornerRadiusForState: [UInt : CornerRadius] = { [:] }()
-    private lazy var backgroundColorForState: [UInt : UIColor] = { [:] }()
+    private lazy var backgroundImageColorForState: [UInt : UIColor] = { [:] }()
     
     // MARK: - Overriden
     public override var highlighted: Bool { didSet { refreshBorderStyles() } }
@@ -77,7 +77,7 @@ extension Button {
     // MARK: - Setting Extra Presentation Styles
     
     /**
-     Sets the border color to use for the specified state.
+     Set the border color to use for the specified state.
      
      - parameter color: The border color to use for the specified state.
      - parameter state: The state that uses the specified border color. The possible values are described in UIControlState.
@@ -88,7 +88,7 @@ extension Button {
     }
     
     /**
-     Sets the border width to use for the specified state.
+     Set the border width to use for the specified state.
      
      - parameter width: The border width to use for the specified state.
      - parameter state: The state that uses the specified border width. The possible values are described in UIControlState.
@@ -99,7 +99,7 @@ extension Button {
     }
     
     /**
-     Sets the corner radius to use for the specified state.
+     Set the corner radius to use for the specified state.
      
      - parameter cornerRadius: The corner radius to use for the specified state.
      - parameter state:        The state that uses the specified corner radius. The possible values are described in UIControlState.
@@ -111,15 +111,14 @@ extension Button {
     }
     
     /**
-     Sets the background color to use for the specified state.
+     Set the background image with color to use for the specified state.
      
-     - parameter color: The background color to use for the specified state.
-     - parameter state: The state that uses the specified background color. The possible values are described in UIControlState.
+     - parameter color: The color for background image to use for the specified state.
+     - parameter state: The state that uses the specified background image color. The possible values are described in UIControlState.
      */
-    public override func setBackgroundColor(color: UIColor, forState state: UIControlState) {
-        super.setBackgroundColor(color, forState: state)
-        
-        backgroundColorForState[state.rawValue] = color
+    public override func setBackgroundImageWithColor(color: UIColor, forState state: UIControlState) {
+        setBackgroundImage(UIImage.imageWithColor(color), forState: state)
+        backgroundImageColorForState[state.rawValue] = color
     }
     
     // MARK: - Getting Extra Presentation Styles
@@ -158,14 +157,14 @@ extension Button {
     }
     
     /**
-     Returns the background color associated with the specified state.
+     Returns the background image color associated with the specified state.
      
-     - parameter state: The state that uses the background color. The possible values are described in UIControlState.
+     - parameter state: The state that uses the background image color. The possible values are described in UIControlState.
      
-     - returns: The background color for the specified state. If no background color has been set for the specific state, this method returns the background color associated with the UIControlStateNormal state. If no background color has been set for the UIControlStateNormal state, nil is returned.
+     - returns: The background image color for the specified state. If no background image color has been set for the specific state, this method returns the background image color associated with the UIControlStateNormal state. If no background image color has been set for the UIControlStateNormal state, nil is returned.
      */
-    public func backgroundColorForState(state: UIControlState) -> UIColor? {
-        return backgroundColorForState[state.rawValue] ?? backgroundColorForState[UIControlState.Normal.rawValue] ?? nil
+    public func backgroundImageColorForState(state: UIControlState) -> UIColor? {
+        return backgroundImageColorForState[state.rawValue] ?? backgroundImageColorForState[UIControlState.Normal.rawValue] ?? nil
     }
 }
 
@@ -182,9 +181,9 @@ extension Button {
         return cornerRadiusForState[state.rawValue] ?? cornerRadiusForState[UIControlState.Normal.rawValue] ?? .Absolute(layer.cornerRadius)
     }
     
-    /// The current background color that is displayed on the button. (read-only)
-    public var currentBackgroundColor: UIColor? {
-        return backgroundColorForState[state.rawValue] ?? backgroundColorForState[UIControlState.Normal.rawValue]
+    /// The current background image color that is displayed on the button. (read-only)
+    public var currentBackgroundImageColor: UIColor? {
+        return backgroundImageColorForState[state.rawValue] ?? backgroundImageColorForState[UIControlState.Normal.rawValue]
     }
 }
 
@@ -230,4 +229,13 @@ extension Button {
             layer.cornerRadius = normalCornerRadius ?? 0.0
         }
     }
+    
+//    private func refreshClearTitleMask() {
+////        titleLabel?.backgroundColor = UIColor.clearColor()
+//        let text = titleLabel?.text
+//        let font = titleLabel?.font
+//        
+//        let attributes = [NSFontAttributeName : titleLabel?.font]
+//        let textSize = text.
+//    }
 }
