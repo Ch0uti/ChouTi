@@ -14,7 +14,7 @@
 
 import UIKit
 
-public class Animator : NSObject {
+public class Animator: NSObject {
 	/// Animation Durations, by default, it's 0.25s
 	public var animationDuration: NSTimeInterval = 0.25
 	

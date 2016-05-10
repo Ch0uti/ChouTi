@@ -1,5 +1,5 @@
 //
-//  ZHAutoLinesLabel.swift
+//  AutoLinesLabel.swift
 //  ChouTi
 //
 //  Created by Honghao Zhang on 2014-12-18.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class ZHAutoLinesLabel: UILabel {
+public class AutoLinesLabel: UILabel {
 	public var contentInset: UIEdgeInsets = UIEdgeInsetsZero {
         didSet {
             // Force label to update
@@ -37,7 +37,7 @@ public class ZHAutoLinesLabel: UILabel {
     public override func layoutSubviews() {
         super.layoutSubviews()
         let targetWidth = bounds.width
-		// Once label's widht is changed, update preferredMaxLayoutWidth, this will lead recall textRectForBounds
+		// Once label's width is changed, update preferredMaxLayoutWidth, this will lead recall textRectForBounds
         if self.preferredMaxLayoutWidth != targetWidth {
             self.preferredMaxLayoutWidth = targetWidth
         }
