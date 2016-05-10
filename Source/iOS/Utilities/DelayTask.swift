@@ -50,7 +50,9 @@ public class Task {
  Executes the task on the main queue after a set amount of seconds.
  
  - parameter seconds: Delay in seconds
- - parameter task: task to execute after delay
+ - parameter task:    task to execute after delay
+ 
+ - returns: a delayed Task
  */
 public func delay(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
     return delayOnMainQueue(seconds, task: task)
@@ -60,7 +62,9 @@ public func delay(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
  Executes the task on the main queue after a set amount of seconds.
  
  - parameter seconds: Delay in seconds
- - parameter task: task to execute after delay
+ - parameter task:    task to execute after delay
+ 
+ - returns: a delayed Task
  */
 func delayOnMainQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
     let task = Task(task: task)
@@ -80,7 +84,9 @@ func delayOnMainQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
  Executes the task on a background queue after a set amount of seconds.
  
  - parameter seconds: Delay in seconds
- - parameter task: task to execute after delay
+ - parameter task:    task to execute after delay
+ 
+ - returns: a delayed Task
  */
 func delayOnBackgroundQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
     let task = Task(task: task)

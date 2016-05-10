@@ -59,8 +59,7 @@ public extension UIView {
 
 // MARK: - Auto Layout
 public extension UIView {
-    
-    public func fullSizeInSuperview() -> [NSLayoutConstraint] {
+    public func constrainToFullSizeInSuperview() -> [NSLayoutConstraint] {
         guard let superview = self.superview else {
             fatalError("superview is nil")
         }
@@ -88,7 +87,7 @@ public extension UIView {
         return constraints
     }
     
-    public func fullSizeMarginInSuperview() -> [NSLayoutConstraint] {
+    public func constrainToFullSizeMarginInSuperview() -> [NSLayoutConstraint] {
         guard let superview = self.superview else {
             fatalError("superview is nil")
         }
@@ -96,12 +95,21 @@ public extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         var constraints = [NSLayoutConstraint]()
         
-        constraints += [
-            NSLayoutConstraint(item: self, attribute: .TopMargin, relatedBy: .Equal, toItem: superview, attribute: .TopMargin, multiplier: 1.0, constant: 0.0),
-            NSLayoutConstraint(item: self, attribute: .LeadingMargin, relatedBy: .Equal, toItem: superview, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0),
-            NSLayoutConstraint(item: self, attribute: .BottomMargin, relatedBy: .Equal, toItem: superview, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0),
-            NSLayoutConstraint(item: self, attribute: .TrailingMargin, relatedBy: .Equal, toItem: superview, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0)
-        ]
+        if #available(iOS 9.0, *) {
+            constraints += [
+                self.topAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.topAnchor),
+                self.leadingAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.leadingAnchor),
+                self.bottomAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.bottomAnchor),
+                self.trailingAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.trailingAnchor)
+            ]
+        } else {
+            constraints += [
+                NSLayoutConstraint(item: self, attribute: .TopMargin, relatedBy: .Equal, toItem: superview, attribute: .TopMargin, multiplier: 1.0, constant: 0.0),
+                NSLayoutConstraint(item: self, attribute: .LeadingMargin, relatedBy: .Equal, toItem: superview, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0),
+                NSLayoutConstraint(item: self, attribute: .BottomMargin, relatedBy: .Equal, toItem: superview, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0),
+                NSLayoutConstraint(item: self, attribute: .TrailingMargin, relatedBy: .Equal, toItem: superview, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0)
+            ]
+        }
         
         NSLayoutConstraint.activateConstraints(constraints)
         return constraints
@@ -168,8 +176,16 @@ public extension UIView {
 
 
 
-// MARK: - Set Hiddem
+// MARK: - Set Hidden
 public extension UIView {
+    /**
+     Set hidden animated
+     
+     - parameter hidden:     hidden to set
+     - parameter animated:   whether it's animated
+     - parameter duration:   animation duration
+     - parameter completion: completion block
+     */
     public func setHidden(hidden: Bool, animated: Bool = false, duration: NSTimeInterval = 0.25, completion: ((Bool) -> ())? = nil) {
         if !animated {
             alpha = hidden ? 0.0 : 1.0
@@ -343,9 +359,7 @@ public extension UIView {
     }
 }
 
-
 public extension UIView {
-    
     /**
      Get a copy of the view. Note: this is not workinhg as expected
      
@@ -359,6 +373,11 @@ public extension UIView {
 }
 
 public extension UIView {
+    /**
+     Get an image representation of this view.
+     
+     - returns: an Image.
+     */
     public func toImage() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
         
