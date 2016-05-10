@@ -31,14 +31,14 @@ class AlertControllerDemoViewController : UIViewController {
         stackView.alignment = .Center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
-        stackView.centerInSuperview()
+        stackView.constrainToCenterInSuperview()
         
         let systemAlertButton = Button()
         systemAlertButton.setBackgroundColor(ColorPalette.facebookMediumBlueColor, forState: .Normal)
         systemAlertButton.setCornerRadius(.HalfCircle, forState: .Normal)
         systemAlertButton.setTitle("Present Default Alert", forState: .Normal)
         systemAlertButton.addTarget(self, action: #selector(AlertControllerDemoViewController.presentDefaultAlert(_:)), forControlEvents: .TouchUpInside)
-        systemAlertButton.constraintToSize(CGSize(width: 230, height: 44))
+        systemAlertButton.constrainToSize(CGSize(width: 230, height: 44))
         stackView.addArrangedSubview(systemAlertButton)
         
         let customizedAlertButton = Button()
@@ -46,7 +46,7 @@ class AlertControllerDemoViewController : UIViewController {
         customizedAlertButton.setCornerRadius(.HalfCircle, forState: .Normal)
         customizedAlertButton.setTitle("Present Customized Alert", forState: .Normal)
         customizedAlertButton.addTarget(self, action: #selector(AlertControllerDemoViewController.presentCustomizedAlert(_:)), forControlEvents: .TouchUpInside)
-        customizedAlertButton.constraintToSize(CGSize(width: 270, height: 44))
+        customizedAlertButton.constrainToSize(CGSize(width: 270, height: 44))
         stackView.addArrangedSubview(customizedAlertButton)
     }
     

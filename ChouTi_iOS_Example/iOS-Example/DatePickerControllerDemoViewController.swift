@@ -33,8 +33,8 @@ class DatePickerControllerDemoViewController : UIViewController {
 		button.clipsToBounds = true
 		button.layer.cornerRadius = 25
 		
-		button.constraintToSize(CGSize(width: 160, height: 50))
-		button.centerInSuperview()
+		button.constrainToSize(CGSize(width: 160, height: 50))
+		button.constrainToCenterInSuperview()
 		
 		button.addTarget(self, action: #selector(DatePickerControllerDemoViewController.buttonTapped(_:)), forControlEvents: .TouchUpInside)
 		

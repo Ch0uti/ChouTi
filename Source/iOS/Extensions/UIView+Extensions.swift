@@ -59,6 +59,11 @@ public extension UIView {
 
 // MARK: - Auto Layout
 public extension UIView {
+    /**
+     Setup full size in superview constraints
+     
+     - returns: newly added constraints
+     */
     public func constrainToFullSizeInSuperview() -> [NSLayoutConstraint] {
         guard let superview = self.superview else {
             fatalError("superview is nil")
@@ -87,6 +92,11 @@ public extension UIView {
         return constraints
     }
     
+    /**
+     Setup full size constraints relative to margin in superview
+     
+     - returns: newly added constraints
+     */
     public func constrainToFullSizeMarginInSuperview() -> [NSLayoutConstraint] {
         guard let superview = self.superview else {
             fatalError("superview is nil")
@@ -115,7 +125,12 @@ public extension UIView {
         return constraints
     }
     
-    public func centerInSuperview() -> [NSLayoutConstraint] {
+    /**
+     Setup center in superview constraints
+     
+     - returns: newly added constraints
+     */
+    public func constrainToCenterInSuperview() -> [NSLayoutConstraint] {
         guard let superview = self.superview else {
             fatalError("superview is nil")
         }
@@ -139,7 +154,14 @@ public extension UIView {
         return constraints
     }
     
-    public func constraintWidth(width: CGFloat) -> NSLayoutConstraint {
+    /**
+     Setup width constraint with width specified
+     
+     - parameter width: width to be set
+     
+     - returns: newly added constraint
+     */
+    public func constrainToWidth(width: CGFloat) -> NSLayoutConstraint {
         let constraint: NSLayoutConstraint
         
         translatesAutoresizingMaskIntoConstraints = false
@@ -154,7 +176,14 @@ public extension UIView {
         return constraint
     }
     
-    public func constraintHeight(height: CGFloat) -> NSLayoutConstraint {
+    /**
+     Setup height constraint with height specified
+     
+     - parameter height: height to be set
+     
+     - returns: newly added constraint
+     */
+    public func constrainToHeight(height: CGFloat) -> NSLayoutConstraint {
         let constraint: NSLayoutConstraint
         
         translatesAutoresizingMaskIntoConstraints = false
@@ -169,8 +198,15 @@ public extension UIView {
         return constraint
     }
     
-    public func constraintToSize(size: CGSize) -> [NSLayoutConstraint] {
-        return [constraintWidth(size.width), constraintHeight(size.height)]
+    /**
+     Setup size constraints to view
+     
+     - parameter size: size to be set
+     
+     - returns: newly added constraint
+     */
+    public func constrainToSize(size: CGSize) -> [NSLayoutConstraint] {
+        return [constrainToWidth(size.width), constrainToHeight(size.height)]
     }
 }
 
