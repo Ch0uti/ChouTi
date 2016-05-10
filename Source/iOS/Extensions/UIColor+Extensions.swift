@@ -109,7 +109,7 @@ public extension UIColor {
      - returns: a darker UIColor object
      */
     public func darkerColor(brightnessDecreaseFactor: CGFloat = 0.75) -> UIColor {
-        brightnessDecreaseFactor.normalize(0.0, 1.0)
+        let brightnessDecreaseFactor = brightnessDecreaseFactor.normalize(0.0, 1.0)
         var hue: CGFloat = 0.0
         var saturation: CGFloat = 0.0
         var brightness: CGFloat = 0.0
@@ -118,7 +118,7 @@ public extension UIColor {
         if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
             return UIColor(hue: hue, saturation: saturation, brightness: brightness * brightnessDecreaseFactor, alpha: alpha)
         }
-        
+		
         return self
     }
     
@@ -128,7 +128,7 @@ public extension UIColor {
      - returns: a lighter color
      */
     public func lighterColor(brightnessIncreaseFactor: CGFloat = 1.3) -> UIColor {
-        brightnessIncreaseFactor.normalize(1.0, CGFloat.max)
+        let brightnessIncreaseFactor = brightnessIncreaseFactor.normalize(1.0, CGFloat.max)
         var hue: CGFloat = 0.0
         var saturation: CGFloat = 0.0
         var brightness: CGFloat = 0.0
