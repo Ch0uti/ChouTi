@@ -178,7 +178,7 @@ extension DropPresentingAnimator {
         }
         
         // Set a minimum duration, at least has 20% of animation duration.
-        let duration = (animationDuration * Double(percentComplete)).constrainToRange(animationDuration * 0.2, animationDuration)
+        let duration = (animationDuration * Double(percentComplete)).normalize(animationDuration * 0.2, animationDuration)
         
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
             presentedView.center = containerView.center
@@ -197,7 +197,7 @@ extension DropPresentingAnimator {
         self.transitionContext?.finishInteractiveTransition()
         
         // Set percentage completed to less than 1.0 to give a minimum duration
-        dismissingAnimation(transitionContext, percentComplete: percentComplete.constrainToRange(0.0, 0.8))
+        dismissingAnimation(transitionContext, percentComplete: percentComplete.normalize(0.0, 0.8))
     }
 }
 

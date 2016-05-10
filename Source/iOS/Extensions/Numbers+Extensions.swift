@@ -9,22 +9,35 @@ import Foundation
 
 public extension Comparable {
     /**
-     Constrain a number to a range
-     E.g. 5.constrainToRange(1, 6) will get 5,
-     5.constrainToRange(1, 3) will get 3,
-     5.constrainToRange(6, 9) will get 6
+     Normalize a number to a range
+     E.g. 5.normalize(1, 6) will get 5,
+     5.normalize(1, 3) will get 3,
+     5.normalize(6, 9) will get 6
      
      - parameter min: min number
      - parameter max: max number
      
-     - returns: number constrained in this range, if self is in the range, self is returned. otherwirse, it will return min or max.
+     - returns: number normalized in this range, if self is in the range, self is returned. otherwirse, it will return min or max.
      */
-    public func constrainToRange(min: Self, _ max: Self) -> Self {
+    public func normalize(min: Self, _ max: Self) -> Self {
         guard min <= max else {
             fatalError("Error: min: \(min) is greater than max: \(max)")
         }
         return Swift.min(Swift.max(min, self), max)
     }
+	
+	/**
+	Normalize a number to a range in place.
+	
+	- parameter min: min number
+	- parameter max: max number
+	*/
+	public mutating func normalizeInPlace(min: Self, _ max: Self) {
+		guard min <= max else {
+			fatalError("Error: min: \(min) is greater than max: \(max)")
+		}
+		self = Swift.min(Swift.max(min, self), max)
+	}
 }
 
 public extension Bool {
@@ -164,8 +177,15 @@ public extension CGFloat {
     /**
      Normalize a number, which will limit into 0...1
      */
-    public mutating func normalize() {
-        self = self.constrainToRange(0, 1)
+    public func normalize() -> CGFloat {
+        return self.normalize(0, 1)
+    }
+    
+    /**
+     Normalize a number in place, which will limit into 0...1
+     */
+    public mutating func normalizeInPlace() {
+        self.normalizeInPlace(0, 1)
     }
     
     /**

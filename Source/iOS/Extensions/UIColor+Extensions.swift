@@ -109,7 +109,7 @@ public extension UIColor {
      - returns: a darker UIColor object
      */
     public func darkerColor(brightnessDecreaseFactor: CGFloat = 0.75) -> UIColor {
-        assert(0.0 <= brightnessDecreaseFactor && brightnessDecreaseFactor <= 1.0, "brightnessDecreaseFactor should be greater than 0.0 and less than 1.0.")
+        brightnessDecreaseFactor.normalize(0.0, 1.0)
         var hue: CGFloat = 0.0
         var saturation: CGFloat = 0.0
         var brightness: CGFloat = 0.0
@@ -128,7 +128,7 @@ public extension UIColor {
      - returns: a lighter color
      */
     public func lighterColor(brightnessIncreaseFactor: CGFloat = 1.3) -> UIColor {
-        assert(brightnessIncreaseFactor > 1.0, "brightnessIncreaseFactor should be greater than 1.0.")
+        brightnessIncreaseFactor.normalize(1.0, CGFloat.max)
         var hue: CGFloat = 0.0
         var saturation: CGFloat = 0.0
         var brightness: CGFloat = 0.0
