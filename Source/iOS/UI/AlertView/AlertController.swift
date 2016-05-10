@@ -106,7 +106,7 @@ public class AlertController: UIViewController {
         // Call action handler when dismissing completed
         self.dismissViewControllerAnimated(true, completion: { [weak self] in
             self?.actionView.actions.forEach {
-                if $0.button == button {
+                if $0.button === button {
                     $0.performActionHandler()
                 }
             }

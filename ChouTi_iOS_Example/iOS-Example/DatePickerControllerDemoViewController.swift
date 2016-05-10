@@ -22,8 +22,8 @@ class DatePickerControllerDemoViewController : UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(button)
 		
-		button.setBackgroundColor(UIColor.purpleColor(), forState: .Normal)
-		button.setBackgroundColor(UIColor.purpleColor().colorWithAlphaComponent(0.8), forState: .Highlighted)
+		button.setBackgroundImageWithColor(UIColor.purpleColor(), forState: .Normal)
+		button.setBackgroundImageWithColor(UIColor.purpleColor().colorWithAlphaComponent(0.8), forState: .Highlighted)
 		button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
 		button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
 		

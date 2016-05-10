@@ -34,7 +34,7 @@ class AlertControllerDemoViewController : UIViewController {
         stackView.constrainToCenterInSuperview()
         
         let systemAlertButton = Button()
-        systemAlertButton.setBackgroundColor(ColorPalette.facebookMediumBlueColor, forState: .Normal)
+        systemAlertButton.setBackgroundImageWithColor(ColorPalette.facebookMediumBlueColor, forState: .Normal)
         systemAlertButton.setCornerRadius(.HalfCircle, forState: .Normal)
         systemAlertButton.setTitle("Present Default Alert", forState: .Normal)
         systemAlertButton.addTarget(self, action: #selector(AlertControllerDemoViewController.presentDefaultAlert(_:)), forControlEvents: .TouchUpInside)
@@ -42,7 +42,7 @@ class AlertControllerDemoViewController : UIViewController {
         stackView.addArrangedSubview(systemAlertButton)
         
         let customizedAlertButton = Button()
-        customizedAlertButton.setBackgroundColor(ColorPalette.lightSeaGreenColor, forState: .Normal)
+        customizedAlertButton.setBackgroundImageWithColor(ColorPalette.lightSeaGreenColor, forState: .Normal)
         customizedAlertButton.setCornerRadius(.HalfCircle, forState: .Normal)
         customizedAlertButton.setTitle("Present Customized Alert", forState: .Normal)
         customizedAlertButton.addTarget(self, action: #selector(AlertControllerDemoViewController.presentCustomizedAlert(_:)), forControlEvents: .TouchUpInside)
@@ -150,9 +150,9 @@ class AlertControllerDemoViewController : UIViewController {
             button.setTitle("Customized Button", forState: .Normal)
             button.setTitleColor(ColorPalette.facebookBlueColor, forState: .Normal)
             button.setTitleColor(ColorPalette.facebookBlueColor.darkerColor(), forState: .Highlighted)
-            alert.addButton(button, action: { btn in
-                print("\(button.currentTitle) pressed")
-            })
+            alert.addAction(AlertAction(title: "", button: button, handler: { (handler) -> Void in
+                print("\(handler.button.currentTitle) pressed")
+            }))
         }
         
         rotation += 1
