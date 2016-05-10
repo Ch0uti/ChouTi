@@ -11,6 +11,7 @@
 		022596C81C1DEA3C000A150F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022596C71C1DEA3C000A150F /* CoreLocation.framework */; };
 		022994121C24BF8A0002DD88 /* OperationsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022994111C24BF8A0002DD88 /* OperationsDemoViewController.swift */; };
 		025B29581C1D04440011FF86 /* DatePickerControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B29571C1D04440011FF86 /* DatePickerControllerDemoViewController.swift */; };
+		02AE905A1CDBC0280080EAC0 /* AlertControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AE90591CDBC0280080EAC0 /* AlertControllerDemoViewController.swift */; };
 		02F592391C9509BB00D87DFA /* SearchTextFieldDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F592381C9509BB00D87DFA /* SearchTextFieldDemoViewController.swift */; };
 		8D63AE403EC32CFDC9C6F5DB /* Pods_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F3CCB23A367D8CB14E4D38 /* Pods_iOS_Example.framework */; };
 		E402421A1C10E2C3005B33E9 /* DropPresentingDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40242191C10E2C3005B33E9 /* DropPresentingDemoViewController.swift */; };
@@ -38,6 +39,7 @@
 		022596C71C1DEA3C000A150F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		022994111C24BF8A0002DD88 /* OperationsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsDemoViewController.swift; sourceTree = "<group>"; };
 		025B29571C1D04440011FF86 /* DatePickerControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerControllerDemoViewController.swift; sourceTree = "<group>"; };
+		02AE90591CDBC0280080EAC0 /* AlertControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerDemoViewController.swift; sourceTree = "<group>"; };
 		02F592381C9509BB00D87DFA /* SearchTextFieldDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextFieldDemoViewController.swift; sourceTree = "<group>"; };
 		02F5C4B61CD44C610067A14B /* iOS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iOS.playground; sourceTree = "<group>"; };
 		17F3CCB23A367D8CB14E4D38 /* Pods_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 				022994111C24BF8A0002DD88 /* OperationsDemoViewController.swift */,
 				0211A3F51C4B300C00895A84 /* NavigationBarStatusBarDemoViewController.swift */,
 				02F592381C9509BB00D87DFA /* SearchTextFieldDemoViewController.swift */,
+				02AE90591CDBC0280080EAC0 /* AlertControllerDemoViewController.swift */,
 				E4F3B8781B798FDD006E1BF9 /* Main.storyboard */,
 				E4F3B87B1B798FDD006E1BF9 /* Images.xcassets */,
 				E4F3B87D1B798FDD006E1BF9 /* LaunchScreen.xib */,
@@ -310,6 +313,7 @@
 				0211A3F61C4B300C00895A84 /* NavigationBarStatusBarDemoViewController.swift in Sources */,
 				E4E603111C0BE3C3005740B6 /* ImagePickerDemoViewController.swift in Sources */,
 				E4F3B8751B798FDD006E1BF9 /* AppDelegate.swift in Sources */,
+				02AE905A1CDBC0280080EAC0 /* AlertControllerDemoViewController.swift in Sources */,
 				E4D99C311B9157A600E492F9 /* SideViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

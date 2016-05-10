@@ -24,7 +24,7 @@ public class Button: UIButton {
     }
     
     /**
-     Corner radius option, ha
+     Corner radius option
      
      - Absolute:   absolute corner radius
      - Relative:   relative corner radius, calculated by percetage multiply by width or height
@@ -154,7 +154,7 @@ extension Button {
      - returns: The corner radius for the specified state. If there's no corner radius is set for the state, corner radius for normal state is returned, otherwise, default value CornerRadius.Absolute(0.0) is returned.
      */
     public func cornerRadiusForState(state: UIControlState) -> CornerRadius {
-        return cornerRadiusForState[state.rawValue] ?? cornerRadiusForState[UIControlState.Normal.rawValue] ?? CornerRadius.Absolute(0.0)
+        return cornerRadiusForState[state.rawValue] ?? cornerRadiusForState[UIControlState.Normal.rawValue] ?? .Absolute(0.0)
     }
     
     /**
@@ -178,10 +178,14 @@ extension Button {
     public var currentBorderWidth: CGFloat { return layer.borderWidth }
     
     /// The current corner radius that is displayed on the button. (read-only)
-    public var currentCornerRadius: CGFloat { return layer.cornerRadius }
+    public var currentCornerRadius: CornerRadius {
+        return cornerRadiusForState[state.rawValue] ?? cornerRadiusForState[UIControlState.Normal.rawValue] ?? .Absolute(layer.cornerRadius)
+    }
     
     /// The current background color that is displayed on the button. (read-only)
-    public var currentBackgroundColor: UIColor? { return backgroundColorForState[state.rawValue] ?? backgroundColorForState[UIControlState.Normal.rawValue] }
+    public var currentBackgroundColor: UIColor? {
+        return backgroundColorForState[state.rawValue] ?? backgroundColorForState[UIControlState.Normal.rawValue]
+    }
 }
 
 // MARK: - Private Helpers

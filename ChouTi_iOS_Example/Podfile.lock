@@ -27,6 +27,7 @@ PODS:
     - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (= 0.1)
   - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (0.1)
   - ChouTi/UI (0.1):
+    - ChouTi/UI/AlertView (= 0.1)
     - ChouTi/UI/AutoLinesLabel (= 0.1)
     - ChouTi/UI/CollectionViewCells (= 0.1)
     - ChouTi/UI/DatePickerViewController (= 0.1)
@@ -42,6 +43,7 @@ PODS:
     - ChouTi/UI-Extra/LoadingMorphingLabel (= 0.1)
   - ChouTi/UI-Extra/LoadingMorphingLabel (0.1):
     - LTMorphingLabel (~> 0.0)
+  - ChouTi/UI/AlertView (0.1)
   - ChouTi/UI/AutoLinesLabel (0.1)
   - ChouTi/UI/CollectionViewCells (0.1)
   - ChouTi/UI/DatePickerViewController (0.1)
@@ -57,17 +59,16 @@ PODS:
 
 DEPENDENCIES:
   - ChouTi/All (from `../`)
-  - ChouTi/ChouTi-Extra (from `../`)
 
 EXTERNAL SOURCES:
   ChouTi:
     :path: ../
 
 SPEC CHECKSUMS:
-  ChouTi: b587f3959bf7758225bee6bb19bd34258dcbc3f5
+  ChouTi: 4149e6b811c9ce1dd28ba8b128a89aa9fc6481a5
   LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   Operations: 11f0188d894e441fa16f87264e771c88b3829826
 
-PODFILE CHECKSUM: 11cf008d87e034f6a628ce5f284466aefdce0d0c
+PODFILE CHECKSUM: b99336de53baf7ee5ad27d1da423e49e3e8b5e1d
 
 COCOAPODS: 1.0.0.rc.1
