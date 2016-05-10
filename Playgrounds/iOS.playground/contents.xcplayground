@@ -5,6 +5,7 @@
         <page name='Mirror'/>
         <page name='AlertView'/>
         <page name='LeftRightLabelsViewLayout'/>
+        <page name='CenterXLabel'/>
         <page name='UIButton'/>
     </pages>
 </playground>

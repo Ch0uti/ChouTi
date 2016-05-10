@@ -2,7 +2,7 @@
 
 import UIKit
 import XCPlayground
-@testable import ChouTi
+import ChouTi
 
 class PlaygroundViewController: UIViewController {
     override func viewDidLoad() {

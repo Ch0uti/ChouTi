@@ -1,5 +1,5 @@
 //
-//  ScaleAnimator.swift
+//  ScalePresentingAnimator.swift
 //  Pods
 //
 //  Created by Honghao Zhang on 2016-05-09.
@@ -53,7 +53,7 @@ extension ScalePresentingAnimator {
                 return
         }
         
-        presentedView.size = presentedViewController.preferredContentSize //?? CGSizeZero// CGSize(width: presentedViewDefaultWidth, height: presentedViewDefaultHeight)
+        presentedView.size = presentedViewController.preferredContentSize
         containerView.addSubview(presentedView)
         
         // Initial state
@@ -72,11 +72,9 @@ extension ScalePresentingAnimator {
     
     private func dismissingAnimation(transitionContext: UIViewControllerContextTransitioning) {
         // Necessary setup for dismissing
-        guard
-            let fromView = self.fromViewController?.view,
-            let containerView = self.containerView else {
-                NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
-                return
+        guard let fromView = self.fromViewController?.view else {
+			NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
+			return
         }
         
         UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0,  options: .CurveEaseInOut, animations: { [unowned self] in

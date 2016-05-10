@@ -176,6 +176,18 @@ class MainViewController: UIViewController {
             )
         )
         
+        if #available(iOS 9.0, *) {
+            viewRows.append(
+                TableViewRow(title: "⚠️ Alert Controller",
+                    tableView: tableView,
+                    cellSelectAction: { indexPath, cell in
+                        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                        self.navigationController?.pushViewController(AlertControllerDemoViewController(), animated: true)
+                    }
+                )
+            )
+        }
+        
         sections.append(
             TableViewSection(headerTitle: "Views", rows: viewRows, tableView: tableView)
         )

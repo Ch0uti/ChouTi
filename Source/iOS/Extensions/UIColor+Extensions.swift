@@ -100,6 +100,46 @@ public extension UIColor {
         
         return UIColor(red: newR, green: newG, blue: newB, alpha: newA)
     }
+
+    /**
+     Get a darker color for self
+     
+     - parameter brightnessDecreaseFactor: factor applied to brightness, should be greater than 0.0 and less than 1.0
+     
+     - returns: a darker UIColor object
+     */
+    public func darkerColor(brightnessDecreaseFactor: CGFloat = 0.75) -> UIColor {
+        assert(0.0 <= brightnessDecreaseFactor && brightnessDecreaseFactor <= 1.0, "brightnessDecreaseFactor should be greater than 0.0 and less than 1.0.")
+        var hue: CGFloat = 0.0
+        var saturation: CGFloat = 0.0
+        var brightness: CGFloat = 0.0
+        var alpha: CGFloat = 0.0
+        
+        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+            return UIColor(hue: hue, saturation: saturation, brightness: brightness * brightnessDecreaseFactor, alpha: alpha)
+        }
+        
+        return self
+    }
+    
+    /**
+     Get a lighter color for self
+     
+     - returns: a lighter color
+     */
+    public func lighterColor(brightnessIncreaseFactor: CGFloat = 1.3) -> UIColor {
+        assert(brightnessIncreaseFactor > 1.0, "brightnessIncreaseFactor should be greater than 1.0.")
+        var hue: CGFloat = 0.0
+        var saturation: CGFloat = 0.0
+        var brightness: CGFloat = 0.0
+        var alpha: CGFloat = 0.0
+        
+        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+            return UIColor(hue: hue, saturation: saturation, brightness: min(brightnessIncreaseFactor, 1.0), alpha: alpha)
+        }
+        
+        return self
+    }
 }
 
 // MARK: - HEX Colors
