@@ -202,53 +202,19 @@ public class AlertView: UIView {
      - parameter action: The action object to display as part of the alert. Actions are displayed as buttons in the alert. The action object provides the button text and the action to be performed when that button is tapped.
      */
     public func addAction(action: AlertAction) {
+        if actions.contains(action) {
+            NSLog("Warning: adding duplicated action: \(action)")
+            return
+        }
+        
         actions.append(action)
         
-        let button = AlertViewButton(alertAction: action)
-        button.addTarget(self, action: #selector(AlertView.buttonTapped(_:)), forControlEvents: .TouchUpInside)
-        
         // Setup default button height for 44.0 
-        button.constrainToHeight(44).priority = 500
-        actionButtonsStackView.addArrangedSubview(button)
+        action.button.constrainToHeight(44).priority = 500
+        actionButtonsStackView.addArrangedSubview(action.button)
         
         if actions.count > 2 {
             actionButtonsStackView.axis = .Vertical
-        }
-    }
-	
-    /**
-     Aadd an button with an action to the alert view.
-     Discussion: User can use this method to customize button style instead of default alert action button style.
-     
-     - parameter button: an UIButton object.
-     - parameter action: an action performed when button pressed.
-     */
-	public func addButton(button: UIButton, action: (UIButton -> Void)) {
-		let alertAction = AlertAction(title: nil, style: .Default) { _ in
-			action(button)
-		}
-		
-		actions.append(alertAction)
-		
-		button.addTarget(self, action: #selector(AlertView.buttonTapped(_:)), forControlEvents: .TouchUpInside)
-		// Setup default button height for 44.0
-		button.constrainToHeight(44).priority = 500
-		actionButtonsStackView.addArrangedSubview(button)
-		
-		if actions.count > 2 {
-			actionButtonsStackView.axis = .Vertical
-		}
-	}
-	
-    func buttonTapped(button: UIButton) {
-        presentingViewController?.dismissViewControllerAnimated(true) { [weak self] in
-            if let button = button as? AlertViewButton {
-                button.alertAction?.performActionHandler()
-            } else {
-                if let buttonIndex = self?.actionButtonsStackView.arrangedSubviews.indexOf(button) {
-                    self?.actions[buttonIndex].performActionHandler()
-                }
-            }
         }
     }
 }
