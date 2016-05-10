@@ -8,10 +8,10 @@
 
 import UIKit
 
-public class SlideUpAnimator : Animator {
+public class SlideUpAnimator: Animator {
 	
-	public var presentingViewHeight: CGFloat = 400
-	public var presentingViewWidth: CGFloat?
+	public var presentedViewHeight: CGFloat = 400
+	public var presentedViewWidth: CGFloat?
 	
 	public var overlayViewStyle: OverlayViewStyle = .Normal(UIColor(white: 0.0, alpha: 0.75))
 	
@@ -54,10 +54,10 @@ extension SlideUpAnimator {
 		containerView.addSubview(presentedView)
 		
 		// Initial constraints
-		presentedView.constraintHeight(presentingViewHeight)
+		presentedView.constraintHeight(presentedViewHeight)
 
-		if let presentingViewWidth = presentingViewWidth {
-			presentedView.constraintWidth(presentingViewWidth)
+		if let presentedViewWidth = presentedViewWidth {
+			presentedView.constraintWidth(presentedViewWidth)
 		} else {
 			NSLayoutConstraint(item: presentedView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
 			NSLayoutConstraint(item: presentedView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
@@ -73,8 +73,8 @@ extension SlideUpAnimator {
 		
 		emptyView.backgroundColor = presentedView.backgroundColor
 		emptyView.constraintHeight(100.0)
-		if let presentingViewWidth = presentingViewWidth {
-			emptyView.constraintWidth(presentingViewWidth)
+		if let presentedViewWidth = presentedViewWidth {
+			emptyView.constraintWidth(presentedViewWidth)
 		} else {
 			NSLayoutConstraint(item: emptyView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
 			NSLayoutConstraint(item: emptyView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true

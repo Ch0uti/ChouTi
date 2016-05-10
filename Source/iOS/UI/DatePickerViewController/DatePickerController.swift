@@ -29,7 +29,7 @@ public class DatePickerController : UIViewController {
 	}
 	
 	private func commonInit() {
-		slideUpAnimator.presentingViewHeight = 264.0 // 44.0 + 220.0
+		slideUpAnimator.presentedViewHeight = 264.0 // 44.0 + 220.0
 		slideUpAnimator.overlayViewStyle = overlayViewStyle
 		
 		modalPresentationStyle = .Custom
