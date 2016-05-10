@@ -11,14 +11,15 @@ import UIKit
 /// Buttons on alert view
 public class AlertViewButton: Button {
     /// AlertAction binded to this button
-    var alertAction: AlertAction? {
+    weak var alertAction: AlertAction? {
         didSet {
             guard let alertAction = alertAction else {
-                print("Error: alert action should not be nil")
-                assertionFailure("Error: alert action should not be nil")
+                NSLog("Error: alert action should not be set to nil")
+                assertionFailure("Error: alert action should not be set to nil")
                 return
             }
-            
+			
+			enabled = alertAction.enabled
             setTitle(alertAction.title, forState: .Normal)
             updateButtonStyle()
         }
@@ -33,9 +34,7 @@ public class AlertViewButton: Button {
      */
     public required convenience init(alertAction: AlertAction) {
         self.init()
-        
-        enabled = alertAction.enabled
-        
+		
         defer {
             self.alertAction = alertAction
         }

@@ -9,7 +9,7 @@
 import UIKit
 
 /// This class mimics UIAlertAction.
-public class AlertAction {
+public class AlertAction: Equatable {
     /// The title of the action’s button. (read-only)
     public let title: String?
     
@@ -18,6 +18,9 @@ public class AlertAction {
     
     /// Action handler
     let handler: ((AlertAction) -> Void)?
+    
+    /// Button associated with this alert action
+    public let button: UIButton
     
     /// A Boolean value indicating whether the action is currently enabled.
     public var enabled: Bool = true
@@ -35,6 +38,33 @@ public class AlertAction {
         self.title = title
         self.style = style
         self.handler = handler
+        let alertActionButton = AlertViewButton()
+        self.button = alertActionButton
+        
+        alertActionButton.alertAction = self
+        alertActionButton.addTarget(self, action: #selector(AlertAction.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+    }
+    
+    /**
+     Create and return an action with customized button and action handler.
+     
+     - parameter title:   The action title, this is not associated with button title, you should setup button title correctly.
+     - parameter button:  Customized button.
+     - parameter handler: A block to execute when the user selects the action. This block has no return value and takes the selected action object as its only parameter.
+     
+     - returns: A new alert action object.
+     */
+    public init(title: String?, button: UIButton, handler: ((AlertAction) -> Void)?) {
+        self.title = title
+        self.style = .Default
+        self.handler = handler
+        self.button = button
+        
+        button.addTarget(self, action: #selector(AlertAction.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+    }
+    
+    @objc func buttonTapped(button: UIButton) {
+        performActionHandler()
     }
     
     /**
@@ -45,4 +75,8 @@ public class AlertAction {
             handler?(self)
         }
     }
+}
+
+public func == (lhs: AlertAction, rhs: AlertAction) -> Bool {
+    return (lhs.title == rhs.title) && (lhs.style == rhs.style) && (lhs.button == rhs.button)
 }

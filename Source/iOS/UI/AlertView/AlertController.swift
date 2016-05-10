@@ -94,18 +94,23 @@ public class AlertController: UIViewController {
      - parameter action: The action object to display as part of the alert. Actions are displayed as buttons in the alert. The action object provides the button text and the action to be performed when that button is tapped.
      */
     public func addAction(action: AlertAction) {
+        // Remove the default target action, handler should be called after dismissing completed
+        action.button.removeTarget(action, action: #selector(AlertAction.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+        // Add customized action
+        action.button.addTarget(self, action: #selector(AlertController.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+        
         actionView.addAction(action)
     }
-	
-	/**
-	Aadd an button with an action to the alert.
-	Discussion: User can use this method to customize button style instead of default alert action button style.
-	
-	- parameter button: an UIButton object.
-	- parameter action: an action performed when button pressed.
-	*/
-    public func addButton(button: UIButton, action: (UIButton -> Void)) {
-        actionView.addButton(button, action: action)
+    
+    func buttonTapped(button: UIButton) {
+        // Call action handler when dismissing completed
+        self.dismissViewControllerAnimated(true, completion: { [weak self] in
+            self?.actionView.actions.forEach {
+                if $0.button == button {
+                    $0.performActionHandler()
+                }
+            }
+        })
     }
 }
 
