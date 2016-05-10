@@ -78,7 +78,7 @@ public class AlertController: UIViewController {
         // Hence, I have to add it as a subview
         // Reference: http://stackoverflow.com/a/31757312/3164091
         view.addSubview(actionView)
-        actionView.fullSizeInSuperview()
+        actionView.constrainToFullSizeInSuperview()
     }
 	
     public override func viewWillAppear(animated: Bool) {

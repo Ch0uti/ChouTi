@@ -128,13 +128,13 @@ public extension UIView {
         
         if !animated {
             viewConfiguration(overlayView)
-            overlayView.fullSizeInSuperview()
+            overlayView.constrainToFullSizeInSuperview()
             beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, overlayViewBackgroundColor: overlayViewBackgroundColor)
             completion?(overlayView: overlayView)
         } else {
             overlayView.alpha = 0.0
             viewConfiguration(overlayView)
-            overlayView.fullSizeInSuperview()
+            overlayView.constrainToFullSizeInSuperview()
             
             beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, overlayViewBackgroundColor: overlayViewBackgroundColor)
             
@@ -333,13 +333,13 @@ public extension UIView {
         
         if !animated {
             viewConfiguration(overlayView)
-            overlayView.fullSizeInSuperview()
+            overlayView.constrainToFullSizeInSuperview()
             beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle)
             completion?(overlayView: overlayView)
         } else {
             overlayView.alpha = 0.0
             viewConfiguration(overlayView)
-            overlayView.fullSizeInSuperview()
+            overlayView.constrainToFullSizeInSuperview()
             
             beginning?(animated: animated, duration: duration, delay: delay, dampingRatio: dampingRatio, velocity: velocity, blurredViewBackgroundColor: blurredViewBackgroundColor, blurEffectStyle: blurEffectStyle)
             completion?(overlayView: overlayView)
