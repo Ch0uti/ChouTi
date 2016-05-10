@@ -54,10 +54,10 @@ extension SlideUpAnimator {
 		containerView.addSubview(presentedView)
 		
 		// Initial constraints
-		presentedView.constraintHeight(presentedViewHeight)
+		presentedView.constrainToHeight(presentedViewHeight)
 
 		if let presentedViewWidth = presentedViewWidth {
-			presentedView.constraintWidth(presentedViewWidth)
+			presentedView.constrainToWidth(presentedViewWidth)
 		} else {
 			NSLayoutConstraint(item: presentedView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
 			NSLayoutConstraint(item: presentedView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
@@ -72,9 +72,9 @@ extension SlideUpAnimator {
 		containerView.addSubview(emptyView)
 		
 		emptyView.backgroundColor = presentedView.backgroundColor
-		emptyView.constraintHeight(100.0)
+		emptyView.constrainToHeight(100.0)
 		if let presentedViewWidth = presentedViewWidth {
-			emptyView.constraintWidth(presentedViewWidth)
+			emptyView.constrainToWidth(presentedViewWidth)
 		} else {
 			NSLayoutConstraint(item: emptyView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
 			NSLayoutConstraint(item: emptyView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true

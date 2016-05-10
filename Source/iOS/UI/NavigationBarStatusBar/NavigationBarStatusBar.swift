@@ -67,7 +67,7 @@ public class NavigationBarStatusBar: UIView {
 		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=top_min_spacing)-[titleLabel]-(>=bottom_min_spacing)-|", options: [], metrics: metrics, views: views)
 		constraints += [NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0)]
 		
-		heightConstraint = self.constraintHeight(44)
+		heightConstraint = self.constrainToHeight(44)
 
 		NSLayoutConstraint.activateConstraints(constraints)
 	}

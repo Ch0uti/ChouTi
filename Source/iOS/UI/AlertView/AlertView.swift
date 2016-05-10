@@ -208,7 +208,7 @@ public class AlertView: UIView {
         button.addTarget(self, action: #selector(AlertView.buttonTapped(_:)), forControlEvents: .TouchUpInside)
         
         // Setup default button height for 44.0 
-        button.constraintHeight(44).priority = 500
+        button.constrainToHeight(44).priority = 500
         actionButtonsStackView.addArrangedSubview(button)
         
         if actions.count > 2 {
@@ -232,7 +232,7 @@ public class AlertView: UIView {
 		
 		button.addTarget(self, action: #selector(AlertView.buttonTapped(_:)), forControlEvents: .TouchUpInside)
 		// Setup default button height for 44.0
-		button.constraintHeight(44).priority = 500
+		button.constrainToHeight(44).priority = 500
 		actionButtonsStackView.addArrangedSubview(button)
 		
 		if actions.count > 2 {

@@ -96,7 +96,7 @@ public class ImagePickerView: UIView {
 
 	private func setupConstraints() {
 		backgroundImageView.constrainToFullSizeInSuperview()
-		cameraButtonDescriptionLabelStackView.centerInSuperview()
+		cameraButtonDescriptionLabelStackView.constrainToCenterInSuperview()
 	}
 }
 

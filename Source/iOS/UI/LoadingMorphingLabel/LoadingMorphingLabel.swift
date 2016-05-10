@@ -48,7 +48,7 @@ public class LoadingMorphingLabel: UIView {
 	private func commonInit() {
 		morphingLabel.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(morphingLabel)
-		morphingLabel.centerInSuperview()
+		morphingLabel.constrainToCenterInSuperview()
 		
 		texts = ["123", "456", "Foo", "Bar"]
 	}
