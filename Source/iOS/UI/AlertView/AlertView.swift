@@ -60,6 +60,27 @@ public class AlertView: UIView {
     /// Message label exposed, don't set its text, use `message` instead
     public let messageLabel = UILabel()
     
+    /// Vertical spacing between title label and message label
+    public var titleMessageVerticalSpacing: CGFloat = 8.0 {
+        didSet {
+            labelsStackView.spacing = titleMessageVerticalSpacing
+        }
+    }
+    
+    /// Spacing between buttons
+    public var buttonSpacing: CGFloat = 8.0 {
+        didSet {
+            actionButtonsStackView.spacing = buttonSpacing
+        }
+    }
+    
+    /// Vertical spacing between message label and buttons
+    public var labelButtonVerticalSpacing: CGFloat = 24.0 {
+        didSet {
+            containerStackView.spacing = labelButtonVerticalSpacing
+        }
+    }
+    
     /// Vertical stack view for title and message labels
     private let labelsStackView = UIStackView()
     
@@ -142,20 +163,20 @@ public class AlertView: UIView {
         
         labelsStackView.axis = .Vertical
         labelsStackView.distribution = .EqualSpacing
-        labelsStackView.spacing = 8.0
+        labelsStackView.spacing = titleMessageVerticalSpacing
         labelsStackView.addArrangedSubview(titleLabel)
         labelsStackView.addArrangedSubview(messageLabel)
         
         // Action Buttons
         actionButtonsStackView.axis = .Horizontal
         actionButtonsStackView.distribution = .FillEqually
-        actionButtonsStackView.spacing = 8.0
+        actionButtonsStackView.spacing = buttonSpacing
         actionButtonsStackView.hidden = true // there's no actions, set to hidden by default
         
         // Container
         containerStackView.axis = .Vertical
         containerStackView.distribution = .EqualSpacing
-        containerStackView.spacing = 24.0
+        containerStackView.spacing = labelButtonVerticalSpacing
         
         containerStackView.addArrangedSubview(labelsStackView)
         containerStackView.addArrangedSubview(actionButtonsStackView)
