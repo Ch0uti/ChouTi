@@ -15,27 +15,27 @@ import UIKit
 @available(iOS 9.0, *)
 public class AlertController: UIViewController {
     
-    /// ActionView will be presented
-    public let actionView = AlertView()
+    /// AlertView will be presented
+    public let alertView = AlertView()
     
     /// Scale presenting/dismissing animator
     private let animator = ScalePresentingAnimator()
     
     /// The title of the alert.
     public override var title: String? {
-        get { return actionView.title }
-        set { actionView.title = newValue }
+        get { return alertView.title }
+        set { alertView.title = newValue }
     }
     
     /// Descriptive text that provides more details about the reason for the alert.
     public var message: String? {
-        get { return actionView.message }
-        set { actionView.message = newValue }
+        get { return alertView.message }
+        set { alertView.message = newValue }
     }
     
     /// The actions that the user can take in response to the alert. (read-only)
     public var actions: [AlertAction] {
-        get { return actionView.actions }
+        get { return alertView.actions }
     }
     
     /**
@@ -48,8 +48,8 @@ public class AlertController: UIViewController {
      */
     public convenience init(title: String?, message: String?) {
         self.init()
-        actionView.title = title
-        actionView.message = message
+        alertView.title = title
+        alertView.message = message
     }
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -73,12 +73,12 @@ public class AlertController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initially I want to set self.view = actionView.
+        // Initially I want to set self.view = alertView.
         // However, you cannot set layoutMargins to the root view of a view controller.
         // Hence, I have to add it as a subview
         // Reference: http://stackoverflow.com/a/31757312/3164091
-        view.addSubview(actionView)
-        actionView.constrainToFullSizeInSuperview()
+        view.addSubview(alertView)
+        alertView.constrainToFullSizeInSuperview()
     }
 	
     public override func viewWillAppear(animated: Bool) {
@@ -99,13 +99,13 @@ public class AlertController: UIViewController {
         // Add customized action
         action.button.addTarget(self, action: #selector(AlertController.buttonTapped(_:)), forControlEvents: .TouchUpInside)
         
-        actionView.addAction(action)
+        alertView.addAction(action)
     }
     
     func buttonTapped(button: UIButton) {
         // Call action handler when dismissing completed
         self.dismissViewControllerAnimated(true, completion: { [weak self] in
-            self?.actionView.actions.forEach {
+            self?.alertView.actions.forEach {
                 if $0.button === button {
                     $0.performActionHandler()
                 }
@@ -120,6 +120,6 @@ extension AlertController {
      Update controller's preferred content size from action view's size
      */
     private func updatePreferredContentSize() {
-        preferredContentSize = actionView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+        preferredContentSize = alertView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
     }
 }
