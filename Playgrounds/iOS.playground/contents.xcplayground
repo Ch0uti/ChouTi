@@ -3,9 +3,8 @@
     <pages>
         <page name='General'/>
         <page name='Mirror'/>
-        <page name='AlertView'/>
+        <page name='Memory'/>
         <page name='LeftRightLabelsViewLayout'/>
-        <page name='CenterXLabel'/>
         <page name='UIButton'/>
     </pages>
 </playground>

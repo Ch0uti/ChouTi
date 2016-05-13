@@ -55,10 +55,10 @@ public class Button: UIButton {
     }
     
     // MARK: - Storing Extra Presentation Styles
-    private lazy var borderColorForState: [UInt : UIColor] = { [:] }()
-    private lazy var borderWidthForState: [UInt : CGFloat] = { [:] }()
-    private lazy var cornerRadiusForState: [UInt : CornerRadius] = { [:] }()
-    private lazy var backgroundImageColorForState: [UInt : UIColor] = { [:] }()
+    private var borderColorForState = [UInt : UIColor]()
+    private var borderWidthForState = [UInt : CGFloat]()
+    private var cornerRadiusForState = [UInt : CornerRadius]()
+    private var backgroundImageColorForState = [UInt : UIColor]()
     
     // MARK: - Overriden
     public override var highlighted: Bool { didSet { refreshBorderStyles() } }
@@ -229,7 +229,11 @@ extension Button {
             layer.cornerRadius = normalCornerRadius ?? 0.0
         }
     }
-    
+	
+	// TODO: Transparent title color
+	// Reference: https://github.com/purrrminator/AKStencilButton/blob/master/AKStencilButton.m
+	// http://stackoverflow.com/questions/27458101/transparent-uibutton-title
+	// http://stackoverflow.com/questions/23515100/ios-uibutton-with-transparent-title-on-white-background
 //    private func refreshClearTitleMask() {
 ////        titleLabel?.backgroundColor = UIColor.clearColor()
 //        let text = titleLabel?.text
