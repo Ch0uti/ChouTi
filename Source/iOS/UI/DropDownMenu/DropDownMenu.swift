@@ -307,14 +307,14 @@ extension DropDownMenu {
 		
 		if animated {
 			isAnimating = true
-			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: { finished in
+			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: {
 				self.isAnimating = false
 			})
 		} else {
 			let originalAnimationDuration = animationDuration
 			animationDuration = 0.0
 			
-			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: { [unowned self] finished in
+			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: { [unowned self] _ in
 				self.animationDuration = originalAnimationDuration
 			})
 		}
@@ -322,11 +322,14 @@ extension DropDownMenu {
 
 	private func collapse(animated animated: Bool) {
 		if animated {
-			pickerViewController.dismissViewControllerAnimated(true, completion: nil)
+			isAnimating = true
+			pickerViewController.dismissViewControllerAnimated(true, completion: {
+				self.isAnimating = false
+			})
 		} else {
 			let originalAnimationDuration = animationDuration
 			animationDuration = 0.0
-			pickerViewController.dismissViewControllerAnimated(true, completion: { [unowned self] finished in
+			pickerViewController.dismissViewControllerAnimated(true, completion: { [unowned self] _ in
 				self.animationDuration = originalAnimationDuration
 			})
 		}
