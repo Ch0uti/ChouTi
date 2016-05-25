@@ -21,7 +21,10 @@ public class AlertView: UIView {
         didSet {
             if title == nil {
                 titleLabel.hidden = true
-            }
+			} else {
+				titleLabel.hidden = false
+			}
+			
             titleLabel.text = title
         }
     }
@@ -31,7 +34,10 @@ public class AlertView: UIView {
         didSet {
             if message == nil {
                 messageLabel.hidden = true
-            }
+			} else {
+				messageLabel.hidden = false
+			}
+			
             messageLabel.text = message
         }
     }
