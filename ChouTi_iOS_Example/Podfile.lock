@@ -62,7 +62,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   ChouTi:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   ChouTi: 4149e6b811c9ce1dd28ba8b128a89aa9fc6481a5
@@ -71,4 +71,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b99336de53baf7ee5ad27d1da423e49e3e8b5e1d
 
-COCOAPODS: 1.0.0.rc.1
+COCOAPODS: 1.0.0

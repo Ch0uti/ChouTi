@@ -131,7 +131,7 @@ extension Button {
      - returns: The border color for the specified state. If no border color has been set for the specific state, this method returns the border color associated with the UIControlStateNormal state. If no border color has been set for the UIControlStateNormal state, nil is returned.
      */
     public func borderColorForState(state: UIControlState) -> UIColor? {
-        return borderColorForState[state.rawValue] ?? borderColorForState[UIControlState.Normal.rawValue] ?? nil
+        return borderColorForState[state.rawValue] ?? borderColorForState[UIControlState.Normal.rawValue] ?? ((layer.borderColor != nil) ? UIColor(CGColor: layer.borderColor!) : nil)
     }
     
     /**
@@ -142,7 +142,7 @@ extension Button {
      - returns: The border width for the specified state. If there's no border width is set for the state, border width for normal state is returned, otherwise, default value 0.0 is returned.
      */
     public func borderWidthForState(state: UIControlState) -> CGFloat {
-        return borderWidthForState[state.rawValue] ?? borderWidthForState[UIControlState.Normal.rawValue] ?? 0.0
+        return borderWidthForState[state.rawValue] ?? borderWidthForState[UIControlState.Normal.rawValue] ?? layer.borderWidth
     }
     
     /**
@@ -153,7 +153,7 @@ extension Button {
      - returns: The corner radius for the specified state. If there's no corner radius is set for the state, corner radius for normal state is returned, otherwise, default value CornerRadius.Absolute(0.0) is returned.
      */
     public func cornerRadiusForState(state: UIControlState) -> CornerRadius {
-        return cornerRadiusForState[state.rawValue] ?? cornerRadiusForState[UIControlState.Normal.rawValue] ?? .Absolute(0.0)
+        return cornerRadiusForState[state.rawValue] ?? cornerRadiusForState[UIControlState.Normal.rawValue] ?? .Absolute(layer.cornerRadius)
     }
     
     /**
@@ -164,14 +164,14 @@ extension Button {
      - returns: The background image color for the specified state. If no background image color has been set for the specific state, this method returns the background image color associated with the UIControlStateNormal state. If no background image color has been set for the UIControlStateNormal state, nil is returned.
      */
     public func backgroundImageColorForState(state: UIControlState) -> UIColor? {
-        return backgroundImageColorForState[state.rawValue] ?? backgroundImageColorForState[UIControlState.Normal.rawValue] ?? nil
+        return backgroundImageColorForState[state.rawValue] ?? backgroundImageColorForState[UIControlState.Normal.rawValue]
     }
 }
 
 // MARK: - Getting the Current State
 extension Button {
     /// The current border color that is displayed on the button. (read-only)
-    public var currentBorderColor: UIColor { return UIColor(CGColor: layer.borderColor ?? UIColor.blackColor().CGColor) }
+    public var currentBorderColor: UIColor? { return (layer.borderColor != nil) ? UIColor(CGColor: layer.borderColor!) : nil }
     
     /// The current border width that is displayed on the button. (read-only)
     public var currentBorderWidth: CGFloat { return layer.borderWidth }
@@ -210,23 +210,35 @@ extension Button {
      Refresh customized styles
      */
     private func refreshBorderStyles() {
+        // add a fade transition.
+        let transition = CATransition()
+        transition.type = kCATransitionFade
+        transition.duration = 0.075
+        
+        defer {
+            layer.addAnimation(transition, forKey: kCATransition)
+        }
+        
         if state == .Highlighted {
-            layer.borderColor = highlightedBorderColor?.CGColor ?? normalBorderColor?.CGColor
-            layer.borderWidth = highlightedBorderWidth ?? normalBorderWidth ?? 0.0
-            layer.cornerRadius = highlightedCornerRadius ?? normalCornerRadius ?? 0.0
+            layer.borderColor =? highlightedBorderColor?.CGColor ?? normalBorderColor?.CGColor
+            layer.borderWidth =? highlightedBorderWidth ?? normalBorderWidth
+            layer.cornerRadius =? highlightedCornerRadius ?? normalCornerRadius
         } else if state == .Disabled {
-            layer.borderColor = disabledBorderColor?.CGColor ?? normalBorderColor?.CGColor
-            layer.borderWidth = disabledBorderWidth ?? normalBorderWidth ?? 0.0
-            layer.cornerRadius = disabledCornerRadius ?? normalCornerRadius ?? 0.0
+            layer.borderColor =? disabledBorderColor?.CGColor ?? normalBorderColor?.CGColor
+            layer.borderWidth =? disabledBorderWidth ?? normalBorderWidth
+            layer.cornerRadius =? disabledCornerRadius ?? normalCornerRadius
         } else if state == .Selected {
-            layer.borderColor = selectedBorderColor?.CGColor ?? normalBorderColor?.CGColor
-            layer.borderWidth = selectedBorderWidth ?? normalBorderWidth ?? 0.0
-            layer.cornerRadius = selectedCornerRadius ?? normalCornerRadius ?? 0.0
+            layer.borderColor =? selectedBorderColor?.CGColor ?? normalBorderColor?.CGColor
+            layer.borderWidth =? selectedBorderWidth ?? normalBorderWidth
+            layer.cornerRadius =? selectedCornerRadius ?? normalCornerRadius
         } else {
+            // prolong the fade transition, this mimics UIButtonType.System behaviors
+            transition.duration = 0.25
+            
             // Defaults to .Normal state
-            layer.borderColor = normalBorderColor?.CGColor
-            layer.borderWidth = normalBorderWidth ?? 0.0
-            layer.cornerRadius = normalCornerRadius ?? 0.0
+            layer.borderColor =? normalBorderColor?.CGColor
+            layer.borderWidth =? normalBorderWidth
+            layer.cornerRadius =? normalCornerRadius
         }
     }
 	

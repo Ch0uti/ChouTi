@@ -18,7 +18,7 @@ class DatePickerControllerDemoViewController : UIViewController {
 		
 		view.backgroundColor = UIColor.whiteColor()
 		
-		let button = UIButton()
+		let button = Button()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(button)
 		
