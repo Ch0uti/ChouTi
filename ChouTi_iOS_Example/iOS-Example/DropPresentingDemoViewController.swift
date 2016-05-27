@@ -48,7 +48,7 @@ class DropPresentingDemoViewController: UIViewController {
 		dummyViewController.view.backgroundColor = UIColor(red:255/255.0, green:186/255.0, blue:1/255.0, alpha:255/255.0)
 		dummyViewController.view.layer.cornerRadius = 8.0
         
-        let button = UIButton()
+        let button = Button()
         dummyViewController.view.addSubview(button)
         
         button.setBackgroundImageWithColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00), forState: .Normal)

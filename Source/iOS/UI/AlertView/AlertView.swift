@@ -19,12 +19,7 @@ public class AlertView: UIView {
     /// The title of the alert.
     public var title: String? {
         didSet {
-            if title == nil {
-                titleLabel.hidden = true
-			} else {
-				titleLabel.hidden = false
-			}
-			
+			titleLabel.hidden = title == nil
             titleLabel.text = title
         }
     }
@@ -32,12 +27,7 @@ public class AlertView: UIView {
     /// Descriptive text that provides more details about the reason for the alert.
     public var message: String? {
         didSet {
-            if message == nil {
-                messageLabel.hidden = true
-			} else {
-				messageLabel.hidden = false
-			}
-			
+			messageLabel.hidden = message == nil
             messageLabel.text = message
         }
     }

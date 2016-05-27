@@ -57,7 +57,14 @@ public extension NSDate {
 
 
 // MARK: - Comparison
-public extension NSDate {
+extension NSDate : Comparable{
+	/**
+	Whether self date is earlier than another date
+	
+	- parameter date: another date to compare
+	
+	- returns: true if self is earlier than another date, otherwise, false.
+	*/
     public func isEarlierThanDate(date: NSDate) -> Bool {
         if self.compare(date) == .OrderedAscending {
             return true
@@ -66,10 +73,24 @@ public extension NSDate {
         }
     }
     
+    /**
+     Whether self date is earlier than another date
+     
+     - parameter date: another date to compare
+     
+     - returns: true if self is earlier than another date, otherwise, false.
+     */
     public func isBeforeDate(date: NSDate) -> Bool {
         return isEarlierThanDate(date)
     }
     
+    /**
+     Whether self date is later than another date
+     
+     - parameter date: another date to compare
+     
+     - returns: true if self is later than another date, otherwise, false.
+     */
     public func isLaterThanDate(date: NSDate) -> Bool {
         if self.compare(date) == .OrderedDescending {
             return true
@@ -78,9 +99,40 @@ public extension NSDate {
         }
     }
     
+    /**
+     Whether self date is later than another date
+     
+     - parameter date: another date to compare
+     
+     - returns: true if self is later than another date, otherwise, false.
+     */
     public func isAfterDate(date: NSDate) -> Bool {
         return isLaterThanDate(date)
     }
+}
+
+/**
+left date is earlier than right date
+
+- parameter lhs: left date
+- parameter rhs: right date
+
+- returns: return true if left date is earlier than right date
+*/
+public func < (lhs: NSDate, rhs: NSDate) -> Bool {
+	return lhs.isBeforeDate(rhs)
+}
+
+/**
+left date is equal to right date
+
+- parameter lhs: left date
+- parameter rhs: right date
+
+- returns: return true if left date points to same time of right date
+*/
+public func == (lhs: NSDate, rhs: NSDate) -> Bool {
+	return lhs.compare(rhs) == .OrderedSame
 }
 
 
