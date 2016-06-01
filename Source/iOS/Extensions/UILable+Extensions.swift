@@ -27,6 +27,14 @@ public extension UILabel {
         }
     }
     
+    /**
+     Get exact size for UILabel, computed with text and font on this label.
+     
+     - parameter preferredMaxWidth: Preferred nax width for the calculation.
+     - parameter shouldUseCeil:     Whether size should be round up to integers.
+     
+     - returns: Exact size for this label.
+     */
     public func exactSize(preferredMaxWidth preferredMaxWidth: CGFloat? = nil, shouldUseCeil: Bool = false) -> CGSize {
         var size = self.sizeThatFits(CGSize(width: preferredMaxWidth ?? preferredMaxLayoutWidth, height: 0))
         
@@ -71,6 +79,31 @@ public extension UILabel {
             animation.type = kCATransitionFade
             animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
             layer.addAnimation(animation, forKey: kCATransitionFade)
+        }
+    }
+    
+    /**
+     Set text with fade in transition animation.
+     
+     - parameter text:              New text to set.
+     - parameter animationDuration: Animation duration.
+     */
+    public func setText(text: String?, withFadeTransitionAnimation animationDuration: NSTimeInterval) {
+        addFadeTransitionAnimation(animationDuration)
+        self.text = text
+    }
+    
+    /**
+     Set text with default fade in transition animation if animated.
+     
+     - parameter text:     New text to set.
+     - parameter animated: Animation duration.
+     */
+    public func setText(text: String?, animated: Bool) {
+        if animated {
+            setText(text, withFadeTransitionAnimation: 0.25)
+        } else {
+            self.text = text
         }
     }
 }
