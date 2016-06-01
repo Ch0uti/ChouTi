@@ -82,7 +82,7 @@ extension Button {
      - parameter color: The border color to use for the specified state.
      - parameter state: The state that uses the specified border color. The possible values are described in UIControlState.
      */
-    public func setBorderColor(color: UIColor, forState state: UIControlState) {
+    public func setBorderColor(color: UIColor?, forState state: UIControlState) {
         borderColorForState[state.rawValue] = color
         refreshBorderStyles()
     }
@@ -93,7 +93,7 @@ extension Button {
      - parameter width: The border width to use for the specified state.
      - parameter state: The state that uses the specified border width. The possible values are described in UIControlState.
      */
-    public func setBorderWidth(width: CGFloat, forState state: UIControlState) {
+    public func setBorderWidth(width: CGFloat?, forState state: UIControlState) {
         borderWidthForState[state.rawValue] = width
         refreshBorderStyles()
     }
@@ -104,7 +104,7 @@ extension Button {
      - parameter cornerRadius: The corner radius to use for the specified state.
      - parameter state:        The state that uses the specified corner radius. The possible values are described in UIControlState.
      */
-    public func setCornerRadius(cornerRadius: CornerRadius, forState state: UIControlState) {
+    public func setCornerRadius(cornerRadius: CornerRadius?, forState state: UIControlState) {
         clipsToBounds = true
         cornerRadiusForState[state.rawValue] = cornerRadius
         refreshBorderStyles()
@@ -116,8 +116,13 @@ extension Button {
      - parameter color: The color for background image to use for the specified state.
      - parameter state: The state that uses the specified background image color. The possible values are described in UIControlState.
      */
-    public override func setBackgroundImageWithColor(color: UIColor, forState state: UIControlState) {
-        setBackgroundImage(UIImage.imageWithColor(color), forState: state)
+    public override func setBackgroundImageWithColor(color: UIColor?, forState state: UIControlState) {
+		if let color = color {
+			setBackgroundImage(UIImage.imageWithColor(color), forState: state)
+		} else {
+			setBackgroundImage(nil, forState: state)
+		}
+		
         backgroundImageColorForState[state.rawValue] = color
     }
     
