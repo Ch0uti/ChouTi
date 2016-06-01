@@ -131,7 +131,7 @@ extension Button {
      - returns: The border color for the specified state. If no border color has been set for the specific state, this method returns the border color associated with the UIControlStateNormal state. If no border color has been set for the UIControlStateNormal state, nil is returned.
      */
     public func borderColorForState(state: UIControlState) -> UIColor? {
-        return borderColorForState[state.rawValue] ?? borderColorForState[UIControlState.Normal.rawValue] ?? ((layer.borderColor != nil) ? UIColor(CGColor: layer.borderColor!) : nil)
+        return borderColorForState[state.rawValue] ?? borderColorForState[UIControlState.Normal.rawValue]
     }
     
     /**
@@ -139,10 +139,10 @@ extension Button {
      
      - parameter state: The state that uses the border width. The possible values are described in UIControlState.
      
-     - returns: The border width for the specified state. If there's no border width is set for the state, border width for normal state is returned, otherwise, default value 0.0 is returned.
+     - returns: The border width for the specified state. If there's no border width is set for the state, border width for normal state is returned, otherwise, nil is returned.
      */
-    public func borderWidthForState(state: UIControlState) -> CGFloat {
-        return borderWidthForState[state.rawValue] ?? borderWidthForState[UIControlState.Normal.rawValue] ?? layer.borderWidth
+    public func borderWidthForState(state: UIControlState) -> CGFloat? {
+        return borderWidthForState[state.rawValue] ?? borderWidthForState[UIControlState.Normal.rawValue]
     }
     
     /**
@@ -150,10 +150,10 @@ extension Button {
      
      - parameter state: The state that uses the corner radius. The possible values are described in UIControlState.
      
-     - returns: The corner radius for the specified state. If there's no corner radius is set for the state, corner radius for normal state is returned, otherwise, default value CornerRadius.Absolute(0.0) is returned.
+     - returns: The corner radius for the specified state. If there's no corner radius is set for the state, corner radius for normal state is returned, otherwise, nil is returned.
      */
-    public func cornerRadiusForState(state: UIControlState) -> CornerRadius {
-        return cornerRadiusForState[state.rawValue] ?? cornerRadiusForState[UIControlState.Normal.rawValue] ?? .Absolute(layer.cornerRadius)
+    public func cornerRadiusForState(state: UIControlState) -> CornerRadius? {
+        return cornerRadiusForState[state.rawValue] ?? cornerRadiusForState[UIControlState.Normal.rawValue]
     }
     
     /**
