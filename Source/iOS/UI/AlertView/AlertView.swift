@@ -20,7 +20,7 @@ public class AlertView: UIView {
     public var title: String? {
         didSet {
 			titleLabel.hidden = title == nil
-            titleLabel.text = title
+            titleLabel.setText(title, withFadeTransitionAnimation: 0.25)
         }
     }
     
@@ -28,7 +28,7 @@ public class AlertView: UIView {
     public var message: String? {
         didSet {
 			messageLabel.hidden = message == nil
-            messageLabel.text = message
+            messageLabel.setText(message, withFadeTransitionAnimation: 0.25)
         }
     }
     
