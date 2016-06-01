@@ -24,19 +24,46 @@ public class AlertController: UIViewController {
     /// The title of the alert.
     public override var title: String? {
         get { return alertView.title }
-        set { alertView.title = newValue }
+        set {
+			alertView.title = newValue
+            updatePreferredContentSize()
+		}
     }
     
     /// Descriptive text that provides more details about the reason for the alert.
     public var message: String? {
         get { return alertView.message }
-        set { alertView.message = newValue }
+        set {
+			alertView.message = newValue
+			updatePreferredContentSize()
+		}
     }
     
     /// The actions that the user can take in response to the alert. (read-only)
     public var actions: [AlertAction] {
         get { return alertView.actions }
     }
+    
+    /// Override preferredContentSize to make sure view layout is always updated and centered
+    public override var preferredContentSize: CGSize {
+        didSet {
+            guard let widthConstraint = widthConstraint, heightConstraint = heightConstraint else {
+                return
+            }
+            
+            widthConstraint.constant = preferredContentSize.width
+            heightConstraint.constant = preferredContentSize.height
+            UIView.animateWithDuration(0.25, delay: 0.0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: { [weak self] in
+                self?.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
+    
+    /// width constraint for view
+    private var widthConstraint: NSLayoutConstraint?
+    
+    /// height constraint for view
+    private var heightConstraint: NSLayoutConstraint?
     
     /**
      Creates and returns a view controller for displaying an alert to the user.
@@ -86,6 +113,20 @@ public class AlertController: UIViewController {
         
         // at this moment, view size is about to be determined by presenting animator, preferred content size should be updated.
         updatePreferredContentSize()
+    }
+    
+    public override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Use constraint-based layout to center alert view
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.constrainToCenterInSuperview()
+        widthConstraint = view.constrainToWidth(preferredContentSize.width)
+        heightConstraint = view.constrainToHeight(preferredContentSize.height)
     }
     
     /**

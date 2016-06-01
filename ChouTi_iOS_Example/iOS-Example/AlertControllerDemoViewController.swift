@@ -102,6 +102,10 @@ class AlertControllerDemoViewController : UIViewController {
     func presentCustomizedAlert(sender: Button) {
         let alert = AlertController(title: "Customized Alert Style", message: "This is customized alert style.")
         
+        delay(1) { 
+            alert.message = "This is customized alert style." + " This is customized alert style."
+        }
+        
         if rotation <= 0 {
             alert.addAction(AlertAction(
                 title: "OK",
