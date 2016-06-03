@@ -35,7 +35,7 @@ public class Button: UIButton {
         case Relative(percent: CGFloat, attribute: Attribute)
         case HalfCircle
         
-        func value(view: UIView) -> CGFloat {
+        public func cornerRadiusValue(forView view: UIView) -> CGFloat {
             switch self {
             case .Absolute(let cornerRadius):
                 return cornerRadius
@@ -83,8 +83,7 @@ extension Button {
      - parameter state: The state that uses the specified border color. The possible values are described in UIControlState.
      */
     public func setBorderColor(color: UIColor?, forState state: UIControlState) {
-        borderColorForState[state.rawValue] = color
-        refreshBorderStyles()
+        if borderColorForState[state.rawValue] <-? color { refreshBorderStyles() }
     }
     
     /**
@@ -94,20 +93,18 @@ extension Button {
      - parameter state: The state that uses the specified border width. The possible values are described in UIControlState.
      */
     public func setBorderWidth(width: CGFloat?, forState state: UIControlState) {
-        borderWidthForState[state.rawValue] = width
-        refreshBorderStyles()
+        if borderWidthForState[state.rawValue] <-? width { refreshBorderStyles() }
     }
     
     /**
-     Set the corner radius to use for the specified state.
+     Set the corner radius to use for the specified state. `clipsToBounds` is set to true.
      
      - parameter cornerRadius: The corner radius to use for the specified state.
      - parameter state:        The state that uses the specified corner radius. The possible values are described in UIControlState.
      */
     public func setCornerRadius(cornerRadius: CornerRadius?, forState state: UIControlState) {
         clipsToBounds = true
-        cornerRadiusForState[state.rawValue] = cornerRadius
-        refreshBorderStyles()
+        if cornerRadiusForState[state.rawValue] <-? cornerRadius { refreshBorderStyles() }
     }
     
     /**
@@ -117,13 +114,13 @@ extension Button {
      - parameter state: The state that uses the specified background image color. The possible values are described in UIControlState.
      */
     public override func setBackgroundImageWithColor(color: UIColor?, forState state: UIControlState) {
-		if let color = color {
-			setBackgroundImage(UIImage.imageWithColor(color), forState: state)
-		} else {
-			setBackgroundImage(nil, forState: state)
-		}
-		
-        backgroundImageColorForState[state.rawValue] = color
+        if backgroundImageColorForState[state.rawValue] <-? color {
+            if let color = color {
+                setBackgroundImage(UIImage.imageWithColor(color), forState: state)
+            } else {
+                setBackgroundImage(nil, forState: state)
+            }
+        }
     }
     
     // MARK: - Getting Extra Presentation Styles
@@ -206,10 +203,10 @@ extension Button {
     private var disabledBorderWidth: CGFloat? { return borderWidthForState[UIControlState.Disabled.rawValue] }
     private var selectedBorderWidth: CGFloat? { return borderWidthForState[UIControlState.Selected.rawValue] }
     
-    private var normalCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.Normal.rawValue]?.value(self) }
-    private var highlightedCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.Highlighted.rawValue]?.value(self) }
-    private var disabledCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.Disabled.rawValue]?.value(self) }
-    private var selectedCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.Selected.rawValue]?.value(self) }
+    private var normalCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.Normal.rawValue]?.cornerRadiusValue(forView: self) }
+    private var highlightedCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.Highlighted.rawValue]?.cornerRadiusValue(forView: self) }
+    private var disabledCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.Disabled.rawValue]?.cornerRadiusValue(forView: self) }
+    private var selectedCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.Selected.rawValue]?.cornerRadiusValue(forView: self) }
     
     /**
      Refresh customized styles
@@ -259,4 +256,37 @@ extension Button {
 //        let attributes = [NSFontAttributeName : titleLabel?.font]
 //        let textSize = text.
 //    }
+}
+
+// MARK: - Button.CornerRadius : Equatable
+extension Button.CornerRadius : Equatable {}
+public func == (lhs: Button.CornerRadius, rhs: Button.CornerRadius) -> Bool {
+    switch (lhs, rhs) {
+    case (.Absolute(let lValue), .Absolute(let rValue)):
+        return lValue == rValue
+    case (.Relative(let lPercent, let lAttribute), .Relative(let rPercent, let rAttribute)):
+        return (lPercent == rPercent) && (lAttribute == rAttribute)
+    case (.HalfCircle, .HalfCircle):
+        return true
+    default:
+        return false
+    }
+}
+
+// MARK: <-? Non-equal Assignment Operator
+infix operator <-? { associativity right precedence 90 }
+
+/**
+ Nonequal Assignment Operator
+ If lhs and rhs are equal, no assignment
+ 
+ - parameter lhs: a variable of type T: Equatable
+ - parameter rhs: a variable of type T: Equatable
+ 
+ - returns: ture if lhs is assigned, false otherwise
+ */
+private func <-? <T: Equatable>(inout lhs: T?, rhs: T?) -> Bool {
+    if lhs == rhs { return false }
+    lhs = rhs
+    return true
 }
