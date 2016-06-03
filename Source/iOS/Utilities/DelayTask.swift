@@ -67,17 +67,7 @@ public func delay(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
  - returns: a delayed Task
  */
 func delayOnMainQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
-    let task = Task(task: task)
-    
-    let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * seconds))
-    dispatch_after(delayTime, dispatch_get_main_queue(), {
-        if task.canceled == false {
-            task.task()
-            task._executed = true
-        }
-    })
-    
-    return task
+    return delayOnQueue(dispatch_get_main_queue(), seconds: seconds, task: task)
 }
 
 /**
@@ -89,10 +79,15 @@ func delayOnMainQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
  - returns: a delayed Task
  */
 func delayOnBackgroundQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
+    let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+    return delayOnQueue(backgroundQueue, seconds: seconds, task: task)
+}
+
+private func delayOnQueue(queue: dispatch_queue_t, seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
     let task = Task(task: task)
     
     let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * seconds))
-    dispatch_after(delayTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+    dispatch_after(delayTime, queue, {
         if task.canceled == false {
             task.task()
             task._executed = true
