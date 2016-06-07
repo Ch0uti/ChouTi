@@ -47,7 +47,7 @@ public class AlertController: UIViewController {
     /// Override preferredContentSize to make sure view layout is always updated and centered
     public override var preferredContentSize: CGSize {
         didSet {
-            guard let widthConstraint = widthConstraint, heightConstraint = heightConstraint else {
+            guard let widthConstraint = widthConstraint, heightConstraint = heightConstraint where presentingViewController != nil else {
                 return
             }
             
@@ -127,6 +127,13 @@ public class AlertController: UIViewController {
         view.constrainToCenterInSuperview()
         widthConstraint = view.constrainToWidth(preferredContentSize.width)
         heightConstraint = view.constrainToHeight(preferredContentSize.height)
+    }
+	
+    public override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // restore to use frame (default state)
+        view.translatesAutoresizingMaskIntoConstraints = true
     }
     
     /**
