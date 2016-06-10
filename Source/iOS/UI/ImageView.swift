@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 public class ImageView: UIImageView {
 	public var rounded: Bool = false
 	
