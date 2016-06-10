@@ -188,6 +188,17 @@ class MainViewController: UIViewController {
             )
         }
         
+        viewRows.append(
+            TableViewRow(title: "Page Control",
+                subtitle: "Custom PageControl",
+                tableView: tableView,
+                cellSelectAction: { (indexPath, cell) -> Void in
+                    self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    self.navigationController?.pushViewController(PageControlDemoViewController(), animated: true)
+                }
+            )
+        )
+        
         sections.append(
             TableViewSection(headerTitle: "Views", rows: viewRows, tableView: tableView)
         )
