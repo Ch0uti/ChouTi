@@ -10,6 +10,8 @@ import UIKit
 import ChouTi
 
 class PageControlDemoViewController: UIViewController {
+    let scrollView = UIScrollView()
+    
     let systemPageControl = UIPageControl()
     let pageControl = PageControl()
     
@@ -17,59 +19,107 @@ class PageControlDemoViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Page Control Demo"
-        view.backgroundColor = UIColor.random()
+        view.backgroundColor = UIColor.whiteColor()
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        scrollView.constrainToFullSizeInSuperview()
+        
+        scrollView.contentSize = CGSize(width: view.width * 5, height: view.height)
+        for i in 0 ..< 5 {
+            let v = randomView()
+            v.x = view.width * CGFloat(i)
+            scrollView.addSubview(v)
+        }
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.bounces = false
+        scrollView.pagingEnabled = true
+        
+        scrollView.delegate = self
         
         systemPageControl.numberOfPages = 5
-        systemPageControl.backgroundColor = UIColor.blackColor()
         systemPageControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(systemPageControl)
+        systemPageControl.addTarget(self, action: #selector(PageControlDemoViewController.pageControlUpdated(_:)), forControlEvents: .ValueChanged)
         
         pageControl.numberOfPages = 5
-        pageControl.backgroundColor = UIColor.blackColor()
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pageControl)
+        pageControl.addTarget(self, action: #selector(PageControlDemoViewController.pageControlUpdated(_:)), forControlEvents: .ValueChanged)
+        
+        pageControl.scrollView = scrollView
         
         if #available(iOS 9.0, *) {
             NSLayoutConstraint.activateConstraints([
-                systemPageControl.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
-                systemPageControl.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor, constant: -40),
                 pageControl.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
-                pageControl.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor, constant: 40)
+                pageControl.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -40),
+                systemPageControl.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
+                systemPageControl.bottomAnchor.constraintEqualToAnchor(pageControl.bottomAnchor, constant: -40)
                 ]
             )
         } else {
             // Fallback on earlier versions
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        delay(0.5) {
-            self.pageControl.set(currentPage: 1, progress: 0.2)
-            delay(0.2) {
-                self.pageControl.set(currentPage: 1, progress: 0.4)
-                delay(0.2) {
-                    self.pageControl.set(currentPage: 1, progress: 0.6)
-                    delay(0.2) {
-                        self.pageControl.set(currentPage: 1, progress: 0.8)
-                        delay(0.2) {
-                            self.pageControl.set(currentPage: 1, progress: 1.0)
-                            
-                            delay(0.5) {
-                                self.pageControl.set(currentPage: 1, animated: true)
-                                delay(1.1) {
-                                    self.pageControl.set(currentPage: 2, animated: false)
-                                    delay(1.1) {
-                                        self.pageControl.set(currentPage: 3, animated: true)
-                                        delay(1.1) {
-                                            self.pageControl.set(currentPage: 1, animated: true)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        delay(1.0) {
+            self.pageControl.set(currentPage: 2, animated: true)
+        }.then(1.0) {
+            self.pageControl.set(currentPage: 1, animated: true)
+        }.then(1.0) {
+            self.pageControl.set(currentPage: 0, animated: true)
+        }
+    }
+    
+    func randomView() -> UIView {
+        let v = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: view.height))
+        v.backgroundColor = UIColor.random()
+        return v
+    }
+    
+    func testAppearance() {
+        Task.delay(0.5) {
+            self.pageControl.currentPageIndicatorTintColor = UIColor.random()
+        }.then(1.0) {
+            self.pageControl.pageIndicatorTintColor = UIColor.random()
+        }.then(0.5) {
+            self.pageControl.pageIndicatorSize *= 2
+        }.then(0.5) { 
+            self.pageControl.pageIndicatorSize /= 2
+            self.pageControl.pageIndicatorSpacing += 10
+        }.then(0.5) { 
+            self.pageControl.pageIndicatorSpacing -= 10
+        }
+    }
+    
+    func pageControlUpdated(sender: AnyObject?) {
+        if let systemPageControl = sender as? UIPageControl {
+            print("systemPageControl: \(systemPageControl.currentPage)")
         }
         
-        
+        if let pageControl = sender as? PageControl {
+            print("pageControl: \(pageControl.currentPage)")
+        }
+    }
+}
+
+extension PageControlDemoViewController : UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        systemPageControl.currentPage = scrollView.pageIndex
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        systemPageControl.currentPage = scrollView.pageIndex
+    }
+}
+
+extension UIScrollView {
+    var pageIndex: Int {
+        guard bounds.width > 0 else { return 0 }
+        return Int(contentOffset.x) / Int(bounds.width)
     }
 }

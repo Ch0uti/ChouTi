@@ -8,47 +8,93 @@
 
 import UIKit
 
-// TODO: Handle touch
-
 public class PageControl: UIControl {
-    public private(set) var currentPage: Int = 0
+    
+    private var _currentPage: Int = 0 { didSet { sendActionsForControlEvents(.ValueChanged) } }
+    /// The current page, shown by the receiver as a white dot.
+    public var currentPage: Int {
+        get { return _currentPage }
+        set { set(currentPage: newValue, animated: false) }
+    }
+    
+    /// The number of pages the receiver shows (as dots).
     public var numberOfPages: Int = 0 {
         didSet {
             precondition(numberOfPages >= 0, "number of pages must a postive number")
-            currentPage.normalizeInPlace(0, numberOfPages)
+            _currentPage.normalizeInPlace(0, numberOfPages)
             setupDots()
         }
     }
     
+    /// The tint color to be used for the page indicator.
     public var pageIndicatorTintColor: UIColor = UIColor(white: 1.0, alpha: 0.2) {
         didSet {
-            // TODO:
+            dots.forEach { $0.backgroundColor = pageIndicatorTintColor.CGColor }
         }
     }
     
+    /// The tint color to be used for the current page indicator.
     public var currentPageIndicatorTintColor: UIColor = UIColor.whiteColor() {
         didSet {
-            // TODO:
+			currentDot.backgroundColor = currentPageIndicatorTintColor.CGColor
         }
     }
     
+    /// Page indicator size/
     public var pageIndicatorSize: CGFloat = 7.0 {
         didSet {
-            // TODO:
+            currentDot.bounds = CGRect(x: 0, y: 0, width: pageIndicatorSize, height: pageIndicatorSize)
+            currentDot.cornerRadius = pageIndicatorSize / 2.0
+            
+            dots.forEach {
+                $0.bounds = CGRect(x: 0, y: 0, width: pageIndicatorSize, height: pageIndicatorSize)
+                $0.cornerRadius = pageIndicatorSize / 2.0
+            }
+            
+            setNeedsLayout()
+            layoutIfNeeded()
         }
     }
     
+    /// Spacings between two indicators.
     public var pageIndicatorSpacing: CGFloat = 9.0 {
         didSet {
-            // TODO:
+            if setCurrentPageIsInProgress {
+                set(currentPage: _currentPage, progress: 1.0, animated: true)
+            }
+            
+            setNeedsLayout()
+            layoutIfNeeded()
         }
     }
     
-    // MARK: - Private
-    private var dots: [CAShapeLayer] = []
-    private var currentDot = CAShapeLayer()
-    private let animationDuration: NSTimeInterval = 1.0
+    /// scrollView the page control binds
+    public weak var scrollView: UIScrollView? {
+        didSet {
+            if let oldScrollView = oldValue {
+                scrollViewObserver.removeObservation(oldScrollView, forKeyPath: "contentOffset")
+            }
+            
+            if let scrollView = scrollView {
+                scrollViewObserver.observe(scrollView, forKeyPath: "contentOffset") { [weak self] (object, oldValue, newValue) in
+                    self?.update(withScrollView: scrollView)
+                }
+            }
+        }
+    }
     
+    lazy private var scrollViewObserver: Observer = Observer()
+    
+    // MARK: - Private
+    /// Unhighlighted indicators
+    private var dots: [CAShapeLayer] = []
+    
+    /// Highlighted indicator
+    private var currentDot = CAShapeLayer()
+    
+    private let animationDuration: NSTimeInterval = 0.333
+    
+    /// true if current page index is being set in progress.
     private var setCurrentPageIsInProgress: Bool = false
     
     public override init(frame: CGRect) {
@@ -67,14 +113,14 @@ public class PageControl: UIControl {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        if setCurrentPageIsInProgress { return }
         
-        print("layout subviews")
-        
-        currentDot.position = center(forIndex: currentPage)
         for (index, dot) in dots.enumerate() {
             dot.position = center(forIndex: index)
         }
+        
+        // if current page index is being updated in progress, avoid updating position
+        if setCurrentPageIsInProgress { return }
+        currentDot.position = center(forIndex: _currentPage)
     }
     
     public override func intrinsicContentSize() -> CGSize {
@@ -83,31 +129,68 @@ public class PageControl: UIControl {
         
         return CGSize(width: width, height: height)
     }
-}
-
-extension PageControl {
     
-    public func set(currentPage currentPage: Int, animated: Bool) {
-        set(currentPage: currentPage, progress: 1.0, animated: animated)
+    public override func removeFromSuperview() {
+        scrollView = nil
+        super.removeFromSuperview()
     }
     
+    deinit {
+        scrollView = nil
+    }
+}
+
+// MARK: - Update currentPage
+extension PageControl {
+    /**
+     Set current page to new index with animation.
+     
+     - parameter currentPage: New page index.
+     - parameter animated:    animated or not.
+     */
+    public func set(currentPage currentPage: Int, animated: Bool) {
+        set(currentPage: currentPage, progress: 1.0, animated: animated)
+        
+        // update scroll view content offset
+        if let scrollView = scrollView {
+            guard scrollView.bounds.width > 0 else { return }
+            let contentOffset = CGPoint(x: CGFloat(currentPage) * scrollView.bounds.width, y: scrollView.contentOffset.y)
+            
+            // updating currentPage will also update scrollView's contentOffset, however, we don't want the observation cause setting current page again. Thus, pasue observation for the moment.
+            scrollViewObserver.pauseObservation = true
+            UIView.animateWithDuration(animationDuration, animations: { 
+                scrollView.contentOffset = contentOffset
+                }, completion: { [weak self] _ in
+                    // restore the contentOffset observation once animated setting contentOffset ends.
+                    self?.scrollViewObserver.pauseObservation = false
+            })
+        }
+    }
+    
+    /**
+     Set to new page index with a progress.
+     Note: Make sure call it with 1.0
+     
+     - parameter currentPage: New page index.
+     - parameter progress:    Progress from current index to new index, 0 to 1, inclusive.
+     */
     public func set(currentPage currentPage: Int, progress: CGFloat) {
         let progress = progress.normalize()
         set(currentPage: currentPage, progress: progress, animated: false)
     }
     
     private func set(currentPage currentPage: Int, progress: CGFloat, animated: Bool) {
-        if self.currentPage == currentPage { return }
+        if self._currentPage == currentPage { return }
         
         // begin frame, end frame
-        let fromPosition = center(forIndex: self.currentPage)
+        let fromPosition = center(forIndex: self._currentPage)
         let targetPosition = center(forIndex: currentPage)
         let toPosition = CGPoint(x: fromPosition.x + (targetPosition.x - fromPosition.x) * progress,
                               y: fromPosition.y + (targetPosition.y - fromPosition.y) * progress)
         
         // size
         let indicatorSize = CGSize(width: pageIndicatorSize, height: pageIndicatorSize)
-        let distanceBetweenFromPositionToTargetPosition = abs(fromPosition.x - targetPosition.x)
+        let distanceBetweenFromPositionToTargetPosition = abs(fromPosition.x - targetPosition.x) * 0.75
         let mostlyExpandedSize = CGSize(width: distanceBetweenFromPositionToTargetPosition + pageIndicatorSize,
                                         height: pageIndicatorSize)
         
@@ -119,8 +202,11 @@ extension PageControl {
         // update to final state
         currentDot.bounds.size = CGSize(width: distanceBetweenFromPositionToTargetPosition * sizeFactor + pageIndicatorSize, height: pageIndicatorSize)
         currentDot.position = toPosition
-        if progress == 1.0 {
-            self.currentPage = currentPage
+        
+        if progress == 0.0 {
+            setCurrentPageIsInProgress = false
+        } else if progress == 1.0 {
+            self._currentPage = currentPage
             setCurrentPageIsInProgress = false
         } else {
             setCurrentPageIsInProgress = true
@@ -149,7 +235,45 @@ extension PageControl {
     }
 }
 
+// MARK: - ScrollView
 extension PageControl {
+    /**
+     Update current indicator with scroll view
+     
+     - parameter scrollView: scroll view
+     */
+    private func update(withScrollView scrollView: UIScrollView) {
+        if scrollView.width == 0 { return }
+        
+        let offset = scrollView.contentOffset.x
+        let progress = (offset - CGFloat(_currentPage) * scrollView.width) / scrollView.width
+        let newIndex = progress > 0 ? _currentPage + 1 : _currentPage - 1
+        
+        set(currentPage: newIndex, progress: abs(progress))
+    }
+}
+
+// MARK: - Touch Handling
+extension PageControl {
+    public override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
+        guard let location = touch?.locationInView(self) else { return }
+        let currentDotCenterX = currentDot.frame.origin.x + pageIndicatorSize / 2.0
+        
+        if location.x - currentDotCenterX > pageIndicatorSpacing / 2.0 {
+            set(currentPage: _currentPage + 1, animated: true)
+        } else if location.x - currentDotCenterX < -pageIndicatorSpacing / 2.0 {
+            set(currentPage: _currentPage - 1, animated: true)
+        }
+        
+        super.endTrackingWithTouch(touch, withEvent: event)
+    }
+}
+
+// MARK: - Private Helpers
+extension PageControl {
+    /**
+     Setup unhighlighted dots and current dot
+     */
     private func setupDots() {
         // Setup current dot
         if currentDot.superlayer == nil {
@@ -160,7 +284,7 @@ extension PageControl {
         }
         
         // TODO: Improve
-        // Setup othet dots
+        // Setup other dots
         dots.forEach { $0.removeFromSuperlayer() }
         dots.removeAll()
         
@@ -175,6 +299,7 @@ extension PageControl {
         }
     }
     
+    /// Length between edge of two dots
     private var spacingBetweenDotCenter: CGFloat { return pageIndicatorSize + pageIndicatorSpacing }
     
     private var lengthFromFirstDotCenterToLastDotCenter: CGFloat {
