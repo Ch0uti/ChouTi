@@ -13,8 +13,13 @@ import Foundation
 // MARK: - Observer
 public class Observer: NSObject {
 	public typealias ObserverHandler = (object: AnyObject, oldValue: AnyObject, newValue: AnyObject) -> Void
-	
+    
+    /// Object that is being observed
 	public private(set) var object: AnyObject?
+    
+    /// Pause observation
+    public var pauseObservation: Bool = false
+    
 	var handlerDictionary = [String : ObserverHandler]()
 	
 	private struct ObservingContext { static var Key = "zhObservingContextKey" }
@@ -42,7 +47,7 @@ public class Observer: NSObject {
 	}
 	
 	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-		guard let object = object else { return }
+		guard let object = object where pauseObservation == false else { return }
 		guard let keyPath = keyPath else {
 			print("Warning: Observer: keyPath is nil")
 			return
