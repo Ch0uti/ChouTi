@@ -132,7 +132,7 @@ public extension UIImage {
 	- returns: new UIImage with the color provided
 	*/
 	public class func imageWithColor(color: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage {
-        let rect = CGRectMake(0.0, 0.0, size.width, size.height)
+		let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
 		UIGraphicsBeginImageContextWithOptions(size, false, 0)
         let context = UIGraphicsGetCurrentContext()
         
