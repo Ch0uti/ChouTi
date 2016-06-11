@@ -190,6 +190,7 @@ extension PageControl {
         
         // size
         let indicatorSize = CGSize(width: pageIndicatorSize, height: pageIndicatorSize)
+        // 0.75 make the animation cooler
         let distanceBetweenFromPositionToTargetPosition = abs(fromPosition.x - targetPosition.x) * 0.75
         let mostlyExpandedSize = CGSize(width: distanceBetweenFromPositionToTargetPosition + pageIndicatorSize,
                                         height: pageIndicatorSize)
@@ -283,7 +284,6 @@ extension PageControl {
             layer.addSublayer(currentDot)
         }
         
-        // TODO: Improve
         // Setup other dots
         dots.forEach { $0.removeFromSuperlayer() }
         dots.removeAll()
