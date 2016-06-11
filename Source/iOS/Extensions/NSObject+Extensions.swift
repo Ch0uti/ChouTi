@@ -32,7 +32,7 @@ public extension NSObject {
      
      - returns: old associated object if existed
      */
-    public func setAssociatedObejct(object: AnyObject, forKeyPointer pointer: UnsafePointer<String> = nil) -> AnyObject? {
+    public func setAssociatedObejct(object: AnyObject, forKeyPointer pointer: UnsafePointer<Void> = nil) -> AnyObject? {
         if pointer == nil {
             let currentAssociatedObject = associatedObject
             associatedObject = object
@@ -44,7 +44,7 @@ public extension NSObject {
         }
     }
     
-    public func getAssociatedObject(forKeyPointer pointer: UnsafePointer<String> = nil) -> AnyObject? {
+    public func getAssociatedObject(forKeyPointer pointer: UnsafePointer<Void> = nil) -> AnyObject? {
         if pointer == nil {
             return associatedObject
         } else {
@@ -52,7 +52,7 @@ public extension NSObject {
         }
     }
     
-    public func clearAssociatedObject(forKeyPointer pointer: UnsafePointer<String> = nil) -> AnyObject? {
+    public func clearAssociatedObject(forKeyPointer pointer: UnsafePointer<Void> = nil) -> AnyObject? {
         if pointer == nil {
             let object = associatedObject
             associatedObject = nil

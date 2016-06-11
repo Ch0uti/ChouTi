@@ -12,14 +12,14 @@ public extension Optional {
     typealias MessageClosure = () -> String?
     
     /**
-     If this value is nil, post a warning message.
+     Access optional value with warning message
      
      - parameter message: Warning message.
      
-     - returns: Same optional type.
+     - returns: Optional value.
      */
-    @inline(__always) public func warning(@autoclosure message: MessageClosure = nil) -> Wrapped? {
-        if self == nil { print(message() ?? "Warning: [\((#file as NSString).lastPathComponent):\(#line)] \(Wrapped.self)? is nil") }
+    @inline(__always) public func warning(@autoclosure message: MessageClosure = nil, file: String = #file, line: Int = #line) -> Wrapped? {
+        if self == nil { print(message() ?? "Warning: [\((file as NSString).lastPathComponent):\(line)] \(Wrapped.self)? is nil") }
         return self
     }
     
@@ -28,8 +28,8 @@ public extension Optional {
      
      - returns: Unwrapped value
      */
-    @inline(__always) public func unwrapped(@autoclosure message: MessageClosure = nil) -> Wrapped {
-        guard let value = self else { fatalError(message() ?? "\(Wrapped.self)? is nil") }
+    @inline(__always) public func unwrapped(@autoclosure message: MessageClosure = nil, file: String = #file, line: Int = #line) -> Wrapped {
+        guard let value = self else { fatalError(message() ?? "[\((file as NSString).lastPathComponent):\(line)] \(Wrapped.self)? is nil") }
         return value
     }
 }
