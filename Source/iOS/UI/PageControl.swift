@@ -43,6 +43,7 @@ public class PageControl: UIControl {
     /// Page indicator size/
     public var pageIndicatorSize: CGFloat = 7.0 {
         didSet {
+            if oldValue == pageIndicatorSize { return }
             currentDot.bounds = CGRect(x: 0, y: 0, width: pageIndicatorSize, height: pageIndicatorSize)
             currentDot.cornerRadius = pageIndicatorSize / 2.0
             
@@ -50,6 +51,8 @@ public class PageControl: UIControl {
                 $0.bounds = CGRect(x: 0, y: 0, width: pageIndicatorSize, height: pageIndicatorSize)
                 $0.cornerRadius = pageIndicatorSize / 2.0
             }
+            
+            invalidateIntrinsicContentSize()
             
             setNeedsLayout()
             layoutIfNeeded()
@@ -59,9 +62,12 @@ public class PageControl: UIControl {
     /// Spacings between two indicators.
     public var pageIndicatorSpacing: CGFloat = 9.0 {
         didSet {
+            if oldValue == pageIndicatorSpacing { return }
             if setCurrentPageIsInProgress {
                 set(currentPage: _currentPage, progress: 1.0, animated: true)
             }
+            
+            invalidateIntrinsicContentSize()
             
             setNeedsLayout()
             layoutIfNeeded()
@@ -180,6 +186,8 @@ extension PageControl {
     }
     
     private func set(currentPage currentPage: Int, progress: CGFloat, animated: Bool) {
+        assert(0 <= currentPage && currentPage < numberOfPages)
+        let currentPage = currentPage.normalize(0, numberOfPages - 1)
         if self._currentPage == currentPage { return }
         
         // begin frame, end frame
@@ -248,6 +256,9 @@ extension PageControl {
         
         let offset = scrollView.contentOffset.x
         let progress = (offset - CGFloat(_currentPage) * scrollView.width) / scrollView.width
+        if progress == 0 {
+            return
+        }
         let newIndex = progress > 0 ? _currentPage + 1 : _currentPage - 1
         
         set(currentPage: newIndex, progress: abs(progress))
