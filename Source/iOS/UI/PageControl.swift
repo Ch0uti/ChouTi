@@ -53,7 +53,7 @@ public class PageControl: UIControl {
             }
             
             invalidateIntrinsicContentSize()
-            
+    
             setNeedsLayout()
             layoutIfNeeded()
         }
@@ -119,14 +119,16 @@ public class PageControl: UIControl {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        
+                
         for (index, dot) in dots.enumerate() {
             dot.position = center(forIndex: index)
+            dot.removeAllAnimations()
         }
         
         // if current page index is being updated in progress, avoid updating position
         if setCurrentPageIsInProgress { return }
         currentDot.position = center(forIndex: _currentPage)
+        currentDot.removeAllAnimations()
     }
     
     public override func intrinsicContentSize() -> CGSize {
