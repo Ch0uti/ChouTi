@@ -188,8 +188,12 @@ extension PageControl {
     }
     
     private func set(currentPage currentPage: Int, progress: CGFloat, animated: Bool) {
-        assert(0 <= currentPage && currentPage < numberOfPages)
+        // sanitize new current page
+        if (currentPage < 0 || currentPage >= numberOfPages) {
+            print("Warning: setting currentPage: \(currentPage) is out of range from 0 ... \(numberOfPages - 1)")
+        }
         let currentPage = currentPage.normalize(0, numberOfPages - 1)
+        
         if self._currentPage == currentPage { return }
         
         // begin frame, end frame
