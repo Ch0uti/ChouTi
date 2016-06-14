@@ -1,5 +1,5 @@
 //
-//  NSObject+Extensions.swift
+//  NSObject+AssociatedObject.swift
 //  Pods
 //
 //  Created by Honghao Zhang on 2015-12-14.

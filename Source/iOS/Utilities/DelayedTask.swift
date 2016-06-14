@@ -1,5 +1,5 @@
 //
-//  DelayTask.swift
+//  DelayedTask.swift
 //  Pods
 //
 //  Created by Honghao Zhang on 2016-02-04.
