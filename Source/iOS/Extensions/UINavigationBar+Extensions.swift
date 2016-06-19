@@ -84,9 +84,13 @@ public extension UINavigationBar {
 
 // MARK: - Transparent
 public extension UINavigationBar {
-    public func setToTransparent() {
-        setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        shadowImage = UIImage()
-        translucent = true
+    public func setToTransparent(transparent: Bool) {
+        if transparent {
+            setBackgroundImage(UIImage(), forBarMetrics: .Default)
+            shadowImage = UIImage()
+        } else {
+            setBackgroundImage(nil, forBarMetrics: .Default)
+            shadowImage = nil
+        }
     }
 }

@@ -8,11 +8,15 @@
 
 import Foundation
 
+//Ref: [Associated Objects](http://nshipster.com/associated-objects/)
+//Ref: [objc_setAssociatedObject with nil to remove - is policy is ignored](http://stackoverflow.com/questions/19920591/objc-setassociatedobject-with-nil-to-remove-is-policy-checked)
+
 public extension NSObject {
     private struct zhAssociateObjectKey {
         static var Key = "zhAssociateObjectKey"
     }
     
+    /// Strong referenced associated object
     public var associatedObject: AnyObject? {
         get { return objc_getAssociatedObject(self, &zhAssociateObjectKey.Key) }
         set { objc_setAssociatedObject(self, &zhAssociateObjectKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
@@ -29,17 +33,18 @@ public extension NSObject {
      
      - parameter object:  an object to be associated
      - parameter pointer: pointer
+     - parameter associationPolicy: associationPolicy, default to .OBJC_ASSOCIATION_RETAIN_NONATOMIC (strong reference). Use .OBJC_ASSOCIATION_ASSIGN for weak reference.
      
      - returns: old associated object if existed
      */
-    public func setAssociatedObejct(object: AnyObject, forKeyPointer pointer: UnsafePointer<Void> = nil) -> AnyObject? {
+    public func setAssociatedObejct(object: AnyObject, forKeyPointer pointer: UnsafePointer<Void> = nil, associationPolicy: objc_AssociationPolicy = .OBJC_ASSOCIATION_RETAIN_NONATOMIC) -> AnyObject? {
         if pointer == nil {
             let currentAssociatedObject = associatedObject
             associatedObject = object
             return currentAssociatedObject
         } else {
             let currentAssociatedObject = getAssociatedObject(forKeyPointer: pointer)
-            objc_setAssociatedObject(self, pointer, object, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, pointer, object, associationPolicy)
             return currentAssociatedObject
         }
     }
@@ -59,6 +64,7 @@ public extension NSObject {
             return object
         } else {
             let object = getAssociatedObject(forKeyPointer: pointer)
+            // policy is ignored if new value is nil, thus .OBJC_ASSOCIATION_RETAIN_NONATOMIC doesn't
             objc_setAssociatedObject(self, pointer, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return object
         }
