@@ -263,6 +263,7 @@ extension PageControl {
         let offset = scrollView.contentOffset.x
         let progress = (offset - CGFloat(_currentPage) * scrollView.width) / scrollView.width
         if progress == 0 {
+			setCurrentPageIsInProgress = false
             return
         }
         let newIndex = progress > 0 ? _currentPage + 1 : _currentPage - 1
