@@ -9,6 +9,24 @@
 //import UIKit
 //
 //class <#ViewController#>: UIViewController {
+//    convenience init() {
+//        self.init(nibName: nil, bundle: nil)
+//    }
+//    
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+//        commonInit()
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        commonInit()
+//    }
+//    
+//    func commonInit() {
+//        // <#Common Init#>
+//    }
+//    
 //	override func viewDidLoad() {
 //		super.viewDidLoad()
 //		setupViews()
