@@ -64,9 +64,11 @@ public class LoadingMorphingLabel: UIView {
 	}
 	
 	private func showTextIndex(index: Int) {
-		if _loopCount-- > 0 {
+		if _loopCount > 0 {
+            _loopCount -= 1
 			isAnimating = true
-			morphingLabel.text = texts[currentTextIndex++ % texts.count]
+			morphingLabel.text = texts[currentTextIndex % texts.count]
+            currentTextIndex += 1
 			delay(delayDuration) {
 				self.showTextIndex(self.currentTextIndex)
 			}
