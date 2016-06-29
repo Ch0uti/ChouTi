@@ -1229,7 +1229,7 @@
 			baseConfigurationReference = D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ChouTiTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.ChouTiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1240,7 +1240,7 @@
 			baseConfigurationReference = CFF91EB292EA2A1C68B76AA1 /* Pods-ChouTiTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ChouTiTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.ChouTiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
