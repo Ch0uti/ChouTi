@@ -11,14 +11,6 @@ import XCTest
 
 class UIColor_ExtensionsTests: ChouTiTests {
     
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     func testHexColor() {
         let color = UIColor(hexString: "#CC0000")
         XCTAssertNotNil(color)
