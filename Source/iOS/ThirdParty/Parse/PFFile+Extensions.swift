@@ -9,6 +9,8 @@
 import Foundation
 import Parse
 
+// MARK: - Deprecated as Parse is dead.
+@available(*, deprecated = 9.0, message="RIP, Parse")
 public extension PFFile {
 	
 	/**
@@ -20,7 +22,6 @@ public extension PFFile {
 	- parameter resultBlock:   The result block for getting the image
 	- parameter progressBlock: The block should have the following argument signature: ^(int percentDone)
 	*/
-    @available(*, deprecated = 9.0, message="RIP, Parse")
 	public func getImageInBackgroundWithBlock(resultBlock: (image: UIImage?, error: NSError?) -> Void, progressBlock: PFProgressBlock? = nil) {
 		getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) in
 			guard error == nil else {
