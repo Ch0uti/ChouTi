@@ -418,10 +418,21 @@ public extension UIView {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
         
         let context = UIGraphicsGetCurrentContext()!
+        
+        // Good explanation of differences between drawViewHierarchyInRect:afterScreenUpdates: and renderInContext: https://github.com/radi/LiveFrost/issues/10#issuecomment-28959525
         layer.renderInContext(context)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return image
+    }
+    
+    /**
+     Get a snapshot (image representation) of this view.
+     
+     - returns: an Image snapshot.
+     */
+    public func snapshot() -> UIImage {
+        return self.toImage()
     }
 }

@@ -53,7 +53,7 @@ extension OrderedDictionary {
 			let existingIndex = array.indexOf(key)
 			
 			if existingIndex < index {
-				adjustedIndex--
+				adjustedIndex -= 1
 			}
 			
 			array.removeAtIndex(existingIndex!)
