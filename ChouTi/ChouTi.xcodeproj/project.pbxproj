@@ -129,6 +129,12 @@
 		023051BF1D24438A00D7B190 /* Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023051BC1D24438A00D7B190 /* Camera@2x.png */; };
 		023051C01D24438A00D7B190 /* Camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023051BD1D24438A00D7B190 /* Camera@3x.png */; };
 		023051C11D24459500D7B190 /* LoadingMorphingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051141D24418400D7B190 /* LoadingMorphingLabel.swift */; };
+		023051D51D244D2000D7B190 /* Dictionary+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051C31D244A1A00D7B190 /* Dictionary+ExtensionsTests.swift */; };
+		023051D61D244D2000D7B190 /* NSDate+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051C41D244A1A00D7B190 /* NSDate+ExtensionsTests.swift */; };
+		023051D71D244D2000D7B190 /* NSObject+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051C51D244A1A00D7B190 /* NSObject+ExtensionsTests.swift */; };
+		023051D81D244D2000D7B190 /* String+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051C61D244A1A00D7B190 /* String+ExtensionsTests.swift */; };
+		023051D91D244D2000D7B190 /* UIColor+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051C71D244A1A00D7B190 /* UIColor+ExtensionsTests.swift */; };
+		023051DA1D244D2300D7B190 /* DelayTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051CE1D244A2A00D7B190 /* DelayTaskTests.swift */; };
 		33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2582D7686D9E144D59115335 /* Pods_ChouTi.framework */; };
 		FC8011B3082D1EEA4FC12444 /* Pods_ChouTiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */; };
 /* End PBXBuildFile section */
@@ -273,6 +279,12 @@
 		023051BB1D24438A00D7B190 /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camera.png; sourceTree = "<group>"; };
 		023051BC1D24438A00D7B190 /* Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera@2x.png"; sourceTree = "<group>"; };
 		023051BD1D24438A00D7B190 /* Camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera@3x.png"; sourceTree = "<group>"; };
+		023051C31D244A1A00D7B190 /* Dictionary+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		023051C41D244A1A00D7B190 /* NSDate+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		023051C51D244A1A00D7B190 /* NSObject+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		023051C61D244A1A00D7B190 /* String+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		023051C71D244A1A00D7B190 /* UIColor+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		023051CE1D244A2A00D7B190 /* DelayTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayTaskTests.swift; sourceTree = "<group>"; };
 		0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.debug.xcconfig"; sourceTree = "<group>"; };
 		2582D7686D9E144D59115335 /* Pods_ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -336,8 +348,10 @@
 		023050A01D2440DB00D7B190 /* ChouTiTests */ = {
 			isa = PBXGroup;
 			children = (
-				023050A11D2440DB00D7B190 /* ChouTiTests.swift */,
 				023050A31D2440DB00D7B190 /* Info.plist */,
+				023050A11D2440DB00D7B190 /* ChouTiTests.swift */,
+				023051C21D244A1A00D7B190 /* ExtensionsTests */,
+				023051CD1D244A2A00D7B190 /* UtilitiesTests */,
 			);
 			path = ChouTiTests;
 			sourceTree = "<group>";
@@ -705,6 +719,26 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		023051C21D244A1A00D7B190 /* ExtensionsTests */ = {
+			isa = PBXGroup;
+			children = (
+				023051C31D244A1A00D7B190 /* Dictionary+ExtensionsTests.swift */,
+				023051C41D244A1A00D7B190 /* NSDate+ExtensionsTests.swift */,
+				023051C51D244A1A00D7B190 /* NSObject+ExtensionsTests.swift */,
+				023051C61D244A1A00D7B190 /* String+ExtensionsTests.swift */,
+				023051C71D244A1A00D7B190 /* UIColor+ExtensionsTests.swift */,
+			);
+			path = ExtensionsTests;
+			sourceTree = "<group>";
+		};
+		023051CD1D244A2A00D7B190 /* UtilitiesTests */ = {
+			isa = PBXGroup;
+			children = (
+				023051CE1D244A2A00D7B190 /* DelayTaskTests.swift */,
+			);
+			path = UtilitiesTests;
+			sourceTree = "<group>";
+		};
 		6BF21BC51D6EE92CC6CF3805 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1042,7 +1076,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				023051DA1D244D2300D7B190 /* DelayTaskTests.swift in Sources */,
+				023051D81D244D2000D7B190 /* String+ExtensionsTests.swift in Sources */,
+				023051D91D244D2000D7B190 /* UIColor+ExtensionsTests.swift in Sources */,
+				023051D51D244D2000D7B190 /* Dictionary+ExtensionsTests.swift in Sources */,
+				023051D61D244D2000D7B190 /* NSDate+ExtensionsTests.swift in Sources */,
 				023050A21D2440DB00D7B190 /* ChouTiTests.swift in Sources */,
+				023051D71D244D2000D7B190 /* NSObject+ExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
