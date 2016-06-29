@@ -135,6 +135,7 @@
 		023051D81D244D2000D7B190 /* String+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051C61D244A1A00D7B190 /* String+ExtensionsTests.swift */; };
 		023051D91D244D2000D7B190 /* UIColor+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051C71D244A1A00D7B190 /* UIColor+ExtensionsTests.swift */; };
 		023051DA1D244D2300D7B190 /* DelayTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051CE1D244A2A00D7B190 /* DelayTaskTests.swift */; };
+		023051DB1D24514300D7B190 /* Attributes in Resources */ = {isa = PBXBuildFile; fileRef = 023050B61D24418400D7B190 /* Attributes */; };
 		33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2582D7686D9E144D59115335 /* Pods_ChouTi.framework */; };
 		FC8011B3082D1EEA4FC12444 /* Pods_ChouTiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */; };
 /* End PBXBuildFile section */
@@ -162,7 +163,7 @@
 		023050B31D24418400D7B190 /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
 		023050B41D24418400D7B190 /* ScalePresentingAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalePresentingAnimator.swift; sourceTree = "<group>"; };
 		023050B51D24418400D7B190 /* SlideUpAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideUpAnimator.swift; sourceTree = "<group>"; };
-		023050B61D24418400D7B190 /* Attributes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Attributes.md; sourceTree = "<group>"; };
+		023050B61D24418400D7B190 /* Attributes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Attributes; sourceTree = "<group>"; };
 		023050B81D24418400D7B190 /* CodeSnippet_CLLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSnippet_CLLocationManager.swift; sourceTree = "<group>"; };
 		023050B91D24418400D7B190 /* CodeSnippet_ImageAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSnippet_ImageAssets.swift; sourceTree = "<group>"; };
 		023050BA1D24418400D7B190 /* CodeSnippet_UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSnippet_UIButton.swift; sourceTree = "<group>"; };
@@ -369,7 +370,7 @@
 		023050AD1D24418400D7B190 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				023050B61D24418400D7B190 /* Attributes.md */,
+				023050B61D24418400D7B190 /* Attributes */,
 				023050F21D24418400D7B190 /* GitHub Stars.md */,
 				023050AE1D24418400D7B190 /* Animators */,
 				023050B71D24418400D7B190 /* CodeSnippets */,
@@ -856,6 +857,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				023051BE1D24438A00D7B190 /* Camera.png in Resources */,
+				023051DB1D24514300D7B190 /* Attributes in Resources */,
 				023051C01D24438A00D7B190 /* Camera@3x.png in Resources */,
 				023051BF1D24438A00D7B190 /* Camera@2x.png in Resources */,
 			);

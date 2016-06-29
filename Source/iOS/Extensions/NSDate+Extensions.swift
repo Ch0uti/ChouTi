@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: - Random date
 public extension NSDate {
     /**
@@ -134,8 +133,6 @@ left date is equal to right date
 public func == (lhs: NSDate, rhs: NSDate) -> Bool {
 	return lhs.compare(rhs) == .OrderedSame
 }
-
-
 
 // MARK: - Manipulate date
 public extension NSDate {

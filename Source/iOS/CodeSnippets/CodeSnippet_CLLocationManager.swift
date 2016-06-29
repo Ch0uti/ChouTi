@@ -6,7 +6,7 @@
 //
 //
 
-import CoreLocation
+//import CoreLocation
 
 // Simulating Locations with Xcode: https://blackpixel.com/writing/2013/05/simulating-locations-with-xcode.html
 // GPX: http://gpx-poi.com
