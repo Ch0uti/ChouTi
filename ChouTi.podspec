@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   s.subspec "All" do |ss|
     ss.dependency "ChouTi/ChouTi"
     ss.dependency "ChouTi/UI"
-    
+
     # ss.dependency "ChouTi/App-Extension-API-Unsafe"
     ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
 
@@ -190,7 +190,7 @@ Pod::Spec.new do |s|
       sss.source_files = 'Source/iOS/UI/SlideController/*.*'
       sss.frameworks   = 'UIKit'
     end
-    
+
   end
 
 
@@ -220,9 +220,9 @@ Pod::Spec.new do |s|
       # "Showing a list of text in loop"
       sss.source_files = 'Source/iOS/UI/LoadingMorphingLabel/*.*'
       sss.frameworks   = 'UIKit'
-      sss.dependency 'LTMorphingLabel', '~> 0.0'
+      sss.dependency 'LTMorphingLabel'
     end
-    
+
   end
 
 
@@ -235,7 +235,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'Source/iOS/ThirdParty/Parse/*.*'
     ss.dependency 'Parse'
     ss.vendored_frameworks = 'Parse'
-    
+
   end
-  
+
 end
