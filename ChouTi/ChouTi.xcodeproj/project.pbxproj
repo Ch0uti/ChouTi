@@ -130,6 +130,9 @@
 		023051BE1D24438A00D7B190 /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 023051BB1D24438A00D7B190 /* Camera.png */; };
 		023051BF1D24438A00D7B190 /* Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023051BC1D24438A00D7B190 /* Camera@2x.png */; };
 		023051C01D24438A00D7B190 /* Camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023051BD1D24438A00D7B190 /* Camera@3x.png */; };
+		023051C11D24459500D7B190 /* LoadingMorphingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051141D24418400D7B190 /* LoadingMorphingLabel.swift */; };
+		33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2582D7686D9E144D59115335 /* Pods_ChouTi.framework */; };
+		FC8011B3082D1EEA4FC12444 /* Pods_ChouTiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +275,12 @@
 		023051BB1D24438A00D7B190 /* Camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camera.png; sourceTree = "<group>"; };
 		023051BC1D24438A00D7B190 /* Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera@2x.png"; sourceTree = "<group>"; };
 		023051BD1D24438A00D7B190 /* Camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera@3x.png"; sourceTree = "<group>"; };
+		0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.debug.xcconfig"; sourceTree = "<group>"; };
+		2582D7686D9E144D59115335 /* Pods_ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8369B3E7DF13919F58D2E26 /* Pods-ChouTi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.release.xcconfig"; sourceTree = "<group>"; };
+		CFF91EB292EA2A1C68B76AA1 /* Pods-ChouTiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTiTests/Pods-ChouTiTests.release.xcconfig"; sourceTree = "<group>"; };
+		D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTiTests/Pods-ChouTiTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +288,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0230509D1D2440DB00D7B190 /* ChouTi.framework in Frameworks */,
+				FC8011B3082D1EEA4FC12444 /* Pods_ChouTiTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +310,8 @@
 				023050941D2440DB00D7B190 /* ChouTi */,
 				023050A01D2440DB00D7B190 /* ChouTiTests */,
 				023050931D2440DB00D7B190 /* Products */,
+				6BF21BC51D6EE92CC6CF3805 /* Pods */,
+				FADE80030ACA432B35AAB68A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -694,6 +707,26 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		6BF21BC51D6EE92CC6CF3805 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */,
+				B8369B3E7DF13919F58D2E26 /* Pods-ChouTi.release.xcconfig */,
+				D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */,
+				CFF91EB292EA2A1C68B76AA1 /* Pods-ChouTiTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FADE80030ACA432B35AAB68A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2582D7686D9E144D59115335 /* Pods_ChouTi.framework */,
+				0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -712,10 +745,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 023050A61D2440DB00D7B190 /* Build configuration list for PBXNativeTarget "ChouTi" */;
 			buildPhases = (
+				5ACD2D9B1AAC87284F0D945D /* [CP] Check Pods Manifest.lock */,
 				0230508D1D2440DB00D7B190 /* Sources */,
 				0230508E1D2440DB00D7B190 /* Frameworks */,
 				0230508F1D2440DB00D7B190 /* Headers */,
 				023050901D2440DB00D7B190 /* Resources */,
+				AE54F45AF1692147FD75E568 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -730,9 +765,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 023050A91D2440DB00D7B190 /* Build configuration list for PBXNativeTarget "ChouTiTests" */;
 			buildPhases = (
+				68402E0C24DD2AAF2E191DF6 /* [CP] Check Pods Manifest.lock */,
 				023050981D2440DB00D7B190 /* Sources */,
 				023050991D2440DB00D7B190 /* Frameworks */,
 				0230509A1D2440DB00D7B190 /* Resources */,
+				9395E6A638D22EEB88891EB9 /* [CP] Embed Pods Frameworks */,
+				8212CEF7038FD98742488458 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -799,6 +837,84 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5ACD2D9B1AAC87284F0D945D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		68402E0C24DD2AAF2E191DF6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8212CEF7038FD98742488458 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTiTests/Pods-ChouTiTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9395E6A638D22EEB88891EB9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTiTests/Pods-ChouTiTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE54F45AF1692147FD75E568 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0230508D1D2440DB00D7B190 /* Sources */ = {
@@ -884,6 +1000,7 @@
 				023051751D24418400D7B190 /* UIScrollView+Extensions.swift in Sources */,
 				023051851D24418400D7B190 /* AlertController.swift in Sources */,
 				0230514F1D24418400D7B190 /* CodeSnippet_UIView.swift in Sources */,
+				023051C11D24459500D7B190 /* LoadingMorphingLabel.swift in Sources */,
 				023051531D24418400D7B190 /* CodeSnippets_ImageAsset.swift in Sources */,
 				0230514C1D24418400D7B190 /* CodeSnippet_UITableView.swift in Sources */,
 				023051581D24418400D7B190 /* CodeSnippets_UIDevice.swift in Sources */,
@@ -1037,6 +1154,7 @@
 		};
 		023050A71D2440DB00D7B190 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1054,6 +1172,7 @@
 		};
 		023050A81D2440DB00D7B190 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8369B3E7DF13919F58D2E26 /* Pods-ChouTi.release.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1071,6 +1190,7 @@
 		};
 		023050AA1D2440DB00D7B190 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ChouTiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1081,6 +1201,7 @@
 		};
 		023050AB1D2440DB00D7B190 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFF91EB292EA2A1C68B76AA1 /* Pods-ChouTiTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ChouTiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
