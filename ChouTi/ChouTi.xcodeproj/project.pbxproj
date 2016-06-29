@@ -16,7 +16,6 @@
 		023051431D24418400D7B190 /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050B31D24418400D7B190 /* OverlayPresentationController.swift */; };
 		023051441D24418400D7B190 /* ScalePresentingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050B41D24418400D7B190 /* ScalePresentingAnimator.swift */; };
 		023051451D24418400D7B190 /* SlideUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050B51D24418400D7B190 /* SlideUpAnimator.swift */; };
-		023051461D24418400D7B190 /* Attributes.md in Sources */ = {isa = PBXBuildFile; fileRef = 023050B61D24418400D7B190 /* Attributes.md */; };
 		023051471D24418400D7B190 /* CodeSnippet_CLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050B81D24418400D7B190 /* CodeSnippet_CLLocationManager.swift */; };
 		023051481D24418400D7B190 /* CodeSnippet_ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050B91D24418400D7B190 /* CodeSnippet_ImageAssets.swift */; };
 		023051491D24418400D7B190 /* CodeSnippet_UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050BA1D24418400D7B190 /* CodeSnippet_UIButton.swift */; };
@@ -72,7 +71,6 @@
 		0230517B1D24418400D7B190 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050EF1D24418400D7B190 /* UIView+Extensions.swift */; };
 		0230517C1D24418400D7B190 /* UIView+OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050F01D24418400D7B190 /* UIView+OverlayView.swift */; };
 		0230517D1D24418400D7B190 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050F11D24418400D7B190 /* UIViewController+Extensions.swift */; };
-		0230517E1D24418400D7B190 /* GitHub Stars.md in Sources */ = {isa = PBXBuildFile; fileRef = 023050F21D24418400D7B190 /* GitHub Stars.md */; };
 		0230517F1D24418400D7B190 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050F41D24418400D7B190 /* Analytics.swift */; };
 		023051801D24418400D7B190 /* CollectionViewCellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050F51D24418400D7B190 /* CollectionViewCellInfo.swift */; };
 		023051811D24418400D7B190 /* TableView+Registrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050F61D24418400D7B190 /* TableView+Registrable.swift */; };
@@ -947,9 +945,7 @@
 				023051A91D24418400D7B190 /* TextField.swift in Sources */,
 				023051B11D24418400D7B190 /* StructWrapper.swift in Sources */,
 				0230514A1D24418400D7B190 /* CodeSnippet_UILabel.swift in Sources */,
-				023051461D24418400D7B190 /* Attributes.md in Sources */,
 				023051591D24418400D7B190 /* CodeSnippets_UISegmentedControl.swift in Sources */,
-				0230517E1D24418400D7B190 /* GitHub Stars.md in Sources */,
 				0230518E1D24418400D7B190 /* DatePickerControllerDelagte.swift in Sources */,
 				023051701D24418400D7B190 /* UIImage+Extensions.swift in Sources */,
 				023051541D24418400D7B190 /* CodeSnippets_NavigationItem.swift in Sources */,
