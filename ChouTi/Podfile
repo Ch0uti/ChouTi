@@ -1,0 +1,17 @@
+platform :ios, '8.0'
+
+target 'ChouTi' do
+  use_frameworks!
+
+  # Dependency for `LoadingMorphingLabel`
+  pod 'LTMorphingLabel'
+
+  # Dependency for `Operation`
+  # pod 'Operations'
+
+  target 'ChouTiTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
