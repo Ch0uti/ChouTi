@@ -9,6 +9,8 @@
 import Foundation
 import Parse
 
+// MARK: - Deprecated as Parse is dead.
+@available(*, deprecated = 9.0, message="RIP, Parse")
 public extension Parse {
 	
 	typealias VoidBlock = Void -> Void
@@ -37,7 +39,6 @@ public extension Parse {
 	- parameter configuration:  configuration block for the found object
 	- parameter saveCompletion: save completion
 	*/
-    @available(*, deprecated = 9.0, message="RIP, Parse")
 	public class func updateObjectWithClassName(className: String,
 		uniqueIdKey: String,
 		uniqueId: String,
@@ -93,7 +94,6 @@ public extension Parse {
 	- parameter uniqueId:    Value in the class, this should be the unique id
 	- parameter completion:  configuration block for the found object
 	*/
-    @available(*, deprecated = 9.0, message="RIP, Parse")
 	public class func findObjectWithClassName(className: String,
 		uniqueIdKey: String,
 		uniqueId: String,
@@ -141,7 +141,6 @@ public extension Parse {
 	- parameter uniqueId:    Value in the class, this should be the unique id
 	- parameter completion:  result block
 	*/
-    @available(*, deprecated = 9.0, message="RIP, Parse")
 	public class func removeObjectWithClassName(className: String, uniqueIdKey: String, uniqueId: String, completion: PFBooleanResultBlock?) {
 		let query = PFQuery(className: className)
 		query.whereKey(uniqueIdKey, equalTo: uniqueId)
