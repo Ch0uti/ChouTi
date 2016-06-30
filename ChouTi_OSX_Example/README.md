@@ -1,2 +1,0 @@
-# ChouTi - OSX Example
-

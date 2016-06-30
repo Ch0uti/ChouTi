@@ -219,7 +219,6 @@
 		023050EF1D24418400D7B190 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		023050F01D24418400D7B190 /* UIView+OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+OverlayView.swift"; sourceTree = "<group>"; };
 		023050F11D24418400D7B190 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
-		023050F21D24418400D7B190 /* GitHub Stars.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "GitHub Stars.md"; sourceTree = "<group>"; };
 		023050F41D24418400D7B190 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		023050F51D24418400D7B190 /* CollectionViewCellInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCellInfo.swift; sourceTree = "<group>"; };
 		023050F61D24418400D7B190 /* TableView+Registrable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableView+Registrable.swift"; sourceTree = "<group>"; };
@@ -371,7 +370,6 @@
 			isa = PBXGroup;
 			children = (
 				023050B61D24418400D7B190 /* Attributes */,
-				023050F21D24418400D7B190 /* GitHub Stars.md */,
 				023050AE1D24418400D7B190 /* Animators */,
 				023050B71D24418400D7B190 /* CodeSnippets */,
 				023050CC1D24418400D7B190 /* CollectionViewLayouts */,
