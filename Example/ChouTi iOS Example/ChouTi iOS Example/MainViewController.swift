@@ -11,12 +11,13 @@ import ChouTi
 
 class MainViewController: UIViewController {
     
-    let tableView = UITableView()
+    let tableView = UITableView(frame: CGRect.zero, style: .Plain)
     var slideViewController: SlideController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.sharedApplication().delegate?.window??.tintColor = UIColor(red:252/255.0, green:43/255.0, blue:27/255.0, alpha:255/255.0)
         navigationController?.view.clipsToBounds = true
         navigationController?.view.layer.cornerRadius = 8.0
         

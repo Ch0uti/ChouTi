@@ -23,15 +23,13 @@ class DatePickerControllerDemoViewController : UIViewController {
 		view.addSubview(button)
 		
 		button.setBackgroundImageWithColor(UIColor.purpleColor(), forState: .Normal)
-		button.setBackgroundImageWithColor(UIColor.purpleColor().colorWithAlphaComponent(0.8), forState: .Highlighted)
+		button.setBackgroundImageWithColor(UIColor.purpleColor().darkerColor(), forState: .Highlighted)
 		button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-		button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-		
-		button.setTitle("Selecte Date", forState: .Normal)
+		button.setTitleColor(UIColor.whiteColor().darkerColor(), forState: .Highlighted)
+		button.setCornerRadius(.HalfCircle, forState: .Normal)
+        
+		button.setTitle("Select Date", forState: .Normal)
 		button.titleLabel?.font = UIFont.systemFontOfSize(22)
-		
-		button.clipsToBounds = true
-		button.layer.cornerRadius = 25
 		
 		button.constrainToSize(CGSize(width: 160, height: 50))
 		button.constrainToCenterInSuperview()
@@ -42,7 +40,7 @@ class DatePickerControllerDemoViewController : UIViewController {
 		view.addSubview(resultLabel)
 		resultLabel.font = UIFont.AvenirMediumFont(21)
 		resultLabel.textColor = UIColor.blackColor()
-		resultLabel.text = "Select a date."
+		resultLabel.text = "Selected Date"
 		
 		if #available(iOS 9.0, *) {
 		    resultLabel.topAnchor.constraintEqualToAnchor(button.bottomAnchor, constant: 40).active = true
