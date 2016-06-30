@@ -12,7 +12,7 @@ import ChouTi
 @available(iOS 9.0, *)
 class TableLayoutDemoViewController: UIViewController {
 
-	let doneButton = UIButton()
+	let doneButton = Button(type: .System)
 
 	let columns = Int.random(5, 20)
 	var rows = [Int : Int]()
@@ -29,6 +29,8 @@ class TableLayoutDemoViewController: UIViewController {
 		let excelTable = TextTableCollectionView()
 		excelTable.textTableDataSource = self
 		excelTable.separatorLineWidth = 0.5
+        excelTable.layer.borderColor = UIColor.blackColor().CGColor
+        excelTable.layer.borderWidth = 0.5
 		
 		excelTable.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(excelTable)
@@ -43,7 +45,7 @@ class TableLayoutDemoViewController: UIViewController {
 		var constraints = [NSLayoutConstraint]()
 		
 		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[excelTable]-|", options: [], metrics: nil, views: views)
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-100-[excelTable]-|", options: [], metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-100-[excelTable]-16-|", options: [], metrics: nil, views: views)
 		
 		constraints.append(doneButton.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor))
 		constraints.append(doneButton.topAnchor.constraintEqualToAnchor(view.topAnchor, constant: 40))
@@ -67,10 +69,10 @@ extension TableLayoutDemoViewController : TextTableCollectionViewDataSource {
 	}
 	
 	func tableCollectionView(tableCollectionView: TextTableCollectionView, layout collectionViewLayout: TableCollectionViewLayout, titleForColumn column: Int) -> String {
-		return "Title123"
+		return "Title: \(column)"
 	}
 	
 	func tableCollectionView(tableCollectionView: TextTableCollectionView, layout collectionViewLayout: TableCollectionViewLayout, contentForColumn column: Int, row: Int) -> String {
-		return "Content456"
+        return "Content: (\(row),\(column))"
 	}
 }
