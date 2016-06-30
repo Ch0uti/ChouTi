@@ -52,7 +52,12 @@ public class TextTableCollectionView: UICollectionView {
     public weak var textTableDataSource: TextTableCollectionViewDataSource!
 	public weak var textTableDelegate: TextTableCollectionViewDelegate?
 	
-	public var tableLayout: TableCollectionViewLayout!
+    public var tableLayout: TableCollectionViewLayout {
+        guard let tableLayout = collectionViewLayout as? TableCollectionViewLayout else {
+            fatalError("collectionViewLayout must be a TableCollectionViewLayout instance")
+        }
+        return tableLayout
+    }
 	
 	// MARK: - Override
 	public convenience init() {
@@ -65,7 +70,6 @@ public class TextTableCollectionView: UICollectionView {
 		guard let layout = layout as? TableCollectionViewLayout else {
 			fatalError("layout must be a TableCollectionViewLayout class")
 		}
-		tableLayout = layout
 		tableLayout.dataSourceTableLayout = self
 		commonInit()
     }
