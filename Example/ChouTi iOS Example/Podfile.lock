@@ -1,0 +1,74 @@
+PODS:
+  - ChouTi/All (0.1):
+    - ChouTi/ChouTi
+    - ChouTi/ChouTi-Extra
+    - ChouTi/UI
+    - ChouTi/UI-App-Extension-API-Unsafe
+    - ChouTi/UI-Extra
+  - ChouTi/ChouTi (0.1):
+    - ChouTi/ChouTi/Animators (= 0.1)
+    - ChouTi/ChouTi/CodeSnippets (= 0.1)
+    - ChouTi/ChouTi/CollectionViewLayouts (= 0.1)
+    - ChouTi/ChouTi/Extensions (= 0.1)
+    - ChouTi/ChouTi/Protocols (= 0.1)
+    - ChouTi/ChouTi/Utilities (= 0.1)
+  - ChouTi/ChouTi-Extra (0.1):
+    - ChouTi/ChouTi-Extra/Utilities (= 0.1)
+  - ChouTi/ChouTi-Extra/Utilities (0.1):
+    - ChouTi/ChouTi-Extra/Utilities/Operations (= 0.1)
+  - ChouTi/ChouTi-Extra/Utilities/Operations (0.1):
+    - Operations
+  - ChouTi/ChouTi/Animators (0.1)
+  - ChouTi/ChouTi/CodeSnippets (0.1)
+  - ChouTi/ChouTi/CollectionViewLayouts (0.1)
+  - ChouTi/ChouTi/Extensions (0.1)
+  - ChouTi/ChouTi/Protocols (0.1)
+  - ChouTi/ChouTi/Utilities (0.1):
+    - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (= 0.1)
+  - ChouTi/ChouTi/Utilities/TableView+SectionRowExtensions (0.1)
+  - ChouTi/UI (0.1):
+    - ChouTi/UI/AlertView (= 0.1)
+    - ChouTi/UI/AutoLinesLabel (= 0.1)
+    - ChouTi/UI/CollectionViewCells (= 0.1)
+    - ChouTi/UI/DatePickerViewController (= 0.1)
+    - ChouTi/UI/DropDownMenu (= 0.1)
+    - ChouTi/UI/MenuPageViewController (= 0.1)
+    - ChouTi/UI/NavigationBarStatusBar (= 0.1)
+    - ChouTi/UI/SegmentedControl (= 0.1)
+    - ChouTi/UI/TableViewCells (= 0.1)
+  - ChouTi/UI-App-Extension-API-Unsafe (0.1):
+    - ChouTi/UI-App-Extension-API-Unsafe/SlideController (= 0.1)
+  - ChouTi/UI-App-Extension-API-Unsafe/SlideController (0.1)
+  - ChouTi/UI-Extra (0.1):
+    - ChouTi/UI-Extra/LoadingMorphingLabel (= 0.1)
+  - ChouTi/UI-Extra/LoadingMorphingLabel (0.1):
+    - LTMorphingLabel
+  - ChouTi/UI/AlertView (0.1)
+  - ChouTi/UI/AutoLinesLabel (0.1)
+  - ChouTi/UI/CollectionViewCells (0.1)
+  - ChouTi/UI/DatePickerViewController (0.1)
+  - ChouTi/UI/DropDownMenu (0.1)
+  - ChouTi/UI/MenuPageViewController (0.1)
+  - ChouTi/UI/NavigationBarStatusBar (0.1)
+  - ChouTi/UI/SegmentedControl (0.1)
+  - ChouTi/UI/TableViewCells (0.1)
+  - LTMorphingLabel (0.2.0)
+  - Operations (2.10.1):
+    - Operations/Standard (= 2.10.1)
+  - Operations/Standard (2.10.1)
+
+DEPENDENCIES:
+  - ChouTi/All (from `../../`)
+
+EXTERNAL SOURCES:
+  ChouTi:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  ChouTi: d983587c2b43845cec112447d4cea8b5e7451787
+  LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
+  Operations: b787ef012ec50752f6247b7f0efb7746fb8934ae
+
+PODFILE CHECKSUM: 8d0aa96de74fa2ba4c71016e70c5f925a2c7c640
+
+COCOAPODS: 1.0.1
