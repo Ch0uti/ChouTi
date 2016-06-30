@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:ChouTi/ChouTi.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ChouTi/Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Example/ChouTi iOS Example/ChouTi iOS Example.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Example/ChouTi iOS Example/Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
