@@ -5,4 +5,4 @@ Chou Ti (抽屉) - My personal toolkit for iOS/OSX development.
 
 Name | Preview
 :---: | :---:
-`PageControl` | ![PageControlDemo](./Preview/PageControl.gif)
+`PageControl` | ![PageControlDemo](./Screenshots/PageControl.gif)
