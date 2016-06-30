@@ -11,10 +11,13 @@ import ChouTi
 
 class TableViewSectionRowExtensionDemoViewController: UIViewController {
 
-	let tableView = UITableView()
-	
+    let tableView = UITableView(frame: CGRect.zero, style: Bool.random() ? .Grouped : .Plain)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "TableView+SectionRow"
+        
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(tableView)
 		tableView.constrainToFullSizeInSuperview()

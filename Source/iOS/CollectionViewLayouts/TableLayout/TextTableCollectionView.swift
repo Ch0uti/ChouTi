@@ -67,7 +67,7 @@ public class TextTableCollectionView: UICollectionView {
 	
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-		guard let layout = layout as? TableCollectionViewLayout else {
+		guard layout is TableCollectionViewLayout else {
 			fatalError("layout must be a TableCollectionViewLayout class")
 		}
 		tableLayout.dataSourceTableLayout = self
