@@ -259,8 +259,8 @@ public extension UIView {
         }
         
         dispatch_once(&Static.addGestureRecognizerToken) {
-            let originalSelector = Selector("addGestureRecognizer:")
-            let swizzledSelector = Selector("zhh_addGestureRecognizer:")
+            let originalSelector = #selector(UIView.addGestureRecognizer(_:))
+            let swizzledSelector = #selector(UIView.zhh_addGestureRecognizer(_:))
             
             let originalMethod = class_getInstanceMethod(self, originalSelector)
             let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)

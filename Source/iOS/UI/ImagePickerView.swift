@@ -82,13 +82,13 @@ public class ImagePickerView: UIView {
 		let cameraImage = UIImage(asset: .Camera)
 			
 		cameraButton.setImage(cameraImage.scaledToMaxWidth(40 * 2, maxHeight: 40 * 2), forState: .Normal)
-		cameraButton.addTarget(self, action: "selectPhoto:", forControlEvents: .TouchUpInside)
+        cameraButton.addTarget(self, action: #selector(ImagePickerView.selectPhoto(_:)), forControlEvents: .TouchUpInside)
 		
 		descriptionLabel.font = UIFont.AvenirMediumFont(12.5 * 2)
 		descriptionLabel.textColor = UIColor.whiteColor()
 		descriptionLabel.text = addImageDescription
 		
-		let tapGesture = UITapGestureRecognizer(target: self, action: "selectPhoto:")
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ImagePickerView.selectPhoto(_:)))
 		addGestureRecognizer(tapGesture)
 		
 		setupConstraints()

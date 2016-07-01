@@ -67,7 +67,7 @@ public class OverlayPresentationController: UIPresentationController {
         }
         
         // Setup tap gesture
-        let dismissTapGesture = UITapGestureRecognizer(target: self, action: "overlayViewTapped:")
+        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(OverlayPresentationController.overlayViewTapped(_:)))
         overlayView.addGestureRecognizer(dismissTapGesture)
         dismissTapGesture.delegate = self
         self.dismissTapGesture = dismissTapGesture

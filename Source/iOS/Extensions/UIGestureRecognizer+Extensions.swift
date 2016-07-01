@@ -42,7 +42,7 @@ public extension UILongPressGestureRecognizer {
     }
     
     public func setupForDetectingVelocity() {
-        self.addTarget(self, action: "longPressed:")
+        self.addTarget(self, action: #selector(UILongPressGestureRecognizer.longPressed(_:)))
     }
     
     func longPressed(gesture: UILongPressGestureRecognizer) {

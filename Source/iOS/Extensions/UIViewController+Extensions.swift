@@ -174,8 +174,8 @@ extension UIViewController {
         }
         
         dispatch_once(&Static.beginAppearanceTransitionToken) {
-            let originalSelector = Selector("beginAppearanceTransition:animated:")
-            let swizzledSelector = Selector("zhh_beginAppearanceTransition:animated:")
+            let originalSelector = #selector(UIViewController.beginAppearanceTransition(_:animated:))
+            let swizzledSelector = #selector(UIViewController.zhh_beginAppearanceTransition(_:animated:))
             
             let originalMethod = class_getInstanceMethod(self, originalSelector)
             let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
@@ -190,8 +190,8 @@ extension UIViewController {
         }
         
         dispatch_once(&Static.endAppearanceTransitionToken) {
-            let originalSelector = Selector("endAppearanceTransition")
-            let swizzledSelector = Selector("zhh_endAppearanceTransition")
+            let originalSelector = #selector(UIViewController.endAppearanceTransition)
+            let swizzledSelector = #selector(UIViewController.zhh_endAppearanceTransition)
             
             let originalMethod = class_getInstanceMethod(self, originalSelector)
             let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)

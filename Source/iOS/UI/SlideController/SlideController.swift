@@ -338,14 +338,14 @@ public class SlideController: UIViewController {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.whiteColor()
 		
-		panGestureRecognizer.addTarget(self, action: "handlePanGesture:")
-		leftEdgePanGestureRecognizer.addTarget(self, action: "handlePanGesture:")
+		panGestureRecognizer.addTarget(self, action: #selector(SlideController.handlePanGesture(_:)))
+		leftEdgePanGestureRecognizer.addTarget(self, action: #selector(SlideController.handlePanGesture(_:)))
 		leftEdgePanGestureRecognizer.edges = .Left
 		leftEdgePanGestureRecognizer.cancelsTouchesInView = false
-		rightEdgePanGestureRecognizer.addTarget(self, action: "handlePanGesture:")
+		rightEdgePanGestureRecognizer.addTarget(self, action: #selector(SlideController.handlePanGesture(_:)))
 		rightEdgePanGestureRecognizer.edges = .Right
 		rightEdgePanGestureRecognizer.cancelsTouchesInView = false
-		tapGestureRecognizer.addTarget(self, action: "handleTapGesture:")
+		tapGestureRecognizer.addTarget(self, action: #selector(SlideController.handleTapGesture(_:)))
 		tapGestureRecognizer.cancelsTouchesInView = false
 		
 		panGestureRecognizer.delegate = self
