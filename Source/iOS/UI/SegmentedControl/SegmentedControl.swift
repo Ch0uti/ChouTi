@@ -158,7 +158,7 @@ public class SegmentedControl: UISegmentedControl {
 		
 		clipsToBounds = true
 		
-		self.addTarget(self, action: "zh_selectedIndexChanged:", forControlEvents: .ValueChanged)
+        self.addTarget(self, action: #selector(SegmentedControl.zh_selectedIndexChanged(_:)), forControlEvents: .ValueChanged)
 	}
 	
 	// MARK: - Setup with Titles
@@ -319,7 +319,7 @@ public class SegmentedControl: UISegmentedControl {
 		
 		// If trying to remove all targets, add self as target back again
 		if target == nil {
-			self.addTarget(self, action: "zh_selectedIndexChanged:", forControlEvents: .ValueChanged)
+            self.addTarget(self, action: #selector(SegmentedControl.zh_selectedIndexChanged(_:)), forControlEvents: .ValueChanged)
 		}
 	}
 	

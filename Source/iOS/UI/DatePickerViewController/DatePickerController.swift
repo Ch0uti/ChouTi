@@ -52,15 +52,15 @@ public class DatePickerController : UIViewController {
 		topToolBar.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(topToolBar)
 		
-		let cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel:")
+        let cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(DatePickerController.cancel(_:)))
 		let spaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-		let doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "done:")
+		let doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(DatePickerController.done(_:)))
 		topToolBar.items = [cancelBarButtonItem, spaceBarButtonItem, doneBarButtonItem]
 		
 		datePicker.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(datePicker)
 		
-		datePicker.addTarget(self, action: "dateUpdated:", forControlEvents: .ValueChanged)
+		datePicker.addTarget(self, action: #selector(DatePickerController.dateUpdated(_:)), forControlEvents: .ValueChanged)
 	}
 	
 	private func setupConstraints() {

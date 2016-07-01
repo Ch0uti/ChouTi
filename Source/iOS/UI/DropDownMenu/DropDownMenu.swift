@@ -223,7 +223,7 @@ public class DropDownMenu: UIControl {
 	}
 	
 	private func setupActions() {
-		self.addTarget(self, action: "tapped:forEvent:", forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: #selector(DropDownMenu.tapped(_:forEvent:)), forControlEvents: .TouchUpInside)
 	}
 	
 	public override func layoutSubviews() {
