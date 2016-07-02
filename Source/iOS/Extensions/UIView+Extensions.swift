@@ -17,41 +17,19 @@ public extension UIView {
      - returns: true for directly contains, otherwise false
      */
     public func containSubview(view: UIView) -> Bool {
-        if #available(iOS 9.0, *) {
-            return subviews.contains(view)
-        } else {
-            return subviews.filter({$0 == view}).count > 0
-        }
+        return subviews.contains(view)
     }
     
     public func removeAllSubviews() {
-        if #available(iOS 9.0, *) {
-            subviews.forEach{ $0.removeFromSuperview() }
-        } else {
-            for subview in subviews {
-                subview.removeFromSuperview()
-            }
-        }
+        subviews.forEach{ $0.removeFromSuperview() }
     }
     
     public func removeAllSubviewsExceptView(view: UIView) {
-        if #available(iOS 9.0, *) {
-            subviews.filter({$0 != view}).forEach { $0.removeFromSuperview() }
-        } else {
-            for subview in subviews.filter({$0 != view}) {
-                subview.removeFromSuperview()
-            }
-        }
+        subviews.filter({ $0 != view }).forEach { $0.removeFromSuperview() }
     }
     
     public func removeAllSubviewsExceptViews(views: [UIView]) {
-        if #available(iOS 9.0, *) {
-            subviews.filter({ views.contains($0) }).forEach { $0.removeFromSuperview() }
-        } else {
-            for subview in subviews.filter({ views.contains($0) }) {
-                subview.removeFromSuperview()
-            }
-        }
+        subviews.filter({ views.contains($0) }).forEach { $0.removeFromSuperview() }
     }
 }
 
@@ -72,21 +50,12 @@ public extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         var constraints = [NSLayoutConstraint]()
         
-        if #available(iOS 9.0, *) {
-            constraints += [
-                self.topAnchor.constraintEqualToAnchor(superview.topAnchor),
-                self.leadingAnchor.constraintEqualToAnchor(superview.leadingAnchor),
-                self.bottomAnchor.constraintEqualToAnchor(superview.bottomAnchor),
-                self.trailingAnchor.constraintEqualToAnchor(superview.trailingAnchor)
-            ]
-        } else {
-            constraints += [
-                NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: superview, attribute: .Top, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: superview, attribute: .Leading, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: superview, attribute: .Bottom, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: self, attribute: .Trailing, relatedBy: .Equal, toItem: superview, attribute: .Trailing, multiplier: 1.0, constant: 0.0)
-            ]
-        }
+        constraints += [
+            self.topAnchor.constraintEqualToAnchor(superview.topAnchor),
+            self.leadingAnchor.constraintEqualToAnchor(superview.leadingAnchor),
+            self.bottomAnchor.constraintEqualToAnchor(superview.bottomAnchor),
+            self.trailingAnchor.constraintEqualToAnchor(superview.trailingAnchor)
+        ]
         
         NSLayoutConstraint.activateConstraints(constraints)
         return constraints
@@ -105,21 +74,12 @@ public extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         var constraints = [NSLayoutConstraint]()
         
-        if #available(iOS 9.0, *) {
-            constraints += [
-                self.topAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.topAnchor),
-                self.leadingAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.leadingAnchor),
-                self.bottomAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.bottomAnchor),
-                self.trailingAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.trailingAnchor)
-            ]
-        } else {
-            constraints += [
-                NSLayoutConstraint(item: self, attribute: .TopMargin, relatedBy: .Equal, toItem: superview, attribute: .TopMargin, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: self, attribute: .LeadingMargin, relatedBy: .Equal, toItem: superview, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: self, attribute: .BottomMargin, relatedBy: .Equal, toItem: superview, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: self, attribute: .TrailingMargin, relatedBy: .Equal, toItem: superview, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0)
-            ]
-        }
+        constraints += [
+            self.topAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.topAnchor),
+            self.leadingAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.leadingAnchor),
+            self.bottomAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.bottomAnchor),
+            self.trailingAnchor.constraintEqualToAnchor(superview.layoutMarginsGuide.trailingAnchor)
+        ]
         
         NSLayoutConstraint.activateConstraints(constraints)
         return constraints
@@ -138,17 +98,10 @@ public extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         var constraints = [NSLayoutConstraint]()
         
-        if #available(iOS 9.0, *) {
-            constraints += [
-                self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor),
-                self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor)
-            ]
-        } else {
-            constraints += [
-                NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: superview, attribute: .CenterX, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: superview, attribute: .CenterY, multiplier: 1.0, constant: 0.0)
-            ]
-        }
+        constraints += [
+            self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor),
+            self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor)
+        ]
         
         NSLayoutConstraint.activateConstraints(constraints)
         return constraints
@@ -162,16 +115,8 @@ public extension UIView {
      - returns: newly added constraint
      */
     public func constrainToWidth(width: CGFloat) -> NSLayoutConstraint {
-        let constraint: NSLayoutConstraint
-        
         translatesAutoresizingMaskIntoConstraints = false
-        
-        if #available(iOS 9.0, *) {
-            constraint = self.widthAnchor.constraintEqualToConstant(width)
-        } else {
-            constraint = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: width)
-        }
-        
+        let constraint = self.widthAnchor.constraintEqualToConstant(width)
         constraint.active = true
         return constraint
     }
@@ -184,16 +129,8 @@ public extension UIView {
      - returns: newly added constraint
      */
     public func constrainToHeight(height: CGFloat) -> NSLayoutConstraint {
-        let constraint: NSLayoutConstraint
-        
         translatesAutoresizingMaskIntoConstraints = false
-        
-        if #available(iOS 9.0, *) {
-            constraint = self.heightAnchor.constraintEqualToConstant(height)
-        } else {
-            constraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: height)
-        }
-        
+        let constraint = self.heightAnchor.constraintEqualToConstant(height)
         constraint.active = true
         return constraint
     }
