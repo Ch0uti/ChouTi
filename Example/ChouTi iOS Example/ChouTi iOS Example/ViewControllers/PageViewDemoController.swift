@@ -19,6 +19,8 @@ class PageViewDemoController: UIViewController {
 		
 		self.view.backgroundColor = UIColor.whiteColor()
 		
+        pageViewController.delegate = self
+        
 		let vc1 = SideViewController(nibName: "SideViewController", bundle: nil)
 		vc1.view.backgroundColor = UIColor.random()
 		vc1.label.text = "vc1"
@@ -40,37 +42,15 @@ class PageViewDemoController: UIViewController {
 		
 		dummyViewControllers = [vc1, vc2, vc3, vc4]
 		
-		// demoMenuPageViewController.viewControllers = dummyViewControllers
+        // 1: Set view controllers directly
+//        pageViewController.viewControllers = dummyViewControllers
 		
-		pageViewController.dataSource = self
-		pageViewController.delegate = self
-		
-//		self.automaticallyAdjustsScrollViewInsets = false
-		
-		addChildViewController(pageViewController)
-//		let frame = pageViewController.view.frame
-//		pageViewController.view.frame = CGRect(x: frame.origin.x, y: frame.origin.y + 22 + 44, width: frame.width, height: frame.height)
-		view.addSubview(pageViewController.view)
-		pageViewController.didMoveToParentViewController(self)
-		
-		pageViewController.setSelectedIndex(2, animated: true)
-	}
-	
-	override func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
-		
-		delay(0.5) { _ in
-			self.pageViewController.setSelectedIndex(1, animated: true)
-		}
-		
-		delay(1.0) { _ in
-			self.pageViewController.setSelectedIndex(3, animated: true)
-		}
-		
-		delay(4.0) { _ in
-			self.dummyViewControllers! += self.dummyViewControllers!
-			print("self.dumycount: \(self.dummyViewControllers.count)")
-		}
+        // 2: Set view controllers by data source
+        pageViewController.dataSource = self
+
+        addChildViewController(pageViewController)
+        view.addSubview(pageViewController.view)
+        pageViewController.didMoveToParentViewController(self)
 	}
 }
 
@@ -91,6 +71,6 @@ extension PageViewDemoController : PageViewControllerDelegate {
 	}
 	
 	func pageViewController(pageViewController: PageViewController, didScrollWithSelectedIndex selectedIndex: Int, offsetPercent: CGFloat) {
-		print("scroll offset: \(offsetPercent)")
+//		print("scroll offset: \(offsetPercent)")
 	}
 }
