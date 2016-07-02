@@ -11,7 +11,9 @@ import ChouTi
 
 class TableViewSectionRowExtensionDemoViewController: UIViewController {
 
-    let tableView = UITableView(frame: CGRect.zero, style: Bool.random() ? .Grouped : .Plain)
+    let tableView = UITableView(frame: CGRect.zero, style: {
+        return (Bool.random() ? .Grouped : .Plain) }()
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()

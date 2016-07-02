@@ -11,7 +11,7 @@ import ChouTi
 
 class MainViewController: UIViewController {
     
-    let tableView = UITableView()
+    let tableView = UITableView(frame: .zero, style: .Grouped)
     
     override func viewDidLoad() {
         super.viewDidLoad()
