@@ -50,21 +50,4 @@ public extension CGRect {
             size.width = newWidth > 0 ? newWidth : 0.0
         }
     }
-    
-    /// Mostly it's left, in Right-to-Left, leading is right
-    public var leading: CGFloat {
-        get { return isRTL ? right : left }
-        set { isRTL ? (right = newValue) : (left = newValue) }
-    }
-    
-    /// Mostly it's right, in Right-to-Left, trailing is left
-    public var trailing: CGFloat {
-        get { return isRTL ? left : right }
-        set { isRTL ? (left = newValue) : (right = newValue) }
-    }
-    
-    /// whether system interfae is Right-to-Left
-    private var isRTL: Bool {
-        return UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft
-    }
 }
