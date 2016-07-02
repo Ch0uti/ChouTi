@@ -8,6 +8,9 @@
 
 import UIKit
 import ChouTi
+import Then
+
+extension TableViewSection : Then {}
 
 class DummyViewController: UIViewController {
     
@@ -38,7 +41,7 @@ class DummyViewController: UIViewController {
         view.addSubview(label)
         label.constrainToCenterInSuperview()
         
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .Grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         tableView.userInteractionEnabled = true
@@ -72,7 +75,9 @@ class DummyViewController: UIViewController {
                     )
                 ],
                 tableView: tableView
-            )
+                ).then {
+                    $0.footerTitle = "This table view is used for testing user interaction in page child view controller."
+            }
         ]
     }
     

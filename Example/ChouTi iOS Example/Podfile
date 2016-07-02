@@ -14,6 +14,8 @@ target 'ChouTi iOS Example' do
   # pod 'ChouTi/Parse', :path => '../../'
   # pod 'ChouTi/UI/AutoLinesLabel', :path => '../../'
 
+  pod 'Then', '~> 1.0'
+
   target 'ChouTi iOS ExampleUITests' do
     inherit! :search_paths
     # Pods for testing

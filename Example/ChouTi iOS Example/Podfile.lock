@@ -51,10 +51,12 @@ PODS:
   - Operations (2.10.1):
     - Operations/Standard (= 2.10.1)
   - Operations/Standard (2.10.1)
+  - Then (1.0.3)
 
 DEPENDENCIES:
   - ChouTi (from `../../`)
   - ChouTi/ChouTi-Extra (from `../../`)
+  - Then (~> 1.0)
 
 EXTERNAL SOURCES:
   ChouTi:
@@ -63,7 +65,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   ChouTi: d983587c2b43845cec112447d4cea8b5e7451787
   Operations: b787ef012ec50752f6247b7f0efb7746fb8934ae
+  Then: c2502b763132c80dfa64d325065d70c45e2d48ca
 
-PODFILE CHECKSUM: ca2333f56bf67f1425f79e72d5c95e6f904d5392
+PODFILE CHECKSUM: 407a7707f5bf1493d80c0bdf6e161b40b838bbe1
 
 COCOAPODS: 1.0.1
