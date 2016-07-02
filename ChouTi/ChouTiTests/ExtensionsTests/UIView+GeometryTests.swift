@@ -13,8 +13,6 @@ class UIView_GeometryTests: ChouTiTests {
     let view = UIView()
     override func setUp() {
         super.setUp()
-        view.semanticContentAttribute = .ForceLeftToRight
-        
         view.frame = CGRect(x: 100, y: 200, width: 300, height: 400)
     }
     
@@ -84,4 +82,3 @@ class UIViewRightToLeft_GeometryTests: UIView_GeometryTests {
         XCTAssertEqual(view.trailing, view.left)
     }
 }
-

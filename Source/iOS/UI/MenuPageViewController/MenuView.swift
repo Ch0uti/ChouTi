@@ -168,17 +168,10 @@ public class MenuView : UIView {
 	private func setupConstraints() {
 		var constraints = [NSLayoutConstraint]()
 		
-		if #available(iOS 9.0, *) {
-		    constraints.append(menuCollectionView.topAnchor.constraintEqualToAnchor(self.topAnchor))
-			constraints.append(menuCollectionView.leadingAnchor.constraintEqualToAnchor(self.leadingAnchor))
-			constraints.append(menuCollectionView.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor))
-			constraints.append(menuCollectionView.trailingAnchor.constraintEqualToAnchor(self.trailingAnchor))
-		} else {
-			constraints.append(NSLayoutConstraint(item: menuCollectionView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0.0))
-			constraints.append(NSLayoutConstraint(item: menuCollectionView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0.0))
-			constraints.append(NSLayoutConstraint(item: menuCollectionView, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-			constraints.append(NSLayoutConstraint(item: menuCollectionView, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-		}
+        constraints.append(menuCollectionView.topAnchor.constraintEqualToAnchor(self.topAnchor))
+        constraints.append(menuCollectionView.leadingAnchor.constraintEqualToAnchor(self.leadingAnchor))
+        constraints.append(menuCollectionView.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor))
+        constraints.append(menuCollectionView.trailingAnchor.constraintEqualToAnchor(self.trailingAnchor))
 		
 		NSLayoutConstraint.activateConstraints(constraints)
 	}
