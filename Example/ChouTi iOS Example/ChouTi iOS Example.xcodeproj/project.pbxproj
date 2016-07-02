@@ -12,25 +12,29 @@
 		023052781D24B94700D7B190 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 023052771D24B94700D7B190 /* Assets.xcassets */; };
 		0230527B1D24B94700D7B190 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 023052791D24B94700D7B190 /* LaunchScreen.storyboard */; };
 		023052861D24B94700D7B190 /* ChouTi_iOS_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052851D24B94700D7B190 /* ChouTi_iOS_ExampleUITests.swift */; };
-		023052971D24C34700D7B190 /* HideNavigationBarBottomLineDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052961D24C34700D7B190 /* HideNavigationBarBottomLineDemoViewController.swift */; };
-		023052A61D24C35E00D7B190 /* TableLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052981D24C35E00D7B190 /* TableLayoutDemoViewController.swift */; };
-		023052A71D24C35E00D7B190 /* MenuViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052991D24C35E00D7B190 /* MenuViewDemoController.swift */; };
-		023052A81D24C35E00D7B190 /* PageViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230529A1D24C35E00D7B190 /* PageViewDemoController.swift */; };
-		023052A91D24C35E00D7B190 /* MenuPageDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230529B1D24C35E00D7B190 /* MenuPageDemoViewController.swift */; };
-		023052AA1D24C35E00D7B190 /* ImagePickerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230529C1D24C35E00D7B190 /* ImagePickerDemoViewController.swift */; };
-		023052AB1D24C35E00D7B190 /* TableViewSectionRowExtensionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230529D1D24C35E00D7B190 /* TableViewSectionRowExtensionDemoViewController.swift */; };
-		023052AC1D24C35E00D7B190 /* DropPresentingDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230529E1D24C35E00D7B190 /* DropPresentingDemoViewController.swift */; };
-		023052AD1D24C35E00D7B190 /* DropDownMenuDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0230529F1D24C35E00D7B190 /* DropDownMenuDemoViewController.swift */; };
-		023052AE1D24C35E00D7B190 /* DatePickerControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052A01D24C35E00D7B190 /* DatePickerControllerDemoViewController.swift */; };
-		023052AF1D24C35E00D7B190 /* OperationsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052A11D24C35E00D7B190 /* OperationsDemoViewController.swift */; };
-		023052B01D24C35E00D7B190 /* NavigationBarStatusBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052A21D24C35E00D7B190 /* NavigationBarStatusBarDemoViewController.swift */; };
-		023052B11D24C35E00D7B190 /* SearchTextFieldDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052A31D24C35E00D7B190 /* SearchTextFieldDemoViewController.swift */; };
-		023052B21D24C35E00D7B190 /* AlertControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052A41D24C35E00D7B190 /* AlertControllerDemoViewController.swift */; };
-		023052B31D24C35E00D7B190 /* PageControlDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052A51D24C35E00D7B190 /* PageControlDemoViewController.swift */; };
-		023052B91D24C38100D7B190 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052B51D24C38100D7B190 /* CenterViewController.swift */; };
-		023052BA1D24C38100D7B190 /* CenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 023052B61D24C38100D7B190 /* CenterViewController.xib */; };
-		023052BB1D24C38100D7B190 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052B71D24C38100D7B190 /* SideViewController.swift */; };
-		023052BC1D24C38100D7B190 /* SideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 023052B81D24C38100D7B190 /* SideViewController.xib */; };
+		025C72EE1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72EB1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift */; };
+		025C72EF1D271BC60041F1CA /* OperationsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72EC1D271BC60041F1CA /* OperationsDemoViewController.swift */; };
+		025C72F01D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72ED1D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift */; };
+		025C72F21D271C0B0041F1CA /* MiscellaneousSectionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72F11D271C0B0041F1CA /* MiscellaneousSectionConfiguration.swift */; };
+		025C72FB1D2720310041F1CA /* MenuPageDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72F41D2720310041F1CA /* MenuPageDemoViewController.swift */; };
+		025C72FC1D2720310041F1CA /* PageViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72F51D2720310041F1CA /* PageViewDemoController.swift */; };
+		025C72FD1D2720310041F1CA /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72F71D2720310041F1CA /* CenterViewController.swift */; };
+		025C72FE1D2720310041F1CA /* CenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 025C72F81D2720310041F1CA /* CenterViewController.xib */; };
+		025C72FF1D2720310041F1CA /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72F91D2720310041F1CA /* SideViewController.swift */; };
+		025C73001D2720310041F1CA /* SideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 025C72FA1D2720310041F1CA /* SideViewController.xib */; };
+		025C73021D2720570041F1CA /* SlideControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73011D2720570041F1CA /* SlideControllerDemoViewController.swift */; };
+		025C73041D27208D0041F1CA /* ViewControllersSectionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73031D27208D0041F1CA /* ViewControllersSectionConfiguration.swift */; };
+		025C73121D2724EA0041F1CA /* AlertControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73091D2724EA0041F1CA /* AlertControllerDemoViewController.swift */; };
+		025C73131D2724EA0041F1CA /* DatePickerControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C730A1D2724EA0041F1CA /* DatePickerControllerDemoViewController.swift */; };
+		025C73141D2724EA0041F1CA /* DropDownMenuDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C730B1D2724EA0041F1CA /* DropDownMenuDemoViewController.swift */; };
+		025C73151D2724EA0041F1CA /* ImagePickerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C730C1D2724EA0041F1CA /* ImagePickerDemoViewController.swift */; };
+		025C73161D2724EA0041F1CA /* MenuViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C730D1D2724EA0041F1CA /* MenuViewDemoController.swift */; };
+		025C73171D2724EA0041F1CA /* NavigationBarStatusBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C730E1D2724EA0041F1CA /* NavigationBarStatusBarDemoViewController.swift */; };
+		025C73181D2724EA0041F1CA /* PageControlDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C730F1D2724EA0041F1CA /* PageControlDemoViewController.swift */; };
+		025C73191D2724EA0041F1CA /* SearchTextFieldDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73101D2724EA0041F1CA /* SearchTextFieldDemoViewController.swift */; };
+		025C731A1D2724EA0041F1CA /* ViewsSectionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73111D2724EA0041F1CA /* ViewsSectionConfiguration.swift */; };
+		025C731C1D2727420041F1CA /* TableLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C731B1D2727420041F1CA /* TableLayoutDemoViewController.swift */; };
+		025C731E1D2727470041F1CA /* DropPresentingDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C731D1D2727470041F1CA /* DropPresentingDemoViewController.swift */; };
 		17495F426F95D8A1A6246A64 /* Pods_ChouTi_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83D02988F43562CA418A4C8 /* Pods_ChouTi_iOS_Example.framework */; };
 		79701CA829BB14CA67E94B4C /* Pods_ChouTi_iOS_ExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6479DA10D69A0CAD0518C28D /* Pods_ChouTi_iOS_ExampleUITests.framework */; };
 /* End PBXBuildFile section */
@@ -55,25 +59,29 @@
 		023052811D24B94700D7B190 /* ChouTi iOS ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ChouTi iOS ExampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		023052851D24B94700D7B190 /* ChouTi_iOS_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChouTi_iOS_ExampleUITests.swift; sourceTree = "<group>"; };
 		023052871D24B94700D7B190 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		023052961D24C34700D7B190 /* HideNavigationBarBottomLineDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarBottomLineDemoViewController.swift; sourceTree = "<group>"; };
-		023052981D24C35E00D7B190 /* TableLayoutDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableLayoutDemoViewController.swift; sourceTree = "<group>"; };
-		023052991D24C35E00D7B190 /* MenuViewDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewDemoController.swift; sourceTree = "<group>"; };
-		0230529A1D24C35E00D7B190 /* PageViewDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewDemoController.swift; sourceTree = "<group>"; };
-		0230529B1D24C35E00D7B190 /* MenuPageDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageDemoViewController.swift; sourceTree = "<group>"; };
-		0230529C1D24C35E00D7B190 /* ImagePickerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerDemoViewController.swift; sourceTree = "<group>"; };
-		0230529D1D24C35E00D7B190 /* TableViewSectionRowExtensionDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSectionRowExtensionDemoViewController.swift; sourceTree = "<group>"; };
-		0230529E1D24C35E00D7B190 /* DropPresentingDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropPresentingDemoViewController.swift; sourceTree = "<group>"; };
-		0230529F1D24C35E00D7B190 /* DropDownMenuDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenuDemoViewController.swift; sourceTree = "<group>"; };
-		023052A01D24C35E00D7B190 /* DatePickerControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerControllerDemoViewController.swift; sourceTree = "<group>"; };
-		023052A11D24C35E00D7B190 /* OperationsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsDemoViewController.swift; sourceTree = "<group>"; };
-		023052A21D24C35E00D7B190 /* NavigationBarStatusBarDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarStatusBarDemoViewController.swift; sourceTree = "<group>"; };
-		023052A31D24C35E00D7B190 /* SearchTextFieldDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextFieldDemoViewController.swift; sourceTree = "<group>"; };
-		023052A41D24C35E00D7B190 /* AlertControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerDemoViewController.swift; sourceTree = "<group>"; };
-		023052A51D24C35E00D7B190 /* PageControlDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlDemoViewController.swift; sourceTree = "<group>"; };
-		023052B51D24C38100D7B190 /* CenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
-		023052B61D24C38100D7B190 /* CenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenterViewController.xib; sourceTree = "<group>"; };
-		023052B71D24C38100D7B190 /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
-		023052B81D24C38100D7B190 /* SideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideViewController.xib; sourceTree = "<group>"; };
+		025C72EB1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarBottomLineDemoViewController.swift; sourceTree = "<group>"; };
+		025C72EC1D271BC60041F1CA /* OperationsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsDemoViewController.swift; sourceTree = "<group>"; };
+		025C72ED1D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSectionRowExtensionDemoViewController.swift; sourceTree = "<group>"; };
+		025C72F11D271C0B0041F1CA /* MiscellaneousSectionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscellaneousSectionConfiguration.swift; sourceTree = "<group>"; };
+		025C72F41D2720310041F1CA /* MenuPageDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageDemoViewController.swift; sourceTree = "<group>"; };
+		025C72F51D2720310041F1CA /* PageViewDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewDemoController.swift; sourceTree = "<group>"; };
+		025C72F71D2720310041F1CA /* CenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
+		025C72F81D2720310041F1CA /* CenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenterViewController.xib; sourceTree = "<group>"; };
+		025C72F91D2720310041F1CA /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
+		025C72FA1D2720310041F1CA /* SideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideViewController.xib; sourceTree = "<group>"; };
+		025C73011D2720570041F1CA /* SlideControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideControllerDemoViewController.swift; sourceTree = "<group>"; };
+		025C73031D27208D0041F1CA /* ViewControllersSectionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllersSectionConfiguration.swift; sourceTree = "<group>"; };
+		025C73091D2724EA0041F1CA /* AlertControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerDemoViewController.swift; sourceTree = "<group>"; };
+		025C730A1D2724EA0041F1CA /* DatePickerControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerControllerDemoViewController.swift; sourceTree = "<group>"; };
+		025C730B1D2724EA0041F1CA /* DropDownMenuDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenuDemoViewController.swift; sourceTree = "<group>"; };
+		025C730C1D2724EA0041F1CA /* ImagePickerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerDemoViewController.swift; sourceTree = "<group>"; };
+		025C730D1D2724EA0041F1CA /* MenuViewDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewDemoController.swift; sourceTree = "<group>"; };
+		025C730E1D2724EA0041F1CA /* NavigationBarStatusBarDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarStatusBarDemoViewController.swift; sourceTree = "<group>"; };
+		025C730F1D2724EA0041F1CA /* PageControlDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlDemoViewController.swift; sourceTree = "<group>"; };
+		025C73101D2724EA0041F1CA /* SearchTextFieldDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextFieldDemoViewController.swift; sourceTree = "<group>"; };
+		025C73111D2724EA0041F1CA /* ViewsSectionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewsSectionConfiguration.swift; sourceTree = "<group>"; };
+		025C731B1D2727420041F1CA /* TableLayoutDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableLayoutDemoViewController.swift; sourceTree = "<group>"; };
+		025C731D1D2727470041F1CA /* DropPresentingDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropPresentingDemoViewController.swift; sourceTree = "<group>"; };
 		4D7C000753061EE7F4BEC2B4 /* Pods-ChouTi iOS ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS ExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS ExampleUITests/Pods-ChouTi iOS ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		56C5ECC8768A402443BEC96E /* Pods-ChouTi iOS Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS Example/Pods-ChouTi iOS Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6479DA10D69A0CAD0518C28D /* Pods_ChouTi_iOS_ExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_iOS_ExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,22 +135,9 @@
 			children = (
 				023052701D24B94700D7B190 /* AppDelegate.swift */,
 				023052721D24B94700D7B190 /* MainViewController.swift */,
-				023052961D24C34700D7B190 /* HideNavigationBarBottomLineDemoViewController.swift */,
-				023052B41D24C38100D7B190 /* SlideControllerSupports */,
-				023052981D24C35E00D7B190 /* TableLayoutDemoViewController.swift */,
-				023052991D24C35E00D7B190 /* MenuViewDemoController.swift */,
-				0230529A1D24C35E00D7B190 /* PageViewDemoController.swift */,
-				0230529B1D24C35E00D7B190 /* MenuPageDemoViewController.swift */,
-				0230529C1D24C35E00D7B190 /* ImagePickerDemoViewController.swift */,
-				0230529D1D24C35E00D7B190 /* TableViewSectionRowExtensionDemoViewController.swift */,
-				0230529E1D24C35E00D7B190 /* DropPresentingDemoViewController.swift */,
-				0230529F1D24C35E00D7B190 /* DropDownMenuDemoViewController.swift */,
-				023052A01D24C35E00D7B190 /* DatePickerControllerDemoViewController.swift */,
-				023052A11D24C35E00D7B190 /* OperationsDemoViewController.swift */,
-				023052A21D24C35E00D7B190 /* NavigationBarStatusBarDemoViewController.swift */,
-				023052A31D24C35E00D7B190 /* SearchTextFieldDemoViewController.swift */,
-				023052A41D24C35E00D7B190 /* AlertControllerDemoViewController.swift */,
-				023052A51D24C35E00D7B190 /* PageControlDemoViewController.swift */,
+				025C73081D2724EA0041F1CA /* Views */,
+				025C72F31D271F950041F1CA /* ViewControllers */,
+				025C72EA1D271BC60041F1CA /* Miscellaneous */,
 				023052771D24B94700D7B190 /* Assets.xcassets */,
 				023052791D24B94700D7B190 /* LaunchScreen.storyboard */,
 				0230527C1D24B94700D7B190 /* Info.plist */,
@@ -159,15 +154,56 @@
 			path = "ChouTi iOS ExampleUITests";
 			sourceTree = "<group>";
 		};
-		023052B41D24C38100D7B190 /* SlideControllerSupports */ = {
+		025C72EA1D271BC60041F1CA /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
-				023052B51D24C38100D7B190 /* CenterViewController.swift */,
-				023052B61D24C38100D7B190 /* CenterViewController.xib */,
-				023052B71D24C38100D7B190 /* SideViewController.swift */,
-				023052B81D24C38100D7B190 /* SideViewController.xib */,
+				025C72F11D271C0B0041F1CA /* MiscellaneousSectionConfiguration.swift */,
+				025C731D1D2727470041F1CA /* DropPresentingDemoViewController.swift */,
+				025C731B1D2727420041F1CA /* TableLayoutDemoViewController.swift */,
+				025C72EB1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift */,
+				025C72ED1D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift */,
+				025C72EC1D271BC60041F1CA /* OperationsDemoViewController.swift */,
 			);
-			path = SlideControllerSupports;
+			path = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		025C72F31D271F950041F1CA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				025C73031D27208D0041F1CA /* ViewControllersSectionConfiguration.swift */,
+				025C72F61D2720310041F1CA /* SlideControllerDemoViewController */,
+				025C72F51D2720310041F1CA /* PageViewDemoController.swift */,
+				025C72F41D2720310041F1CA /* MenuPageDemoViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		025C72F61D2720310041F1CA /* SlideControllerDemoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				025C73011D2720570041F1CA /* SlideControllerDemoViewController.swift */,
+				025C72F71D2720310041F1CA /* CenterViewController.swift */,
+				025C72F81D2720310041F1CA /* CenterViewController.xib */,
+				025C72F91D2720310041F1CA /* SideViewController.swift */,
+				025C72FA1D2720310041F1CA /* SideViewController.xib */,
+			);
+			path = SlideControllerDemoViewController;
+			sourceTree = "<group>";
+		};
+		025C73081D2724EA0041F1CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				025C73111D2724EA0041F1CA /* ViewsSectionConfiguration.swift */,
+				025C730D1D2724EA0041F1CA /* MenuViewDemoController.swift */,
+				025C730C1D2724EA0041F1CA /* ImagePickerDemoViewController.swift */,
+				025C730B1D2724EA0041F1CA /* DropDownMenuDemoViewController.swift */,
+				025C730A1D2724EA0041F1CA /* DatePickerControllerDemoViewController.swift */,
+				025C730E1D2724EA0041F1CA /* NavigationBarStatusBarDemoViewController.swift */,
+				025C73101D2724EA0041F1CA /* SearchTextFieldDemoViewController.swift */,
+				025C73091D2724EA0041F1CA /* AlertControllerDemoViewController.swift */,
+				025C730F1D2724EA0041F1CA /* PageControlDemoViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		05FAD2F12CEF34BB425A6DC3 /* Pods */ = {
@@ -277,9 +313,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0230527B1D24B94700D7B190 /* LaunchScreen.storyboard in Resources */,
-				023052BC1D24C38100D7B190 /* SideViewController.xib in Resources */,
-				023052BA1D24C38100D7B190 /* CenterViewController.xib in Resources */,
 				023052781D24B94700D7B190 /* Assets.xcassets in Resources */,
+				025C72FE1D2720310041F1CA /* CenterViewController.xib in Resources */,
+				025C73001D2720310041F1CA /* SideViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,25 +411,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				023052AF1D24C35E00D7B190 /* OperationsDemoViewController.swift in Sources */,
-				023052BB1D24C38100D7B190 /* SideViewController.swift in Sources */,
-				023052B01D24C35E00D7B190 /* NavigationBarStatusBarDemoViewController.swift in Sources */,
-				023052B21D24C35E00D7B190 /* AlertControllerDemoViewController.swift in Sources */,
-				023052B91D24C38100D7B190 /* CenterViewController.swift in Sources */,
-				023052A61D24C35E00D7B190 /* TableLayoutDemoViewController.swift in Sources */,
-				023052AC1D24C35E00D7B190 /* DropPresentingDemoViewController.swift in Sources */,
-				023052AD1D24C35E00D7B190 /* DropDownMenuDemoViewController.swift in Sources */,
-				023052A71D24C35E00D7B190 /* MenuViewDemoController.swift in Sources */,
-				023052AB1D24C35E00D7B190 /* TableViewSectionRowExtensionDemoViewController.swift in Sources */,
-				023052A91D24C35E00D7B190 /* MenuPageDemoViewController.swift in Sources */,
-				023052B31D24C35E00D7B190 /* PageControlDemoViewController.swift in Sources */,
-				023052AA1D24C35E00D7B190 /* ImagePickerDemoViewController.swift in Sources */,
-				023052B11D24C35E00D7B190 /* SearchTextFieldDemoViewController.swift in Sources */,
-				023052A81D24C35E00D7B190 /* PageViewDemoController.swift in Sources */,
+				025C731C1D2727420041F1CA /* TableLayoutDemoViewController.swift in Sources */,
+				025C731E1D2727470041F1CA /* DropPresentingDemoViewController.swift in Sources */,
+				025C72F01D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift in Sources */,
+				025C72FD1D2720310041F1CA /* CenterViewController.swift in Sources */,
+				025C72FF1D2720310041F1CA /* SideViewController.swift in Sources */,
+				025C72FC1D2720310041F1CA /* PageViewDemoController.swift in Sources */,
+				025C72FB1D2720310041F1CA /* MenuPageDemoViewController.swift in Sources */,
+				025C73141D2724EA0041F1CA /* DropDownMenuDemoViewController.swift in Sources */,
+				025C73021D2720570041F1CA /* SlideControllerDemoViewController.swift in Sources */,
+				025C73041D27208D0041F1CA /* ViewControllersSectionConfiguration.swift in Sources */,
+				025C72EE1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift in Sources */,
+				025C731A1D2724EA0041F1CA /* ViewsSectionConfiguration.swift in Sources */,
+				025C73181D2724EA0041F1CA /* PageControlDemoViewController.swift in Sources */,
+				025C73161D2724EA0041F1CA /* MenuViewDemoController.swift in Sources */,
+				025C73121D2724EA0041F1CA /* AlertControllerDemoViewController.swift in Sources */,
+				025C73131D2724EA0041F1CA /* DatePickerControllerDemoViewController.swift in Sources */,
+				025C72F21D271C0B0041F1CA /* MiscellaneousSectionConfiguration.swift in Sources */,
+				025C73171D2724EA0041F1CA /* NavigationBarStatusBarDemoViewController.swift in Sources */,
+				025C73191D2724EA0041F1CA /* SearchTextFieldDemoViewController.swift in Sources */,
 				023052731D24B94700D7B190 /* MainViewController.swift in Sources */,
-				023052971D24C34700D7B190 /* HideNavigationBarBottomLineDemoViewController.swift in Sources */,
+				025C73151D2724EA0041F1CA /* ImagePickerDemoViewController.swift in Sources */,
 				023052711D24B94700D7B190 /* AppDelegate.swift in Sources */,
-				023052AE1D24C35E00D7B190 /* DatePickerControllerDemoViewController.swift in Sources */,
+				025C72EF1D271BC60041F1CA /* OperationsDemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,8 @@ class TableLayoutDemoViewController: UIViewController {
         super.viewDidLoad()
 		
 		view.backgroundColor = UIColor.whiteColor()
-		
+		title = "Table Layout"
+        
 		for c in 0 ..< columns {
 			rows[c] = Int.random(1, 30)
 		}
