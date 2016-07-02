@@ -11,14 +11,6 @@ import XCTest
 
 class Dictionary_ExtensionsTests: ChouTiTests {
     
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     func testCombineTwoDictionaries() {
         let dict1 = ["1" : 1, "2" : 2]
         let dict2 = ["3" : 3, "4" : 4]

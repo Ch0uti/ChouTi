@@ -31,8 +31,7 @@ public extension CGRect {
     public var bottom: CGFloat {
         get { return y + height }
         set {
-            let newHeight = newValue - top
-            size.height = newHeight > 0 ? newHeight : 0.0
+            origin.y = newValue - height
         }
     }
     
@@ -46,8 +45,7 @@ public extension CGRect {
     public var right: CGFloat {
         get { return x + width }
         set {
-            let newWidth = newValue - left
-            size.width = newWidth > 0 ? newWidth : 0.0
+            origin.x = newValue - width
         }
     }
 }
