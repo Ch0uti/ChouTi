@@ -136,6 +136,10 @@
 		023051D91D244D2000D7B190 /* UIColor+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051C71D244A1A00D7B190 /* UIColor+ExtensionsTests.swift */; };
 		023051DA1D244D2300D7B190 /* DelayTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023051CE1D244A2A00D7B190 /* DelayTaskTests.swift */; };
 		023051DB1D24514300D7B190 /* Attributes in Resources */ = {isa = PBXBuildFile; fileRef = 023050B61D24418400D7B190 /* Attributes */; };
+		02E194791D28537E00B35F1B /* CGRect+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E194781D28537E00B35F1B /* CGRect+ExtensionsTests.swift */; };
+		02E1947B1D28542D00B35F1B /* CGContext+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1947A1D28542D00B35F1B /* CGContext+ExtensionsTests.swift */; };
+		02E1947D1D2861EC00B35F1B /* UIView+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1947C1D2861EC00B35F1B /* UIView+Geometry.swift */; };
+		02E1947F1D28629B00B35F1B /* UIView+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1947E1D28629B00B35F1B /* UIView+GeometryTests.swift */; };
 		33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2582D7686D9E144D59115335 /* Pods_ChouTi.framework */; };
 		FC8011B3082D1EEA4FC12444 /* Pods_ChouTiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */; };
 /* End PBXBuildFile section */
@@ -285,6 +289,10 @@
 		023051C61D244A1A00D7B190 /* String+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		023051C71D244A1A00D7B190 /* UIColor+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		023051CE1D244A2A00D7B190 /* DelayTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayTaskTests.swift; sourceTree = "<group>"; };
+		02E194781D28537E00B35F1B /* CGRect+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		02E1947A1D28542D00B35F1B /* CGContext+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGContext+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		02E1947C1D2861EC00B35F1B /* UIView+Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Geometry.swift"; sourceTree = "<group>"; };
+		02E1947E1D28629B00B35F1B /* UIView+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+GeometryTests.swift"; sourceTree = "<group>"; };
 		0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.debug.xcconfig"; sourceTree = "<group>"; };
 		2582D7686D9E144D59115335 /* Pods_ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -481,6 +489,7 @@
 				023050ED1D24418400D7B190 /* UITableViewCell+Extensions.swift */,
 				023050EE1D24418400D7B190 /* UIView+Animations.swift */,
 				023050EF1D24418400D7B190 /* UIView+Extensions.swift */,
+				02E1947C1D2861EC00B35F1B /* UIView+Geometry.swift */,
 				023050F01D24418400D7B190 /* UIView+OverlayView.swift */,
 				023050F11D24418400D7B190 /* UIViewController+Extensions.swift */,
 			);
@@ -721,6 +730,9 @@
 		023051C21D244A1A00D7B190 /* ExtensionsTests */ = {
 			isa = PBXGroup;
 			children = (
+				02E1947A1D28542D00B35F1B /* CGContext+ExtensionsTests.swift */,
+				02E194781D28537E00B35F1B /* CGRect+ExtensionsTests.swift */,
+				02E1947E1D28629B00B35F1B /* UIView+GeometryTests.swift */,
 				023051C31D244A1A00D7B190 /* Dictionary+ExtensionsTests.swift */,
 				023051C41D244A1A00D7B190 /* NSDate+ExtensionsTests.swift */,
 				023051C51D244A1A00D7B190 /* NSObject+ExtensionsTests.swift */,
@@ -1053,6 +1065,7 @@
 				0230514E1D24418400D7B190 /* CodeSnippet_UITextField.swift in Sources */,
 				023051A81D24418400D7B190 /* TableViewCellValue2.swift in Sources */,
 				0230518A1D24418400D7B190 /* CIImageFilter.swift in Sources */,
+				02E1947D1D2861EC00B35F1B /* UIView+Geometry.swift in Sources */,
 				023051611D24418400D7B190 /* Collection+Extensions.swift in Sources */,
 				0230515A1D24418400D7B190 /* CodeSnippets_UIVisualEffectView.swift in Sources */,
 				023051A21D24418400D7B190 /* SlideController.swift in Sources */,
@@ -1076,11 +1089,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02E1947F1D28629B00B35F1B /* UIView+GeometryTests.swift in Sources */,
 				023051DA1D244D2300D7B190 /* DelayTaskTests.swift in Sources */,
 				023051D81D244D2000D7B190 /* String+ExtensionsTests.swift in Sources */,
 				023051D91D244D2000D7B190 /* UIColor+ExtensionsTests.swift in Sources */,
 				023051D51D244D2000D7B190 /* Dictionary+ExtensionsTests.swift in Sources */,
 				023051D61D244D2000D7B190 /* NSDate+ExtensionsTests.swift in Sources */,
+				02E1947B1D28542D00B35F1B /* CGContext+ExtensionsTests.swift in Sources */,
+				02E194791D28537E00B35F1B /* CGRect+ExtensionsTests.swift in Sources */,
 				023050A21D2440DB00D7B190 /* ChouTiTests.swift in Sources */,
 				023051D71D244D2000D7B190 /* NSObject+ExtensionsTests.swift in Sources */,
 			);
@@ -1198,7 +1214,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ChouTi/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.ChouTi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1216,7 +1232,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ChouTi/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.ChouTi;
 				PRODUCT_NAME = "$(TARGET_NAME)";

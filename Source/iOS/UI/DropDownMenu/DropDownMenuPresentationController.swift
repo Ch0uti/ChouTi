@@ -90,7 +90,7 @@ class DropDownMenuPresentationController: OverlayPresentationController {
 			}
 		}
 		
-        return CGRect(x: menuFrame.leading, y: menuFrame.bottom, width: menuFrame.width, height: containerView.height - menuFrame.bottom)
+        return CGRect(x: menuFrame.left, y: menuFrame.bottom, width: menuFrame.width, height: containerView.height - menuFrame.bottom)
     }
 }
 
