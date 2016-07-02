@@ -22,10 +22,10 @@ class HideNavigationBarBottomLineDemoViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         if isMovingFromParentViewController() {
-            // Poped
+            // Being poped
             navigationController?.navigationBar.showBottomHairline()
         } else if isMovingToParentViewController() {
-            // Pushed
+            // Being pushed
         }
     }
 }
