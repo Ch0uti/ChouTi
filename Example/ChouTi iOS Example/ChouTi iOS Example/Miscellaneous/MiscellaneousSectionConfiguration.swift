@@ -26,19 +26,17 @@ struct MiscellaneousSectionConfiguration {
             )
         )
         
-        if #available(iOS 9.0, *) {
-            rows.append(
-                TableViewRow(title: "├┼┤ Table (Grid) Layout",
-                    subtitle: "Excel Layout",
-                    tableView: tableView,
-                    cellSelectAction: { indexPath, cell in
-                        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                        let demoViewController = TableLayoutDemoViewController()
-                        tableView.presentingViewController?.showViewController(demoViewController, sender: nil)
-                    }
-                )
+        rows.append(
+            TableViewRow(title: "├┼┤ Table (Grid) Layout",
+                subtitle: "Excel Layout",
+                tableView: tableView,
+                cellSelectAction: { indexPath, cell in
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    let demoViewController = TableLayoutDemoViewController()
+                    tableView.presentingViewController?.showViewController(demoViewController, sender: nil)
+                }
             )
-        }
+        )
         
         rows.append(
             TableViewRow(title: "Navigation Bar Hide Hairline",

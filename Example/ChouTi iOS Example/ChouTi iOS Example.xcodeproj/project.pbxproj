@@ -20,9 +20,6 @@
 		025C72FC1D2720310041F1CA /* PageViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72F51D2720310041F1CA /* PageViewDemoController.swift */; };
 		025C72FD1D2720310041F1CA /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72F71D2720310041F1CA /* CenterViewController.swift */; };
 		025C72FE1D2720310041F1CA /* CenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 025C72F81D2720310041F1CA /* CenterViewController.xib */; };
-		025C72FF1D2720310041F1CA /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72F91D2720310041F1CA /* SideViewController.swift */; };
-		025C73001D2720310041F1CA /* SideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 025C72FA1D2720310041F1CA /* SideViewController.xib */; };
-		025C73021D2720570041F1CA /* SlideControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73011D2720570041F1CA /* SlideControllerDemoViewController.swift */; };
 		025C73041D27208D0041F1CA /* ViewControllersSectionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73031D27208D0041F1CA /* ViewControllersSectionConfiguration.swift */; };
 		025C73121D2724EA0041F1CA /* AlertControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73091D2724EA0041F1CA /* AlertControllerDemoViewController.swift */; };
 		025C73131D2724EA0041F1CA /* DatePickerControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C730A1D2724EA0041F1CA /* DatePickerControllerDemoViewController.swift */; };
@@ -35,6 +32,7 @@
 		025C731A1D2724EA0041F1CA /* ViewsSectionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73111D2724EA0041F1CA /* ViewsSectionConfiguration.swift */; };
 		025C731C1D2727420041F1CA /* TableLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C731B1D2727420041F1CA /* TableLayoutDemoViewController.swift */; };
 		025C731E1D2727470041F1CA /* DropPresentingDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C731D1D2727470041F1CA /* DropPresentingDemoViewController.swift */; };
+		025C73241D282B130041F1CA /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73221D282B130041F1CA /* DummyViewController.swift */; };
 		17495F426F95D8A1A6246A64 /* Pods_ChouTi_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83D02988F43562CA418A4C8 /* Pods_ChouTi_iOS_Example.framework */; };
 		79701CA829BB14CA67E94B4C /* Pods_ChouTi_iOS_ExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6479DA10D69A0CAD0518C28D /* Pods_ChouTi_iOS_ExampleUITests.framework */; };
 /* End PBXBuildFile section */
@@ -67,9 +65,6 @@
 		025C72F51D2720310041F1CA /* PageViewDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewDemoController.swift; sourceTree = "<group>"; };
 		025C72F71D2720310041F1CA /* CenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		025C72F81D2720310041F1CA /* CenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenterViewController.xib; sourceTree = "<group>"; };
-		025C72F91D2720310041F1CA /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
-		025C72FA1D2720310041F1CA /* SideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideViewController.xib; sourceTree = "<group>"; };
-		025C73011D2720570041F1CA /* SlideControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideControllerDemoViewController.swift; sourceTree = "<group>"; };
 		025C73031D27208D0041F1CA /* ViewControllersSectionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllersSectionConfiguration.swift; sourceTree = "<group>"; };
 		025C73091D2724EA0041F1CA /* AlertControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerDemoViewController.swift; sourceTree = "<group>"; };
 		025C730A1D2724EA0041F1CA /* DatePickerControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerControllerDemoViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +77,7 @@
 		025C73111D2724EA0041F1CA /* ViewsSectionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewsSectionConfiguration.swift; sourceTree = "<group>"; };
 		025C731B1D2727420041F1CA /* TableLayoutDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		025C731D1D2727470041F1CA /* DropPresentingDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropPresentingDemoViewController.swift; sourceTree = "<group>"; };
+		025C73221D282B130041F1CA /* DummyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
 		4D7C000753061EE7F4BEC2B4 /* Pods-ChouTi iOS ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS ExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS ExampleUITests/Pods-ChouTi iOS ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		56C5ECC8768A402443BEC96E /* Pods-ChouTi iOS Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS Example/Pods-ChouTi iOS Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6479DA10D69A0CAD0518C28D /* Pods_ChouTi_iOS_ExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_iOS_ExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				025C73031D27208D0041F1CA /* ViewControllersSectionConfiguration.swift */,
+				025C73211D282AE00041F1CA /* Shared */,
 				025C72F61D2720310041F1CA /* SlideControllerDemoViewController */,
 				025C72F51D2720310041F1CA /* PageViewDemoController.swift */,
 				025C72F41D2720310041F1CA /* MenuPageDemoViewController.swift */,
@@ -181,11 +178,8 @@
 		025C72F61D2720310041F1CA /* SlideControllerDemoViewController */ = {
 			isa = PBXGroup;
 			children = (
-				025C73011D2720570041F1CA /* SlideControllerDemoViewController.swift */,
 				025C72F71D2720310041F1CA /* CenterViewController.swift */,
 				025C72F81D2720310041F1CA /* CenterViewController.xib */,
-				025C72F91D2720310041F1CA /* SideViewController.swift */,
-				025C72FA1D2720310041F1CA /* SideViewController.xib */,
 			);
 			path = SlideControllerDemoViewController;
 			sourceTree = "<group>";
@@ -204,6 +198,14 @@
 				025C730F1D2724EA0041F1CA /* PageControlDemoViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		025C73211D282AE00041F1CA /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				025C73221D282B130041F1CA /* DummyViewController.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		05FAD2F12CEF34BB425A6DC3 /* Pods */ = {
@@ -315,7 +317,6 @@
 				0230527B1D24B94700D7B190 /* LaunchScreen.storyboard in Resources */,
 				023052781D24B94700D7B190 /* Assets.xcassets in Resources */,
 				025C72FE1D2720310041F1CA /* CenterViewController.xib in Resources */,
-				025C73001D2720310041F1CA /* SideViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,11 +416,9 @@
 				025C731E1D2727470041F1CA /* DropPresentingDemoViewController.swift in Sources */,
 				025C72F01D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift in Sources */,
 				025C72FD1D2720310041F1CA /* CenterViewController.swift in Sources */,
-				025C72FF1D2720310041F1CA /* SideViewController.swift in Sources */,
 				025C72FC1D2720310041F1CA /* PageViewDemoController.swift in Sources */,
 				025C72FB1D2720310041F1CA /* MenuPageDemoViewController.swift in Sources */,
 				025C73141D2724EA0041F1CA /* DropDownMenuDemoViewController.swift in Sources */,
-				025C73021D2720570041F1CA /* SlideControllerDemoViewController.swift in Sources */,
 				025C73041D27208D0041F1CA /* ViewControllersSectionConfiguration.swift in Sources */,
 				025C72EE1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift in Sources */,
 				025C731A1D2724EA0041F1CA /* ViewsSectionConfiguration.swift in Sources */,
@@ -432,6 +431,7 @@
 				025C73191D2724EA0041F1CA /* SearchTextFieldDemoViewController.swift in Sources */,
 				023052731D24B94700D7B190 /* MainViewController.swift in Sources */,
 				025C73151D2724EA0041F1CA /* ImagePickerDemoViewController.swift in Sources */,
+				025C73241D282B130041F1CA /* DummyViewController.swift in Sources */,
 				023052711D24B94700D7B190 /* AppDelegate.swift in Sources */,
 				025C72EF1D271BC60041F1CA /* OperationsDemoViewController.swift in Sources */,
 			);
@@ -556,7 +556,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "ChouTi iOS Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-iOS-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -569,7 +569,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "ChouTi iOS Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-iOS-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";

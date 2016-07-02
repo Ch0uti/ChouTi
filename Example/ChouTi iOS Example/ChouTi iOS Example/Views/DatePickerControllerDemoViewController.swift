@@ -41,13 +41,9 @@ class DatePickerControllerDemoViewController : UIViewController {
 		resultLabel.font = UIFont.AvenirMediumFont(21)
 		resultLabel.textColor = UIColor.blackColor()
 		resultLabel.text = "Selected Date"
-		
-		if #available(iOS 9.0, *) {
-		    resultLabel.topAnchor.constraintEqualToAnchor(button.bottomAnchor, constant: 40).active = true
-			resultLabel.centerXAnchor.constraintEqualToAnchor(button.centerXAnchor).active = true
-		} else {
-		    // Fallback on earlier versions
-		}
+
+        resultLabel.topAnchor.constraintEqualToAnchor(button.bottomAnchor, constant: 40).active = true
+        resultLabel.centerXAnchor.constraintEqualToAnchor(button.centerXAnchor).active = true
 	}
 	
 	func buttonTapped(sender: AnyObject) {

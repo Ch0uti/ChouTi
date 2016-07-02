@@ -34,21 +34,17 @@ class MenuViewDemoController: UIViewController {
 		
 		centerMenuView.spacingsBetweenMenus = 10.0
 		
-		if #available(iOS 9.0, *) {
-			leadingMenuView.bottomAnchor.constraintEqualToAnchor(centerMenuView.topAnchor, constant: -20.0).active = true
-			leadingMenuView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
-			
-			leadingMenuView.widthAnchor.constraintEqualToConstant(300).active = true
-			leadingMenuView.heightAnchor.constraintEqualToConstant(100).active = true
-			
-			centerMenuView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
-			centerMenuView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
-			
-			centerMenuView.widthAnchor.constraintEqualToConstant(300).active = true
-			centerMenuView.heightAnchor.constraintEqualToConstant(100).active = true
-		} else {
-			// Fallback on earlier versions
-		}
+        leadingMenuView.bottomAnchor.constraintEqualToAnchor(centerMenuView.topAnchor, constant: -20.0).active = true
+        leadingMenuView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+        
+        leadingMenuView.widthAnchor.constraintEqualToConstant(300).active = true
+        leadingMenuView.heightAnchor.constraintEqualToConstant(100).active = true
+        
+        centerMenuView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+        centerMenuView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+        
+        centerMenuView.widthAnchor.constraintEqualToConstant(300).active = true
+        centerMenuView.heightAnchor.constraintEqualToConstant(100).active = true
 		
 		leadingMenuView.dataSource = self
 		leadingMenuView.delegate = self
@@ -72,13 +68,9 @@ extension MenuViewDemoController : MenuViewDataSource {
 		if let contentView = contentView {
 			label.translatesAutoresizingMaskIntoConstraints = false
 			contentView.addSubview(label)
-			
-			if #available(iOS 9.0, *) {
-				label.centerXAnchor.constraintEqualToAnchor(contentView.centerXAnchor).active = true
-				label.centerYAnchor.constraintEqualToAnchor(contentView.centerYAnchor).active = true
-			} else {
-				// Fallback on earlier versions
-			}
+        
+            label.centerXAnchor.constraintEqualToAnchor(contentView.centerXAnchor).active = true
+            label.centerYAnchor.constraintEqualToAnchor(contentView.centerYAnchor).active = true
 		}
 		
 		return label

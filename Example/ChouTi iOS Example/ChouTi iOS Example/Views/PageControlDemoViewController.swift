@@ -50,17 +50,13 @@ class PageControlDemoViewController: UIViewController {
         
         pageControl.scrollView = scrollView
         
-        if #available(iOS 9.0, *) {
-            NSLayoutConstraint.activateConstraints([
-                pageControl.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
-                pageControl.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -40),
-                systemPageControl.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
-                systemPageControl.bottomAnchor.constraintEqualToAnchor(pageControl.bottomAnchor, constant: -40)
-                ]
-            )
-        } else {
-            // Fallback on earlier versions
-        }
+        NSLayoutConstraint.activateConstraints([
+            pageControl.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
+            pageControl.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -40),
+            systemPageControl.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
+            systemPageControl.bottomAnchor.constraintEqualToAnchor(pageControl.bottomAnchor, constant: -40)
+            ]
+        )
     }
     
     override func viewDidAppear(animated: Bool) {
