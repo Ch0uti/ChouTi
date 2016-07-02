@@ -11,14 +11,6 @@ import XCTest
 
 class CGContext_ExtensionsTests: ChouTiTests {
     
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     // +-----+
     // |     |
     // |     | 50
