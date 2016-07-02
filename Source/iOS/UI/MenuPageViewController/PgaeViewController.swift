@@ -32,11 +32,9 @@ public class PageViewController : UIViewController {
 	// TODO: Handling rotations
 	
 	// MARK: - Public
-	
-	public var scrollEnabled: Bool = true {
-		didSet {
-			pageScrollView.scrollEnabled = scrollEnabled
-		}
+	public var scrollEnabled: Bool {
+        get { return pageScrollView.scrollEnabled }
+        set { pageScrollView.scrollEnabled = newValue }
 	}
 	
 	/// Current selected index.
@@ -155,18 +153,7 @@ public class PageViewController : UIViewController {
 	
 	private var isVisible: Bool { return isViewLoaded() && (view.window != nil) }
 
-	
-	
-	// MARK: - Init
-	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-	}
-	
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-	}
-	
-	
+    
 	
 	// MARK: - SetSelectedIndex
 	private var setSelectedIndexCompletion: (Bool -> Void)?
@@ -176,11 +163,10 @@ public class PageViewController : UIViewController {
 		}
 		if _selectedIndex == index { return }
 		
-		let width = view.bounds.width
-		let newOffsetX = CGFloat(index) * width
-		
-		pageScrollView.setContentOffset(CGPoint(x: newOffsetX, y: pageScrollView.contentOffset.y), animated: animated)
+        let targetContentOffset = CGPoint(x: CGFloat(index) * view.bounds.width, y: pageScrollView.contentOffset.y)
+		pageScrollView.setContentOffset(targetContentOffset, animated: animated)
 		if animated {
+            // scrollViewDidEndScrollingAnimation: will be called when scrolling animation concludes
 			isInTransition = true
 			if isVisible {
 				_selectedViewController?.beginAppearanceTransition(false, animated: true)
@@ -199,6 +185,14 @@ public class PageViewController : UIViewController {
 			completion?(true)
 		}
 	}
+    
+    public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        isInTransition = false
+        loadedViewControllers.filter { $0.isAppearing != nil }.forEach { $0.endAppearanceTransition() }
+        _selectedIndex = Int(scrollView.contentOffset.x) / Int(view.bounds.width)
+        setSelectedIndexCompletion?(true)
+        setSelectedIndexCompletion = nil
+    }
 }
 
 
@@ -226,7 +220,6 @@ extension PageViewController {
 		pageScrollView.delegate = self
 		
 		pageScrollView.pagingEnabled = true
-		pageScrollView.scrollEnabled = scrollEnabled
 		pageScrollView.bounces = true
 		pageScrollView.alwaysBounceHorizontal = true
 		pageScrollView.alwaysBounceVertical = false
@@ -593,13 +586,5 @@ extension PageViewController : UIScrollViewDelegate {
 		self.willEndDraggingTargetContentOffsetX = nil
 		
 		assert(loadedViewControllers.filter { $0.isAppearing != nil }.count == 0)
-	}
-	
-	public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-		isInTransition = false
-		loadedViewControllers.filter { $0.isAppearing != nil }.forEach { $0.endAppearanceTransition() }
-		_selectedIndex = Int(scrollView.contentOffset.x) / Int(view.bounds.width)
-		setSelectedIndexCompletion?(true)
-		setSelectedIndexCompletion = nil
 	}
 }
