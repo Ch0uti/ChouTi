@@ -12,8 +12,8 @@ import ChouTi
 class CenterViewController: UIViewController {
     
     weak var slideViewController: SlideController?
-    var leftViewController: SideViewController?
-    var rightViewController: SideViewController?
+    var leftViewController: DummyViewController?
+    var rightViewController: DummyViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()

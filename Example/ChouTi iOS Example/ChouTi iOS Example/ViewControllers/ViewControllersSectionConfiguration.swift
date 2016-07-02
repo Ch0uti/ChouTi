@@ -33,15 +33,8 @@ class ViewControllersSectionConfiguration: NSObject {
                     
                     let centerNavi = UINavigationController(rootViewController: centerVC)
                     
-                    let leftVC = SideViewController(nibName: "SideViewController", bundle: nil)
-                    leftVC.view.backgroundColor = UIColor.redColor()
-                    leftVC.label.text = "Left"
-                    leftVC.view.frame = UIScreen.mainScreen().bounds
-                    
-                    let rightVC = SideViewController(nibName: "SideViewController", bundle: nil)
-                    rightVC.view.backgroundColor = UIColor.blueColor()
-                    rightVC.label.text = "Right"
-                    rightVC.view.frame = UIScreen.mainScreen().bounds
+                    let leftVC = DummyViewController(label: "Left")
+                    let rightVC = DummyViewController(label: "Right")
                     
                     let slideViewController = SlideController(centerViewController: centerNavi, leftViewController: leftVC, rightViewController: rightVC)
                     self.slideViewController = slideViewController

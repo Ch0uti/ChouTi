@@ -27,19 +27,17 @@ struct ViewsSectionConfiguration {
             )
         )
         
-        if #available(iOS 9.0, *) {
-            rows.append(
-                TableViewRow(title: "📷 Image Picker",
-                    subtitle: "Image Selection View",
-                    tableView: tableView,
-                    cellSelectAction: { indexPath, cell in
-                        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                        let demoViewController = ImagePickerDemoViewController()
-                        tableView.presentingViewController?.showViewController(demoViewController, sender: nil)
-                    }
-                )
+        rows.append(
+            TableViewRow(title: "📷 Image Picker",
+                subtitle: "Image Selection View",
+                tableView: tableView,
+                cellSelectAction: { indexPath, cell in
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    let demoViewController = ImagePickerDemoViewController()
+                    tableView.presentingViewController?.showViewController(demoViewController, sender: nil)
+                }
             )
-        }
+        )
         
         rows.append(
             TableViewRow(title: "Drop Down Menu",
@@ -88,18 +86,16 @@ struct ViewsSectionConfiguration {
             )
         )
         
-        if #available(iOS 9.0, *) {
-            rows.append(
-                TableViewRow(title: "⚠️ Alert Controller",
-                    tableView: tableView,
-                    cellSelectAction: { indexPath, cell in
-                        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                        let demoViewController = AlertControllerDemoViewController()
-                        tableView.presentingViewController?.showViewController(demoViewController, sender: nil)
-                    }
-                )
+        rows.append(
+            TableViewRow(title: "⚠️ Alert Controller",
+                tableView: tableView,
+                cellSelectAction: { indexPath, cell in
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    let demoViewController = AlertControllerDemoViewController()
+                    tableView.presentingViewController?.showViewController(demoViewController, sender: nil)
+                }
             )
-        }
+        )
         
         rows.append(
             TableViewRow(title: "Page Control",
