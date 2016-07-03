@@ -18,6 +18,7 @@ Merge two dictionaries
 
 - returns: Merge dictionary, existed keys in left dictionary will be overrided by right dictionary
 */
+@warn_unused_result
 public func + <K: Hashable, V, S: SequenceType where S.Generator.Element == Dictionary<K, V>.Element> (left: Dictionary<K, V>, right: S?) -> Dictionary<K, V> {
     guard let right = right else { return left }
     return right.reduce(left) {
@@ -41,6 +42,7 @@ public func += <K: Hashable, V, S: SequenceType where S.Generator.Element == (K,
 }
 
 public extension Dictionary {
+    @warn_unused_result
     public func merge<S: SequenceType where S.Generator.Element == (Key, Value)>(other: S) -> Dictionary<Key, Value> {
         var result = self
         result.mergeInPlace(other)
@@ -62,6 +64,7 @@ public extension Dictionary {
         return Dictionary<Key, NewValue>(self.map { ($0, transform($1)) })
     }
     
+    @warn_unused_result
     func randomSubDictionary() -> Dictionary<Key, Value> {
         return self.randomSubset().reduce([:]) {
             var new = $0

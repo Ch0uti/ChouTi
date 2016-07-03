@@ -14,6 +14,7 @@ public extension SequenceType {
      
      - returns: a random subset
      */
+    @warn_unused_result
     public func randomSubset() -> [Generator.Element] {
         return self.filter { _ in Bool.random() }
     }
@@ -25,6 +26,7 @@ public extension SequenceType {
      
      - returns: true if all match.
      */
+    @warn_unused_result
     public func allMatch(predicate: Generator.Element -> Bool) -> Bool {
         // every element matches a predicate if no element doesn't match it
         return !self.contains { !predicate($0) }
@@ -37,6 +39,7 @@ public extension SequenceType where Generator.Element: Hashable {
      
      - returns: Unique items with order preserved.
      */
+    @warn_unused_result
     public func unique() -> [Generator.Element] {
         var seen: Set<Generator.Element> = []
         return self.filter {

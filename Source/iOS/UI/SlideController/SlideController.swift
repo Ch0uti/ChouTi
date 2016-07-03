@@ -522,11 +522,11 @@ extension SlideController {
 	}
 	
 	private func replaceViewController(viewController: UIViewController?, withViewController: UIViewController?) {
-		if let viewController = viewController where containChildViewController(viewController) {
+		if let viewController = viewController where childViewControllers.contains(viewController) {
 			removeViewController(viewController)
 		}
 		
-		if let withViewController = withViewController where !containChildViewController(withViewController) {
+		if let withViewController = withViewController where !childViewControllers.contains(withViewController) {
 			addViewController(withViewController)
 		}
 	}

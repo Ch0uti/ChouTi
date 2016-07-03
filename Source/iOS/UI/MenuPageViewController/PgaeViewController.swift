@@ -314,7 +314,7 @@ extension PageViewController {
 			
 			let viewController = loadedViewControllers[index]
 			
-			if !self.containChildViewController(viewController) {
+			if !self.childViewControllers.contains(viewController) {
 				addViewController(viewController)
 			}
 			viewController.view.frame = CGRect(x: CGFloat(index) * view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
