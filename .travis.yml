@@ -24,7 +24,6 @@ env:
     - DESTINATION="OS=9.2,name=iPhone 6S"          WORKSPACE="$IOS_EXAMPLE_WORKSPACE"   SCHEME="$IOS_EXAMPLE_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"   COCOAPOD_NEEDED="YES"
     - DESTINATION="OS=9.3,name=iPhone 6S Plus"     WORKSPACE="$IOS_EXAMPLE_WORKSPACE"   SCHEME="$IOS_EXAMPLE_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"   COCOAPOD_NEEDED="YES"
 before_install:
-  - brew update
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
@@ -37,6 +36,7 @@ script:
   - if [ $COCOAPOD_NEEDED == "YES" ]; then
       PROJECT_DIR=$(pwd);
       cd "$WORKSPACE/..";
+      pod repo update;
       pod install;
       cd $PROJECT_DIR;
     fi
