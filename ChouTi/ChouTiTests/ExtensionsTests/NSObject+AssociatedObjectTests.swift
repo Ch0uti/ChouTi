@@ -1,5 +1,5 @@
 //
-//  NSObject+ExtensionsTests.swift
+//  NSObject+AssociatedObjectTests.swift
 //  ChouTi_FrameworkTests
 //
 //  Created by Honghao Zhang on 2015-12-14.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class NSObject_ExtensionsTests: ChouTiTests {
+class NSObject_AssociatedObjectTests: ChouTiTests {
 	var host: NSObject!
 	
 	override func setUp() {
@@ -37,4 +37,15 @@ class NSObject_ExtensionsTests: ChouTiTests {
 		XCTAssertEqual(host.clearAssociatedObject() as? Int, 778)
 		XCTAssertNil(host.getAssociatedObject())
 	}
+    
+    private struct TestAssociateObjectKey {
+        static var Key = "TestAssociateObjectKey"
+    }
+    
+    func testAssociatedObjectWithPointer() {
+        host.setAssociatedObejct("998", forKeyPointer: &TestAssociateObjectKey.Key)
+        XCTAssertEqual(host.setAssociatedObejct(778, forKeyPointer: &TestAssociateObjectKey.Key) as? String, "998")
+        XCTAssertEqual(host.clearAssociatedObject(forKeyPointer: &TestAssociateObjectKey.Key) as? Int, 778)
+        XCTAssertNil(host.getAssociatedObject(forKeyPointer: &TestAssociateObjectKey.Key))
+    }
 }

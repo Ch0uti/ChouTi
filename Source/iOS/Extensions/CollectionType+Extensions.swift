@@ -14,6 +14,7 @@ public extension CollectionType {
      
      - returns: a random item in the array
      */
+    @warn_unused_result
     public func randomItem() -> Generator.Element {
         if isEmpty {
             fatalError("Emoty collection has no item")
@@ -31,6 +32,7 @@ public extension CollectionType {
      
      - returns: A shuffled version of this array.
      */
+    @warn_unused_result
     public func shuffle() -> [Generator.Element] {
         var list = Array(self)
         list.shuffleInPlace()
@@ -57,6 +59,7 @@ public extension CollectionType where Self.Index == Int {
      
      - returns: An optional element from the collection at the specified index.
      */
+    @warn_unused_result
     public func at(index: Int) -> Self.Generator.Element? {
         return indices.contains(index) ? self[index] : nil
     }
@@ -66,6 +69,7 @@ public extension CollectionType where Self.Index == Int {
      
      - returns: A random element from the collection.
      */
+    @warn_unused_result
     public func randomItem() -> Generator.Element {
         if isEmpty {
             fatalError("Emoty collection has no item")

@@ -34,7 +34,15 @@ class DatePickerControllerDemoViewController : UIViewController {
 		button.constrainToSize(CGSize(width: 160, height: 50))
 		button.constrainToCenterInSuperview()
 		
-		button.addTarget(self, action: #selector(DatePickerControllerDemoViewController.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+        button.addTarget(controlEvents: .TouchUpInside) { [unowned self] button in
+            let pickerController = DatePickerController()
+            pickerController.datePicker.setDate(NSDate(), animated: true)
+            pickerController.datePicker.datePickerMode = .DateAndTime
+            pickerController.datePicker.minimumDate = NSDate().dateByAddingDays(-30)
+            pickerController.datePicker.maximumDate = NSDate().dateByAddingDays(30)
+            pickerController.delegate = self
+            self.presentViewController(pickerController, animated: true, completion: nil)
+        }
 		
 		resultLabel.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(resultLabel)
@@ -44,16 +52,6 @@ class DatePickerControllerDemoViewController : UIViewController {
 
         resultLabel.topAnchor.constraintEqualToAnchor(button.bottomAnchor, constant: 40).active = true
         resultLabel.centerXAnchor.constraintEqualToAnchor(button.centerXAnchor).active = true
-	}
-	
-	func buttonTapped(sender: AnyObject) {
-		let pickerController = DatePickerController()
-		pickerController.datePicker.setDate(NSDate(), animated: true)
-		pickerController.datePicker.datePickerMode = .DateAndTime
-		pickerController.datePicker.minimumDate = NSDate().dateByAddingDays(-30)
-		pickerController.datePicker.maximumDate = NSDate().dateByAddingDays(30)
-		pickerController.delegate = self
-		presentViewController(pickerController, animated: true, completion: nil)
 	}
 }
 
