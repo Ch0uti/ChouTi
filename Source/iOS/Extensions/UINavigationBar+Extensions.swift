@@ -42,7 +42,7 @@ public extension UINavigationBar {
                 if titleTextAttributes != nil {
                     titleTextAttributes?[NSForegroundColorAttributeName] = titleTextColor
                 } else {
-                    titleTextAttributes = [NSForegroundColorAttributeName: titleTextColor]
+                    titleTextAttributes = [NSForegroundColorAttributeName : titleTextColor]
                 }
             } else {
                 titleTextAttributes?.removeValueForKey(NSForegroundColorAttributeName)
@@ -64,7 +64,7 @@ public extension UINavigationBar {
                 if titleTextAttributes != nil {
                     titleTextAttributes?[NSFontAttributeName] = titleTextFont
                 } else {
-                    titleTextAttributes = [NSFontAttributeName: titleTextFont]
+                    titleTextAttributes = [NSFontAttributeName : titleTextFont]
                 }
             } else {
                 titleTextAttributes?.removeValueForKey(NSFontAttributeName)

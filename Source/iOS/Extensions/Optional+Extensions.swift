@@ -33,3 +33,19 @@ public extension Optional {
         return value
     }
 }
+
+public extension Optional {
+    /**
+     Attempts to unwrap the optional, and executes the closure if a value exists
+     
+     Ref: https://github.com/ovenbits/Alexandria
+     https://github.com/ovenbits/Alexandria/blob/master/Sources/Optional%2BExtensions.swift
+     
+     - parameter block: The closure to execute if a value is found
+     */
+    public func unwrap(@noescape block: (Wrapped) throws -> ()) rethrows {
+        if let value = self {
+            try block(value)
+        }
+    }
+}

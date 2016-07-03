@@ -44,3 +44,10 @@ URLComponents?.queryItems?.forEach({item in
 let a = "abvc".characters.dropFirst()
 String(a)
 
+let suits = ["♠", "♥", "♣", "♦"]
+let ranks = ["J","Q","K","A"]
+let allCombinations = suits.flatMap { suit in ranks.map { rank in
+    (suit, rank) }
+}
+
+print(allCombinations)
