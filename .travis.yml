@@ -36,8 +36,7 @@ script:
   - if [ $COCOAPOD_NEEDED == "YES" ]; then
       PROJECT_DIR=$(pwd);
       cd "$WORKSPACE/..";
-      pod repo update;
-      pod install;
+      pod update;
       cd $PROJECT_DIR;
     fi
 
