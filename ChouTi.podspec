@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "ChouTi"
   s.version          = "0.1"
-  s.summary          = "Chou Ti (抽屉) - My personal toolkit for iOS/OSX development."
+  s.summary          = "Chou Ti (抽屉) - A toolkit for iOS/OSX development."
   s.description      = <<-DESC
                        Chou Ti (抽屉) - My personal toolkit for iOS/OSX development.
                        It contains common classes, extensions used in multiple projects
@@ -20,222 +20,204 @@ Pod::Spec.new do |s|
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
-  # s.public_header_files = 'Source/**/**/*.h'
-  # s.source_files 	   = 'Source/iOS/**/'
+  # s.public_header_files = 'Source/iOS/**/*.h'
+  # s.source_files        = 'Source/iOS/**/*.{h,m,swift}'
+  # s.resources           = 'Resources/**/*.png'
 
-  # s.xcconfig         = { 'OTHER_SWIFT_FLAGS' => '-D DEBUG' }
+  # s.module_map = 'Source/iOS/ChouTi.modulemap'
 
-  s.default_subspecs = "Unsafe"
-
-  ############ Summary Subspec ############
+  s.default_subspecs = [
+    "Core",
+    "Animators",
+    "CollectionViewLayouts",
+    "UI",
+    "Utilities"
+  ]
 
   s.subspec "All" do |ss|
-    ss.dependency "ChouTi/ChouTi"
+    ss.dependency "ChouTi/Core"
+    ss.dependency "ChouTi/Animators"
+    ss.dependency "ChouTi/CollectionViewLayouts"
+
     ss.dependency "ChouTi/UI"
-
-    # ss.dependency "ChouTi/App-Extension-API-Unsafe"
-    ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
-
-    ss.dependency "ChouTi/ChouTi-Extra"
     ss.dependency "ChouTi/UI-Extra"
-  end
-
-  s.subspec "Unsafe" do |ss|
-    # 'App extension API not compatible'
-
-    ss.dependency "ChouTi/ChouTi"
-    ss.dependency "ChouTi/UI"
-
-    # ss.dependency "ChouTi/App-Extension-API-Unsafe"
     ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
+
+    ss.dependency "ChouTi/Utilities"
+    ss.dependency "ChouTi/Utilities-Extra"
+
+    # Deprecated
+    # ss.dependency "ChouTi/ThirdParty"
   end
 
-  s.subspec "Safe" do |ss|
-    # "App extension API compatible"
+  s.subspec "Core" do |ss|
+    ss.source_files = 'Source/iOS/Core/*.*'
 
-    ss.dependency "ChouTi/ChouTi"
-    ss.dependency "ChouTi/UI"
-  end
+    ss.subspec "CodeSnippets" do |sss|
+      sss.source_files = 'Source/iOS/Core/CodeSnippets/**/*.*'
+    end
 
-  s.subspec "Deprecated" do |ss|
-    ss.dependency "ChouTi/Parse"
-  end
-
-
-  ############ Individual Subspec ############
-
-  s.subspec "ChouTi" do |ss|
-    # "Bag of everything."
-    ss.source_files = 'Source/iOS/*.swift'
+    ss.subspec "DataStructure" do |sss|
+      sss.source_files = 'Source/iOS/Core/DataStructure/**/*.*'
+    end
 
     ss.subspec "Extensions" do |sss|
-      sss.source_files = 'Source/iOS/Extensions/**/*.*'
-      sss.frameworks   = 'UIKit'
+      sss.source_files = 'Source/iOS/Core/Extensions/**/*.*'
+    end
+
+    ss.subspec "Miscellaneous" do |sss|
+      sss.source_files = 'Source/iOS/Core/Miscellaneous/**/*.*'
     end
 
     ss.subspec "Protocols" do |sss|
-      sss.source_files = 'Source/iOS/Protocols/**/*.*'
-      sss.frameworks   = 'UIKit'
+      sss.source_files = 'Source/iOS/Core/Protocols/**/*.*'
     end
 
-    ss.subspec "CollectionViewLayouts" do |sss|
-      # "UICollectionView Layouts"
-      sss.source_files = 'Source/iOS/CollectionViewLayouts/**/*.*'
-      sss.frameworks   = 'UIKit'
-    end
+    ss.subspec "UI" do |sss|
+      sss.source_files = 'Source/iOS/Core/UI/*.*'
 
-    ss.subspec "Animators" do |sss|
-      # "A set of customized view controller transition animators"
-      sss.source_files = 'Source/iOS/Animators/**/*.*'
-      sss.frameworks   = 'UIKit'
-    end
-
-    ss.subspec "Utilities" do |sss|
-      # "Handy utility functions/constants"
-      sss.source_files = 'Source/iOS/Utilities/**/*.*'
-
-      sss.subspec "TableView+SectionRowExtensions" do |ssss|
-        # "Table view sections/rows utility"
-        ssss.source_files = 'Source/iOS/Utilities/TableView+SectionRowExtensions/**/*.*'
+      sss.subspec "TableViewCells" do |ssss|
+        ssss.source_files = 'Source/iOS/Core/UI/TableViewCells/**/*.*'
       end
 
+      sss.subspec "CollectionViewCells" do |ssss|
+        ssss.source_files = 'Source/iOS/Core/UI/CollectionViewCells/**/*.*'
+      end
     end
-
-    ss.subspec "CodeSnippets" do |sss|
-      # "Some useful and handy code snippets"
-      sss.source_files = 'Source/iOS/CodeSnippets/**/*.*'
-    end
-
   end
 
+  s.subspec "Animators" do |ss|
+    # "A set of customized view controller transition animators"
+    ss.source_files = 'Source/iOS/Animators/*.*'
+    ss.dependency "ChouTi/Core"
 
+    ss.subspec "DropPresentingAnimator" do |sss|
+      sss.source_files = [
+        'Source/iOS/Animators/DropPresentingAnimator/**/*.*',
+        'Source/iOS/Animators/*.*'
+      ]
+    end
+  end
 
-  # s.subspec "App-Extension-API-Unsafe" do |ss|
-  #  # "Components which are not app extension compatible"
-  #
-  #  # To be added
-  #
-  # end
+  s.subspec "CollectionViewLayouts" do |ss|
+    # "UICollectionView Layouts"
+    ss.source_files = 'Source/iOS/CollectionViewLayouts/*.*'
+    ss.dependency "ChouTi/Core"
 
-
+    ss.subspec "TableLayout" do |sss|
+      # "Grid Layout, like Excel/Number"
+      sss.source_files = 'Source/iOS/CollectionViewLayouts/**/*.*'
+    end
+  end
 
   s.subspec "UI" do |ss|
     # "UI Views & ViewControllers"
     ss.source_files = 'Source/iOS/UI/*.*'
     ss.resource_bundle = { 'Resources' => 'Resources/**/*.png' }
+    ss.dependency "ChouTi/Core"
+
+    ss.subspec "AlertView" do |sss|
+      # "Mimic UIAlertController's view"
+      sss.source_files = 'Source/iOS/UI/AlertView/*.*'
+    end
 
     ss.subspec "AutoLinesLabel" do |sss|
       # "UILabel with contentInset and probide auto lines on iOS7"
       sss.source_files = 'Source/iOS/UI/AutoLinesLabel/*.*'
-      sss.frameworks   = 'UIKit'
-    end
-
-    ss.subspec "TableViewCells" do |sss|
-      # "Customized UITableViewCells"
-      sss.source_files = 'Source/iOS/UI/TableViewCells/**/*.*'
-      sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "CollectionViewCells" do |sss|
       # "Customized UICollectionViewCells"
       sss.source_files = 'Source/iOS/UI/CollectionViewCells/*.*'
-      sss.frameworks   = 'UIKit'
-    end
-
-    ss.subspec "SegmentedControl" do |sss|
-      # "Customized Segmented Control, with underscore bars"
-      sss.source_files = 'Source/iOS/UI/SegmentedControl/*.*'
-      sss.frameworks   = 'UIKit'
-    end
-
-    ss.subspec "MenuPageViewController" do |sss|
-      # "PageViewController with header titles"
-      sss.source_files = 'Source/iOS/UI/MenuPageViewController/*.*'
-      sss.frameworks   = 'UIKit'
-    end
-
-    ss.subspec "DropDownMenu" do |sss|
-      # "A drop down menu presented in full screen with blur background"
-      sss.source_files = 'Source/iOS/UI/DropDownMenu/*.*'
-      sss.frameworks   = 'UIKit'
     end
 
     ss.subspec "DatePickerViewController" do |sss|
       # "A slide up date picker view controller"
       sss.source_files = 'Source/iOS/UI/DatePickerViewController/*.*'
-      sss.frameworks   = 'UIKit'
+    end
+
+    ss.subspec "DropDownMenu" do |sss|
+      # "A drop down menu presented in full screen with blur background"
+      sss.source_files = 'Source/iOS/UI/DropDownMenu/*.*'
+    end
+
+    ss.subspec "MenuPageViewController" do |sss|
+      # "PageViewController with header titles"
+      sss.source_files = 'Source/iOS/UI/MenuPageViewController/*.*'
     end
 
     ss.subspec "NavigationBarStatusBar" do |sss|
       # "A drop down status bar under navigation bar"
       sss.source_files = 'Source/iOS/UI/NavigationBarStatusBar/*.*'
-      sss.frameworks   = 'UIKit'
     end
 
-    ss.subspec "AlertView" do |sss|
-      # "Mimic UIAlertController's view"
-      sss.source_files = 'Source/iOS/UI/AlertView/*.*'
-      sss.frameworks   = 'UIKit'
+    ss.subspec "SegmentedControl" do |sss|
+      # "Customized Segmented Control, with underscore bars"
+      sss.source_files = 'Source/iOS/UI/SegmentedControl/*.*'
     end
 
+    ss.subspec "TableViewCells" do |sss|
+      # "Customized UITableViewCells"
+      sss.source_files = 'Source/iOS/UI/TableViewCells/**/*.*'
+    end
   end
-
-
-
-  s.subspec "UI-App-Extension-API-Unsafe" do |ss|
-    # "UI components which are not app extension compatible"
-
-    ss.subspec "SlideController" do |sss|
-      # "A left/right slide container view controller"
-      sss.source_files = 'Source/iOS/UI/SlideController/*.*'
-      sss.frameworks   = 'UIKit'
-    end
-
-  end
-
-
-  ############ Components require Third Party Subspec ############
-
-  s.subspec "ChouTi-Extra" do |ss|
-
-    ss.subspec "Utilities" do |sss|
-
-      sss.subspec "Operations" do |ssss|
-        # "NSOperations with Join functionality"
-        ssss.source_files = 'Source/iOS/Utilities/Operations/*.*'
-        ssss.dependency 'Operations'
-      end
-
-    end
-
-  end
-
-
-  ############ UI Components require Third Party Subspec ############
 
   s.subspec "UI-Extra" do |ss|
     # "UI Components require Third Party supports"
+    ss.dependency "ChouTi/Core"
 
     ss.subspec "LoadingMorphingLabel" do |sss|
       # "Showing a list of text in loop"
       sss.source_files = 'Source/iOS/UI/LoadingMorphingLabel/*.*'
-      sss.frameworks   = 'UIKit'
       sss.dependency 'LTMorphingLabel'
     end
-
   end
 
+  s.subspec "UI-App-Extension-API-Unsafe" do |ss|
+    # "UI components which are not app extension compatible"
+    ss.dependency "ChouTi/Core"
 
+    ss.subspec "SlideController" do |sss|
+      # "A left/right slide container view controller"
+      sss.source_files = 'Source/iOS/UI/SlideController/*.*'
+    end
+  end
 
-  ############ ChouTi for Third Party Subspec ############
+  s.subspec "Utilities" do |ss|
+    ss.source_files = 'Source/iOS/Utilities/*.*'
+    ss.dependency "ChouTi/Core"
 
-  s.subspec "Parse" do |ss|
-    # "Utilities for Parse"
+    ss.subspec "Operations" do |sss|
+      # "NSOperations with Join functionality"
+      sss.source_files = 'Source/iOS/Utilities/Operations/*.*'
+      sss.dependency 'Operations'
+    end
 
-    ss.source_files = 'Source/iOS/ThirdParty/Parse/*.*'
-    ss.dependency 'Parse'
-    ss.vendored_frameworks = 'Parse'
+    ss.subspec "TableView+SectionRowExtensions" do |sss|
+      sss.source_files = 'Source/iOS/Utilities/TableView+SectionRowExtensions/*.*'
+    end
+  end
 
+  s.subspec "Utilities-Extra" do |ss|
+    ss.dependency "ChouTi/Core"
+
+    ss.subspec "Operations" do |sss|
+      # "NSOperations with Join functionality"
+      sss.source_files = 'Source/iOS/Utilities/Operations/*.*'
+      sss.dependency 'Operations'
+    end
+  end
+
+  s.subspec "ThirdParty" do |ss|
+    # "Code for third party"
+    ss.source_files = 'Source/iOS/ThirdParty/*.*'
+
+    ss.subspec "Parse" do |sss|
+      # "Extensions on Parse"
+      sss.source_files = 'Source/iOS/ThirdParty/Parse/*.*'
+      sss.dependency 'Parse'
+      sss.vendored_frameworks = 'Parse'
+    end
   end
 
 end

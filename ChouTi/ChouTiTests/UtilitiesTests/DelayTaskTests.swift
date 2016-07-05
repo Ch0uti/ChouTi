@@ -16,15 +16,16 @@ class DelayTaskTests: ChouTiTests {
         
         var stringToBeChanged = "start"
         
-        let task = delay(0.1) {
+        let task = delay(0.01) {
             expectation.fulfill()
             stringToBeChanged = "end"
         }
         
         XCTAssertFalse(task.canceled)
         XCTAssertFalse(task.executed)
+        XCTAssertEqual(stringToBeChanged, "start")
                 
-        waitForExpectationsWithTimeout(0.1 + 0.1) { (error) -> Void in
+        waitForExpectationsWithTimeout(0.02) { (error) -> Void in
             XCTAssertFalse(task.canceled)
             XCTAssertTrue(task.executed)
             XCTAssertEqual(stringToBeChanged, "end")
@@ -33,24 +34,25 @@ class DelayTaskTests: ChouTiTests {
     
     func testDelayCanceledTask() {
         let expectation = expectationWithDescription("delayed task canceled")
-        delay(0.7) {
+        delay(0.02) {
             expectation.fulfill()
         }
         
         var stringToBeChanged = "start"
         
-        let task = delay(0.5) {
+        let task = delay(0.01) {
             stringToBeChanged = "end"
         }
         
         XCTAssertFalse(task.canceled)
         XCTAssertFalse(task.executed)
+        XCTAssertEqual(stringToBeChanged, "start")
         
         task.cancel()
         
         XCTAssertTrue(task.canceled)
         
-        waitForExpectationsWithTimeout(0.9) { (error) -> Void in
+        waitForExpectationsWithTimeout(0.03) { (error) -> Void in
             XCTAssertTrue(task.canceled)
             XCTAssertFalse(task.executed)
             XCTAssertEqual(stringToBeChanged, "start")
@@ -62,13 +64,14 @@ class DelayTaskTests: ChouTiTests {
         
         var stringToBeChanged = "start"
         
-        let task = delay(0.1) {
+        let task = delay(0.01) {
             expectation.fulfill()
             stringToBeChanged = "end"
         }
         
         XCTAssertFalse(task.canceled)
         XCTAssertFalse(task.executed)
+        XCTAssertEqual(stringToBeChanged, "start")
         
         task.cancel()
         XCTAssertTrue(task.canceled)
@@ -76,7 +79,7 @@ class DelayTaskTests: ChouTiTests {
         task.resume()
         XCTAssertFalse(task.canceled)
         
-        waitForExpectationsWithTimeout(0.1 + 0.1) { (error) -> Void in
+        waitForExpectationsWithTimeout(0.02) { (error) -> Void in
             XCTAssertFalse(task.canceled)
             XCTAssertTrue(task.executed)
             XCTAssertEqual(stringToBeChanged, "end")
