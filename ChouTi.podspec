@@ -16,15 +16,6 @@ Pod::Spec.new do |s|
   s.requires_arc 	   = true
 
   s.ios.deployment_target = "9.0"
-  # s.osx.deployment_target = "10.9"
-  # s.watchos.deployment_target = "2.0"
-  # s.tvos.deployment_target = "9.0"
-
-  # s.public_header_files = 'Source/iOS/**/*.h'
-  # s.source_files        = 'Source/iOS/**/*.{h,m,swift}'
-  # s.resources           = 'Resources/**/*.png'
-
-  # s.module_map = 'Source/iOS/ChouTi.modulemap'
 
   s.default_subspecs = [
     "Core",
@@ -51,7 +42,6 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "Core" do |ss|
-    ss.source_files = 'Source/iOS/Core/*.*'
 
     ss.subspec "CodeSnippets" do |sss|
       sss.source_files = 'Source/iOS/Core/CodeSnippets/**/*.*'
@@ -74,14 +64,34 @@ Pod::Spec.new do |s|
     end
 
     ss.subspec "UI" do |sss|
-      sss.source_files = 'Source/iOS/Core/UI/*.*'
+      sss.source_files = [
+        'Source/iOS/Core/UI/*.*',
+        'Source/iOS/Core/DataStructure/**/*.*',
+        'Source/iOS/Core/Extensions/**/*.*',
+        'Source/iOS/Core/Miscellaneous/**/*.*',
+        'Source/iOS/Core/Protocols/**/*.*'
+      ]
 
       sss.subspec "TableViewCells" do |ssss|
-        ssss.source_files = 'Source/iOS/Core/UI/TableViewCells/**/*.*'
+        ssss.source_files = [
+          'Source/iOS/Core/UI/TableViewCells/**/*.*',
+          'Source/iOS/Core/UI/*.*',
+          'Source/iOS/Core/DataStructure/**/*.*',
+          'Source/iOS/Core/Extensions/**/*.*',
+          'Source/iOS/Core/Miscellaneous/**/*.*',
+          'Source/iOS/Core/Protocols/**/*.*'
+        ]
       end
 
       sss.subspec "CollectionViewCells" do |ssss|
-        ssss.source_files = 'Source/iOS/Core/UI/CollectionViewCells/**/*.*'
+        ssss.source_files = [
+          'Source/iOS/Core/UI/CollectionViewCells/**/*.*',
+          'Source/iOS/Core/UI/*.*',
+          'Source/iOS/Core/DataStructure/**/*.*',
+          'Source/iOS/Core/Extensions/**/*.*',
+          'Source/iOS/Core/Miscellaneous/**/*.*',
+          'Source/iOS/Core/Protocols/**/*.*'
+        ]
       end
     end
   end
@@ -101,7 +111,7 @@ Pod::Spec.new do |s|
 
   s.subspec "CollectionViewLayouts" do |ss|
     # "UICollectionView Layouts"
-    ss.source_files = 'Source/iOS/CollectionViewLayouts/*.*'
+    # ss.source_files = 'Source/iOS/CollectionViewLayouts/*.*'
     ss.dependency "ChouTi/Core"
 
     ss.subspec "TableLayout" do |sss|
@@ -119,6 +129,7 @@ Pod::Spec.new do |s|
     ss.subspec "AlertView" do |sss|
       # "Mimic UIAlertController's view"
       sss.source_files = 'Source/iOS/UI/AlertView/*.*'
+      ss.dependency "ChouTi/Animators"
     end
 
     ss.subspec "AutoLinesLabel" do |sss|
@@ -128,17 +139,19 @@ Pod::Spec.new do |s|
 
     ss.subspec "CollectionViewCells" do |sss|
       # "Customized UICollectionViewCells"
-      sss.source_files = 'Source/iOS/UI/CollectionViewCells/*.*'
+      # sss.source_files = 'Source/iOS/UI/CollectionViewCells/*.*'
     end
 
     ss.subspec "DatePickerViewController" do |sss|
       # "A slide up date picker view controller"
       sss.source_files = 'Source/iOS/UI/DatePickerViewController/*.*'
+      ss.dependency "ChouTi/Animators"
     end
 
     ss.subspec "DropDownMenu" do |sss|
       # "A drop down menu presented in full screen with blur background"
       sss.source_files = 'Source/iOS/UI/DropDownMenu/*.*'
+      ss.dependency "ChouTi/Animators"
     end
 
     ss.subspec "MenuPageViewController" do |sss|
@@ -184,7 +197,6 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "Utilities" do |ss|
-    ss.source_files = 'Source/iOS/Utilities/*.*'
     ss.dependency "ChouTi/Core"
 
     ss.subspec "Operations" do |sss|
@@ -210,13 +222,11 @@ Pod::Spec.new do |s|
 
   s.subspec "ThirdParty" do |ss|
     # "Code for third party"
-    ss.source_files = 'Source/iOS/ThirdParty/*.*'
 
     ss.subspec "Parse" do |sss|
       # "Extensions on Parse"
       sss.source_files = 'Source/iOS/ThirdParty/Parse/*.*'
       sss.dependency 'Parse'
-      sss.vendored_frameworks = 'Parse'
     end
   end
 

@@ -105,7 +105,7 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  ChouTi: 371eb1ad7da55e0ea5d81a9281eecddd7350ca7f
+  ChouTi: b32d6f1598c4f572325ca828d2e4b973a606059b
   LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   Operations: b787ef012ec50752f6247b7f0efb7746fb8934ae
   Then: c2502b763132c80dfa64d325065d70c45e2d48ca
