@@ -1,0 +1,6 @@
+framework module ChouTi {
+  umbrella header "ChouTi.h"
+
+  export *
+  module * { export * }
+}

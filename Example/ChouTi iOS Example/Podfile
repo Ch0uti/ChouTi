@@ -3,16 +3,12 @@ platform :ios, '9.0'
 target 'ChouTi iOS Example' do
   use_frameworks!
 
-#  pod 'ChouTi', :git => 'https://github.com/honghaoz/ChouTi'
-#  pod 'ChouTi/ChouTi-Extra', :git => 'https://github.com/honghaoz/ChouTi'
+  # pod 'ChouTi', :git => 'https://github.com/honghaoz/ChouTi'
 
-   pod 'ChouTi', :path => '../../'
-   pod 'ChouTi/ChouTi-Extra', :path => '../../'
-
-  # pod 'ChouTi/Unsafe', :path => '../../'
-  # pod 'ChouTi/Safe', :path => '../../'
-  # pod 'ChouTi/Parse', :path => '../../'
-  # pod 'ChouTi/UI/AutoLinesLabel', :path => '../../'
+  pod 'ChouTi', :path => '../../'
+  pod 'ChouTi/Utilities-Extra', :path => '../../'
+  pod 'ChouTi/UI-Extra', :path => '../../'
+  pod 'ChouTi/UI-App-Extension-API-Unsafe', :path => '../../'
 
   pod 'Then', '~> 1.0'
 
