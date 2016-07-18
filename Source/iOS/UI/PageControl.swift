@@ -118,7 +118,8 @@ public class PageControl: UIControl {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-                
+        guard numberOfPages > 0 else { return }
+        
         for (index, dot) in dots.enumerate() {
             dot.position = center(forIndex: index)
             dot.removeAllAnimations()
@@ -290,6 +291,8 @@ extension PageControl {
      Setup unhighlighted dots and current dot
      */
     private func setupDots() {
+        guard numberOfPages > 0 else { return }
+        
         // Setup current dot
         if currentDot.superlayer == nil {
             currentDot.bounds = CGRect(x: 0, y: 0, width: pageIndicatorSize, height: pageIndicatorSize)
