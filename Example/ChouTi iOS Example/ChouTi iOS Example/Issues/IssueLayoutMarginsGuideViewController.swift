@@ -59,9 +59,9 @@ private extension UIView {
         if useAnchor {
             NSLayoutConstraint.activateConstraints([
                 self.topAnchor.constraintEqualToAnchor(wrapperView.layoutMarginsGuide.topAnchor),
-                self.leadingAnchor.constraintEqualToAnchor(wrapperView.leadingMarginAnchor),
+                self.leadingAnchor.constraintEqualToAnchor(wrapperView.leadingAnchor),
                 self.bottomAnchor.constraintEqualToAnchor(wrapperView.layoutMarginsGuide.bottomAnchor),
-                self.trailingAnchor.constraintEqualToAnchor(wrapperView.trailingMarginAnchor)
+                self.trailingAnchor.constraintEqualToAnchor(wrapperView.trailingAnchor)
                 ])
         } else {
             NSLayoutConstraint.activateConstraints([

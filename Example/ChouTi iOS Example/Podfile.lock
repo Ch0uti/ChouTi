@@ -84,15 +84,11 @@ PODS:
     - ChouTi/Core
   - ChouTi/Utilities (0.1):
     - ChouTi/Core
-    - ChouTi/Utilities/Operations (= 0.1)
     - ChouTi/Utilities/TableView+SectionRowExtensions (= 0.1)
   - ChouTi/Utilities-Extra (0.1):
     - ChouTi/Core
     - ChouTi/Utilities-Extra/Operations (= 0.1)
   - ChouTi/Utilities-Extra/Operations (0.1):
-    - ChouTi/Core
-    - Operations
-  - ChouTi/Utilities/Operations (0.1):
     - ChouTi/Core
     - Operations
   - ChouTi/Utilities/TableView+SectionRowExtensions (0.1):
@@ -115,7 +111,7 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  ChouTi: fdf150bc1659bd8275e6aa6757a1861f87ce8cb1
+  ChouTi: 3126e67e6ecf15ef28dbf0b39b879a4bd3ae481b
   LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   Operations: b787ef012ec50752f6247b7f0efb7746fb8934ae
   Then: c2502b763132c80dfa64d325065d70c45e2d48ca
