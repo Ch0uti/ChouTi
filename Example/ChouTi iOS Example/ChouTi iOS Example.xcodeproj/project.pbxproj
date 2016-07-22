@@ -12,6 +12,9 @@
 		023052781D24B94700D7B190 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 023052771D24B94700D7B190 /* Assets.xcassets */; };
 		0230527B1D24B94700D7B190 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 023052791D24B94700D7B190 /* LaunchScreen.storyboard */; };
 		023052861D24B94700D7B190 /* ChouTi_iOS_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023052851D24B94700D7B190 /* ChouTi_iOS_ExampleUITests.swift */; };
+		023F9BC31D2C0875001966ED /* LeadingTrailingVSLeftRightDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F9BC21D2C0875001966ED /* LeadingTrailingVSLeftRightDemoViewController.swift */; };
+		023F9BCA1D2C63F6001966ED /* IssuesSectionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F9BC91D2C63F6001966ED /* IssuesSectionConfiguration.swift */; };
+		023F9BCC1D2C6586001966ED /* IssueLayoutMarginsGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F9BCB1D2C6586001966ED /* IssueLayoutMarginsGuideViewController.swift */; };
 		025C72EE1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72EB1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift */; };
 		025C72EF1D271BC60041F1CA /* OperationsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72EC1D271BC60041F1CA /* OperationsDemoViewController.swift */; };
 		025C72F01D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C72ED1D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift */; };
@@ -57,6 +60,9 @@
 		023052811D24B94700D7B190 /* ChouTi iOS ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ChouTi iOS ExampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		023052851D24B94700D7B190 /* ChouTi_iOS_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChouTi_iOS_ExampleUITests.swift; sourceTree = "<group>"; };
 		023052871D24B94700D7B190 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		023F9BC21D2C0875001966ED /* LeadingTrailingVSLeftRightDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadingTrailingVSLeftRightDemoViewController.swift; sourceTree = "<group>"; };
+		023F9BC91D2C63F6001966ED /* IssuesSectionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesSectionConfiguration.swift; sourceTree = "<group>"; };
+		023F9BCB1D2C6586001966ED /* IssueLayoutMarginsGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueLayoutMarginsGuideViewController.swift; sourceTree = "<group>"; };
 		025C72EB1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarBottomLineDemoViewController.swift; sourceTree = "<group>"; };
 		025C72EC1D271BC60041F1CA /* OperationsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsDemoViewController.swift; sourceTree = "<group>"; };
 		025C72ED1D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSectionRowExtensionDemoViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 				025C73081D2724EA0041F1CA /* Views */,
 				025C72F31D271F950041F1CA /* ViewControllers */,
 				025C72EA1D271BC60041F1CA /* Miscellaneous */,
+				023F9BC81D2C63E4001966ED /* Issues */,
 				023052771D24B94700D7B190 /* Assets.xcassets */,
 				023052791D24B94700D7B190 /* LaunchScreen.storyboard */,
 				0230527C1D24B94700D7B190 /* Info.plist */,
@@ -150,6 +157,15 @@
 			path = "ChouTi iOS ExampleUITests";
 			sourceTree = "<group>";
 		};
+		023F9BC81D2C63E4001966ED /* Issues */ = {
+			isa = PBXGroup;
+			children = (
+				023F9BC91D2C63F6001966ED /* IssuesSectionConfiguration.swift */,
+				023F9BCB1D2C6586001966ED /* IssueLayoutMarginsGuideViewController.swift */,
+			);
+			path = Issues;
+			sourceTree = "<group>";
+		};
 		025C72EA1D271BC60041F1CA /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +175,7 @@
 				025C72EB1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift */,
 				025C72ED1D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift */,
 				025C72EC1D271BC60041F1CA /* OperationsDemoViewController.swift */,
+				023F9BC21D2C0875001966ED /* LeadingTrailingVSLeftRightDemoViewController.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -412,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				023F9BCA1D2C63F6001966ED /* IssuesSectionConfiguration.swift in Sources */,
 				025C731C1D2727420041F1CA /* TableLayoutDemoViewController.swift in Sources */,
 				025C731E1D2727470041F1CA /* DropPresentingDemoViewController.swift in Sources */,
 				025C72F01D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift in Sources */,
@@ -422,10 +440,12 @@
 				025C73041D27208D0041F1CA /* ViewControllersSectionConfiguration.swift in Sources */,
 				025C72EE1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift in Sources */,
 				025C731A1D2724EA0041F1CA /* ViewsSectionConfiguration.swift in Sources */,
+				023F9BC31D2C0875001966ED /* LeadingTrailingVSLeftRightDemoViewController.swift in Sources */,
 				025C73181D2724EA0041F1CA /* PageControlDemoViewController.swift in Sources */,
 				025C73161D2724EA0041F1CA /* MenuViewDemoController.swift in Sources */,
 				025C73121D2724EA0041F1CA /* AlertControllerDemoViewController.swift in Sources */,
 				025C73131D2724EA0041F1CA /* DatePickerControllerDemoViewController.swift in Sources */,
+				023F9BCC1D2C6586001966ED /* IssueLayoutMarginsGuideViewController.swift in Sources */,
 				025C72F21D271C0B0041F1CA /* MiscellaneousSectionConfiguration.swift in Sources */,
 				025C73171D2724EA0041F1CA /* NavigationBarStatusBarDemoViewController.swift in Sources */,
 				025C73191D2724EA0041F1CA /* SearchTextFieldDemoViewController.swift in Sources */,

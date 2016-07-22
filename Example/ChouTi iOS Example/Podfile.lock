@@ -33,6 +33,7 @@ PODS:
   - ChouTi/Core/UI/CollectionViewCells (0.1)
   - ChouTi/Core/UI/TableViewCells (0.1)
   - ChouTi/UI (0.1):
+    - ChouTi/Animators
     - ChouTi/Core
     - ChouTi/UI/AlertView (= 0.1)
     - ChouTi/UI/AutoLinesLabel (= 0.1)
@@ -55,22 +56,31 @@ PODS:
     - ChouTi/Core
     - LTMorphingLabel
   - ChouTi/UI/AlertView (0.1):
+    - ChouTi/Animators
     - ChouTi/Core
   - ChouTi/UI/AutoLinesLabel (0.1):
+    - ChouTi/Animators
     - ChouTi/Core
   - ChouTi/UI/CollectionViewCells (0.1):
+    - ChouTi/Animators
     - ChouTi/Core
   - ChouTi/UI/DatePickerViewController (0.1):
+    - ChouTi/Animators
     - ChouTi/Core
   - ChouTi/UI/DropDownMenu (0.1):
+    - ChouTi/Animators
     - ChouTi/Core
   - ChouTi/UI/MenuPageViewController (0.1):
+    - ChouTi/Animators
     - ChouTi/Core
   - ChouTi/UI/NavigationBarStatusBar (0.1):
+    - ChouTi/Animators
     - ChouTi/Core
   - ChouTi/UI/SegmentedControl (0.1):
+    - ChouTi/Animators
     - ChouTi/Core
   - ChouTi/UI/TableViewCells (0.1):
+    - ChouTi/Animators
     - ChouTi/Core
   - ChouTi/Utilities (0.1):
     - ChouTi/Core
@@ -105,7 +115,7 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  ChouTi: b32d6f1598c4f572325ca828d2e4b973a606059b
+  ChouTi: fdf150bc1659bd8275e6aa6757a1861f87ce8cb1
   LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   Operations: b787ef012ec50752f6247b7f0efb7746fb8934ae
   Then: c2502b763132c80dfa64d325065d70c45e2d48ca

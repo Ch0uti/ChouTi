@@ -70,6 +70,17 @@ struct MiscellaneousSectionConfiguration {
             })
         )
         
+        rows.append(
+            TableViewRow(title: "Auto Layout: Leading/Trailing vs. Left/Right",
+                subtitle: "Demo for Leading vs Trailing",
+                tableView: tableView,
+                cellSelectAction: { indexPath, cell in
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    let demoViewController = LeadingTrailingVSLeftRightDemoViewController()
+                    tableView.presentingViewController?.showViewController(demoViewController, sender: nil)
+            })
+        )
+        
         section = TableViewSection(headerTitle: "Miscellaneous", rows: rows, tableView: tableView)
     }
 }
