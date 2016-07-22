@@ -77,3 +77,6 @@
 //		return view
 //	}
 //}
+
+// MARK: - Reload a section
+// tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
