@@ -64,7 +64,10 @@ public class AlertController: UIViewController {
     
     /// height constraint for view
     private var heightConstraint: NSLayoutConstraint?
-    
+	
+	/// An UIWindow instance which its rootViewController is presenting self.
+	private var alertWindow: UIWindow?
+	
     /**
      Creates and returns a view controller for displaying an alert to the user.
      
@@ -131,7 +134,10 @@ public class AlertController: UIViewController {
 	
     public override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        
+		
+		alertWindow?.hidden = true
+		alertWindow = nil
+		
         // restore to use frame (default state)
         view.translatesAutoresizingMaskIntoConstraints = true
     }
@@ -170,4 +176,36 @@ extension AlertController {
     private func updatePreferredContentSize() {
         preferredContentSize = alertView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
     }
+}
+
+extension AlertController {
+	/**
+	Show this alert controller without a presenting controller, this is also useful when present alert above a presented view controller.
+	Ref: http://www.thecave.com/2015/09/28/how-to-present-an-alert-view-using-uialertcontroller-when-you-dont-have-a-view-controller/
+	Ref: https://github.com/kirbyt/WPSKit/blob/master/WPSKit/UIKit/WPSAlertController.m
+	
+	- parameter animated:   whether the alert controller is presented animated
+	- parameter completion: completion block
+	*/
+	public func show(animated animated: Bool, completion: (() -> Void)? = nil) {
+		let blankViewController = UIViewController()
+		blankViewController.view.backgroundColor = UIColor.clearColor()
+		
+		let window = UIWindow()
+		// On iOS 9, UIWindow will just have a correct frame.
+		// On iOS 8, Use applicationFrame to calculate window frame.
+		if #available(iOS 9.0, *) {} else {
+			let applicationFrame = UIScreen.mainScreen().applicationFrame
+			window.frame = CGRect(x: 0, y: 0, width: applicationFrame.width, height: applicationFrame.height + applicationFrame.origin.y)
+		}
+		
+		window.rootViewController = blankViewController
+		window.backgroundColor = UIColor.clearColor()
+		window.windowLevel = UIWindowLevelAlert + 1 // +1 is necessary for present above a presented view controller
+		window.makeKeyAndVisible()
+		
+		alertWindow = window
+		
+		blankViewController.presentViewController(self, animated: animated, completion: completion)
+	}
 }
