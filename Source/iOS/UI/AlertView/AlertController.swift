@@ -191,13 +191,14 @@ extension AlertController {
 		let blankViewController = UIViewController()
 		blankViewController.view.backgroundColor = UIColor.clearColor()
 		
+        // On iOS 9, UIWindow will just have a correct frame.
 		let window = UIWindow()
-		// On iOS 9, UIWindow will just have a correct frame.
+        
 		// On iOS 8, Use applicationFrame to calculate window frame.
-		if #available(iOS 9.0, *) {} else {
-			let applicationFrame = UIScreen.mainScreen().applicationFrame
-			window.frame = CGRect(x: 0, y: 0, width: applicationFrame.width, height: applicationFrame.height + applicationFrame.origin.y)
-		}
+		// if #available(iOS 9.0, *) {} else {
+		//	let applicationFrame = UIScreen.mainScreen().applicationFrame
+		//	window.frame = CGRect(x: 0, y: 0, width: applicationFrame.width, height: applicationFrame.height + applicationFrame.origin.y)
+		// }
 		
 		window.rootViewController = blankViewController
 		window.backgroundColor = UIColor.clearColor()
