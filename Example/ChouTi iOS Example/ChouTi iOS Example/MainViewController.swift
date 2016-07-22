@@ -35,7 +35,8 @@ class MainViewController: UIViewController {
         tableView.sections = [
             ViewsSectionConfiguration(tableView: tableView).section,
             ViewControllersSectionConfiguration(tableView: tableView).section,
-            MiscellaneousSectionConfiguration(tableView: tableView).section
+            MiscellaneousSectionConfiguration(tableView: tableView).section,
+            IssuesSectionConfiguration(tableView: tableView).section
         ]
     }
 }
