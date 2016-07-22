@@ -9,9 +9,32 @@
 import Foundation
 
 public extension CollectionType {
+	/**
+	Returns an optional element. If the `index` does not exist in the collection, the subscript returns nil.
+	
+	- parameter safe: The index of the element to return, if it exists.
+	
+	- returns: An optional element from the collection at the specified index.
+	*/
+	public subscript (safe index: Index) -> Generator.Element? {
+		return at(index)
+	}
+	
+	/**
+	Returns an optional element. If the `index` does not exist in the collection, the function returns nil.
+	
+	- parameter index: The index of the element to return, if it exists.
+	
+	- returns: An optional element from the collection at the specified index.
+	*/
+	@warn_unused_result
+	public func at(index: Index) -> Generator.Element? {
+		return indices.contains(index) ? self[index] : nil
+	}
+	
     /**
      Return a random item from the array
-     
+
      - returns: a random item in the array
      */
     @warn_unused_result
@@ -40,30 +63,7 @@ public extension CollectionType {
     }
 }
 
-public extension CollectionType where Self.Index == Int {
-    /**
-     Returns an optional element. If the `index` does not exist in the collection, the subscript returns nil.
-     
-     - parameter safe: The index of the element to return, if it exists.
-     
-     - returns: An optional element from the collection at the specified index.
-     */
-    public subscript (safe index: Int) -> Self.Generator.Element? {
-        return at(index)
-    }
-    
-    /**
-     Returns an optional element. If the `index` does not exist in the collection, the function returns nil.
-     
-     - parameter index: The index of the element to return, if it exists.
-     
-     - returns: An optional element from the collection at the specified index.
-     */
-    @warn_unused_result
-    public func at(index: Int) -> Self.Generator.Element? {
-        return indices.contains(index) ? self[index] : nil
-    }
-    
+public extension CollectionType where Index == Int {
     /**
      Returns a random element from the collection.
      
