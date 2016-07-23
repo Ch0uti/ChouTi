@@ -246,6 +246,7 @@ public extension UIImage {
 public extension UIImage {
     /**
      Get the color for a pixel.
+     Ref: http://stackoverflow.com/questions/35029672/getting-pixel-color-from-an-image-using-cgpoint
      
      - parameter point: the position for the pixel
      
@@ -270,6 +271,9 @@ public extension UIImage {
         let red: UInt8 = data[offset+1]
         let green: UInt8 = data[offset+2]
         let blue: UInt8 = data[offset+3]
+        
+        // dealloc memeory allocated in createBitmapContext
+        free(UnsafeMutablePointer<Void>(data))
         
         let color = UIColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: CGFloat(alpha)/255.0)
         
@@ -297,8 +301,6 @@ public extension UIImage {
         // create bitmap
         let context = CGBitmapContextCreate(bitmapData, pixelsWide, pixelsHigh, 8,
                                             bitmapBytesPerRow, colorSpace, bitmapInfo.rawValue)
-        
-        free(bitmapData)
         
         // draw the image onto the context
         let rect = CGRect(x: 0, y: 0, width: pixelsWide, height: pixelsHigh)
