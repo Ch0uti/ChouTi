@@ -131,7 +131,7 @@ public extension NSObject {
             return
         }
         
-        observer.removeObserver(self, forKeyPath: keyPath)
+        observer.removeObservation(self, forKeyPath: keyPath)
         
         // Clean observer if needed
         if observer.handlerDictionary.isEmpty {
