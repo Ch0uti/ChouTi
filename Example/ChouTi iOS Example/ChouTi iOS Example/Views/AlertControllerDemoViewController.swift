@@ -38,7 +38,7 @@ class AlertControllerDemoViewController : UIViewController {
         systemAlertButton.setCornerRadius(.HalfCircle, forState: .Normal)
         systemAlertButton.setTitle("Present Default Alert", forState: .Normal)
         systemAlertButton.addTarget(self, action: #selector(AlertControllerDemoViewController.presentDefaultAlert(_:)), forControlEvents: .TouchUpInside)
-        systemAlertButton.constrainToSize(CGSize(width: 230, height: 44))
+        systemAlertButton.constrainTo(size: CGSize(width: 230, height: 44))
         stackView.addArrangedSubview(systemAlertButton)
         
         let customizedAlertButton = Button()
@@ -46,7 +46,7 @@ class AlertControllerDemoViewController : UIViewController {
         customizedAlertButton.setCornerRadius(.HalfCircle, forState: .Normal)
         customizedAlertButton.setTitle("Present Customized Alert", forState: .Normal)
         customizedAlertButton.addTarget(self, action: #selector(AlertControllerDemoViewController.presentCustomizedAlert(_:)), forControlEvents: .TouchUpInside)
-        customizedAlertButton.constrainToSize(CGSize(width: 270, height: 44))
+        customizedAlertButton.constrainTo(size: CGSize(width: 270, height: 44))
         stackView.addArrangedSubview(customizedAlertButton)
     }
     

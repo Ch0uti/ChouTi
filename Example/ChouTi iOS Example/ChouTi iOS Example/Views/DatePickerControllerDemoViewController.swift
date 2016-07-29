@@ -31,7 +31,7 @@ class DatePickerControllerDemoViewController : UIViewController {
 		button.setTitle("Select Date", forState: .Normal)
 		button.titleLabel?.font = UIFont.systemFontOfSize(22)
 		
-		button.constrainToSize(CGSize(width: 160, height: 50))
+        button.constrainTo(size: CGSize(width: 160, height: 50))
 		button.constrainToCenterInSuperview()
 		
         button.addTarget(controlEvents: .TouchUpInside) { [unowned self] button in

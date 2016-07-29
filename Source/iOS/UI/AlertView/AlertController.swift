@@ -128,8 +128,8 @@ public class AlertController: UIViewController {
     private func setupConstraints() {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.constrainToCenterInSuperview()
-        widthConstraint = view.constrainToWidth(preferredContentSize.width)
-        heightConstraint = view.constrainToHeight(preferredContentSize.height)
+        widthConstraint = view.constrainTo(width: preferredContentSize.width)
+        heightConstraint = view.constrainTo(height: preferredContentSize.height)
     }
 	
     public override func viewDidDisappear(animated: Bool) {

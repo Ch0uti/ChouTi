@@ -37,7 +37,7 @@ class DropPresentingDemoViewController: UIViewController {
 		button.setTitle("Present!", forState: .Normal)
 		button.titleLabel?.font = UIFont.systemFontOfSize(22)
 		
-		button.constrainToSize(CGSize(width: 160, height: 50))
+        button.constrainTo(size: CGSize(width: 160, height: 50))
 		button.constrainToCenterInSuperview()
 		
 		button.addTarget(self, action: #selector(DropPresentingDemoViewController.buttonTapped(_:)), forControlEvents: .TouchUpInside)
@@ -64,7 +64,7 @@ class DropPresentingDemoViewController: UIViewController {
         
         button.addTarget(self, action: #selector(DropPresentingDemoViewController.dismiss(_:)), forControlEvents: .TouchUpInside)
 		
-        button.constrainToSize(CGSize(width: 120, height: 50))
+        button.constrainTo(size: CGSize(width: 120, height: 50))
         button.constrainToCenterInSuperview()
         
 		dummyViewController.modalPresentationStyle = .Custom

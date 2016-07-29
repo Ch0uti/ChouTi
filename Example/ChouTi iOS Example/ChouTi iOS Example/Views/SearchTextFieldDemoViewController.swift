@@ -25,7 +25,7 @@ class SearchTextFieldDemoViewController : UIViewController {
         
         searchField.searchTextFieldDataSource = self
         
-        searchField.constrainToSize(CGSize(width: 200, height: 44))
+        searchField.constrainTo(size: CGSize(width: 200, height: 44))
         NSLayoutConstraint(item: searchField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0).active = true
         NSLayoutConstraint(item: searchField, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: -200).active = true
     }

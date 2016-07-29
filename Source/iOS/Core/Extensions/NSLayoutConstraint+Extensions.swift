@@ -99,7 +99,7 @@ public extension UIView {
      
      - returns: newly added constraint
      */
-    public func constrainToWidth(width: CGFloat) -> NSLayoutConstraint {
+    public func constrainTo(width width: CGFloat) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
         let constraint = self.widthAnchor.constraintEqualToConstant(width)
         constraint.active = true
@@ -113,7 +113,7 @@ public extension UIView {
      
      - returns: newly added constraint
      */
-    public func constrainToHeight(height: CGFloat) -> NSLayoutConstraint {
+    public func constrainTo(height height: CGFloat) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
         let constraint = self.heightAnchor.constraintEqualToConstant(height)
         constraint.active = true
@@ -127,8 +127,8 @@ public extension UIView {
      
      - returns: newly added constraint
      */
-    public func constrainToSize(size: CGSize) -> [NSLayoutConstraint] {
-        return [constrainToWidth(size.width), constrainToHeight(size.height)]
+    public func constrainTo(size size: CGSize) -> [NSLayoutConstraint] {
+        return [constrainTo(width: size.width), constrainTo(height: size.height)]
     }
     
     /**
@@ -140,7 +140,26 @@ public extension UIView {
      - returns: constriants added.
      */
     public func constrainTo(width width: CGFloat, height: CGFloat) -> [NSLayoutConstraint] {
-        return constrainToSize(CGSize(width: width, height: height))
+        return constrainTo(size: CGSize(width: width, height: height))
+    }
+    
+    /**
+     Constraint self to have same size and position of another view
+     
+     - parameter view: another view
+     
+     - returns: constraints added.
+     */
+    public func constrainTo(edgesOfView view: UIView) -> [NSLayoutConstraint] {
+        let constraints: [NSLayoutConstraint] = [
+            self.topAnchor.constraintEqualToAnchor(view.topAnchor),
+            self.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),
+            self.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
+            self.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor)
+        ]
+        
+        NSLayoutConstraint.activateConstraints(constraints)
+        return constraints
     }
 }
 
