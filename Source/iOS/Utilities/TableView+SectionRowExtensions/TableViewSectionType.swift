@@ -15,11 +15,3 @@ public protocol TableViewSectionType {
 	var shouldShowIndex: Bool { get set }
 	var rows: [TableViewRowType] { get set }
 }
-
-extension TableViewSectionType {
-	weak var tableView: UITableView? { return nil }
-	var headerTitle: String? { return nil }
-	var footerTitle: String? { return nil }
-	var shouldShowIndex: Bool { return false }
-	var rows: [TableViewRowType] { return [] }
-}

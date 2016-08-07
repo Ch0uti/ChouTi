@@ -22,7 +22,6 @@ class ViewControllersSectionConfiguration: NSObject {
         rows.append(
             TableViewRow(title: "SlideController",
                 subtitle: "Has Left/Right Menu View Controller",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     
@@ -59,7 +58,6 @@ class ViewControllersSectionConfiguration: NSObject {
         rows.append(
             TableViewRow(title: "Page View Controller",
                 subtitle: "Paging View Controller",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = PageViewDemoController()
@@ -71,7 +69,6 @@ class ViewControllersSectionConfiguration: NSObject {
         rows.append(
             TableViewRow(title: "Menu Page View Controller",
                 subtitle: "Paging View Controller with Top Menus",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = MenuPageDemoViewController()
@@ -80,7 +77,7 @@ class ViewControllersSectionConfiguration: NSObject {
             )
         )
 
-        section = TableViewSection(headerTitle: "View Controller Containers", rows: rows, tableView: tableView)
+        section = TableViewSection(headerTitle: "View Controller Containers", rows: rows)
     }
     
     func expandLeft(sender: AnyObject) {

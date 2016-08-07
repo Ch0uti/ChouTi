@@ -18,7 +18,6 @@ struct ViewsSectionConfiguration {
         rows.append(
             TableViewRow(title: "Menu View",
                 subtitle: "Horizontal Menu View",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = MenuViewDemoController()
@@ -30,7 +29,6 @@ struct ViewsSectionConfiguration {
         rows.append(
             TableViewRow(title: "📷 Image Picker",
                 subtitle: "Image Selection View",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = ImagePickerDemoViewController()
@@ -41,7 +39,6 @@ struct ViewsSectionConfiguration {
         
         rows.append(
             TableViewRow(title: "Drop Down Menu",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = DropDownMenuDemoViewController()
@@ -53,7 +50,6 @@ struct ViewsSectionConfiguration {
         rows.append(
             TableViewRow(title: "📅 Date Picker",
                 subtitle: "A Slide Up Date Picker View Controller",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = DatePickerControllerDemoViewController()
@@ -65,7 +61,6 @@ struct ViewsSectionConfiguration {
         rows.append(
             TableViewRow(title: "Navigation Bar with Status Bar",
                 subtitle: "Drop down style status bar under navigation bar",
-                tableView: tableView,
                 cellSelectAction: { (indexPath, cell) -> Void in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = NavigationBarStatusBarDemoViewController()
@@ -76,8 +71,6 @@ struct ViewsSectionConfiguration {
         
         rows.append(
             TableViewRow(title: "Search Text Field",
-                subtitle: "",
-                tableView: tableView,
                 cellSelectAction: { (indexPath, cell) -> Void in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = SearchTextFieldDemoViewController()
@@ -88,7 +81,6 @@ struct ViewsSectionConfiguration {
         
         rows.append(
             TableViewRow(title: "⚠️ Alert Controller",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = AlertControllerDemoViewController()
@@ -100,7 +92,6 @@ struct ViewsSectionConfiguration {
         rows.append(
             TableViewRow(title: "Page Control",
                 subtitle: "Custom PageControl",
-                tableView: tableView,
                 cellSelectAction: { (indexPath, cell) -> Void in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = PageControlDemoViewController()
@@ -109,6 +100,6 @@ struct ViewsSectionConfiguration {
             )
         )
         
-        section = TableViewSection(headerTitle: "Views", rows: rows, tableView: tableView)
+        section = TableViewSection(headerTitle: "Views", rows: rows)
     }
 }
