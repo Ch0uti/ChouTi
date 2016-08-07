@@ -36,6 +36,7 @@
 		025C731C1D2727420041F1CA /* TableLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C731B1D2727420041F1CA /* TableLayoutDemoViewController.swift */; };
 		025C731E1D2727470041F1CA /* DropPresentingDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C731D1D2727470041F1CA /* DropPresentingDemoViewController.swift */; };
 		025C73241D282B130041F1CA /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C73221D282B130041F1CA /* DummyViewController.swift */; };
+		02667A641D57A0D7000B8989 /* UIImage+ExtensionsDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02667A631D57A0D7000B8989 /* UIImage+ExtensionsDemo.swift */; };
 		17495F426F95D8A1A6246A64 /* Pods_ChouTi_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83D02988F43562CA418A4C8 /* Pods_ChouTi_iOS_Example.framework */; };
 		79701CA829BB14CA67E94B4C /* Pods_ChouTi_iOS_ExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6479DA10D69A0CAD0518C28D /* Pods_ChouTi_iOS_ExampleUITests.framework */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		025C731B1D2727420041F1CA /* TableLayoutDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		025C731D1D2727470041F1CA /* DropPresentingDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropPresentingDemoViewController.swift; sourceTree = "<group>"; };
 		025C73221D282B130041F1CA /* DummyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
+		02667A631D57A0D7000B8989 /* UIImage+ExtensionsDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ExtensionsDemo.swift"; sourceTree = "<group>"; };
 		4D7C000753061EE7F4BEC2B4 /* Pods-ChouTi iOS ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS ExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS ExampleUITests/Pods-ChouTi iOS ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		56C5ECC8768A402443BEC96E /* Pods-ChouTi iOS Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS Example/Pods-ChouTi iOS Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6479DA10D69A0CAD0518C28D /* Pods_ChouTi_iOS_ExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_iOS_ExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +178,7 @@
 				025C72ED1D271BC60041F1CA /* TableViewSectionRowExtensionDemoViewController.swift */,
 				025C72EC1D271BC60041F1CA /* OperationsDemoViewController.swift */,
 				023F9BC21D2C0875001966ED /* LeadingTrailingVSLeftRightDemoViewController.swift */,
+				02667A621D57A0D7000B8989 /* UIImage+Extensions Demo */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -223,6 +226,14 @@
 				025C73221D282B130041F1CA /* DummyViewController.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		02667A621D57A0D7000B8989 /* UIImage+Extensions Demo */ = {
+			isa = PBXGroup;
+			children = (
+				02667A631D57A0D7000B8989 /* UIImage+ExtensionsDemo.swift */,
+			);
+			path = "UIImage+Extensions Demo";
 			sourceTree = "<group>";
 		};
 		05FAD2F12CEF34BB425A6DC3 /* Pods */ = {
@@ -440,6 +451,7 @@
 				025C73041D27208D0041F1CA /* ViewControllersSectionConfiguration.swift in Sources */,
 				025C72EE1D271BC60041F1CA /* HideNavigationBarBottomLineDemoViewController.swift in Sources */,
 				025C731A1D2724EA0041F1CA /* ViewsSectionConfiguration.swift in Sources */,
+				02667A641D57A0D7000B8989 /* UIImage+ExtensionsDemo.swift in Sources */,
 				023F9BC31D2C0875001966ED /* LeadingTrailingVSLeftRightDemoViewController.swift in Sources */,
 				025C73181D2724EA0041F1CA /* PageControlDemoViewController.swift in Sources */,
 				025C73161D2724EA0041F1CA /* MenuViewDemoController.swift in Sources */,

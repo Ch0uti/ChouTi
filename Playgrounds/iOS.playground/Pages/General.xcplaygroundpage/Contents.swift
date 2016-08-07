@@ -41,13 +41,28 @@ URLComponents?.queryItems?.forEach({item in
 	print(item.name)
 })
 
+// Drop first
 let a = "abvc".characters.dropFirst()
 String(a)
 
+// All combinations
 let suits = ["♠", "♥", "♣", "♦"]
 let ranks = ["J","Q","K","A"]
-let allCombinations = suits.flatMap { suit in ranks.map { rank in
-    (suit, rank) }
+let allCombinations = suits.flatMap { suit in
+	ranks.map { rank in
+		(suit, rank)
+	}
 }
 
 print(allCombinations)
+
+// Set up request parameters
+let item1 = NSURLQueryItem(name: "language[]", value: "en")
+let item2 = NSURLQueryItem(name: "language[]", value: "ko")
+
+let components = NSURLComponents()
+components.queryItems = [item1, item2]
+
+print(components.URL!.query?.stringByRemovingPercentEncoding?.substringFromIndex("language[]=".endIndex) ?? "")
+
+

@@ -81,6 +81,17 @@ struct MiscellaneousSectionConfiguration {
             })
         )
         
+        rows.append(
+            TableViewRow(title: "UIImage+Extensions Demo",
+                subtitle: "Demo for UIImage extensions",
+                tableView: tableView,
+                cellSelectAction: { indexPath, cell in
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    let demoViewController = UIImageExtensionsDemoViewController()
+                    tableView.presentingViewController?.showViewController(demoViewController, sender: nil)
+            })
+        )
+        
         section = TableViewSection(headerTitle: "Miscellaneous", rows: rows, tableView: tableView)
     }
 }

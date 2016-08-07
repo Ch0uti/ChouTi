@@ -240,6 +240,24 @@ public extension UIImage {
         
         return newImage
     }
+    
+    /**
+     Get cropped image with rect specified
+     Ref: http://stackoverflow.com/a/7704399/3164091
+     
+     - parameter rect: rect
+     
+     - returns: cropped image
+     */
+    public func croppedImage(withRect rect: CGRect) -> UIImage? {
+        let rect = CGRect(x: rect.origin.x * scale,
+                          y: rect.origin.y * scale,
+                          width: rect.width * scale,
+                          height: rect.height * scale)
+        guard let imageRef = CGImageCreateWithImageInRect(self.CGImage, rect) else { return nil }
+        let croppedImage = UIImage(CGImage: imageRef, scale: scale, orientation: imageOrientation)
+        return croppedImage
+    }
 }
 
 // MARK: - Get Color from UIImage
