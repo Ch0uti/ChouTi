@@ -10,34 +10,26 @@ import UIKit
 import ChouTi
 
 class UIImageExtensionsDemoViewController: UIViewController {
-    let sourceImage = UIImage(named: "walk01")
-    lazy var sourceImageView: UIImageView = UIImageView(image: self.sourceImage)
-    
-    let croppedImageView = UIImageView()
+    let tableView = UITableView()
     
     override func viewDidLoad() {
-        view.backgroundColor = .whiteColor()
+        super.viewDidLoad()
         
-        guard let sourceImage = sourceImage else { return }
+        title = "UIImage+Extensions Demo"
         
-        let croppedImage = sourceImage.croppedImage(withRect: CGRect(
-            x: sourceImage.size.width * 0.3,
-            y: sourceImage.size.height * 0.3,
-            width: sourceImage.size.width * 0.3,
-            height: sourceImage.size.height * 0.5)
-        )
-        croppedImageView.image = croppedImage
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        tableView.constrainToFullSizeInSuperview()
         
-        let stackView = UIStackView(arrangedSubviews: [sourceImageView, croppedImageView])
-        stackView.axis = .Vertical
-        stackView.distribution = .EqualSpacing
-        stackView.spacing = 16
-        stackView.alignment = .Center
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
-        
-        stackView.constrainToCenterInSuperview()
-        stackView.constrainTo(size: CGSize(width: 200, height: 300))
+        tableView.sections = [
+            TableViewSection(rows: [
+                TableViewRow(title: "UIImage+CroppedImage",
+                    cellSelectAction: { [weak self] indexPath, cell in
+                        self?.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                        let demoViewController = UIImage_CroppedImageDemoViewController()
+                        self?.showViewController(demoViewController, sender: nil)
+                    })
+            ])
+        ]
     }
 }
