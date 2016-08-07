@@ -16,9 +16,9 @@ public struct TableViewSection: TableViewSectionType {
 	public var rows: [TableViewRowType] = []
 	
 	public init() {}
-	public init(headerTitle: String? = nil, rows: [TableViewRowType], tableView: UITableView) {
-		self.tableView = tableView
+	public init(headerTitle: String? = nil, rows: [TableViewRowType], tableView: UITableView? = nil) {
 		self.headerTitle = headerTitle
 		self.rows = rows
+        self.tableView = tableView
 	}
 }

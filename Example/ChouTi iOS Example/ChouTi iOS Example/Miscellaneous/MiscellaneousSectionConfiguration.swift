@@ -17,7 +17,6 @@ struct MiscellaneousSectionConfiguration {
         rows.append(
             TableViewRow(title: "Drop Presenting Animator",
                 subtitle: "Path style drop down presenting",
-                tableView: tableView,
                 cellSelectAction: { (indexPath, cell) -> Void in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = DropPresentingDemoViewController()
@@ -29,7 +28,6 @@ struct MiscellaneousSectionConfiguration {
         rows.append(
             TableViewRow(title: "├┼┤ Table (Grid) Layout",
                 subtitle: "Excel Layout",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = TableLayoutDemoViewController()
@@ -40,7 +38,6 @@ struct MiscellaneousSectionConfiguration {
         
         rows.append(
             TableViewRow(title: "Navigation Bar Hide Hairline",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = HideNavigationBarBottomLineDemoViewController()
@@ -51,7 +48,6 @@ struct MiscellaneousSectionConfiguration {
         rows.append(
             TableViewRow(title: "TableView+SectionRow Demo",
                 subtitle: "Demo for handy table view sections and rows management",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = TableViewSectionRowExtensionDemoViewController()
@@ -62,7 +58,6 @@ struct MiscellaneousSectionConfiguration {
         rows.append(
             TableViewRow(title: "Operations",
                 subtitle: "Demo for using Operations (NSOperations)",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = OperationsDemoViewController()
@@ -73,7 +68,6 @@ struct MiscellaneousSectionConfiguration {
         rows.append(
             TableViewRow(title: "Auto Layout: Leading/Trailing vs. Left/Right",
                 subtitle: "Demo for Leading vs Trailing",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = LeadingTrailingVSLeftRightDemoViewController()
@@ -84,7 +78,6 @@ struct MiscellaneousSectionConfiguration {
         rows.append(
             TableViewRow(title: "UIImage+Extensions Demo",
                 subtitle: "Demo for UIImage extensions",
-                tableView: tableView,
                 cellSelectAction: { indexPath, cell in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = UIImageExtensionsDemoViewController()
@@ -92,6 +85,6 @@ struct MiscellaneousSectionConfiguration {
             })
         )
         
-        section = TableViewSection(headerTitle: "Miscellaneous", rows: rows, tableView: tableView)
+        section = TableViewSection(headerTitle: "Miscellaneous", rows: rows)
     }
 }

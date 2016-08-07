@@ -18,7 +18,6 @@ struct IssuesSectionConfiguration {
         rows.append(
             TableViewRow(title: "Issue: `layoutMarginsGuide`",
                 subtitle: "layoutMarginsGuide.topAnchor is not same as .TopMargin",
-                tableView: tableView,
                 cellSelectAction: { (indexPath, cell) -> Void in
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     let demoViewController = IssueLayoutMarginsGuideViewController()
@@ -27,6 +26,6 @@ struct IssuesSectionConfiguration {
             )
         )
         
-        section = TableViewSection(headerTitle: "Issues", rows: rows, tableView: tableView)
+        section = TableViewSection(headerTitle: "Issues", rows: rows)
     }
 }

@@ -21,7 +21,7 @@ public struct TableViewRow : TableViewRowType {
 		setupDefaultCellConfiguration()
 	}
 	
-	public init(title: String?, subtitle: String? = nil, cellInitialization: (NSIndexPath -> UITableViewCell)? = nil, cellConfiguration: (UITableViewCell -> Void)? = nil, tableView: UITableView, cellSelectAction: CellSelectionActionBlock? = nil, cellDeselectAction: CellSelectionActionBlock? = nil) {
+	public init(title: String?, subtitle: String? = nil, cellInitialization: (NSIndexPath -> UITableViewCell)? = nil, cellConfiguration: (UITableViewCell -> Void)? = nil, tableView: UITableView? = nil, cellSelectAction: CellSelectionActionBlock? = nil, cellDeselectAction: CellSelectionActionBlock? = nil) {
 		self.tableView = tableView
 		self.title = title
 		self.subtitle = subtitle
