@@ -33,17 +33,12 @@ public extension UIView {
         }
         
         translatesAutoresizingMaskIntoConstraints = false
-        var constraints = [NSLayoutConstraint]()
-        
-        constraints += [
+        return [
             self.topAnchor.constraintEqualToAnchor(superview.topAnchor),
             self.leadingAnchor.constraintEqualToAnchor(superview.leadingAnchor),
             self.bottomAnchor.constraintEqualToAnchor(superview.bottomAnchor),
             self.trailingAnchor.constraintEqualToAnchor(superview.trailingAnchor)
-        ]
-        
-        NSLayoutConstraint.activateConstraints(constraints)
-        return constraints
+        ].activate()
     }
     
     /**
@@ -57,17 +52,12 @@ public extension UIView {
         }
         
         translatesAutoresizingMaskIntoConstraints = false
-        var constraints = [NSLayoutConstraint]()
-        
-        constraints += [
+        return [
             NSLayoutConstraint(item: self, attribute: .TopMargin, relatedBy: .Equal, toItem: superview, attribute: .TopMargin, multiplier: 1.0, constant: 0.0),
             NSLayoutConstraint(item: self, attribute: .LeadingMargin, relatedBy: .Equal, toItem: superview, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0),
             NSLayoutConstraint(item: self, attribute: .BottomMargin, relatedBy: .Equal, toItem: superview, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0),
             NSLayoutConstraint(item: self, attribute: .TrailingMargin, relatedBy: .Equal, toItem: superview, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0)
-        ]
-        
-        NSLayoutConstraint.activateConstraints(constraints)
-        return constraints
+        ].activate()
     }
     
     /**
@@ -81,15 +71,39 @@ public extension UIView {
         }
         
         translatesAutoresizingMaskIntoConstraints = false
-        var constraints = [NSLayoutConstraint]()
         
-        constraints += [
+        return [
             self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor),
             self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor)
-        ]
+        ].activate()
+    }
+    
+    /**
+     Setup constraint for horizontal center in super view.
+     
+     - returns: Constraint activated and added.
+     */
+    public func constrainToCenterHorizontallyInSuperview() -> NSLayoutConstraint {
+        guard let superview = self.superview else {
+            fatalError("superview is nil")
+        }
         
-        NSLayoutConstraint.activateConstraints(constraints)
-        return constraints
+        translatesAutoresizingMaskIntoConstraints = false
+        return self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor).activate()
+    }
+    
+    /**
+     Setup constraint for vertical center in super view.
+     
+     - returns: Constraint activated and added.
+     */
+    public func constrainToCenterVerticallyInSuperview() -> NSLayoutConstraint {
+        guard let superview = self.superview else {
+            fatalError("superview is nil")
+        }
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        return self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor).activate()
     }
     
     /**
@@ -101,9 +115,7 @@ public extension UIView {
      */
     public func constrainTo(width width: CGFloat) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
-        let constraint = self.widthAnchor.constraintEqualToConstant(width)
-        constraint.active = true
-        return constraint
+        return self.widthAnchor.constraintEqualToConstant(width).activate()
     }
     
     /**
@@ -115,9 +127,7 @@ public extension UIView {
      */
     public func constrainTo(height height: CGFloat) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
-        let constraint = self.heightAnchor.constraintEqualToConstant(height)
-        constraint.active = true
-        return constraint
+        return self.heightAnchor.constraintEqualToConstant(height).activate()
     }
     
     /**
@@ -144,22 +154,45 @@ public extension UIView {
     }
     
     /**
-     Constraint self to have same size and position of another view
+     Constrain self to have same size and position of another view
      
      - parameter view: another view
      
      - returns: constraints added.
      */
     public func constrainTo(edgesOfView view: UIView) -> [NSLayoutConstraint] {
-        let constraints: [NSLayoutConstraint] = [
+        translatesAutoresizingMaskIntoConstraints = false
+        return [
             self.topAnchor.constraintEqualToAnchor(view.topAnchor),
             self.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),
             self.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
             self.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor)
-        ]
-        
-        NSLayoutConstraint.activateConstraints(constraints)
-        return constraints
+        ].activate()
+    }
+    
+    /**
+     Snap self.top to bottom of another view
+     
+     - parameter view: view to snap to.
+     
+     - returns: constraint activated and added.
+     */
+    public func constrainTo(bottomOfView view: UIView) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        return self.topAnchor.constraintEqualToAnchor(view.bottomAnchor).activate()
+    }
+    
+    /**
+     Snap self.top to bottom of another view, with constant
+     
+     - parameter view:     view to snap to.
+     - parameter constant: constant activated and added.
+     
+     - returns: constraint activated and added.
+     */
+    public func constrainTo(bottomOfView view: UIView, constant: CGFloat) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        return self.topAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: constant).activate()
     }
 }
 
@@ -191,5 +224,17 @@ public extension SequenceType where Generator.Element: UIView {
         
         NSLayoutConstraint.activateConstraints(constraints)
         return constraints
+    }
+}
+
+public extension CollectionType where Generator.Element: NSLayoutConstraint {
+    /**
+     Activate constraints
+     
+     - returns: self
+     */
+    public func activate() -> Self {
+        self.forEach { $0.active = true }
+        return self
     }
 }
