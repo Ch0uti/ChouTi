@@ -20,15 +20,19 @@ class UIImage_CroppedImageDemoViewController: UIViewController {
         
         view.backgroundColor = .whiteColor()
         
+        title = "Cropped Image"
+        
         guard let sourceImage = sourceImage else { return }
         
         let croppedImage = sourceImage.croppedImage(withRect: CGRect(
-            x: sourceImage.size.width * 0.25,
+            x: sourceImage.size.width * 0.0,
             y: sourceImage.size.height * 0.25,
             width: sourceImage.size.width * 0.5,
             height: sourceImage.size.height * 0.5)
         )
         croppedImageView.image = croppedImage
+        croppedImageView.layer.borderColor = UIColor.grayColor().CGColor
+        croppedImageView.layer.borderWidth = 0.5
         
         let stackView = UIStackView(arrangedSubviews: [sourceImageView, croppedImageView])
         stackView.axis = .Vertical

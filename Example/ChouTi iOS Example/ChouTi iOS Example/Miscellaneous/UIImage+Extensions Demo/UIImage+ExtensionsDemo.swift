@@ -28,6 +28,11 @@ class UIImageExtensionsDemoViewController: UIViewController {
                         self?.tableView.deselectRowAtIndexPath(indexPath, animated: true)
                         let demoViewController = UIImage_CroppedImageDemoViewController()
                         self?.showViewController(demoViewController, sender: nil)
+                    }),
+                TableViewRow(title: "UIImage+AnimatingImages", subtitle: "Sprite in UIKit", cellSelectAction: { [weak self] indexPath, cell in
+                        self?.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                        let demoViewController = UIImage_AnimatingImagesDemoViewController()
+                        self?.showViewController(demoViewController, sender: nil)
                     })
             ])
         ]
