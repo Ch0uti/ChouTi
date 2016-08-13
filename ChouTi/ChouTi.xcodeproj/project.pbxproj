@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020664DE1D5EB700002A7E2A /* UIView+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020664DD1D5EB700002A7E2A /* UIView+ExtensionsTests.swift */; };
 		023050961D2440DB00D7B190 /* ChouTi.h in Headers */ = {isa = PBXBuildFile; fileRef = 023050951D2440DB00D7B190 /* ChouTi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0230509D1D2440DB00D7B190 /* ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023050921D2440DB00D7B190 /* ChouTi.framework */; };
 		023050A21D2440DB00D7B190 /* ChouTiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050A11D2440DB00D7B190 /* ChouTiTests.swift */; };
@@ -164,6 +165,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		020664DD1D5EB700002A7E2A /* UIView+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		023050921D2440DB00D7B190 /* ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		023050951D2440DB00D7B190 /* ChouTi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ChouTi.h; path = ../../Source/iOS/ChouTi.h; sourceTree = "<group>"; };
 		023050971D2440DB00D7B190 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 				023051C61D244A1A00D7B190 /* String+ExtensionsTests.swift */,
 				023051C71D244A1A00D7B190 /* UIColor+ExtensionsTests.swift */,
 				023F9BC61D2C4770001966ED /* NSLayoutConstraint+ExtensionsTests.swift */,
+				020664DD1D5EB700002A7E2A /* UIView+ExtensionsTests.swift */,
 			);
 			path = ExtensionsTests;
 			sourceTree = "<group>";
@@ -1161,6 +1164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				023F9A801D28CE6B001966ED /* SequenceType+ExtensionsTests.swift in Sources */,
+				020664DE1D5EB700002A7E2A /* UIView+ExtensionsTests.swift in Sources */,
 				02E1947F1D28629B00B35F1B /* UIView+GeometryTests.swift in Sources */,
 				023F9A7A1D28835D001966ED /* CollectionType+ExtensionsTests.swift in Sources */,
 				023F9A841D296C81001966ED /* UIButton+ActionTests.swift in Sources */,

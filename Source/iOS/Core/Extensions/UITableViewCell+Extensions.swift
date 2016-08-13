@@ -20,3 +20,11 @@ public extension UITableViewCell {
         layoutMargins = UIEdgeInsetsZero
     }
 }
+
+// MARK: - Access `tabelView` in UITableView
+public extension UITableViewCell {
+    /// Return tableView managing this cell
+    public var tableView: UITableView? {
+		return superviewOfType(UITableView)
+	}
+}
