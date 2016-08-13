@@ -44,6 +44,16 @@ class IssueLayoutMarginsGuideViewController: UIViewController {
         stackView.addArrangedSubview(label2.wrappedInView(useAnchor: false))
         
         stackView.constrainToCenterInSuperview()
+        
+        let label3 = UILabel()
+        label3.translatesAutoresizingMaskIntoConstraints = false
+        label3.text = "layoutMarginsGuide.leadingAnchor"
+        label3.textColor = .whiteColor()
+        label3.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.4)
+        view.addSubview(label3)
+        
+        label3.leadingAnchor.constraintEqualToAnchor(label2.superview!.layoutMarginsGuide.leadingAnchor).activate()
+        label3.topAnchor.constraintEqualToAnchor(label2.superview!.bottomAnchor, constant: 20).activate()
     }
 }
 
@@ -59,9 +69,9 @@ private extension UIView {
         if useAnchor {
             NSLayoutConstraint.activateConstraints([
                 self.topAnchor.constraintEqualToAnchor(wrapperView.layoutMarginsGuide.topAnchor),
-                self.leadingAnchor.constraintEqualToAnchor(wrapperView.leadingAnchor),
+                self.leadingAnchor.constraintEqualToAnchor(wrapperView.layoutMarginsGuide.leadingAnchor),
                 self.bottomAnchor.constraintEqualToAnchor(wrapperView.layoutMarginsGuide.bottomAnchor),
-                self.trailingAnchor.constraintEqualToAnchor(wrapperView.trailingAnchor)
+                self.trailingAnchor.constraintEqualToAnchor(wrapperView.layoutMarginsGuide.trailingAnchor)
                 ])
         } else {
             NSLayoutConstraint.activateConstraints([

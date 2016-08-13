@@ -18,6 +18,16 @@ public extension NSLayoutConstraint {
         active = true
         return self
     }
+    
+    /**
+     Deactivate this constraint
+     
+     - returns: self
+     */
+    public func deactivate() -> NSLayoutConstraint {
+        active = false
+        return self
+    }
 }
 
 // MARK: - Auto Layout
@@ -28,17 +38,8 @@ public extension UIView {
      - returns: newly added constraints
      */
     public func constrainToFullSizeInSuperview() -> [NSLayoutConstraint] {
-        guard let superview = self.superview else {
-            fatalError("superview is nil")
-        }
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        return [
-            self.topAnchor.constraintEqualToAnchor(superview.topAnchor),
-            self.leadingAnchor.constraintEqualToAnchor(superview.leadingAnchor),
-            self.bottomAnchor.constraintEqualToAnchor(superview.bottomAnchor),
-            self.trailingAnchor.constraintEqualToAnchor(superview.trailingAnchor)
-        ].activate()
+        guard let superview = self.superview else { fatalError("superview is nil") }
+		return constrainTo(edgesOfView: superview)
     }
     
     /**
@@ -47,9 +48,7 @@ public extension UIView {
      - returns: newly added constraints
      */
     public func constrainToFullSizeMarginInSuperview() -> [NSLayoutConstraint] {
-        guard let superview = self.superview else {
-            fatalError("superview is nil")
-        }
+        guard let superview = self.superview else { fatalError("superview is nil") }
         
         translatesAutoresizingMaskIntoConstraints = false
         return [
@@ -171,28 +170,18 @@ public extension UIView {
     }
     
     /**
-     Snap self.top to bottom of another view
+     Constrain self.attribute1 = view.attribute2 * multiplier + constant
      
-     - parameter view: view to snap to.
+     - parameter attribute1: attribute1
+     - parameter attribute2: attribute2
+     - parameter view:       another view
+     - parameter multiplier: multiplier
+     - parameter constant:   constant
      
-     - returns: constraint activated and added.
+     - returns: constraint added.
      */
-    public func constrainTo(bottomOfView view: UIView) -> NSLayoutConstraint {
-        translatesAutoresizingMaskIntoConstraints = false
-        return self.topAnchor.constraintEqualToAnchor(view.bottomAnchor).activate()
-    }
-    
-    /**
-     Snap self.top to bottom of another view, with constant
-     
-     - parameter view:     view to snap to.
-     - parameter constant: constant activated and added.
-     
-     - returns: constraint activated and added.
-     */
-    public func constrainTo(bottomOfView view: UIView, constant: CGFloat) -> NSLayoutConstraint {
-        translatesAutoresizingMaskIntoConstraints = false
-        return self.topAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: constant).activate()
+    public func constrain(attribute1: NSLayoutAttribute, equalTo attribute2: NSLayoutAttribute, ofView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+        return NSLayoutConstraint(item: self, attribute: attribute1, relatedBy: .Equal, toItem: view, attribute: attribute2, multiplier: multiplier, constant: constant).activate()
     }
 }
 
@@ -235,6 +224,16 @@ public extension CollectionType where Generator.Element: NSLayoutConstraint {
      */
     public func activate() -> Self {
         self.forEach { $0.active = true }
+        return self
+    }
+    
+    /**
+     Deactivate constraints
+     
+     - returns: self
+     */
+    public func deactivate() -> Self {
+        self.forEach { $0.active = false }
         return self
     }
 }

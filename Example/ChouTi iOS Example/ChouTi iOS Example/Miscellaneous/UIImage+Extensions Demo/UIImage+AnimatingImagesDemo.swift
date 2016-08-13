@@ -99,7 +99,7 @@ class UIImage_AnimatingImagesDemoViewController: UIViewController {
         fpsLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(fpsLabel)
         fpsLabel.constrainToCenterHorizontallyInSuperview()
-        fpsLabel.constrainTo(bottomOfView: croppedBearImageView, constant: 24)
+        fpsLabel.constrain(.Top, equalTo: .Bottom, ofView: croppedBearImageView, constant: 16)
         fpsLabel.text = String(format: "FPS: %.1f", slider.value)
     }
     
