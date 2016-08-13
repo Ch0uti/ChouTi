@@ -35,30 +35,30 @@ public extension UIView {
 
 // MARK: - Set Hidden
 public extension UIView {
-    /**
-     Set hidden animated
-     
-     - parameter hidden:     hidden to set
-     - parameter animated:   whether it's animated
-     - parameter duration:   animation duration
-     - parameter completion: completion block
-     */
-    public func setHidden(hidden: Bool, animated: Bool = false, duration: NSTimeInterval = 0.25, completion: ((Bool) -> ())? = nil) {
-        if !animated {
-            alpha = hidden ? 0.0 : 1.0
-            self.hidden = hidden
+	/**
+	Set hidden animated with completion.
+	
+	- parameter toHide:     New hidden value to set.
+	- parameter animated:   Whether setting should be animated
+	- parameter duration:   Animation duration.
+	- parameter completion: Completion block.
+	*/
+    public func setHidden(toHide: Bool, animated: Bool = false, duration: NSTimeInterval = 0.25, completion: ((Bool) -> ())? = nil) {
+        if animated == false {
+            alpha = toHide ? 0.0 : 1.0
+            self.hidden = toHide
             completion?(true)
         } else {
-            // If to visible, set hidden to false first, then animate alpha
-            if !hidden {
-                self.hidden = hidden
+            // If is to visible, set hidden to false first, then animate alpha
+            if toHide == false {
+                self.hidden = toHide
             }
             
-            UIView.animateWithDuration(duration, animations: {
-                self.alpha = hidden ? 0.0 : 1.0
-                }, completion: { (finished) -> Void in
-                    self.hidden = hidden
-                    completion?(finished)
+            UIView.animateWithDuration(duration, animations: { [weak self] in
+                self?.alpha = toHide ? 0.0 : 1.0
+			}, completion: { [weak self] (finished) -> Void in
+				self?.hidden = toHide
+				completion?(finished)
             })
         }
     }
@@ -189,5 +189,26 @@ public extension UIView {
      */
     public func snapshot() -> UIImage {
         return self.toImage()
+    }
+    
+    /// Snapshot of view
+    public var 📷: UIImage {
+        return self.snapshot()
+    }
+}
+
+public extension UIView {
+    /**
+     Get superview of sepcified type.
+     
+     - parameter type: type to find.
+     
+     - returns: superview of type specified or nil.
+     */
+    public func superviewOfType<T: UIView>(type: T.Type) -> T? {
+        if let view = self.superview as? T {
+            return view
+        }
+        return superview?.superviewOfType(type)
     }
 }

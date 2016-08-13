@@ -1,12 +1,18 @@
 PODS:
   - LTMorphingLabel (0.2.0)
+  - Nimble (4.1.0)
+  - Quick (0.9.3)
 
 DEPENDENCIES:
   - LTMorphingLabel
+  - Nimble
+  - Quick
 
 SPEC CHECKSUMS:
   LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
+  Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
+  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
 
-PODFILE CHECKSUM: 5bad9617db477a6705043a689e8eaade09f27fdd
+PODFILE CHECKSUM: f5052d9094cfeecd66ab0e242d0e3a40cc4b06f3
 
 COCOAPODS: 1.0.1
