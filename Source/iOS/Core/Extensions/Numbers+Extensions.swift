@@ -97,6 +97,28 @@ public extension Int {
         
         return "\(self)\(suffix)"
     }
+    
+    /// Return weekday string (0 - Sunday, 1 - Monday, ...)
+    public var weekdayString: String? {
+        switch self {
+        case 0:
+            return "Sunday"
+        case 1:
+            return "Monday"
+        case 2:
+            return "Tuesday"
+        case 3:
+            return "Wednesday"
+        case 4:
+            return "Thursday"
+        case 5:
+            return "Friday"
+        case 6:
+            return "Saturday"
+        default:
+            return nil
+        }
+    }
 }
 
 public extension Double {

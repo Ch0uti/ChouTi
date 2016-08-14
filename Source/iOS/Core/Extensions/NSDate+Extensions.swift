@@ -20,8 +20,7 @@ public extension NSDate {
     public class func randomWithinDaysBeforeToday(days: Int) -> NSDate {
         let today = NSDate()
         
-        guard let gregorian = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) else {
-            NSLog("Error: no calendar \"NSCalendarIdentifierGregorian\" found")
+        guard let gregorian = NSCalendar.gregorianCalendar() else {
             return today
         }
         
@@ -162,7 +161,7 @@ public extension NSDate {
         if let calendar = calendar {
             theCalendar = calendar
         } else {
-            theCalendar = NSCalendar.gregorianCalendar()
+            theCalendar = NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar()
         }
         return theCalendar
     }
@@ -254,7 +253,7 @@ public extension NSDate {
 public extension NSDate {
     // year
     public var year: Int {
-        return yearInCalendar(NSCalendar.gregorianCalendar())
+        return yearInCalendar(NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar())
     }
     
     public func yearInCalendar(calendar: NSCalendar, inTimeZone timeZone: NSTimeZone? = nil) -> Int {
@@ -266,7 +265,7 @@ public extension NSDate {
     
     // month
     public var month: Int {
-        return monthInCalendar(NSCalendar.gregorianCalendar())
+        return monthInCalendar(NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar())
     }
     
     public func monthInCalendar(calendar: NSCalendar, inTimeZone timeZone: NSTimeZone? = nil) -> Int {
@@ -278,7 +277,7 @@ public extension NSDate {
     
     // day
     public var day: Int {
-        return dayInCalendar(NSCalendar.gregorianCalendar())
+        return dayInCalendar(NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar())
     }
     
     public func dayInCalendar(calendar: NSCalendar, inTimeZone timeZone: NSTimeZone? = nil) -> Int {
@@ -290,7 +289,7 @@ public extension NSDate {
     
     // hour
     public var hour: Int {
-        return hourInCalendar(NSCalendar.gregorianCalendar())
+        return hourInCalendar(NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar())
     }
     
     public func hourInCalendar(calendar: NSCalendar, inTimeZone timeZone: NSTimeZone? = nil) -> Int {
@@ -302,7 +301,7 @@ public extension NSDate {
     
     // minute
     public var minute: Int {
-        return minuteInCalendar(NSCalendar.gregorianCalendar())
+        return minuteInCalendar(NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar())
     }
     
     public func minuteInCalendar(calendar: NSCalendar, inTimeZone timeZone: NSTimeZone? = nil) -> Int {
@@ -314,7 +313,7 @@ public extension NSDate {
     
     // second
     public var second: Int {
-        return secondInCalendar(NSCalendar.gregorianCalendar())
+        return secondInCalendar(NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar())
     }
     
     public func secondInCalendar(calendar: NSCalendar, inTimeZone timeZone: NSTimeZone? = nil) -> Int {
@@ -326,7 +325,7 @@ public extension NSDate {
     
     // nanosecond
     public var nanosecond: Int {
-        return nanosecondInCalendar(NSCalendar.gregorianCalendar())
+        return nanosecondInCalendar(NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar())
     }
     
     public func nanosecondInCalendar(calendar: NSCalendar, inTimeZone timeZone: NSTimeZone? = nil) -> Int {
@@ -338,7 +337,7 @@ public extension NSDate {
     
     // weekday
     public var weekday: Int {
-        return weekdayInCalendar(NSCalendar.gregorianCalendar())
+        return weekdayInCalendar(NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar())
     }
     
     public func weekdayInCalendar(calendar: NSCalendar, inTimeZone timeZone: NSTimeZone? = nil) -> Int {
@@ -352,7 +351,7 @@ public extension NSDate {
 
 public extension NSDate {
     public class func dateWithYear(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int, nanosecond: Int = 0, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
-        let calendar = calendar ?? NSCalendar.gregorianCalendar()
+        let calendar = calendar ?? NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar()
         if let timeZone = timeZone {
             calendar.timeZone = timeZone
         }
@@ -371,7 +370,7 @@ public extension NSDate {
     
     public func dateBySettingUnit(unit: NSCalendarUnit, newValue: Int, inTimeZone timeZone: NSTimeZone? = nil, calendar: NSCalendar? = nil) -> NSDate? {
         
-        let calendar = calendar ?? NSCalendar.gregorianCalendar()
+        let calendar = calendar ?? NSCalendar.gregorianCalendar() ?? NSCalendar.currentCalendar()
         var year = yearInCalendar(calendar, inTimeZone: timeZone)
         var month = monthInCalendar(calendar, inTimeZone: timeZone)
         var day = dayInCalendar(calendar, inTimeZone: timeZone)
