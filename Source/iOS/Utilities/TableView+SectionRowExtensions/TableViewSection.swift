@@ -9,16 +9,14 @@
 import Foundation
 
 public struct TableViewSection: TableViewSectionType {
-	public weak var tableView: UITableView?
 	public var headerTitle: String?
 	public var footerTitle: String?
 	public var shouldShowIndex: Bool = false
 	public var rows: [TableViewRowType] = []
 	
 	public init() {}
-	public init(headerTitle: String? = nil, rows: [TableViewRowType], tableView: UITableView? = nil) {
+	public init(headerTitle: String? = nil, rows: [TableViewRowType]) {
 		self.headerTitle = headerTitle
 		self.rows = rows
-        self.tableView = tableView
 	}
 }

@@ -1,18 +1,114 @@
 PODS:
-  - LTMorphingLabel (0.2.0)
+  - ChouTi (0.1):
+    - ChouTi/Animators (= 0.1)
+    - ChouTi/CollectionViewLayouts (= 0.1)
+    - ChouTi/Core (= 0.1)
+    - ChouTi/UI (= 0.1)
+    - ChouTi/Utilities (= 0.1)
+  - ChouTi/Animators (0.1):
+    - ChouTi/Animators/DropPresentingAnimator (= 0.1)
+    - ChouTi/Core
+  - ChouTi/Animators/DropPresentingAnimator (0.1):
+    - ChouTi/Core
+  - ChouTi/CollectionViewLayouts (0.1):
+    - ChouTi/CollectionViewLayouts/TableLayout (= 0.1)
+    - ChouTi/Core
+  - ChouTi/CollectionViewLayouts/TableLayout (0.1):
+    - ChouTi/Core
+  - ChouTi/Core (0.1):
+    - ChouTi/Core/CodeSnippets (= 0.1)
+    - ChouTi/Core/DataStructure (= 0.1)
+    - ChouTi/Core/Extensions (= 0.1)
+    - ChouTi/Core/Miscellaneous (= 0.1)
+    - ChouTi/Core/Protocols (= 0.1)
+    - ChouTi/Core/UI (= 0.1)
+  - ChouTi/Core/CodeSnippets (0.1)
+  - ChouTi/Core/DataStructure (0.1)
+  - ChouTi/Core/Extensions (0.1)
+  - ChouTi/Core/Miscellaneous (0.1)
+  - ChouTi/Core/Protocols (0.1)
+  - ChouTi/Core/UI (0.1):
+    - ChouTi/Core/UI/CollectionViewCells (= 0.1)
+    - ChouTi/Core/UI/TableViewCells (= 0.1)
+  - ChouTi/Core/UI/CollectionViewCells (0.1)
+  - ChouTi/Core/UI/TableViewCells (0.1)
+  - ChouTi/UI (0.1):
+    - ChouTi/Animators
+    - ChouTi/Core
+    - ChouTi/UI/AlertView (= 0.1)
+    - ChouTi/UI/AutoLinesLabel (= 0.1)
+    - ChouTi/UI/CollectionViewCells (= 0.1)
+    - ChouTi/UI/DatePickerViewController (= 0.1)
+    - ChouTi/UI/DropDownMenu (= 0.1)
+    - ChouTi/UI/MenuPageViewController (= 0.1)
+    - ChouTi/UI/NavigationBarStatusBar (= 0.1)
+    - ChouTi/UI/SegmentedControl (= 0.1)
+    - ChouTi/UI/TableViewCells (= 0.1)
+  - ChouTi/UI-App-Extension-API-Unsafe (0.1):
+    - ChouTi/Core
+    - ChouTi/UI-App-Extension-API-Unsafe/SlideController (= 0.1)
+  - ChouTi/UI-App-Extension-API-Unsafe/SlideController (0.1):
+    - ChouTi/Core
+  - ChouTi/UI-Extra (0.1):
+    - ChouTi/Core
+    - ChouTi/UI-Extra/LoadingMorphingLabel (= 0.1)
+  - ChouTi/UI-Extra/LoadingMorphingLabel (0.1):
+    - ChouTi/Core
+    - LTMorphingLabel
+  - ChouTi/UI/AlertView (0.1):
+    - ChouTi/Animators
+    - ChouTi/Core
+  - ChouTi/UI/AutoLinesLabel (0.1):
+    - ChouTi/Animators
+    - ChouTi/Core
+  - ChouTi/UI/CollectionViewCells (0.1):
+    - ChouTi/Animators
+    - ChouTi/Core
+  - ChouTi/UI/DatePickerViewController (0.1):
+    - ChouTi/Animators
+    - ChouTi/Core
+  - ChouTi/UI/DropDownMenu (0.1):
+    - ChouTi/Animators
+    - ChouTi/Core
+  - ChouTi/UI/MenuPageViewController (0.1):
+    - ChouTi/Animators
+    - ChouTi/Core
+  - ChouTi/UI/NavigationBarStatusBar (0.1):
+    - ChouTi/Animators
+    - ChouTi/Core
+  - ChouTi/UI/SegmentedControl (0.1):
+    - ChouTi/Animators
+    - ChouTi/Core
+  - ChouTi/UI/TableViewCells (0.1):
+    - ChouTi/Animators
+    - ChouTi/Core
+  - ChouTi/Utilities (0.1):
+    - ChouTi/Core
+    - ChouTi/Utilities/TableView+SectionRowExtensions (= 0.1)
+  - ChouTi/Utilities/TableView+SectionRowExtensions (0.1):
+    - ChouTi/Core
+  - LTMorphingLabel (0.2.1)
   - Nimble (4.1.0)
   - Quick (0.9.3)
 
 DEPENDENCIES:
+  - ChouTi (from `../`)
+  - ChouTi/UI-App-Extension-API-Unsafe (from `../`)
+  - ChouTi/UI-Extra (from `../`)
   - LTMorphingLabel
   - Nimble
   - Quick
 
+EXTERNAL SOURCES:
+  ChouTi:
+    :path: "../"
+
 SPEC CHECKSUMS:
-  LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
+  ChouTi: 3126e67e6ecf15ef28dbf0b39b879a4bd3ae481b
+  LTMorphingLabel: 1858358ea38ef4d548e1f58b648b0d08ec3a62ed
   Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
   Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
 
-PODFILE CHECKSUM: f5052d9094cfeecd66ab0e242d0e3a40cc4b06f3
+PODFILE CHECKSUM: 1f7f0d40ba66275ae625ae51f6d80e6b4158f2b4
 
 COCOAPODS: 1.0.1

@@ -1,19 +1,40 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
+use_frameworks!
 
-target 'ChouTi' do
-  use_frameworks!
-
+# Pods
+def pod_chouti_dependency
   # Dependency for `LoadingMorphingLabel`
   pod 'LTMorphingLabel'
 
   # Dependency for `Operation`
   # pod 'Operations'
+end
+
+def pod_testing
+  pod 'Quick'
+  pod 'Nimble'
+end
+
+# Targets
+target 'ChouTi' do
+  pod_chouti_dependency
 
   target 'ChouTiTests' do
     inherit! :search_paths
-    
-    pod 'Quick'
-    pod 'Nimble'
+    pod_testing
+  end
+
+end
+
+target 'ChouTi iOS' do
+  pod 'ChouTi', :path => '../'
+  pod 'ChouTi/UI-App-Extension-API-Unsafe', :path => '../'
+  pod 'ChouTi/UI-Extra', :path => '../'
+#  pod 'ChouTi/Utilities-Extra', :path => '../'
+
+  target 'ChouTi iOSUITests' do
+    inherit! :search_paths
+    pod_testing
   end
 
 end

@@ -1,0 +1,82 @@
+require 'colorize'
+require 'optparse'
+
+begin
+  tools = `xcode-select -p`
+  raise "You must have Xcode command line tools. `xcode-select --install`" if $?.exitstatus != 0
+
+  swift_version = "Apple Swift version 2.2"
+  tools = `xcrun swiftc --version`
+  raise "The wrong version of Xcode is installed the app uses #{swift_version}" if (tools <=> swift_version) != 1
+  # puts tools
+
+  tools = `gem which bundler`
+  raise "You must have bundler. `gem install bundler`" if $?.exitstatus != 0
+end
+
+#-------------------------------------------------------------------------------
+# Rake Tasks
+#-------------------------------------------------------------------------------
+task :default do
+  # Check the build Environment
+  `bundle check > /dev/null`
+  if $?.exitstatus != 0
+    sh "rake setup"
+  end
+
+  sh "rake fetch"
+end
+
+#-------------------------------------------------------------------------------
+# Build environment
+#-------------------------------------------------------------------------------
+desc "Setup the build tools environment"
+task :setup do
+  puts "* Installing Build Tools"
+  sh "bundle install"
+end
+
+#-------------------------------------------------------------------------------
+# Fetch Resources
+#-------------------------------------------------------------------------------
+desc "Fetch all dependencies and libraries"
+task :fetch => [:submodules, :pods]
+
+desc "Run pod install "
+task :pods  do
+    puts "*** Installing CocoaPods dependencies ***".colorize(:light_blue)
+    sh "bundle exec pod install"
+end
+
+desc "Fetch git submodules used by the app"
+task :submodules do
+  puts "*** Pulling Git submodules ***".colorize(:light_blue)
+  sh "git submodule update --init --recursive"
+end
+
+#-------------------------------------------------------------------------------
+# Clean
+#-------------------------------------------------------------------------------
+
+desc "Clean Xcode and Cocoapods."
+task :clean_all => [:clean_pods, :clean_xcode]
+
+desc "Clean the Pods environment"
+task :clean_pods do
+  puts "*** Cleaning Fetched Cocoapods ***".colorize(:light_blue)
+  sh "rm -rf Pods"
+
+  if File.file?('Podfile.lock') == true
+    puts "*** Killing Podfile.lock ***".colorize(:light_blue)
+    sh "rm Podfile.lock"
+  end
+end
+
+desc "Clean Xcodes Derived Data"
+task :clean_xcode do
+  puts "*** Cleaning Derived Data ***".colorize(:light_blue)
+  sh "rm -rf ~/Library/Developer/Xcode/DerivedData/iOSScoreESports-*"
+
+  puts "*** Cleaning Module Cache ***".colorize(:light_blue)
+  sh "rm -rf ~/Library/Developer/Xcode/DerivedData/ModuleCache"
+end
