@@ -15,6 +15,8 @@
 		020665141D5FCD05002A7E2A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665131D5FCD05002A7E2A /* MainViewController.swift */; };
 		0206651A1D5FD37E002A7E2A /* UITestsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665191D5FD37E002A7E2A /* UITestsSection.swift */; };
 		021437BD1D601C8100260503 /* NSCalendar+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021437BC1D601C8100260503 /* NSCalendar+ExtensionsTests.swift */; };
+		021437C31D6108FA00260503 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021437C21D6108FA00260503 /* Queue.swift */; };
+		021437C51D610C0400260503 /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021437C41D610C0400260503 /* QueueTests.swift */; };
 		023050961D2440DB00D7B190 /* ChouTi.h in Headers */ = {isa = PBXBuildFile; fileRef = 023050951D2440DB00D7B190 /* ChouTi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0230509D1D2440DB00D7B190 /* ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023050921D2440DB00D7B190 /* ChouTi.framework */; };
 		023050A21D2440DB00D7B190 /* ChouTiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050A11D2440DB00D7B190 /* ChouTiTests.swift */; };
@@ -193,6 +195,8 @@
 		020665131D5FCD05002A7E2A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		020665191D5FD37E002A7E2A /* UITestsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestsSection.swift; sourceTree = "<group>"; };
 		021437BC1D601C8100260503 /* NSCalendar+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		021437C21D6108FA00260503 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		021437C41D610C0400260503 /* QueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTests.swift; sourceTree = "<group>"; };
 		023050921D2440DB00D7B190 /* ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		023050951D2440DB00D7B190 /* ChouTi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ChouTi.h; path = ../../Source/iOS/ChouTi.h; sourceTree = "<group>"; };
 		023050971D2440DB00D7B190 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -591,6 +595,7 @@
 				023F9BC61D2C4770001966ED /* NSLayoutConstraint+ExtensionsTests.swift */,
 				020664DD1D5EB700002A7E2A /* UIView+ExtensionsTests.swift */,
 				021437BC1D601C8100260503 /* NSCalendar+ExtensionsTests.swift */,
+				021437C41D610C0400260503 /* QueueTests.swift */,
 			);
 			path = ExtensionsTests;
 			sourceTree = "<group>";
@@ -900,6 +905,7 @@
 			isa = PBXGroup;
 			children = (
 				023F9BAB1D2B4B8E001966ED /* OrderedDictionary.swift */,
+				021437C21D6108FA00260503 /* Queue.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -1293,6 +1299,7 @@
 				023F9AEF1D2B18C4001966ED /* TableViewRow.swift in Sources */,
 				023F9B801D2B18E8001966ED /* Constants.swift in Sources */,
 				023F9AF11D2B18C4001966ED /* TableViewSection.swift in Sources */,
+				021437C31D6108FA00260503 /* Queue.swift in Sources */,
 				023F9B8F1D2B18E8001966ED /* TableViewCellValue1.swift in Sources */,
 				023F9BBC1D2B4B8E001966ED /* CodeSnippets_Shadow.swift in Sources */,
 				023F9B6C1D2B18E8001966ED /* UIButton+Action.swift in Sources */,
@@ -1419,6 +1426,7 @@
 				023F9A7A1D28835D001966ED /* CollectionType+ExtensionsTests.swift in Sources */,
 				023F9A841D296C81001966ED /* UIButton+ActionTests.swift in Sources */,
 				023051DA1D244D2300D7B190 /* DelayTaskTests.swift in Sources */,
+				021437C51D610C0400260503 /* QueueTests.swift in Sources */,
 				023051D81D244D2000D7B190 /* String+ExtensionsTests.swift in Sources */,
 				023051D91D244D2000D7B190 /* UIColor+ExtensionsTests.swift in Sources */,
 				023F9A7C1D28AD65001966ED /* OperatorsTests.swift in Sources */,
