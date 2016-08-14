@@ -1,18 +1,18 @@
 //
 //  Queue.swift
-//  NTBSwift
+//  ChouTi
 //
-//  Created by Kåre Morstøl on 11/07/14.
+//  Created by Honghao Zhang on 2016-08-14.
+//  Copyright © 2016 Honghaoz. All rights reserved.
 //
-//  Using the "Two-Lock Concurrent Queue Algorithm" from http://www.cs.rochester.edu/research/synchronization/pseudocode/queues.html#tlq, without the locks.
 
 // Ref: https://gist.github.com/kareman/931017634606b7f7b9c0
 
 private class QueueItem<T> {
-    let value: T!
+    let value: T
     var next: QueueItem?
     
-    init(_ value: T?) {
+    init(_ value: T) {
         self.value = value
     }
 }
@@ -21,36 +21,53 @@ private class QueueItem<T> {
  A standard queue (FIFO - First In First Out).
  Supports simultaneous adding and removing, but only one item can be added at a time,
  and only one item can be removed at a time.
-*/
+ */
 public class Queue<T> {
-	public typealias Element = T
+    public typealias Element = T
     
-	private var front: QueueItem<Element>
-	private var back: QueueItem<Element>
-	
-	public init () {
-		// Insert dummy item. Will disappear when the first item is added.
-		back = QueueItem(nil)
-		front = back
-	}
-	
-	/// Add a new item to the back of the queue.
-	public func enqueue(value: Element) {
-		back.next = QueueItem(value)
-		back = back.next!
-	}
-	
-	/// Return and remove the item at the front of the queue.
-	public func dequeue() -> Element? {
-		if let newhead = front.next {
-			front = newhead
-			return newhead.value
-		} else {
-			return nil
-		}
-	}
-	
-	public func isEmpty() -> Bool {
-		return front === back
-	}
+    private var head: QueueItem<Element>? {
+        didSet {
+            if head == nil && tail != nil {
+                tail = head
+            }
+        }
+    }
+    
+    private var tail: QueueItem<Element>? {
+        didSet {
+            if head == nil && tail != nil {
+                head = tail
+            }
+        }
+    }
+    
+    public init () {}
+    
+    /**
+     Enqueue a new item at the end of the queue.
+     
+     - parameter value: new value
+     */
+    public func enqueue(value: Element) {
+        let queueItem = QueueItem(value)
+        tail?.next = queueItem
+        tail = queueItem
+    }
+    
+    /**
+     Dequeue an item at the front of the queue.
+     
+     - returns: value dequeued.
+     */
+    public func dequeue() -> Element? {
+        if let value = head?.value {
+            head = head?.next
+            return value
+        }
+        return nil
+    }
+    
+    public func isEmpty() -> Bool {
+        return head == nil
+    }
 }

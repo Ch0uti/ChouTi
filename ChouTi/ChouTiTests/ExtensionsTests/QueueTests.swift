@@ -1,9 +1,12 @@
 //
-//  QueueTests.swift
+//  Queue.swift
+//  ChouTi
 //
-//  Created by Kåre Morstøl on 11/07/14.
-//  Copyright (c) 2014 NotTooBad Software. All rights reserved.
+//  Created by Honghao Zhang on 2016-08-14.
+//  Copyright © 2016 Honghaoz. All rights reserved.
 //
+
+// Ref: https://gist.github.com/kareman/931017634606b7f7b9c0
 
 import XCTest
 @testable import ChouTi
@@ -11,148 +14,118 @@ import XCTest
 class QueueTests: XCTestCase {
     
     func testAdd1ToQueue() {
-        let sut = Queue<String>()
-        sut.enqueue("1")
+        let q = Queue<String>()
+        q.enqueue("1")
     }
     
     func testAddSeveralToQueue() {
-        let sut = Queue<String>()
-        XCTAssert(sut.isEmpty())
-        sut.enqueue("1")
-        sut.enqueue("1")
-        XCTAssertFalse(sut.isEmpty())
-        sut.enqueue("1")
-        sut.enqueue("1")
-        sut.enqueue("1")
+        let q = Queue<String>()
+        XCTAssert(q.isEmpty())
+        q.enqueue("1")
+        q.enqueue("1")
+        XCTAssertFalse(q.isEmpty())
+        q.enqueue("1")
+        q.enqueue("1")
+        q.enqueue("1")
     }
     
     func testRemoveOne() {
-        let sut = Queue<String>()
-        sut.enqueue("1")
-        sut.enqueue("")
-        sut.enqueue("")
-        sut.enqueue("")
-        let thefirstone = sut.dequeue()
+        let q = Queue<String>()
+        q.enqueue("1")
+        q.enqueue("")
+        q.enqueue("")
+        q.enqueue("")
+        let thefirstone = q.dequeue()
         
         XCTAssertNotNil(thefirstone)
         XCTAssertEqual(thefirstone!, "1")
     }
     
     func testRemoveAll() {
-        let sut = Queue<String>()
-        sut.enqueue("1")
-        sut.enqueue("2")
-        sut.enqueue("3")
-        sut.enqueue("4")
+        let q = Queue<String>()
+        q.enqueue("1")
+        q.enqueue("2")
+        q.enqueue("3")
+        q.enqueue("4")
         
-        XCTAssertEqual(sut.dequeue()!, "1")
-        XCTAssertEqual(sut.dequeue()!, "2")
-        XCTAssertEqual(sut.dequeue()!, "3")
-        XCTAssertEqual(sut.dequeue()!, "4")
-        XCTAssert(sut.isEmpty())
-        XCTAssertNil(sut.dequeue())
-        XCTAssertNil(sut.dequeue())
-        XCTAssert(sut.isEmpty())
+        XCTAssertEqual(q.dequeue()!, "1")
+        XCTAssertEqual(q.dequeue()!, "2")
+        XCTAssertEqual(q.dequeue()!, "3")
+        XCTAssertEqual(q.dequeue()!, "4")
+        XCTAssert(q.isEmpty())
+        XCTAssertNil(q.dequeue())
+        XCTAssertNil(q.dequeue())
+        XCTAssert(q.isEmpty())
     }
     
     func testGenerics() {
-        let sut = Queue<Int>()
-        sut.enqueue(1)
-        sut.enqueue(2)
-        sut.enqueue(3)
-        sut.enqueue(4)
+        let q = Queue<Int>()
+        q.enqueue(1)
+        q.enqueue(2)
+        q.enqueue(3)
+        q.enqueue(4)
         
-        XCTAssertEqual(sut.dequeue()!, 1)
-        XCTAssertEqual(sut.dequeue()!, 2)
-        XCTAssertEqual(sut.dequeue()!, 3)
-        XCTAssertEqual(sut.dequeue()!, 4)
+        XCTAssertEqual(q.dequeue()!, 1)
+        XCTAssertEqual(q.dequeue()!, 2)
+        XCTAssertEqual(q.dequeue()!, 3)
+        XCTAssertEqual(q.dequeue()!, 4)
     }
     
     func testAddNil() {
-        let sut = Queue<Int?>()
-        sut.enqueue(nil)
-        XCTAssertNil(sut.dequeue()!)
+        let q = Queue<Int?>()
+        q.enqueue(nil)
+        XCTAssertNil(q.dequeue()!)
         
-        sut.enqueue(2)
-        sut.enqueue(nil)
-        sut.enqueue(4)
+        q.enqueue(2)
+        q.enqueue(nil)
+        q.enqueue(4)
         
-        XCTAssertEqual(sut.dequeue()!!, 2)
-        XCTAssertNil(sut.dequeue()!)
-        XCTAssertEqual(sut.dequeue()!!, 4)
+        XCTAssertEqual(q.dequeue()!!, 2)
+        XCTAssertNil(q.dequeue()!)
+        XCTAssertEqual(q.dequeue()!!, 4)
     }
     
     func testAddAfterEmpty() {
-        let sut = Queue<String>()
+        let q = Queue<String>()
         
-        sut.enqueue("1")
-        XCTAssertEqual(sut.dequeue()!, "1")
-        XCTAssertNil(sut.dequeue())
+        q.enqueue("1")
+        XCTAssertEqual(q.dequeue()!, "1")
+        XCTAssertNil(q.dequeue())
         
-        sut.enqueue("1")
-        sut.enqueue("2")
-        XCTAssertEqual(sut.dequeue()!, "1")
-        XCTAssertEqual(sut.dequeue()!, "2")
-        XCTAssert(sut.isEmpty())
-        XCTAssertNil(sut.dequeue())
+        q.enqueue("1")
+        q.enqueue("2")
+        XCTAssertEqual(q.dequeue()!, "1")
+        XCTAssertEqual(q.dequeue()!, "2")
+        XCTAssert(q.isEmpty())
+        XCTAssertNil(q.dequeue())
     }
     
     func testAddAndRemoveChaotically() {
-        let sut = Queue<String>()
+        let q = Queue<String>()
         
-        sut.enqueue("1")
-        XCTAssertFalse(sut.isEmpty())
-        XCTAssertEqual(sut.dequeue()!, "1")
-        XCTAssert(sut.isEmpty())
-        XCTAssertNil(sut.dequeue())
+        q.enqueue("1")
+        XCTAssertFalse(q.isEmpty())
+        XCTAssertEqual(q.dequeue()!, "1")
+        XCTAssert(q.isEmpty())
+        XCTAssertNil(q.dequeue())
         
-        sut.enqueue("1")
-        sut.enqueue("2")
-        XCTAssertEqual(sut.dequeue()!, "1")
-        XCTAssertEqual(sut.dequeue()!, "2")
-        XCTAssert(sut.isEmpty())
-        XCTAssertNil(sut.dequeue())
+        q.enqueue("1")
+        q.enqueue("2")
+        XCTAssertEqual(q.dequeue()!, "1")
+        XCTAssertEqual(q.dequeue()!, "2")
+        XCTAssert(q.isEmpty())
+        XCTAssertNil(q.dequeue())
         
-        sut.enqueue("1")
-        sut.enqueue("2")
-        XCTAssertEqual(sut.dequeue()!, "1")
-        sut.enqueue("3")
-        sut.enqueue("4")
-        XCTAssertEqual(sut.dequeue()!, "2")
-        XCTAssertEqual(sut.dequeue()!, "3")
-        XCTAssertFalse(sut.isEmpty())
-        XCTAssertEqual(sut.dequeue()!, "4")
-        XCTAssertNil(sut.dequeue())
-        XCTAssertNil(sut.dequeue())
+        q.enqueue("1")
+        q.enqueue("2")
+        XCTAssertEqual(q.dequeue()!, "1")
+        q.enqueue("3")
+        q.enqueue("4")
+        XCTAssertEqual(q.dequeue()!, "2")
+        XCTAssertEqual(q.dequeue()!, "3")
+        XCTAssertFalse(q.isEmpty())
+        XCTAssertEqual(q.dequeue()!, "4")
+        XCTAssertNil(q.dequeue())
+        XCTAssertNil(q.dequeue())
     }
-    
-    func testConcurrency() {
-        let sut = Queue<Int>()
-        let numberofiterations = 2_000_00
-        
-        let addingexpectation = expectationWithDescription("adding completed")
-        let addingqueue = dispatch_queue_create( "adding", DISPATCH_QUEUE_SERIAL)
-        dispatch_async(addingqueue)  {
-            for i in  1...numberofiterations {
-                sut.enqueue(i)
-            }
-            addingexpectation.fulfill()
-        }
-        
-        let deletingexpectation = expectationWithDescription("deleting completed")
-        let deletingqueue = dispatch_queue_create( "deleting", DISPATCH_QUEUE_SERIAL)
-        dispatch_async(deletingqueue)  {
-            for i in 1...numberofiterations {
-                if let result = sut.dequeue() {
-                    XCTAssertEqual(result, i)
-                } else {
-                    print("pausing deleting for one second")
-                    sleep(CUnsignedInt(1))
-                }
-            }
-            deletingexpectation.fulfill()
-        }
-        
-        waitForExpectationsWithTimeout(600, handler: nil)
-    } 
 }
