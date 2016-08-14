@@ -32,5 +32,53 @@ class UIView_ExtensionsTests: QuickSpec {
                 expect(view.superviewOfType(UITableView)) === superTableView
             }
         }
+        
+        describe("UIView subviews") {
+            var view: UIView!
+            beforeEach {
+                view = UIView()
+            }
+            
+            it("should get nil if there's no subviews") {
+                expect(view.subviewOfType(UIScrollView)).to(beNil())
+            }
+            
+            it("should get nil is no such subview of type") {
+                view.addSubview(UIView())
+                expect(view.subviewOfType(UIScrollView)).to(beNil())
+            }
+            
+            it("should find the subview in one level") {
+                view.addSubview(UIView())
+                view.addSubview(UIScrollView())
+                let tableView = UITableView()
+                view.addSubview(tableView)
+                
+                expect(view.subviewOfType(UITableView)) === tableView
+            }
+            
+            it("should find the subview in more than 1 level") {
+                view.addSubview(UIView())
+                let scrollView = UIScrollView()
+                view.addSubview(scrollView)
+                let tableView = UITableView()
+                scrollView.addSubview(tableView)
+                
+                expect(view.subviewOfType(UITableView)) === tableView
+            }
+            
+            it("should find the subview in level 1 (in BFS order)") {
+                view.addSubview(UIView())
+                let scrollView = UIScrollView()
+                view.addSubview(scrollView)
+                let tableView2 = UITableView()
+                scrollView.addSubview(tableView2)
+                view.addSubview(UIScrollView())
+                let tableView1 = UITableView()
+                view.addSubview(tableView1)
+                
+                expect(view.subviewOfType(UITableView)) === tableView1
+            }
+        }
     }
 }
