@@ -211,4 +211,60 @@ public extension UIView {
         }
         return superview?.superviewOfType(type)
     }
+    
+    /**
+     BFS search for first subview of type.
+     
+     - parameter type: type to find.
+     
+     - returns: subview of type specified or nil.
+     */
+    public func subviewOfType<T: UIView>(type: T.Type) -> T? {
+        let queue = Queue<UIView>()
+        for subview in self.subviews {
+            queue.enqueue(subview)
+        }
+        
+        while queue.isEmpty() == false {
+            guard let current = queue.dequeue() else { continue }
+            if let view = current as? T {
+                return view
+            } else {
+                for subview in current.subviews {
+                    queue.enqueue(subview)
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    /**
+     BFS search for subviews of type.
+     
+     - parameter type: type to find.
+     
+     - returns: subviews of type specified or empty.
+     */
+    public func subviewsOfType<T: UIView>(type: T.Type) -> [T] {
+        var views: [T] = []
+        
+        let queue = Queue<UIView>()
+        for subview in self.subviews {
+            queue.enqueue(subview)
+        }
+        
+        while queue.isEmpty() == false {
+            guard let current = queue.dequeue() else { continue }
+            if let view = current as? T {
+                views.append(view)
+            } else {
+                for subview in current.subviews {
+                    queue.enqueue(subview)
+                }
+            }
+        }
+        
+        return views
+    }
 }
