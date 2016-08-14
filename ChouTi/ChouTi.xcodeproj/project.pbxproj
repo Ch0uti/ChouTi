@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		020664DE1D5EB700002A7E2A /* UIView+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020664DD1D5EB700002A7E2A /* UIView+ExtensionsTests.swift */; };
+		020664F41D5FB0BE002A7E2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020664F31D5FB0BE002A7E2A /* AppDelegate.swift */; };
+		020664FB1D5FB0BE002A7E2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 020664FA1D5FB0BE002A7E2A /* Assets.xcassets */; };
+		020664FE1D5FB0BE002A7E2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 020664FC1D5FB0BE002A7E2A /* LaunchScreen.storyboard */; };
+		020665091D5FB0BE002A7E2A /* ChouTi_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665081D5FB0BE002A7E2A /* ChouTi_iOSUITests.swift */; };
+		020665141D5FCD05002A7E2A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665131D5FCD05002A7E2A /* MainViewController.swift */; };
+		0206651A1D5FD37E002A7E2A /* UITestsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665191D5FD37E002A7E2A /* UITestsSection.swift */; };
+		021437BD1D601C8100260503 /* NSCalendar+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021437BC1D601C8100260503 /* NSCalendar+ExtensionsTests.swift */; };
 		023050961D2440DB00D7B190 /* ChouTi.h in Headers */ = {isa = PBXBuildFile; fileRef = 023050951D2440DB00D7B190 /* ChouTi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0230509D1D2440DB00D7B190 /* ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023050921D2440DB00D7B190 /* ChouTi.framework */; };
 		023050A21D2440DB00D7B190 /* ChouTiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023050A11D2440DB00D7B190 /* ChouTiTests.swift */; };
@@ -151,10 +158,19 @@
 		02E1947B1D28542D00B35F1B /* CGContext+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1947A1D28542D00B35F1B /* CGContext+ExtensionsTests.swift */; };
 		02E1947F1D28629B00B35F1B /* UIView+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1947E1D28629B00B35F1B /* UIView+GeometryTests.swift */; };
 		33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2582D7686D9E144D59115335 /* Pods_ChouTi.framework */; };
+		C0C1CCE345BEEE508DBF44DA /* Pods_ChouTi_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */; };
 		FC8011B3082D1EEA4FC12444 /* Pods_ChouTiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */; };
+		FF17F322091CEEBA4F0D53F7 /* Pods_ChouTi_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2D6CD28927A2FC2A68ABAD /* Pods_ChouTi_iOSUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		020665051D5FB0BE002A7E2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 023050891D2440DB00D7B190 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 020664F01D5FB0BE002A7E2A;
+			remoteInfo = "ChouTi iOS";
+		};
 		0230509E1D2440DB00D7B190 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 023050891D2440DB00D7B190 /* Project object */;
@@ -166,6 +182,17 @@
 
 /* Begin PBXFileReference section */
 		020664DD1D5EB700002A7E2A /* UIView+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		020664F11D5FB0BE002A7E2A /* ChouTi iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChouTi iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		020664F31D5FB0BE002A7E2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		020664FA1D5FB0BE002A7E2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		020664FD1D5FB0BE002A7E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		020664FF1D5FB0BE002A7E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		020665041D5FB0BE002A7E2A /* ChouTi iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ChouTi iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		020665081D5FB0BE002A7E2A /* ChouTi_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChouTi_iOSUITests.swift; sourceTree = "<group>"; };
+		0206650A1D5FB0BE002A7E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		020665131D5FCD05002A7E2A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		020665191D5FD37E002A7E2A /* UITestsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestsSection.swift; sourceTree = "<group>"; };
+		021437BC1D601C8100260503 /* NSCalendar+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		023050921D2440DB00D7B190 /* ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		023050951D2440DB00D7B190 /* ChouTi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ChouTi.h; path = ../../Source/iOS/ChouTi.h; sourceTree = "<group>"; };
 		023050971D2440DB00D7B190 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -316,12 +343,34 @@
 		0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.debug.xcconfig"; sourceTree = "<group>"; };
 		2582D7686D9E144D59115335 /* Pods_ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B2D6CD28927A2FC2A68ABAD /* Pods_ChouTi_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB9074DF4CEBCD1B8282B35 /* Pods-ChouTi iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS/Pods-ChouTi iOS.release.xcconfig"; sourceTree = "<group>"; };
+		93472D147EE0FF19B51A311F /* Pods-ChouTi iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOSUITests/Pods-ChouTi iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B8369B3E7DF13919F58D2E26 /* Pods-ChouTi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.release.xcconfig"; sourceTree = "<group>"; };
 		CFF91EB292EA2A1C68B76AA1 /* Pods-ChouTiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTiTests/Pods-ChouTiTests.release.xcconfig"; sourceTree = "<group>"; };
 		D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTiTests/Pods-ChouTiTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F97876537CE9F4A31716B2D9 /* Pods-ChouTi iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS/Pods-ChouTi iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		FEC2A5F68CC869551380F08A /* Pods-ChouTi iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOSUITests/Pods-ChouTi iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		020664EE1D5FB0BE002A7E2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0C1CCE345BEEE508DBF44DA /* Pods_ChouTi_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		020665011D5FB0BE002A7E2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF17F322091CEEBA4F0D53F7 /* Pods_ChouTi_iOSUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0230508E1D2440DB00D7B190 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,11 +391,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		020664F21D5FB0BE002A7E2A /* ChouTi iOS */ = {
+			isa = PBXGroup;
+			children = (
+				020664F31D5FB0BE002A7E2A /* AppDelegate.swift */,
+				020665131D5FCD05002A7E2A /* MainViewController.swift */,
+				020665181D5FD37E002A7E2A /* UITests */,
+				020664FA1D5FB0BE002A7E2A /* Assets.xcassets */,
+				020664FC1D5FB0BE002A7E2A /* LaunchScreen.storyboard */,
+				020664FF1D5FB0BE002A7E2A /* Info.plist */,
+			);
+			path = "ChouTi iOS";
+			sourceTree = "<group>";
+		};
+		020665071D5FB0BE002A7E2A /* ChouTi iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				020665081D5FB0BE002A7E2A /* ChouTi_iOSUITests.swift */,
+				0206650A1D5FB0BE002A7E2A /* Info.plist */,
+			);
+			path = "ChouTi iOSUITests";
+			sourceTree = "<group>";
+		};
+		020665181D5FD37E002A7E2A /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				020665191D5FD37E002A7E2A /* UITestsSection.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
 		023050881D2440DB00D7B190 = {
 			isa = PBXGroup;
 			children = (
 				023050941D2440DB00D7B190 /* ChouTi */,
 				023050A01D2440DB00D7B190 /* ChouTiTests */,
+				020664F21D5FB0BE002A7E2A /* ChouTi iOS */,
+				020665071D5FB0BE002A7E2A /* ChouTi iOSUITests */,
 				023050931D2440DB00D7B190 /* Products */,
 				6BF21BC51D6EE92CC6CF3805 /* Pods */,
 				FADE80030ACA432B35AAB68A /* Frameworks */,
@@ -358,6 +439,8 @@
 			children = (
 				023050921D2440DB00D7B190 /* ChouTi.framework */,
 				0230509C1D2440DB00D7B190 /* ChouTiTests.xctest */,
+				020664F11D5FB0BE002A7E2A /* ChouTi iOS.app */,
+				020665041D5FB0BE002A7E2A /* ChouTi iOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -507,6 +590,7 @@
 				023051C71D244A1A00D7B190 /* UIColor+ExtensionsTests.swift */,
 				023F9BC61D2C4770001966ED /* NSLayoutConstraint+ExtensionsTests.swift */,
 				020664DD1D5EB700002A7E2A /* UIView+ExtensionsTests.swift */,
+				021437BC1D601C8100260503 /* NSCalendar+ExtensionsTests.swift */,
 			);
 			path = ExtensionsTests;
 			sourceTree = "<group>";
@@ -827,6 +911,10 @@
 				B8369B3E7DF13919F58D2E26 /* Pods-ChouTi.release.xcconfig */,
 				D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */,
 				CFF91EB292EA2A1C68B76AA1 /* Pods-ChouTiTests.release.xcconfig */,
+				F97876537CE9F4A31716B2D9 /* Pods-ChouTi iOS.debug.xcconfig */,
+				5BB9074DF4CEBCD1B8282B35 /* Pods-ChouTi iOS.release.xcconfig */,
+				FEC2A5F68CC869551380F08A /* Pods-ChouTi iOSUITests.debug.xcconfig */,
+				93472D147EE0FF19B51A311F /* Pods-ChouTi iOSUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -836,6 +924,8 @@
 			children = (
 				2582D7686D9E144D59115335 /* Pods_ChouTi.framework */,
 				0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */,
+				4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */,
+				4B2D6CD28927A2FC2A68ABAD /* Pods_ChouTi_iOSUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -854,6 +944,46 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		020664F01D5FB0BE002A7E2A /* ChouTi iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0206650F1D5FB0BE002A7E2A /* Build configuration list for PBXNativeTarget "ChouTi iOS" */;
+			buildPhases = (
+				D47850CD1F1A69BE517C9157 /* [CP] Check Pods Manifest.lock */,
+				020664ED1D5FB0BE002A7E2A /* Sources */,
+				020664EE1D5FB0BE002A7E2A /* Frameworks */,
+				020664EF1D5FB0BE002A7E2A /* Resources */,
+				69C50D6110D5392EA9B88BE3 /* [CP] Embed Pods Frameworks */,
+				7A4393A3C7D8B6379746E31D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ChouTi iOS";
+			productName = "ChouTi iOS";
+			productReference = 020664F11D5FB0BE002A7E2A /* ChouTi iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		020665031D5FB0BE002A7E2A /* ChouTi iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 020665101D5FB0BE002A7E2A /* Build configuration list for PBXNativeTarget "ChouTi iOSUITests" */;
+			buildPhases = (
+				376671AE1EF682957CCAC778 /* [CP] Check Pods Manifest.lock */,
+				020665001D5FB0BE002A7E2A /* Sources */,
+				020665011D5FB0BE002A7E2A /* Frameworks */,
+				020665021D5FB0BE002A7E2A /* Resources */,
+				EDC91F0D4CE8F3D518963534 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				020665061D5FB0BE002A7E2A /* PBXTargetDependency */,
+			);
+			name = "ChouTi iOSUITests";
+			productName = "ChouTi iOSUITests";
+			productReference = 020665041D5FB0BE002A7E2A /* ChouTi iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		023050911D2440DB00D7B190 /* ChouTi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 023050A61D2440DB00D7B190 /* Build configuration list for PBXNativeTarget "ChouTi" */;
@@ -905,6 +1035,13 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Honghaoz;
 				TargetAttributes = {
+					020664F01D5FB0BE002A7E2A = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					020665031D5FB0BE002A7E2A = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 020664F01D5FB0BE002A7E2A;
+					};
 					023050911D2440DB00D7B190 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -919,6 +1056,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 023050881D2440DB00D7B190;
 			productRefGroup = 023050931D2440DB00D7B190 /* Products */;
@@ -927,11 +1065,29 @@
 			targets = (
 				023050911D2440DB00D7B190 /* ChouTi */,
 				0230509B1D2440DB00D7B190 /* ChouTiTests */,
+				020664F01D5FB0BE002A7E2A /* ChouTi iOS */,
+				020665031D5FB0BE002A7E2A /* ChouTi iOSUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		020664EF1D5FB0BE002A7E2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				020664FE1D5FB0BE002A7E2A /* LaunchScreen.storyboard in Resources */,
+				020664FB1D5FB0BE002A7E2A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		020665021D5FB0BE002A7E2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		023050901D2440DB00D7B190 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -953,6 +1109,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		376671AE1EF682957CCAC778 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		5ACD2D9B1AAC87284F0D945D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -981,6 +1152,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		69C50D6110D5392EA9B88BE3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi iOS/Pods-ChouTi iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A4393A3C7D8B6379746E31D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi iOS/Pods-ChouTi iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8212CEF7038FD98742488458 /* [CP] Copy Pods Resources */ = {
@@ -1028,9 +1229,57 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D47850CD1F1A69BE517C9157 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EDC91F0D4CE8F3D518963534 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi iOSUITests/Pods-ChouTi iOSUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		020664ED1D5FB0BE002A7E2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0206651A1D5FD37E002A7E2A /* UITestsSection.swift in Sources */,
+				020665141D5FCD05002A7E2A /* MainViewController.swift in Sources */,
+				020664F41D5FB0BE002A7E2A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		020665001D5FB0BE002A7E2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				020665091D5FB0BE002A7E2A /* ChouTi_iOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0230508D1D2440DB00D7B190 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1165,6 +1414,7 @@
 			files = (
 				023F9A801D28CE6B001966ED /* SequenceType+ExtensionsTests.swift in Sources */,
 				020664DE1D5EB700002A7E2A /* UIView+ExtensionsTests.swift in Sources */,
+				021437BD1D601C8100260503 /* NSCalendar+ExtensionsTests.swift in Sources */,
 				02E1947F1D28629B00B35F1B /* UIView+GeometryTests.swift in Sources */,
 				023F9A7A1D28835D001966ED /* CollectionType+ExtensionsTests.swift in Sources */,
 				023F9A841D296C81001966ED /* UIButton+ActionTests.swift in Sources */,
@@ -1185,6 +1435,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		020665061D5FB0BE002A7E2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 020664F01D5FB0BE002A7E2A /* ChouTi iOS */;
+			targetProxy = 020665051D5FB0BE002A7E2A /* PBXContainerItemProxy */;
+		};
 		0230509F1D2440DB00D7B190 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 023050911D2440DB00D7B190 /* ChouTi */;
@@ -1192,7 +1447,70 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		020664FC1D5FB0BE002A7E2A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				020664FD1D5FB0BE002A7E2A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		0206650B1D5FB0BE002A7E2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F97876537CE9F4A31716B2D9 /* Pods-ChouTi iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "ChouTi iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0206650C1D5FB0BE002A7E2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BB9074DF4CEBCD1B8282B35 /* Pods-ChouTi iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "ChouTi iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0206650D1D5FB0BE002A7E2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEC2A5F68CC869551380F08A /* Pods-ChouTi iOSUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "ChouTi iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TEST_TARGET_NAME = "ChouTi iOS";
+			};
+			name = Debug;
+		};
+		0206650E1D5FB0BE002A7E2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93472D147EE0FF19B51A311F /* Pods-ChouTi iOSUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "ChouTi iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TEST_TARGET_NAME = "ChouTi iOS";
+			};
+			name = Release;
+		};
 		023050A41D2440DB00D7B190 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1345,6 +1663,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0206650F1D5FB0BE002A7E2A /* Build configuration list for PBXNativeTarget "ChouTi iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0206650B1D5FB0BE002A7E2A /* Debug */,
+				0206650C1D5FB0BE002A7E2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		020665101D5FB0BE002A7E2A /* Build configuration list for PBXNativeTarget "ChouTi iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0206650D1D5FB0BE002A7E2A /* Debug */,
+				0206650E1D5FB0BE002A7E2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0230508C1D2440DB00D7B190 /* Build configuration list for PBXProject "ChouTi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -11,7 +11,6 @@ import Foundation
 public typealias CellSelectionActionBlock = ((indexPath: NSIndexPath, cell: UITableViewCell?) -> Void)
 
 public protocol TableViewRowType {
-	weak var tableView: UITableView? { get set }
 	var title: String? { get set }
 	var subtitle: String? { get set }
 	var cellInitialization: (NSIndexPath -> UITableViewCell)? { get set }

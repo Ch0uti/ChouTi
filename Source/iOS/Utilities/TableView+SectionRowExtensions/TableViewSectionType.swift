@@ -9,7 +9,6 @@
 import Foundation
 
 public protocol TableViewSectionType {
-	weak var tableView: UITableView? { get set }
 	var headerTitle: String? { get set }
 	var footerTitle: String? { get set }
 	var shouldShowIndex: Bool { get set }

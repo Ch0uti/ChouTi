@@ -9,7 +9,6 @@
 import Foundation
 
 public struct TableViewRow : TableViewRowType {
-	public weak var tableView: UITableView?
 	public var title: String?
 	public var subtitle: String?
 	public var cellInitialization: (NSIndexPath -> UITableViewCell)?
@@ -21,8 +20,7 @@ public struct TableViewRow : TableViewRowType {
 		setupDefaultCellConfiguration()
 	}
 	
-	public init(title: String?, subtitle: String? = nil, cellInitialization: (NSIndexPath -> UITableViewCell)? = nil, cellConfiguration: (UITableViewCell -> Void)? = nil, tableView: UITableView? = nil, cellSelectAction: CellSelectionActionBlock? = nil, cellDeselectAction: CellSelectionActionBlock? = nil) {
-		self.tableView = tableView
+	public init(title: String?, subtitle: String? = nil, cellInitialization: (NSIndexPath -> UITableViewCell)? = nil, cellConfiguration: (UITableViewCell -> Void)? = nil, cellSelectAction: CellSelectionActionBlock? = nil, cellDeselectAction: CellSelectionActionBlock? = nil) {
 		self.title = title
 		self.subtitle = subtitle
 		
