@@ -36,25 +36,21 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 							cell = TableViewCell(style: .Value1, reuseIdentifier: TableViewCell.identifier())
 						}
 						return cell!
-					},
-					tableView: tableView
+					}
 				),
 				TableViewRow(title: "Cell with .Value2 Style",
 					subtitle: "Detail Text",
 					cellInitialization: { indexPath in
 						return self.tableView.dequeueReusableCellWithIdentifier(TableViewCellValue2.identifier())!
-					},
-					tableView: tableView
+					}
 				),
 				TableViewRow(title: "Cell with default Style (.Subtitle Style)",
-					subtitle: "By default Cell Style is .Subtitle",
-					tableView: tableView
+					subtitle: "By default Cell Style is .Subtitle"
 				),
 				TableViewRow(title: "我是一个Cell的主标题",
-					subtitle: "我是副标题",
-					tableView: tableView)
-			],
-			tableView: tableView)
+					subtitle: "我是副标题"
+                    )
+            ])
 		)
 		
 		var section2 = TableViewSection(headerTitle: "I'm Section2 Header Text",
@@ -79,7 +75,6 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 						cell.detailTextLabel?.numberOfLines = 0
 						cell.backgroundColor = UIColor.random()
 					},
-					tableView: tableView,
 					cellSelectAction: { (indexPath, cell) -> Void in
 						self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
 						cell?.textLabel?.textColor = UIColor.random()
@@ -104,11 +99,9 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 						// FIXME: Height is not settable
 						
 						return cell!
-					},
-					tableView: tableView
+					}
 				)
-			],
-			tableView: tableView
+			]
 		)
 		section2.footerTitle = "I'm Section2 Footer Text"
 		

@@ -59,22 +59,18 @@ class DummyViewController: UIViewController {
                         subtitle: "Detail Text",
                         cellInitialization: { indexPath in
                             return tableView.dequeueReusableCell(withClass: TableViewCellValue1.self, forIndexPath: indexPath)
-                        },
-                        tableView: tableView
+                        }
                     ),
                     TableViewRow(title: ".Value2 Cell",
                         subtitle: "Detail Text",
                         cellInitialization: { indexPath in
                             return tableView.dequeueReusableCell(withClass: TableViewCellValue2.self, forIndexPath: indexPath)
-                        },
-                        tableView: tableView
+                        }
                     ),
                     TableViewRow(title: "Default Cell",
-                        subtitle: "By default Cell Style is .Subtitle",
-                        tableView: tableView
+                        subtitle: "By default Cell Style is .Subtitle"
                     )
-                ],
-                tableView: tableView
+                ]
                 ).then {
                     $0.footerTitle = "This table view is used for testing user interaction in page child view controller."
             }
