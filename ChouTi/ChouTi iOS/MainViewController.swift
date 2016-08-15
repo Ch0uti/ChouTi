@@ -32,6 +32,7 @@ class MainViewController: UIViewController {
         tableView.constrainToFullSizeInSuperview()
         
         tableView.sections = [
+            ViewsSection(),
             UITestsSection()
         ]
     }
