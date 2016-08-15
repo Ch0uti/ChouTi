@@ -27,10 +27,7 @@ target 'ChouTi' do
 end
 
 target 'ChouTi iOS' do
-  pod 'ChouTi', :path => '../'
-  pod 'ChouTi/UI-App-Extension-API-Unsafe', :path => '../'
-  pod 'ChouTi/UI-Extra', :path => '../'
-#  pod 'ChouTi/Utilities-Extra', :path => '../'
+  pod 'ChouTi/All', :path => '../'
 
   target 'ChouTi iOSUITests' do
     inherit! :search_paths

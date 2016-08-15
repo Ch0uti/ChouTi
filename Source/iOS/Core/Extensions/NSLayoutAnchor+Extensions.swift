@@ -36,15 +36,15 @@ public extension NSLayoutDimension {
         return self.constraintLessThanOrEqualToConstant(constant).activate()
     }
     
-    public func constrainTo(anchor anchor: NSLayoutDimension, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    public func constrainTo(anchor anchor: NSLayoutDimension, multiplier: CGFloat, constant: CGFloat = 0.0) -> NSLayoutConstraint {
         return self.constraintEqualToAnchor(anchor, multiplier: multiplier, constant: constant).activate()
     }
     
-    public func constrainGreaterThanOrEqualTo(anchor anchor: NSLayoutDimension, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    public func constrainGreaterThanOrEqualTo(anchor anchor: NSLayoutDimension, multiplier: CGFloat, constant: CGFloat = 0.0) -> NSLayoutConstraint {
         return self.constraintGreaterThanOrEqualToAnchor(anchor, multiplier: multiplier, constant: constant).activate()
     }
     
-    public func constrainLessThanOrEqualTo(anchor anchor: NSLayoutDimension, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    public func constrainLessThanOrEqualTo(anchor anchor: NSLayoutDimension, multiplier: CGFloat, constant: CGFloat = 0.0) -> NSLayoutConstraint {
         return self.constraintLessThanOrEqualToAnchor(anchor, multiplier: multiplier, constant: constant).activate()
     }
 }

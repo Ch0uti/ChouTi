@@ -50,7 +50,6 @@ public extension UIView {
     public func constrainToFullSizeMarginInSuperview() -> [NSLayoutConstraint] {
         guard let superview = self.superview else { fatalError("superview is nil") }
         
-        translatesAutoresizingMaskIntoConstraints = false
         return [
             NSLayoutConstraint(item: self, attribute: .TopMargin, relatedBy: .Equal, toItem: superview, attribute: .TopMargin, multiplier: 1.0, constant: 0.0),
             NSLayoutConstraint(item: self, attribute: .LeadingMargin, relatedBy: .Equal, toItem: superview, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0),
@@ -69,8 +68,6 @@ public extension UIView {
             fatalError("superview is nil")
         }
         
-        translatesAutoresizingMaskIntoConstraints = false
-        
         return [
             self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor),
             self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor)
@@ -87,7 +84,6 @@ public extension UIView {
             fatalError("superview is nil")
         }
         
-        translatesAutoresizingMaskIntoConstraints = false
         return self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor).activate()
     }
     
@@ -101,7 +97,6 @@ public extension UIView {
             fatalError("superview is nil")
         }
         
-        translatesAutoresizingMaskIntoConstraints = false
         return self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor).activate()
     }
     
@@ -113,7 +108,6 @@ public extension UIView {
      - returns: newly added constraint
      */
     public func constrainTo(width width: CGFloat) -> NSLayoutConstraint {
-        translatesAutoresizingMaskIntoConstraints = false
         return self.widthAnchor.constraintEqualToConstant(width).activate()
     }
     
@@ -125,7 +119,6 @@ public extension UIView {
      - returns: newly added constraint
      */
     public func constrainTo(height height: CGFloat) -> NSLayoutConstraint {
-        translatesAutoresizingMaskIntoConstraints = false
         return self.heightAnchor.constraintEqualToConstant(height).activate()
     }
     
@@ -160,7 +153,6 @@ public extension UIView {
      - returns: constraints added.
      */
     public func constrainTo(edgesOfView view: UIView) -> [NSLayoutConstraint] {
-        translatesAutoresizingMaskIntoConstraints = false
         return [
             self.topAnchor.constraintEqualToAnchor(view.topAnchor),
             self.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),

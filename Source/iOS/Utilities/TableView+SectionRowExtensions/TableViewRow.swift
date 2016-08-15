@@ -20,7 +20,7 @@ public struct TableViewRow : TableViewRowType {
 		setupDefaultCellConfiguration()
 	}
 	
-	public init(title: String?, subtitle: String? = nil, cellInitialization: (NSIndexPath -> UITableViewCell)? = nil, cellConfiguration: (UITableViewCell -> Void)? = nil, cellSelectAction: CellSelectionActionBlock? = nil, cellDeselectAction: CellSelectionActionBlock? = nil) {
+	public init(title: String? = nil, subtitle: String? = nil, cellInitialization: (NSIndexPath -> UITableViewCell)? = nil, cellConfiguration: (UITableViewCell -> Void)? = nil, cellSelectAction: CellSelectionActionBlock? = nil, cellDeselectAction: CellSelectionActionBlock? = nil) {
 		self.title = title
 		self.subtitle = subtitle
 		

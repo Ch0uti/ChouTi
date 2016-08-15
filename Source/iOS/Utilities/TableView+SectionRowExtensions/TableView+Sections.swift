@@ -34,11 +34,15 @@ public extension UITableView {
 	private func setup() {
 		if dataSource == nil {
 			dataSource = self
-		}
+        } else {
+            NSLog("Warning: tableView.dataSource is not nil, setting sections won't have effects. TableView: \(self)")
+        }
 		
 		if delegate == nil {
 			delegate = self
-		}
+        } else {
+            NSLog("Warning: tableView.delegate is not nil, setting sections won't have effects. TableView: \(self)")
+        }
 		
 		TableViewCell.registerInTableView(self)
 		TableViewCellValue1.registerInTableView(self)
@@ -139,8 +143,12 @@ extension UITableView : UITableViewDataSource {
 // MARK: - TableView Delegate Methods
 extension UITableView : UITableViewDelegate {
 	public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		return UITableViewAutomaticDimension
+        return UITableViewAutomaticDimension
 	}
+    
+    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
 	
 	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		guard let row = rowForIndexPath(indexPath) else {
