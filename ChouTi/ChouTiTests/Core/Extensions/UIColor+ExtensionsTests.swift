@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class UIColor_ExtensionsTests: ChouTiTests {
+class UIColor_ExtensionsTests: XCTestCase {
     
     func testHexColor() {
         let color = UIColor(hexString: "#CC0000")

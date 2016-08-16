@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class CGRect_ExtensionsTests: ChouTiTests {
+class CGRect_ExtensionsTests: XCTestCase {
     
     var frame: CGRect!
     

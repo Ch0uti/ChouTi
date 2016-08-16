@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class String_ExtensionsTest: ChouTiTests {
+class String_ExtensionsTest: XCTestCase {
     
 	func testFullNSRange() {
 		let string = "123456abc"

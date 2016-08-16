@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class UIView_GeometryTests: ChouTiTests {
+class UIView_GeometryTests: XCTestCase {
     let view = UIView()
     override func setUp() {
         super.setUp()

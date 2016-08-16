@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class CollectionType_ExtensionsTests: ChouTiTests {
+class CollectionType_ExtensionsTests: XCTestCase {
     
     var integers: [Int] = []
     

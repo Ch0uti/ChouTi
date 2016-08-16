@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class Dictionary_ExtensionsTests: ChouTiTests {
+class Dictionary_ExtensionsTests: XCTestCase {
     
     var dict1 = ["1" : 1, "2" : 2, "3" : 5, "5" : 155]
     let dict2 = ["3" : 3, "4" : 4, "5" : 5]

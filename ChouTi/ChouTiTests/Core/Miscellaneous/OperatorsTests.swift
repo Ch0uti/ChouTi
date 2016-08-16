@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class OperatorsTests: ChouTiTests {
+class OperatorsTests: XCTestCase {
     func testPowerOperator() {
         XCTAssertEqual(2 ** 3, 8)
         XCTAssertEqual(0 ** 3, 0)

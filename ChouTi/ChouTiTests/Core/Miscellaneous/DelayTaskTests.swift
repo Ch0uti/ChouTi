@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class DelayTaskTests: ChouTiTests {
+class DelayTaskTests: XCTestCase {
     
     func testDelay() {
         let expectation = expectationWithDescription("delayed task executed")

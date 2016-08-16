@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class UIButton_ActionTests: ChouTiTests {
+class UIButton_ActionTests: XCTestCase {
     func testAddTargetControlEventsWithAction() {
         let expectation = self.expectationWithDescription("Action Handler Called")
         
