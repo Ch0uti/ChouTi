@@ -54,6 +54,10 @@
 //		return <#TableViewCell#>.estimatedHeight()
 //	}
 //	
+//	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//		return UITableViewAutomaticDimension
+//	}
+//	
 //	// MARK: - Selections
 //	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //		tableView.deselectRowAtIndexPath(indexPath, animated: true)

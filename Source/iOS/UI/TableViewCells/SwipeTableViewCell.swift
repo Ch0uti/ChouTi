@@ -161,7 +161,7 @@ extension SwipeTableViewCell {
      - parameter animated: Whether it's should be animated.
      */
     public func expandRightSide(animated animated: Bool) {
-        set(expandOffset: rightSwipeExpandableWidth, animated: animated)
+        setExpandOffset(rightSwipeExpandableWidth, animated: animated)
     }
     
     /**
@@ -170,7 +170,7 @@ extension SwipeTableViewCell {
      - parameter animated: Whether it's should be animated.
      */
     public func collapse(animated animated: Bool) {
-        set(expandOffset: 0, animated: animated)
+        setExpandOffset(0, animated: animated)
         
         // Any cell collapsing (cell reuse, cell state transition, cell didMoveToWindow) should collapse all other cells
         collapseAllOtherCells()
@@ -182,10 +182,10 @@ extension SwipeTableViewCell {
      - parameter offset:   New offset to set.
      - parameter animated: Whether it's should be animated.
      */
-    private final func set(expandOffset offset: CGFloat, animated: Bool) {
+    private final func setExpandOffset(offset: CGFloat, animated: Bool) {
         // Avoid duplicated calls, avoid unnecessary `layoutIfNeeded` calls
         guard swipeableContentViewCenterXConstraint.constant != -offset else { return }
-        
+		
         swipeableContentViewCenterXConstraint.constant = -offset
         swipeTableViewCellDelegate?.swipeTableViewCell(self, didSwipeToOffset: -offset)
         
@@ -206,16 +206,15 @@ extension SwipeTableViewCell {
      */
     private final func collapseAllOtherCells() {
         tableView?.visibleCells.forEach {
-            guard let swipeCell = $0 as? SwipeTableViewCell else { return }
-            guard swipeCell !== self else { return }
-            swipeCell.set(expandOffset: 0, animated: true)
+            guard let swipeCell = $0 as? SwipeTableViewCell where swipeCell !== self else { return }
+            swipeCell.setExpandOffset(0, animated: true)
         }
     }
 }
 
 // MARK: - Gesture Recognizer Actions
 extension SwipeTableViewCell {
-    final func panSwipeableContentView(panRecognizer: UIPanGestureRecognizer) {
+    private dynamic func panSwipeableContentView(panRecognizer: UIPanGestureRecognizer) {
         let currentPoint = panRecognizer.translationInView(swipeableContentView)
         let deltaX = { currentPoint.x - panStartPoint.x }()
         
@@ -228,12 +227,12 @@ extension SwipeTableViewCell {
             let newConstant = centerXConstraintStartConstant + deltaX
             // Disable swipe cell to right
             if newConstant > 0 {
-                set(expandOffset: 0.0, animated: false)
+                setExpandOffset(0.0, animated: false)
             }
             else if -newConstant < rightSwipeExpandableWidth {
                 // When swipe offset within swipExandable width, linear function
                 // This makes cell move along with finger
-                set(expandOffset: -newConstant, animated: false)
+                setExpandOffset(-newConstant, animated: false)
             }
             else {
                 // When swipe offset exceeds swipeExpandable width, logarithm function
@@ -243,7 +242,7 @@ extension SwipeTableViewCell {
                 let logDeltaX = max(-newConstant - rightSwipeExpandableWidth, 0)
                 
                 // New constant is composed with linear value + logarithm value (reduced value)
-                set(expandOffset: rightSwipeExpandableWidth + (logDeltaX + log(1.0 + logDeltaX)) / 3.0, animated: false)
+                setExpandOffset(rightSwipeExpandableWidth + (logDeltaX + log(1.0 + logDeltaX)) / 3.0, animated: false)
             }
             
         case .Ended, .Cancelled:
@@ -267,7 +266,7 @@ extension SwipeTableViewCell {
         }
     }
     
-    final func tapContentView(tapRecognizer: UITapGestureRecognizer) {
+    private dynamic func tapContentView(tapRecognizer: UITapGestureRecognizer) {
         let locationInContentView = tapRecognizer.locationInView(contentView)
         let swipeableContentViewFrameInContentView = swipeableContentView.convertRect(swipeableContentView.bounds, toView: contentView)
         let tappedOnSwipeableContentView = swipeableContentViewFrameInContentView.contains(locationInContentView)
@@ -391,15 +390,13 @@ extension SwipeTableViewCell {
     public override func didMoveToWindow() {
         super.didMoveToWindow()
         collapse(animated: true)
+        addTableViewContentOffsetObservation()
     }
     
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        guard let tableView = tableView else { return }
-        
         // Did move to a new tableView, observe tableView's movement
-        tableView.addObserver(self, forKeyPath: "contentOffset", options: [.New], context: nil)
-        isObservingTableView = true
+        addTableViewContentOffsetObservation()
     }
     
     public override func willMoveToSuperview(newSuperview: UIView?) {
@@ -412,6 +409,14 @@ extension SwipeTableViewCell {
         // Make sure new value exists
         guard let _ = change?[NSKeyValueChangeNewKey] else { return }
         collapse(animated: true)
+    }
+    
+    private final func addTableViewContentOffsetObservation() {
+        guard window != nil else { return }
+        if isObservingTableView == true { return }
+        guard let tableView = tableView else { return }
+        tableView.addObserver(self, forKeyPath: "contentOffset", options: [.New], context: nil)
+        isObservingTableView = true
     }
     
     private final func removeTableViewContentOffsetObservation() {
