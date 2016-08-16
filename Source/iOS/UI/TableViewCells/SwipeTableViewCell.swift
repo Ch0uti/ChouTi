@@ -194,6 +194,7 @@ extension SwipeTableViewCell {
 				self?.rightSwipeExpanded = (offset != 0.0)
 			})
 		} else {
+            swipeableContentView.superview?.layoutIfNeeded()
 			rightSwipeExpanded = (offset != 0.0)
 		}
 	}
