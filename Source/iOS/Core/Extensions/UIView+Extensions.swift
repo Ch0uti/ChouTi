@@ -148,6 +148,12 @@ public extension UIView {
     public func frameRectInView(view: UIView?) -> CGRect {
         return self.convertRect(self.bounds, toView: view)
     }
+    
+    /// Get bounds of screen, which is presenting this view.
+    var screenBounds: CGRect? {
+        guard let window = window else { return nil }
+        return window.convertRect(window.bounds, toWindow: nil)
+    }
 }
 
 public extension UIView {
