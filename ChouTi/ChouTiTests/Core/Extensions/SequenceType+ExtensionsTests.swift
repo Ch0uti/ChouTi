@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class SequenceType_ExtensionsTests: ChouTiTests {
+class SequenceType_ExtensionsTests: XCTestCase {
     func testRandomSubset() {
         let integers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         let empty: [Int] = []

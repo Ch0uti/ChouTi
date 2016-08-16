@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class NSObject_AssociatedObjectTests: ChouTiTests {
+class NSObject_AssociatedObjectTests: XCTestCase {
 	var host: NSObject!
 	
 	override func setUp() {

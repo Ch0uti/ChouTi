@@ -30,9 +30,19 @@ class TableViewCellsDemoVC: UIViewController {
                                 // Setup swipe accessory view
                                 let accessory = UIView()
                                 swipeCell.rightSwipeAccessoryView = accessory
-                                accessory.backgroundColor = UIColor.redColor()
+                                accessory.backgroundColor = UIColor.blueColor()
                                 accessory.heightAnchor.constrainTo(anchor: swipeCell.swipeableContentView.heightAnchor)
                                 accessory.constrainTo(width: 100)
+								
+								let button = Button()
+								button.translatesAutoresizingMaskIntoConstraints = false
+								button.setTitle("Hola", forState: .Normal)
+								button.setTitleColor(.whiteColor(), forState: .Normal)
+								button.addTarget(controlEvents: .TouchUpInside, action: { button in
+                                    swipeCell.collapse(animated: true)
+                                })
+								accessory.addSubview(button)
+								button.constrainToCenterInSuperview()
                                 
                                 return swipeCell
             },

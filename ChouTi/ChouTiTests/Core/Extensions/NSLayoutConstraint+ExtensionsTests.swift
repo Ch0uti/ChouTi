@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class NSLayoutConstraint_ExtensionsTests: ChouTiTests {
+class NSLayoutConstraint_ExtensionsTests: XCTestCase {
     func testActivate() {
         let containerView = UIView()
         let view = UIView()

@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class CGContext_ExtensionsTests: ChouTiTests {
+class CGContext_ExtensionsTests: XCTestCase {
     
     // +-----+
     // |     |

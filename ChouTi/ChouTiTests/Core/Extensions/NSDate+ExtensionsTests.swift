@@ -9,7 +9,7 @@
 import XCTest
 @testable import ChouTi
 
-class NSDate_ExtensionsTests: ChouTiTests {
+class NSDate_ExtensionsTests: XCTestCase {
 	
 	override func setUp() {
 		super.setUp()
