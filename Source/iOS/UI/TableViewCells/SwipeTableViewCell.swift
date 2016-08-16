@@ -62,6 +62,9 @@ public class SwipeTableViewCell: UITableViewCell {
     private final var panStartPoint: CGPoint = .zero
     private final var centerXConstraintStartConstant: CGFloat = 0.0
     
+    /// Flag for whether this cell is observing a tableView
+    private final var isObservingTableView: Bool = false
+    
     // MARK: - Gesture Recognizers
     private final lazy var panRecognizer: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeTableViewCell.panSwipeableContentView(_:)))
     private final lazy var tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SwipeTableViewCell.tapContentView(_:)))
@@ -145,20 +148,8 @@ public class SwipeTableViewCell: UITableViewCell {
         NSLayoutConstraint.activateConstraints(constraints)
     }
     
-    public override func prepareForReuse() {
-        super.prepareForReuse()
-        collapse(animated: true)
-    }
-    
-    public override func willTransitionToState(state: UITableViewCellStateMask) {
-        super.willTransitionToState(state)
-        // Any cell state transition should collapse
-        collapse(animated: true)
-    }
-    
-    public override func didMoveToWindow() {
-        super.didMoveToWindow()
-        collapse(animated: true)
+    deinit {
+        removeTableViewContentOffsetObservation()
     }
 }
 
@@ -199,10 +190,10 @@ extension SwipeTableViewCell {
         swipeTableViewCellDelegate?.swipeTableViewCell(self, didSwipeToOffset: -offset)
         
         if animated {
-            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: { [weak self] in
-                self?.swipeableContentView.superview?.layoutIfNeeded()
-            }, completion: { [weak self] _ in
-                self?.rightSwipeExpanded = (offset != 0.0)
+            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
+                self.swipeableContentView.superview?.layoutIfNeeded()
+            }, completion: { _ in
+                self.rightSwipeExpanded = (offset != 0.0)
             })
         } else {
             swipeableContentView.superview?.layoutIfNeeded()
@@ -375,30 +366,60 @@ extension SwipeTableViewCell {
     }
 }
 
-// MARK: - Collapse when tableView scrolls
+// MARK: - Automatic collapsing
 extension SwipeTableViewCell {
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        collapse(animated: true)
+    }
+    
+    public override func willTransitionToState(state: UITableViewCellStateMask) {
+        super.willTransitionToState(state)
+        // Any cell state transition should collapse
+        collapse(animated: true)
+    }
+    
+    public override func willMoveToWindow(newWindow: UIWindow?) {
+        super.willMoveToWindow(newWindow)
+        
+        // If newWindow is nil, tableView is about to deallic, remove observation to avoid crash.
+        if newWindow == nil {
+            removeTableViewContentOffsetObservation()
+        }
+    }
+    
+    public override func didMoveToWindow() {
+        super.didMoveToWindow()
+        collapse(animated: true)
+    }
+    
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
         guard let tableView = tableView else { return }
         
         // Did move to a new tableView, observe tableView's movement
         tableView.addObserver(self, forKeyPath: "contentOffset", options: [.New], context: nil)
+        isObservingTableView = true
     }
     
     public override func willMoveToSuperview(newSuperview: UIView?) {
         super.willMoveToSuperview(newSuperview)
-        guard let tableView = tableView else { return }
-        
-        // Cell is about to remove from tableView, remove observer
-        if newSuperview == nil {
-            tableView.removeObserver(self, forKeyPath: "contentOffset")
-        }
+        // Remove observation of tableView if cell is move to another view
+        removeTableViewContentOffsetObservation()
     }
     
     public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         // Make sure new value exists
         guard let _ = change?[NSKeyValueChangeNewKey] else { return }
         collapse(animated: true)
+    }
+    
+    private final func removeTableViewContentOffsetObservation() {
+        if isObservingTableView == true {
+            guard let tableView = tableView else { return }
+            tableView.removeObserver(self, forKeyPath: "contentOffset")
+            isObservingTableView = false
+        }
     }
 }
 
