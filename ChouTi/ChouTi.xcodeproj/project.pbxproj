@@ -165,6 +165,7 @@
 		025C91631D62A970000C54D8 /* UIView+GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C914F1D62A970000C54D8 /* UIView+GeometryTests.swift */; };
 		025C91641D62A970000C54D8 /* DelayTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91511D62A970000C54D8 /* DelayTaskTests.swift */; };
 		025C91651D62A970000C54D8 /* OperatorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91521D62A970000C54D8 /* OperatorsTests.swift */; };
+		025C91671D62AB96000C54D8 /* SwipeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91661D62AB96000C54D8 /* SwipeTableViewCellTests.swift */; };
 		33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2582D7686D9E144D59115335 /* Pods_ChouTi.framework */; };
 		C0C1CCE345BEEE508DBF44DA /* Pods_ChouTi_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */; };
 		FC8011B3082D1EEA4FC12444 /* Pods_ChouTiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */; };
@@ -362,6 +363,7 @@
 		025C914F1D62A970000C54D8 /* UIView+GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+GeometryTests.swift"; sourceTree = "<group>"; };
 		025C91511D62A970000C54D8 /* DelayTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayTaskTests.swift; sourceTree = "<group>"; };
 		025C91521D62A970000C54D8 /* OperatorsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorsTests.swift; sourceTree = "<group>"; };
+		025C91661D62AB96000C54D8 /* SwipeTableViewCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeTableViewCellTests.swift; sourceTree = "<group>"; };
 		0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.debug.xcconfig"; sourceTree = "<group>"; };
 		2582D7686D9E144D59115335 /* Pods_ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -961,6 +963,7 @@
 		025C91541D62A970000C54D8 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				025C91661D62AB96000C54D8 /* SwipeTableViewCellTests.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -1498,6 +1501,7 @@
 				025C91611D62A970000C54D8 /* UIColor+ExtensionsTests.swift in Sources */,
 				025C91561D62A970000C54D8 /* CGContext+ExtensionsTests.swift in Sources */,
 				025C915E1D62A970000C54D8 /* SequenceType+ExtensionsTests.swift in Sources */,
+				025C91671D62AB96000C54D8 /* SwipeTableViewCellTests.swift in Sources */,
 				025C91651D62A970000C54D8 /* OperatorsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,7 +6,6 @@
 //  Copyright © 2016 Honghaoz. All rights reserved.
 //
 
-
 import Quick
 import Nimble
 @testable import ChouTi
