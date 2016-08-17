@@ -34,13 +34,13 @@ public extension UITableView {
 	private func setup() {
 		if dataSource == nil {
 			dataSource = self
-        } else {
+        } else if dataSource !== self {
             NSLog("Warning: tableView.dataSource is not nil, setting sections won't have effects. TableView: \(self)")
         }
 		
 		if delegate == nil {
 			delegate = self
-        } else {
+        } else if delegate !== self {
             NSLog("Warning: tableView.delegate is not nil, setting sections won't have effects. TableView: \(self)")
         }
 		
