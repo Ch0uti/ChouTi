@@ -226,7 +226,8 @@ public class AlertView: UIView {
         
         actions.append(action)
         
-        // Setup default button height for 44.0 
+        // Setup default button height for 44.0
+        action.button.translatesAutoresizingMaskIntoConstraints = false
         action.button.constrainTo(height: 44).priority = 500
         actionButtonsStackView.addArrangedSubview(action.button)
         
