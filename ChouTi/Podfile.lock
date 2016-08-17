@@ -102,12 +102,14 @@ PODS:
     - Operations/Standard (= 3.1.0)
   - Operations/Standard (3.1.0)
   - Quick (0.9.3)
+  - Then (1.0.3)
 
 DEPENDENCIES:
   - ChouTi/All (from `../`)
   - LTMorphingLabel
   - Nimble
   - Quick
+  - Then (~> 1.0)
 
 EXTERNAL SOURCES:
   ChouTi:
@@ -119,7 +121,8 @@ SPEC CHECKSUMS:
   Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
   Operations: d09dbb1c32ce01061ebbb022c8a955b34fd9ec35
   Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
+  Then: c2502b763132c80dfa64d325065d70c45e2d48ca
 
-PODFILE CHECKSUM: f6fe22ff426ecb8a46e1bfb6b75f28c92c33c2e8
+PODFILE CHECKSUM: f7f37d77db9fe22d02110dce2a34ac67307c07d5
 
 COCOAPODS: 1.0.1
