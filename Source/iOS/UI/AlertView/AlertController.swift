@@ -108,6 +108,7 @@ public class AlertController: UIViewController {
         // Hence, I have to add it as a subview
         // Reference: http://stackoverflow.com/a/31757312/3164091
         view.addSubview(alertView)
+        alertView.translatesAutoresizingMaskIntoConstraints = false
         alertView.constrainToFullSizeInSuperview()
     }
 	
