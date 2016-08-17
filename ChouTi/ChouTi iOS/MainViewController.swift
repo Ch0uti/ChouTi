@@ -33,6 +33,9 @@ class MainViewController: UIViewController {
         
         tableView.sections = [
             ViewsSection(),
+            ViewControllersSection(),
+            MiscellaneousSection(),
+            IssuesSection(),
             UITestsSection()
         ]
     }

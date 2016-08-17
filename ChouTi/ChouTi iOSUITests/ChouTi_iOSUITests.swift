@@ -30,6 +30,11 @@ class ChouTi_iOSUITests: XCTestCase {
         super.tearDown()
     }
     
+    func testTitle() {
+        let app = XCUIApplication()
+        XCTAssert(app.navigationBars["🗄 抽屉(ChouTi)"].staticTexts["🗄 抽屉(ChouTi)"].exists)
+    }
+    
     func testExample() {
 		XCTAssertFalse(app.tables.cells.staticTexts["123"].exists)
         XCTAssertTrue(XCUIApplication().tables.cells.staticTexts["TableViewCell Selection Action Test"].exists)
