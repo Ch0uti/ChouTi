@@ -1,5 +1,5 @@
 //
-//  IssueLayoutMarginsGuideViewController.swift
+//  Issue_LayoutMarginsGuideViewController.swift
 //  ChouTi iOS Example
 //
 //  Created by Honghao Zhang on 2016-07-05.
@@ -9,7 +9,7 @@
 import UIKit
 import ChouTi
 
-class IssueLayoutMarginsGuideViewController: UIViewController {
+class Issue_LayoutMarginsGuideViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +63,7 @@ private extension UIView {
         wrapperView.layoutMargins = UIEdgeInsets(top: 16, left: 32, bottom: 8, right: 8)
         wrapperView.addSubview(self)
         wrapperView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
+        wrapperView.addDashedBorderLine(0.5, borderColor: .blackColor(), paintedSegmentLength: 2, unpaintedSegmentLength: 2)
         
         self.translatesAutoresizingMaskIntoConstraints = false
         

@@ -136,7 +136,6 @@
 		022773241D6258C900D9CAE7 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772A01D6258C900D9CAE7 /* DatePickerCell.swift */; };
 		022773251D6258C900D9CAE7 /* SeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772A11D6258C900D9CAE7 /* SeparatorCell.swift */; };
 		022773261D6258C900D9CAE7 /* SwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772A21D6258C900D9CAE7 /* SwipeTableViewCell.swift */; };
-		022773271D6258C900D9CAE7 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772A51D6258C900D9CAE7 /* Operation.swift */; };
 		022773281D6258C900D9CAE7 /* TableView+Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772A71D6258C900D9CAE7 /* TableView+Sections.swift */; };
 		022773291D6258C900D9CAE7 /* TableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772A81D6258C900D9CAE7 /* TableViewRow.swift */; };
 		0227732A1D6258C900D9CAE7 /* TableViewRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772A91D6258C900D9CAE7 /* TableViewRowType.swift */; };
@@ -207,8 +206,11 @@
 		025C91C31D64007F000C54D8 /* UIImage+CroppedImageDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91A91D64007F000C54D8 /* UIImage+CroppedImageDemo.swift */; };
 		025C91C41D64007F000C54D8 /* UIImage+ExtensionsDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91AA1D64007F000C54D8 /* UIImage+ExtensionsDemo.swift */; };
 		025C91C61D64016C000C54D8 /* MiscellaneousSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91C51D64016C000C54D8 /* MiscellaneousSection.swift */; };
-		025C91CA1D64053F000C54D8 /* IssueLayoutMarginsGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91C81D64053F000C54D8 /* IssueLayoutMarginsGuideViewController.swift */; };
+		025C91CA1D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91C81D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift */; };
 		025C91CB1D64053F000C54D8 /* IssuesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91C91D64053F000C54D8 /* IssuesSection.swift */; };
+		027E8C701D64D0680080E87F /* ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023050921D2440DB00D7B190 /* ChouTi.framework */; };
+		027E8C711D64D0680080E87F /* ChouTi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 023050921D2440DB00D7B190 /* ChouTi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		02FFC4DF1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FFC4DE1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift */; };
 		33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2582D7686D9E144D59115335 /* Pods_ChouTi.framework */; };
 		C0C1CCE345BEEE508DBF44DA /* Pods_ChouTi_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */; };
 		FC8011B3082D1EEA4FC12444 /* Pods_ChouTiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */; };
@@ -238,6 +240,20 @@
 			remoteInfo = ChouTi;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		027E8C721D64D0680080E87F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				027E8C711D64D0680080E87F /* ChouTi.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		020664F11D5FB0BE002A7E2A /* ChouTi iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChouTi iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -374,7 +390,6 @@
 		022772A01D6258C900D9CAE7 /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		022772A11D6258C900D9CAE7 /* SeparatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorCell.swift; sourceTree = "<group>"; };
 		022772A21D6258C900D9CAE7 /* SwipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeTableViewCell.swift; sourceTree = "<group>"; };
-		022772A51D6258C900D9CAE7 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		022772A71D6258C900D9CAE7 /* TableView+Sections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableView+Sections.swift"; sourceTree = "<group>"; };
 		022772A81D6258C900D9CAE7 /* TableViewRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewRow.swift; sourceTree = "<group>"; };
 		022772A91D6258C900D9CAE7 /* TableViewRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewRowType.swift; sourceTree = "<group>"; };
@@ -448,8 +463,9 @@
 		025C91A91D64007F000C54D8 /* UIImage+CroppedImageDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+CroppedImageDemo.swift"; sourceTree = "<group>"; };
 		025C91AA1D64007F000C54D8 /* UIImage+ExtensionsDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ExtensionsDemo.swift"; sourceTree = "<group>"; };
 		025C91C51D64016C000C54D8 /* MiscellaneousSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscellaneousSection.swift; sourceTree = "<group>"; };
-		025C91C81D64053F000C54D8 /* IssueLayoutMarginsGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueLayoutMarginsGuideViewController.swift; sourceTree = "<group>"; };
+		025C91C81D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue_LayoutMarginsGuideViewController.swift; sourceTree = "<group>"; };
 		025C91C91D64053F000C54D8 /* IssuesSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesSection.swift; sourceTree = "<group>"; };
+		02FFC4DE1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue_PreservesSuperviewLayoutMargins.swift; sourceTree = "<group>"; };
 		0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.debug.xcconfig"; sourceTree = "<group>"; };
 		2582D7686D9E144D59115335 /* Pods_ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -469,6 +485,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				027E8C701D64D0680080E87F /* ChouTi.framework in Frameworks */,
 				C0C1CCE345BEEE508DBF44DA /* Pods_ChouTi_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -895,18 +912,9 @@
 		022772A31D6258C900D9CAE7 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				022772A41D6258C900D9CAE7 /* Operations */,
 				022772A61D6258C900D9CAE7 /* TableView+SectionRowExtensions */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		022772A41D6258C900D9CAE7 /* Operations */ = {
-			isa = PBXGroup;
-			children = (
-				022772A51D6258C900D9CAE7 /* Operation.swift */,
-			);
-			path = Operations;
 			sourceTree = "<group>";
 		};
 		022772A61D6258C900D9CAE7 /* TableView+SectionRowExtensions */ = {
@@ -1157,7 +1165,8 @@
 			isa = PBXGroup;
 			children = (
 				025C91C91D64053F000C54D8 /* IssuesSection.swift */,
-				025C91C81D64053F000C54D8 /* IssueLayoutMarginsGuideViewController.swift */,
+				025C91C81D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift */,
+				02FFC4DE1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift */,
 			);
 			path = Issues;
 			sourceTree = "<group>";
@@ -1213,6 +1222,7 @@
 				020664EF1D5FB0BE002A7E2A /* Resources */,
 				69C50D6110D5392EA9B88BE3 /* [CP] Embed Pods Frameworks */,
 				7A4393A3C7D8B6379746E31D /* [CP] Copy Pods Resources */,
+				027E8C721D64D0680080E87F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1555,6 +1565,7 @@
 				025C91AC1D64007F000C54D8 /* HideNavigationBarBottomLineDemoViewController.swift in Sources */,
 				025C91AD1D64007F000C54D8 /* LeadingTrailingVSLeftRightDemoViewController.swift in Sources */,
 				025C91871D63F9E0000C54D8 /* CenterViewController.swift in Sources */,
+				02FFC4DF1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift in Sources */,
 				020665141D5FCD05002A7E2A /* MainViewController.swift in Sources */,
 				025C91761D63F79C000C54D8 /* AlertControllerDemoViewController.swift in Sources */,
 				025C91C31D64007F000C54D8 /* UIImage+CroppedImageDemo.swift in Sources */,
@@ -1562,7 +1573,7 @@
 				025C91C21D64007F000C54D8 /* UIImage+AnimatingImagesDemo.swift in Sources */,
 				025C917D1D63F79C000C54D8 /* SearchTextFieldDemoViewController.swift in Sources */,
 				025C91781D63F79C000C54D8 /* DropDownMenuDemoViewController.swift in Sources */,
-				025C91CA1D64053F000C54D8 /* IssueLayoutMarginsGuideViewController.swift in Sources */,
+				025C91CA1D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift in Sources */,
 				025C917A1D63F79C000C54D8 /* MenuViewDemoController.swift in Sources */,
 				025C918A1D63F9F4000C54D8 /* PageViewDemoController.swift in Sources */,
 				025C917C1D63F79C000C54D8 /* PageControlDemoViewController.swift in Sources */,
@@ -1696,7 +1707,6 @@
 				022772B11D6258C900D9CAE7 /* SlideUpAnimator.swift in Sources */,
 				022773211D6258C900D9CAE7 /* SegmentedControl.swift in Sources */,
 				022772AE1D6258C900D9CAE7 /* DropPresentingPresentationController.swift in Sources */,
-				022773271D6258C900D9CAE7 /* Operation.swift in Sources */,
 				0227732C1D6258C900D9CAE7 /* TableViewSectionType.swift in Sources */,
 				025C913B1D626CE6000C54D8 /* OnceTask.swift in Sources */,
 				022772B61D6258C900D9CAE7 /* TextTableCollectionView.swift in Sources */,
