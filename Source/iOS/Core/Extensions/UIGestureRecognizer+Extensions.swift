@@ -14,7 +14,7 @@ public extension UIGestureRecognizer {
      
      - parameter otherGestureRecognizer: otherGestureRecognizer
      */
-    public func dependsOn(otherGestureRecognizer: UIGestureRecognizer) {
+    public func setToDependOn(otherGestureRecognizer: UIGestureRecognizer) {
         self.requireGestureRecognizerToFail(otherGestureRecognizer)
     }
 }

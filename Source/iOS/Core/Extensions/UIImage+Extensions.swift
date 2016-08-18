@@ -123,39 +123,29 @@ public extension UIImage {
 
 // MARK: - Factory Methods
 public extension UIImage {
-	/**
-	Get a UIImage instance with color and size
-	
-	- parameter color: color of the image
-	- parameter size:  size of the image, by default is 1.0 * 1.0
-	
-	- returns: new UIImage with the color provided
-	*/
-	public class func imageWithColor(color: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage {
-		let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
-		UIGraphicsBeginImageContextWithOptions(size, false, 0)
+    /**
+     Create a rectangle image with fill color and optional border color
+     
+     - parameter fillColor:   fillColor
+     - parameter size:        image size in points
+     - parameter borderWidth: borderWidth in points
+     - parameter borderColor: borderColor
+     
+     - returns: new UIImage
+     */
+	public class func imageWithColor(fillColor: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0), borderWidth: CGFloat = 0.0, borderColor: UIColor? = nil) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
         let context = UIGraphicsGetCurrentContext()
-        
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, rect)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
-	
-    public class func imageWithBorderRectangle(size: CGSize, borderWidth: CGFloat, borderColor: UIColor, fillColor: UIColor = UIColor.clearColor()) -> UIImage {
-        UIGraphicsBeginImageContext(size)
-        let context = UIGraphicsGetCurrentContext()
-        let rect = CGRect(origin: CGPointZero, size: size)
+        let rect = CGRect(origin: CGPoint.zero, size: size)
         
         CGContextSetFillColorWithColor(context, fillColor.CGColor)
         CGContextFillRect(context, rect)
         
-        CGContextSetStrokeColorWithColor(context, borderColor.CGColor)
-        CGContextSetLineWidth(context, borderWidth)
-        CGContextStrokeRect(context, rect)
+        if let borderColor = borderColor where borderWidth > 0.0 {
+            CGContextSetStrokeColorWithColor(context, borderColor.CGColor)
+            CGContextSetLineWidth(context, borderWidth * UIScreen.mainScreen().scale)
+            CGContextStrokeRect(context, rect)
+        }
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -257,6 +247,55 @@ public extension UIImage {
         guard let imageRef = CGImageCreateWithImageInRect(self.CGImage, rect) else { return nil }
         let croppedImage = UIImage(CGImage: imageRef, scale: scale, orientation: imageOrientation)
         return croppedImage
+    }
+    
+    /**
+     Fill rect on image.
+     
+     - parameter fillRect: fillRect.
+     - parameter color:    color to fill.
+     
+     - returns: new image.
+     */
+    public func fillRect(fillRect: CGRect, withColor color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        let context = UIGraphicsGetCurrentContext()
+        let imageRect = CGRect(origin: CGPoint.zero, size: size)
+        
+        // Ref: http://stackoverflow.com/a/15153062/3164091
+        // Ref: http://trandangkhoa.blogspot.ca/2009/07/iphone-os-drawing-image-and-stupid.html
+        // Save current status of graphics context
+        CGContextSaveGState(context)
+        
+        // Do stupid stuff to draw the image correctly
+        CGContextTranslateCTM(context, 0, size.height)
+        CGContextScaleCTM(context, 1.0, -1.0)
+        
+        if imageOrientation == .Left {
+            CGContextRotateCTM(context, CGFloat(M_PI) / 2)
+            CGContextTranslateCTM(context, 0, -size.width)
+        } else if imageOrientation == .Right {
+            CGContextRotateCTM(context, -CGFloat(M_PI) / 2)
+            CGContextTranslateCTM(context, -size.height, 0)
+        } else if imageOrientation == .Up {
+            // Do nothing
+        } else if imageOrientation == .Down {
+            CGContextTranslateCTM(context, size.width, size.height);
+            CGContextRotateCTM(context, CGFloat(M_PI))
+        }
+        
+        CGContextDrawImage(context, imageRect, CGImage)
+        
+        // After drawing the image, roll back all transformation by restoring the old context
+        CGContextRestoreGState(context)
+        
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, fillRect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
     }
 }
 

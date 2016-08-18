@@ -175,6 +175,20 @@ public extension UIView {
     public func constrain(attribute1: NSLayoutAttribute, equalTo attribute2: NSLayoutAttribute, ofView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: self, attribute: attribute1, relatedBy: .Equal, toItem: view, attribute: attribute2, multiplier: multiplier, constant: constant).activate()
     }
+    
+    /**
+     Constrain self.attribute = view.attribute * multiplier + constant
+     
+     - parameter attribute:  attribute
+     - parameter view:       another view
+     - parameter multiplier: multiplier
+     - parameter constant:   constant
+     
+     - returns: constraint added.
+     */
+    public func constrain(attribute: NSLayoutAttribute, toView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+        return constrain(attribute, equalTo: attribute, ofView: view, multiplier: multiplier, constant: constant)
+    }
 }
 
 public extension SequenceType where Generator.Element: UIView {

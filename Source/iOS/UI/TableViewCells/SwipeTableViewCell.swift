@@ -62,14 +62,12 @@ public class SwipeTableViewCell: UITableViewCell {
     private final var panStartPoint: CGPoint = .zero
     private final var centerXConstraintStartConstant: CGFloat = 0.0
     
-    /// Flag for whether this cell is observing a tableView
-    private final var isObservingTableView: Bool = false
-    
     // MARK: - Gesture Recognizers
     private final lazy var panRecognizer: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeTableViewCell.panSwipeableContentView(_:)))
-    private final lazy var tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SwipeTableViewCell.tapContentView(_:)))
+    private final let tapRecognizer = UITapGestureRecognizer()
     // This is a so called immediate touch gesture recognizer (no delay, triggers faster than tap gesture recognizer). Set `minimumPressDuration = 0`.
-    private final let immediateTouchRecognizer = UILongPressGestureRecognizer()
+    // This gesture recognizer will be added on tableView. If cell is expanded, touch anywhere on tableView can collapse it. (mimics UIKIt behavior)
+    private final let tableViewImmediateTouchRecognizer = UILongPressGestureRecognizer()
     
     // MARK: - Settings when cell's tableView is embedded in a scrollView
     /// Unscrollable screen edge width. Default value is 40
@@ -108,11 +106,13 @@ public class SwipeTableViewCell: UITableViewCell {
         contentView.addGestureRecognizer(tapRecognizer)
         tapRecognizer.delegate = self
         
-        // Touch on cells
-        contentView.addGestureRecognizer(immediateTouchRecognizer)
-        immediateTouchRecognizer.minimumPressDuration = 0.0
-        immediateTouchRecognizer.delegate = self
-        panRecognizer.dependsOn(immediateTouchRecognizer)
+        // Touch on tableView, will be added in `didMoveToSuperview`
+        tableViewImmediateTouchRecognizer.minimumPressDuration = 0.0
+        tableViewImmediateTouchRecognizer.delegate = self
+        
+        // Setup gesture dependency
+        panRecognizer.setToDependOn(tableViewImmediateTouchRecognizer)
+        tapRecognizer.setToDependOn(tableViewImmediateTouchRecognizer)
         
         setupConstraints()
     }
@@ -147,10 +147,6 @@ public class SwipeTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activateConstraints(constraints)
     }
-    
-    deinit {
-        removeTableViewContentOffsetObservation()
-    }
 }
 
 // MARK: - Expanding/Collapse
@@ -171,9 +167,6 @@ extension SwipeTableViewCell {
      */
     public func collapse(animated animated: Bool) {
         setExpandOffset(0, animated: animated)
-        
-        // Any cell collapsing (cell reuse, cell state transition, cell didMoveToWindow) should collapse all other cells
-        collapseAllOtherCells()
     }
     
     /**
@@ -185,7 +178,7 @@ extension SwipeTableViewCell {
     private final func setExpandOffset(offset: CGFloat, animated: Bool) {
         // Avoid duplicated calls, avoid unnecessary `layoutIfNeeded` calls
         guard swipeableContentViewCenterXConstraint.constant != -offset else { return }
-		
+
         swipeableContentViewCenterXConstraint.constant = -offset
         swipeTableViewCellDelegate?.swipeTableViewCell(self, didSwipeToOffset: -offset)
         
@@ -198,16 +191,6 @@ extension SwipeTableViewCell {
         } else {
             swipeableContentView.superview?.layoutIfNeeded()
             rightSwipeExpanded = (offset != 0.0)
-        }
-    }
-    
-    /**
-     Collapses all other cells in current tableView
-     */
-    private final func collapseAllOtherCells() {
-        tableView?.visibleCells.forEach {
-            guard let swipeCell = $0 as? SwipeTableViewCell where swipeCell !== self else { return }
-            swipeCell.setExpandOffset(0, animated: true)
         }
     }
 }
@@ -265,16 +248,6 @@ extension SwipeTableViewCell {
             break
         }
     }
-    
-    private dynamic func tapContentView(tapRecognizer: UITapGestureRecognizer) {
-        let locationInContentView = tapRecognizer.locationInView(contentView)
-        let swipeableContentViewFrameInContentView = swipeableContentView.convertRect(swipeableContentView.bounds, toView: contentView)
-        let tappedOnSwipeableContentView = swipeableContentViewFrameInContentView.contains(locationInContentView)
-        
-        if tappedOnSwipeableContentView {
-            collapse(animated: true)
-        }
-    }
 }
 
 // MARK: - UIGestureRecognizerDelegate
@@ -284,32 +257,41 @@ extension SwipeTableViewCell {
             return false
         }
         
-        if gestureRecognizer === tapRecognizer {
-            // If is expanded, consume this touch, which disables selection of tableViewCell
-            return rightSwipeExpanded
-        }
-        
-        if gestureRecognizer === immediateTouchRecognizer {
-            // Only one cell should be expanded, tap any cell will collapse all other cells
-            collapseAllOtherCells()
-            
-            // If touches swipeable content view, collapse
+        if gestureRecognizer === tableViewImmediateTouchRecognizer {
+            // Touches on tableView should collapse cells
+            // Only needs to collapse when cell is expanded
             if rightSwipeExpanded == true {
-                let locationInContentView = immediateTouchRecognizer.locationInView(contentView)
-                let swipeableContentViewFrameInContentView = swipeableContentView.convertRect(swipeableContentView.bounds, toView: contentView)
-                let touchedOnSwipeableContentView = swipeableContentViewFrameInContentView.contains(locationInContentView)
+                let locationInContentView = tableViewImmediateTouchRecognizer.locationInView(contentView)
                 
-                if touchedOnSwipeableContentView {
+                // Touches on the cell
+                if contentView.bounds.contains(locationInContentView) {
+                    let swipeableContentViewFrameInContentView = swipeableContentView.convertRect(swipeableContentView.bounds, toView: contentView)
+                    let touchedOnSwipeableContentView = swipeableContentViewFrameInContentView.contains(locationInContentView)
+                    // Touches on swipeable area should collapse
+                    if touchedOnSwipeableContentView {
+                        collapse(animated: true)
+                        return true
+                    }
+                    else {
+                        // Touches on accessory area, ignore.
+                        return false
+                    }
+                }
+                else {
+                    // Touches on outside of the cell, should collapse
                     collapse(animated: true)
                     return true
                 }
-                else {
-                    return false
-                }
             }
             else {
+                // Touches when cell is in normal state, ignore
                 return false
             }
+        }
+        
+        if gestureRecognizer === tapRecognizer {
+            // If is expanded, consume this touch, which disables selection of tableViewCell
+            return rightSwipeExpanded
         }
         
         if gestureRecognizer === panRecognizer {
@@ -355,14 +337,6 @@ extension SwipeTableViewCell {
         
         return true
     }
-    
-    public override func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        // Immediate touch recognizer should be recognized with all other gesture recognizers
-        if gestureRecognizer === immediateTouchRecognizer {
-            return true
-        }
-        return false
-    }
 }
 
 // MARK: - Automatic collapsing
@@ -378,53 +352,23 @@ extension SwipeTableViewCell {
         collapse(animated: true)
     }
     
-    public override func willMoveToWindow(newWindow: UIWindow?) {
-        super.willMoveToWindow(newWindow)
-        
-        // If newWindow is nil, tableView is about to deallic, remove observation to avoid crash.
-        if newWindow == nil {
-            removeTableViewContentOffsetObservation()
-        }
-    }
-    
     public override func didMoveToWindow() {
         super.didMoveToWindow()
         collapse(animated: true)
-        addTableViewContentOffsetObservation()
     }
     
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        // Did move to a new tableView, observe tableView's movement
-        addTableViewContentOffsetObservation()
+        // Setup tableViewImmediateTouchRecognizer to new tableView
+        guard let tableView = tableView else { return }
+        tableView.addGestureRecognizer(tableViewImmediateTouchRecognizer)
     }
     
     public override func willMoveToSuperview(newSuperview: UIView?) {
         super.willMoveToSuperview(newSuperview)
-        // Remove observation of tableView if cell is move to another view
-        removeTableViewContentOffsetObservation()
-    }
-    
-    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        // Make sure new value exists
-        guard let _ = change?[NSKeyValueChangeNewKey] else { return }
-        collapse(animated: true)
-    }
-    
-    private final func addTableViewContentOffsetObservation() {
-        guard window != nil else { return }
-        if isObservingTableView == true { return }
+        // Remove tableViewImmediateTouchRecognizer from current tableView
         guard let tableView = tableView else { return }
-        tableView.addObserver(self, forKeyPath: "contentOffset", options: [.New], context: nil)
-        isObservingTableView = true
-    }
-    
-    private final func removeTableViewContentOffsetObservation() {
-        if isObservingTableView == true {
-            guard let tableView = tableView else { return }
-            tableView.removeObserver(self, forKeyPath: "contentOffset")
-            isObservingTableView = false
-        }
+        tableView.removeGestureRecognizer(tableViewImmediateTouchRecognizer)
     }
 }
 
