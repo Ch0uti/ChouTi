@@ -5,9 +5,6 @@ use_frameworks!
 def pod_chouti_dependency
   # Dependency for `LoadingMorphingLabel`
   pod 'LTMorphingLabel'
-
-  # Dependency for `Operation`
-  # pod 'Operations'
 end
 
 def pod_testing
@@ -27,7 +24,8 @@ target 'ChouTi' do
 end
 
 target 'ChouTi iOS' do
-  pod 'ChouTi/All', :path => '../'
+  pod_chouti_dependency
+  pod 'Operations'
   pod 'Then', '~> 1.0'
   
   target 'ChouTi iOSUITests' do

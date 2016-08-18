@@ -35,7 +35,6 @@ Pod::Spec.new do |s|
     ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
 
     ss.dependency "ChouTi/Utilities"
-    ss.dependency "ChouTi/Utilities-Extra"
 
     # Deprecated
     # ss.dependency "ChouTi/ThirdParty"
@@ -201,16 +200,6 @@ Pod::Spec.new do |s|
 
     ss.subspec "TableView+SectionRowExtensions" do |sss|
       sss.source_files = 'Source/iOS/Utilities/TableView+SectionRowExtensions/*.*'
-    end
-  end
-
-  s.subspec "Utilities-Extra" do |ss|
-    ss.dependency "ChouTi/Core"
-
-    ss.subspec "Operations" do |sss|
-      # "NSOperations with Join functionality"
-      sss.source_files = 'Source/iOS/Utilities/Operations/*.*'
-      sss.dependency 'Operations'
     end
   end
 
