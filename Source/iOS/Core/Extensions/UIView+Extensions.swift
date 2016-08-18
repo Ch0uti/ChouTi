@@ -274,3 +274,22 @@ public extension UIView {
         return views
     }
 }
+
+// MARK: - View Ornaments
+public extension UIView {
+    /**
+     Add dashed border line.
+     
+     - parameter borderWidth:            Border width.
+     - parameter borderColor:            Border color.
+     - parameter paintedSegmentLength:   Painted segment length.
+     - parameter unpaintedSegmentLength: Unpainted segment length.
+     */
+    public func addDashedBorderLine(borderWidth: CGFloat, borderColor: UIColor, paintedSegmentLength: CGFloat = 2, unpaintedSegmentLength: CGFloat = 2) {
+        layer.borderWidth = borderWidth
+        let patternImage = UIImage.imageWithColor(.clearColor(), size: CGSize(width: paintedSegmentLength + unpaintedSegmentLength, height: paintedSegmentLength + unpaintedSegmentLength))
+            .fillRect(CGRect(x: 0, y: 0, width: paintedSegmentLength, height: paintedSegmentLength), withColor: borderColor)
+            .fillRect(CGRect(x: unpaintedSegmentLength, y: unpaintedSegmentLength, width: paintedSegmentLength, height: paintedSegmentLength), withColor: borderColor)
+        layer.borderColor = UIColor(patternImage: patternImage).CGColor
+    }
+}
