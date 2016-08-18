@@ -239,7 +239,7 @@ public extension UIImage {
      
      - returns: cropped image
      */
-    public func croppedImage(withRect rect: CGRect) -> UIImage? {
+    public func imageCroppedWithRect(rect: CGRect) -> UIImage? {
         let rect = CGRect(x: rect.origin.x * scale,
                           y: rect.origin.y * scale,
                           width: rect.width * scale,
