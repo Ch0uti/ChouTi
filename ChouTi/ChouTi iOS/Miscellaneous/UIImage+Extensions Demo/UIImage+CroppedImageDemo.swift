@@ -24,7 +24,7 @@ class UIImage_CroppedImageDemoViewController: UIViewController {
         
         guard let sourceImage = sourceImage else { return }
         
-        let croppedImage = sourceImage.croppedImage(withRect: CGRect(
+        let croppedImage = sourceImage.imageCroppedWithRect(CGRect(
             x: sourceImage.size.width * 0.0,
             y: sourceImage.size.height * 0.25,
             width: sourceImage.size.width * 0.5,
