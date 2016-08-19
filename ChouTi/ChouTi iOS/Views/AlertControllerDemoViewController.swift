@@ -21,7 +21,7 @@ class AlertControllerDemoViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = ColorPalette.slackSidebarBackgroundColor
+        view.backgroundColor = ColorPalette.slackSidebarPurpleColor
         title = "⚠️ Alert Controller"
         
         let stackView = UIStackView()
