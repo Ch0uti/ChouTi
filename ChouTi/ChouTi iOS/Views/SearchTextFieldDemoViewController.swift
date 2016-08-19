@@ -16,7 +16,7 @@ class SearchTextFieldDemoViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = ColorPalette.slackSidebarBackgroundColor
+        view.backgroundColor = ColorPalette.slackSidebarPurpleColor
         
         searchField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(searchField)
