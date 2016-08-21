@@ -292,4 +292,15 @@ public extension UIView {
             .fillRect(CGRect(x: unpaintedSegmentLength, y: unpaintedSegmentLength, width: paintedSegmentLength, height: paintedSegmentLength), withColor: borderColor)
         layer.borderColor = UIColor(patternImage: patternImage).CGColor
     }
+    
+    /**
+     Add a dark shadow
+     */
+    public func addDarkShadow() {
+        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowOffset = CGSize.zero
+        layer.shadowOpacity = 0.5
+        layer.shadowRadius = 18.0
+        // layer.shadowPath = UIBezierPath(rect: bounds).CGPath
+    }
 }

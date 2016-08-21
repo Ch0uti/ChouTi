@@ -135,7 +135,7 @@ public extension UIColor {
         var alpha: CGFloat = 0.0
         
         if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
-            return UIColor(hue: hue, saturation: saturation, brightness: min(brightnessIncreaseFactor, 1.0), alpha: alpha)
+            return UIColor(hue: hue, saturation: saturation, brightness: brightness * brightnessIncreaseFactor, alpha: alpha)
         }
         
         return self
