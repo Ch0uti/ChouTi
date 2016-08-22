@@ -13,7 +13,7 @@ public extension UIColor {
      
      :returns: Red value
      */
-    public func getRedComponent() -> CGFloat {
+    public func redComponent() -> CGFloat {
         var red: CGFloat = 0.0
         self.getRed(&red, green: nil, blue: nil, alpha: nil)
         return red
@@ -24,7 +24,7 @@ public extension UIColor {
      
      :returns: Green value
      */
-    public func getGreenComponent() -> CGFloat {
+    public func greenComponent() -> CGFloat {
         var green: CGFloat = 0.0
         self.getRed(nil, green: &green, blue: nil, alpha: nil)
         return green
@@ -35,7 +35,7 @@ public extension UIColor {
      
      :returns: Blue value
      */
-    public func getBlueComponent() -> CGFloat {
+    public func blueComponent() -> CGFloat {
         var blue: CGFloat = 0.0
         self.getRed(nil, green: nil, blue: &blue, alpha: nil)
         return blue
@@ -46,7 +46,7 @@ public extension UIColor {
      
      :returns: Alpha value
      */
-    public func getAlphaComponent() -> CGFloat {
+    public func alphaComponent() -> CGFloat {
         var alpha: CGFloat = 0.0
         self.getRed(nil, green: nil, blue: nil, alpha: &alpha)
         return alpha
@@ -108,7 +108,7 @@ public extension UIColor {
      
      - returns: a darker UIColor object
      */
-    public func darkerColor(brightnessDecreaseFactor: CGFloat = 0.75) -> UIColor {
+    public func darkerColor(brightnessDecreaseFactor brightnessDecreaseFactor: CGFloat = 0.75) -> UIColor {
         let brightnessDecreaseFactor = brightnessDecreaseFactor.normalize(0.0, 1.0)
         var hue: CGFloat = 0.0
         var saturation: CGFloat = 0.0
@@ -127,7 +127,7 @@ public extension UIColor {
      
      - returns: a lighter color
      */
-    public func lighterColor(brightnessIncreaseFactor: CGFloat = 1.3) -> UIColor {
+    public func lighterColor(brightnessIncreaseFactor brightnessIncreaseFactor: CGFloat = 1.3) -> UIColor {
         let brightnessIncreaseFactor = brightnessIncreaseFactor.normalize(1.0, CGFloat.max)
         var hue: CGFloat = 0.0
         var saturation: CGFloat = 0.0
