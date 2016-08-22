@@ -13,10 +13,12 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
     
     private let containerView = LayoutMarginView()
     private let subContainerView = LayoutMarginView()
+    private let subsubContainerView = LayoutMarginView()
     private let containerViewLayoutMarginsLabel = UILabel().then { $0.font = UIFont.systemFontOfSize(14) }
     
     private lazy var containerView2: LayoutMarginView = self.containerView.viewCopy() as! LayoutMarginView
-    private lazy var subContainerView2: LayoutMarginView = self.subContainerView.viewCopy() as! LayoutMarginView
+    private lazy var subContainerView2: LayoutMarginView = self.containerView2.subviewOfType(LayoutMarginView)!
+    private lazy var subsubContainerView2: LayoutMarginView = self.subContainerView2.subviewOfType(LayoutMarginView)!
     private lazy var containerViewLayoutMarginsLabel2: UILabel = self.containerViewLayoutMarginsLabel.viewCopy() as! UILabel
     
     override func viewDidLoad() {
@@ -26,7 +28,7 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
         title = "preservesSuperviewLayoutMargins"
         
         // Container for `preservesSuperviewLayoutMargins = false`
-        containerView.backgroundColor = UIColor(red:0.9922, green:0.6784, blue:0.0392, alpha:1.0)
+        containerView.backgroundColor = ColorPalette.texasRoseYellowColor
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.constrainTo(width: 300, height: 200)
         
@@ -35,11 +37,12 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
         subContainerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(subContainerView)
         
-        subContainerView.backgroundColor = UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00)
-        subContainerView.constrain(.Top, equalTo: .Top, ofView: containerView, constant: 4)
-        subContainerView.constrain(.Leading, equalTo: .Leading, ofView: containerView, constant: 4)
-        subContainerView.constrain(.Bottom, equalTo: .Bottom, ofView: containerView, constant: -4)
-        subContainerView.constrain(.Trailing, equalTo: .Trailing, ofView: containerView, constant: -4)
+        subContainerView.backgroundColor = UIColor(red:0.31, green:0.76, blue:0.63, alpha:0.80)
+        subContainerView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        subContainerView.constrain(.Top, equalTo: .Top, ofView: containerView, constant: 30)
+        subContainerView.constrain(.Leading, equalTo: .Leading, ofView: containerView, constant: 30)
+        subContainerView.constrain(.Bottom, equalTo: .Bottom, ofView: containerView, constant: -30)
+        subContainerView.constrain(.Trailing, equalTo: .Trailing, ofView: containerView, constant: -30)
         
         let descriptionLabel = UILabel()
         descriptionLabel.text = "greenView.preservesSuperviewLayoutMargins = false"
@@ -57,6 +60,15 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
         containerViewLayoutMarginsLabel.constrain(.Trailing, toView: containerView)
         updateContainerViewLayoutMarginsLabel(containerView)
         
+        subsubContainerView.preservesSuperviewLayoutMargins = true
+        subsubContainerView.translatesAutoresizingMaskIntoConstraints = false
+        subContainerView.addSubview(subsubContainerView)
+        subsubContainerView.backgroundColor = UIColor(red:0.75, green:0.15, blue:0.17, alpha:1.00)
+        subsubContainerView.constrain(.Top, equalTo: .Top, ofView: subContainerView, constant: 32)
+        subsubContainerView.constrain(.Leading, equalTo: .Leading, ofView: subContainerView, constant: 32)
+        subsubContainerView.constrain(.Bottom, equalTo: .Bottom, ofView: subContainerView, constant: -32)
+        subsubContainerView.constrain(.Trailing, equalTo: .Trailing, ofView: subContainerView, constant: -32)
+        
         // Container for `preservesSuperviewLayoutMargins = true`
         containerView2.translatesAutoresizingMaskIntoConstraints = false
         containerView2.constrainTo(width: 300, height: 200)
@@ -65,10 +77,10 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
         subContainerView2.preservesSuperviewLayoutMargins = true
         subContainerView2.translatesAutoresizingMaskIntoConstraints = false
         containerView2.addSubview(subContainerView2)
-        subContainerView2.constrain(.Top, equalTo: .Top, ofView: containerView2, constant: 4)
-        subContainerView2.constrain(.Leading, equalTo: .Leading, ofView: containerView2, constant: 4)
-        subContainerView2.constrain(.Bottom, equalTo: .Bottom, ofView: containerView2, constant: -4)
-        subContainerView2.constrain(.Trailing, equalTo: .Trailing, ofView: containerView2, constant: -4)
+        subContainerView2.constrain(.Top, equalTo: .Top, ofView: containerView2, constant: 30)
+        subContainerView2.constrain(.Leading, equalTo: .Leading, ofView: containerView2, constant: 30)
+        subContainerView2.constrain(.Bottom, equalTo: .Bottom, ofView: containerView2, constant: -30)
+        subContainerView2.constrain(.Trailing, equalTo: .Trailing, ofView: containerView2, constant: -30)
         
         let descriptionLabel2 = descriptionLabel.viewCopy() as! UILabel
         descriptionLabel2.text = "greenView2.preservesSuperviewLayoutMargins = true"
@@ -83,6 +95,8 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
         containerViewLayoutMarginsLabel2.constrain(.Leading, toView: containerView2, constant: 8)
         containerViewLayoutMarginsLabel2.constrain(.Trailing, toView: containerView2)
         updateContainerViewLayoutMarginsLabel(containerView2)
+        
+        subsubContainerView2.removeFromSuperview()
         
         let stackView = UIStackView(arrangedSubviews: [containerView, containerView2])
         stackView.axis = .Vertical
