@@ -15,7 +15,7 @@ class TableViewCellsDemoVC: UIViewController {
     lazy var swipeCellRow: TableViewRow = {
         return TableViewRow(title: "SwipeTableViewCell",
                             subtitle: "Cell with swipe actions",
-                            cellInitialization: { [unowned self] indexPath -> UITableViewCell in
+                            cellInitialization: { [unowned self] indexPath, tableView -> UITableViewCell in
                                 let swipeCell = self.tableView.dequeueReusableCell(withClass: SwipeTableViewCell.self, forIndexPath: indexPath)
                                 swipeCell.contentView.constrainTo(height: 60.0)
                                 
@@ -47,7 +47,7 @@ class TableViewCellsDemoVC: UIViewController {
                                 return swipeCell
             },
                             cellConfiguration: { _ in },
-                            cellSelectAction: { (indexPath, cell) in
+                            cellSelectAction: { (indexPath, cell, tableView) in
                                 cell?.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
         })
     }()

@@ -16,7 +16,7 @@ struct UITestsSection: TableViewSectionType {
     var rows: [TableViewRowType] = {
         return [
             TableViewRow(title: "TableViewCell Selection Action Test",
-                cellSelectAction: { (indexPath, cell) -> Void in
+                cellSelectAction: { (indexPath, cell, tableView) -> Void in
                     // Test accessing tableView
                     guard let tableView = cell?.tableView else { return }
                     

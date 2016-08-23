@@ -57,13 +57,13 @@ class DummyViewController: UIViewController {
                 rows: [
                     TableViewRow(title: ".Value1 Cell",
                         subtitle: "Detail Text",
-                        cellInitialization: { indexPath in
+                        cellInitialization: { indexPath, tableView in
                             return tableView.dequeueReusableCell(withClass: TableViewCellValue1.self, forIndexPath: indexPath)
                         }
                     ),
                     TableViewRow(title: ".Value2 Cell",
                         subtitle: "Detail Text",
-                        cellInitialization: { indexPath in
+                        cellInitialization: { indexPath, tableView in
                             return tableView.dequeueReusableCell(withClass: TableViewCellValue2.self, forIndexPath: indexPath)
                         }
                     ),

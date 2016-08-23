@@ -87,7 +87,7 @@ extension UITableView : UITableViewDataSource {
 		var cell: UITableViewCell! = nil
 		
 		if let cellInitialization = row.cellInitialization {
-			cell = cellInitialization(indexPath)
+			cell = cellInitialization(indexPath, tableView)
 		} else {
             cell = tableView.dequeueReusableCell(withClass: TableViewCellSubtitle.self)
 		}
@@ -97,13 +97,13 @@ extension UITableView : UITableViewDataSource {
 		return cell
 	}
 	
-	public func tableView(tableView: UITableView, cellConfigurationForCell cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+	private func tableView(tableView: UITableView, cellConfigurationForCell cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		guard let row = rowForIndexPath(indexPath) else {
 			print("Error: row not found")
 			return
 		}
 		
-		row.cellConfiguration?(indexPath, cell)
+		row.cellConfiguration?(indexPath, cell, tableView)
 	}
 	
 	public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
@@ -157,7 +157,7 @@ extension UITableView : UITableViewDelegate {
 		}
 		
 		let cell = tableView.cellForRowAtIndexPath(indexPath)
-		row.cellSelectAction?(indexPath, cell)
+		row.cellSelectAction?(indexPath, cell, tableView)
 	}
 	
 	public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
@@ -167,8 +167,16 @@ extension UITableView : UITableViewDelegate {
 		}
 		
 		let cell = tableView.cellForRowAtIndexPath(indexPath)
-		row.cellDeselectAction?(indexPath, cell)
+		row.cellDeselectAction?(indexPath, cell, tableView)
 	}
+    
+    public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        guard let row = rowForIndexPath(indexPath) else {
+            print("Error: row not found")
+            return
+        }
+        row.willDisplayCell?(indexPath, cell, tableView)
+    }
 }
 
 public extension UITableView {
