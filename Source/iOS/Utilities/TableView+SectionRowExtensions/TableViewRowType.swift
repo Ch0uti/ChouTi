@@ -11,8 +11,13 @@ import Foundation
 public protocol TableViewRowType {
 	var title: String? { get set }
 	var subtitle: String? { get set }
-	var cellInitialization: (NSIndexPath -> UITableViewCell)? { get set }
-	var cellConfiguration: ((NSIndexPath, UITableViewCell) -> Void)? { get set }
-	var cellSelectAction: ((NSIndexPath, UITableViewCell?) -> Void)? { get set }
-	var cellDeselectAction: ((NSIndexPath, UITableViewCell?) -> Void)? { get set }
+    
+    /// Initialize a cell
+	var cellInitialization: ((NSIndexPath, UITableView) -> UITableViewCell)? { get set }
+    /// Configure a cell after cell is initialized
+	var cellConfiguration: ((NSIndexPath, UITableViewCell, UITableView) -> Void)? { get set }
+	var cellSelectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? { get set }
+	var cellDeselectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? { get set }
+    
+    var willDisplayCell: ((NSIndexPath, UITableViewCell, UITableView) -> Void)? { get set }
 }

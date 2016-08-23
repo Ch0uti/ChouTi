@@ -57,7 +57,7 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 			rows: [
 				TableViewRow(title: "Customized Cell",
 					subtitle: "Subtitle...",
-					cellInitialization: { (indexPath) -> UITableViewCell in
+					cellInitialization: { (indexPath, tableView) -> UITableViewCell in
 						var cell = self.tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier())
 						if cell == nil {
 							cell = TableViewCell(style: .Subtitle, reuseIdentifier: TableViewCell.identifier())
@@ -65,7 +65,7 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 						
 						return cell!
 					},
-					cellConfiguration: { (indexPath, cell) -> Void in
+					cellConfiguration: { (indexPath, cell, tableView) -> Void in
 						(cell as? TableViewCell)?.cellHeight = 200
 						cell.textLabel?.text = "Click on Me"
 						cell.textLabel?.font = UIFont.boldSystemFontOfSize(22)
@@ -75,13 +75,13 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 						cell.detailTextLabel?.numberOfLines = 0
 						cell.backgroundColor = UIColor.random()
 					},
-					cellSelectAction: { (indexPath, cell) -> Void in
+					cellSelectAction: { (indexPath, cell, tableView) -> Void in
 						self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
 						cell?.textLabel?.textColor = UIColor.random()
 						cell?.detailTextLabel?.textColor = UIColor.random()
 						cell?.backgroundColor = UIColor.random()
 					},
-					cellDeselectAction: { (indexPath, cell) -> Void in
+					cellDeselectAction: { (indexPath, cell, tableView) -> Void in
 						//
 				}),
 				TableViewRow(title: "",

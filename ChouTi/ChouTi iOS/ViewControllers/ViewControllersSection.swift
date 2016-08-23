@@ -21,7 +21,7 @@ class ViewControllersSection: NSObject, TableViewSectionType {
         rows.append(
             TableViewRow(title: "SlideController",
                 subtitle: "Has Left/Right Menu View Controller",
-                cellSelectAction: { indexPath, cell in
+                cellSelectAction: { indexPath, cell, tableView in
                     cell?.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
                     
                     let centerVC = CenterViewController(nibName: "CenterViewController", bundle: nil)
@@ -57,7 +57,7 @@ class ViewControllersSection: NSObject, TableViewSectionType {
         rows.append(
             TableViewRow(title: "Page View Controller",
                 subtitle: "Paging View Controller",
-                cellSelectAction: { indexPath, cell in
+                cellSelectAction: { indexPath, cell, tableView in
                     cell?.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
                     cell?.tableView?.presentingViewController?.showViewController(PageViewDemoController(), sender: nil)
                 }
@@ -67,7 +67,7 @@ class ViewControllersSection: NSObject, TableViewSectionType {
         rows.append(
             TableViewRow(title: "Menu Page View Controller",
                 subtitle: "Paging View Controller with Top Menus",
-                cellSelectAction: { indexPath, cell in
+                cellSelectAction: { indexPath, cell, tableView in
                     cell?.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
                     cell?.tableView?.presentingViewController?.showViewController(MenuPageDemoViewController(), sender: nil)
                 }
