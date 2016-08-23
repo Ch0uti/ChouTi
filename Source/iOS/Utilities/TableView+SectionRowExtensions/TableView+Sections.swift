@@ -86,10 +86,10 @@ extension UITableView : UITableViewDataSource {
 		
 		var cell: UITableViewCell! = nil
 		
-		if let cellConfiguration = row.cellInitialization {
-			cell = cellConfiguration(indexPath)
+		if let cellInitialization = row.cellInitialization {
+			cell = cellInitialization(indexPath)
 		} else {
-			cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellSubtitle.identifier()) as! TableViewCellSubtitle
+            cell = tableView.dequeueReusableCell(withClass: TableViewCellSubtitle.self)
 		}
 		
 		tableView.tableView(tableView, cellConfigurationForCell: cell, atIndexPath: indexPath)
