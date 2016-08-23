@@ -65,7 +65,7 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 						
 						return cell!
 					},
-					cellConfiguration: { (cell) -> Void in
+					cellConfiguration: { (indexPath, cell) -> Void in
 						(cell as? TableViewCell)?.cellHeight = 200
 						cell.textLabel?.text = "Click on Me"
 						cell.textLabel?.font = UIFont.boldSystemFontOfSize(22)

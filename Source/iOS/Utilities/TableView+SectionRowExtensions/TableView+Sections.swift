@@ -103,7 +103,7 @@ extension UITableView : UITableViewDataSource {
 			return
 		}
 		
-		row.cellConfiguration?(cell)
+		row.cellConfiguration?(indexPath, cell)
 	}
 	
 	public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
@@ -157,7 +157,7 @@ extension UITableView : UITableViewDelegate {
 		}
 		
 		let cell = tableView.cellForRowAtIndexPath(indexPath)
-		row.cellSelectAction?(indexPath: indexPath, cell: cell)
+		row.cellSelectAction?(indexPath, cell)
 	}
 	
 	public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
@@ -167,7 +167,7 @@ extension UITableView : UITableViewDelegate {
 		}
 		
 		let cell = tableView.cellForRowAtIndexPath(indexPath)
-		row.cellDeselectAction?(indexPath: indexPath, cell: cell)
+		row.cellDeselectAction?(indexPath, cell)
 	}
 }
 
