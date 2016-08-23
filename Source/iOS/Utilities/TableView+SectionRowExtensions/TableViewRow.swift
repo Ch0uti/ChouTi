@@ -12,15 +12,20 @@ public struct TableViewRow : TableViewRowType {
 	public var title: String?
 	public var subtitle: String?
 	public var cellInitialization: (NSIndexPath -> UITableViewCell)?
-	public var cellConfiguration: (UITableViewCell -> Void)?
-	public var cellSelectAction: CellSelectionActionBlock?
-	public var cellDeselectAction: CellSelectionActionBlock?
+	public var cellConfiguration: ((NSIndexPath, UITableViewCell) -> Void)?
+	public var cellSelectAction: ((NSIndexPath, UITableViewCell?) -> Void)?
+	public var cellDeselectAction: ((NSIndexPath, UITableViewCell?) -> Void)?
 	
 	public init() {
 		setupDefaultCellConfiguration()
 	}
 	
-	public init(title: String? = nil, subtitle: String? = nil, cellInitialization: (NSIndexPath -> UITableViewCell)? = nil, cellConfiguration: (UITableViewCell -> Void)? = nil, cellSelectAction: CellSelectionActionBlock? = nil, cellDeselectAction: CellSelectionActionBlock? = nil) {
+	public init(title: String? = nil,
+	            subtitle: String? = nil,
+	            cellInitialization: (NSIndexPath -> UITableViewCell)? = nil,
+	            cellConfiguration: ((NSIndexPath, UITableViewCell) -> Void)? = nil,
+	            cellSelectAction: ((NSIndexPath, UITableViewCell?) -> Void)? = nil,
+	            cellDeselectAction: ((NSIndexPath, UITableViewCell?) -> Void)? = nil) {
 		self.title = title
 		self.subtitle = subtitle
 		
@@ -37,7 +42,7 @@ public struct TableViewRow : TableViewRowType {
 	}
 	
 	private mutating func setupDefaultCellConfiguration() {
-		self.cellConfiguration = { cell in
+		self.cellConfiguration = { indexPath, cell in
 			cell.textLabel?.text = self.title
 			cell.detailTextLabel?.text = self.subtitle
 			cell.detailTextLabel?.textColor = UIColor(white: 0.25, alpha: 1.0)
