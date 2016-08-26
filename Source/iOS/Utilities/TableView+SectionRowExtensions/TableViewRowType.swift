@@ -16,8 +16,9 @@ public protocol TableViewRowType {
 	var cellInitialization: ((NSIndexPath, UITableView) -> UITableViewCell)? { get set }
     /// Configure a cell after cell is initialized
 	var cellConfiguration: ((NSIndexPath, UITableViewCell, UITableView) -> Void)? { get set }
-	var cellSelectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? { get set }
-	var cellDeselectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? { get set }
     
     var willDisplayCell: ((NSIndexPath, UITableViewCell, UITableView) -> Void)? { get set }
+    
+	var cellSelectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? { get set }
+	var cellDeselectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? { get set }
 }
