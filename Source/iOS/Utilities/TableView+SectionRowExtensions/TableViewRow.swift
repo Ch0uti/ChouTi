@@ -13,9 +13,9 @@ public struct TableViewRow : TableViewRowType {
 	public var subtitle: String?
 	public var cellInitialization: ((NSIndexPath, UITableView) -> UITableViewCell)?
 	public var cellConfiguration: ((NSIndexPath, UITableViewCell, UITableView) -> Void)?
+    public var willDisplayCell: ((NSIndexPath, UITableViewCell, UITableView) -> Void)?
 	public var cellSelectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)?
 	public var cellDeselectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)?
-	public var willDisplayCell: ((NSIndexPath, UITableViewCell, UITableView) -> Void)?
     
 	public init() {
 		setupDefaultCellConfiguration()
@@ -25,9 +25,9 @@ public struct TableViewRow : TableViewRowType {
 	            subtitle: String? = nil,
 	            cellInitialization: ((NSIndexPath, UITableView) -> UITableViewCell)? = nil,
 	            cellConfiguration: ((NSIndexPath, UITableViewCell, UITableView) -> Void)? = nil,
+	            willDisplayCell: ((NSIndexPath, UITableViewCell, UITableView) -> Void)? = nil,
 	            cellSelectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? = nil,
-	            cellDeselectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? = nil,
-	            willDisplayCell: ((NSIndexPath, UITableViewCell, UITableView) -> Void)? = nil) {
+	            cellDeselectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? = nil) {
 		self.title = title
 		self.subtitle = subtitle
 		
@@ -39,9 +39,9 @@ public struct TableViewRow : TableViewRowType {
 			setupDefaultCellConfiguration()
 		}
 		
+        self.willDisplayCell = willDisplayCell
 		self.cellSelectAction = cellSelectAction
 		self.cellDeselectAction = cellDeselectAction
-        self.willDisplayCell = willDisplayCell
 	}
 	
 	private mutating func setupDefaultCellConfiguration() {

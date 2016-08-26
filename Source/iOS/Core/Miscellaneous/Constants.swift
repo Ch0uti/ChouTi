@@ -24,3 +24,6 @@ public var is4InchScreen: Bool { return screenHeight ~= 568.0 }
 public var isIphone6: Bool { return screenHeight ~= 667.0 }
 public var isIphone6Plus: Bool { return screenHeight ~= 736.0 }
 public var is320ScreenWidth: Bool { return screenWidth ~= 320.0 }
+
+// Ref: http://stackoverflow.com/a/30284266/3164091
+public struct Device { static var isSimulator: Bool { return TARGET_OS_SIMULATOR != 0 } }
