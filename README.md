@@ -1,4 +1,4 @@
-# 🗄 ChouTi
+# 🗄 ChouTi（抽屉）
 [![CI Status](https://travis-ci.org/honghaoz/ChouTi.svg?branch=master)](https://travis-ci.org/honghaoz/ChouTi)
 
 Chou Ti (抽屉) - a Framework for iOS development.
