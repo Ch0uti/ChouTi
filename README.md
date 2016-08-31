@@ -1,7 +1,15 @@
 # 🗄 ChouTi
 [![CI Status](https://travis-ci.org/honghaoz/ChouTi.svg?branch=master)](https://travis-ci.org/honghaoz/ChouTi)
 
-Chou Ti (抽屉) - My personal toolkit for iOS/OSX development.
+Chou Ti (抽屉) - a Framework for iOS development.
+
+### Core
+#### UI
+#### Protocols
+#### Extensions
+#### Data Structures
+#### Miscellaneous
+#### CodeSnippets
 
 ### UI
 
