@@ -52,6 +52,9 @@ public extension UIView {
             // If is to visible, set hidden to false first, then animate alpha
             if toHide == false {
                 self.hidden = toHide
+                if alpha == 1.0 {
+                    debugPrint("\(self) has an alpha: 1.0, animation maybe broken.")
+                }
             }
             
             UIView.animateWithDuration(duration, animations: { [weak self] in
