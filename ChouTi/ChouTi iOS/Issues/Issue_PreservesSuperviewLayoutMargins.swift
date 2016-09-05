@@ -30,6 +30,7 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
         // Container for `preservesSuperviewLayoutMargins = false`
         containerView.backgroundColor = ColorPalette.texasRoseYellowColor
         containerView.translatesAutoresizingMaskIntoConstraints = false
+		containerView.layer.cornerRadius = 8.0
         containerView.constrainTo(width: 300, height: 200)
         
         //
@@ -71,6 +72,7 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
         
         // Container for `preservesSuperviewLayoutMargins = true`
         containerView2.translatesAutoresizingMaskIntoConstraints = false
+		containerView2.layer.cornerRadius = 8.0
         containerView2.constrainTo(width: 300, height: 200)
         
         //

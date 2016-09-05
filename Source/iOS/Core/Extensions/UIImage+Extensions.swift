@@ -280,7 +280,7 @@ public extension UIImage {
         } else if imageOrientation == .Up {
             // Do nothing
         } else if imageOrientation == .Down {
-            CGContextTranslateCTM(context, size.width, size.height);
+            CGContextTranslateCTM(context, size.width, size.height)
             CGContextRotateCTM(context, CGFloat(M_PI))
         }
         
