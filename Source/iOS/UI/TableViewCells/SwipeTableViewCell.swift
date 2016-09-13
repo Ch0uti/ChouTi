@@ -78,6 +78,10 @@ public class SwipeTableViewCell: UITableViewCell {
     /// Default value is 750.0
     public final var cellScrollsVelocityThreshold: CGFloat = 750.0
     
+    /// If this value is true, when a cell is expanded, touching on tableView collapses the cell first.
+    /// If this value is false (default), when a cell is expanded, you can scroll the tableView or swipe on other cells. The expanded cell collapses automatically.
+    public final var blockingTableViewWhenExpanded: Bool = false
+    
     // MARK: - Methods
     public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -183,7 +187,7 @@ extension SwipeTableViewCell {
         swipeTableViewCellDelegate?.swipeTableViewCell(self, didSwipeToOffset: -offset)
         
         if animated {
-            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: {
+            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: [.CurveEaseInOut, .BeginFromCurrentState, .AllowUserInteraction], animations: {
                 self.swipeableContentView.superview?.layoutIfNeeded()
             }, completion: { _ in
                 self.rightSwipeExpanded = (offset != 0.0)
@@ -270,7 +274,7 @@ extension SwipeTableViewCell {
                     // Touches on swipeable area should collapse
                     if touchedOnSwipeableContentView {
                         collapse(animated: true)
-                        return true
+                        return blockingTableViewWhenExpanded
                     }
                     else {
                         // Touches on accessory area, ignore.
@@ -280,7 +284,7 @@ extension SwipeTableViewCell {
                 else {
                     // Touches on outside of the cell, should collapse
                     collapse(animated: true)
-                    return true
+                    return blockingTableViewWhenExpanded
                 }
             }
             else {
