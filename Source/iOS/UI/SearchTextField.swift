@@ -113,7 +113,7 @@ public class SearchTextField: TextField {
 	
     private var overlayView: UIView?
 	
-	private var heightConstraint: NSLayoutConstraint!
+	private var _heightConstraint: NSLayoutConstraint!
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -260,8 +260,8 @@ extension SearchTextField {
         constraints += [NSLayoutConstraint(item: resultTableView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0.0)]
         constraints += [NSLayoutConstraint(item: resultTableView, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0.0)]
 		constraints += [NSLayoutConstraint(item: resultTableView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0)]
-		heightConstraint = NSLayoutConstraint(item: resultTableView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(maxNumberOfResults) * (0.5 + resultCellHeight))
-		constraints += [heightConstraint]
+		_heightConstraint = NSLayoutConstraint(item: resultTableView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(maxNumberOfResults) * (0.5 + resultCellHeight))
+		constraints += [_heightConstraint]
         
 		NSLayoutConstraint.activateConstraints(constraints)
 	}

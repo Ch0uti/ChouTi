@@ -13,15 +13,15 @@ public class NavigationBarStatusBar: UIView {
 	public var statusBarHeight: CGFloat? {
 		didSet {
 			if let height = statusBarHeight where height > 0 {
-				heightConstraint.constant = height
-				heightConstraint.active = true
+				_heightConstraint.constant = height
+				_heightConstraint.active = true
 			} else {
-				heightConstraint.active = false
+				_heightConstraint.active = false
 			}
 		}
 	}
 	
-	private var heightConstraint: NSLayoutConstraint!
+	private var _heightConstraint: NSLayoutConstraint!
 	
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -67,7 +67,7 @@ public class NavigationBarStatusBar: UIView {
 		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=top_min_spacing)-[titleLabel]-(>=bottom_min_spacing)-|", options: [], metrics: metrics, views: views)
 		constraints += [NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0)]
 		
-        heightConstraint = self.constrainTo(height: 44)
+        _heightConstraint = self.constrainTo(height: 44)
 
 		NSLayoutConstraint.activateConstraints(constraints)
 	}

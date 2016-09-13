@@ -14,11 +14,11 @@ public class TableViewCell: UITableViewCell {
 	//	Discussion: You can fully specify cell's height to ignore cell height (Use constraints with priorty greater than 250)
 	public var cellHeight: CGFloat = 44.0 {
 		didSet {
-			heightConstraint?.constant = cellHeight
+			_heightConstraint?.constant = cellHeight
 		}
 	}
 	
-	private var heightConstraint: NSLayoutConstraint?
+	private var _heightConstraint: NSLayoutConstraint?
 	
 	public var selectedAccessoryView: UIView?
 	public var selectedAccessoryType: UITableViewCellAccessoryType = .None
@@ -34,9 +34,9 @@ public class TableViewCell: UITableViewCell {
 	}
 	
 	public func commonInit() {
-		heightConstraint = NSLayoutConstraint(item: contentView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: cellHeight)
-		heightConstraint?.priority = 250
-		heightConstraint?.active = true
+		_heightConstraint = NSLayoutConstraint(item: contentView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: cellHeight)
+		_heightConstraint?.priority = 250
+		_heightConstraint?.active = true
 	}
 	
 	public override func setSelected(selected: Bool, animated: Bool) {
