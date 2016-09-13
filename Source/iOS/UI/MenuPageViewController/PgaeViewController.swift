@@ -36,6 +36,11 @@ public class PageViewController : UIViewController {
         get { return pageScrollView.scrollEnabled }
         set { pageScrollView.scrollEnabled = newValue }
 	}
+    
+    public var bounces: Bool {
+        get { return pageScrollView.bounces }
+        set { pageScrollView.bounces = newValue }
+    }
 	
 	/// Current selected index.
 	public var selectedIndex: Int = -1 {
