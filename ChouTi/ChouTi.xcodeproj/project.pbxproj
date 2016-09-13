@@ -13,6 +13,7 @@
 		020665091D5FB0BE002A7E2A /* ChouTi_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665081D5FB0BE002A7E2A /* ChouTi_iOSUITests.swift */; };
 		020665141D5FCD05002A7E2A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665131D5FCD05002A7E2A /* MainViewController.swift */; };
 		0206651A1D5FD37E002A7E2A /* UITestsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665191D5FD37E002A7E2A /* UITestsSection.swift */; };
+		0223853B1D83608000FE4195 /* NSLayoutConstraint+Retrieve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223853A1D83608000FE4195 /* NSLayoutConstraint+Retrieve.swift */; };
 		022772021D622FC600D9CAE7 /* ViewsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772011D622FC600D9CAE7 /* ViewsSection.swift */; };
 		022772061D62387E00D9CAE7 /* TableViewCellsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772051D62387E00D9CAE7 /* TableViewCellsDemoVC.swift */; };
 		022772AC1D6258C900D9CAE7 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227720D1D6258C900D9CAE7 /* Animator.swift */; };
@@ -210,6 +211,7 @@
 		025C91CB1D64053F000C54D8 /* IssuesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91C91D64053F000C54D8 /* IssuesSection.swift */; };
 		027E8C701D64D0680080E87F /* ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023050921D2440DB00D7B190 /* ChouTi.framework */; };
 		027E8C711D64D0680080E87F /* ChouTi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 023050921D2440DB00D7B190 /* ChouTi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		029E5FBC1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E5FBB1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift */; };
 		02FFC4DF1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FFC4DE1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift */; };
 		33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2582D7686D9E144D59115335 /* Pods_ChouTi.framework */; };
 		C0C1CCE345BEEE508DBF44DA /* Pods_ChouTi_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */; };
@@ -266,6 +268,7 @@
 		0206650A1D5FB0BE002A7E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		020665131D5FCD05002A7E2A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		020665191D5FD37E002A7E2A /* UITestsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestsSection.swift; sourceTree = "<group>"; };
+		0223853A1D83608000FE4195 /* NSLayoutConstraint+Retrieve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Retrieve.swift"; sourceTree = "<group>"; };
 		022772011D622FC600D9CAE7 /* ViewsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewsSection.swift; sourceTree = "<group>"; };
 		022772051D62387E00D9CAE7 /* TableViewCellsDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellsDemoVC.swift; sourceTree = "<group>"; };
 		0227720D1D6258C900D9CAE7 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
@@ -465,6 +468,7 @@
 		025C91C51D64016C000C54D8 /* MiscellaneousSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscellaneousSection.swift; sourceTree = "<group>"; };
 		025C91C81D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue_LayoutMarginsGuideViewController.swift; sourceTree = "<group>"; };
 		025C91C91D64053F000C54D8 /* IssuesSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesSection.swift; sourceTree = "<group>"; };
+		029E5FBB1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+RetrieveTests.swift"; sourceTree = "<group>"; };
 		02FFC4DE1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue_PreservesSuperviewLayoutMargins.swift; sourceTree = "<group>"; };
 		0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.debug.xcconfig"; sourceTree = "<group>"; };
@@ -686,6 +690,7 @@
 				0227723D1D6258C900D9CAE7 /* NSDate+Extensions.swift */,
 				0227723E1D6258C900D9CAE7 /* NSLayoutAnchor+Extensions.swift */,
 				0227723F1D6258C900D9CAE7 /* NSLayoutConstraint+Extensions.swift */,
+				0223853A1D83608000FE4195 /* NSLayoutConstraint+Retrieve.swift */,
 				022772401D6258C900D9CAE7 /* NSObject+AssociatedObject.swift */,
 				022772411D6258C900D9CAE7 /* NSObject+Observation.swift */,
 				022772421D6258C900D9CAE7 /* NSRegularExpression+Extensions.swift */,
@@ -1038,6 +1043,7 @@
 				025C91461D62A970000C54D8 /* NSCalendar+ExtensionsTests.swift */,
 				025C91471D62A970000C54D8 /* NSDate+ExtensionsTests.swift */,
 				025C91481D62A970000C54D8 /* NSLayoutConstraint+ExtensionsTests.swift */,
+				029E5FBB1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift */,
 				025C91491D62A970000C54D8 /* NSObject+AssociatedObjectTests.swift */,
 				025C914A1D62A970000C54D8 /* SequenceType+ExtensionsTests.swift */,
 				025C914B1D62A970000C54D8 /* String+ExtensionsTests.swift */,
@@ -1679,6 +1685,7 @@
 				022772C41D6258C900D9CAE7 /* CodeSnippets_ImageAsset.swift in Sources */,
 				022772BD1D6258C900D9CAE7 /* CodeSnippet_UITableView.swift in Sources */,
 				022773171D6258C900D9CAE7 /* LoadingMorphingLabel.swift in Sources */,
+				0223853B1D83608000FE4195 /* NSLayoutConstraint+Retrieve.swift in Sources */,
 				022772AC1D6258C900D9CAE7 /* Animator.swift in Sources */,
 				022773221D6258C900D9CAE7 /* SingleTitleContentPairView.swift in Sources */,
 				022772EB1D6258C900D9CAE7 /* UISearchBar+Extensions.swift in Sources */,
@@ -1740,6 +1747,7 @@
 				025C91621D62A970000C54D8 /* UIView+ExtensionsTests.swift in Sources */,
 				025C91581D62A970000C54D8 /* CollectionType+ExtensionsTests.swift in Sources */,
 				025C915B1D62A970000C54D8 /* NSDate+ExtensionsTests.swift in Sources */,
+				029E5FBC1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift in Sources */,
 				025C91631D62A970000C54D8 /* UIView+GeometryTests.swift in Sources */,
 				025C91551D62A970000C54D8 /* QueueTests.swift in Sources */,
 				025C915F1D62A970000C54D8 /* String+ExtensionsTests.swift in Sources */,
