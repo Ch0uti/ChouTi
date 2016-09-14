@@ -44,6 +44,11 @@ public extension UIView {
 	- parameter completion: Completion block.
 	*/
     public func setHidden(toHide: Bool, animated: Bool = false, duration: NSTimeInterval = 0.25, completion: ((Bool) -> ())? = nil) {
+        if self.hidden == toHide {
+            completion?(false)
+            return
+        }
+        
         if animated == false {
             alpha = toHide ? 0.0 : 1.0
             self.hidden = toHide
