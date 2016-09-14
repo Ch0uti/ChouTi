@@ -38,6 +38,26 @@ class ChouTi_iOSUITests: XCTestCase {
     func testExample() {
 		XCTAssertFalse(app.tables.cells.staticTexts["123"].exists)
         XCTAssertTrue(XCUIApplication().tables.cells.staticTexts["TableViewCell Selection Action Test"].exists)
-
+        
+        //		tableviewcellSelectionActionTestStaticText.tap()
+        //
+        //		XCUIApplication().tables.cells.staticTexts["TableViewCell Selection Action Test"].tap()
+        //		XCUIApplication().tables.staticTexts["TableViewCell Selection Action Test"].tap()
+        
+        
+        //        let nextGame = app.tables.staticTexts["123"]
+        //        let exists = NSPredicate(format: "exists == true")
+        //        expectationForPredicate(exists, evaluatedWithObject: nextGame, handler: nil)
+        //
+        ////        app.buttons["Load More Games"].tap()
+        ////        app.tables.cells.staticTexts["TableViewCell Selection Action Test"].tap()
+        //
+        //        let tableviewcellSelectionActionTestStaticText = XCUIApplication().tables.cells.staticTexts["TableViewCell Selection Action Test"]
+        //        tableviewcellSelectionActionTestStaticText.pressForDuration(0.5);
+        //
+        //        waitForExpectationsWithTimeout(3, handler: nil)
+        //        XCTAssert(nextGameLabel.exists)
+        
+        //        XCTAssertTrue(nextGame.exists)
     }
 }

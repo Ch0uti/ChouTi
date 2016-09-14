@@ -65,4 +65,35 @@ components.queryItems = [item1, item2]
 
 print(components.URL!.query?.stringByRemovingPercentEncoding?.substringFromIndex("language[]=".endIndex) ?? "")
 
+// 
+[1, 2, 3, 4, 5].forEach {
+	guard $0 % 2 == 0 else { return }
+	print($0)
+}
 
+// Combine rounds
+struct Round {
+	var ordinal: Int
+}
+
+struct RoundsSet {
+	var rounds: [Round]
+}
+
+let set1 = RoundsSet(rounds: [Round(ordinal: 1), Round(ordinal: 2), Round(ordinal: 3), Round(ordinal: 4)])
+let set2 = RoundsSet(rounds: [Round(ordinal: 1), Round(ordinal: 2), Round(ordinal: 3)])
+let sets = [set1, set2]
+
+let rounds = sets.reduce([]) { (totalRounds, set) -> [Round] in
+	return totalRounds + set.rounds.map { round in
+		Round(ordinal: round.ordinal + (totalRounds.last?.ordinal ?? 0))
+	}
+}
+
+print(rounds)
+
+// FlatMap
+[1, 2, 3, 4].flatMap { num -> Int? in
+	if num % 2 == 0 { return nil }
+	return num
+}
