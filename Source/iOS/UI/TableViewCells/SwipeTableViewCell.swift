@@ -1,6 +1,6 @@
 //
 //  SwipeTableViewCell.swift
-//  iOSScoreESports
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2016-08-04.
 //  Copyright © 2016 theScore Inc. All rights reserved.
@@ -20,6 +20,21 @@ public protocol SwipeTableViewCellDelegate: class {
      - parameter newOffset: New offset swiped. Negative value means right side expanded.
      */
     func swipeTableViewCell(cell: SwipeTableViewCell, didSwipeToOffset newOffset: CGFloat)
+
+    /**
+     SwipeTableViewCell will expand on a side.
+     
+     - parameter cell:          SwipeTableViewCell self.
+     - parameter didExpandSide: Side to expand.
+     */
+    func swipeTableViewCell(cell: SwipeTableViewCell, willExpandSide: SwipeTableViewCell.ExpandSide)
+    
+    /**
+     SwipeTableViewCell will collapse.
+     
+     - parameter cell: SwipeTableViewCell self.
+     */
+    func swipeTableViewCellWillCollapse(cell: SwipeTableViewCell)
 }
 
 /**
@@ -29,6 +44,11 @@ public protocol SwipeTableViewCellDelegate: class {
  */
 public class SwipeTableViewCell: UITableViewCell {
     
+    public enum ExpandSide {
+        case Left
+        case Right
+    }
+
     // Swipeable content view, normally you should add subviews on this view
     public final let swipeableContentView = UIView()
     
@@ -47,8 +67,8 @@ public class SwipeTableViewCell: UITableViewCell {
     }
     
     /// Checking whether cell is expanded on the right.
-    public private(set) var rightSwipeExpanded: Bool = false
-    
+    public final var rightSwipeExpanded: Bool { return (swipeableContentViewCenterXConstraint.constant < 0.0) }
+
     /// Expandable width for swiping on right
     private final var rightSwipeExpandableWidth: CGFloat { get { return rightSwipeAccessoryView?.bounds.width ?? 0.0 } }
     private final var rightSwipeEnabled: Bool { return rightSwipeExpandableWidth > 0.0 }
@@ -61,7 +81,8 @@ public class SwipeTableViewCell: UITableViewCell {
     private final var swipeableContentViewCenterXConstraint: NSLayoutConstraint!
     private final var panStartPoint: CGPoint = .zero
     private final var centerXConstraintStartConstant: CGFloat = 0.0
-    
+    private final var isAnimating: Bool = false // whether cell expand/collapse is being animated
+
     // MARK: - Gesture Recognizers
     private final lazy var panRecognizer: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeTableViewCell.panSwipeableContentView(_:)))
     private final let tapRecognizer = UITapGestureRecognizer()
@@ -161,6 +182,11 @@ extension SwipeTableViewCell {
      - parameter animated: Whether it's should be animated.
      */
     public func expandRightSide(animated animated: Bool) {
+        // If can expand right side, tell delegate
+        if swipeableContentViewCenterXConstraint.constant != -rightSwipeExpandableWidth {
+            swipeTableViewCellDelegate?.swipeTableViewCell(self, willExpandSide: .Right)
+        }
+
         setExpandOffset(rightSwipeExpandableWidth, animated: animated)
     }
     
@@ -170,6 +196,11 @@ extension SwipeTableViewCell {
      - parameter animated: Whether it's should be animated.
      */
     public func collapse(animated animated: Bool) {
+        // If can collapse, tell delegate
+        if swipeableContentViewCenterXConstraint.constant != 0 {
+            swipeTableViewCellDelegate?.swipeTableViewCellWillCollapse(self)
+        }
+
         setExpandOffset(0, animated: animated)
     }
     
@@ -187,14 +218,14 @@ extension SwipeTableViewCell {
         swipeTableViewCellDelegate?.swipeTableViewCell(self, didSwipeToOffset: -offset)
         
         if animated {
+            isAnimating = true
             UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: [.CurveEaseInOut, .BeginFromCurrentState, .AllowUserInteraction], animations: {
                 self.swipeableContentView.superview?.layoutIfNeeded()
             }, completion: { _ in
-                self.rightSwipeExpanded = (offset != 0.0)
+                self.isAnimating = false
             })
         } else {
             swipeableContentView.superview?.layoutIfNeeded()
-            rightSwipeExpanded = (offset != 0.0)
         }
     }
 }
@@ -263,8 +294,8 @@ extension SwipeTableViewCell {
         
         if gestureRecognizer === tableViewImmediateTouchRecognizer {
             // Touches on tableView should collapse cells
-            // Only needs to collapse when cell is expanded
-            if rightSwipeExpanded == true {
+            // Only needs to collapse when cell is expanded, or in transition from expanded to collapsed (when animating)
+            if rightSwipeExpanded == true || (rightSwipeExpanded == false && isAnimating) {
                 let locationInContentView = tableViewImmediateTouchRecognizer.locationInView(contentView)
                 
                 // Touches on the cell
@@ -293,7 +324,7 @@ extension SwipeTableViewCell {
             }
         }
         
-        if gestureRecognizer === tapRecognizer {
+        if gestureRecognizer === tapRecognizer && isAnimating == false {
             // If is expanded, consume this touch, which disables selection of tableViewCell
             return rightSwipeExpanded
         }
@@ -308,7 +339,8 @@ extension SwipeTableViewCell {
             }
             
             // Expanded State: immediate touch gesture will collapse it, ignore pan gesture.
-            if rightSwipeExpanded == true {
+            // Expanded state could be either right expanded or in the transition from expanded to collapsed (when animating)
+            if rightSwipeExpanded == true || (rightSwipeExpanded == false && isAnimating) {
                 return false
             }
             
