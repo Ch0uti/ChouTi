@@ -150,8 +150,8 @@ class SwipeTableViewCellTests: QuickSpec {
                         swipeCell.expandRightSide(animated: true)
 
                         expect(swipeCell.swipeableContentView.frame) == originalFrame.offsetBy(dx: -rightViewWidthConstraint.constant, dy: 0)
-                        // Not expanded at first
-                        expect(swipeCell.rightSwipeExpanded).to(beFalse())
+                        
+                        expect(swipeCell.rightSwipeExpanded).to(beTrue())
                         expect(swipeCell.rightSwipeExpanded).toEventually(beTrue())
                     }
                     

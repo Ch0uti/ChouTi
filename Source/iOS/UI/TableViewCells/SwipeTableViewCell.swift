@@ -67,7 +67,34 @@ public class SwipeTableViewCell: UITableViewCell {
     }
     
     /// Checking whether cell is expanded on the right.
-    public final var rightSwipeExpanded: Bool { return (swipeableContentViewCenterXConstraint.constant < 0.0) }
+    public final var rightSwipeExpanded: Bool {
+        // If cell is visible, check current swipeableContentView frame
+        if let presentationLayer = swipeableContentView.layer.presentationLayer() as? CALayer {
+            return presentationLayer.frame.x < 0.0
+        }
+        
+        if swipeableContentViewCenterXConstraint.constant < 0.0 {
+            // final state is right expanded
+            return true
+        }
+        else if swipeableContentViewCenterXConstraint.constant > 0.0 {
+            // final state is left expanded, not supported yet
+            print("Error: left expanding is not supported yet")
+            return false
+        }
+        else if swipeableContentViewCenterXConstraint.constant == 0 {
+            // final state is collapsed
+            if isAnimating == false {
+                // and is not animating
+                return false
+            } else {
+                // is animating, which means currently is still expanded
+                return true
+            }
+        }
+        
+        return false
+    }
 
     /// Expandable width for swiping on right
     private final var rightSwipeExpandableWidth: CGFloat { get { return rightSwipeAccessoryView?.bounds.width ?? 0.0 } }
@@ -294,8 +321,8 @@ extension SwipeTableViewCell {
         
         if gestureRecognizer === tableViewImmediateTouchRecognizer {
             // Touches on tableView should collapse cells
-            // Only needs to collapse when cell is expanded, or in transition from expanded to collapsed (when animating)
-            if rightSwipeExpanded == true || (rightSwipeExpanded == false && isAnimating) {
+            // Only needs to collapse when cell is expanded
+            if rightSwipeExpanded == true {
                 let locationInContentView = tableViewImmediateTouchRecognizer.locationInView(contentView)
                 
                 // Touches on the cell
@@ -339,8 +366,7 @@ extension SwipeTableViewCell {
             }
             
             // Expanded State: immediate touch gesture will collapse it, ignore pan gesture.
-            // Expanded state could be either right expanded or in the transition from expanded to collapsed (when animating)
-            if rightSwipeExpanded == true || (rightSwipeExpanded == false && isAnimating) {
+            if rightSwipeExpanded == true {
                 return false
             }
             
