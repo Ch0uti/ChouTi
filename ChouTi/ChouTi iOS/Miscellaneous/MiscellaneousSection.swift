@@ -11,8 +11,7 @@ import ChouTi
 
 struct MiscellaneousSection: TableViewSectionType {
     var headerTitle: String? = "Miscellaneous"
-    var footerTitle: String? = nil
-    var shouldShowIndex: Bool = false
+    
     var rows: [TableViewRowType] = {
         return [
             TableViewRow(title: "Drop Presenting Animator",

@@ -11,8 +11,6 @@ import ChouTi
 
 struct UITestsSection: TableViewSectionType {
     var headerTitle: String? = "UI Tests"
-    var footerTitle: String? = nil
-    var shouldShowIndex: Bool = false
     var rows: [TableViewRowType] = {
         return [
             TableViewRow(title: "TableViewCell Selection Action Test",

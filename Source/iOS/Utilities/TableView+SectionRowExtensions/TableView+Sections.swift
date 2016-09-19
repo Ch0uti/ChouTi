@@ -43,7 +43,9 @@ public extension UITableView {
         } else if delegate !== self {
             NSLog("Warning: tableView.delegate is not nil, setting sections won't have effects. TableView: \(self)")
         }
-		
+        
+        self.rowHeight = UITableViewAutomaticDimension
+        
 		TableViewCell.registerInTableView(self)
 		TableViewCellValue1.registerInTableView(self)
 		TableViewCellValue2.registerInTableView(self)
@@ -70,12 +72,7 @@ extension UITableView : UITableViewDataSource {
 	}
 	
 	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		guard let section = sectionForIndex(section) else {
-			print("Warning: no sections in \(self)")
-			return 0
-		}
-		
-		return section.rows.count
+        return sectionForIndex(section)?.rows.count ?? 0
 	}
 	
 	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -98,12 +95,7 @@ extension UITableView : UITableViewDataSource {
 	}
 	
 	private func tableView(tableView: UITableView, cellConfigurationForCell cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-		guard let row = rowForIndexPath(indexPath) else {
-			print("Error: row not found")
-			return
-		}
-		
-		row.cellConfiguration?(indexPath, cell, tableView)
+        rowForIndexPath(indexPath)?.cellConfiguration?(indexPath, cell, tableView)
 	}
 	
 	public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
@@ -120,22 +112,38 @@ extension UITableView : UITableViewDataSource {
 		return sections.map { $0.shouldShowIndex ? ($0.headerTitle ?? "") : "" }
 	}
 	
-	public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		guard let section = sectionForIndex(section) else {
-			print("Warning: no sections in \(self)")
-			return nil
-		}
-		
-		return section.headerTitle
+	// Header
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionForIndex(section)?.headerTitle
+    }
+    
+	public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return sectionForIndex(section)?.headerHeight?(section, tableView) ?? UITableViewAutomaticDimension
+	}
+
+	public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		return sectionForIndex(section)?.headerView?(section, tableView)
+	}
+
+	public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        sectionForIndex(section)?.headerWillDisplay?(section, view, tableView)
 	}
 	
-	public func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-		guard let section = sectionForIndex(section) else {
-			print("Warning: no sections in \(self)")
-			return nil
-		}
-		
-		return section.footerTitle
+	// Footer
+    public func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return sectionForIndex(section)?.footerTitle
+    }
+	
+	public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+		return sectionForIndex(section)?.footerHeight?(section, tableView) ?? UITableViewAutomaticDimension
+	}
+	
+	public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+		return sectionForIndex(section)?.footerView?(section, tableView)
+	}
+	
+	public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+		sectionForIndex(section)?.footerWillDisplay?(section, view, tableView)
 	}
 }
 
@@ -151,31 +159,15 @@ extension UITableView : UITableViewDelegate {
     }
 	
 	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		guard let row = rowForIndexPath(indexPath) else {
-			print("Error: row not found")
-			return
-		}
-		
-		let cell = tableView.cellForRowAtIndexPath(indexPath)
-		row.cellSelectAction?(indexPath, cell, tableView)
+		rowForIndexPath(indexPath)?.cellSelectAction?(indexPath, tableView.cellForRowAtIndexPath(indexPath), tableView)
 	}
 	
 	public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-		guard let row = rowForIndexPath(indexPath) else {
-			print("Error: row not found")
-			return
-		}
-		
-		let cell = tableView.cellForRowAtIndexPath(indexPath)
-		row.cellDeselectAction?(indexPath, cell, tableView)
+		rowForIndexPath(indexPath)?.cellDeselectAction?(indexPath, tableView.cellForRowAtIndexPath(indexPath), tableView)
 	}
     
     public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        guard let row = rowForIndexPath(indexPath) else {
-            print("Error: row not found")
-            return
-        }
-        row.willDisplayCell?(indexPath, cell, tableView)
+        rowForIndexPath(indexPath)?.willDisplayCell?(indexPath, cell, tableView)
     }
 }
 

@@ -11,8 +11,6 @@ import ChouTi
 
 struct IssuesSection: TableViewSectionType {
     var headerTitle: String? = "Issues"
-    var footerTitle: String? = nil
-    var shouldShowIndex: Bool = false
     var rows: [TableViewRowType] = {
         return [
             TableViewRow(title: "Issue: `layoutMarginsGuide`",
