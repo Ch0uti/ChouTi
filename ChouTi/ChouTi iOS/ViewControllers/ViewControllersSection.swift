@@ -11,8 +11,6 @@ import ChouTi
 
 class ViewControllersSection: NSObject, TableViewSectionType {
     var headerTitle: String? = "View Controller Containers"
-    var footerTitle: String? = nil
-    var shouldShowIndex: Bool = false
     var rows: [TableViewRowType] = []
     
     override init() {

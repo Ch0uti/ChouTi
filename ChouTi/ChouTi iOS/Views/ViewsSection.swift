@@ -11,8 +11,7 @@ import ChouTi
 
 struct ViewsSection: TableViewSectionType {
     var headerTitle: String? = "Views"
-    var footerTitle: String? = nil
-    var shouldShowIndex: Bool = false
+    
     var rows: [TableViewRowType] = {
         return [
             TableViewRow(title: "Menu View",
