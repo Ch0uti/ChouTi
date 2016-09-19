@@ -9,32 +9,32 @@
 import Foundation
 
 public extension CollectionType {
-	/**
-	Returns an optional element. If the `index` does not exist in the collection, the subscript returns nil.
-	
-	- parameter safe: The index of the element to return, if it exists.
-	
-	- returns: An optional element from the collection at the specified index.
-	*/
-	public subscript (safe index: Index) -> Generator.Element? {
-		return at(index)
-	}
-	
-	/**
-	Returns an optional element. If the `index` does not exist in the collection, the function returns nil.
-	
-	- parameter index: The index of the element to return, if it exists.
-	
-	- returns: An optional element from the collection at the specified index.
-	*/
-	@warn_unused_result
-	public func at(index: Index) -> Generator.Element? {
-		return indices.contains(index) ? self[index] : nil
-	}
-	
+    /**
+     Returns an optional element. If the `index` does not exist in the collection, the subscript returns nil.
+     
+     - parameter safe: The index of the element to return, if it exists.
+     
+     - returns: An optional element from the collection at the specified index.
+     */
+    public subscript (safe index: Index) -> Generator.Element? {
+        return at(index)
+    }
+    
+    /**
+     Returns an optional element. If the `index` does not exist in the collection, the function returns nil.
+     
+     - parameter index: The index of the element to return, if it exists.
+     
+     - returns: An optional element from the collection at the specified index.
+     */
+    @warn_unused_result
+    public func at(index: Index) -> Generator.Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+    
     /**
      Return a random item from the array
-
+     
      - returns: a random item in the array
      */
     @warn_unused_result
@@ -50,7 +50,7 @@ public extension CollectionType {
     
     /**
      Creats a shuffled version of this array using the Fisher-Yates (fast and uniform) shuffle.
-     Non-mutating. 
+     Non-mutating.
      From http://stackoverflow.com/a/24029847/194869
      
      - returns: A shuffled version of this array.
@@ -80,6 +80,7 @@ public extension CollectionType where Index == Int {
     }
 }
 
+// Ref: https://github.com/apple/example-package-fisheryates/blob/master/Sources/Fisher-Yates_Shuffle.swift
 public extension MutableCollectionType where Index == Int {
     /**
      Shuffle the array using the Fisher-Yates (fast and uniform) shuffle. Mutating.
