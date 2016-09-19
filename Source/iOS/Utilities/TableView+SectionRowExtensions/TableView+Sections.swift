@@ -67,6 +67,7 @@ public extension UITableView {
 
 // MARK: - TableView DataSource Methods
 extension UITableView : UITableViewDataSource {
+    // Row
 	public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return sections?.count ?? 0
 	}
@@ -98,6 +99,7 @@ extension UITableView : UITableViewDataSource {
         rowForIndexPath(indexPath)?.cellConfiguration?(indexPath, cell, tableView)
 	}
 	
+    // Section Index
 	public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
 		guard let sections = sections else {
 			print("Warning: no sections in \(self)")
@@ -116,40 +118,17 @@ extension UITableView : UITableViewDataSource {
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionForIndex(section)?.headerTitle
     }
-    
-	public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return sectionForIndex(section)?.headerHeight?(section, tableView) ?? UITableViewAutomaticDimension
-	}
-
-	public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		return sectionForIndex(section)?.headerView?(section, tableView)
-	}
-
-	public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        sectionForIndex(section)?.headerWillDisplay?(section, view, tableView)
-	}
 	
 	// Footer
     public func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return sectionForIndex(section)?.footerTitle
     }
-	
-	public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-		return sectionForIndex(section)?.footerHeight?(section, tableView) ?? UITableViewAutomaticDimension
-	}
-	
-	public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-		return sectionForIndex(section)?.footerView?(section, tableView)
-	}
-	
-	public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-		sectionForIndex(section)?.footerWillDisplay?(section, view, tableView)
-	}
 }
 
 
 // MARK: - TableView Delegate Methods
 extension UITableView : UITableViewDelegate {
+    // Row
 	public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
 	}
@@ -168,6 +147,32 @@ extension UITableView : UITableViewDelegate {
     
     public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         rowForIndexPath(indexPath)?.willDisplayCell?(indexPath, cell, tableView)
+    }
+    
+    // Header
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return sectionForIndex(section)?.headerHeight?(section, tableView) ?? UITableViewAutomaticDimension
+    }
+    
+    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return sectionForIndex(section)?.headerView?(section, tableView)
+    }
+    
+    public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        sectionForIndex(section)?.headerWillDisplay?(section, view, tableView)
+    }
+    
+    // Footer
+    public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return sectionForIndex(section)?.footerHeight?(section, tableView) ?? UITableViewAutomaticDimension
+    }
+    
+    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return sectionForIndex(section)?.footerView?(section, tableView)
+    }
+    
+    public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        sectionForIndex(section)?.footerWillDisplay?(section, view, tableView)
     }
 }
 
