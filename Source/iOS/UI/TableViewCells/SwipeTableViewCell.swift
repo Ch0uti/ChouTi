@@ -70,7 +70,7 @@ public class SwipeTableViewCell: UITableViewCell {
     public final var rightSwipeExpanded: Bool {
         // If cell is visible, check current swipeableContentView frame
         if let presentationLayer = swipeableContentView.layer.presentationLayer() as? CALayer {
-            return presentationLayer.frame.x < 0.0
+            return presentationLayer.convertRect(presentationLayer.bounds, toLayer: contentView.layer).origin.x < 0.0
         }
         
         if swipeableContentViewCenterXConstraint.constant < 0.0 {
