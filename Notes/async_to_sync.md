@@ -2,7 +2,7 @@ One way to call async task in sync way:
 
 ```swift
 func syncTask() -> Int {
-  var result: Int?
+	var result: Int?
   
 	asyncTask(completion: { num in
 		result = num
