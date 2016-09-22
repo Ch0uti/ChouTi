@@ -18,3 +18,6 @@
   ```
 
 3. Restart the terminal, type `git jira`
+
+References:
+> [Custom Git Commands in 3 Steps](http://thediscoblog.com/blog/2014/03/29/custom-git-commands-in-3-steps/)
