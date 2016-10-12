@@ -3,8 +3,7 @@ use_frameworks!
 
 # Pods
 def pod_chouti_dependency
-  # Dependency for `LoadingMorphingLabel`
-  pod 'LTMorphingLabel'
+
 end
 
 def pod_testing
