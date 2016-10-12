@@ -1,23 +1,23 @@
 PODS:
   - Nimble (4.1.0)
-  - Operations (3.1.0):
-    - Operations/Standard (= 3.1.0)
-  - Operations/Standard (3.1.0)
+  - Operations (3.3.1):
+    - Operations/Standard (= 3.3.1)
+  - Operations/Standard (3.3.1)
   - Quick (0.9.3)
   - Then (1.0.3)
 
 DEPENDENCIES:
   - Nimble
-  - Operations
+  - Operations (~> 3.3.0)
   - Quick
   - Then (~> 1.0)
 
 SPEC CHECKSUMS:
   Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
-  Operations: d09dbb1c32ce01061ebbb022c8a955b34fd9ec35
+  Operations: 6a33d325dae88de21b8edc69b9884fce01aea22b
   Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
   Then: c2502b763132c80dfa64d325065d70c45e2d48ca
 
-PODFILE CHECKSUM: 7db6ba976f7f12f2c9de2a992c57dd434349d9df
+PODFILE CHECKSUM: 4cdb62a672691dd70501acfd71eea118a2c46083
 
 COCOAPODS: 1.0.1

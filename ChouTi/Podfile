@@ -24,9 +24,9 @@ end
 
 target 'ChouTi iOS' do
   pod_chouti_dependency
-  pod 'Operations'
+  pod 'Operations', '~> 3.3.0'
   pod 'Then', '~> 1.0'
-  
+
   target 'ChouTi iOSUITests' do
     inherit! :search_paths
     pod_testing
