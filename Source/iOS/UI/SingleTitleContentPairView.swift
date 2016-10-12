@@ -60,7 +60,7 @@ public class SingleTitleContentPairView: UIView {
 		
 		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[titleLabel]", options: [], metrics: metrics, views: views)
 		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:[contentLabel]-|", options: [], metrics: metrics, views: views)
-		constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .Baseline, relatedBy: .Equal, toItem: contentLabel, attribute: .Baseline, multiplier: 1.0, constant: 0.0))
+		constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .LastBaseline, relatedBy: .Equal, toItem: contentLabel, attribute: .LastBaseline, multiplier: 1.0, constant: 0.0))
 		horizontalSpacingEqualConstraint = NSLayoutConstraint(item: titleLabel, attribute: .Trailing, relatedBy: .Equal, toItem: contentLabel, attribute: .Leading, multiplier: 1.0, constant: -horizontalSpacing)
 		horizontalSpacingEqualConstraint!.priority = 750
 		

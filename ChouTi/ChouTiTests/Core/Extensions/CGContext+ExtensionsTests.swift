@@ -20,7 +20,7 @@ class CGContext_ExtensionsTests: XCTestCase {
         UIGraphicsBeginImageContext(CGSize(width: 20, height: 50))
         let context = UIGraphicsGetCurrentContext()
         
-        let matrix = CGContextGetCTM(context)
+        let matrix = CGContextGetCTM(context!)
         XCTAssert(
             CGAffineTransformEqualToTransform(
                 matrix,
@@ -28,8 +28,8 @@ class CGContext_ExtensionsTests: XCTestCase {
             )
         )
         
-        CGContextConcatCTM(context, CGAffineTransform(a: 2, b: 10, c: 10, d: 2, tx: 5, ty: 5))
-        let matrix1 = CGContextGetCTM(context)
+        CGContextConcatCTM(context!, CGAffineTransform(a: 2, b: 10, c: 10, d: 2, tx: 5, ty: 5))
+        let matrix1 = CGContextGetCTM(context!)
         
         XCTAssert(
             CGAffineTransformEqualToTransform(
@@ -40,7 +40,7 @@ class CGContext_ExtensionsTests: XCTestCase {
         
         context?.flipCoordinatesVertically()
         
-        let matrix2 = CGContextGetCTM(context)
+        let matrix2 = CGContextGetCTM(context!)
         
         XCTAssert(
             CGAffineTransformEqualToTransform(

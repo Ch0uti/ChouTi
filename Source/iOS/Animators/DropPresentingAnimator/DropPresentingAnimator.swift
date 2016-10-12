@@ -202,7 +202,7 @@ extension DropPresentingAnimator {
 }
 
 extension DropPresentingAnimator {
-    public override func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+    public override func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
         let presentationController = DropPresentingPresentationController(presentedViewController: presented, presentingViewController: presenting, overlayViewStyle: overlayViewStyle, dropPresentingAnimator: self)
         presentationController.shouldDismissOnTappingOutsideView = shouldDismissOnTappingOutsideView
         presentationController.shouldDimPresentedView = shouldDimPresentedView

@@ -15,7 +15,7 @@ class DropPresentingPresentationController: OverlayPresentationController {
     var longPressGesture: UILongPressGestureRecognizer?
     var panBeginLocation: CGPoint?
     
-    init(presentedViewController: UIViewController, presentingViewController: UIViewController, overlayViewStyle: OverlayViewStyle, dropPresentingAnimator: DropPresentingAnimator) {
+    init(presentedViewController: UIViewController, presentingViewController: UIViewController?, overlayViewStyle: OverlayViewStyle, dropPresentingAnimator: DropPresentingAnimator) {
         super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController, overlayViewStyle: overlayViewStyle)
         
         self.dropPresentingAnimator = dropPresentingAnimator

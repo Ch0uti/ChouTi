@@ -138,7 +138,7 @@ extension Animator : UIViewControllerTransitioningDelegate {
 	}
     
     // MARK: - Getting the Custom Presentation Controller
-    public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+    public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
         return nil
     }
 }

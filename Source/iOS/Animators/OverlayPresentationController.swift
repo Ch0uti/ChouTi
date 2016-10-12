@@ -49,7 +49,7 @@ public class OverlayPresentationController: UIPresentationController {
     private var dismissTapGesture: UITapGestureRecognizer?
     
     // MARK: - Init Methods
-    init(presentedViewController: UIViewController, presentingViewController: UIViewController, overlayViewStyle: OverlayViewStyle) {
+    init(presentedViewController: UIViewController, presentingViewController: UIViewController?, overlayViewStyle: OverlayViewStyle) {
         super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController)
         
         self.overlayViewStyle = overlayViewStyle
