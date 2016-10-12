@@ -62,10 +62,10 @@ public extension UIView {
                 }
             }
             
-            UIView.animateWithDuration(duration, animations: { [weak self] in
-                self?.alpha = toHide ? 0.0 : 1.0
-			}, completion: { [weak self] (finished) -> Void in
-				self?.hidden = toHide
+            UIView.animateWithDuration(duration, animations: { _ in
+                self.alpha = toHide ? 0.0 : 1.0
+			}, completion: { finished -> Void in
+				self.hidden = toHide
 				completion?(finished)
             })
         }
