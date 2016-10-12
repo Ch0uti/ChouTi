@@ -81,8 +81,8 @@ class DropDownMenuAnimator: Animator {
 		})
 	}
     
-    override func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        let presentationController = DropDownMenuPresentationController(presentedViewController: presented, presentingViewController: presenting, overlayViewStyle: overlayViewStyle)
+    override func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
+        let presentationController = DropDownMenuPresentationController(presentedViewController: presented, presentingViewController: presenting!, overlayViewStyle: overlayViewStyle)
         presentationController.shouldDismissOnTappingOutsideView = shouldDismissOnTappingOutsideView
         presentationController.shouldDimPresentedView = shouldDimPresentedView
         

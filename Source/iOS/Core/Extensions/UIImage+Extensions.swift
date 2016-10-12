@@ -54,8 +54,8 @@ public extension UIImage {
         
         // Draw image with CGImage and add mask
         let rect = CGRect(x: 0, y: 0, width: size.width * scale, height: size.height * scale)
-        CGContextDrawImage(context, rect, CGImage)
-        CGContextClipToMask(context, rect, CGImage)
+        CGContextDrawImage(context, rect, CGImage!)
+        CGContextClipToMask(context, rect, CGImage!)
         
         // Translate and flip graphic to ULO
         context.flipCoordinatesVertically()
@@ -69,13 +69,13 @@ public extension UIImage {
         let startPoint = CGPoint(x: size.width * scale * startPoint.x, y: size.height * scale * startPoint.y)
         let endPoint = CGPoint(x: size.width * scale * endPoint.x, y: size.height * scale * endPoint.y)
         let drawingOptions = CGGradientDrawingOptions([.DrawsBeforeStartLocation, .DrawsAfterEndLocation])
-        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, drawingOptions)
+        CGContextDrawLinearGradient(context, gradient!, startPoint, endPoint, drawingOptions)
         
         let gradientImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
-        return gradientImage
+        return gradientImage!
     }
 }
 
@@ -117,7 +117,7 @@ public extension UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
-        return newImage
+        return newImage!
     }
 }
 
@@ -138,19 +138,19 @@ public extension UIImage {
         let context = UIGraphicsGetCurrentContext()
         let rect = CGRect(origin: CGPoint.zero, size: size)
         
-        CGContextSetFillColorWithColor(context, fillColor.CGColor)
-        CGContextFillRect(context, rect)
+        CGContextSetFillColorWithColor(context!, fillColor.CGColor)
+        CGContextFillRect(context!, rect)
         
         if let borderColor = borderColor where borderWidth > 0.0 {
-            CGContextSetStrokeColorWithColor(context, borderColor.CGColor)
-            CGContextSetLineWidth(context, borderWidth * UIScreen.mainScreen().scale)
-            CGContextStrokeRect(context, rect)
+            CGContextSetStrokeColorWithColor(context!, borderColor.CGColor)
+            CGContextSetLineWidth(context!, borderWidth * UIScreen.mainScreen().scale)
+            CGContextStrokeRect(context!, rect)
         }
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return image
+        return image!
     }
 }
 
@@ -169,16 +169,16 @@ public extension UIImage {
         
         let area: CGRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
-        CGContextScaleCTM(ctx, 1, -1)
-        CGContextTranslateCTM(ctx, 0, -area.size.height)
-        CGContextSetBlendMode(ctx, .Multiply)
-        CGContextSetAlpha(ctx, alpha)
-        CGContextDrawImage(ctx, area, CGImage)
+        CGContextScaleCTM(ctx!, 1, -1)
+        CGContextTranslateCTM(ctx!, 0, -area.size.height)
+        CGContextSetBlendMode(ctx!, .Multiply)
+        CGContextSetAlpha(ctx!, alpha)
+        CGContextDrawImage(ctx!, area, CGImage!)
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
 	
 	/**
@@ -192,24 +192,24 @@ public extension UIImage {
 		UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
 		let ctx = UIGraphicsGetCurrentContext()
 		
-		CGContextTranslateCTM(ctx, 0, size.height)
-		CGContextScaleCTM(ctx, 1.0, -1.0)
+		CGContextTranslateCTM(ctx!, 0, size.height)
+		CGContextScaleCTM(ctx!, 1.0, -1.0)
 		
 		let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
 		
 		// Draw alpha-mask
-		CGContextSetBlendMode(ctx, .Normal)
-		CGContextDrawImage(ctx, rect, CGImage)
+		CGContextSetBlendMode(ctx!, .Normal)
+		CGContextDrawImage(ctx!, rect, CGImage!)
 		
 		// Draw tint color, preserving alpha values of original image
-		CGContextSetBlendMode(ctx, .SourceIn)
+		CGContextSetBlendMode(ctx!, .SourceIn)
 		tintColor.setFill()
-		CGContextFillRect(ctx, rect)
+		CGContextFillRect(ctx!, rect)
 		
 		let newImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 		
-		return newImage
+		return newImage!
 	}
 	
 	/**
@@ -228,7 +228,7 @@ public extension UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     /**
@@ -244,7 +244,7 @@ public extension UIImage {
                           y: rect.origin.y * scale,
                           width: rect.width * scale,
                           height: rect.height * scale)
-        guard let imageRef = CGImageCreateWithImageInRect(self.CGImage, rect) else { return nil }
+        guard let imageRef = CGImageCreateWithImageInRect(self.CGImage!, rect) else { return nil }
         let croppedImage = UIImage(CGImage: imageRef, scale: scale, orientation: imageOrientation)
         return croppedImage
     }
@@ -265,37 +265,37 @@ public extension UIImage {
         // Ref: http://stackoverflow.com/a/15153062/3164091
         // Ref: http://trandangkhoa.blogspot.ca/2009/07/iphone-os-drawing-image-and-stupid.html
         // Save current status of graphics context
-        CGContextSaveGState(context)
+        CGContextSaveGState(context!)
         
         // Do stupid stuff to draw the image correctly
-        CGContextTranslateCTM(context, 0, size.height)
-        CGContextScaleCTM(context, 1.0, -1.0)
+        CGContextTranslateCTM(context!, 0, size.height)
+        CGContextScaleCTM(context!, 1.0, -1.0)
         
         if imageOrientation == .Left {
-            CGContextRotateCTM(context, CGFloat(M_PI) / 2)
-            CGContextTranslateCTM(context, 0, -size.width)
+            CGContextRotateCTM(context!, CGFloat(M_PI) / 2)
+            CGContextTranslateCTM(context!, 0, -size.width)
         } else if imageOrientation == .Right {
-            CGContextRotateCTM(context, -CGFloat(M_PI) / 2)
-            CGContextTranslateCTM(context, -size.height, 0)
+            CGContextRotateCTM(context!, -CGFloat(M_PI) / 2)
+            CGContextTranslateCTM(context!, -size.height, 0)
         } else if imageOrientation == .Up {
             // Do nothing
         } else if imageOrientation == .Down {
-            CGContextTranslateCTM(context, size.width, size.height)
-            CGContextRotateCTM(context, CGFloat(M_PI))
+            CGContextTranslateCTM(context!, size.width, size.height)
+            CGContextRotateCTM(context!, CGFloat(M_PI))
         }
         
-        CGContextDrawImage(context, imageRect, CGImage)
+        CGContextDrawImage(context!, imageRect, CGImage!)
         
         // After drawing the image, roll back all transformation by restoring the old context
-        CGContextRestoreGState(context)
+        CGContextRestoreGState(context!)
         
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, fillRect)
+        CGContextSetFillColorWithColor(context!, color.CGColor)
+        CGContextFillRect(context!, fillRect)
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return image
+        return image!
     }
 }
 
@@ -319,7 +319,7 @@ public extension UIImage {
         
         let context = createBitmapContext(cgImage)
         
-        let uncastedData = CGBitmapContextGetData(context)
+        let uncastedData = CGBitmapContextGetData(context!)
         let data = UnsafePointer<UInt8>(uncastedData)
         
         let offset = Int(4 * (point.y * width + point.x))
@@ -361,7 +361,7 @@ public extension UIImage {
         
         // draw the image onto the context
         let rect = CGRect(x: 0, y: 0, width: pixelsWide, height: pixelsHigh)
-        CGContextDrawImage(context, rect, image)
+        CGContextDrawImage(context!, rect, image)
         
         return context
     }

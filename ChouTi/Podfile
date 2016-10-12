@@ -7,8 +7,8 @@ def pod_chouti_dependency
 end
 
 def pod_testing
-  pod 'Quick', '0.9.2'
-  pod 'Nimble', '~> 4.0.0'
+  pod 'Quick', '0.9.3'
+  pod 'Nimble', '~> 4.1.0'
 end
 
 # Targets
@@ -24,7 +24,7 @@ end
 
 target 'ChouTi iOS' do
   pod_chouti_dependency
-  pod 'Operations', '~> 3.3.0'
+  pod 'Operations', '~> 3.4.0'
   pod 'Then', '~> 1.0'
 
   target 'ChouTi iOSUITests' do
