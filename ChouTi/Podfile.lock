@@ -1,5 +1,4 @@
 PODS:
-  - LTMorphingLabel (0.2.1)
   - Nimble (4.1.0)
   - Operations (3.1.0):
     - Operations/Standard (= 3.1.0)
@@ -8,19 +7,17 @@ PODS:
   - Then (1.0.3)
 
 DEPENDENCIES:
-  - LTMorphingLabel
   - Nimble
   - Operations
   - Quick
   - Then (~> 1.0)
 
 SPEC CHECKSUMS:
-  LTMorphingLabel: 1858358ea38ef4d548e1f58b648b0d08ec3a62ed
   Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
   Operations: d09dbb1c32ce01061ebbb022c8a955b34fd9ec35
   Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
   Then: c2502b763132c80dfa64d325065d70c45e2d48ca
 
-PODFILE CHECKSUM: 6d896cda3929d6ece87fbba1b74c1ef2d467246f
+PODFILE CHECKSUM: 7db6ba976f7f12f2c9de2a992c57dd434349d9df
 
 COCOAPODS: 1.0.1

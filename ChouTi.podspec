@@ -29,15 +29,14 @@ Pod::Spec.new do |s|
     ss.dependency "ChouTi/Core"
     ss.dependency "ChouTi/Animators"
     ss.dependency "ChouTi/CollectionViewLayouts"
-
     ss.dependency "ChouTi/UI"
-    ss.dependency "ChouTi/UI-Extra"
-    ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
-
     ss.dependency "ChouTi/Utilities"
 
-    # Deprecated
-    # ss.dependency "ChouTi/ThirdParty"
+    # Not compatible with extensions
+    ss.dependency "ChouTi/UI-App-Extension-API-Unsafe"
+
+    # Requires third party dependencies
+    ss.dependency "ChouTi/ThirdParty"
   end
 
   s.subspec "Core" do |ss|
@@ -174,17 +173,6 @@ Pod::Spec.new do |s|
     end
   end
 
-  s.subspec "UI-Extra" do |ss|
-    # "UI Components require Third Party supports"
-    ss.dependency "ChouTi/Core"
-
-    ss.subspec "LoadingMorphingLabel" do |sss|
-      # "Showing a list of text in loop"
-      sss.source_files = 'Source/iOS/UI/LoadingMorphingLabel/*.*'
-      sss.dependency 'LTMorphingLabel'
-    end
-  end
-
   s.subspec "UI-App-Extension-API-Unsafe" do |ss|
     # "UI components which are not app extension compatible"
     ss.dependency "ChouTi/Core"
@@ -210,6 +198,12 @@ Pod::Spec.new do |s|
       # "Extensions on Parse"
       sss.source_files = 'Source/iOS/ThirdParty/Parse/*.*'
       sss.dependency 'Parse'
+    end
+
+    ss.subspec "LoadingMorphingLabel" do |sss|
+      # "Showing a list of text in loop"
+      sss.source_files = 'Source/iOS/ThirdParty/LoadingMorphingLabel/*.*'
+      sss.dependency 'LTMorphingLabel'
     end
   end
 

@@ -121,7 +121,6 @@
 		022773141D6258C900D9CAE7 /* DropDownMenuPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227728A1D6258C900D9CAE7 /* DropDownMenuPresentationController.swift */; };
 		022773151D6258C900D9CAE7 /* DropDownMenuProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227728B1D6258C900D9CAE7 /* DropDownMenuProtocols.swift */; };
 		022773161D6258C900D9CAE7 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227728C1D6258C900D9CAE7 /* ImagePickerView.swift */; };
-		022773171D6258C900D9CAE7 /* LoadingMorphingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227728E1D6258C900D9CAE7 /* LoadingMorphingLabel.swift */; };
 		022773181D6258C900D9CAE7 /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772901D6258C900D9CAE7 /* MenuPageViewController.swift */; };
 		022773191D6258C900D9CAE7 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772911D6258C900D9CAE7 /* MenuView.swift */; };
 		0227731A1D6258C900D9CAE7 /* PgaeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772921D6258C900D9CAE7 /* PgaeViewController.swift */; };
@@ -377,7 +376,6 @@
 		0227728A1D6258C900D9CAE7 /* DropDownMenuPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenuPresentationController.swift; sourceTree = "<group>"; };
 		0227728B1D6258C900D9CAE7 /* DropDownMenuProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownMenuProtocols.swift; sourceTree = "<group>"; };
 		0227728C1D6258C900D9CAE7 /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
-		0227728E1D6258C900D9CAE7 /* LoadingMorphingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingMorphingLabel.swift; sourceTree = "<group>"; };
 		022772901D6258C900D9CAE7 /* MenuPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
 		022772911D6258C900D9CAE7 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		022772921D6258C900D9CAE7 /* PgaeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PgaeViewController.swift; sourceTree = "<group>"; };
@@ -799,7 +797,6 @@
 				022772831D6258C900D9CAE7 /* DatePickerViewController */,
 				022772861D6258C900D9CAE7 /* DropDownMenu */,
 				0227728C1D6258C900D9CAE7 /* ImagePickerView.swift */,
-				0227728D1D6258C900D9CAE7 /* LoadingMorphingLabel */,
 				0227728F1D6258C900D9CAE7 /* MenuPageViewController */,
 				022772931D6258C900D9CAE7 /* NavigationBarStatusBar */,
 				022772961D6258C900D9CAE7 /* PageControl.swift */,
@@ -859,14 +856,6 @@
 				0227728B1D6258C900D9CAE7 /* DropDownMenuProtocols.swift */,
 			);
 			path = DropDownMenu;
-			sourceTree = "<group>";
-		};
-		0227728D1D6258C900D9CAE7 /* LoadingMorphingLabel */ = {
-			isa = PBXGroup;
-			children = (
-				0227728E1D6258C900D9CAE7 /* LoadingMorphingLabel.swift */,
-			);
-			path = LoadingMorphingLabel;
 			sourceTree = "<group>";
 		};
 		0227728F1D6258C900D9CAE7 /* MenuPageViewController */ = {
@@ -1684,7 +1673,6 @@
 				022772F81D6258C900D9CAE7 /* StructWrapper.swift in Sources */,
 				022772C41D6258C900D9CAE7 /* CodeSnippets_ImageAsset.swift in Sources */,
 				022772BD1D6258C900D9CAE7 /* CodeSnippet_UITableView.swift in Sources */,
-				022773171D6258C900D9CAE7 /* LoadingMorphingLabel.swift in Sources */,
 				0223853B1D83608000FE4195 /* NSLayoutConstraint+Retrieve.swift in Sources */,
 				022772AC1D6258C900D9CAE7 /* Animator.swift in Sources */,
 				022773221D6258C900D9CAE7 /* SingleTitleContentPairView.swift in Sources */,
