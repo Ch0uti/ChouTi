@@ -2,19 +2,13 @@ platform :ios, '9.0'
 use_frameworks!
 
 # Pods
-def pod_chouti_dependency
-
-end
-
 def pod_testing
-  pod 'Quick', '0.9.3'
-  pod 'Nimble', '~> 4.1.0'
+  pod 'Quick', '0.10'
+  pod 'Nimble', '~> 5.1'
 end
 
 # Targets
 target 'ChouTi' do
-  pod_chouti_dependency
-
   target 'ChouTiTests' do
     inherit! :search_paths
     pod_testing
@@ -23,9 +17,7 @@ target 'ChouTi' do
 end
 
 target 'ChouTi iOS' do
-  pod_chouti_dependency
-  pod 'Operations', '~> 3.4.0'
-  pod 'Then', '~> 1.0'
+  pod 'Then', '~> 2.1'
 
   target 'ChouTi iOSUITests' do
     inherit! :search_paths

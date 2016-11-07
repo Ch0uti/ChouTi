@@ -183,7 +183,6 @@
 		025C91AB1D64007F000C54D8 /* DropPresentingDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C918E1D64007F000C54D8 /* DropPresentingDemoViewController.swift */; };
 		025C91AC1D64007F000C54D8 /* HideNavigationBarBottomLineDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C918F1D64007F000C54D8 /* HideNavigationBarBottomLineDemoViewController.swift */; };
 		025C91AD1D64007F000C54D8 /* LeadingTrailingVSLeftRightDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91901D64007F000C54D8 /* LeadingTrailingVSLeftRightDemoViewController.swift */; };
-		025C91AF1D64007F000C54D8 /* OperationsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91921D64007F000C54D8 /* OperationsDemoViewController.swift */; };
 		025C91B01D64007F000C54D8 /* TableLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91931D64007F000C54D8 /* TableLayoutDemoViewController.swift */; };
 		025C91B11D64007F000C54D8 /* TableViewSectionRowExtensionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91941D64007F000C54D8 /* TableViewSectionRowExtensionDemoViewController.swift */; };
 		025C91B21D64007F000C54D8 /* bear1.png in Resources */ = {isa = PBXBuildFile; fileRef = 025C91981D64007F000C54D8 /* bear1.png */; };
@@ -441,7 +440,6 @@
 		025C918E1D64007F000C54D8 /* DropPresentingDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropPresentingDemoViewController.swift; sourceTree = "<group>"; };
 		025C918F1D64007F000C54D8 /* HideNavigationBarBottomLineDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNavigationBarBottomLineDemoViewController.swift; sourceTree = "<group>"; };
 		025C91901D64007F000C54D8 /* LeadingTrailingVSLeftRightDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeadingTrailingVSLeftRightDemoViewController.swift; sourceTree = "<group>"; };
-		025C91921D64007F000C54D8 /* OperationsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsDemoViewController.swift; sourceTree = "<group>"; };
 		025C91931D64007F000C54D8 /* TableLayoutDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		025C91941D64007F000C54D8 /* TableViewSectionRowExtensionDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSectionRowExtensionDemoViewController.swift; sourceTree = "<group>"; };
 		025C91981D64007F000C54D8 /* bear1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bear1.png; sourceTree = "<group>"; };
@@ -1107,7 +1105,6 @@
 				025C91931D64007F000C54D8 /* TableLayoutDemoViewController.swift */,
 				025C918F1D64007F000C54D8 /* HideNavigationBarBottomLineDemoViewController.swift */,
 				025C91941D64007F000C54D8 /* TableViewSectionRowExtensionDemoViewController.swift */,
-				025C91921D64007F000C54D8 /* OperationsDemoViewController.swift */,
 				025C91901D64007F000C54D8 /* LeadingTrailingVSLeftRightDemoViewController.swift */,
 				025C91951D64007F000C54D8 /* UIImage+Extensions Demo */,
 			);
@@ -1595,7 +1592,6 @@
 				025C91C41D64007F000C54D8 /* UIImage+ExtensionsDemo.swift in Sources */,
 				025C91831D63F9D9000C54D8 /* DummyViewController.swift in Sources */,
 				025C91771D63F79C000C54D8 /* DatePickerControllerDemoViewController.swift in Sources */,
-				025C91AF1D64007F000C54D8 /* OperationsDemoViewController.swift in Sources */,
 				025C91C61D64016C000C54D8 /* MiscellaneousSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
