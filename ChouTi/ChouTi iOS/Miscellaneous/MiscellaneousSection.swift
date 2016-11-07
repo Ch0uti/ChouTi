@@ -43,13 +43,6 @@ struct MiscellaneousSection: TableViewSectionType {
                     cell?.tableView?.presentingViewController?.showViewController(TableViewSectionRowExtensionDemoViewController(), sender: nil)
             }),
             
-            TableViewRow(title: "Operations",
-                subtitle: "Demo for using Operations (NSOperations)",
-                cellSelectAction: { indexPath, cell, tableView in
-                    cell?.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
-                    cell?.tableView?.presentingViewController?.showViewController(OperationsDemoViewController(), sender: nil)
-            }),
-            
             TableViewRow(title: "Auto Layout: Leading/Trailing vs. Left/Right",
                 subtitle: "Demo for Leading vs Trailing",
                 cellSelectAction: { indexPath, cell, tableView in
