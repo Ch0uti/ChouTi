@@ -67,7 +67,7 @@ public extension UIView {
     /// leading of frame, in Right-to-Left, leading is right
     public var leading: CGFloat {
         get {
-            if UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(semanticContentAttribute) == .LeftToRight {
+            if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight {
                 return frame.left
             } else {
                 return frame.right
@@ -75,7 +75,7 @@ public extension UIView {
         }
         
         set {
-            if UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(semanticContentAttribute) == .LeftToRight {
+            if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight {
                 return frame.left = newValue
             } else {
                 return frame.right = newValue
@@ -86,7 +86,7 @@ public extension UIView {
     /// trailing of frame, in Right-to-Left, trailing is left
     public var trailing: CGFloat {
         get {
-            if UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(semanticContentAttribute) == .LeftToRight {
+            if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight {
                 return frame.right
             } else {
                 return frame.left
@@ -94,7 +94,7 @@ public extension UIView {
         }
         
         set {
-            if UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(semanticContentAttribute) == .LeftToRight {
+            if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight {
                 return frame.right = newValue
             } else {
                 return frame.left = newValue

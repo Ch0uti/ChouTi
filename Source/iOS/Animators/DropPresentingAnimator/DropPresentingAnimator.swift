@@ -21,28 +21,28 @@
 
 import UIKit
 
-public class DropPresentingAnimator: Animator {
+open class DropPresentingAnimator: Animator {
 	
 	public override init() {
 		super.init()
 		animationDuration = 0.5
 	}
 	
-    public var presentingViewSize = CGSize(width: 300, height: 200)
+    open var presentingViewSize = CGSize(width: 300, height: 200)
 	
-	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.85))
+	open var overlayViewStyle: OverlayViewStyle = .blurred(.dark, UIColor(white: 0.0, alpha: 0.85))
 	
 	/// Whether presenting view should be dimmed when preseting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.
-	public var shouldDimPresentedView: Bool = false
+	open var shouldDimPresentedView: Bool = false
 	
 	// Tap to dismiss
-	public var shouldDismissOnTappingOutsideView: Bool = true
+	open var shouldDismissOnTappingOutsideView: Bool = true
 	
 	// Drag to dismiss (interactive)
-	public var allowDragToDismiss: Bool = false
+	open var allowDragToDismiss: Bool = false
 	
 	// MARK: - Private
-    private weak var presentationController: DropPresentingPresentationController?
+    fileprivate weak var presentationController: DropPresentingPresentationController?
 	var interactiveAnimationDraggingRange: CGFloat?
 	var interactiveAnimationTransformAngel: CGFloat?
 }
@@ -51,8 +51,8 @@ public class DropPresentingAnimator: Animator {
 
 // MARK: - UIViewControllerAnimatedTransitioning
 extension DropPresentingAnimator {
-	public override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-		super.animateTransition(transitionContext)
+	public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+		super.animateTransition(using: transitionContext)
 		
 		if presenting {
 			presentingAnimation(transitionContext)
@@ -61,7 +61,7 @@ extension DropPresentingAnimator {
 		}
 	}
 	
-	private func presentingAnimation(transitionContext: UIViewControllerContextTransitioning?) {
+	fileprivate func presentingAnimation(_ transitionContext: UIViewControllerContextTransitioning?) {
 		// Necessary setup for presenting
 		guard let transitionContext = transitionContext else {
 			NSLog("Error: transitionContext is nil")
@@ -75,22 +75,22 @@ extension DropPresentingAnimator {
 				return
 		}
 		
-		presentedView.bounds = CGRect(origin: CGPointZero, size: presentingViewSize)
+		presentedView.bounds = CGRect(origin: CGPoint.zero, size: presentingViewSize)
 		presentedView.center = CGPoint(x: containerView.bounds.width / 2.0, y: 0 - presentingViewSize.height / 2.0)
-		presentedView.transform = CGAffineTransformMakeRotation((CGFloat.random(-15, 15) * CGFloat(M_PI)) / 180.0)
+		presentedView.transform = CGAffineTransform(rotationAngle: (CGFloat.random(-15, 15) * CGFloat(M_PI)) / 180.0)
 		
 		containerView.addSubview(presentedView)
         
 		// Presenting animations
-		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+		UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
 			presentedView.center = containerView.center
-			presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
+			presentedView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat(M_PI)) / 180.0)
 			}, completion: { finished -> Void in
 				transitionContext.completeTransition(finished)
 		})
 	}
 	
-	private func dismissingAnimation(transitionContext: UIViewControllerContextTransitioning?, percentComplete: CGFloat) {
+	fileprivate func dismissingAnimation(_ transitionContext: UIViewControllerContextTransitioning?, percentComplete: CGFloat) {
 		// Necessary setup for dismissing
 		guard let transitionContext = transitionContext else {
 			NSLog("Error: transitionContext is nil")
@@ -105,15 +105,15 @@ extension DropPresentingAnimator {
 		}
 		
 		// Dismissing animations
-		UIView.animateWithDuration(animationDuration * Double(1.0 - percentComplete), delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: {
+		UIView.animate(withDuration: animationDuration * Double(1.0 - percentComplete), delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
 			fromView.center = CGPoint(x: containerView.bounds.width / 2.0, y: containerView.bounds.height + self.presentingViewSize.height)
-			fromView.transform = CGAffineTransformMakeRotation((self.interactiveAnimationTransformAngel ?? CGFloat.random(-15, 15) * CGFloat(M_PI)) / 180.0)
+			fromView.transform = CGAffineTransform(rotationAngle: (self.interactiveAnimationTransformAngel ?? CGFloat.random(-15, 15) * CGFloat(M_PI)) / 180.0)
 			}, completion: { finished -> Void in
 				transitionContext.completeTransition(finished)
 		})
 	}
 	
-	public override func animationEnded(transitionCompleted: Bool) {
+	public override func animationEnded(_ transitionCompleted: Bool) {
 		interactiveAnimationDraggingRange = nil
 		interactiveAnimationTransformAngel = nil
 		
@@ -125,7 +125,7 @@ extension DropPresentingAnimator {
 // MARK: - UIViewControllerInteractiveTransitioning
 extension DropPresentingAnimator {
     // MARK: - Interactive Animations
-    func updateInteractiveTransition(draggingLocation: CGPoint, percentComplete: CGFloat) {
+    func updateInteractiveTransition(_ draggingLocation: CGPoint, percentComplete: CGFloat) {
         if transitionContext == nil {
             NSLog("Error: transitionContext is nil")
         }
@@ -152,10 +152,10 @@ extension DropPresentingAnimator {
         let beginPoint = containerView.center
         
         fromView.center = CGPoint(x: beginPoint.x, y: beginPoint.y + yOffset)
-        fromView.transform = CGAffineTransformMakeRotation(interactiveAnimationTransformAngel.toRadians() *  percentComplete)
+        fromView.transform = CGAffineTransform(rotationAngle: interactiveAnimationTransformAngel.toRadians() *  percentComplete)
     }
     
-    func cancelInteractiveTransition(percentComplete: CGFloat) {
+    func cancelInteractiveTransition(_ percentComplete: CGFloat) {
         if transitionContext == nil {
             NSLog("Error: transitionContext is nil")
         }
@@ -180,16 +180,16 @@ extension DropPresentingAnimator {
         // Set a minimum duration, at least has 20% of animation duration.
         let duration = (animationDuration * Double(percentComplete)).normalize(animationDuration * 0.2, animationDuration)
         
-        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             presentedView.center = containerView.center
-            presentedView.transform = CGAffineTransformMakeRotation((0.0 * CGFloat(M_PI)) / 180.0)
+            presentedView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat(M_PI)) / 180.0)
         }, completion: { [weak self] finished in
             self?.presentedViewController?.endAppearanceTransition()
             self?.transitionContext?.completeTransition(false)
         })
     }
     
-    func finishInteractiveTransition(percentComplete: CGFloat) {
+    func finishInteractiveTransition(_ percentComplete: CGFloat) {
         if transitionContext == nil {
             NSLog("Warning: transitionContext is nil")
         }
@@ -202,7 +202,7 @@ extension DropPresentingAnimator {
 }
 
 extension DropPresentingAnimator {
-    public override func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
+    public override func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let presentationController = DropPresentingPresentationController(presentedViewController: presented, presentingViewController: presenting, overlayViewStyle: overlayViewStyle, dropPresentingAnimator: self)
         presentationController.shouldDismissOnTappingOutsideView = shouldDismissOnTappingOutsideView
         presentationController.shouldDimPresentedView = shouldDimPresentedView

@@ -20,7 +20,7 @@ class TableCollectionViewSeparatorView: UICollectionReusableView {
         commonInit()
     }
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         backgroundColor = TableCollectionViewSeparatorView.separatorColor
     }
 }

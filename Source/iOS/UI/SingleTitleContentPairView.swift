@@ -8,19 +8,19 @@
 
 import UIKit
 
-public class SingleTitleContentPairView: UIView {
-	public let titleLabel = UILabel()
-	public let contentLabel = UILabel()
+open class SingleTitleContentPairView: UIView {
+	open let titleLabel = UILabel()
+	open let contentLabel = UILabel()
 	
-	public var horizontalSpacing: CGFloat = 8.0 {
+	open var horizontalSpacing: CGFloat = 8.0 {
 		didSet {
 			horizontalSpacingEqualConstraint?.constant = -horizontalSpacing
 			horizontalSpacingGreaterThanConstraint?.constant = -horizontalSpacing
 		}
 	}
 	
-	private var horizontalSpacingEqualConstraint: NSLayoutConstraint?
-	private var horizontalSpacingGreaterThanConstraint: NSLayoutConstraint?
+	fileprivate var horizontalSpacingEqualConstraint: NSLayoutConstraint?
+	fileprivate var horizontalSpacingGreaterThanConstraint: NSLayoutConstraint?
 	
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -32,21 +32,21 @@ public class SingleTitleContentPairView: UIView {
 		commonInit()
 	}
 	
-	private func commonInit() {
+	fileprivate func commonInit() {
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(titleLabel)
-		titleLabel.font = UIFont.boldSystemFontOfSize(14)
+		titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
 		titleLabel.text = "Title"
 		
 		contentLabel.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(contentLabel)
-		contentLabel.font = UIFont.systemFontOfSize(14)
+		contentLabel.font = UIFont.systemFont(ofSize: 14)
 		contentLabel.text = "Content"
 		
 		setupConstraints()
 	}
 	
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		let views = [
 			"titleLabel" : titleLabel,
 			"contentLabel" : contentLabel
@@ -58,19 +58,19 @@ public class SingleTitleContentPairView: UIView {
 		
 		var constraints = [NSLayoutConstraint]()
 		
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[titleLabel]", options: [], metrics: metrics, views: views)
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:[contentLabel]-|", options: [], metrics: metrics, views: views)
-		constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .LastBaseline, relatedBy: .Equal, toItem: contentLabel, attribute: .LastBaseline, multiplier: 1.0, constant: 0.0))
-		horizontalSpacingEqualConstraint = NSLayoutConstraint(item: titleLabel, attribute: .Trailing, relatedBy: .Equal, toItem: contentLabel, attribute: .Leading, multiplier: 1.0, constant: -horizontalSpacing)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]", options: [], metrics: metrics, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:[contentLabel]-|", options: [], metrics: metrics, views: views)
+		constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .lastBaseline, relatedBy: .equal, toItem: contentLabel, attribute: .lastBaseline, multiplier: 1.0, constant: 0.0))
+		horizontalSpacingEqualConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: contentLabel, attribute: .leading, multiplier: 1.0, constant: -horizontalSpacing)
 		horizontalSpacingEqualConstraint!.priority = 750
 		
-		horizontalSpacingGreaterThanConstraint = NSLayoutConstraint(item: titleLabel, attribute: .Trailing, relatedBy: .GreaterThanOrEqual, toItem: contentLabel, attribute: .Leading, multiplier: 1.0, constant: -horizontalSpacing)
+		horizontalSpacingGreaterThanConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .greaterThanOrEqual, toItem: contentLabel, attribute: .leading, multiplier: 1.0, constant: -horizontalSpacing)
 		
 		constraints.append(horizontalSpacingEqualConstraint!)
 		constraints.append(horizontalSpacingGreaterThanConstraint!)
 		
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[titleLabel]-|", options: [], metrics: metrics, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[titleLabel]-|", options: [], metrics: metrics, views: views)
 		
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
 }

@@ -10,16 +10,16 @@ import UIKit
 public extension UINavigationBar {
     public func hideBottomHairline() {
         let navigationBarImageView = hairlineImageViewInNavigationBar(self)
-        navigationBarImageView?.hidden = true
+        navigationBarImageView?.isHidden = true
     }
     
     public func showBottomHairline() {
         let navigationBarImageView = hairlineImageViewInNavigationBar(self)
-        navigationBarImageView?.hidden = false
+        navigationBarImageView?.isHidden = false
     }
     
-    private func hairlineImageViewInNavigationBar(view: UIView) -> UIImageView? {
-        if let view = view as? UIImageView where view.bounds.height <= 1.0 {
+    private func hairlineImageViewInNavigationBar(_ view: UIView) -> UIImageView? {
+        if let view = view as? UIImageView, view.bounds.height <= 1.0 {
             return view
         }
         
@@ -45,7 +45,8 @@ public extension UINavigationBar {
                     titleTextAttributes = [NSForegroundColorAttributeName : titleTextColor]
                 }
             } else {
-                titleTextAttributes?.removeValueForKey(NSForegroundColorAttributeName)
+				// FIXME: revist it when Xcode 8.2
+                let _ = titleTextAttributes?.removeValue(forKey: NSForegroundColorAttributeName)
             }
         }
         
@@ -67,7 +68,7 @@ public extension UINavigationBar {
                     titleTextAttributes = [NSFontAttributeName : titleTextFont]
                 }
             } else {
-                titleTextAttributes?.removeValueForKey(NSFontAttributeName)
+                let _ = titleTextAttributes?.removeValue(forKey: NSFontAttributeName)
             }
         }
         
@@ -84,12 +85,12 @@ public extension UINavigationBar {
 
 // MARK: - Transparent
 public extension UINavigationBar {
-    public func setToTransparent(transparent: Bool) {
+    public func setToTransparent(_ transparent: Bool) {
         if transparent {
-            setBackgroundImage(UIImage(), forBarMetrics: .Default)
+            setBackgroundImage(UIImage(), for: .default)
             shadowImage = UIImage()
         } else {
-            setBackgroundImage(nil, forBarMetrics: .Default)
+            setBackgroundImage(nil, for: .default)
             shadowImage = nil
         }
     }

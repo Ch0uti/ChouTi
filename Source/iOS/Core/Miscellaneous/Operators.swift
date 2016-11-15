@@ -11,11 +11,7 @@ import Foundation
 /**
  *  Optional Assignment Operator
  */
-infix operator =? {
-    associativity right
-    precedence 90
-    assignment
-}
+infix operator =? : AssignmentPrecedence
 
 /**
  Optional Assignment Operator
@@ -26,7 +22,7 @@ infix operator =? {
  - parameter lhs: a non-optional varaible of a given type T
  - parameter rhs: an optional value of type T?
  */
-public func =? <T>(inout lhs: T, rhs: T?) {
+public func =? <T>(lhs: inout T, rhs: T?) {
     guard let rhs = rhs else { return }
     lhs = rhs
 }
@@ -40,7 +36,7 @@ public func =? <T>(inout lhs: T, rhs: T?) {
  - parameter lhs: a non-optional varaible of a given type T
  - parameter rhs: an optional value of type T?
  */
-public func =? <T>(inout lhs: T?, rhs: T?) {
+public func =? <T>(lhs: inout T?, rhs: T?) {
     guard let rhs = rhs else { return }
     lhs = rhs
 }
@@ -48,12 +44,8 @@ public func =? <T>(inout lhs: T?, rhs: T?) {
 /**
  *  Power Operator
  */
-infix operator ** {
-    associativity none
-    precedence 160
-}
+infix operator ** : MultiplicationPrecedence
 
-@warn_unused_result
 /**
  Compute base raised to the power power.
  

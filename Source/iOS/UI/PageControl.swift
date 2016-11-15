@@ -8,17 +8,17 @@
 
 import UIKit
 
-public class PageControl: UIControl {
+open class PageControl: UIControl {
     
-    private var _currentPage: Int = 0 { didSet { sendActionsForControlEvents(.ValueChanged) } }
+    fileprivate var _currentPage: Int = 0 { didSet { sendActions(for: .valueChanged) } }
     /// The current page, shown by the receiver as a white dot.
-    public var currentPage: Int {
+    open var currentPage: Int {
         get { return _currentPage }
         set { set(currentPage: newValue, animated: false) }
     }
     
     /// The number of pages the receiver shows (as dots).
-    public var numberOfPages: Int = 0 {
+    open var numberOfPages: Int = 0 {
         didSet {
             precondition(numberOfPages >= 0, "number of pages must a postive number")
             _currentPage.normalizeInPlace(0, numberOfPages)
@@ -27,21 +27,21 @@ public class PageControl: UIControl {
     }
     
     /// The tint color to be used for the page indicator.
-    public var pageIndicatorTintColor: UIColor = UIColor(white: 1.0, alpha: 0.2) {
+    open var pageIndicatorTintColor: UIColor = UIColor(white: 1.0, alpha: 0.2) {
         didSet {
-            dots.forEach { $0.backgroundColor = pageIndicatorTintColor.CGColor }
+            dots.forEach { $0.backgroundColor = pageIndicatorTintColor.cgColor }
         }
     }
     
     /// The tint color to be used for the current page indicator.
-    public var currentPageIndicatorTintColor: UIColor = UIColor.whiteColor() {
+    open var currentPageIndicatorTintColor: UIColor = UIColor.white {
         didSet {
-			currentDot.backgroundColor = currentPageIndicatorTintColor.CGColor
+			currentDot.backgroundColor = currentPageIndicatorTintColor.cgColor
         }
     }
     
     /// Page indicator size/
-    public var pageIndicatorSize: CGFloat = 7.0 {
+    open var pageIndicatorSize: CGFloat = 7.0 {
         didSet {
             if oldValue == pageIndicatorSize { return }
             currentDot.bounds = CGRect(x: 0, y: 0, width: pageIndicatorSize, height: pageIndicatorSize)
@@ -60,7 +60,7 @@ public class PageControl: UIControl {
     }
     
     /// Spacings between two indicators.
-    public var pageIndicatorSpacing: CGFloat = 9.0 {
+    open var pageIndicatorSpacing: CGFloat = 9.0 {
         didSet {
             if oldValue == pageIndicatorSpacing { return }
             if setCurrentPageIsInProgress {
@@ -75,7 +75,7 @@ public class PageControl: UIControl {
     }
     
     /// scrollView the page control binds
-    public weak var scrollView: UIScrollView? {
+    open weak var scrollView: UIScrollView? {
         didSet {
             if let oldScrollView = oldValue {
                 scrollViewObserver.removeObservation(oldScrollView, forKeyPath: "contentOffset")
@@ -89,19 +89,19 @@ public class PageControl: UIControl {
         }
     }
     
-    lazy private var scrollViewObserver: Observer = Observer()
+    lazy fileprivate var scrollViewObserver: Observer = Observer()
     
     // MARK: - Private
     /// Unhighlighted indicators
-    private var dots: [CAShapeLayer] = []
+    fileprivate var dots: [CAShapeLayer] = []
     
     /// Highlighted indicator
-    private var currentDot = CAShapeLayer()
+    fileprivate var currentDot = CAShapeLayer()
     
-    private let animationDuration: NSTimeInterval = 0.333
+    fileprivate let animationDuration: TimeInterval = 0.333
     
     /// true if current page index is being set in progress.
-    private var setCurrentPageIsInProgress: Bool = false
+    fileprivate var setCurrentPageIsInProgress: Bool = false
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -112,15 +112,15 @@ public class PageControl: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         setupDots()
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         guard numberOfPages > 0 else { return }
         
-        for (index, dot) in dots.enumerate() {
+        for (index, dot) in dots.enumerated() {
             dot.position = center(forIndex: index)
             dot.removeAllAnimations()
         }
@@ -131,14 +131,14 @@ public class PageControl: UIControl {
         currentDot.removeAllAnimations()
     }
     
-    public override func intrinsicContentSize() -> CGSize {
+    open override var intrinsicContentSize : CGSize {
         let width = lengthFromFirstDotCenterToLastDotCenter + spacingBetweenDotCenter * 2
         let height = max(pageIndicatorSpacing * 2, 37)
         
         return CGSize(width: width, height: height)
     }
     
-    public override func removeFromSuperview() {
+    open override func removeFromSuperview() {
         scrollView = nil
         super.removeFromSuperview()
     }
@@ -156,7 +156,7 @@ extension PageControl {
      - parameter currentPage: New page index.
      - parameter animated:    animated or not.
      */
-    public func set(currentPage currentPage: Int, animated: Bool) {
+    public func set(currentPage: Int, animated: Bool) {
         set(currentPage: currentPage, progress: 1.0, animated: animated)
         
         // update scroll view content offset
@@ -166,7 +166,7 @@ extension PageControl {
             
             // updating currentPage will also update scrollView's contentOffset, however, we don't want the observation cause setting current page again. Thus, pasue observation for the moment.
             scrollViewObserver.pauseObservation = true
-            UIView.animateWithDuration(animationDuration, animations: { 
+            UIView.animate(withDuration: animationDuration, animations: { 
                 scrollView.contentOffset = contentOffset
                 }, completion: { [weak self] _ in
                     // restore the contentOffset observation once animated setting contentOffset ends.
@@ -182,12 +182,12 @@ extension PageControl {
      - parameter currentPage: New page index.
      - parameter progress:    Progress from current index to new index, 0 to 1, inclusive.
      */
-    public func set(currentPage currentPage: Int, progress: CGFloat) {
+    public func set(currentPage: Int, progress: CGFloat) {
         let progress = progress.normalize()
         set(currentPage: currentPage, progress: progress, animated: false)
     }
     
-    private func set(currentPage currentPage: Int, progress: CGFloat, animated: Bool) {
+    fileprivate func set(currentPage: Int, progress: CGFloat, animated: Bool) {
         // sanitize new current page
         let currentPage = currentPage.normalize(0, numberOfPages - 1)
         
@@ -227,11 +227,11 @@ extension PageControl {
         if animated {
             // add animations
             let sizeAnimation = CAKeyframeAnimation(keyPath: "bounds.size")
-            sizeAnimation.values = [NSValue(CGSize: indicatorSize), NSValue(CGSize: mostlyExpandedSize), NSValue(CGSize: indicatorSize)]
+            sizeAnimation.values = [NSValue(cgSize: indicatorSize), NSValue(cgSize: mostlyExpandedSize), NSValue(cgSize: indicatorSize)]
             sizeAnimation.keyTimes = [0.0, 0.5, 1.0]
             
             let positionAnimation = CAKeyframeAnimation(keyPath: "position")
-            positionAnimation.values = [NSValue(CGPoint: fromPosition), NSValue(CGPoint: toPosition)]
+            positionAnimation.values = [NSValue(cgPoint: fromPosition), NSValue(cgPoint: toPosition)]
             positionAnimation.keyTimes = [0.0, 1.0]
             
             let groupAnimation = CAAnimationGroup()
@@ -240,7 +240,7 @@ extension PageControl {
             groupAnimation.fillMode = kCAFillModeBackwards
             groupAnimation.animations = [sizeAnimation, positionAnimation]
             
-            currentDot.addAnimation(groupAnimation, forKey: nil)
+            currentDot.add(groupAnimation, forKey: nil)
         } else {
             currentDot.removeAllAnimations()
         }
@@ -254,7 +254,7 @@ extension PageControl {
      
      - parameter scrollView: scroll view
      */
-    private func update(withScrollView scrollView: UIScrollView) {
+    fileprivate func update(withScrollView scrollView: UIScrollView) {
         if scrollView.width == 0 { return }
         
         let offset = scrollView.contentOffset.x
@@ -271,8 +271,8 @@ extension PageControl {
 
 // MARK: - Touch Handling
 extension PageControl {
-    public override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
-        guard let location = touch?.locationInView(self) else { return }
+    open override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let location = touch?.location(in: self) else { return }
         let currentDotCenterX = currentDot.frame.origin.x + pageIndicatorSize / 2.0
         
         if location.x - currentDotCenterX > pageIndicatorSpacing / 2.0 {
@@ -281,7 +281,7 @@ extension PageControl {
             set(currentPage: _currentPage - 1, animated: true)
         }
         
-        super.endTrackingWithTouch(touch, withEvent: event)
+        super.endTracking(touch, with: event)
     }
 }
 
@@ -290,13 +290,13 @@ extension PageControl {
     /**
      Setup unhighlighted dots and current dot
      */
-    private func setupDots() {
+    fileprivate func setupDots() {
         guard numberOfPages > 0 else { return }
         
         // Setup current dot
         if currentDot.superlayer == nil {
             currentDot.bounds = CGRect(x: 0, y: 0, width: pageIndicatorSize, height: pageIndicatorSize)
-            currentDot.backgroundColor = currentPageIndicatorTintColor.CGColor
+            currentDot.backgroundColor = currentPageIndicatorTintColor.cgColor
             currentDot.cornerRadius = pageIndicatorSize / 2.0
             layer.addSublayer(currentDot)
         }
@@ -308,7 +308,7 @@ extension PageControl {
         for _ in 0 ..< numberOfPages {
             let dot = CAShapeLayer()
             dot.bounds = CGRect(x: 0, y: 0, width: pageIndicatorSize, height: pageIndicatorSize)
-            dot.backgroundColor = pageIndicatorTintColor.CGColor
+            dot.backgroundColor = pageIndicatorTintColor.cgColor
             dot.cornerRadius = pageIndicatorSize / 2.0
             
             layer.insertSublayer(dot, below: currentDot)
@@ -317,9 +317,9 @@ extension PageControl {
     }
     
     /// Length between edge of two dots
-    private var spacingBetweenDotCenter: CGFloat { return pageIndicatorSize + pageIndicatorSpacing }
+    fileprivate var spacingBetweenDotCenter: CGFloat { return pageIndicatorSize + pageIndicatorSpacing }
     
-    private var lengthFromFirstDotCenterToLastDotCenter: CGFloat {
+    fileprivate var lengthFromFirstDotCenterToLastDotCenter: CGFloat {
         return CGFloat(numberOfPages - 1) * spacingBetweenDotCenter
     }
     
@@ -330,7 +330,7 @@ extension PageControl {
      
      - returns: center
      */
-    private func center(forIndex index: Int) -> CGPoint {
+    fileprivate func center(forIndex index: Int) -> CGPoint {
         guard numberOfPages > 0 else { fatalError("numberOfPages is less than 1.") }
         
         let firstDotCenterX = (width - lengthFromFirstDotCenterToLastDotCenter) / 2.0
@@ -345,7 +345,7 @@ extension PageControl {
      
      - returns: frame of dot
      */
-    private func frame(forCenter center: CGPoint) -> CGRect {
+    fileprivate func frame(forCenter center: CGPoint) -> CGRect {
         return CGRect(x: center.x - pageIndicatorSize / 2.0, y: center.y - pageIndicatorSize / 2.0, width: pageIndicatorSize, height: pageIndicatorSize)
     }
 }

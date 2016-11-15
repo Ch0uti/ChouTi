@@ -9,22 +9,22 @@
 import Foundation
 
 /// Cancelable task
-public class Task {
+open class Task {
     /// Whether this task is canceled
-    public var canceled: Bool = false
+    open var canceled: Bool = false
     
     var _executed: Bool = false
     /// Whether this task has been called to execute
-    public var executed: Bool { return _executed }
+    open var executed: Bool { return _executed }
     
     /// Closure to be executed
-    public let task: dispatch_block_t
+    open let task: ()->()
 	
 	/// Queue the task will run
-    public let queue: dispatch_queue_t
+    open let queue: DispatchQueue
 	
 	/// Delay seconds
-	private let seconds: NSTimeInterval
+	fileprivate let seconds: TimeInterval
 	
 	/**
 	Init a Task with delay seconds, queue and task closure
@@ -35,7 +35,7 @@ public class Task {
 	
 	- returns: a dispatched Task
 	*/
-    init(seconds: NSTimeInterval, queue: dispatch_queue_t, task: dispatch_block_t) {
+    init(seconds: TimeInterval, queue: DispatchQueue, task: @escaping ()->()) {
 		self.seconds = seconds
 		self.queue = queue
         self.task = task
@@ -44,14 +44,14 @@ public class Task {
     /**
      Cancel this task
      */
-    public func cancel() {
+    open func cancel() {
         canceled = true
     }
     
     /**
      Resume this task
      */
-    public func resume() {
+    open func resume() {
         canceled = false
     }
 	
@@ -66,7 +66,7 @@ public class Task {
      
      - returns: A Task.
      */
-    public func then(seconds: NSTimeInterval = 0.0, task: dispatch_block_t) -> Task {
+    open func then(_ seconds: TimeInterval = 0.0, task: @escaping ()->()) -> Task {
         return thenOnMainQueue(seconds, task: task)
     }
     
@@ -78,8 +78,8 @@ public class Task {
      
      - returns: A Task.
      */
-    public func thenOnMainQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
-        return thenDelayOnQueue(dispatch_get_main_queue(), seconds: seconds, task: task)
+    open func thenOnMainQueue(_ seconds: TimeInterval, task: @escaping ()->()) -> Task {
+        return thenDelayOnQueue(DispatchQueue.main, seconds: seconds, task: task)
     }
     
     /**
@@ -90,8 +90,8 @@ public class Task {
      
      - returns: A Task.
      */
-    public func thenOnBackgroundQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
-        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+    open func thenOnBackgroundQueue(_ seconds: TimeInterval, task: @escaping ()->()) -> Task {
+        let backgroundQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
         return thenDelayOnQueue(backgroundQueue, seconds: seconds, task: task)
     }
 	
@@ -104,7 +104,7 @@ public class Task {
      
      - returns: A Task.
      */
-	private func thenDelayOnQueue(queue: dispatch_queue_t, seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
+	fileprivate func thenDelayOnQueue(_ queue: DispatchQueue, seconds: TimeInterval, task: @escaping ()->()) -> Task {
         let task = Task(seconds: seconds, queue: queue, task: task)
         nextTask = task
         return task
@@ -121,7 +121,7 @@ public extension Task {
      
      - returns: A delayed Task.
      */
-    public class func delay(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
+    public class func delay(_ seconds: TimeInterval, task: @escaping ()->()) -> Task {
         return delayOnMainQueue(seconds, task: task)
     }
     
@@ -133,8 +133,8 @@ public extension Task {
      
      - returns: A delayed Task.
      */
-    public class func delayOnMainQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
-        return delayOnQueue(dispatch_get_main_queue(), seconds: seconds, task: task)
+    public class func delayOnMainQueue(_ seconds: TimeInterval, task: @escaping ()->()) -> Task {
+        return delayOnQueue(DispatchQueue.main, seconds: seconds, task: task)
     }
     
     /**
@@ -145,8 +145,8 @@ public extension Task {
      
      - returns: A delayed Task.
      */
-    public class func delayOnBackgroundQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
-        let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+    public class func delayOnBackgroundQueue(_ seconds: TimeInterval, task: @escaping ()->()) -> Task {
+        let backgroundQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
         return delayOnQueue(backgroundQueue, seconds: seconds, task: task)
     }
     
@@ -159,7 +159,7 @@ public extension Task {
      
      - returns: A delayed Task.
      */
-    private class func delayOnQueue(queue: dispatch_queue_t, seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
+    fileprivate class func delayOnQueue(_ queue: DispatchQueue, seconds: TimeInterval, task: @escaping ()->()) -> Task {
         let task = Task(seconds: seconds, queue: queue, task: task)
         return dispatch(task)
     }
@@ -171,9 +171,10 @@ public extension Task {
      
      - returns: This task
      */
-    private class func dispatch(task: Task) -> Task {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * task.seconds))
-        dispatch_after(delayTime, task.queue, {
+	@discardableResult
+    fileprivate class func dispatch(_ task: Task) -> Task {
+        let delayTime = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * task.seconds)) / Double(NSEC_PER_SEC)
+        task.queue.asyncAfter(deadline: delayTime, execute: {
             if task.canceled == false {
                 task.task()
                 task._executed = true
@@ -197,7 +198,8 @@ public extension Task {
  
  - returns: A delayed Task.
  */
-public func delay(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
+@discardableResult
+public func delay(_ seconds: TimeInterval, task: @escaping ()->()) -> Task {
     return Task.delayOnMainQueue(seconds, task: task)
 }
 
@@ -209,8 +211,8 @@ public func delay(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
  
  - returns: A delayed Task.
  */
-public func delayOnMainQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
-    return Task.delayOnQueue(dispatch_get_main_queue(), seconds: seconds, task: task)
+public func delayOnMainQueue(_ seconds: TimeInterval, task: @escaping ()->()) -> Task {
+    return Task.delayOnQueue(DispatchQueue.main, seconds: seconds, task: task)
 }
 
 /**
@@ -221,7 +223,7 @@ public func delayOnMainQueue(seconds: NSTimeInterval, task: dispatch_block_t) ->
  
  - returns: A delayed Task.
  */
-public func delayOnBackgroundQueue(seconds: NSTimeInterval, task: dispatch_block_t) -> Task {
-    let backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+public func delayOnBackgroundQueue(_ seconds: TimeInterval, task: @escaping ()->()) -> Task {
+    let backgroundQueue = DispatchQueue.global(qos: .background)
     return Task.delayOnQueue(backgroundQueue, seconds: seconds, task: task)
 }

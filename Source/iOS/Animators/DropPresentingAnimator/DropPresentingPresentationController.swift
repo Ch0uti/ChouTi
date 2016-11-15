@@ -29,12 +29,12 @@ class DropPresentingPresentationController: OverlayPresentationController {
             let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(DropPresentingPresentationController.overlayViewPanned(_:)))
             longPressGesture.minimumPressDuration = 0.1
             longPressGesture.delegate = self
-            presentedView()?.addGestureRecognizer(longPressGesture)
+            presentedView?.addGestureRecognizer(longPressGesture)
             self.longPressGesture = longPressGesture
         }
     }
     
-    override func dismissalTransitionDidEnd(completed: Bool) {
+    override func dismissalTransitionDidEnd(_ completed: Bool) {
         panBeginLocation = nil
         
         super.dismissalTransitionDidEnd(completed)
@@ -43,9 +43,9 @@ class DropPresentingPresentationController: OverlayPresentationController {
 
 // MARK: - UIGestureRecognizerDelegate
 extension DropPresentingPresentationController {
-    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         // Only response to long press gesture
-        guard let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer where longPressGesture == self.longPressGesture else {
+        guard let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer, longPressGesture == self.longPressGesture else {
             return super.gestureRecognizerShouldBegin(gestureRecognizer)
         }
         
@@ -54,11 +54,11 @@ extension DropPresentingPresentationController {
             return false
         }
         
-        guard let presentedView = presentedView() else {
+        guard let presentedView = presentedView else {
             return true
         }
         
-        let locationInPresentedView = gestureRecognizer.locationInView(presentedView)
+        let locationInPresentedView = gestureRecognizer.location(in: presentedView)
         if presentedView.bounds.contains(locationInPresentedView) {
             return true
         } else {
@@ -69,23 +69,23 @@ extension DropPresentingPresentationController {
 
 // MARK: - Actions
 extension DropPresentingPresentationController {
-    func overlayViewPanned(sender: AnyObject) {
-        guard let longPressGesture = sender as? UILongPressGestureRecognizer where longPressGesture == self.longPressGesture else {
+    func overlayViewPanned(_ sender: AnyObject) {
+        guard let longPressGesture = sender as? UILongPressGestureRecognizer, longPressGesture == self.longPressGesture else {
             return
         }
 
-        let locationInOverlayView = longPressGesture.locationInView(overlayView)
+        let locationInOverlayView = longPressGesture.location(in: overlayView)
         
         switch longPressGesture.state {
-        case .Began:
+        case .began:
             panBeginLocation = locationInOverlayView
             dropPresentingAnimator?.interactive = true
             
             let containerHeight = containerView?.bounds.height ?? screenHeight
-            let presentedViewCenterY = presentedView()?.center.y ?? screenHeight / 2.0
+            let presentedViewCenterY = presentedView?.center.y ?? screenHeight / 2.0
             dropPresentingAnimator?.interactiveAnimationDraggingRange = containerHeight - presentedViewCenterY
             
-            let locationInContainerView = longPressGesture.locationInView(containerView)
+            let locationInContainerView = longPressGesture.location(in: containerView)
             let containerWidth = containerView?.bounds.width ?? screenWidth
             let topCenter = CGPoint(x: containerWidth / 2.0, y: 0)
             
@@ -94,9 +94,9 @@ extension DropPresentingPresentationController {
             
             dropPresentingAnimator?.interactiveAnimationTransformAngel = angel.normalize(-30, 30)
             
-            presentingViewController.dismissViewControllerAnimated(true, completion: nil)
+            presentingViewController.dismiss(animated: true, completion: nil)
             
-        case .Changed:
+        case .changed:
             guard let panBeginLocation = panBeginLocation else {
                 NSLog("Warning: pan begin location is nil")
                 return
@@ -112,7 +112,7 @@ extension DropPresentingPresentationController {
             
             dropPresentingAnimator?.updateInteractiveTransition(locationInOverlayView, percentComplete: progress)
             
-        case .Ended:
+        case .ended:
             guard let panBeginLocation = panBeginLocation else {
                 NSLog("Warning: pan begin location is nil")
                 return

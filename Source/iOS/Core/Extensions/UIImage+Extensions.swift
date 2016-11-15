@@ -16,8 +16,8 @@ public extension UIImage {
      
      :returns: A tinted image
      */
-    public func tintedVerticallyWithLinearGradientColors(colors: [UIColor], blenMode: CGBlendMode = .Normal) -> UIImage {
-        return tintedWithLinearGradientColors(colors, blenMode: blenMode, startPoint: CGPointMake(0.5, 0), endPoint: CGPointMake(0.5, 1))
+    public func tintedVerticallyWithLinearGradientColors(_ colors: [UIColor], blenMode: CGBlendMode = .normal) -> UIImage {
+        return tintedWithLinearGradientColors(colors, blenMode: blenMode, startPoint: CGPoint(x: 0.5, y: 0), endPoint: CGPoint(x: 0.5, y: 1))
     }
     
     /**
@@ -27,8 +27,8 @@ public extension UIImage {
      
      :returns: A tinted image
      */
-    public func tintedHorizontallyWithLinearGradientColors(colors: [UIColor], blenMode: CGBlendMode = .Normal) -> UIImage {
-        return tintedWithLinearGradientColors(colors, blenMode: blenMode, startPoint: CGPointMake(0, 0.5), endPoint: CGPointMake(1.0, 0.5))
+    public func tintedHorizontallyWithLinearGradientColors(_ colors: [UIColor], blenMode: CGBlendMode = .normal) -> UIImage {
+        return tintedWithLinearGradientColors(colors, blenMode: blenMode, startPoint: CGPoint(x: 0, y: 0.5), endPoint: CGPoint(x: 1.0, y: 0.5))
     }
     
     /**
@@ -43,7 +43,7 @@ public extension UIImage {
      
      :returns: A tinted image
      */
-    public func tintedWithLinearGradientColors(colors: [UIColor], blenMode: CGBlendMode, startPoint: CGPoint, endPoint: CGPoint) -> UIImage {
+    public func tintedWithLinearGradientColors(_ colors: [UIColor], blenMode: CGBlendMode, startPoint: CGPoint, endPoint: CGPoint) -> UIImage {
         
         // Create a context with image size
         UIGraphicsBeginImageContext(CGSize(width: size.width * scale, height: size.height * scale))
@@ -54,22 +54,22 @@ public extension UIImage {
         
         // Draw image with CGImage and add mask
         let rect = CGRect(x: 0, y: 0, width: size.width * scale, height: size.height * scale)
-        CGContextDrawImage(context, rect, CGImage!)
-        CGContextClipToMask(context, rect, CGImage!)
+        context.draw(cgImage!, in: rect)
+        context.clip(to: rect, mask: cgImage!)
         
         // Translate and flip graphic to ULO
         context.flipCoordinatesVertically()
         
         // Blend Mode
-        CGContextSetBlendMode(context, blenMode)
+        context.setBlendMode(blenMode)
         
         // Add gradient colors
-        let CGColors = colors.map { $0.CGColor }
-        let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), CGColors, nil)
+        let CGColors = colors.map { $0.cgColor }
+        let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: CGColors as CFArray, locations: nil)
         let startPoint = CGPoint(x: size.width * scale * startPoint.x, y: size.height * scale * startPoint.y)
         let endPoint = CGPoint(x: size.width * scale * endPoint.x, y: size.height * scale * endPoint.y)
-        let drawingOptions = CGGradientDrawingOptions([.DrawsBeforeStartLocation, .DrawsAfterEndLocation])
-        CGContextDrawLinearGradient(context, gradient!, startPoint, endPoint, drawingOptions)
+        let drawingOptions = CGGradientDrawingOptions([.drawsBeforeStartLocation, .drawsAfterEndLocation])
+        context.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: drawingOptions)
         
         let gradientImage = UIGraphicsGetImageFromCurrentImageContext()
         
@@ -89,7 +89,7 @@ public extension UIImage {
      
      - returns: image with new size
      */
-    public func scaledToMaxWidth(maxWidth: CGFloat, maxHeight: CGFloat) -> UIImage {
+    public func scaledToMaxWidth(_ maxWidth: CGFloat, maxHeight: CGFloat) -> UIImage {
         let oldWidth = self.size.width
         let oldHeight = self.size.height
         
@@ -110,10 +110,10 @@ public extension UIImage {
      
      - returns: image with new size.
      */
-    public func scaledToSize(size: CGSize) -> UIImage {
+    public func scaledToSize(_ size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         
-        drawInRect(CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
@@ -133,18 +133,18 @@ public extension UIImage {
      
      - returns: new UIImage
      */
-	public class func imageWithColor(fillColor: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0), borderWidth: CGFloat = 0.0, borderColor: UIColor? = nil) -> UIImage {
+	public class func imageWithColor(_ fillColor: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0), borderWidth: CGFloat = 0.0, borderColor: UIColor? = nil) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         let context = UIGraphicsGetCurrentContext()
         let rect = CGRect(origin: CGPoint.zero, size: size)
         
-        CGContextSetFillColorWithColor(context!, fillColor.CGColor)
-        CGContextFillRect(context!, rect)
+        context!.setFillColor(fillColor.cgColor)
+        context!.fill(rect)
         
-        if let borderColor = borderColor where borderWidth > 0.0 {
-            CGContextSetStrokeColorWithColor(context!, borderColor.CGColor)
-            CGContextSetLineWidth(context!, borderWidth * UIScreen.mainScreen().scale)
-            CGContextStrokeRect(context!, rect)
+        if let borderColor = borderColor, borderWidth > 0.0 {
+            context!.setStrokeColor(borderColor.cgColor)
+            context!.setLineWidth(borderWidth * UIScreen.main.scale)
+            context!.stroke(rect)
         }
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
@@ -163,17 +163,17 @@ public extension UIImage {
 	
 	- returns: new image with alpha provided
 	*/
-    public func imageByApplyingAlpha(alpha: CGFloat) -> UIImage {
+    public func imageByApplyingAlpha(_ alpha: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         let ctx = UIGraphicsGetCurrentContext()
         
         let area: CGRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
-        CGContextScaleCTM(ctx!, 1, -1)
-        CGContextTranslateCTM(ctx!, 0, -area.size.height)
-        CGContextSetBlendMode(ctx!, .Multiply)
-        CGContextSetAlpha(ctx!, alpha)
-        CGContextDrawImage(ctx!, area, CGImage!)
+        ctx!.scaleBy(x: 1, y: -1)
+        ctx!.translateBy(x: 0, y: -area.size.height)
+        ctx!.setBlendMode(.multiply)
+        ctx!.setAlpha(alpha)
+        ctx!.draw(cgImage!, in: area)
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -188,23 +188,23 @@ public extension UIImage {
 	
 	- returns: new image with tint color provided
 	*/
-	public func imageByApplyingTintColor(tintColor: UIColor) -> UIImage {
+	public func imageByApplyingTintColor(_ tintColor: UIColor) -> UIImage {
 		UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
 		let ctx = UIGraphicsGetCurrentContext()
 		
-		CGContextTranslateCTM(ctx!, 0, size.height)
-		CGContextScaleCTM(ctx!, 1.0, -1.0)
+		ctx!.translateBy(x: 0, y: size.height)
+		ctx!.scaleBy(x: 1.0, y: -1.0)
 		
 		let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
 		
 		// Draw alpha-mask
-		CGContextSetBlendMode(ctx!, .Normal)
-		CGContextDrawImage(ctx!, rect, CGImage!)
+		ctx!.setBlendMode(.normal)
+		ctx!.draw(cgImage!, in: rect)
 		
 		// Draw tint color, preserving alpha values of original image
-		CGContextSetBlendMode(ctx!, .SourceIn)
+		ctx!.setBlendMode(.sourceIn)
 		tintColor.setFill()
-		CGContextFillRect(ctx!, rect)
+		ctx!.fill(rect)
 		
 		let newImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
@@ -219,11 +219,11 @@ public extension UIImage {
 	
 	- returns: new expanded image
 	*/
-    public func imageExpandedWithInsets(insets: UIEdgeInsets) -> UIImage {
+    public func imageExpandedWithInsets(_ insets: UIEdgeInsets) -> UIImage {
         let newSize = CGSize(width: size.width + insets.left + insets.right, height: size.height + insets.top + insets.bottom)
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         
-        self.drawInRect(CGRect(x: insets.left, y: insets.top, width: size.width, height: size.height))
+        self.draw(in: CGRect(x: insets.left, y: insets.top, width: size.width, height: size.height))
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -239,13 +239,13 @@ public extension UIImage {
      
      - returns: cropped image
      */
-    public func imageCroppedWithRect(rect: CGRect) -> UIImage? {
+    public func imageCroppedWithRect(_ rect: CGRect) -> UIImage? {
         let rect = CGRect(x: rect.origin.x * scale,
                           y: rect.origin.y * scale,
                           width: rect.width * scale,
                           height: rect.height * scale)
-        guard let imageRef = CGImageCreateWithImageInRect(self.CGImage!, rect) else { return nil }
-        let croppedImage = UIImage(CGImage: imageRef, scale: scale, orientation: imageOrientation)
+        guard let imageRef = self.cgImage!.cropping(to: rect) else { return nil }
+        let croppedImage = UIImage(cgImage: imageRef, scale: scale, orientation: imageOrientation)
         return croppedImage
     }
     
@@ -257,7 +257,7 @@ public extension UIImage {
      
      - returns: new image.
      */
-    public func fillRect(fillRect: CGRect, withColor color: UIColor) -> UIImage {
+    public func fillRect(_ fillRect: CGRect, withColor color: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         let context = UIGraphicsGetCurrentContext()
         let imageRect = CGRect(origin: CGPoint.zero, size: size)
@@ -265,32 +265,32 @@ public extension UIImage {
         // Ref: http://stackoverflow.com/a/15153062/3164091
         // Ref: http://trandangkhoa.blogspot.ca/2009/07/iphone-os-drawing-image-and-stupid.html
         // Save current status of graphics context
-        CGContextSaveGState(context!)
+        context!.saveGState()
         
         // Do stupid stuff to draw the image correctly
-        CGContextTranslateCTM(context!, 0, size.height)
-        CGContextScaleCTM(context!, 1.0, -1.0)
+        context!.translateBy(x: 0, y: size.height)
+        context!.scaleBy(x: 1.0, y: -1.0)
         
-        if imageOrientation == .Left {
-            CGContextRotateCTM(context!, CGFloat(M_PI) / 2)
-            CGContextTranslateCTM(context!, 0, -size.width)
-        } else if imageOrientation == .Right {
-            CGContextRotateCTM(context!, -CGFloat(M_PI) / 2)
-            CGContextTranslateCTM(context!, -size.height, 0)
-        } else if imageOrientation == .Up {
+        if imageOrientation == .left {
+            context!.rotate(by: CGFloat(M_PI) / 2)
+            context!.translateBy(x: 0, y: -size.width)
+        } else if imageOrientation == .right {
+            context!.rotate(by: -CGFloat(M_PI) / 2)
+            context!.translateBy(x: -size.height, y: 0)
+        } else if imageOrientation == .up {
             // Do nothing
-        } else if imageOrientation == .Down {
-            CGContextTranslateCTM(context!, size.width, size.height)
-            CGContextRotateCTM(context!, CGFloat(M_PI))
+        } else if imageOrientation == .down {
+            context!.translateBy(x: size.width, y: size.height)
+            context!.rotate(by: CGFloat(M_PI))
         }
         
-        CGContextDrawImage(context!, imageRect, CGImage!)
+        context!.draw(cgImage!, in: imageRect)
         
         // After drawing the image, roll back all transformation by restoring the old context
-        CGContextRestoreGState(context!)
+        context!.restoreGState()
         
-        CGContextSetFillColorWithColor(context!, color.CGColor)
-        CGContextFillRect(context!, fillRect)
+        context!.setFillColor(color.cgColor)
+        context!.fill(fillRect)
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -309,39 +309,38 @@ public extension UIImage {
      
      - returns: returns color for the pixel.
      */
-    public func colorAtPoint(point: CGPoint) -> UIColor {
-        guard let cgImage = self.CGImage else { return UIColor.clearColor() }
-        let width = CGFloat(CGImageGetWidth(cgImage))
-        let height = CGFloat(CGImageGetHeight(cgImage))
+    public func colorAtPoint(_ point: CGPoint) -> UIColor {
+        guard let cgImage = self.cgImage else { return UIColor.clear }
+        let width = CGFloat(cgImage.width)
+        let height = CGFloat(cgImage.height)
         
         assert(0 <= point.x && point.x < width)
         assert(0 <= point.y && point.y < height)
         
         let context = createBitmapContext(cgImage)
-        
-        let uncastedData = CGBitmapContextGetData(context!)
-        let data = UnsafePointer<UInt8>(uncastedData)
-        
+		
+        let data = context!.data!.assumingMemoryBound(to: UnsafePointer<UInt8>.self)
+
         let offset = Int(4 * (point.y * width + point.x))
         
-        let alpha: UInt8 = data[offset]
-        let red: UInt8 = data[offset+1]
-        let green: UInt8 = data[offset+2]
-        let blue: UInt8 = data[offset+3]
+        let alpha: UInt8 = data.pointee[offset]
+        let red: UInt8 = data.pointee[offset+1]
+        let green: UInt8 = data.pointee[offset+2]
+        let blue: UInt8 = data.pointee[offset+3]
         
         // dealloc memeory allocated in createBitmapContext
-        free(UnsafeMutablePointer<Void>(data))
+        free(data)
         
         let color = UIColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: CGFloat(alpha)/255.0)
         
         return color
     }
     
-    private func createBitmapContext(image: CGImageRef) -> CGContextRef? {
+    fileprivate func createBitmapContext(_ image: CGImage) -> CGContext? {
         
         // Get image width, height
-        let pixelsWide = CGImageGetWidth(image)
-        let pixelsHigh = CGImageGetHeight(image)
+        let pixelsWide = image.width
+        let pixelsHigh = image.height
         
         let bitmapBytesPerRow = pixelsWide * 4
         let bitmapByteCount = bitmapBytesPerRow * Int(pixelsHigh)
@@ -352,16 +351,16 @@ public extension UIImage {
         // Allocate memory for image data. This is the destination in memory
         // where any drawing to the bitmap context will be rendered.
         let bitmapData = malloc(bitmapByteCount)
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue)
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
         let size = CGSize(width: CGFloat(pixelsWide), height: CGFloat(pixelsHigh))
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         // create bitmap
-        let context = CGBitmapContextCreate(bitmapData, pixelsWide, pixelsHigh, 8,
-                                            bitmapBytesPerRow, colorSpace, bitmapInfo.rawValue)
+        let context = CGContext(data: bitmapData, width: pixelsWide, height: pixelsHigh, bitsPerComponent: 8,
+                                            bytesPerRow: bitmapBytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
         
         // draw the image onto the context
         let rect = CGRect(x: 0, y: 0, width: pixelsWide, height: pixelsHigh)
-        CGContextDrawImage(context!, rect, image)
+        context!.draw(image, in: rect)
         
         return context
     }

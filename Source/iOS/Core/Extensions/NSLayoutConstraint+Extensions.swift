@@ -14,8 +14,9 @@ public extension NSLayoutConstraint {
      
      - returns: self
      */
+	@discardableResult
     public func activate() -> NSLayoutConstraint {
-        active = true
+        isActive = true
         return self
     }
     
@@ -24,8 +25,9 @@ public extension NSLayoutConstraint {
      
      - returns: self
      */
+	@discardableResult
     public func deactivate() -> NSLayoutConstraint {
-        active = false
+        isActive = false
         return self
     }
 }
@@ -37,6 +39,7 @@ public extension UIView {
      
      - returns: newly added constraints
      */
+	@discardableResult
     public func constrainToFullSizeInSuperview() -> [NSLayoutConstraint] {
         guard let superview = self.superview else { fatalError("superview is nil") }
 		return constrainTo(edgesOfView: superview)
@@ -47,14 +50,15 @@ public extension UIView {
      
      - returns: newly added constraints
      */
+	@discardableResult
     public func constrainToFullSizeMarginInSuperview() -> [NSLayoutConstraint] {
         guard let superview = self.superview else { fatalError("superview is nil") }
         
         return [
-            NSLayoutConstraint(item: self, attribute: .TopMargin, relatedBy: .Equal, toItem: superview, attribute: .TopMargin, multiplier: 1.0, constant: 0.0),
-            NSLayoutConstraint(item: self, attribute: .LeadingMargin, relatedBy: .Equal, toItem: superview, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0),
-            NSLayoutConstraint(item: self, attribute: .BottomMargin, relatedBy: .Equal, toItem: superview, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0),
-            NSLayoutConstraint(item: self, attribute: .TrailingMargin, relatedBy: .Equal, toItem: superview, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0)
+            NSLayoutConstraint(item: self, attribute: .topMargin, relatedBy: .equal, toItem: superview, attribute: .topMargin, multiplier: 1.0, constant: 0.0),
+            NSLayoutConstraint(item: self, attribute: .leadingMargin, relatedBy: .equal, toItem: superview, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0),
+            NSLayoutConstraint(item: self, attribute: .bottomMargin, relatedBy: .equal, toItem: superview, attribute: .bottomMargin, multiplier: 1.0, constant: 0.0),
+            NSLayoutConstraint(item: self, attribute: .trailingMargin, relatedBy: .equal, toItem: superview, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0)
         ].activate()
     }
     
@@ -63,14 +67,15 @@ public extension UIView {
      
      - returns: newly added constraints
      */
+	@discardableResult
     public func constrainToCenterInSuperview() -> [NSLayoutConstraint] {
         guard let superview = self.superview else {
             fatalError("superview is nil")
         }
         
         return [
-            self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor),
-            self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor)
+            self.centerXAnchor.constraint(equalTo: superview.centerXAnchor),
+            self.centerYAnchor.constraint(equalTo: superview.centerYAnchor)
         ].activate()
     }
     
@@ -79,12 +84,13 @@ public extension UIView {
      
      - returns: Constraint activated and added.
      */
+	@discardableResult
     public func constrainToCenterHorizontallyInSuperview() -> NSLayoutConstraint {
         guard let superview = self.superview else {
             fatalError("superview is nil")
         }
         
-        return self.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor).activate()
+        return self.centerXAnchor.constraint(equalTo: superview.centerXAnchor).activate()
     }
     
     /**
@@ -92,12 +98,13 @@ public extension UIView {
      
      - returns: Constraint activated and added.
      */
+	@discardableResult
     public func constrainToCenterVerticallyInSuperview() -> NSLayoutConstraint {
         guard let superview = self.superview else {
             fatalError("superview is nil")
         }
         
-        return self.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor).activate()
+        return self.centerYAnchor.constraint(equalTo: superview.centerYAnchor).activate()
     }
     
     /**
@@ -107,8 +114,9 @@ public extension UIView {
      
      - returns: newly added constraint
      */
-    public func constrainTo(width width: CGFloat) -> NSLayoutConstraint {
-        return self.widthAnchor.constraintEqualToConstant(width).activate()
+	@discardableResult
+    public func constrainTo(width: CGFloat) -> NSLayoutConstraint {
+        return self.widthAnchor.constraint(equalToConstant: width).activate()
     }
     
     /**
@@ -118,8 +126,9 @@ public extension UIView {
      
      - returns: newly added constraint
      */
-    public func constrainTo(height height: CGFloat) -> NSLayoutConstraint {
-        return self.heightAnchor.constraintEqualToConstant(height).activate()
+	@discardableResult
+    public func constrainTo(height: CGFloat) -> NSLayoutConstraint {
+        return self.heightAnchor.constraint(equalToConstant: height).activate()
     }
     
     /**
@@ -129,7 +138,8 @@ public extension UIView {
      
      - returns: newly added constraint
      */
-    public func constrainTo(size size: CGSize) -> [NSLayoutConstraint] {
+	@discardableResult
+    public func constrainTo(size: CGSize) -> [NSLayoutConstraint] {
         return [constrainTo(width: size.width), constrainTo(height: size.height)]
     }
     
@@ -141,7 +151,8 @@ public extension UIView {
      
      - returns: constriants added.
      */
-    public func constrainTo(width width: CGFloat, height: CGFloat) -> [NSLayoutConstraint] {
+	@discardableResult
+    public func constrainTo(width: CGFloat, height: CGFloat) -> [NSLayoutConstraint] {
         return constrainTo(size: CGSize(width: width, height: height))
     }
     
@@ -152,12 +163,13 @@ public extension UIView {
      
      - returns: constraints added.
      */
+	@discardableResult
     public func constrainTo(edgesOfView view: UIView) -> [NSLayoutConstraint] {
         return [
-            self.topAnchor.constraintEqualToAnchor(view.topAnchor),
-            self.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),
-            self.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-            self.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor)
+            self.topAnchor.constraint(equalTo: view.topAnchor),
+            self.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            self.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ].activate()
     }
     
@@ -172,8 +184,9 @@ public extension UIView {
      
      - returns: constraint added.
      */
-    public func constrain(attribute1: NSLayoutAttribute, equalTo attribute2: NSLayoutAttribute, ofView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        return NSLayoutConstraint(item: self, attribute: attribute1, relatedBy: .Equal, toItem: view, attribute: attribute2, multiplier: multiplier, constant: constant).activate()
+	@discardableResult
+    public func constrain(_ attribute1: NSLayoutAttribute, equalTo attribute2: NSLayoutAttribute, ofView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+        return NSLayoutConstraint(item: self, attribute: attribute1, relatedBy: .equal, toItem: view, attribute: attribute2, multiplier: multiplier, constant: constant).activate()
     }
     
     /**
@@ -186,12 +199,13 @@ public extension UIView {
      
      - returns: constraint added.
      */
-    public func constrain(attribute: NSLayoutAttribute, toView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+	@discardableResult
+    public func constrain(_ attribute: NSLayoutAttribute, toView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
         return constrain(attribute, equalTo: attribute, ofView: view, multiplier: multiplier, constant: constant)
     }
 }
 
-public extension SequenceType where Generator.Element: UIView {
+public extension Sequence where Iterator.Element: UIView {
     /**
      Setup constraints for a list of UIViews, two adjacent views have same attribute.
      Those constraints are activated.
@@ -200,11 +214,12 @@ public extension SequenceType where Generator.Element: UIView {
      
      - returns: a list of constraints.
      */
-    public func constrainToSame(attribute: NSLayoutAttribute) -> [NSLayoutConstraint] {
+	@discardableResult
+    public func constrainToSame(_ attribute: NSLayoutAttribute) -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
         
         var last: UIView?
-        var generator = self.generate()
+        var generator = self.makeIterator()
         while let next = generator.next() {
             defer {
                 last = next
@@ -214,22 +229,23 @@ public extension SequenceType where Generator.Element: UIView {
                 continue
             }
             
-            constraints.append(NSLayoutConstraint(item: lastView, attribute: attribute, relatedBy: .Equal, toItem: next, attribute: attribute, multiplier: 1.0, constant: 0.0))
+            constraints.append(NSLayoutConstraint(item: lastView, attribute: attribute, relatedBy: .equal, toItem: next, attribute: attribute, multiplier: 1.0, constant: 0.0))
         }
         
-        NSLayoutConstraint.activateConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
         return constraints
     }
 }
 
-public extension CollectionType where Generator.Element: NSLayoutConstraint {
+public extension Collection where Iterator.Element: NSLayoutConstraint {
     /**
      Activate constraints
      
      - returns: self
      */
+	@discardableResult
     public func activate() -> Self {
-        self.forEach { $0.active = true }
+        self.forEach { $0.isActive = true }
         return self
     }
     
@@ -238,8 +254,9 @@ public extension CollectionType where Generator.Element: NSLayoutConstraint {
      
      - returns: self
      */
+	@discardableResult
     public func deactivate() -> Self {
-        self.forEach { $0.active = false }
+        self.forEach { $0.isActive = false }
         return self
     }
 }

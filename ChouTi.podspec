@@ -17,6 +17,11 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = "9.0"
 
+
+  # s.pod_target_xcconfig = {
+  #   'OTHER_SWIFT_FLAGS[config=Debug]' => '-D DEBUG'
+  # }
+
   s.default_subspecs = [
     "Core",
     "Animators",

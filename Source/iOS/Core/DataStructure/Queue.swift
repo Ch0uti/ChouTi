@@ -22,19 +22,21 @@ private class QueueItem<T> {
  Supports simultaneous adding and removing, but only one item can be added at a time,
  and only one item can be removed at a time.
  */
-public class Queue<T> {
+open class Queue<T> {
     public typealias Element = T
     
-    private var head: QueueItem<Element>? {
+    fileprivate var head: QueueItem<Element>? {
         didSet {
+			// When dequeued, from non-empty to empty
             if head == nil && tail != nil {
                 tail = head
             }
         }
     }
     
-    private var tail: QueueItem<Element>? {
+    fileprivate var tail: QueueItem<Element>? {
         didSet {
+			// When enqueued, from empty to non-empty
             if head == nil && tail != nil {
                 head = tail
             }
@@ -48,7 +50,7 @@ public class Queue<T> {
      
      - parameter value: new value
      */
-    public func enqueue(value: Element) {
+    open func enqueue(_ value: Element) {
         let queueItem = QueueItem(value)
         tail?.next = queueItem
         tail = queueItem
@@ -59,7 +61,7 @@ public class Queue<T> {
      
      - returns: value dequeued.
      */
-    public func dequeue() -> Element? {
+    open func dequeue() -> Element? {
         if let value = head?.value {
             head = head?.next
             return value
@@ -67,7 +69,7 @@ public class Queue<T> {
         return nil
     }
     
-    public func isEmpty() -> Bool {
+    open func isEmpty() -> Bool {
         return head == nil
     }
 }

@@ -15,27 +15,27 @@ import UIKit
  - Blurred: This is blurred overlay view with blur effect style and background color
  */
 public enum OverlayViewStyle {
-    case Normal(UIColor)
-    case Blurred(UIBlurEffectStyle, UIColor)
+    case normal(UIColor)
+    case blurred(UIBlurEffectStyle, UIColor)
 }
 
 /// Base Overlay Presentation Controller
-public class OverlayPresentationController: UIPresentationController {
+open class OverlayPresentationController: UIPresentationController {
     
     /// Whether should dismiss presented view when tap out side of presented view
-    public var shouldDismissOnTappingOutsideView: Bool = true
+    open var shouldDismissOnTappingOutsideView: Bool = true
     
     /// Whether presenting view should be dimmed when preseting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.
-    public var shouldDimPresentedView: Bool = false
+    open var shouldDimPresentedView: Bool = false
     
     // MARK: - OverlayView
     lazy var overlayView: UIView = {
         let overlayView: UIView
         switch self.overlayViewStyle {
-        case .Blurred(let style, let color):
+        case .blurred(let style, let color):
             overlayView = UIVisualEffectView(effect: UIBlurEffect(style: style))
             overlayView.backgroundColor = color
-        case .Normal(let color):
+        case .normal(let color):
             overlayView = UIView()
             overlayView.backgroundColor = color
         }
@@ -43,27 +43,27 @@ public class OverlayPresentationController: UIPresentationController {
         return overlayView
     }()
     
-    public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.5))
+    open var overlayViewStyle: OverlayViewStyle = .blurred(.dark, UIColor(white: 0.0, alpha: 0.5))
     
     // MARK: - Private
-    private var dismissTapGesture: UITapGestureRecognizer?
+    fileprivate var dismissTapGesture: UITapGestureRecognizer?
     
     // MARK: - Init Methods
     init(presentedViewController: UIViewController, presentingViewController: UIViewController?, overlayViewStyle: OverlayViewStyle) {
-        super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController)
+        super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         
         self.overlayViewStyle = overlayViewStyle
     }
     
     // MARK: - Transition
-    public override func presentationTransitionWillBegin() {
+    open override func presentationTransitionWillBegin() {
         guard let containerView = containerView else {
             NSLog("Error: containerView is nil")
             return
         }
         
         if shouldDimPresentedView {
-            presentingViewController.view.tintAdjustmentMode = .Dimmed
+            presentingViewController.view.tintAdjustmentMode = .dimmed
         }
         
         // Setup tap gesture
@@ -76,38 +76,37 @@ public class OverlayPresentationController: UIPresentationController {
         overlayView.frame = containerView.bounds
         overlayView.alpha = 0.0
         
-        containerView.insertSubview(overlayView, atIndex: 0)
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ [unowned self] coordinatorContext in
+        containerView.insertSubview(overlayView, at: 0)
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [unowned self] coordinatorContext in
             self.overlayView.alpha = 1.0
         }, completion: nil)
     }
     
-    public override func dismissalTransitionWillBegin() {
+    open override func dismissalTransitionWillBegin() {
         if shouldDimPresentedView {
-            presentingViewController.view.tintAdjustmentMode = .Normal
+            presentingViewController.view.tintAdjustmentMode = .normal
         }
         
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ [unowned self] coordinatorContext in
-            if coordinatorContext.initiallyInteractive() {
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [unowned self] coordinatorContext in
+            if coordinatorContext.initiallyInteractive {
                 return
             }
             
             self.overlayView.alpha = 0.0
         }, completion: { [unowned self] coordinatorContext in
-            if coordinatorContext.initiallyInteractive() {
+            if coordinatorContext.initiallyInteractive {
                 return
             }
             
             self.overlayView.removeFromSuperview()
         })
         
-        presentingViewController.transitionCoordinator()?.notifyWhenInteractionEndsUsingBlock({ [unowned self] (coordinatorContext) in
-            coordinatorContext.completionVelocity()
-            if coordinatorContext.isCancelled() == false {
-                let restPercent = Double(1.0 - coordinatorContext.percentComplete())
-                let restDuration = restPercent * coordinatorContext.transitionDuration()
+        presentingViewController.transitionCoordinator?.notifyWhenInteractionEnds({ [unowned self] (coordinatorContext) in
+            if coordinatorContext.isCancelled == false {
+                let restPercent = Double(1.0 - coordinatorContext.percentComplete)
+                let restDuration = restPercent * coordinatorContext.transitionDuration
                 
-                UIView.animateWithDuration(restDuration, animations: { [weak self] in
+                UIView.animate(withDuration: restDuration, animations: { [weak self] in
                     self?.overlayView.alpha = 0.0
                 }, completion: { [weak self] finished in
                     self?.overlayView.removeFromSuperview()
@@ -117,7 +116,7 @@ public class OverlayPresentationController: UIPresentationController {
     }
     
     // MARK: - Layout of the Presentation
-    public override func containerViewWillLayoutSubviews() {
+    open override func containerViewWillLayoutSubviews() {
         guard let containerView = containerView else {
             NSLog("Error: containerView is nil")
             return
@@ -130,9 +129,9 @@ public class OverlayPresentationController: UIPresentationController {
 
 // MARK: - UIGestureRecognizerDelegate
 extension OverlayPresentationController : UIGestureRecognizerDelegate {
-    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         // Only check for self.dismissTapGesture
-        guard let tapGesture = gestureRecognizer as? UITapGestureRecognizer where tapGesture == dismissTapGesture else {
+        guard let tapGesture = gestureRecognizer as? UITapGestureRecognizer, tapGesture == dismissTapGesture else {
             return true
         }
         
@@ -140,12 +139,12 @@ extension OverlayPresentationController : UIGestureRecognizerDelegate {
             return false
         }
         
-        guard let presentedView = presentedView() else {
+        guard let presentedView = presentedView else {
             return true
         }
         
         // Disable tap action for presented view area
-        let locationInPresentedView = gestureRecognizer.locationInView(presentedView)
+        let locationInPresentedView = gestureRecognizer.location(in: presentedView)
         if presentedView.bounds.contains(locationInPresentedView) {
             return false
         } else {
@@ -156,7 +155,7 @@ extension OverlayPresentationController : UIGestureRecognizerDelegate {
 
 // MARK: - Actions
 extension OverlayPresentationController {
-    func overlayViewTapped(tapRecognizer: UITapGestureRecognizer) {
-        presentingViewController.dismissViewControllerAnimated(true, completion: nil)
+    func overlayViewTapped(_ tapRecognizer: UITapGestureRecognizer) {
+        presentingViewController.dismiss(animated: true, completion: nil)
     }
 }

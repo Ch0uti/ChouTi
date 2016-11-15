@@ -20,16 +20,16 @@ class TextTableCollectionViewCell: UICollectionViewCell {
         commonInit()
     }
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(textLabel)
 		
 		setupConstraints()
     }
 	
-	private func setupConstraints() {
-		contentView.addConstraint(NSLayoutConstraint(item: textLabel, attribute: .CenterX, relatedBy: .Equal, toItem: contentView, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-		contentView.addConstraint(NSLayoutConstraint(item: textLabel, attribute: .CenterY, relatedBy: .Equal, toItem: contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+	fileprivate func setupConstraints() {
+		contentView.addConstraint(NSLayoutConstraint(item: textLabel, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+		contentView.addConstraint(NSLayoutConstraint(item: textLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1.0, constant: 0.0))
 	}
 }
 
@@ -38,7 +38,7 @@ extension TextTableCollectionViewCell {
 		return NSStringFromClass(TextTableCollectionViewCell.self)
 	}
 	
-	class func registerInCollectionView(collectionView: UICollectionView) {
-		collectionView.registerClass(TextTableCollectionViewCell.self, forCellWithReuseIdentifier: TextTableCollectionViewCell.identifier())
+	class func registerInCollectionView(_ collectionView: UICollectionView) {
+		collectionView.register(TextTableCollectionViewCell.self, forCellWithReuseIdentifier: TextTableCollectionViewCell.identifier())
 	}
 }

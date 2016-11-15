@@ -8,20 +8,20 @@
 
 import UIKit
 
-public class TableViewCell: UITableViewCell {
+open class TableViewCell: UITableViewCell {
 	
 	/// Cell height, this is the constant for height constraint (250 priority).
 	//	Discussion: You can fully specify cell's height to ignore cell height (Use constraints with priorty greater than 250)
-	public var cellHeight: CGFloat = 44.0 {
+	open var cellHeight: CGFloat = 44.0 {
 		didSet {
 			_heightConstraint?.constant = cellHeight
 		}
 	}
 	
-	private var _heightConstraint: NSLayoutConstraint?
+	fileprivate var _heightConstraint: NSLayoutConstraint?
 	
-	public var selectedAccessoryView: UIView?
-	public var selectedAccessoryType: UITableViewCellAccessoryType = .None
+	open var selectedAccessoryView: UIView?
+	open var selectedAccessoryType: UITableViewCellAccessoryType = .none
 	
 	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,17 +33,17 @@ public class TableViewCell: UITableViewCell {
 		commonInit()
 	}
 	
-	public func commonInit() {
-		_heightConstraint = NSLayoutConstraint(item: contentView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: cellHeight)
+	open func commonInit() {
+		_heightConstraint = NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: cellHeight)
 		_heightConstraint?.priority = 250
-		_heightConstraint?.active = true
+		_heightConstraint?.isActive = true
 	}
 	
-	public override func setSelected(selected: Bool, animated: Bool) {
+	open override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
 		
-		if selectedAccessoryType != .None {
-			accessoryType = selected ? selectedAccessoryType : .None
+		if selectedAccessoryType != .none {
+			accessoryType = selected ? selectedAccessoryType : .none
 		}
 		
 		if selectedAccessoryView != nil {

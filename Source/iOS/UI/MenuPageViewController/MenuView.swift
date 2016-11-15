@@ -7,6 +7,41 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
 
 public protocol MenuViewDataSource: class {
 	/**
@@ -16,7 +51,7 @@ public protocol MenuViewDataSource: class {
 	
 	- returns: number of menus
 	*/
-	func numberOfMenusInMenuView(menuView: MenuView) -> Int
+	func numberOfMenusInMenuView(_ menuView: MenuView) -> Int
 	
 	/**
 	Asking for view for menu view
@@ -27,7 +62,7 @@ public protocol MenuViewDataSource: class {
 	
 	- returns: A view
 	*/
-	func menuView(menuView: MenuView, menuViewForIndex index: Int, contentView: UIView?) -> UIView
+	func menuView(_ menuView: MenuView, menuViewForIndex index: Int, contentView: UIView?) -> UIView
 }
 
 public protocol MenuViewDelegate: class {
@@ -39,29 +74,29 @@ public protocol MenuViewDelegate: class {
 	
 	- returns: width for the menu view
 	*/
-	func menuView(menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat
+	func menuView(_ menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat
 	
-	func menuView(menuView: MenuView, didScrollToOffset offset: CGFloat)
+	func menuView(_ menuView: MenuView, didScrollToOffset offset: CGFloat)
 	
-	func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int)
+	func menuView(_ menuView: MenuView, didSelectIndex selectedIndex: Int)
 }
 
 
 
-public class MenuView : UIView {
+open class MenuView : UIView {
 	// MARK: - Enums
 	// TODO: to complete
 	public enum ScrollingOption {
-		case None
-		case Leading
-		case Center
+		case none
+		case leading
+		case center
 	}
 	
 	// MARK: - Public
-	public var menuCollectionView: UICollectionView!
-	public let menuCollectionViewLayout = UICollectionViewFlowLayout()
+	open var menuCollectionView: UICollectionView!
+	open let menuCollectionViewLayout = UICollectionViewFlowLayout()
 	
-	public var spacingsBetweenMenus: CGFloat {
+	open var spacingsBetweenMenus: CGFloat {
 		get { return menuCollectionViewLayout.minimumLineSpacing }
 		set {
 			menuCollectionViewLayout.minimumLineSpacing = newValue
@@ -73,23 +108,23 @@ public class MenuView : UIView {
 		}
 	}
 	
-	public weak var dataSource: MenuViewDataSource?
-	public weak var delegate: MenuViewDelegate?
+	open weak var dataSource: MenuViewDataSource?
+	open weak var delegate: MenuViewDelegate?
 	
-	public var scrollingOption: ScrollingOption = .Center
-	public var autoScrollingEnabled: Bool = true
+	open var scrollingOption: ScrollingOption = .center
+	open var autoScrollingEnabled: Bool = true
 	
-	public var menuAlwaysCentered: Bool = false
+	open var menuAlwaysCentered: Bool = false
 	
 	// TODO: turn scroll enable turn when ready, contentInset updating is not completed
-	public var scrollEnabled: Bool = false {
+	open var scrollEnabled: Bool = false {
 		didSet {
-			menuCollectionView.scrollEnabled = scrollEnabled
+			menuCollectionView.isScrollEnabled = scrollEnabled
 		}
 	}
 	
-	private var _selectedIndex: Int = 0
-	public var selectedIndex: Int {
+	fileprivate var _selectedIndex: Int = 0
+	open var selectedIndex: Int {
 		get { return _selectedIndex }
 		set {
 			precondition(0 <= newValue && newValue < numberOfMenus, "Invalid selectedIndex: \(newValue)")
@@ -97,19 +132,19 @@ public class MenuView : UIView {
 		}
 	}
 	
-	public var zh_isVisible: Bool { return (window != nil) }
+	open var zh_isVisible: Bool { return (window != nil) }
 	
 	/// Observer hack
-	private var observerRemoved: Bool = false
+	fileprivate var observerRemoved: Bool = false
 	
 	// MARK: - Private
-	private var numberOfMenus: Int {
+	fileprivate var numberOfMenus: Int {
 		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
 		return dataSource.numberOfMenusInMenuView(self)
 	}
 	
 	public convenience init(scrollingOption: ScrollingOption) {
-		self.init(frame: CGRectZero)
+		self.init(frame: CGRect.zero)
 		self.scrollingOption = scrollingOption
 	}
 	
@@ -123,30 +158,30 @@ public class MenuView : UIView {
 		commonInit()
 	}
 	
-	private func commonInit() {
+	fileprivate func commonInit() {
 		// Layout
-		menuCollectionViewLayout.scrollDirection = .Horizontal
+		menuCollectionViewLayout.scrollDirection = .horizontal
 		menuCollectionViewLayout.minimumLineSpacing = 0.0
 		menuCollectionViewLayout.minimumInteritemSpacing = 0.0
-		menuCollectionViewLayout.sectionInset = UIEdgeInsetsZero
+		menuCollectionViewLayout.sectionInset = UIEdgeInsets.zero
 		
 		// Collection View
-		menuCollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: menuCollectionViewLayout)
+		menuCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: menuCollectionViewLayout)
 		
 		menuCollectionView.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(menuCollectionView)
 		
-		menuCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(UICollectionViewCell))
+		menuCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(UICollectionViewCell.self))
 		
-		menuCollectionView.backgroundColor = UIColor.clearColor()
+		menuCollectionView.backgroundColor = UIColor.clear
 		menuCollectionView.dataSource = self
 		menuCollectionView.delegate = self
 		
-		menuCollectionView.scrollEnabled = scrollEnabled
+		menuCollectionView.isScrollEnabled = scrollEnabled
 		menuCollectionView.bounces = true
 		menuCollectionView.alwaysBounceHorizontal = true
 		menuCollectionView.alwaysBounceVertical = false
-		menuCollectionView.directionalLockEnabled = true
+		menuCollectionView.isDirectionalLockEnabled = true
 		
 		menuCollectionView.scrollsToTop = false
 		menuCollectionView.showsHorizontalScrollIndicator = false
@@ -156,24 +191,24 @@ public class MenuView : UIView {
 		
 		menuCollectionView.allowsMultipleSelection = false
 		
-		menuCollectionView.contentInset = UIEdgeInsetsZero
+		menuCollectionView.contentInset = UIEdgeInsets.zero
 		
 		// Observe contentSize to update contentOffset when menu is first shown
-		menuCollectionView.addObserver(self, forKeyPath: "contentSize", options: [.New, .Old], context: nil)
-		menuCollectionView.addObserver(self, forKeyPath: "contentOffset", options: [.New, .Old], context: nil)
+		menuCollectionView.addObserver(self, forKeyPath: "contentSize", options: [.new, .old], context: nil)
+		menuCollectionView.addObserver(self, forKeyPath: "contentOffset", options: [.new, .old], context: nil)
 		
 		setupConstraints()
 	}
 	
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		var constraints = [NSLayoutConstraint]()
 		
-        constraints.append(menuCollectionView.topAnchor.constraintEqualToAnchor(self.topAnchor))
-        constraints.append(menuCollectionView.leadingAnchor.constraintEqualToAnchor(self.leadingAnchor))
-        constraints.append(menuCollectionView.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor))
-        constraints.append(menuCollectionView.trailingAnchor.constraintEqualToAnchor(self.trailingAnchor))
+        constraints.append(menuCollectionView.topAnchor.constraint(equalTo: self.topAnchor))
+        constraints.append(menuCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor))
+        constraints.append(menuCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor))
+        constraints.append(menuCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor))
 		
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
 	
 	deinit {
@@ -183,7 +218,7 @@ public class MenuView : UIView {
 		menuCollectionView.removeObserver(self, forKeyPath: "contentOffset", context: nil)
 	}
 	
-	public func setSelectedIndex(index: Int, animated: Bool) {
+	open func setSelectedIndex(_ index: Int, animated: Bool) {
 		if _selectedIndex == index { return }
 		_selectedIndex = index
 //		switch scrollingOption {
@@ -200,14 +235,14 @@ public class MenuView : UIView {
 		delegate?.menuView(self, didSelectIndex: index)
 	}
 	
-	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-		guard let change = change as? [String : NSValue] else { return }
-		if object === menuCollectionView {
+	open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		guard let change = change as? [NSKeyValueChangeKey : NSValue] else { return }
+		if object as? UICollectionView === menuCollectionView {
 			if keyPath == "contentSize" {
-				guard let oldContentSize = change[NSKeyValueChangeOldKey]?.CGSizeValue() else { return }
-				guard let newContentSize = change[NSKeyValueChangeNewKey]?.CGSizeValue() else { return }
+				guard let oldContentSize = change[NSKeyValueChangeKey.oldKey]?.cgSizeValue else { return }
+				guard let newContentSize = change[NSKeyValueChangeKey.newKey]?.cgSizeValue else { return }
 				// If this is the first time size changed, which means view firstly appears
-				if oldContentSize == CGSizeZero && newContentSize != CGSizeZero {
+				if oldContentSize == CGSize.zero && newContentSize != CGSize.zero {
 					// In this case, update content size
 					menuCollectionView.setContentOffset(contentOffsetForIndex(selectedIndex), animated: false)
 					if !observerRemoved {
@@ -219,7 +254,7 @@ public class MenuView : UIView {
 			
 			if keyPath == "contentOffset" {
 				if menuAlwaysCentered {
-					let newContentOffset = change[NSKeyValueChangeNewKey]!.CGPointValue()
+					let newContentOffset = change[NSKeyValueChangeKey.newKey]!.cgPointValue
 					let targetContentOffset = contentOffsetForIndex(numberOfMenus / 2, offsetPercent: 0.0, ignoreAutoScrollingEnabled: true)
 					if abs(targetContentOffset.x - newContentOffset.x) > 1.0 {
 						menuCollectionView.setContentOffset(targetContentOffset, animated: false)
@@ -229,7 +264,7 @@ public class MenuView : UIView {
 		}
 	}
 	
-	public func reload() {
+	open func reload() {
 		menuCollectionView.reloadData()
 	}
 }
@@ -238,21 +273,21 @@ public class MenuView : UIView {
 
 // MARK: - UICollectionViewDataSource
 extension MenuView : UICollectionViewDataSource {
-	public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+	public func numberOfSections(in collectionView: UICollectionView) -> Int {
 		checkForNegativeHeight(collectionView)
 		return 1
 	}
 	
-	public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return numberOfMenus
 	}
 	
-	public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NSStringFromClass(UICollectionViewCell), forIndexPath: indexPath)
+	public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(UICollectionViewCell.self), for: indexPath)
 
-		cell.layoutMargins = UIEdgeInsetsZero
+		cell.layoutMargins = UIEdgeInsets.zero
 		cell.contentView.removeAllSubviews()
-		cell.contentView.layoutMargins = UIEdgeInsetsZero
+		cell.contentView.layoutMargins = UIEdgeInsets.zero
 		
 		guard let view = dataSource?.menuView(self, menuViewForIndex: indexPath.item, contentView: cell.contentView) else {
 			fatalError("MenuView: dataSource is nil.")
@@ -270,7 +305,7 @@ extension MenuView : UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension MenuView : UICollectionViewDelegate {
-	public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+	public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		setSelectedIndex(indexPath.item, animated: true)
 	}
 }
@@ -279,7 +314,7 @@ extension MenuView : UICollectionViewDelegate {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MenuView : UICollectionViewDelegateFlowLayout {
-	public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+	public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		let height = checkForNegativeHeight(collectionView)
 		let width = menuWidthForIndex(indexPath.item)
 		
@@ -290,17 +325,17 @@ extension MenuView : UICollectionViewDelegateFlowLayout {
 
 
 extension MenuView : UIScrollViewDelegate {
-	public func scrollViewDidScroll(scrollView: UIScrollView) {
+	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //		print("offset: \(scrollView.contentOffset.x)")
 		delegate?.menuView(self, didScrollToOffset: scrollView.contentOffset.x)
 	}
 	
-	public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+	public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 //		print("scrollViewWillEndDragging: \(targetContentOffset.memory)")
 //		print("velocity: \(velocity)")
-		let closestIndex = closestIndexForOffsetX(targetContentOffset.memory.x)
+		let closestIndex = closestIndexForOffsetX(targetContentOffset.pointee.x)
 //		print("index: \(closestIndex), offset: \(contentOffsetForIndex(closestIndex))")
-		targetContentOffset.memory = contentOffsetForIndex(closestIndex)
+		targetContentOffset.pointee = contentOffsetForIndex(closestIndex)
 		setSelectedIndex(closestIndex, animated: true)
 	}
 }
@@ -308,7 +343,7 @@ extension MenuView : UIScrollViewDelegate {
 
 
 extension MenuView {
-	public func scrollWithSelectedIndex(index: Int, withOffsetPercent percent: CGFloat = 0.0, animated: Bool = false, ignoreAutoScrollingEnabled: Bool = false) {
+	public func scrollWithSelectedIndex(_ index: Int, withOffsetPercent percent: CGFloat = 0.0, animated: Bool = false, ignoreAutoScrollingEnabled: Bool = false) {
 		if index < 0 || index >= dataSource?.numberOfMenusInMenuView(self) { return }
 		let targetContentOffset = contentOffsetForIndex(index, offsetPercent: percent, ignoreAutoScrollingEnabled: ignoreAutoScrollingEnabled)
 		menuCollectionView.setContentOffset(targetContentOffset, animated: animated)
@@ -319,7 +354,8 @@ extension MenuView {
 
 // MARK: - Helpers
 extension MenuView {
-	private func checkForNegativeHeight(collectionView: UICollectionView) -> CGFloat {
+	@discardableResult
+	fileprivate func checkForNegativeHeight(_ collectionView: UICollectionView) -> CGFloat {
 		let topInsetBottomInsetToMinus = menuCollectionView.contentInset.top + menuCollectionView.contentInset.bottom
 		if collectionView.bounds.height == 0 {
 			return 0.0
@@ -336,7 +372,7 @@ extension MenuView {
 		return height
 	}
 	
-	public func menuWidthForIndex(index: Int) -> CGFloat {
+	public func menuWidthForIndex(_ index: Int) -> CGFloat {
 		// Expecting from delegate for width
 		if let delegate = delegate {
 			return delegate.menuView(self, menuWidthForIndex: index)
@@ -348,7 +384,7 @@ extension MenuView {
 		return dataSource.menuView(self, menuViewForIndex: index, contentView: nil).bounds.width
 	}
 	
-	public func contentOffsetForIndex(index: Int, offsetPercent: CGFloat = 0.0, ignoreAutoScrollingEnabled: Bool = false) -> CGPoint {
+	public func contentOffsetForIndex(_ index: Int, offsetPercent: CGFloat = 0.0, ignoreAutoScrollingEnabled: Bool = false) -> CGPoint {
 		precondition(0 <= index && index <= dataSource?.numberOfMenusInMenuView(self), "invalid index: \(index)")
 		
 		if !ignoreAutoScrollingEnabled && autoScrollingEnabled == false {
@@ -374,20 +410,20 @@ extension MenuView {
 		targetOffsetX -= spacingsBetweenMenus / 2.0
 		
 		switch scrollingOption {
-		case .None: break
-		case .Leading: break
-		case .Center: targetOffsetX -= (bounds.width - menuWidthForIndex(index) - spacingsBetweenMenus) / 2.0
+		case .none: break
+		case .leading: break
+		case .center: targetOffsetX -= (bounds.width - menuWidthForIndex(index) - spacingsBetweenMenus) / 2.0
 		}
 		
 		return CGPoint(x: targetOffsetX, y: 0)
 	}
 	
-	public func closestIndexForOffsetX(offsetX: CGFloat) -> Int {
+	public func closestIndexForOffsetX(_ offsetX: CGFloat) -> Int {
         var offsetX = offsetX
 		switch scrollingOption {
-		case .None: break
-		case .Leading: break
-		case .Center:
+		case .none: break
+		case .leading: break
+		case .center:
 			// FIXME: calculation is bad
 			offsetX += (bounds.width - menuWidthForIndex(0)) / 2.0
 		}
@@ -411,11 +447,11 @@ extension MenuView {
 		return index - 1
 	}
 	
-	public func menuCollectionViewCellForIndex(index: Int) -> UICollectionViewCell? {
-		return menuCollectionView.cellForItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0))
+	public func menuCollectionViewCellForIndex(_ index: Int) -> UICollectionViewCell? {
+		return menuCollectionView.cellForItem(at: IndexPath(item: index, section: 0))
 	}
 	
-	public func menuViewForIndex(index: Int) -> UIView? {
+	public func menuViewForIndex(_ index: Int) -> UIView? {
 		guard let cell = menuCollectionViewCellForIndex(index) else {
 			return nil
 		}

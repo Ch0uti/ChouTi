@@ -9,9 +9,9 @@
 import UIKit
 
 public protocol SearchTextFieldDelegate: class {
-    func searchTextFieldDidEdit(searchTextField: SearchTextField)
-    func searchTextField(searchTextField: SearchTextField, willSelectIndex index: Int)
-    func searchTextField(searchTextField: SearchTextField, didSelectIndex index: Int)
+    func searchTextFieldDidEdit(_ searchTextField: SearchTextField)
+    func searchTextField(_ searchTextField: SearchTextField, willSelectIndex index: Int)
+    func searchTextField(_ searchTextField: SearchTextField, didSelectIndex index: Int)
 }
 
 public protocol SearchTextFieldDataSource: class {
@@ -22,25 +22,25 @@ public protocol SearchTextFieldDataSource: class {
     func configure(forResultCell resultCell: UITableViewCell, forIndex index: Int, inSearchTextField searchTextField: SearchTextField)
 }
 
-public class SearchTextField: TextField {
-	public var maxNumberOfResults: Int = 3
+open class SearchTextField: TextField {
+	open var maxNumberOfResults: Int = 3
     
-	public weak var searchTextFieldDelegate: SearchTextFieldDelegate?
-	public weak var searchTextFieldDataSource: SearchTextFieldDataSource?
+	open weak var searchTextFieldDelegate: SearchTextFieldDelegate?
+	open weak var searchTextFieldDataSource: SearchTextFieldDataSource?
     
-    private var originalDelegate: UITextFieldDelegate?
-    public override weak var delegate: UITextFieldDelegate? {
+    fileprivate var originalDelegate: UITextFieldDelegate?
+    open override weak var delegate: UITextFieldDelegate? {
         didSet {
             originalDelegate = delegate
             super.delegate = self
         }
     }
     
-	private var _resultTextColor: UIColor?
+	fileprivate var _resultTextColor: UIColor?
 	/// Result text color
-	public var resultTextColor: UIColor? {
+	open var resultTextColor: UIColor? {
 		get {
-			return _resultTextColor ?? UIColor.blackColor()
+			return _resultTextColor ?? UIColor.black
 		}
 		
 		set {
@@ -48,9 +48,9 @@ public class SearchTextField: TextField {
 		}
 	}
 	
-	private var _resultTextFont: UIFont?
+	fileprivate var _resultTextFont: UIFont?
 	/// Menu results text font
-	public var resultTextFont: UIFont? {
+	open var resultTextFont: UIFont? {
 		get {
 			return _resultTextFont ?? font
 		}
@@ -59,30 +59,30 @@ public class SearchTextField: TextField {
 		}
 	}
 	
-	private var _resultTextAlignment: NSTextAlignment?
+	fileprivate var _resultTextAlignment: NSTextAlignment?
 	/// Menu results text alignment
-	public var resultTextAlignment: NSTextAlignment {
+	open var resultTextAlignment: NSTextAlignment {
 		get {
-			return _resultTextAlignment ?? textAlignment ?? .Left
+			return _resultTextAlignment ?? textAlignment
 		}
 		set {
 			_resultTextAlignment = newValue
 		}
 	}
 	
-	private var _resultCellBackgroundColor: UIColor?
+	fileprivate var _resultCellBackgroundColor: UIColor?
 	/// Menu results cell background color
-	public var resultCellBackgroundColor: UIColor? {
+	open var resultCellBackgroundColor: UIColor? {
 		get {
-			return _resultCellBackgroundColor ?? UIColor.whiteColor()
+			return _resultCellBackgroundColor ?? UIColor.white
 		}
 		set {
 			_resultCellBackgroundColor = newValue
 		}
 	}
     
-    private var _resultCellHeight: CGFloat?
-    public var resultCellHeight: CGFloat {
+    fileprivate var _resultCellHeight: CGFloat?
+    open var resultCellHeight: CGFloat {
         get {
             return _resultCellHeight ?? height
         }
@@ -92,13 +92,13 @@ public class SearchTextField: TextField {
         }
     }
 	
-	private var _resultSeparatorColor: UIColor? {
+	fileprivate var _resultSeparatorColor: UIColor? {
 		didSet {
 			resultTableView.separatorColor = _resultSeparatorColor
 		}
 	}
 	/// Color for separator between results
-	public var resultSeparatorColor: UIColor? {
+	open var resultSeparatorColor: UIColor? {
 		get {
 			return _resultSeparatorColor ?? UIColor(white: 0.75, alpha: 1.0)
 		}
@@ -107,13 +107,13 @@ public class SearchTextField: TextField {
 		}
 	}
 	
-	private let resultTableView = UITableView()
+	fileprivate let resultTableView = UITableView()
 	
-    private let searchTextFieldDidEdit = #selector(SearchTextField.zhh_searchTextFieldDidEdit(_:))
+    fileprivate let searchTextFieldDidEdit = #selector(SearchTextField.zhh_searchTextFieldDidEdit(_:))
 	
-    private var overlayView: UIView?
+    fileprivate var overlayView: UIView?
 	
-	private var _heightConstraint: NSLayoutConstraint!
+	fileprivate var _heightConstraint: NSLayoutConstraint!
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -125,14 +125,14 @@ public class SearchTextField: TextField {
 		commonInit()
 	}
 
-	private func commonInit() {
-        autocorrectionType = .No
+	fileprivate func commonInit() {
+        autocorrectionType = .no
         
 		resultTableView.translatesAutoresizingMaskIntoConstraints = false
-		resultTableView.backgroundColor = UIColor.clearColor()
+		resultTableView.backgroundColor = UIColor.clear
 		
-		resultTableView.separatorStyle = .SingleLine
-		resultTableView.separatorInset = UIEdgeInsetsZero
+		resultTableView.separatorStyle = .singleLine
+		resultTableView.separatorInset = UIEdgeInsets.zero
 		
 		resultTableView.dataSource = self
 		resultTableView.delegate = self
@@ -144,20 +144,20 @@ public class SearchTextField: TextField {
 		
 		resultTableView.showsVerticalScrollIndicator = false
 		resultTableView.showsHorizontalScrollIndicator = false
-        resultTableView.scrollEnabled = false
+        resultTableView.isScrollEnabled = false
 		
 		TableViewCell.registerInTableView(resultTableView)
         
-		addTarget(self, action: searchTextFieldDidEdit, forControlEvents: .EditingChanged)
+		addTarget(self, action: searchTextFieldDidEdit, for: .editingChanged)
         super.delegate = self
 	}
 	
 	deinit {
-		removeTarget(self, action: searchTextFieldDidEdit, forControlEvents: .EditingChanged)
+		removeTarget(self, action: searchTextFieldDidEdit, for: .editingChanged)
 	}
     
-    public func reloadResults() {
-        resultTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+    open func reloadResults() {
+        resultTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }
 }
 
@@ -165,38 +165,38 @@ public class SearchTextField: TextField {
 
 // MARK: - UITextFieldDelegate
 extension SearchTextField : UITextFieldDelegate {
-    public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return originalDelegate?.textFieldShouldBeginEditing?(textField) ?? true
     }
     
-    public func textFieldDidBeginEditing(textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         originalDelegate?.textFieldDidBeginEditing?(textField)
         zhh_searchTextFieldDidEdit(textField)
     }
     
-    public func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    public func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return originalDelegate?.textFieldShouldEndEditing?(textField) ?? true
     }
     
-    public func textFieldDidEndEditing(textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         originalDelegate?.textFieldDidEndEditing?(textField)
         tearDownOverlayView()
         tearDownResultTableView()
     }
     
-    public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        return originalDelegate?.textField?(textField, shouldChangeCharactersInRange: range, replacementString: string) ?? true
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return originalDelegate?.textField?(textField, shouldChangeCharactersIn: range, replacementString: string) ?? true
     }
     
-    public func textFieldShouldClear(textField: UITextField) -> Bool {
+    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
         return originalDelegate?.textFieldShouldClear?(textField) ?? true
     }
     
-    public func textFieldShouldReturn(textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return originalDelegate?.textFieldShouldReturn?(textField) ?? true
     }
     
-	func zhh_searchTextFieldDidEdit(textField: UITextField) {
+	func zhh_searchTextFieldDidEdit(_ textField: UITextField) {
         searchTextFieldDelegate?.searchTextFieldDidEdit(self)
 		if textField.text == nil || textField.text?.isEmpty == true {
             tearDownOverlayView()
@@ -212,7 +212,7 @@ extension SearchTextField : UITextFieldDelegate {
 
 // MARK: - Helper
 extension SearchTextField {
-	private func setupOverlayView() {
+	fileprivate func setupOverlayView() {
         if overlayView != nil {
             return
         }
@@ -222,14 +222,14 @@ extension SearchTextField {
 			return
 		}
 				
-		overlayView = window.insertOverlayViewBelowSubview(self, animated: false, overlayViewBackgroundColor: UIColor.clearColor())
-		overlayView?.userInteractionEnabled = false
+		overlayView = window.insertOverlayViewBelowSubview(self, animated: false, overlayViewBackgroundColor: UIColor.clear)
+		overlayView?.isUserInteractionEnabled = false
 		
 		let tap = UITapGestureRecognizer(target: self, action: #selector(SearchTextField.overlayViewTapped(_:)))
         overlayView?.addGestureRecognizer(tap)
 	}
     
-    private func tearDownOverlayView() {
+    fileprivate func tearDownOverlayView() {
         if overlayView == nil {
             return
         }
@@ -243,7 +243,7 @@ extension SearchTextField {
         overlayView = nil
     }
 	
-	private func setupResultTableView() {
+	fileprivate func setupResultTableView() {
 		if resultTableView.superview != nil {
 			return
 		}
@@ -257,20 +257,20 @@ extension SearchTextField {
 
 		var constraints = [NSLayoutConstraint]()
 		
-        constraints += [NSLayoutConstraint(item: resultTableView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0.0)]
-        constraints += [NSLayoutConstraint(item: resultTableView, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0.0)]
-		constraints += [NSLayoutConstraint(item: resultTableView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0)]
-		_heightConstraint = NSLayoutConstraint(item: resultTableView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: CGFloat(maxNumberOfResults) * (0.5 + resultCellHeight))
+        constraints += [NSLayoutConstraint(item: resultTableView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)]
+        constraints += [NSLayoutConstraint(item: resultTableView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)]
+		constraints += [NSLayoutConstraint(item: resultTableView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0)]
+		_heightConstraint = NSLayoutConstraint(item: resultTableView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: CGFloat(maxNumberOfResults) * (0.5 + resultCellHeight))
 		constraints += [_heightConstraint]
         
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
     
-    private func tearDownResultTableView() {
+    fileprivate func tearDownResultTableView() {
         resultTableView.removeFromSuperview()
     }
     
-    func overlayViewTapped(tapGesture: UITapGestureRecognizer) {
+    func overlayViewTapped(_ tapGesture: UITapGestureRecognizer) {
         self.resignFirstResponder()
     }
 }
@@ -279,16 +279,16 @@ extension SearchTextField {
 
 // MARK: - UITableViewDataSource
 extension SearchTextField : UITableViewDataSource {
-	public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	public func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 	
-	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return searchTextFieldDataSource?.numberOfResults(forQueryString: text, inSearchTextField: self) ?? 0
 	}
 	
-	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier()) as! TableViewCell
+	public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier()) as! TableViewCell
 		
         if let attributedText = searchTextFieldDataSource?.resultAttributedString(forIndex: indexPath.row, inSearchTextField: self) {
             cell.textLabel?.attributedText = attributedText
@@ -316,21 +316,21 @@ extension SearchTextField : UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension SearchTextField : UITableViewDelegate {
 	// MARK: - Rows
-	public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 		return resultCellHeight
 	}
 	
 	// MARK: - Selections
-	public func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+	public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         searchTextFieldDelegate?.searchTextField(self, willSelectIndex: indexPath.row)
         
-        text = tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text
+        text = tableView.cellForRow(at: indexPath)?.textLabel?.text
         
 		return indexPath
 	}
 
-	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
         searchTextFieldDelegate?.searchTextField(self, didSelectIndex: indexPath.row)
         
         tearDownOverlayView()

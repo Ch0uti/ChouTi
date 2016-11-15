@@ -12,7 +12,7 @@ import UIKit
 // 
 
 public extension UINavigationBar {
-	private struct StatusBarKey {
+	fileprivate struct StatusBarKey {
 		static var Key = "StatusBarKey"
 	}
 	
@@ -32,7 +32,7 @@ public extension UINavigationBar {
 		}
 	}
 	
-	private struct HiddenConstraintKey {
+	fileprivate struct HiddenConstraintKey {
 		static var Key = "HiddenConstraintKey"
 	}
 	
@@ -41,14 +41,14 @@ public extension UINavigationBar {
 			if let constraint = getAssociatedObject(forKeyPointer: &HiddenConstraintKey.Key) as? NSLayoutConstraint {
 				return constraint
 			} else {
-				let constraint = NSLayoutConstraint(item: statusBar, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+				let constraint = NSLayoutConstraint(item: statusBar, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0)
 				setAssociatedObejct(constraint, forKeyPointer: &HiddenConstraintKey.Key)
 				return constraint
 			}
 		}
 	}
 	
-	private struct ShownConstraintKey {
+	fileprivate struct ShownConstraintKey {
 		static var Key = "ShownConstraintKey"
 	}
 	
@@ -57,7 +57,7 @@ public extension UINavigationBar {
 			if let constraint = getAssociatedObject(forKeyPointer: &ShownConstraintKey.Key) as? NSLayoutConstraint {
 				return constraint
 			} else {
-				let constraint = NSLayoutConstraint(item: statusBar, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+				let constraint = NSLayoutConstraint(item: statusBar, attribute: .top, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0)
 				setAssociatedObejct(constraint, forKeyPointer: &ShownConstraintKey.Key)
 				return constraint
 			}
@@ -81,11 +81,11 @@ public extension UINavigationBar {
 }
 
 public extension UINavigationBar {
-	public func showStatusBarWithText(text: String, animated: Bool, animationDuration: NSTimeInterval = 0.3, completion: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
+	public func showStatusBarWithText(_ text: String, animated: Bool, animationDuration: TimeInterval = 0.3, completion: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
 		return showStatusBarWithText(text, animated: animated, animationDuration: animationDuration, completion: completion, autoDismiss: false, displayingDuration: 0.0, dismissCompletion: nil)
 	}
 	
-	public func showStatusBarWithText(text: String, animated: Bool, animationDuration: NSTimeInterval = 0.3, completion: ((Bool) -> Void)? = nil, autoDismiss: Bool, displayingDuration: NSTimeInterval, dismissCompletion: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
+	public func showStatusBarWithText(_ text: String, animated: Bool, animationDuration: TimeInterval = 0.3, completion: ((Bool) -> Void)? = nil, autoDismiss: Bool, displayingDuration: TimeInterval, dismissCompletion: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
 		if autoDismiss {
 			delay(displayingDuration) {
 				self.dismissStatusBar(true)
@@ -111,15 +111,15 @@ public extension UINavigationBar {
 		setupInitialConstraints()
 		superview.layoutIfNeeded()
 		
-		hiddenConstraint.active = false
-		shownConstraint.active = true
+		hiddenConstraint.isActive = false
+		shownConstraint.isActive = true
 		
 		if animated {
-			UIView.animateWithDuration(animationDuration, animations: { () -> Void in
+			UIView.animate(withDuration: animationDuration, animations: { () -> Void in
 				superview.layoutIfNeeded()
-				}) { (finished) -> Void in
+				}, completion: { (finished) -> Void in
 					completion?(finished)
-			}
+			})
 		} else {
 			superview.layoutIfNeeded()
 			completion?(true)
@@ -128,20 +128,20 @@ public extension UINavigationBar {
 		return statusBar
 	}
 	
-	private func setupInitialConstraints() {
-		shownConstraint.active = false
+	fileprivate func setupInitialConstraints() {
+		shownConstraint.isActive = false
 		
 		statusBar.height = 44
 		var constraints = [NSLayoutConstraint]()
 		
-		constraints += [NSLayoutConstraint(item: statusBar, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0.0)]
-		constraints += [NSLayoutConstraint(item: statusBar, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0.0)]
+		constraints += [NSLayoutConstraint(item: statusBar, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)]
+		constraints += [NSLayoutConstraint(item: statusBar, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)]
 		constraints += [hiddenConstraint]
 		
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
 	
-	public func dismissStatusBar(animated: Bool, animationDuration: NSTimeInterval = 0.3, completion: ((Bool) -> Void)? = nil) {
+	public func dismissStatusBar(_ animated: Bool, animationDuration: TimeInterval = 0.3, completion: ((Bool) -> Void)? = nil) {
 		if isShowingStatusBar == false {
 			completion?(false)
 			return
@@ -153,17 +153,17 @@ public extension UINavigationBar {
 			return
 		}
 		
-		shownConstraint.active = false
-		hiddenConstraint.active = true
+		shownConstraint.isActive = false
+		hiddenConstraint.isActive = true
 		
 		if animated {
-			UIView.animateWithDuration(animationDuration, animations: { () -> Void in
+			UIView.animate(withDuration: animationDuration, animations: { () -> Void in
 				superview.layoutIfNeeded()
-				}) { (finished) -> Void in
+				}, completion: { (finished) -> Void in
 					self.statusBar.removeFromSuperview()
 					self.clean()
 					completion?(finished)
-			}
+			}) 
 		} else {
 			superview.layoutIfNeeded()
 			self.statusBar.removeFromSuperview()
