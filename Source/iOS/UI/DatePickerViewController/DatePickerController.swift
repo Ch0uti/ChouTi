@@ -8,17 +8,17 @@
 
 import UIKit
 
-public class DatePickerController : UIViewController {
+open class DatePickerController : UIViewController {
 	
-	public let topToolBar = UIToolbar()
-	public let datePicker = UIDatePicker()
-	private let slideUpAnimator = SlideUpAnimator()
+	open let topToolBar = UIToolbar()
+	open let datePicker = UIDatePicker()
+	fileprivate let slideUpAnimator = SlideUpAnimator()
 	
-	public var overlayViewStyle: OverlayViewStyle = .Normal(UIColor(white: 0.0, alpha: 0.75))
+	open var overlayViewStyle: OverlayViewStyle = .normal(UIColor(white: 0.0, alpha: 0.75))
 	
-	public weak var delegate: DatePickerControllerDelagte?
+	open weak var delegate: DatePickerControllerDelagte?
 	
-	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 		commonInit()
 	}
@@ -28,42 +28,42 @@ public class DatePickerController : UIViewController {
 		commonInit()
 	}
 	
-	private func commonInit() {
+	fileprivate func commonInit() {
 		slideUpAnimator.presentedViewHeight = 264.0 // 44.0 + 220.0
 		slideUpAnimator.overlayViewStyle = overlayViewStyle
 		
-		modalPresentationStyle = .Custom
+		modalPresentationStyle = .custom
 		transitioningDelegate = slideUpAnimator
 		
-		topToolBar.barTintColor = UIColor.blackColor()
-		topToolBar.tintColor = UIColor.whiteColor()
+		topToolBar.barTintColor = UIColor.black
+		topToolBar.tintColor = UIColor.white
 	}
 	
-	public override func viewDidLoad() {
+	open override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		view.backgroundColor = UIColor.whiteColor()
+		view.backgroundColor = UIColor.white
 		
 		setupViews()
 		setupConstraints()
 	}
 	
-	private func setupViews() {
+	fileprivate func setupViews() {
 		topToolBar.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(topToolBar)
 		
-        let cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(DatePickerController.cancel(_:)))
-		let spaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-		let doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(DatePickerController.done(_:)))
+        let cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(DatePickerController.cancel(_:)))
+		let spaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+		let doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(DatePickerController.done(_:)))
 		topToolBar.items = [cancelBarButtonItem, spaceBarButtonItem, doneBarButtonItem]
 		
 		datePicker.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(datePicker)
 		
-		datePicker.addTarget(self, action: #selector(DatePickerController.dateUpdated(_:)), forControlEvents: .ValueChanged)
+		datePicker.addTarget(self, action: #selector(DatePickerController.dateUpdated(_:)), for: .valueChanged)
 	}
 	
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		let views = [
 			"topToolBar" : topToolBar,
 			"datePicker" : datePicker
@@ -71,15 +71,15 @@ public class DatePickerController : UIViewController {
 		
 		var constraints = [NSLayoutConstraint]()
 		
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[topToolBar]-[datePicker(220)]", options: [.AlignAllLeading, .AlignAllTrailing], metrics: nil, views: views)
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[datePicker]|", options: [], metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[topToolBar]-[datePicker(220)]", options: [.alignAllLeading, .alignAllTrailing], metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[datePicker]|", options: [], metrics: nil, views: views)
 		
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
 }
 
 extension DatePickerController {
-	func dateUpdated(sender: AnyObject?) {
+	func dateUpdated(_ sender: AnyObject?) {
 		guard let datePicker = sender as? UIDatePicker else {
 			NSLog("Error: datePicket is nil")
 			return
@@ -87,23 +87,23 @@ extension DatePickerController {
 		delegate?.datePickerController?(self, datePicker: datePicker, didScrollToDate: datePicker.date)
 	}
 	
-	func done(sender: AnyObject?) {
+	func done(_ sender: AnyObject?) {
 		delegate?.datePickerController?(self, willDoneWithDate: datePicker.date)
-		dismissViewControllerAnimated(true, completion: { [unowned self] in
+		dismiss(animated: true, completion: { [unowned self] in
 			self.delegate?.datePickerController?(self, didDoneWithDate: self.datePicker.date)
 		})
 	}
 	
-	func cancel(sender: AnyObject?) {
+	func cancel(_ sender: AnyObject?) {
 		delegate?.datePickerController?(self, willCancelWithDate: datePicker.date)
-		dismissViewControllerAnimated(true, completion: { [unowned self] in
+		dismiss(animated: true, completion: { [unowned self] in
 			self.delegate?.datePickerController?(self, didCancelWithDate: self.datePicker.date)
 		})
 	}
 }
 
 extension DatePickerController : UIToolbarDelegate {
-	public func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-		return .Top
+	public func position(for bar: UIBarPositioning) -> UIBarPosition {
+		return .top
 	}
 }

@@ -23,7 +23,7 @@ public protocol TableLayoutDataSource : class {
 	
 	- returns: number of columns
 	*/
-	func numberOfColumnsInTableLayout(tableLayout: TableCollectionViewLayout) -> Int
+	func numberOfColumnsInTableLayout(_ tableLayout: TableCollectionViewLayout) -> Int
 	
 	/**
 	Get number of rows in one column
@@ -33,7 +33,7 @@ public protocol TableLayoutDataSource : class {
 	
 	- returns: number of rows in the column
 	*/
-	func tableLayout(tableLayout: TableCollectionViewLayout, numberOfRowsInColumn column: Int) -> Int
+	func tableLayout(_ tableLayout: TableCollectionViewLayout, numberOfRowsInColumn column: Int) -> Int
 	
 	/**
 	Preferred size for the cell at the column and the row
@@ -44,40 +44,40 @@ public protocol TableLayoutDataSource : class {
 	
 	- returns: Size for the cell
 	*/
-	func tableLayout(tableLayout: TableCollectionViewLayout, sizeForColumn column: Int, row: Int) -> CGSize
+	func tableLayout(_ tableLayout: TableCollectionViewLayout, sizeForColumn column: Int, row: Int) -> CGSize
 }
 
-public class TableCollectionViewLayout: UICollectionViewLayout {
+open class TableCollectionViewLayout: UICollectionViewLayout {
     // SeparatorLine is decorationViews
 	
 	// MARK: - Appearance Customization	
-    public var horizontalPadding: CGFloat = 5.0
-    public var verticalPadding: CGFloat = 1.0
-    public var separatorLineWidth: CGFloat = 1.0
-    public var separatorColor = UIColor(white: 0.0, alpha: 0.5) {
+    open var horizontalPadding: CGFloat = 5.0
+    open var verticalPadding: CGFloat = 1.0
+    open var separatorLineWidth: CGFloat = 1.0
+    open var separatorColor = UIColor(white: 0.0, alpha: 0.5) {
         didSet {
             TableCollectionViewSeparatorView.separatorColor = separatorColor
         }
     }
 	
 	// MARK: - DataSource/Delegate
-    public weak var dataSourceTableLayout: TableLayoutDataSource!
+    open weak var dataSourceTableLayout: TableLayoutDataSource!
 	
-	public func numberOfColumns() -> Int {
+	open func numberOfColumns() -> Int {
 		return dataSourceTableLayout.numberOfColumnsInTableLayout(self)
 	}
-	public func numberOfRowsInColumn(column: Int) -> Int {
+	open func numberOfRowsInColumn(_ column: Int) -> Int {
 		return dataSourceTableLayout.tableLayout(self, numberOfRowsInColumn: column)
 	}
 	
-    private var maxWidthForColumn = [CGFloat]()
-	private var maxHeightForRow = [CGFloat]()
+    fileprivate var maxWidthForColumn = [CGFloat]()
+	fileprivate var maxHeightForRow = [CGFloat]()
 	
-	private var maxNumberOfRows: Int = 0
+	fileprivate var maxNumberOfRows: Int = 0
 	/// Max height, not include paddings/separatorWidth
-	private var maxHeight: CGFloat = 0
+	fileprivate var maxHeight: CGFloat = 0
     
-    private let separatorViewKind = "Separator"
+    fileprivate let separatorViewKind = "Separator"
 	
 	// MARK: - Init
 	public override init() {
@@ -90,37 +90,37 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
 		commmonInit()
     }
 	
-	private func commmonInit() {
-		self.registerClass(TableCollectionViewSeparatorView.self, forDecorationViewOfKind: separatorViewKind)
+	fileprivate func commmonInit() {
+		self.register(TableCollectionViewSeparatorView.self, forDecorationViewOfKind: separatorViewKind)
 	}
 	
 	// MARK: - Override
-    public override func prepareLayout() {
+    open override func prepare() {
         buildMaxWidthsHeight()
     }
     
-    public override func collectionViewContentSize() -> CGSize {
-        var width: CGFloat = maxWidthForColumn.reduce(0, combine: +)
+    open override var collectionViewContentSize : CGSize {
+        var width: CGFloat = maxWidthForColumn.reduce(0, +)
         width += CGFloat(numberOfColumns() - 1) * separatorLineWidth
         width += CGFloat(numberOfColumns()) * horizontalPadding * 2
 		let maxContentHeight = maxHeight + separatorLineWidth + verticalPadding * 2 * CGFloat(maxNumberOfRows)
-        return CGSizeMake(width, maxContentHeight)
+        return CGSize(width: width, height: maxContentHeight)
     }
         
-    public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cellAttrisForIndexPath(indexPath)
     }
     
-    public override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    open override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         if elementKind == separatorViewKind {
             if indexPath.item == 0 {
-				let attrs = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, withIndexPath: indexPath)
+				let attrs = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, with: indexPath)
 				// Section 0 decoration view (separator line) is horizontal line
                 if indexPath.section == 0 {
                     let x: CGFloat = 0
                     let y = maxHeightForRow[0] + verticalPadding * 2
-                    let width = collectionViewContentSize().width
-                    attrs.frame = CGRectMake(x, y, width, separatorLineWidth)
+                    let width = collectionViewContentSize.width
+                    attrs.frame = CGRect(x: x, y: y, width: width, height: separatorLineWidth)
                 } else {
                     var x: CGFloat = 0
                     for sec in 0 ..< indexPath.section {
@@ -129,8 +129,8 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
                     x -= separatorLineWidth
                     let y: CGFloat = 0.0
                     let width = separatorLineWidth
-                    let height = collectionViewContentSize().height
-                    attrs.frame = CGRectMake(x, y, width, height)
+                    let height = collectionViewContentSize.height
+                    attrs.frame = CGRect(x: x, y: y, width: width, height: height)
                 }
 				
 				return attrs
@@ -140,7 +140,7 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
 		return nil
     }
     
-    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attrs = [UICollectionViewLayoutAttributes]()
         let cellIndexPaths = cellIndexPathsForRect(rect)
         for indexPath in cellIndexPaths {
@@ -151,7 +151,7 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
         for sec in 0 ..< columns {
 			let rows = numberOfRowsInColumn(sec)
             for row in 0 ..< rows {
-				if let attr = layoutAttributesForDecorationViewOfKind(separatorViewKind, atIndexPath: NSIndexPath(forItem: row, inSection: sec)) {
+				if let attr = layoutAttributesForDecorationView(ofKind: separatorViewKind, at: IndexPath(item: row, section: sec)) {
 					attrs.append(attr)
 				}
             }
@@ -160,7 +160,7 @@ public class TableCollectionViewLayout: UICollectionViewLayout {
         return attrs
     }
     
-    public override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+    open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return false
     }
 }
@@ -218,8 +218,8 @@ extension TableCollectionViewLayout {
 		}
     }
 	
-    private func cellAttrisForIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes {
-        let attrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+    fileprivate func cellAttrisForIndexPath(_ indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
+        let attrs = UICollectionViewLayoutAttributes(forCellWith: indexPath)
 		// Calculate Cell size with max width and max height
 		let maxWidth = maxWidthForColumn[indexPath.section] + horizontalPadding * 2
 		let maxHeight = maxHeightForRow[indexPath.row] + verticalPadding * 2
@@ -240,13 +240,13 @@ extension TableCollectionViewLayout {
 		// Until now, we have frame for full size cell.
 		// the frame for the cell should have size from dataSource and put it in center
 		let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: indexPath.section, row: indexPath.item)
-        attrs.bounds = CGRectMake(0, 0, size.width, size.height)
+        attrs.bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         attrs.center = CGPoint(x: x + maxWidth / 2.0, y: y + maxHeight / 2.0)
 		
         return attrs
     }
 
-    private func cellIndexPathsForRect(rect: CGRect) -> [NSIndexPath] {
+    fileprivate func cellIndexPathsForRect(_ rect: CGRect) -> [IndexPath] {
         let rectLeft: CGFloat = rect.origin.x
         let rectRight: CGFloat = rect.origin.x + rect.width
         let rectTop: CGFloat = rect.origin.y
@@ -277,7 +277,7 @@ extension TableCollectionViewLayout {
         }
 		
 		// Create array of indexPaths
-		var indexPaths = [NSIndexPath]()
+		var indexPaths = [IndexPath]()
 		
 		// Determin row
 		for col in fromSectionIndex ... endSectionIndex {
@@ -309,7 +309,7 @@ extension TableCollectionViewLayout {
 			}
 			
 			for row in fromRowIndex ... endRowIndex {
-				indexPaths.append(NSIndexPath(forItem: row, inSection: col))
+				indexPaths.append(IndexPath(item: row, section: col))
 			}
 		}
 		

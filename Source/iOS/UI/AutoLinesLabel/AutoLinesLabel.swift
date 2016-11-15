@@ -7,8 +7,8 @@
 
 import UIKit
 
-public class AutoLinesLabel: UILabel {
-	public var contentInset: UIEdgeInsets = UIEdgeInsetsZero {
+open class AutoLinesLabel: UILabel {
+	open var contentInset: UIEdgeInsets = UIEdgeInsets.zero {
         didSet {
             // Force label to update
             let originalText = self.text
@@ -28,13 +28,13 @@ public class AutoLinesLabel: UILabel {
 		commonInit()
     }
 	
-    private func commonInit() {
+    fileprivate func commonInit() {
         // Content is never compressed
-        self.setContentCompressionResistancePriority(1000, forAxis: .Horizontal)
-        self.setContentCompressionResistancePriority(1000, forAxis: .Vertical)
+        self.setContentCompressionResistancePriority(1000, for: .horizontal)
+        self.setContentCompressionResistancePriority(1000, for: .vertical)
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         let targetWidth = bounds.width
 		// Once label's width is changed, update preferredMaxLayoutWidth, this will lead recall textRectForBounds
@@ -44,17 +44,17 @@ public class AutoLinesLabel: UILabel {
         self.superview?.setNeedsLayout()
     }
     
-    public override func drawTextInRect(rect: CGRect) {
+    open override func drawText(in rect: CGRect) {
         // Rect has been veritcally expanded in textRectForBounds
-        super.drawTextInRect(UIEdgeInsetsInsetRect(rect, contentInset))
+        super.drawText(in: UIEdgeInsetsInsetRect(rect, contentInset))
     }
     
-    public override func textRectForBounds(bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+    open override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         // Use a shrinked rect to calculate new rect, this will lead to a higher rectangle to draw
         // The width is same as preferredMaxLayoutWidth
         // Reference: http://stackoverflow.com/questions/21167226/resizing-a-uilabel-to-accomodate-insets
         
-        var rect = super.textRectForBounds(UIEdgeInsetsInsetRect(bounds, contentInset), limitedToNumberOfLines: numberOfLines)
+        var rect = super.textRect(forBounds: UIEdgeInsetsInsetRect(bounds, contentInset), limitedToNumberOfLines: numberOfLines)
         // Move rect to origin
         rect.origin.x    -= contentInset.left;
         rect.origin.y    -= contentInset.top;

@@ -13,7 +13,7 @@ public protocol CollectionViewCellInfo {
 	static func identifier() -> String
 	
 	// collectionView.registerClass(self, forCellWithReuseIdentifier: identifier())
-	static func registerInCollectionView(collectionView: UICollectionView)
+	static func registerInCollectionView(_ collectionView: UICollectionView)
 }
 
 

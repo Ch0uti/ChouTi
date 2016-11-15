@@ -8,16 +8,16 @@
 
 import UIKit
 
-public class TextField: UITextField {
+open class TextField: UITextField {
     /// Cursor Color
-    public var cursorColor: UIColor? {
+    open var cursorColor: UIColor? {
         didSet {
             tintColor = cursorColor
         }
     }
     
     /// Placeholder text
-    public override var placeholder: String? {
+    open override var placeholder: String? {
         didSet {
             guard let placeholder = placeholder else {
                 return
@@ -41,7 +41,7 @@ public class TextField: UITextField {
     }
     
     /// Placeholder text color
-    public var placeholderColor: UIColor? {
+    open var placeholderColor: UIColor? {
         didSet {
             guard let placeholder = placeholder else {
                 return
@@ -63,7 +63,7 @@ public class TextField: UITextField {
     }
     
     /// Placeholder text font
-    public var placeholderFont: UIFont? {
+    open var placeholderFont: UIFont? {
         didSet {
             guard let placeholder = placeholder else {
                 return
@@ -84,22 +84,22 @@ public class TextField: UITextField {
         }
     }
     
-    public override func textRectForBounds(bounds: CGRect) -> CGRect {
+    open override func textRect(forBounds bounds: CGRect) -> CGRect {
         return customizedTextRectForBounds(bounds)
     }
     
-    public override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
+    open override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         return customizedTextRectForBounds(bounds)
     }
     
-    public override func editingRectForBounds(bounds: CGRect) -> CGRect {
+    open override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return customizedTextRectForBounds(bounds)
     }
     
-    private func customizedTextRectForBounds(bounds: CGRect) -> CGRect {
+    fileprivate func customizedTextRectForBounds(_ bounds: CGRect) -> CGRect {
         var textRect = bounds
-        let leftViewRect = leftViewRectForBounds(bounds)
-        let rightViewRect = rightViewRectForBounds(bounds)
+        let leftViewRect = self.leftViewRect(forBounds: bounds)
+        let rightViewRect = self.rightViewRect(forBounds: bounds)
         
         textRect.origin.x = (leftViewRect.origin.x + leftViewRect.width) + layoutMargins.left
         textRect.origin.y = layoutMargins.top
@@ -110,14 +110,14 @@ public class TextField: UITextField {
 }
 
 extension TextField {
-    public override func rightViewRectForBounds(bounds: CGRect) -> CGRect {
-        var rect = super.rightViewRectForBounds(bounds)
+    open override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.rightViewRect(forBounds: bounds)
         rect.origin.x -= layoutMargins.right
         return rect
     }
     
-    public override func leftViewRectForBounds(bounds: CGRect) -> CGRect {
-        var rect = super.leftViewRectForBounds(bounds)
+    open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.leftViewRect(forBounds: bounds)
         rect.origin.x += layoutMargins.left
         return rect
     }

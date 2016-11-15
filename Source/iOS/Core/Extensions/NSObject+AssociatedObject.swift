@@ -17,7 +17,7 @@ public extension NSObject {
     }
     
     /// Strong referenced associated object
-    public var associatedObject: AnyObject? {
+    public var associatedObject: Any? {
         get { return objc_getAssociatedObject(self, &zhAssociateObjectKey.Key) }
         set { objc_setAssociatedObject(self, &zhAssociateObjectKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
@@ -37,7 +37,8 @@ public extension NSObject {
      
      - returns: old associated object if existed
      */
-    public func setAssociatedObejct(object: AnyObject, forKeyPointer pointer: UnsafePointer<Void> = nil, associationPolicy: objc_AssociationPolicy = .OBJC_ASSOCIATION_RETAIN_NONATOMIC) -> AnyObject? {
+	@discardableResult
+    public func setAssociatedObejct(_ object: Any, forKeyPointer pointer: UnsafeRawPointer? = nil, associationPolicy: objc_AssociationPolicy = .OBJC_ASSOCIATION_RETAIN_NONATOMIC) -> Any? {
         if pointer == nil {
             let currentAssociatedObject = associatedObject
             associatedObject = object
@@ -49,15 +50,16 @@ public extension NSObject {
         }
     }
     
-    public func getAssociatedObject(forKeyPointer pointer: UnsafePointer<Void> = nil) -> AnyObject? {
+    public func getAssociatedObject(forKeyPointer pointer: UnsafeRawPointer? = nil) -> Any? {
         if pointer == nil {
             return associatedObject
         } else {
             return objc_getAssociatedObject(self, pointer)
         }
     }
-    
-    public func clearAssociatedObject(forKeyPointer pointer: UnsafePointer<Void> = nil) -> AnyObject? {
+	
+	@discardableResult
+    public func clearAssociatedObject(forKeyPointer pointer: UnsafeRawPointer? = nil) -> Any? {
         if pointer == nil {
             let object = associatedObject
             associatedObject = nil

@@ -25,7 +25,7 @@ public extension String {
      - returns: whitespace and newline trimmed string
      */
     public func whitespaceAndNewlineTrimmed() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     /**
@@ -34,7 +34,7 @@ public extension String {
      - returns: whitespace trimmed string
      */
     public func whitespaceTrimmed() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
 }
 
@@ -42,44 +42,45 @@ public extension String {
 public extension String {
     
     public func isEmail() -> Bool {
-        let emailRegex = try! NSRegularExpression(pattern: "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", options: [.CaseInsensitive])
-        return emailRegex.firstMatchInString(self, options:[], range: self.fullNSRange()) != nil
+        let emailRegex = try! NSRegularExpression(pattern: "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", options: [.caseInsensitive])
+        return emailRegex.firstMatch(in: self, options:[], range: self.fullNSRange()) != nil
     }
     
-    public func replaceRegex(regex: NSRegularExpression, withString template: String) -> String {
-        return regex.stringByReplacingMatchesInString(self, options: [], range: self.fullNSRange(), withTemplate: template)
+    public func replaceRegex(_ regex: NSRegularExpression, withString template: String) -> String {
+        return regex.stringByReplacingMatches(in: self, options: [], range: self.fullNSRange(), withTemplate: template)
     }
     
-    public func matchedStringForRegex(regex: NSRegularExpression) -> [String] {
+    public func matchedStringForRegex(_ regex: NSRegularExpression) -> [String] {
         var matchedStrings = [String]()
         
-        let matchResult = regex.matchesInString(self, options: [], range: self.fullNSRange())
+        let matchResult = regex.matches(in: self, options: [], range: self.fullNSRange())
         for match in matchResult {
             if let range = rangeFromNSRange(match.range) {
-                matchedStrings.append(self.substringWithRange(range))
+                matchedStrings.append(self.substring(with: range))
             }
         }
         
         return matchedStrings
     }
     
-    public func firstMatchStringForRegex(regex: NSRegularExpression) -> String? {
-        let matchResult = regex.firstMatchInString(self, options: [], range: self.fullNSRange())
+    public func firstMatchStringForRegex(_ regex: NSRegularExpression) -> String? {
+        let matchResult = regex.firstMatch(in: self, options: [], range: self.fullNSRange())
         if let nsRange = matchResult?.range, let range = rangeFromNSRange(nsRange) {
-            return self.substringWithRange(range)
+            return self.substring(with: range)
         }
         
         return nil
     }
     
     public func fullNSRange() -> NSRange {
-        return NSRange(location: 0, length: self.startIndex.distanceTo(self.endIndex))
+        return NSRange(location: 0, length: self.characters.distance(from: self.startIndex, to: self.endIndex))
     }
     
-    public func rangeFromNSRange(nsRange: NSRange) -> Range<String.Index>? {
-        let from = self.startIndex.advancedBy(nsRange.location, limit: self.endIndex)
-        let to = from.advancedBy(nsRange.length, limit: self.endIndex)
-        return from ..< to
+    public func rangeFromNSRange(_ nsRange: NSRange) -> Range<String.Index>? {
+        let from = self.characters.index(self.startIndex, offsetBy: nsRange.location, limitedBy: self.endIndex)
+		
+        let to = self.characters.index(from!, offsetBy: nsRange.length, limitedBy: self.endIndex)
+        return from! ..< to!
     }
     
     /**

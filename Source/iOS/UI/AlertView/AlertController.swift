@@ -13,16 +13,16 @@ import UIKit
  *  Currently, this class only supports Alert style.
  */
 @available(iOS 9.0, *)
-public class AlertController: UIViewController {
+open class AlertController: UIViewController {
     
     /// AlertView will be presented
-    public let alertView = AlertView()
+    open let alertView = AlertView()
     
     /// Scale presenting/dismissing animator
-    private let animator = ScalePresentingAnimator()
+    fileprivate let animator = ScalePresentingAnimator()
     
     /// The title of the alert.
-    public override var title: String? {
+    open override var title: String? {
         get { return alertView.title }
         set {
 			alertView.title = newValue
@@ -31,7 +31,7 @@ public class AlertController: UIViewController {
     }
     
     /// Descriptive text that provides more details about the reason for the alert.
-    public var message: String? {
+    open var message: String? {
         get { return alertView.message }
         set {
 			alertView.message = newValue
@@ -40,33 +40,35 @@ public class AlertController: UIViewController {
     }
     
     /// The actions that the user can take in response to the alert. (read-only)
-    public var actions: [AlertAction] {
+    open var actions: [AlertAction] {
         get { return alertView.actions }
     }
     
     /// Override preferredContentSize to make sure view layout is always updated and centered
-    public override var preferredContentSize: CGSize {
+    open override var preferredContentSize: CGSize {
         didSet {
-            guard let widthConstraint = widthConstraint, heightConstraint = heightConstraint where presentingViewController != nil else {
+            guard let widthConstraint = widthConstraint,
+				let heightConstraint = heightConstraint,
+				presentingViewController != nil else {
                 return
             }
             
             widthConstraint.constant = preferredContentSize.width
             heightConstraint.constant = preferredContentSize.height
-            UIView.animateWithDuration(0.25, delay: 0.0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: { [weak self] in
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: [.curveEaseInOut, .beginFromCurrentState], animations: { [weak self] in
                 self?.view.layoutIfNeeded()
             }, completion: nil)
         }
     }
     
     /// width constraint for view
-    private var widthConstraint: NSLayoutConstraint?
+    fileprivate var widthConstraint: NSLayoutConstraint?
     
     /// height constraint for view
-    private var heightConstraint: NSLayoutConstraint?
+    fileprivate var heightConstraint: NSLayoutConstraint?
 	
 	/// An UIWindow instance which its rootViewController is presenting self.
-	private var alertWindow: UIWindow?
+	fileprivate var alertWindow: UIWindow?
 	
     /**
      Creates and returns a view controller for displaying an alert to the user.
@@ -82,7 +84,7 @@ public class AlertController: UIViewController {
         alertView.message = message
     }
     
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         commonInit()
     }
@@ -91,16 +93,16 @@ public class AlertController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         animator.presentingInitialScaleFactor = 1.2
         animator.dismissingFinalScaleFactor = 0.95
         
         // Setup customized presenting/dismissing transitioning delegate
-        modalPresentationStyle = .Custom
+        modalPresentationStyle = .custom
         transitioningDelegate = animator
     }
         
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         // Initially I want to set self.view = alertView.
@@ -112,31 +114,31 @@ public class AlertController: UIViewController {
         alertView.constrainToFullSizeInSuperview()
     }
 	
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // at this moment, view size is about to be determined by presenting animator, preferred content size should be updated.
         updatePreferredContentSize()
     }
     
-    public override func viewDidAppear(animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Use constraint-based layout to center alert view
         setupConstraints()
     }
     
-    private func setupConstraints() {
+    fileprivate func setupConstraints() {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.constrainToCenterInSuperview()
         widthConstraint = view.constrainTo(width: preferredContentSize.width)
         heightConstraint = view.constrainTo(height: preferredContentSize.height)
     }
 	
-    public override func viewDidDisappear(animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 		
-		alertWindow?.hidden = true
+		alertWindow?.isHidden = true
 		alertWindow = nil
 		
         // restore to use frame (default state)
@@ -148,18 +150,18 @@ public class AlertController: UIViewController {
      
      - parameter action: The action object to display as part of the alert. Actions are displayed as buttons in the alert. The action object provides the button text and the action to be performed when that button is tapped.
      */
-    public func addAction(action: AlertAction) {
+    open func addAction(_ action: AlertAction) {
         // Remove the default target action, handler should be called after dismissing completed
-        action.button.removeTarget(action, action: #selector(AlertAction.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+        action.button.removeTarget(action, action: #selector(AlertAction.buttonTapped(_:)), for: .touchUpInside)
         // Add customized action
-        action.button.addTarget(self, action: #selector(AlertController.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+        action.button.addTarget(self, action: #selector(AlertController.buttonTapped(_:)), for: .touchUpInside)
         
         alertView.addAction(action)
     }
     
-    func buttonTapped(button: UIButton) {
+    func buttonTapped(_ button: UIButton) {
         // Call action handler when dismissing completed
-        self.dismissViewControllerAnimated(true, completion: { [weak self] in
+        self.dismiss(animated: true, completion: { [weak self] in
             self?.alertView.actions.forEach {
                 if $0.button === button {
                     $0.performActionHandler()
@@ -174,8 +176,8 @@ extension AlertController {
     /**
      Update controller's preferred content size from action view's size
      */
-    private func updatePreferredContentSize() {
-        preferredContentSize = alertView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+    fileprivate func updatePreferredContentSize() {
+        preferredContentSize = alertView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
     }
 }
 
@@ -188,9 +190,9 @@ extension AlertController {
 	- parameter animated:   whether the alert controller is presented animated
 	- parameter completion: completion block
 	*/
-	public func show(animated animated: Bool, completion: (() -> Void)? = nil) {
+	public func show(animated: Bool, completion: (() -> Void)? = nil) {
 		let blankViewController = UIViewController()
-		blankViewController.view.backgroundColor = UIColor.clearColor()
+		blankViewController.view.backgroundColor = UIColor.clear
 		
         // On iOS 9, UIWindow will just have a correct frame.
 		let window = UIWindow()
@@ -202,12 +204,12 @@ extension AlertController {
 		// }
 		
 		window.rootViewController = blankViewController
-		window.backgroundColor = UIColor.clearColor()
+		window.backgroundColor = UIColor.clear
 		window.windowLevel = UIWindowLevelAlert + 1 // +1 is necessary for present above a presented view controller
 		window.makeKeyAndVisible()
 		
 		alertWindow = window
 		
-		blankViewController.presentViewController(self, animated: animated, completion: completion)
+		blankViewController.present(self, animated: animated, completion: completion)
 	}
 }

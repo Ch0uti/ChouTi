@@ -19,14 +19,12 @@ public extension UIViewController {
      
      :returns: An instance of view controller.
      */
-    class public func viewControllerInStoryboard(storyboardName: String , viewControllerName: String) -> UIViewController {
+    class public func viewControllerInStoryboard(_ storyboardName: String , viewControllerName: String) -> UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
-        let viewController = storyboard.instantiateViewControllerWithIdentifier(viewControllerName)
+        let viewController = storyboard.instantiateViewController(withIdentifier: viewControllerName)
         return viewController
     }
 }
-
-
 
 // MARK: - Utility
 public extension UIViewController {
@@ -34,23 +32,23 @@ public extension UIViewController {
     ///
     /// Based off code here: http://stackoverflow.com/questions/24825123/get-the-current-view-controller-from-the-app-delegate
     public class var currentViewController: UIViewController? {
-        if let controller = UIApplication.sharedApplication().keyWindow?.rootViewController {
+        if let controller = UIApplication.shared.keyWindow?.rootViewController {
             return findCurrentViewController(controller)
         }
         return nil
     }
     
-    private class func findCurrentViewController(controller: UIViewController) -> UIViewController {
+    fileprivate class func findCurrentViewController(_ controller: UIViewController) -> UIViewController {
         if let controller = controller.presentedViewController {
             return findCurrentViewController(controller)
         }
-        else if let controller = controller as? UISplitViewController, lastViewController = controller.viewControllers.first where controller.viewControllers.count > 0 {
+        else if let controller = controller as? UISplitViewController, let lastViewController = controller.viewControllers.first, controller.viewControllers.count > 0 {
             return findCurrentViewController(lastViewController)
         }
-        else if let controller = controller as? UINavigationController, topViewController = controller.topViewController where controller.viewControllers.count > 0 {
+        else if let controller = controller as? UINavigationController, let topViewController = controller.topViewController, controller.viewControllers.count > 0 {
             return findCurrentViewController(topViewController)
         }
-        else if let controller = controller as? UITabBarController, selectedViewController = controller.selectedViewController where controller.viewControllers?.count > 0 {
+        else if let controller = controller as? UITabBarController, let selectedViewController = controller.selectedViewController, controller.viewControllers?.isEmpty == false {
             return findCurrentViewController(selectedViewController)
         }
         else {
@@ -58,8 +56,6 @@ public extension UIViewController {
         }
     }
 }
-
-
 
 // MARK: - UI
 public extension UIViewController {
@@ -79,16 +75,16 @@ public extension UIViewController {
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         navigationBar.addSubview(backgroundView)
         
-        backgroundView.leadingAnchor.constraintEqualToAnchor(navigationBar.leadingAnchor).active = true
+        backgroundView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor).isActive = true
         
         if let titleView = navigationItem.titleView {
-            backgroundView.trailingAnchor.constraintEqualToAnchor(titleView.leadingAnchor).active = true
+            backgroundView.trailingAnchor.constraint(equalTo: titleView.leadingAnchor).isActive = true
         } else {
-            backgroundView.trailingAnchor.constraintEqualToAnchor(navigationBar.centerXAnchor).active = true
+            backgroundView.trailingAnchor.constraint(equalTo: navigationBar.centerXAnchor).isActive = true
         }
         
-        backgroundView.topAnchor.constraintEqualToAnchor(navigationBar.topAnchor).active = true
-        backgroundView.bottomAnchor.constraintEqualToAnchor(navigationBar.bottomAnchor).active = true
+        backgroundView.topAnchor.constraint(equalTo: navigationBar.topAnchor).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor).isActive = true
         
         return backgroundView
     }
@@ -108,16 +104,16 @@ public extension UIViewController {
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         navigationBar.addSubview(backgroundView)
         
-        backgroundView.trailingAnchor.constraintEqualToAnchor(navigationBar.trailingAnchor).active = true
+        backgroundView.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor).isActive = true
         
         if let titleView = navigationItem.titleView {
-            backgroundView.leadingAnchor.constraintEqualToAnchor(titleView.trailingAnchor).active = true
+            backgroundView.leadingAnchor.constraint(equalTo: titleView.trailingAnchor).isActive = true
         } else {
-            backgroundView.leadingAnchor.constraintEqualToAnchor(navigationBar.centerXAnchor).active = true
+            backgroundView.leadingAnchor.constraint(equalTo: navigationBar.centerXAnchor).isActive = true
         }
         
-        backgroundView.topAnchor.constraintEqualToAnchor(navigationBar.topAnchor).active = true
-        backgroundView.bottomAnchor.constraintEqualToAnchor(navigationBar.bottomAnchor).active = true
+        backgroundView.topAnchor.constraint(equalTo: navigationBar.topAnchor).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor).isActive = true
         
         return backgroundView
     }

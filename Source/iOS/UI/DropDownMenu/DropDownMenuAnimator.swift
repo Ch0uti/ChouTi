@@ -18,7 +18,7 @@ class DropDownMenuAnimator: Animator {
     weak var dropDownMenu: DropDownMenu?
     
 	/// Overlay view style. By default, it's Dark blur effect
-	var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.5))
+	var overlayViewStyle: OverlayViewStyle = .blurred(.dark, UIColor(white: 0.0, alpha: 0.5))
 	
 	/// Whether presenting view should be dimmed when presenting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.
 	var shouldDimPresentedView: Bool = false
@@ -26,8 +26,8 @@ class DropDownMenuAnimator: Animator {
 	/// Whether should dismiss presented view when tap out side of presented view
 	var shouldDismissOnTappingOutsideView: Bool = true
 	
-	override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-		super.animateTransition(transitionContext)
+	override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+		super.animateTransition(using: transitionContext)
 		
 		if presenting {
 			presentingAnimation(transitionContext)
@@ -41,7 +41,7 @@ class DropDownMenuAnimator: Animator {
 	
 	- parameter transitionContext: transitionContext
 	*/
-	private func presentingAnimation(transitionContext: UIViewControllerContextTransitioning) {
+	fileprivate func presentingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
 		// Necessary setup for presenting
 		guard
 			let presentedView = self.presentedViewController?.view,
@@ -54,7 +54,7 @@ class DropDownMenuAnimator: Animator {
 		
 		// Presenting animations
 		presentedView.alpha = 0.999999 // presentedView.alpha is set to 1.0 in following animation block. This is make sure animation has a correct duration
-		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+		UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
 			presentedView.alpha = 1.0
 			}, completion: { finished -> Void in
 				transitionContext.completeTransition(true)
@@ -66,7 +66,7 @@ class DropDownMenuAnimator: Animator {
 	
 	- parameter transitionContext: transitionContext
 	*/
-	private func dismissingAnimation(transitionContext: UIViewControllerContextTransitioning) {
+	fileprivate func dismissingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
 		// Necessary setup for dismissing
 		guard let fromView = self.fromViewController?.view else {
             NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
@@ -74,14 +74,14 @@ class DropDownMenuAnimator: Animator {
 		}
 				
 		fromView.alpha = 0.999999
-		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: [.CurveEaseInOut, .BeginFromCurrentState], animations: { () -> Void in
+		UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: [.beginFromCurrentState, .beginFromCurrentState], animations: { () -> Void in
 			fromView.alpha = 1.0
 			}, completion: { finished -> Void in
 				transitionContext.completeTransition(true)
 		})
 	}
     
-    override func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
+    override func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let presentationController = DropDownMenuPresentationController(presentedViewController: presented, presentingViewController: presenting!, overlayViewStyle: overlayViewStyle)
         presentationController.shouldDismissOnTappingOutsideView = shouldDismissOnTappingOutsideView
         presentationController.shouldDimPresentedView = shouldDimPresentedView

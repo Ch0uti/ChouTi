@@ -23,7 +23,7 @@ public struct OrderedDictionary<KeyType: Hashable, ValueType> {
 		}
 		
 		set {
-			if let _ = array.indexOf(key) {
+			if let _ = array.index(of: key) {
 			} else {
 				array.append(key)
 			}
@@ -45,30 +45,41 @@ public struct OrderedDictionary<KeyType: Hashable, ValueType> {
 }
 
 extension OrderedDictionary {
-	public mutating func insert(value: ValueType, forKey key: KeyType, atIndex index: Int) -> ValueType? {
+	public mutating func insert(_ value: ValueType, forKey key: KeyType, atIndex index: Int) -> ValueType? {
 		var adjustedIndex = index
+		
+		// If insert for key: b, at index 2
+		//
+		//        |
+		//        v
+		//   0    1    2
+		// ["a", "b", "c"]
+		// 
+		// Remove "b"
+		//   0    1
+		// ["a", "c"]
 		
 		let existingValue = dictionary[key]
 		if existingValue != nil {
-			let existingIndex = array.indexOf(key)
+			let existingIndex = array.index(of: key)!
 			
 			if existingIndex < index {
 				adjustedIndex -= 1
 			}
 			
-			array.removeAtIndex(existingIndex!)
+			array.remove(at: existingIndex)
 		}
-		array.insert(key, atIndex: adjustedIndex)
+		array.insert(key, at: adjustedIndex)
 		dictionary[key] = value
 		
 		return existingValue
 	}
 	
-	public mutating func removeAtIndex(index: Int) -> (KeyType, ValueType) {
+	public mutating func removeAtIndex(_ index: Int) -> (KeyType, ValueType) {
 		precondition(index < array.count, "index out of bounds")
 		
-		let key = array.removeAtIndex(index)
-		let value = dictionary.removeValueForKey(key)
+		let key = array.remove(at: index)
+		let value = dictionary.removeValue(forKey: key)
 		
 		return (key, value!)
 	}

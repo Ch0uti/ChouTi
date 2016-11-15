@@ -70,7 +70,7 @@ public extension UIColor {
 
 
 public extension UIColor {
-    public class func random(randomAlpha: Bool = false) -> UIColor {
+    public class func random(_ randomAlpha: Bool = false) -> UIColor {
         let randomRed = CGFloat.random()
         let randomGreen = CGFloat.random()
         let randomBlue = CGFloat.random()
@@ -89,7 +89,7 @@ public extension UIColor {
      
      - returns: color between two colors
      */
-    public class func colorBetweenMinColor(minColor: UIColor, maxColor: UIColor, percent: CGFloat) -> UIColor {
+    public class func colorBetweenMinColor(_ minColor: UIColor, maxColor: UIColor, percent: CGFloat) -> UIColor {
         let (leftR, leftG, leftB, leftA) = minColor.getRGBAComponents()
         let (rightR, rightG, rightB, rightA) = maxColor.getRGBAComponents()
         
@@ -108,7 +108,7 @@ public extension UIColor {
      
      - returns: a darker UIColor object
      */
-    public func darkerColor(brightnessDecreaseFactor brightnessDecreaseFactor: CGFloat = 0.75) -> UIColor {
+    public func darkerColor(brightnessDecreaseFactor: CGFloat = 0.75) -> UIColor {
         let brightnessDecreaseFactor = brightnessDecreaseFactor.normalize(0.0, 1.0)
         var hue: CGFloat = 0.0
         var saturation: CGFloat = 0.0
@@ -127,8 +127,8 @@ public extension UIColor {
      
      - returns: a lighter color
      */
-    public func lighterColor(brightnessIncreaseFactor brightnessIncreaseFactor: CGFloat = 1.3) -> UIColor {
-        let brightnessIncreaseFactor = brightnessIncreaseFactor.normalize(1.0, CGFloat.max)
+    public func lighterColor(brightnessIncreaseFactor: CGFloat = 1.3) -> UIColor {
+        let brightnessIncreaseFactor = brightnessIncreaseFactor.normalize(1.0, CGFloat.greatestFiniteMagnitude)
         var hue: CGFloat = 0.0
         var saturation: CGFloat = 0.0
         var brightness: CGFloat = 0.0
@@ -161,13 +161,13 @@ public extension UIColor {
         guard hexString.characters.count == "#000000".characters.count else {
             return nil
         }
-        let digits = hexString.substringFromIndex(hexString.startIndex.advancedBy(1))
+        let digits = hexString.substring(from: hexString.characters.index(hexString.startIndex, offsetBy: 1))
         guard Int(digits, radix: 16) != nil else {
             return nil
         }
-        let red = digits.substringToIndex(digits.startIndex.advancedBy(2))
-        let green = digits.substringWithRange(digits.startIndex.advancedBy(2) ..< digits.startIndex.advancedBy(4))
-        let blue = digits.substringWithRange(digits.startIndex.advancedBy(4) ..< digits.startIndex.advancedBy(6))
+        let red = digits.substring(to: digits.characters.index(digits.startIndex, offsetBy: 2))
+        let green = digits.substring(with: digits.characters.index(digits.startIndex, offsetBy: 2) ..< digits.characters.index(digits.startIndex, offsetBy: 4))
+        let blue = digits.substring(with: digits.characters.index(digits.startIndex, offsetBy: 4) ..< digits.characters.index(digits.startIndex, offsetBy: 6))
         let redf = CGFloat(Double(Int(red, radix: 16)!) / 255.0)
         let greenf = CGFloat(Double(Int(green, radix: 16)!) / 255.0)
         let bluef = CGFloat(Double(Int(blue, radix: 16)!) / 255.0)
@@ -176,11 +176,11 @@ public extension UIColor {
     
     /// Get Hex6 String, e.g. "#CC0000"
     public var hexString: String {
-        let colorRef = CGColorGetComponents(self.CGColor)
+        let colorRef = self.cgColor.components
         
-        let r: CGFloat = colorRef[0]
-        let g: CGFloat = colorRef[1]
-        let b: CGFloat = colorRef[2]
+        let r: CGFloat = colorRef![0]
+        let g: CGFloat = colorRef![1]
+        let b: CGFloat = colorRef![2]
         
         return String(format: "#%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255))
     }

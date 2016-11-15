@@ -8,36 +8,36 @@
 
 import UIKit
 
-public class DatePickerCell : TableViewCell {
+open class DatePickerCell : TableViewCell {
 
-	public let datePicker = UIDatePicker()
+	open let datePicker = UIDatePicker()
 	
-	override public func commonInit() {
+	override open func commonInit() {
 		super.commonInit()
 		
 		setupViews()
 		setupConstraints()
 	}
 	
-	private func setupViews() {
+	fileprivate func setupViews() {
 		datePicker.translatesAutoresizingMaskIntoConstraints = false
 		contentView.addSubview(datePicker)
 	}
 	
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		let views = [
 			"datePicker" : datePicker
 		]
 
 		var constraints = [NSLayoutConstraint]()
 
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[datePicker]-|", options: [], metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[datePicker]-|", options: [], metrics: nil, views: views)
 		
-		constraints += [NSLayoutConstraint(item: datePicker, attribute: .CenterY, relatedBy: .Equal, toItem: contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0)]
+		constraints += [NSLayoutConstraint(item: datePicker, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1.0, constant: 0.0)]
 		
-		constraints += [NSLayoutConstraint(item: contentView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: 200.0)]
+		constraints += [NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 200.0)]
 		
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
 }
 

@@ -9,35 +9,35 @@
 import UIKit
 
 public extension UIView {
-	public func animateIf(condition: Bool, duration: NSTimeInterval, animations: () -> Void) {
+	public func animateIf(_ condition: Bool, duration: TimeInterval, animations: @escaping () -> Void) {
 		if condition {
-			UIView.animateWithDuration(duration, animations: animations)
+			UIView.animate(withDuration: duration, animations: animations)
 		} else {
 			animations()
 		}
 	}
 	
-	public func animateIf(condition: Bool, duration: NSTimeInterval, animations: () -> Void, completion: ((Bool) -> Void)?) {
+	public func animateIf(_ condition: Bool, duration: TimeInterval, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
 		if condition {
-			UIView.animateWithDuration(duration, animations: animations, completion: completion)
-		} else {
-			animations()
-			completion?(false)
-		}
-	}
-	
-	public func animateIf(condition: Bool, duration: NSTimeInterval, delay: NSTimeInterval, options: UIViewAnimationOptions, animations: () -> Void, completion: ((Bool) -> Void)?) {
-		if condition {
-			UIView.animateWithDuration(duration, delay: delay, options: options, animations: animations, completion: completion)
+			UIView.animate(withDuration: duration, animations: animations, completion: completion)
 		} else {
 			animations()
 			completion?(false)
 		}
 	}
 	
-	public func animateIf(condition: Bool, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIViewAnimationOptions, animations: () -> Void, completion: ((Bool) -> Void)?) {
+	public func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, options: UIViewAnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
 		if condition {
-			UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: options, animations: animations, completion: completion)
+			UIView.animate(withDuration: duration, delay: delay, options: options, animations: animations, completion: completion)
+		} else {
+			animations()
+			completion?(false)
+		}
+	}
+	
+	public func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIViewAnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
+		if condition {
+			UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: options, animations: animations, completion: completion)
 		} else {
 			animations()
 			completion?(false)
