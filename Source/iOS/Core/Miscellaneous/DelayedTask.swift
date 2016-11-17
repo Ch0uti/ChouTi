@@ -66,6 +66,7 @@ open class Task {
      
      - returns: A Task.
      */
+	@discardableResult
     open func then(_ seconds: TimeInterval = 0.0, task: @escaping ()->()) -> Task {
         return thenOnMainQueue(seconds, task: task)
     }
@@ -78,6 +79,7 @@ open class Task {
      
      - returns: A Task.
      */
+	@discardableResult
     open func thenOnMainQueue(_ seconds: TimeInterval, task: @escaping ()->()) -> Task {
         return thenDelayOnQueue(DispatchQueue.main, seconds: seconds, task: task)
     }
@@ -90,6 +92,7 @@ open class Task {
      
      - returns: A Task.
      */
+	@discardableResult
     open func thenOnBackgroundQueue(_ seconds: TimeInterval, task: @escaping ()->()) -> Task {
         let backgroundQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
         return thenDelayOnQueue(backgroundQueue, seconds: seconds, task: task)
