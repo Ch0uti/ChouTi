@@ -12,8 +12,8 @@ public struct OrderedDictionary<KeyType: Hashable, ValueType> {
 	public typealias ArrayType = [KeyType]
 	public typealias DictionaryType = [KeyType: ValueType]
 	
-	public var array = ArrayType()
-	public var dictionary = DictionaryType()
+	public fileprivate(set) var array = ArrayType()
+	public fileprivate(set) var dictionary = DictionaryType()
 	
 	public var count: Int { return array.count }
 	
@@ -42,10 +42,26 @@ public struct OrderedDictionary<KeyType: Hashable, ValueType> {
 			return (key, value)
 		}
 	}
+	
+	@discardableResult
+	public mutating func removeValue(forKey key: KeyType) -> ValueType? {
+		if let index = array.index(of: key) {
+			array.remove(at: index)
+		}
+		return dictionary.removeValue(forKey: key)
+	}
+	
+	public mutating func removeAll(keepingCapacity: Bool = false) {
+		dictionary.removeAll(keepingCapacity: keepingCapacity)
+		array.removeAll(keepingCapacity: keepingCapacity)
+	}
 }
 
 extension OrderedDictionary {
+	@discardableResult
 	public mutating func insert(_ value: ValueType, forKey key: KeyType, atIndex index: Int) -> ValueType? {
+		precondition(index <= array.count, "index out of range")
+		
 		var adjustedIndex = index
 		
 		// If insert for key: b, at index 2
@@ -62,8 +78,7 @@ extension OrderedDictionary {
 		let existingValue = dictionary[key]
 		if existingValue != nil {
 			let existingIndex = array.index(of: key)!
-			
-			if existingIndex < index {
+			if existingIndex < index && index >= array.count {
 				adjustedIndex -= 1
 			}
 			
@@ -75,6 +90,7 @@ extension OrderedDictionary {
 		return existingValue
 	}
 	
+	@discardableResult
 	public mutating func removeAtIndex(_ index: Int) -> (KeyType, ValueType) {
 		precondition(index < array.count, "index out of bounds")
 		
