@@ -49,15 +49,15 @@ extension CollectionType_ExtensionsTests {
 extension CollectionType_ExtensionsTests {
     func testShuffleInPlace() {
         var empty: [Int] = []
-        empty.shuffleInPlace()
+        empty.shuffle()
         XCTAssertEqual(empty, [])
         
         let originalIntegers = integers
-        integers.shuffleInPlace()
+        integers.shuffle()
         XCTAssertNotEqual(originalIntegers, integers)
     }
     
-    func testShuffle() {
-        XCTAssertNotEqual(integers, integers.shuffle())
+    func testShuffled() {
+        XCTAssertNotEqual(integers, integers.shuffled())
     }
 }

@@ -18,16 +18,16 @@ struct UITestsSection: TableViewSectionType {
                     // Test accessing tableView
                     guard let tableView = cell?.tableView else { return }
                     
-                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    tableView.deselectRow(at: indexPath, animated: true)
                     
-                    guard let cell = tableView.cellForRowAtIndexPath(indexPath) else { return }
+                    guard let cell = tableView.cellForRow(at: indexPath) else { return }
                     let label = UILabel()
                     label.translatesAutoresizingMaskIntoConstraints = false
                     label.text = "👍🏼"
                     
                     cell.addSubview(label)
-                    label.constrain(.CenterY, equalTo: .CenterY, ofView: cell)
-                    label.constrain(.Trailing, equalTo: .Trailing, ofView: cell, constant: -16.0)
+                    label.constrain(.centerY, equalTo: .centerY, ofView: cell)
+                    label.constrain(.trailing, equalTo: .trailing, ofView: cell, constant: -16.0)
                 }
             )
         ]

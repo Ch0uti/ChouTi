@@ -24,21 +24,21 @@ class TableViewCellsDemoVC: UIViewController {
                                 textLabel.translatesAutoresizingMaskIntoConstraints = false
                                 swipeCell.swipeableContentView.addSubview(textLabel)
                                 textLabel.text = "SwipeTableViewCell"
-                                textLabel.leadingAnchor.constrainTo(anchor: swipeCell.swipeableContentView.leadingAnchor, constant: swipeCell.indentationWidth * CGFloat(swipeCell.indentationLevel + 2))
-                                textLabel.centerYAnchor.constrainTo(anchor: swipeCell.centerYAnchor)
+                                textLabel.leadingAnchor.constrain(to: swipeCell.swipeableContentView.leadingAnchor, constant: swipeCell.indentationWidth * CGFloat(swipeCell.indentationLevel + 2))
+								textLabel.centerYAnchor.constrain(to: swipeCell.centerYAnchor)
                                 
                                 // Setup swipe accessory view
                                 let accessory = UIView()
                                 swipeCell.rightSwipeAccessoryView = accessory
-                                accessory.backgroundColor = UIColor.blueColor()
-                                accessory.heightAnchor.constrainTo(anchor: swipeCell.swipeableContentView.heightAnchor)
+                                accessory.backgroundColor = UIColor.blue
+                                accessory.heightAnchor.constrain(to: swipeCell.swipeableContentView.heightAnchor)
                                 accessory.constrainTo(width: 100)
 								
 								let button = Button()
 								button.translatesAutoresizingMaskIntoConstraints = false
-								button.setTitle("Hola", forState: .Normal)
-								button.setTitleColor(.whiteColor(), forState: .Normal)
-								button.addTarget(controlEvents: .TouchUpInside, action: { button in
+								button.setTitle("Hola", for: .normal)
+								button.setTitleColor(.white, for: .normal)
+								button.addTarget(controlEvents: .touchUpInside, action: { button in
                                     swipeCell.collapse(animated: true)
                                 })
 								accessory.addSubview(button)
@@ -48,7 +48,7 @@ class TableViewCellsDemoVC: UIViewController {
             },
                             cellConfiguration: { _ in },
                             cellSelectAction: { (indexPath, cell, tableView) in
-                                cell?.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
+                                cell?.tableView?.deselectRow(at: indexPath, animated: true)
         })
     }()
     

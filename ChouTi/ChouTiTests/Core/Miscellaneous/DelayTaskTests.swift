@@ -12,7 +12,7 @@ import XCTest
 class DelayTaskTests: XCTestCase {
     
     func testDelay() {
-        let expectation = expectationWithDescription("delayed task executed")
+        let expectation = self.expectation(description: "delayed task executed")
         
         var stringToBeChanged = "start"
         
@@ -25,7 +25,7 @@ class DelayTaskTests: XCTestCase {
         XCTAssertFalse(task.executed)
         XCTAssertEqual(stringToBeChanged, "start")
                 
-        waitForExpectationsWithTimeout(0.02) { (error) -> Void in
+        waitForExpectations(timeout: 0.02) { (error) -> Void in
             XCTAssertFalse(task.canceled)
             XCTAssertTrue(task.executed)
             XCTAssertEqual(stringToBeChanged, "end")
@@ -33,7 +33,7 @@ class DelayTaskTests: XCTestCase {
     }
     
     func testDelayCanceledTask() {
-        let expectation = expectationWithDescription("delayed task canceled")
+        let expectation = self.expectation(description: "delayed task canceled")
         delay(0.02) {
             expectation.fulfill()
         }
@@ -52,7 +52,7 @@ class DelayTaskTests: XCTestCase {
         
         XCTAssertTrue(task.canceled)
         
-        waitForExpectationsWithTimeout(0.03) { (error) -> Void in
+        waitForExpectations(timeout: 0.03) { (error) -> Void in
             XCTAssertTrue(task.canceled)
             XCTAssertFalse(task.executed)
             XCTAssertEqual(stringToBeChanged, "start")
@@ -60,7 +60,7 @@ class DelayTaskTests: XCTestCase {
     }
     
     func testDelayCanceledTaskResumed() {
-        let expectation = expectationWithDescription("delayed task canceled")
+        let expectation = self.expectation(description: "delayed task canceled")
         
         var stringToBeChanged = "start"
         
@@ -79,7 +79,7 @@ class DelayTaskTests: XCTestCase {
         task.resume()
         XCTAssertFalse(task.canceled)
         
-        waitForExpectationsWithTimeout(0.02) { (error) -> Void in
+        waitForExpectations(timeout: 0.02) { (error) -> Void in
             XCTAssertFalse(task.canceled)
             XCTAssertTrue(task.executed)
             XCTAssertEqual(stringToBeChanged, "end")

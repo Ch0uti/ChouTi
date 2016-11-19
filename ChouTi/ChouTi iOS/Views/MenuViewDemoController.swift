@@ -11,13 +11,13 @@ import ChouTi
 
 class MenuViewDemoController: UIViewController {
 
-	let leadingMenuView = MenuView(scrollingOption: .Leading)
-	let centerMenuView = MenuView(scrollingOption: .Center)
+	let leadingMenuView = MenuView(scrollingOption: .leading)
+	let centerMenuView = MenuView(scrollingOption: .center)
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		view.backgroundColor = UIColor.whiteColor()
+		view.backgroundColor = UIColor.white
 		
 		automaticallyAdjustsScrollViewInsets = false
 		
@@ -34,17 +34,17 @@ class MenuViewDemoController: UIViewController {
 		
 		centerMenuView.spacingsBetweenMenus = 10.0
 		
-        leadingMenuView.bottomAnchor.constraintEqualToAnchor(centerMenuView.topAnchor, constant: -20.0).active = true
-        leadingMenuView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+        leadingMenuView.bottomAnchor.constraint(equalTo: centerMenuView.topAnchor, constant: -20.0).isActive = true
+        leadingMenuView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        leadingMenuView.widthAnchor.constraintEqualToConstant(300).active = true
-        leadingMenuView.heightAnchor.constraintEqualToConstant(100).active = true
+        leadingMenuView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        leadingMenuView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        centerMenuView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
-        centerMenuView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+        centerMenuView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        centerMenuView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        centerMenuView.widthAnchor.constraintEqualToConstant(300).active = true
-        centerMenuView.heightAnchor.constraintEqualToConstant(100).active = true
+        centerMenuView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        centerMenuView.heightAnchor.constraint(equalToConstant: 100).isActive = true
 		
 		leadingMenuView.dataSource = self
 		leadingMenuView.delegate = self
@@ -57,11 +57,11 @@ class MenuViewDemoController: UIViewController {
 }
 
 extension MenuViewDemoController : MenuViewDataSource {
-	func numberOfMenusInMenuView(menuView: MenuView) -> Int {
+	func numberOfMenusInMenuView(_ menuView: MenuView) -> Int {
 		return 10
 	}
 	
-	func menuView(menuView: MenuView, menuViewForIndex index: Int, contentView: UIView?) -> UIView {
+	func menuView(_ menuView: MenuView, menuViewForIndex index: Int, contentView: UIView?) -> UIView {
 		let label = UILabel()
 		label.text = "Title \(index)"
 		
@@ -69,8 +69,8 @@ extension MenuViewDemoController : MenuViewDataSource {
 			label.translatesAutoresizingMaskIntoConstraints = false
 			contentView.addSubview(label)
         
-            label.centerXAnchor.constraintEqualToAnchor(contentView.centerXAnchor).active = true
-            label.centerYAnchor.constraintEqualToAnchor(contentView.centerYAnchor).active = true
+            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
 		}
 		
 		return label
@@ -78,15 +78,15 @@ extension MenuViewDemoController : MenuViewDataSource {
 }
 
 extension MenuViewDemoController : MenuViewDelegate {
-	func menuView(menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat {
+	func menuView(_ menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat {
 		return 50
 	}
 	
-	func menuView(menuView: MenuView, didSelectIndex selectedIndex: Int) {
+	func menuView(_ menuView: MenuView, didSelectIndex selectedIndex: Int) {
 		print("did selected: \(selectedIndex)")
 	}
 	
-	func menuView(menuView: MenuView, didScrollToOffset offset: CGFloat) {
+	func menuView(_ menuView: MenuView, didScrollToOffset offset: CGFloat) {
 		print("did scroll to: \(offset)")
 	}
 }

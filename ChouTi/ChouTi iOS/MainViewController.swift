@@ -11,7 +11,7 @@ import ChouTi
 
 class MainViewController: UIViewController {
     
-    let tableView = UITableView(frame: .zero, style: .Grouped)
+    let tableView = UITableView(frame: .zero, style: .grouped)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
         
         title = "🗄 抽屉(ChouTi)"
         navigationController?.navigationBar.titleTextColor = UIColor(red:252/255.0, green:43/255.0, blue:27/255.0, alpha:255/255.0)
-        navigationController?.navigationBar.titleTextFont = UIFont.boldSystemFontOfSize(18)
+        navigationController?.navigationBar.titleTextFont = UIFont.boldSystemFont(ofSize: 18)
         
         setupTableView()
     }

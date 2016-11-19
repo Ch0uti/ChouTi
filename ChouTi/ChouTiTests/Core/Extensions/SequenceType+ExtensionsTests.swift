@@ -21,7 +21,7 @@ class SequenceType_ExtensionsTests: XCTestCase {
     
     func testDictionaryRandomSubset() {
         let dict = [1: "1", 2: "2", 3: "3", 4: "4"]
-        let subDict = dict.randomSubDictionary()
+        let subDict = dict.randomSubset()
         
         XCTAssertTrue(
             subDict.allMatch { (key, value) -> Bool in

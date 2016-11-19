@@ -11,17 +11,17 @@ import XCTest
 
 class UIButton_ActionTests: XCTestCase {
     func testAddTargetControlEventsWithAction() {
-        let expectation = self.expectationWithDescription("Action Handler Called")
+        let expectation = self.expectation(description: "Action Handler Called")
         
         let button = UIButton()
-        button.addTarget(controlEvents: .TouchUpInside) { button in
+        button.addTarget(controlEvents: .touchUpInside) { button in
             expectation.fulfill()
         }
-        button.sendActionsForControlEvents(.TouchUpInside)
+        button.sendActions(for: .touchUpInside)
 
         // FIXME:
         expectation.fulfill()
         
-        waitForExpectationsWithTimeout(1.0, handler: nil)
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
 }
