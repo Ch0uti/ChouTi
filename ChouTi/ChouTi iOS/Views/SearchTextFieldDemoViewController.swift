@@ -21,13 +21,13 @@ class SearchTextFieldDemoViewController : UIViewController {
         searchField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(searchField)
         
-        searchField.backgroundColor = UIColor.whiteColor()
+        searchField.backgroundColor = UIColor.white
         
         searchField.searchTextFieldDataSource = self
         
         searchField.constrainTo(size: CGSize(width: 200, height: 44))
-        NSLayoutConstraint(item: searchField, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0).active = true
-        NSLayoutConstraint(item: searchField, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: -200).active = true
+        NSLayoutConstraint(item: searchField, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: searchField, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: -200).isActive = true
     }
 }
 

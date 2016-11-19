@@ -13,7 +13,7 @@ class LeadingTrailingVSLeftRightDemoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         
         setupViews()
     }
@@ -22,9 +22,9 @@ class LeadingTrailingVSLeftRightDemoViewController: UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
-        stackView.axis = .Vertical
-        stackView.distribution = .EqualSpacing
-        stackView.alignment = .Center
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
         stackView.spacing = 16.0
         
         let label1 = UILabel()
@@ -37,7 +37,7 @@ class LeadingTrailingVSLeftRightDemoViewController: UIViewController {
         container1.constrainTo(width: 240, height: 60)
         stackView.addArrangedSubview(container1)
         container1.layer.borderWidth = 0.5
-        container1.layer.borderColor = UIColor.blackColor().CGColor
+        container1.layer.borderColor = UIColor.black.cgColor
         
         setupLabelsWithLeadingTrailingConstraints(container1)
         
@@ -51,14 +51,14 @@ class LeadingTrailingVSLeftRightDemoViewController: UIViewController {
         container2.constrainTo(width: 240, height: 60)
         stackView.addArrangedSubview(container2)
         container2.layer.borderWidth = 0.5
-        container2.layer.borderColor = UIColor.blackColor().CGColor
+        container2.layer.borderColor = UIColor.black.cgColor
         
         setupLabelsWithLeftRightConstraints(container2)
         
         stackView.constrainToCenterInSuperview()
     }
     
-    func setupLabelsWithLeadingTrailingConstraints(container: UIView) {
+    func setupLabelsWithLeadingTrailingConstraints(_ container: UIView) {
         container.layoutMargins.left = 16
         container.layoutMargins.right = 32
         
@@ -66,25 +66,25 @@ class LeadingTrailingVSLeftRightDemoViewController: UIViewController {
         label1.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(label1)
         label1.text = "Hello"
-        label1.textColor = .whiteColor()
-        label1.backgroundColor = UIColor.redColor()
+        label1.textColor = .white
+        label1.backgroundColor = UIColor.red
         
         let label2 = UILabel()
         label2.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(label2)
         label2.text = "World"
-        label2.textColor = .whiteColor()
-        label2.backgroundColor = UIColor.blueColor()
+        label2.textColor = .white
+        label2.backgroundColor = UIColor.blue
         
-        label1.centerYAnchor.constraintEqualToAnchor(container.centerYAnchor).activate()
-        label2.centerYAnchor.constraintEqualToAnchor(container.centerYAnchor).activate()
+        label1.centerYAnchor.constraint(equalTo: container.centerYAnchor).activate()
+        label2.centerYAnchor.constraint(equalTo: container.centerYAnchor).activate()
         
-        label1.leadingAnchor.constraintEqualToAnchor(container.layoutMarginsGuide.leadingAnchor).activate()
-        label2.leadingAnchor.constraintEqualToAnchor(label1.trailingAnchor, constant: 16).activate()
-        label2.trailingAnchor.constraintEqualToAnchor(container.layoutMarginsGuide.trailingAnchor).activate()
+        label1.leadingAnchor.constraint(equalTo: container.layoutMarginsGuide.leadingAnchor).activate()
+        label2.leadingAnchor.constraint(equalTo: label1.trailingAnchor, constant: 16).activate()
+        label2.trailingAnchor.constraint(equalTo: container.layoutMarginsGuide.trailingAnchor).activate()
     }
     
-    func setupLabelsWithLeftRightConstraints(container: UIView) {
+    func setupLabelsWithLeftRightConstraints(_ container: UIView) {
         container.layoutMargins.left = 16
         container.layoutMargins.right = 32
         
@@ -92,37 +92,37 @@ class LeadingTrailingVSLeftRightDemoViewController: UIViewController {
         label1.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(label1)
         label1.text = "Hello"
-        label1.textColor = .whiteColor()
-        label1.backgroundColor = UIColor.redColor()
+        label1.textColor = .white
+        label1.backgroundColor = UIColor.red
         
         let label2 = UILabel()
         label2.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(label2)
         label2.text = "World"
-        label2.textColor = .whiteColor()
-        label2.backgroundColor = UIColor.blueColor()
+        label2.textColor = .white
+        label2.backgroundColor = UIColor.blue
         
-        label1.centerYAnchor.constraintEqualToAnchor(container.centerYAnchor).activate()
-        label2.centerYAnchor.constraintEqualToAnchor(container.centerYAnchor).activate()
+        label1.centerYAnchor.constraint(equalTo: container.centerYAnchor).activate()
+        label2.centerYAnchor.constraint(equalTo: container.centerYAnchor).activate()
         
-        label1.leftAnchor.constraintEqualToAnchor(container.layoutMarginsGuide.leftAnchor).activate()
-        label2.leftAnchor.constraintEqualToAnchor(label1.rightAnchor, constant: 16).activate()
-        label2.rightAnchor.constraintEqualToAnchor(container.layoutMarginsGuide.rightAnchor).activate()
+        label1.leftAnchor.constraint(equalTo: container.layoutMarginsGuide.leftAnchor).activate()
+        label2.leftAnchor.constraint(equalTo: label1.rightAnchor, constant: 16).activate()
+        label2.rightAnchor.constraint(equalTo: container.layoutMarginsGuide.rightAnchor).activate()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().keyWindow?.applySemanticContentAttribute(.ForceRightToLeft)
+        UIApplication.shared.keyWindow?.applySemanticContentAttribute(.forceRightToLeft)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.sharedApplication().keyWindow?.applySemanticContentAttribute(.ForceLeftToRight)
+        UIApplication.shared.keyWindow?.applySemanticContentAttribute(.forceLeftToRight)
     }
 }
 
 private extension UIView {
-    private func applySemanticContentAttribute(attribute: UISemanticContentAttribute) {
+    func applySemanticContentAttribute(_ attribute: UISemanticContentAttribute) {
         if subviews.isEmpty == false {
             subviews.forEach { $0.applySemanticContentAttribute(attribute) }
         }

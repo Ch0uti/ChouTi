@@ -19,7 +19,7 @@ class PageViewDemoController: UIViewController {
     override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.view.backgroundColor = UIColor.whiteColor()
+		self.view.backgroundColor = UIColor.white
 		
         pageViewController.delegate = self
 		
@@ -31,27 +31,27 @@ class PageViewDemoController: UIViewController {
 
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
-        pageViewController.didMoveToParentViewController(self)
+        pageViewController.didMove(toParentViewController: self)
 	}
 }
 
 extension PageViewDemoController : PageViewControllerDataSource {
-	func numberOfViewControllersInPageViewController(pageViewController: PageViewController) -> Int {
+	func numberOfViewControllersInPageViewController(_ pageViewController: PageViewController) -> Int {
 		return viewControllers.count
 	}
 	
-	func pageViewController(pageViewController: PageViewController, viewControllerForIndex index: Int) -> UIViewController {
+	func pageViewController(_ pageViewController: PageViewController, viewControllerForIndex index: Int) -> UIViewController {
 		print("asking for index: \(index)")
 		return viewControllers[index]
 	}
 }
 
 extension PageViewDemoController : PageViewControllerDelegate {
-	func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
+	func pageViewController(_ pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
 		print("did selected: \(selectedIndex)")
 	}
 	
-	func pageViewController(pageViewController: PageViewController, didScrollWithSelectedIndex selectedIndex: Int, offsetPercent: CGFloat) {
+	func pageViewController(_ pageViewController: PageViewController, didScrollWithSelectedIndex selectedIndex: Int, offsetPercent: CGFloat) {
 //		print("scroll offset: \(offsetPercent)")
 	}
 }

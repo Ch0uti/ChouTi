@@ -20,7 +20,7 @@ class MenuPageDemoViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-		view.backgroundColor = UIColor.whiteColor()
+		view.backgroundColor = UIColor.white
 		
 		menuPageViewController.menuView.spacingsBetweenMenus = 60
 		
@@ -35,16 +35,16 @@ class MenuPageDemoViewController : UIViewController {
 		let frame = menuPageViewController.view.frame
 		menuPageViewController.view.frame = CGRect(x: frame.origin.x, y: frame.origin.y + 22 + 44, width: frame.width, height: frame.height - 20 - 44)
 		view.addSubview(menuPageViewController.view)
-		menuPageViewController.didMoveToParentViewController(self)
+		menuPageViewController.didMove(toParentViewController: self)
     }
 }
 
 extension MenuPageDemoViewController : MenuPageViewControllerDataSource {
-	func numberOfMenusInMenuPageViewController(menuPageViewController: MenuPageViewController) -> Int {
+	func numberOfMenusInMenuPageViewController(_ menuPageViewController: MenuPageViewController) -> Int {
 		return viewControllers.count
 	}
 	
-	func menuPageViewController(menuPageViewController: MenuPageViewController, menuViewForIndex index: Int, contentView: UIView?) -> UIView {
+	func menuPageViewController(_ menuPageViewController: MenuPageViewController, menuViewForIndex index: Int, contentView: UIView?) -> UIView {
 		let labelBackgroundView = UIView()
 		labelBackgroundView.backgroundColor = UIColor.random()
 	
@@ -58,29 +58,29 @@ extension MenuPageDemoViewController : MenuPageViewControllerDataSource {
 			labelBackgroundView.translatesAutoresizingMaskIntoConstraints = false
 			contentView.addSubview(labelBackgroundView)
 			
-            labelBackgroundView.topAnchor.constraintEqualToAnchor(contentView.topAnchor).active = true
-            labelBackgroundView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor).active = true
-            labelBackgroundView.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor).active = true
-            labelBackgroundView.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor).active = true
+            labelBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+            labelBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+            labelBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+            labelBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
             
-            label.centerXAnchor.constraintEqualToAnchor(contentView.centerXAnchor).active = true
-            label.centerYAnchor.constraintEqualToAnchor(contentView.centerYAnchor).active = true
+            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
 		}
 		
 		return label
 	}
 	
-	func menuPageViewController(menuPageViewController: MenuPageViewController, viewControllerForIndex index: Int) -> UIViewController {
+	func menuPageViewController(_ menuPageViewController: MenuPageViewController, viewControllerForIndex index: Int) -> UIViewController {
 		return viewControllers[index]
 	}
 }
 
 extension MenuPageDemoViewController : MenuPageViewControllerDelegate {
-	func menuPageViewController(menuPageViewController: MenuPageViewController, menuWidthForIndex index: Int) -> CGFloat {
+	func menuPageViewController(_ menuPageViewController: MenuPageViewController, menuWidthForIndex index: Int) -> CGFloat {
 		return 50
 	}
 	
-	func menuPageViewController(menuPageViewController: MenuPageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
+	func menuPageViewController(_ menuPageViewController: MenuPageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
 		//
 	}
 }

@@ -9,6 +9,7 @@ end
 
 # Targets
 target 'ChouTi' do
+
   target 'ChouTiTests' do
     inherit! :search_paths
     pod_testing
@@ -17,7 +18,6 @@ target 'ChouTi' do
 end
 
 target 'ChouTi iOS' do
-  pod 'Then', '~> 2.1'
 
   target 'ChouTi iOSUITests' do
     inherit! :search_paths

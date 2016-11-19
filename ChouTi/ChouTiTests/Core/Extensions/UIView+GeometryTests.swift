@@ -119,7 +119,7 @@ class UIView_GeometryTests: XCTestCase {
 class UIViewLeftToRight_GeometryTests: UIView_GeometryTests {
     override func setUp() {
         super.setUp()
-        view.semanticContentAttribute = .ForceLeftToRight
+        view.semanticContentAttribute = .forceLeftToRight
     }
     
     func testLeading() {
@@ -148,7 +148,7 @@ class UIViewLeftToRight_GeometryTests: UIView_GeometryTests {
 class UIViewRightToLeft_GeometryTests: UIView_GeometryTests {
     override func setUp() {
         super.setUp()
-        view.semanticContentAttribute = .ForceRightToLeft
+        view.semanticContentAttribute = .forceRightToLeft
     }
     
     func testLeading() {

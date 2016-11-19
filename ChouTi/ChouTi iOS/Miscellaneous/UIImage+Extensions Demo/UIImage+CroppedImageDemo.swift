@@ -18,7 +18,7 @@ class UIImage_CroppedImageDemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .whiteColor()
+        view.backgroundColor = .white
         
         title = "Cropped Image"
         
@@ -31,14 +31,14 @@ class UIImage_CroppedImageDemoViewController: UIViewController {
             height: sourceImage.size.height * 0.5)
         )
         croppedImageView.image = croppedImage
-        croppedImageView.layer.borderColor = UIColor.grayColor().CGColor
+        croppedImageView.layer.borderColor = UIColor.gray.cgColor
         croppedImageView.layer.borderWidth = 0.5
         
         let stackView = UIStackView(arrangedSubviews: [sourceImageView, croppedImageView])
-        stackView.axis = .Vertical
-        stackView.distribution = .EqualSpacing
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
         stackView.spacing = 16
-        stackView.alignment = .Center
+        stackView.alignment = .center
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)

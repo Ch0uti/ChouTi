@@ -22,15 +22,15 @@ class UIImage_AnimatingImagesDemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .whiteColor()
+        view.backgroundColor = .white
         
         title = "Animating Images"
         
         let stackView = UIStackView(arrangedSubviews: [bearImageView, croppedBearImageView])
-        stackView.axis = .Vertical
-        stackView.distribution = .EqualSpacing
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
         stackView.spacing = 16
-        stackView.alignment = .Center
+        stackView.alignment = .center
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
@@ -49,7 +49,7 @@ class UIImage_AnimatingImagesDemoViewController: UIViewController {
         
         bearImageView.startAnimating()
         
-        bearImageView.contentMode = .ScaleAspectFit
+        bearImageView.contentMode = .scaleAspectFit
         bearImageView.translatesAutoresizingMaskIntoConstraints = false
         bearImageView.constrainTo(width: screenWidth, height: screenHeight / 3.0)
         
@@ -69,41 +69,41 @@ class UIImage_AnimatingImagesDemoViewController: UIViewController {
         
         croppedBearImageView.startAnimating()
         
-        croppedBearImageView.layer.borderColor = UIColor.grayColor().CGColor
+        croppedBearImageView.layer.borderColor = UIColor.gray.cgColor
         croppedBearImageView.layer.borderWidth = 0.5
         
-        croppedBearImageView.contentMode = .ScaleAspectFit
+        croppedBearImageView.contentMode = .scaleAspectFit
         
         // Slider
         let bottomTabBar = UITabBar()
         bottomTabBar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bottomTabBar)
-        bottomTabBar.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).activate()
-        bottomTabBar.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).activate()
-        bottomTabBar.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).activate()
+        bottomTabBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).activate()
+        bottomTabBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).activate()
+        bottomTabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).activate()
         
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         bottomTabBar.addSubview(slider)
         slider.constrainToCenterInSuperview()
-        slider.leadingAnchor.constraintEqualToAnchor(bottomTabBar.leadingAnchor, constant: 16).activate()
-        slider.trailingAnchor.constraintEqualToAnchor(bottomTabBar.trailingAnchor, constant: -16).activate()
+        slider.leadingAnchor.constraint(equalTo: bottomTabBar.leadingAnchor, constant: 16).activate()
+        slider.trailingAnchor.constraint(equalTo: bottomTabBar.trailingAnchor, constant: -16).activate()
         
         slider.maximumValue = 60
         slider.minimumValue = 1
         
         slider.value = Float(bearImageView.animationFPS)
         
-        slider.addTarget(self, action: #selector(UIImage_AnimatingImagesDemoViewController.slide(_:)), forControlEvents: .ValueChanged)
+        slider.addTarget(self, action: #selector(UIImage_AnimatingImagesDemoViewController.slide(_:)), for: .valueChanged)
         
         fpsLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(fpsLabel)
         fpsLabel.constrainToCenterHorizontallyInSuperview()
-        fpsLabel.constrain(.Top, equalTo: .Bottom, ofView: croppedBearImageView, constant: 16)
+        fpsLabel.constrain(.top, equalTo: .bottom, ofView: croppedBearImageView, constant: 16)
         fpsLabel.text = String(format: "FPS: %.1f", slider.value)
     }
     
-    func slide(sender: AnyObject?) {
+    func slide(_ sender: AnyObject?) {
         if let slider = sender as? UISlider {
             fpsLabel.text = String(format: "FPS: %.1f", slider.value)
             

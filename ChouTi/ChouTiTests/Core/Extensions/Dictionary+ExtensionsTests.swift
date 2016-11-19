@@ -42,22 +42,11 @@ class Dictionary_ExtensionsTests: XCTestCase {
 
 extension Dictionary_ExtensionsTests {
     func testMerge() {
-        XCTAssertEqual(dict1.merge(dict2), mergedDict)
+        XCTAssertEqual(dict1.merge(with: dict2), mergedDict)
     }
     
     func testMergeInPlace() {
-        dict1.mergeInPlace(dict2)
+        dict1.merged(with: dict2)
         XCTAssertEqual(dict1, mergedDict)
-    }
-    
-    func testDictionaryInitWithAnotherDictionary() {
-        XCTAssertEqual(Dictionary(dict2), dict2)
-    }
-    
-    func testMapValues() {
-        let result = dict1.mapValues { Int(pow(Double($0), 2)) }
-        let expectedDict = ["1" : 1 * 1, "2" : 2 * 2, "3" : 5 * 5, "5" : 155 * 155]
-        
-        XCTAssertEqual(result, expectedDict)
     }
 }
