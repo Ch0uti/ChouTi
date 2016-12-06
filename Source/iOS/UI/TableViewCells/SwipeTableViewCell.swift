@@ -37,11 +37,9 @@ public protocol SwipeTableViewCellDelegate: class {
     func swipeTableViewCellWillCollapse(_ cell: SwipeTableViewCell)
 }
 
-/**
- UITableViewCell with swipe actions
- This is a cell which can swipe to show accessory view. Just like UIKit swipe to delete view.
- You need to configue `rightSwipeAccessoryView` to a view with constraint based layout (Require size constrained).
- */
+/// UITableViewCell with swipe actions
+/// This is a cell which can swipe to show accessory view. Just like UIKit swipe to delete view.
+/// You need to configue `rightSwipeAccessoryView` to a view with constraint based layout (Require size constrained).
 open class SwipeTableViewCell: UITableViewCell {
     
     public enum ExpandSide {
@@ -49,9 +47,37 @@ open class SwipeTableViewCell: UITableViewCell {
         case right
     }
 
-    // Swipeable content view, normally you should add subviews on this view
-    public final let swipeableContentView = UIView()
-    
+	/// Swipeable content view, normally you should add subviews on this view.
+	/// Discussion: This view is above the `contentView`, so when you swipe the cell, this view moves.
+	///   You should add moveable content on this view and fixed content (like action buttons) on `contentView`
+	public final let swipeableContentView: UIView = {
+		/// A View that you can not set to transparent
+		/// Discussion: Because UITableViewCell make all subViews transparent when it's highlighted/selected. This
+		/// ContentView should not be set to transparent, otherwises, the accessory view behind it appears.
+		/// Check `setSelected(Bool, animated: Bool)` and `func setHighlighted(Bool, animated: Bool)` implementations
+		/// Reference: http://stackoverflow.com/a/15342964/3164091
+		final class NoTransparentView: UIView {
+			override var backgroundColor: UIColor? {
+				set {
+					guard let newValue = newValue else {
+						return
+					}
+					
+					if newValue.cgColor.alpha == 0 {
+						return
+					}
+					
+					super.backgroundColor = newValue
+				}
+				
+				get {
+					return super.backgroundColor
+				}
+			}
+		}
+		return NoTransparentView()
+	}()
+	
     // MARK: - Right Accessory View
     /// Accessory view to show when swipe from right to left ( <--o )
     /// Note: This view requires constraint based layout. Make sure this view has size constrained.
@@ -142,9 +168,6 @@ open class SwipeTableViewCell: UITableViewCell {
     }
     
     fileprivate final func commonInit() {
-        // Remove default selection style (long press on cell can select it)
-        selectionStyle = .none
-        
         swipeableContentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(swipeableContentView)
         swipeableContentView.backgroundColor = UIColor.white
@@ -199,6 +222,26 @@ open class SwipeTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate(constraints)
     }
+	
+	open override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+		if let selectedBackgroundView = selectedBackgroundView {
+			if highlighted {
+				swipeableContentView.insertSubview(selectedBackgroundView, at: 0)
+			} else {
+				selectedBackgroundView.removeFromSuperview()
+			}
+		}
+	}
+	
+	open override func setSelected(_ selected: Bool, animated: Bool) {
+		if let selectedBackgroundView = selectedBackgroundView {
+			if selected {
+				swipeableContentView.insertSubview(selectedBackgroundView, at: 0)
+			} else {
+				selectedBackgroundView.removeFromSuperview()
+			}
+		}
+	}
 }
 
 // MARK: - Expanding/Collapse
