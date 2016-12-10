@@ -57,7 +57,7 @@ open class CIImageFilter {
 
 public typealias Filter = CIImageFilter.Filter
 
-infix operator >>> { associativity left }
+infix operator >>> : AdditionPrecedence
 public func >>> (filter1: @escaping Filter, filter2: @escaping Filter) -> Filter {
 	return { image in
 		if let imageAfterFilter1 = filter1(image) {
