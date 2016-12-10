@@ -22,11 +22,11 @@ public protocol CollectionViewCellInfo {
 
 //// MARK: - CollectionViewCellInfo
 //extension <#CollectionViewCell#> : CollectionViewCellInfo {
-//	public class func identifier() -> String {
+//	open class func identifier() -> String {
 //		return String(self)
 //	}
 //	
-//	public class func registerInCollectionView(collectionView: UICollectionView) {
+//	open class func registerInCollectionView(collectionView: UICollectionView) {
 //		collectionView.registerClass(self, forCellWithReuseIdentifier: identifier())
 //	}
 //}
