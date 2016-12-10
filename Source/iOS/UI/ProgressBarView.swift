@@ -20,10 +20,11 @@ open class ProgressBarView: UIView {
 			forgroundMeterLayer.backgroundColor = forgroundColor.cgColor
 		}
 	}
-	let forgroundMeterLayer = CAShapeLayer()
+	private let forgroundMeterLayer = CAShapeLayer()
 	
 	open var animationDuration: TimeInterval = 1.0
 	open var animated: Bool = true
+	open var rounded: Bool = true
 	
 	open weak var delegate: ProgressBarViewDelegate?
 	
@@ -51,6 +52,7 @@ open class ProgressBarView: UIView {
 	}
 	
 	fileprivate func commonInit() {
+		clipsToBounds = true
 		backgroundColor = UIColor(white: 0.9, alpha: 1.0)
 		forgroundMeterLayer.backgroundColor = forgroundColor.cgColor
 		
@@ -64,17 +66,19 @@ open class ProgressBarView: UIView {
 		if animated {
 			CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
 			CATransaction.setAnimationDuration(animationDuration)
-			
-			forgroundMeterLayer.frame = CGRect(x: 0.0, y: 0.0, width: bounds.width * percent, height: bounds.height)
 		} else {
 			CATransaction.setDisableActions(true)
-			
-			forgroundMeterLayer.frame = CGRect(x: 0.0, y: 0.0, width: bounds.width * percent, height: bounds.height)
 		}
 		
+		forgroundMeterLayer.frame = CGRect(x: 0.0, y: 0.0, width: bounds.width * percent, height: bounds.height)
 		CATransaction.commit()
 		
-		layer.cornerRadius = bounds.height / 2.0
-		forgroundMeterLayer.cornerRadius = bounds.height / 2.0
+		if rounded {
+			layer.cornerRadius = bounds.height / 2.0
+			forgroundMeterLayer.cornerRadius = bounds.height / 2.0
+		} else {
+			layer.cornerRadius = 0
+			forgroundMeterLayer.cornerRadius = 0
+		}
 	}
 }
