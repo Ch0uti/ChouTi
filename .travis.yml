@@ -12,11 +12,11 @@ env:
   - IOS_EXAMPLE_SCHEME="ChouTi iOS"
 
   matrix:
-    - DESTINATION="OS=10.0,name=iPhone 7"          WORKSPACE="$WORKSPACE"     SCHEME="$IOS_FRAMEWORK_SCHEME"   SDK="$IOS_SDK"     RUN_TESTS="YES"   COCOAPOD_NEEDED="YES"
-    - DESTINATION="OS=9.3,name=iPhone 6S Plus"     WORKSPACE="$WORKSPACE"     SCHEME="$IOS_FRAMEWORK_SCHEME"   SDK="$IOS_SDK"     RUN_TESTS="YES"   COCOAPOD_NEEDED="YES"
+    - DESTINATION="OS=10.0,name=iPhone 7"          WORKSPACE="$WORKSPACE"     SCHEME="$IOS_FRAMEWORK_SCHEME"   SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="NO"
+    - DESTINATION="OS=9.3,name=iPhone 6S Plus"     WORKSPACE="$WORKSPACE"     SCHEME="$IOS_FRAMEWORK_SCHEME"   SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="NO"
 
-    - DESTINATION="OS=10.0,name=iPhone 7"          WORKSPACE="$WORKSPACE"     SCHEME="$IOS_EXAMPLE_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="YES # fix tests
-    - DESTINATION="OS=9.3,name=iPhone 6S Plus"     WORKSPACE="$WORKSPACE"     SCHEME="$IOS_EXAMPLE_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="YES"
+    - DESTINATION="OS=10.0,name=iPhone 7"          WORKSPACE="$WORKSPACE"     SCHEME="$IOS_EXAMPLE_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="NO # fix tests
+    - DESTINATION="OS=9.3,name=iPhone 6S Plus"     WORKSPACE="$WORKSPACE"     SCHEME="$IOS_EXAMPLE_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="NO"
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
