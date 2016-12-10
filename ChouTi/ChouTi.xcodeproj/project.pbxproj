@@ -213,8 +213,6 @@
 		02DAEC861DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DAEC851DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift */; };
 		02E25EF21DDAA78700C50ADA /* DispatchQueue+Once.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E25EF11DDAA78700C50ADA /* DispatchQueue+Once.swift */; };
 		02FFC4DF1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FFC4DE1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift */; };
-		33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2582D7686D9E144D59115335 /* Pods_ChouTi.framework */; };
-		C0C1CCE345BEEE508DBF44DA /* Pods_ChouTi_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */; };
 		FC8011B3082D1EEA4FC12444 /* Pods_ChouTiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */; };
 		FF17F322091CEEBA4F0D53F7 /* Pods_ChouTi_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2D6CD28927A2FC2A68ABAD /* Pods_ChouTi_iOSUITests.framework */; };
 /* End PBXBuildFile section */
@@ -471,16 +469,12 @@
 		02E25EF11DDAA78700C50ADA /* DispatchQueue+Once.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Once.swift"; sourceTree = "<group>"; };
 		02FFC4DE1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue_PreservesSuperviewLayoutMargins.swift; sourceTree = "<group>"; };
 		0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.debug.xcconfig"; sourceTree = "<group>"; };
 		2582D7686D9E144D59115335 /* Pods_ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2D6CD28927A2FC2A68ABAD /* Pods_ChouTi_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5BB9074DF4CEBCD1B8282B35 /* Pods-ChouTi iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS/Pods-ChouTi iOS.release.xcconfig"; sourceTree = "<group>"; };
 		93472D147EE0FF19B51A311F /* Pods-ChouTi iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOSUITests/Pods-ChouTi iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
-		B8369B3E7DF13919F58D2E26 /* Pods-ChouTi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi.release.xcconfig"; sourceTree = "<group>"; };
 		CFF91EB292EA2A1C68B76AA1 /* Pods-ChouTiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTiTests/Pods-ChouTiTests.release.xcconfig"; sourceTree = "<group>"; };
 		D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTiTests/Pods-ChouTiTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F97876537CE9F4A31716B2D9 /* Pods-ChouTi iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS/Pods-ChouTi iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FEC2A5F68CC869551380F08A /* Pods-ChouTi iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOSUITests/Pods-ChouTi iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -490,7 +484,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0275AE781DDE5CB200DBA4D3 /* ChouTi.framework in Frameworks */,
-				C0C1CCE345BEEE508DBF44DA /* Pods_ChouTi_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +499,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33D0F28DF0FDB41F0A6A0BC1 /* Pods_ChouTi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,12 +1164,8 @@
 		6BF21BC51D6EE92CC6CF3805 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */,
-				B8369B3E7DF13919F58D2E26 /* Pods-ChouTi.release.xcconfig */,
 				D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */,
 				CFF91EB292EA2A1C68B76AA1 /* Pods-ChouTiTests.release.xcconfig */,
-				F97876537CE9F4A31716B2D9 /* Pods-ChouTi iOS.debug.xcconfig */,
-				5BB9074DF4CEBCD1B8282B35 /* Pods-ChouTi iOS.release.xcconfig */,
 				FEC2A5F68CC869551380F08A /* Pods-ChouTi iOSUITests.debug.xcconfig */,
 				93472D147EE0FF19B51A311F /* Pods-ChouTi iOSUITests.release.xcconfig */,
 			);
@@ -1214,12 +1202,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0206650F1D5FB0BE002A7E2A /* Build configuration list for PBXNativeTarget "ChouTi iOS" */;
 			buildPhases = (
-				D47850CD1F1A69BE517C9157 /* [CP] Check Pods Manifest.lock */,
 				020664ED1D5FB0BE002A7E2A /* Sources */,
 				020664EE1D5FB0BE002A7E2A /* Frameworks */,
 				020664EF1D5FB0BE002A7E2A /* Resources */,
-				69C50D6110D5392EA9B88BE3 /* [CP] Embed Pods Frameworks */,
-				7A4393A3C7D8B6379746E31D /* [CP] Copy Pods Resources */,
 				0275AE7C1DDE5CB200DBA4D3 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -1257,12 +1242,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 023050A61D2440DB00D7B190 /* Build configuration list for PBXNativeTarget "ChouTi" */;
 			buildPhases = (
-				5ACD2D9B1AAC87284F0D945D /* [CP] Check Pods Manifest.lock */,
 				0230508D1D2440DB00D7B190 /* Sources */,
 				0230508E1D2440DB00D7B190 /* Frameworks */,
 				0230508F1D2440DB00D7B190 /* Headers */,
 				023050901D2440DB00D7B190 /* Resources */,
-				AE54F45AF1692147FD75E568 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1417,21 +1400,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		5ACD2D9B1AAC87284F0D945D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		68402E0C24DD2AAF2E191DF6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1445,36 +1413,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		69C50D6110D5392EA9B88BE3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi iOS/Pods-ChouTi iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7A4393A3C7D8B6379746E31D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi iOS/Pods-ChouTi iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8212CEF7038FD98742488458 /* [CP] Copy Pods Resources */ = {
@@ -1520,36 +1458,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi iOSUITests/Pods-ChouTi iOSUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AE54F45AF1692147FD75E568 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi/Pods-ChouTi-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D47850CD1F1A69BE517C9157 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EDC91F0D4CE8F3D518963534 /* [CP] Copy Pods Resources */ = {
@@ -1810,7 +1718,6 @@
 /* Begin XCBuildConfiguration section */
 		0206650B1D5FB0BE002A7E2A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F97876537CE9F4A31716B2D9 /* Pods-ChouTi iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UYW9ZSKZAQ;
@@ -1826,7 +1733,6 @@
 		};
 		0206650C1D5FB0BE002A7E2A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5BB9074DF4CEBCD1B8282B35 /* Pods-ChouTi iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UYW9ZSKZAQ;
@@ -1974,7 +1880,6 @@
 		};
 		023050A71D2440DB00D7B190 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E67F76CDEEF53B4177281B4 /* Pods-ChouTi.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
@@ -1996,7 +1901,6 @@
 		};
 		023050A81D2440DB00D7B190 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8369B3E7DF13919F58D2E26 /* Pods-ChouTi.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
