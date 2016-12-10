@@ -208,18 +208,16 @@ public extension UIView {
 }
 
 public extension UIView {
-    /**
-     Get superview of sepcified type.
-     
-     - parameter type: type to find.
-     
-     - returns: superview of type specified or nil.
-     */
-    public func superviewOfType<T: UIView>(_ type: T.Type) -> T? {
+
+    /// Get superview of sepcified type.
+    ///
+    /// - Parameter type: type to find.
+    /// - Returns: superview of type specified or nil.
+    public func superview<T: UIView>(ofType type: T.Type) -> T? {
         if let view = self.superview as? T {
             return view
         }
-        return superview?.superviewOfType(type)
+		return superview?.superview(ofType: type)
     }
     
     /**
