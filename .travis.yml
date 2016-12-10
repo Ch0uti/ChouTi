@@ -1,10 +1,10 @@
 language: objective-c
-osx_image: xcode8
+osx_image: xcode8.1
 env:
   global:
   - LC_CTYPE=en_US.UTF-8
   - LANG=en_US.UTF-8
-  - IOS_SDK=iphonesimulator10.0
+  - IOS_SDK=iphonesimulator10.1
 
   # Framework
   - WORKSPACE="./ChouTi/ChouTi.xcworkspace"
@@ -12,11 +12,11 @@ env:
   - IOS_EXAMPLE_SCHEME="ChouTi iOS"
 
   matrix:
-    - DESTINATION="OS=10.0,name=iPhone 7"          WORKSPACE="$WORKSPACE"     SCHEME="$IOS_FRAMEWORK_SCHEME"   SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="YES"
-    - DESTINATION="OS=9.3,name=iPhone 6S Plus"     WORKSPACE="$WORKSPACE"     SCHEME="$IOS_FRAMEWORK_SCHEME"   SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="YES"
+    - DESTINATION="OS=10.1,name=iPhone 7"    WORKSPACE="$WORKSPACE"     SCHEME="$IOS_FRAMEWORK_SCHEME"   SDK="$IOS_SDK"     RUN_TESTS="YES"   COCOAPOD_NEEDED="YES"
+    - DESTINATION="OS=9.3,name=iPhone 6"     WORKSPACE="$WORKSPACE"     SCHEME="$IOS_FRAMEWORK_SCHEME"   SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="YES"
 
-    - DESTINATION="OS=10.0,name=iPhone 7"          WORKSPACE="$WORKSPACE"     SCHEME="$IOS_EXAMPLE_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="YES" # fix tests
-    - DESTINATION="OS=9.3,name=iPhone 6S Plus"     WORKSPACE="$WORKSPACE"     SCHEME="$IOS_EXAMPLE_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="YES"
+    - DESTINATION="OS=10.1,name=iPhone 7"    WORKSPACE="$WORKSPACE"     SCHEME="$IOS_EXAMPLE_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="YES" # fix tests
+    - DESTINATION="OS=9.3,name=iPhone 6"     WORKSPACE="$WORKSPACE"     SCHEME="$IOS_EXAMPLE_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"   COCOAPOD_NEEDED="YES"
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
@@ -37,7 +37,7 @@ script:
 
   # Build Framework in Debug and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty;
     else
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty;
     fi
