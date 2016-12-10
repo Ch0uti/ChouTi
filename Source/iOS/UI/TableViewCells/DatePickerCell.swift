@@ -42,7 +42,7 @@ open class DatePickerCell : TableViewCell {
 }
 
 extension DatePickerCell {
-	public override class func estimatedHeight() -> CGFloat {
+	open override class func estimatedHeight() -> CGFloat {
 		return 200.0
 	}
 }
