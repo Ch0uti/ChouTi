@@ -485,6 +485,6 @@ extension SwipeTableViewCell {
      - returns: true if there's a such scrollView. Otherwise, false.
      */
     fileprivate final func isEmbeddedInScrollView() -> Bool {
-        return tableView?.superviewOfType(UIScrollView.self) != nil
+		return tableView?.superview(ofType: UIScrollView.self) != nil
     }
 }

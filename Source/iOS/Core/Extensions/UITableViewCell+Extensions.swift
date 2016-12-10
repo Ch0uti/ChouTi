@@ -25,6 +25,6 @@ public extension UITableViewCell {
 public extension UITableViewCell {
     /// Return tableView managing this cell
     public var tableView: UITableView? {
-		return superviewOfType(UITableView.self)
+		return superview(ofType: UITableView.self)
 	}
 }
