@@ -26,7 +26,13 @@ struct IssuesSection: TableViewSectionType {
                     cell?.tableView?.deselectRow(at: indexPath, animated: true)
                     cell?.tableView?.presentingViewController?.show(Issue_PreservesSuperviewLayoutMargins(), sender: nil)
                 }
-            )
+            ),
+			TableViewRow(title: "Issue: TableViewCell contentView 0 width.",
+                cellSelectAction: { (indexPath, cell, tableView) -> Void in
+					cell?.tableView?.deselectRow(at: indexPath, animated: true)
+					cell?.tableView?.presentingViewController?.show(Issue_IncorrectTableViewCellContentViewWidth(), sender: nil)
+				}
+			)
         ]
     }()
 }
