@@ -8,22 +8,12 @@ def pod_testing
 end
 
 # Targets
-target 'ChouTi' do
-
-  target 'ChouTiTests' do
-    inherit! :search_paths
-    pod_testing
-  end
-
+target 'ChouTiTests' do
+  pod_testing
 end
 
-target 'ChouTi iOS' do
-
-  target 'ChouTi iOSUITests' do
-    inherit! :search_paths
-    pod_testing
-  end
-
+target 'ChouTi iOSUITests' do
+  pod_testing
 end
 
 post_install do |installer|
