@@ -3,7 +3,7 @@ use_frameworks!
 
 # Pods
 def pod_testing
-  pod 'Quick', '0.10'
+  pod 'Quick', '1.0'
   pod 'Nimble', '~> 5.1'
 end
 
