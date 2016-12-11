@@ -319,15 +319,15 @@ public extension UIImage {
         
         let context = createBitmapContext(cgImage)
 		
-        let data = context!.data!.assumingMemoryBound(to: UnsafePointer<UInt8>.self)
+        let data = context!.data!.assumingMemoryBound(to: UInt8.self)
 
         let offset = Int(4 * (point.y * width + point.x))
         
-        let alpha: UInt8 = data.pointee[offset]
-        let red: UInt8 = data.pointee[offset+1]
-        let green: UInt8 = data.pointee[offset+2]
-        let blue: UInt8 = data.pointee[offset+3]
-        
+		let alpha: UInt8 = data[offset]
+		let red: UInt8 = data[offset + 1]
+		let green: UInt8 = data[offset + 2]
+		let blue: UInt8 = data[offset + 3]
+		
         // dealloc memeory allocated in createBitmapContext
         free(data)
         
