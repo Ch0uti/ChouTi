@@ -16,8 +16,8 @@ public extension UITableViewCell {
      */
     public func enableFullWidthSeparator() {
         preservesSuperviewLayoutMargins = false
-        separatorInset = UIEdgeInsetsZero
-        layoutMargins = UIEdgeInsetsZero
+        separatorInset = UIEdgeInsets.zero
+        layoutMargins = UIEdgeInsets.zero
     }
 }
 
@@ -25,6 +25,6 @@ public extension UITableViewCell {
 public extension UITableViewCell {
     /// Return tableView managing this cell
     public var tableView: UITableView? {
-		return superviewOfType(UITableView)
+		return superview(ofType: UITableView.self)
 	}
 }

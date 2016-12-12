@@ -34,13 +34,13 @@ class DropDownMenuPresentationController: OverlayPresentationController {
         // Note: wrapper view size alraedy has base constraints
         let frame = dropDownMenu.frameRectInView(containerView)
         
-        let wrapperBaseLeadingConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1.0, constant: frame.origin.x)
+        let wrapperBaseLeadingConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: frame.origin.x)
         wrapperBaseLeadingConstraint.priority = 800
-        wrapperBaseLeadingConstraint.active = true
+        wrapperBaseLeadingConstraint.isActive = true
         
-        let wrapperBaseTopConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView, attribute: .Top, relatedBy: .Equal, toItem: containerView, attribute: .Top, multiplier: 1.0, constant: frame.origin.y)
+        let wrapperBaseTopConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: frame.origin.y)
         wrapperBaseTopConstraint.priority = 800
-        wrapperBaseTopConstraint.active = true
+        wrapperBaseTopConstraint.isActive = true
     }
     
     override func dismissalTransitionWillBegin() {
@@ -51,7 +51,7 @@ class DropDownMenuPresentationController: OverlayPresentationController {
             return
         }
         
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition(nil, completion: { coordinatorContext in
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: nil, completion: { coordinatorContext in
             dropDownMenu.addSubview(dropDownMenu.wrapperView)
             dropDownMenu.switchBackgroundColorWithAnotherView(dropDownMenu.wrapperView)
             dropDownMenu.setupWrapperViewConstraints()
@@ -61,16 +61,16 @@ class DropDownMenuPresentationController: OverlayPresentationController {
     override func containerViewWillLayoutSubviews() {
         super.containerViewWillLayoutSubviews()
         
-        presentedView()?.frame = frameOfPresentedViewInContainerView()
+        presentedView?.frame = frameOfPresentedViewInContainerView
     }
     
-    override func frameOfPresentedViewInContainerView() -> CGRect {
+    override var frameOfPresentedViewInContainerView: CGRect {
         guard let containerView = containerView else {
             NSLog("Error: containerView is nil")
             return CGRect.zero
         }
         
-        guard let presentedView = presentedView() else {
+        guard let presentedView = presentedView else {
             NSLog("Error: presentedView() is nil")
             return CGRect.zero
         }
@@ -87,25 +87,25 @@ class DropDownMenuPresentationController: OverlayPresentationController {
 
 // MARK: - Actions
 extension DropDownMenuPresentationController {
-    override func overlayViewTapped(tapRecognizer: UITapGestureRecognizer) {
+    override func overlayViewTapped(_ tapRecognizer: UITapGestureRecognizer) {
         dropDownMenu?.set(toExpand: false, animated: true)
     }
 }
 
 // MARK: - UIContentContainer
 extension DropDownMenuPresentationController {
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         
-        coordinator.animateAlongsideTransition({ [unowned self] coordinatorContext in
-            self.presentedView()?.frame = self.frameOfPresentedViewInContainerView()
+        coordinator.animate(alongsideTransition: { [unowned self] coordinatorContext in
+            self.presentedView?.frame = self.frameOfPresentedViewInContainerView
             }, completion: nil)
     }
 }
 
 // MARK: - Private Helper Extensions
 extension UIView {
-    private func switchBackgroundColorWithAnotherView(anotherView: UIView) {
+    fileprivate func switchBackgroundColorWithAnotherView(_ anotherView: UIView) {
         let anotherViewBackgroundColor = anotherView.backgroundColor
         anotherView.backgroundColor = backgroundColor
         backgroundColor = anotherViewBackgroundColor

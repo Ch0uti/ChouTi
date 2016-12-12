@@ -9,7 +9,7 @@
 import UIKit
 
 /// Buttons on alert view
-public class AlertViewButton: Button {
+open class AlertViewButton: Button {
     /// AlertAction binded to this button
     weak var alertAction: AlertAction? {
         didSet {
@@ -19,8 +19,8 @@ public class AlertViewButton: Button {
                 return
             }
 			
-			enabled = alertAction.enabled
-            setTitle(alertAction.title, forState: .Normal)
+			isEnabled = alertAction.enabled
+            setTitle(alertAction.title, for: .normal)
             updateButtonStyle()
         }
     }
@@ -40,7 +40,7 @@ public class AlertViewButton: Button {
         }
     }
     
-    private override init(frame: CGRect) {
+    fileprivate override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
@@ -49,14 +49,14 @@ public class AlertViewButton: Button {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func commonInit() {
-        setCornerRadius(.HalfCircle, forState: .Normal)
+    fileprivate func commonInit() {
+        setCornerRadius(.halfCircle, forState: .normal)
         
         titleLabel?.adjustsFontSizeToFitWidth = true
         titleLabel?.minimumScaleFactor = 0.58
     }
     
-    private func updateButtonStyle() {
+    fileprivate func updateButtonStyle() {
         guard let alertAction = alertAction else {
             print("Warning: alertAction is nil")
             return
@@ -69,32 +69,32 @@ public class AlertViewButton: Button {
 // MARK: - AlertViewButton Appearance Customization
 extension AlertViewButton {
     /// Default button appearance
-    private static var buttonAppearanceConfigurationForAlertActionStyle: [UIAlertActionStyle : (AlertViewButton -> Void)] = {[
-        .Default : { button in
-            button.titleLabel?.font = UIFont.systemFontOfSize(17)
-            button.setBorderWidth(0.0, forState: .Normal)
-            button.setBackgroundImageWithColor(button.tintColor, forState: .Normal)
-            button.setBackgroundImageWithColor(button.tintColor.darkerColor(), forState: .Highlighted)
-            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    fileprivate static var buttonAppearanceConfigurationForAlertActionStyle: [UIAlertActionStyle : ((AlertViewButton) -> Void)] = {[
+        .default : { button in
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+            button.setBorderWidth(0.0, forState: .normal)
+            button.setBackgroundImageWithColor(button.tintColor, forState: .normal)
+            button.setBackgroundImageWithColor(button.tintColor.darkerColor(), forState: .highlighted)
+            button.setTitleColor(UIColor.white, for: .normal)
         },
         
-        .Cancel : { button in
-            button.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
-            button.setBorderWidth(2.0, forState: .Normal)
-            button.setBackgroundImageWithColor(UIColor.clearColor(), forState: .Normal)
-            button.setTitleColor(button.tintColor, forState: .Normal)
-            button.setTitleColor(button.tintColor.darkerColor(), forState: .Highlighted)
-            button.setBorderColor(button.tintColor, forState: .Normal)
-            button.setBorderColor(button.tintColor.darkerColor(), forState: .Highlighted)
+        .cancel : { button in
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+            button.setBorderWidth(2.0, forState: .normal)
+            button.setBackgroundImageWithColor(UIColor.clear, forState: .normal)
+            button.setTitleColor(button.tintColor, for: .normal)
+            button.setTitleColor(button.tintColor.darkerColor(), for: .highlighted)
+            button.setBorderColor(button.tintColor, forState: .normal)
+            button.setBorderColor(button.tintColor.darkerColor(), forState: .highlighted)
         },
         
-        .Destructive : { button in
-            button.titleLabel?.font = UIFont.systemFontOfSize(17)
-            button.setBorderWidth(0.0, forState: .Normal)
+        .destructive : { button in
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+            button.setBorderWidth(0.0, forState: .normal)
             let dangerRedColor = UIColor(red:0.75, green:0.15, blue:0.17, alpha:1.00)
-            button.setBackgroundImageWithColor(dangerRedColor, forState: .Normal)
-            button.setBackgroundImageWithColor(dangerRedColor.darkerColor(), forState: .Highlighted)
-            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            button.setBackgroundImageWithColor(dangerRedColor, forState: .normal)
+            button.setBackgroundImageWithColor(dangerRedColor.darkerColor(), forState: .highlighted)
+            button.setTitleColor(UIColor.white, for: .normal)
         }
     ]}()
     
@@ -104,7 +104,7 @@ extension AlertViewButton {
      - parameter configuration:    button appearance configuration, this block has no return value and takes a button object as its only parameter. You can configure button title, color for different states. You can set button's height by adding a height constraint with 500 priority or above, setting bounds has no effects.
      - parameter alertActionStyle: UIAlertActionStyle
      */
-    public static func setButtonAppearanceConfiguration(configuration: (AlertViewButton -> Void), forAlertActionStyle alertActionStyle: UIAlertActionStyle) {
+    public static func setButtonAppearanceConfiguration(_ configuration: @escaping ((AlertViewButton) -> Void), forAlertActionStyle alertActionStyle: UIAlertActionStyle) {
         AlertViewButton.buttonAppearanceConfigurationForAlertActionStyle[alertActionStyle] = configuration
     }
 }

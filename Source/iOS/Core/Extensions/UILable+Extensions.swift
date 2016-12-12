@@ -14,16 +14,16 @@ public extension UILabel {
      
      - returns: CGSize for this label
      */
-    @available(*, deprecated=1.0)
+    @available(*, deprecated: 1.0)
     public func exactSize_deprecated() -> CGSize {
         if let text = text {
-            let text: NSString = text
-            var newSize = text.sizeWithAttributes([NSFontAttributeName: font])
+            let text: NSString = text as NSString
+            var newSize = text.size(attributes: [NSFontAttributeName: font])
             newSize.width = ceil(newSize.width)
             newSize.height = ceil(newSize.height)
             return newSize
         } else {
-            return CGSizeZero
+            return CGSize.zero
         }
     }
     
@@ -35,7 +35,7 @@ public extension UILabel {
      
      - returns: Exact size for this label.
      */
-    public func exactSize(preferredMaxWidth preferredMaxWidth: CGFloat? = nil, shouldUseCeil: Bool = false) -> CGSize {
+    public func exactSize(preferredMaxWidth: CGFloat? = nil, shouldUseCeil: Bool = false) -> CGSize {
         var size = self.sizeThatFits(CGSize(width: preferredMaxWidth ?? preferredMaxLayoutWidth, height: 0))
         
         if shouldUseCeil {
@@ -72,13 +72,13 @@ public extension UILabel {
      
      - parameter animationDuration: transition animation duration
      */
-    public func addFadeTransitionAnimation(animationDuration: NSTimeInterval = 0.25) {
-        if layer.animationForKey(kCATransitionFade) == nil {
+    public func addFadeTransitionAnimation(_ animationDuration: TimeInterval = 0.25) {
+        if layer.animation(forKey: kCATransitionFade) == nil {
             let animation = CATransition()
             animation.duration = animationDuration
             animation.type = kCATransitionFade
             animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            layer.addAnimation(animation, forKey: kCATransitionFade)
+            layer.add(animation, forKey: kCATransitionFade)
         }
     }
     
@@ -88,7 +88,7 @@ public extension UILabel {
      - parameter text:              New text to set.
      - parameter animationDuration: Animation duration.
      */
-    public func setText(text: String?, withFadeTransitionAnimation animationDuration: NSTimeInterval) {
+    public func setText(_ text: String?, withFadeTransitionAnimation animationDuration: TimeInterval) {
         addFadeTransitionAnimation(animationDuration)
         self.text = text
     }
@@ -99,7 +99,7 @@ public extension UILabel {
      - parameter text:     New text to set.
      - parameter animated: Animation duration.
      */
-    public func setText(text: String?, animated: Bool) {
+    public func setText(_ text: String?, animated: Bool) {
         if animated {
             setText(text, withFadeTransitionAnimation: 0.25)
         } else {

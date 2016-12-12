@@ -15,15 +15,15 @@ class NSLayoutConstraint_ExtensionsTests: XCTestCase {
         let view = UIView()
         containerView.addSubview(view)
         
-        let constraint = view.leadingAnchor.constraintEqualToAnchor(containerView.leadingAnchor)
+        let constraint = view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor)
         
-        XCTAssertFalse(constraint.active)
+        XCTAssertFalse(constraint.isActive)
         constraint.activate()
-        XCTAssertTrue(constraint.active)
+        XCTAssertTrue(constraint.isActive)
     }
     
     func testConstrainToSameLayoutAttributeOnEmpty() {
-        let constraints = [].constrainToSame(.Width)
+        let constraints = [].constrainToSame(.width)
         XCTAssertTrue(constraints.isEmpty)
     }
     
@@ -35,7 +35,7 @@ class NSLayoutConstraint_ExtensionsTests: XCTestCase {
         
         let views = [v1]
         
-        let constraints = views.constrainToSame(.Width)
+        let constraints = views.constrainToSame(.width)
         XCTAssertTrue(constraints.isEmpty)
     }
     
@@ -49,14 +49,14 @@ class NSLayoutConstraint_ExtensionsTests: XCTestCase {
             views.append(view)
         }
         
-        let constraints = views.constrainToSame(.Width)
+        let constraints = views.constrainToSame(.width)
         XCTAssertEqual(constraints.count, viewsCount - 1)
         
-        for (index, constraint) in constraints.enumerate() {
-            XCTAssertTrue(constraint.active)
+        for (index, constraint) in constraints.enumerated() {
+            XCTAssertTrue(constraint.isActive)
             XCTAssertEqual(constraint.firstItem as? UIView, views[index])
             XCTAssertEqual(constraint.secondItem as? UIView, views[index + 1])
-            XCTAssertEqual(constraint.firstAttribute, NSLayoutAttribute.Width)
+            XCTAssertEqual(constraint.firstAttribute, NSLayoutAttribute.width)
             XCTAssertEqual(constraint.firstAttribute, constraint.secondAttribute)
             XCTAssertEqual(constraint.multiplier, 1.0)
             XCTAssertEqual(constraint.constant, 0.0)

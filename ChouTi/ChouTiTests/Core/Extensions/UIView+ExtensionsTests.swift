@@ -21,7 +21,7 @@ class UIView_ExtensionsTests: QuickSpec {
             it("should get correct super view") {
                 let superScrollView = UIScrollView()
                 superScrollView.addSubview(view)
-                expect(view.superviewOfType(UIScrollView)) === superScrollView
+				expect(view.superview(ofType: UIScrollView.self)) === superScrollView
             }
             
             it("should get correct super view for more than 2 levels") {
@@ -29,7 +29,7 @@ class UIView_ExtensionsTests: QuickSpec {
                 let superTableView = UITableView()
                 superScrollView.addSubview(view)
                 superTableView.addSubview(superScrollView)
-                expect(view.superviewOfType(UITableView)) === superTableView
+				expect(view.superview(ofType: UITableView.self)) === superTableView
             }
         }
         
@@ -40,12 +40,12 @@ class UIView_ExtensionsTests: QuickSpec {
             }
             
             it("should get nil if there's no subviews") {
-                expect(view.subviewOfType(UIScrollView)).to(beNil())
+                expect(view.subviewOfType(UIScrollView.self)).to(beNil())
             }
             
             it("should get nil is no such subview of type") {
                 view.addSubview(UIView())
-                expect(view.subviewOfType(UIScrollView)).to(beNil())
+                expect(view.subviewOfType(UIScrollView.self)).to(beNil())
             }
             
             it("should find the subview in one level") {
@@ -54,7 +54,7 @@ class UIView_ExtensionsTests: QuickSpec {
                 let tableView = UITableView()
                 view.addSubview(tableView)
                 
-                expect(view.subviewOfType(UITableView)) === tableView
+                expect(view.subviewOfType(UITableView.self)) === tableView
             }
             
             it("should find the subview in more than 1 level") {
@@ -64,7 +64,7 @@ class UIView_ExtensionsTests: QuickSpec {
                 let tableView = UITableView()
                 scrollView.addSubview(tableView)
                 
-                expect(view.subviewOfType(UITableView)) === tableView
+                expect(view.subviewOfType(UITableView.self)) === tableView
             }
             
             it("should find the subview in level 1 (in BFS order)") {
@@ -77,7 +77,7 @@ class UIView_ExtensionsTests: QuickSpec {
                 let tableView1 = UITableView()
                 view.addSubview(tableView1)
                 
-                expect(view.subviewOfType(UITableView)) === tableView1
+                expect(view.subviewOfType(UITableView.self)) === tableView1
             }
         }
     }

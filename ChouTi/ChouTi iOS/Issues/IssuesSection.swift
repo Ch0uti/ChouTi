@@ -16,17 +16,23 @@ struct IssuesSection: TableViewSectionType {
             TableViewRow(title: "Issue: `layoutMarginsGuide`",
                 subtitle: "layoutMarginsGuide.topAnchor is not same as .TopMargin",
                 cellSelectAction: { (indexPath, cell, tableView) -> Void in
-                    cell?.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
-                    cell?.tableView?.presentingViewController?.showViewController(Issue_LayoutMarginsGuideViewController(), sender: nil)
+                    cell?.tableView?.deselectRow(at: indexPath, animated: true)
+                    cell?.tableView?.presentingViewController?.show(Issue_LayoutMarginsGuideViewController(), sender: nil)
                 }
             ),
             TableViewRow(title: "Issue: `preservesSuperviewLayoutMargins`",
                 subtitle: "Demo for `preservesSuperviewLayoutMargins`",
                 cellSelectAction: { (indexPath, cell, tableView) -> Void in
-                    cell?.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
-                    cell?.tableView?.presentingViewController?.showViewController(Issue_PreservesSuperviewLayoutMargins(), sender: nil)
+                    cell?.tableView?.deselectRow(at: indexPath, animated: true)
+                    cell?.tableView?.presentingViewController?.show(Issue_PreservesSuperviewLayoutMargins(), sender: nil)
                 }
-            )
+            ),
+			TableViewRow(title: "Issue: TableViewCell contentView 0 width.",
+                cellSelectAction: { (indexPath, cell, tableView) -> Void in
+					cell?.tableView?.deselectRow(at: indexPath, animated: true)
+					cell?.tableView?.presentingViewController?.show(Issue_IncorrectTableViewCellContentViewWidth(), sender: nil)
+				}
+			)
         ]
     }()
 }

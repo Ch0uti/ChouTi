@@ -31,10 +31,10 @@ public extension UIView {
     }
     
     var widthConstraint: NSLayoutConstraint? {
-        return constraints(withFirstItem: self, firstAttribute: .Width, relation: .Equal, secondItem: nil, secondAttribute: .NotAnAttribute).first
+        return constraints(withFirstItem: self, firstAttribute: .width, relation: .equal, secondItem: nil, secondAttribute: .notAnAttribute).first
     }
 	
 	var heightConstraint: NSLayoutConstraint? {
-		return constraints(withFirstItem: self, firstAttribute: .Height, relation: .Equal, secondItem: nil, secondAttribute: .NotAnAttribute).first
+		return constraints(withFirstItem: self, firstAttribute: .height, relation: .equal, secondItem: nil, secondAttribute: .notAnAttribute).first
 	}
 }

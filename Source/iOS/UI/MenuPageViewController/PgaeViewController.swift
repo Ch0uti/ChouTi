@@ -9,8 +9,8 @@
 import UIKit
 
 public protocol PageViewControllerDataSource : class {
-	func numberOfViewControllersInPageViewController(pageViewController: PageViewController) -> Int
-	func pageViewController(pageViewController: PageViewController, viewControllerForIndex index: Int) -> UIViewController
+	func numberOfViewControllersInPageViewController(_ pageViewController: PageViewController) -> Int
+	func pageViewController(_ pageViewController: PageViewController, viewControllerForIndex index: Int) -> UIViewController
 }
 
 public protocol PageViewControllerDelegate : class {
@@ -21,50 +21,50 @@ public protocol PageViewControllerDelegate : class {
 	- parameter selectedIndex:      current selected index
 	- parameter offsetPercent:      offset in percent, 0 means the selected view controller is in center. -1.0 means left view controller of selected view controller is in center
 	*/
-	func pageViewController(pageViewController: PageViewController, didScrollWithSelectedIndex selectedIndex: Int, offsetPercent: CGFloat)
-	func pageViewController(pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController)
+	func pageViewController(_ pageViewController: PageViewController, didScrollWithSelectedIndex selectedIndex: Int, offsetPercent: CGFloat)
+	func pageViewController(_ pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController)
 }
 
 // FIXME: Rotations
 // FIXME: Potention bug: set selected index animated while draging
 
-public class PageViewController : UIViewController {
+open class PageViewController : UIViewController {
 	// TODO: Handling rotations
 	
 	// MARK: - Public
-	public var scrollEnabled: Bool {
-        get { return pageScrollView.scrollEnabled }
-        set { pageScrollView.scrollEnabled = newValue }
+	open var scrollEnabled: Bool {
+        get { return pageScrollView.isScrollEnabled }
+        set { pageScrollView.isScrollEnabled = newValue }
 	}
     
-    public var bounces: Bool {
+    open var bounces: Bool {
         get { return pageScrollView.bounces }
         set { pageScrollView.bounces = newValue }
     }
 	
 	/// Current selected index.
-	public var selectedIndex: Int = -1 {
+	open var selectedIndex: Int = -1 {
 		didSet {
 			setSelectedIndex(selectedIndex, animated: false)
 		}
 	}
 	
 	/// Current selected view controller
-	public var selectedViewController: UIViewController? {
+	open var selectedViewController: UIViewController? {
 		return viewControllerForIndex(selectedIndex)
 	}
 	
 	/// PageViewControllerDataSource, set this property will ignore viewControllers
-	public weak var dataSource: PageViewControllerDataSource? {
+	open weak var dataSource: PageViewControllerDataSource? {
 		didSet {
-			if let dataSource = dataSource where isViewLoaded() {
+			if let dataSource = dataSource, isViewLoaded {
 				setupViewControllersWithDataSource(dataSource)
 			}
 		}
 	}
 	
 	/// child view controllers, set this peoperty will ignore dataSource
-	public var viewControllers: [UIViewController]? {
+	open var viewControllers: [UIViewController]? {
 		willSet {
 			if let newValue = newValue {
 				dataSource = nil
@@ -82,13 +82,13 @@ public class PageViewController : UIViewController {
 	}
 	
 	/// PageViewControllerDelegate
-	public weak var delegate: PageViewControllerDelegate?
+	open weak var delegate: PageViewControllerDelegate?
 	
 	
 	// MARK: - Private
 	
 	/// internal selected index, this could be set before selectedIndex is set
-	private var _selectedIndex: Int = -1 {
+	fileprivate var _selectedIndex: Int = -1 {
 		didSet {
 			selectedIndex = _selectedIndex
 			if _selectedIndex < viewControllersCount {
@@ -98,16 +98,16 @@ public class PageViewController : UIViewController {
 	}
 	
 	/// internal selected view controller
-	private var _selectedViewController: UIViewController? {
+	fileprivate var _selectedViewController: UIViewController? {
 		return viewControllerForIndex(_selectedIndex)
 	}
 	
 	/// View controllers that loaded, this is used when dataSource used
-	private var loadedViewControllers: [UIViewController]!
+	fileprivate var loadedViewControllers: [UIViewController]!
 	
 	// Count
-	private var lastRecoredViewControllersCount: Int = 0
-	private var viewControllersCount: Int {
+	fileprivate var lastRecoredViewControllersCount: Int = 0
+	fileprivate var viewControllersCount: Int {
 		if let viewControllers = viewControllers {
 			return viewControllers.count
 		} else {
@@ -125,20 +125,20 @@ public class PageViewController : UIViewController {
 	
 	
 	// MARK: - Dragging related
-	private var isDragging: Bool = false
-	private var beginDraggingContentOffsetX: CGFloat? {
+	fileprivate var isDragging: Bool = false
+	fileprivate var beginDraggingContentOffsetX: CGFloat? {
 		didSet {
 			if let offsetX = beginDraggingContentOffsetX {
 				// Round off begin content offset x
-				if offsetX % view.bounds.width == 0 { return }
+				if offsetX.truncatingRemainder(dividingBy: view.bounds.width) == 0 { return }
 				beginDraggingContentOffsetX = CGFloat(Int(offsetX) / Int(view.bounds.width)) * view.bounds.width
 			}
 		}
 	}
-	private var willEndDraggingTargetContentOffsetX: CGFloat?
+	fileprivate var willEndDraggingTargetContentOffsetX: CGFloat?
 	
-	private var draggingOffsetX: CGFloat? { return beginDraggingContentOffsetX == nil ? nil : pageScrollView.contentOffset.x - beginDraggingContentOffsetX! }
-	private var draggingForward: Bool? {
+	fileprivate var draggingOffsetX: CGFloat? { return beginDraggingContentOffsetX == nil ? nil : pageScrollView.contentOffset.x - beginDraggingContentOffsetX! }
+	fileprivate var draggingForward: Bool? {
 		guard let draggingOffsetX = draggingOffsetX else { return nil }
 		
 		if draggingOffsetX == 0 {
@@ -154,15 +154,15 @@ public class PageViewController : UIViewController {
 	var pageScrollView = UIScrollView()
 	
 	/// When dragging/scrolling/appearing ongoing, this property will be true
-	private var isInTransition: Bool = false
+	fileprivate var isInTransition: Bool = false
 	
-	private var isVisible: Bool { return isViewLoaded() && (view.window != nil) }
+	fileprivate var isVisible: Bool { return isViewLoaded && (view.window != nil) }
 
     
 	
 	// MARK: - SetSelectedIndex
-	private var setSelectedIndexCompletion: (Bool -> Void)?
-	public func setSelectedIndex(index: Int, animated: Bool, completion: (Bool -> Void)? = nil) {
+	fileprivate var setSelectedIndexCompletion: ((Bool) -> Void)?
+	open func setSelectedIndex(_ index: Int, animated: Bool, completion: ((Bool) -> Void)? = nil) {
 		if index < 0 || index >= viewControllersCount {
 			return
 		}
@@ -191,7 +191,7 @@ public class PageViewController : UIViewController {
 		}
 	}
     
-    public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+    open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         isInTransition = false
         loadedViewControllers.filter { $0.isAppearing != nil }.forEach { $0.zhh_endAppearanceTransition() }
         _selectedIndex = Int(scrollView.contentOffset.x) / Int(view.bounds.width)
@@ -203,11 +203,11 @@ public class PageViewController : UIViewController {
 
 // MARK: - Override
 extension PageViewController {
-	public override func shouldAutomaticallyForwardAppearanceMethods() -> Bool {
+	open override var shouldAutomaticallyForwardAppearanceMethods: Bool {
 		return false
 	}
 	
-	public override func viewDidLoad() {
+	open override func viewDidLoad() {
 		super.viewDidLoad()
 		setupViews()
 		
@@ -218,44 +218,44 @@ extension PageViewController {
 		}
 	}
 	
-	private func setupViews() {
+	fileprivate func setupViews() {
 		view.addSubview(pageScrollView)
 		pageScrollView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-		pageScrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+		pageScrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		pageScrollView.delegate = self
 		
-		pageScrollView.pagingEnabled = true
+		pageScrollView.isPagingEnabled = true
 		pageScrollView.bounces = true
 		pageScrollView.alwaysBounceHorizontal = true
 		pageScrollView.alwaysBounceVertical = false
-		pageScrollView.directionalLockEnabled = true
+		pageScrollView.isDirectionalLockEnabled = true
 		pageScrollView.scrollsToTop = false
 		pageScrollView.showsHorizontalScrollIndicator = false
 		pageScrollView.showsVerticalScrollIndicator = false
 		
-		pageScrollView.contentInset = UIEdgeInsetsZero
+		pageScrollView.contentInset = UIEdgeInsets.zero
 		automaticallyAdjustsScrollViewInsets = false
 	}
 	
-	public override func viewWillAppear(animated: Bool) {
+	open override func viewWillAppear(_ animated: Bool) {
 		_selectedViewController?.zhh_beginAppearanceTransition(true, animated: animated)
 		isInTransition = true
 		super.viewWillAppear(animated)
 	}
 	
-	public override func viewDidAppear(animated: Bool) {
+	open override func viewDidAppear(_ animated: Bool) {
 		_selectedViewController?.zhh_endAppearanceTransition()
 		isInTransition = false
 		super.viewDidAppear(animated)
 	}
 	
-	public override func viewWillDisappear(animated: Bool) {
+	open override func viewWillDisappear(_ animated: Bool) {
 		_selectedViewController?.zhh_beginAppearanceTransition(false, animated: animated)
 		isInTransition = true
 		super.viewWillDisappear(animated)
 	}
 	
-	public override func viewDidDisappear(animated: Bool) {
+	open override func viewDidDisappear(_ animated: Bool) {
 		_selectedViewController?.zhh_endAppearanceTransition()
 		isInTransition = false
 		super.viewDidDisappear(animated)
@@ -275,7 +275,7 @@ extension PageViewController {
 // MARK: - Getting View Controller
 extension PageViewController {
 	// MARK: - Getting forward/backward view controllers
-	private var forwardViewController: UIViewController? {
+	fileprivate var forwardViewController: UIViewController? {
 		if let _ = viewControllers {
 			// Use view controllers
 			return _selectedIndex + 1 < viewControllersCount ? loadedViewControllers[_selectedIndex + 1] : nil
@@ -289,7 +289,7 @@ extension PageViewController {
 		}
 	}
 	
-	private var backwardViewController: UIViewController? {
+	fileprivate var backwardViewController: UIViewController? {
 		return _selectedIndex - 1 >= 0 ? viewControllerForIndex(_selectedIndex - 1) : nil
 	}
 	
@@ -300,7 +300,7 @@ extension PageViewController {
 	
 	- returns: the view controller at the index.
 	*/
-	private func viewControllerForIndex(index: Int) -> UIViewController? {
+	fileprivate func viewControllerForIndex(_ index: Int) -> UIViewController? {
 		if index == -1 || index >= viewControllersCount { return nil }
 		if let _ = viewControllers {
 			// Using view controllers
@@ -334,7 +334,7 @@ extension PageViewController {
 	- parameter fromIndex: the fromIndex
 	- parameter toIndex:   the toIndex
 	*/
-	private func loadViewControllerFromIndex(fromIndex: Int, toIndex: Int) {
+	fileprivate func loadViewControllerFromIndex(_ fromIndex: Int, toIndex: Int) {
 		precondition(viewControllers == nil && dataSource != nil)
 		if fromIndex > toIndex { return }
 		for i in fromIndex ... toIndex {
@@ -351,7 +351,7 @@ extension PageViewController {
 // MARK: - ViewControllers Related
 extension PageViewController {
 	// ViewControllers Setups
-	private func willReplaceOldViewControllers(oldViewControllers: [UIViewController]?, withNewViewControllers newViewControllers: [UIViewController]) {
+	fileprivate func willReplaceOldViewControllers(_ oldViewControllers: [UIViewController]?, withNewViewControllers newViewControllers: [UIViewController]) {
 		loadedViewControllers = newViewControllers
 		
 		if let oldViewControllers = oldViewControllers {
@@ -369,7 +369,7 @@ extension PageViewController {
 	}
 	
 	// ViewControllers Setups
-	private func didReplaceOldViewControllers(oldViewControllers: [UIViewController]?, withNewViewControllers newViewControllers: [UIViewController]) {
+	fileprivate func didReplaceOldViewControllers(_ oldViewControllers: [UIViewController]?, withNewViewControllers newViewControllers: [UIViewController]) {
 		if isVisible {
 			_selectedViewController?.zhh_beginAppearanceTransition(true, animated: false)
 			_selectedViewController?.zhh_endAppearanceTransition()
@@ -377,10 +377,10 @@ extension PageViewController {
 	}
 	
 	// ViewControllers Setups
-	private func setupChildViewControllerViews(viewControllers: [UIViewController]) {
+	fileprivate func setupChildViewControllerViews(_ viewControllers: [UIViewController]) {
 		// TODO: layoutSubviews may need to update contentSize
 		pageScrollView.contentSize = CGSize(width: view.bounds.width * CGFloat(viewControllers.count), height: 0)
-		for (index, viewController) in viewControllers.enumerate() {
+		for (index, viewController) in viewControllers.enumerated() {
 			viewController.view.frame = CGRect(x: CGFloat(index) * view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
 		}
 	}
@@ -389,7 +389,7 @@ extension PageViewController {
 // MARK: - DataSource/Delegate Related
 extension PageViewController {
 	// DataSource Setups
-	private func setupViewControllersWithDataSource(dataSource: PageViewControllerDataSource) {
+	fileprivate func setupViewControllersWithDataSource(_ dataSource: PageViewControllerDataSource) {
 		viewControllers = nil
         // Clean up old view controllers
         loadedViewControllers?.forEach({ removeViewController($0) })
@@ -411,22 +411,22 @@ extension PageViewController {
 
 // MARK: - ChildViewController Adding/Removing
 extension PageViewController {
-	private func removeViewController(viewController: UIViewController) {
-		viewController.willMoveToParentViewController(nil)
+	fileprivate func removeViewController(_ viewController: UIViewController) {
+		viewController.willMove(toParentViewController: nil)
 		viewController.view.removeFromSuperview()
 		viewController.removeFromParentViewController()
 	}
 	
-	private func addViewController(viewController: UIViewController) {
+	fileprivate func addViewController(_ viewController: UIViewController) {
 		addChildViewController(viewController)
 		pageScrollView.addSubview(viewController.view)
-		viewController.didMoveToParentViewController(self)
+		viewController.didMove(toParentViewController: self)
 	}
 }
 
 // MARK: - UIScrollViewDelegate
 extension PageViewController : UIScrollViewDelegate {
-	public func scrollViewDidScroll(scrollView: UIScrollView) {
+	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		// Vertical scrolling is disabled
 		
 		let scrollOffset = scrollView.contentOffset.x - CGFloat(selectedIndex) * view.bounds.width
@@ -441,7 +441,7 @@ extension PageViewController : UIScrollViewDelegate {
 			// If current appearing view controller is not will selected view controller, state is mismatched. End it's transition
 			let appearingViewControllers = Set.init(loadedViewControllers.filter { $0.isAppearing == true })
 			assert(appearingViewControllers.count <= 1)
-			if let willAppearViewController = appearingViewControllers.first where willAppearViewController !== willSelectedViewController {
+			if let willAppearViewController = appearingViewControllers.first, willAppearViewController !== willSelectedViewController {
 				willAppearViewController.zhh_endAppearanceTransition()
 			}
 			
@@ -494,7 +494,7 @@ extension PageViewController : UIScrollViewDelegate {
 		if !isInTransition { isInTransition = true }
 	}
 	
-	public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+	public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
 		// If when new dragging initiatied, last dragging is still in progress.
 		// End appearance transition immediately
 		// And set selectedIndex to willAppear view controller
@@ -503,7 +503,7 @@ extension PageViewController : UIScrollViewDelegate {
 		loadedViewControllers.filter { $0.isAppearing != nil }.forEach { $0.zhh_endAppearanceTransition() }
 		
 		if let willAppearViewController = appearingViewControllers.first {
-			_selectedIndex = loadedViewControllers.indexOf(willAppearViewController)!
+			_selectedIndex = loadedViewControllers.index(of: willAppearViewController)!
 		}
 		
 		beginDraggingContentOffsetX = nil
@@ -513,10 +513,10 @@ extension PageViewController : UIScrollViewDelegate {
 		beginDraggingContentOffsetX = scrollView.contentOffset.x
 	}
 	
-	public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+	public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 		isDragging = false
 		guard let beginDraggingContentOffsetX = beginDraggingContentOffsetX else { return }
-		willEndDraggingTargetContentOffsetX = targetContentOffset.memory.x
+		willEndDraggingTargetContentOffsetX = targetContentOffset.pointee.x
 		if willEndDraggingTargetContentOffsetX == beginDraggingContentOffsetX {
 			// If will end equals begin dragging content offset x,
 			// which means dragging cancels
@@ -532,9 +532,9 @@ extension PageViewController : UIScrollViewDelegate {
 		}
 	}
 	
-	public func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+	public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		// If dragging ends at separator point, clean state
-		if scrollView.contentOffset.x % view.bounds.width == 0 {
+		if scrollView.contentOffset.x.truncatingRemainder(dividingBy: view.bounds.width) == 0 {
 			loadedViewControllers.filter { $0.isAppearing != nil }.forEach { $0.zhh_endAppearanceTransition() }
 			_selectedIndex = Int(scrollView.contentOffset.x) / Int(view.bounds.width)
 			beginDraggingContentOffsetX = nil
@@ -543,7 +543,7 @@ extension PageViewController : UIScrollViewDelegate {
 		}
 	}
 	
-	public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+	public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 		isInTransition = false
 		// If for some reasons, scrollView.contentOffset.x is not matched with willEndDraggingTargetContentOffset
 		// End current transitions
@@ -557,7 +557,7 @@ extension PageViewController : UIScrollViewDelegate {
 			loadedViewControllers.filter { $0.isAppearing != nil }.forEach { $0.zhh_endAppearanceTransition() }
 			
 			if let willAppearViewController = appearingViewControllers.first {
-				_selectedIndex = loadedViewControllers.indexOf(willAppearViewController)!
+				_selectedIndex = loadedViewControllers.index(of: willAppearViewController)!
 				
 				// Add missing transitions
 				_selectedViewController?.zhh_beginAppearanceTransition(false, animated: false)
@@ -583,7 +583,7 @@ extension PageViewController : UIScrollViewDelegate {
 
 // MARK: - ViewController Appearance State Swizzling
 private extension UIViewController {
-    private struct AssociatedKeys {
+    struct AssociatedKeys {
         static var AppearanceStateKey = "zhh_AppearanceStateKey"
     }
 
@@ -591,9 +591,9 @@ private extension UIViewController {
     /// `nil` means `beginAppearanceTransition` not get called
     /// `true` means `beginAppearanceTransition` called with `isAppearing: true`, view controller is appearning
     /// `false` means `beginAppearanceTransition` called with `isAppearing: false`, view controller is disappearning
-    private var isAppearing: Bool? {
+    var isAppearing: Bool? {
         get { return objc_getAssociatedObject(self, &AssociatedKeys.AppearanceStateKey) as? Bool }
-        set { objc_setAssociatedObject(self, &AssociatedKeys.AppearanceStateKey, newValue as Bool? as? AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+        set { objc_setAssociatedObject(self, &AssociatedKeys.AppearanceStateKey, newValue as Bool?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     /**
@@ -602,7 +602,7 @@ private extension UIViewController {
      - parameter isAppearing: isAppearing description
      - parameter animated:    animated description
      */
-    private func zhh_beginAppearanceTransition(isAppearing: Bool, animated: Bool) {
+    func zhh_beginAppearanceTransition(_ isAppearing: Bool, animated: Bool) {
         if self.isAppearing != isAppearing {
             beginAppearanceTransition(isAppearing, animated: animated)
             self.isAppearing = isAppearing
@@ -612,7 +612,7 @@ private extension UIViewController {
     /**
      Wrapper on `endAppearanceTransition`, this will avoid unnecessary calls if there's no `beginAppearanceTransition` is called.
      */ 
-    private func zhh_endAppearanceTransition() {
+    func zhh_endAppearanceTransition() {
         if isAppearing != nil {
             endAppearanceTransition()
             isAppearing = nil

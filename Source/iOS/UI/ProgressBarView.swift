@@ -9,25 +9,26 @@
 import UIKit
 
 public protocol ProgressBarViewDelegate : class {
-	func progressBarView(progressBarView: ProgressBarView, willSetToPercent percent: CGFloat)
-	func progressBarView(progressBarView: ProgressBarView, didSetToPercent percent: CGFloat)
+	func progressBarView(_ progressBarView: ProgressBarView, willSetToPercent percent: CGFloat)
+	func progressBarView(_ progressBarView: ProgressBarView, didSetToPercent percent: CGFloat)
 }
 
-public class ProgressBarView: UIView {
+open class ProgressBarView: UIView {
 	
-	public var forgroundColor: UIColor = UIColor(white: 0.2, alpha: 1.0) {
+	open var forgroundColor: UIColor = UIColor(white: 0.2, alpha: 1.0) {
 		didSet {
-			forgroundMeterLayer.backgroundColor = forgroundColor.CGColor
+			forgroundMeterLayer.backgroundColor = forgroundColor.cgColor
 		}
 	}
-	let forgroundMeterLayer = CAShapeLayer()
+	private let forgroundMeterLayer = CAShapeLayer()
 	
-	public var animationDuration: NSTimeInterval = 1.0
-	public var animated: Bool = true
+	open var animationDuration: TimeInterval = 1.0
+	open var animated: Bool = true
+	open var rounded: Bool = true
 	
-	public weak var delegate: ProgressBarViewDelegate?
+	open weak var delegate: ProgressBarViewDelegate?
 	
-	public var percent: CGFloat = 0.0 {
+	open var percent: CGFloat = 0.0 {
 		didSet {
 			precondition(0.0 <= percent && percent <= 1.0, "Percetn must in range 0.0 to 1.0, inclusive.")
 			setNeedsLayout()			
@@ -35,7 +36,7 @@ public class ProgressBarView: UIView {
 		}
 	}
 	
-	public func setPercent(percent: CGFloat, animated: Bool = false) {
+	open func setPercent(_ percent: CGFloat, animated: Bool = false) {
 		self.animated = animated
 		self.percent = percent
 	}
@@ -50,31 +51,34 @@ public class ProgressBarView: UIView {
 		commonInit()
 	}
 	
-	private func commonInit() {
+	fileprivate func commonInit() {
+		clipsToBounds = true
 		backgroundColor = UIColor(white: 0.9, alpha: 1.0)
-		forgroundMeterLayer.backgroundColor = forgroundColor.CGColor
+		forgroundMeterLayer.backgroundColor = forgroundColor.cgColor
 		
 		layer.addSublayer(forgroundMeterLayer)
 	}
 	
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 		super.layoutSubviews()
 		
 		CATransaction.begin()
 		if animated {
 			CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
 			CATransaction.setAnimationDuration(animationDuration)
-			
-			forgroundMeterLayer.frame = CGRect(x: 0.0, y: 0.0, width: bounds.width * percent, height: bounds.height)
 		} else {
 			CATransaction.setDisableActions(true)
-			
-			forgroundMeterLayer.frame = CGRect(x: 0.0, y: 0.0, width: bounds.width * percent, height: bounds.height)
 		}
 		
+		forgroundMeterLayer.frame = CGRect(x: 0.0, y: 0.0, width: bounds.width * percent, height: bounds.height)
 		CATransaction.commit()
 		
-		layer.cornerRadius = bounds.height / 2.0
-		forgroundMeterLayer.cornerRadius = bounds.height / 2.0
+		if rounded {
+			layer.cornerRadius = bounds.height / 2.0
+			forgroundMeterLayer.cornerRadius = bounds.height / 2.0
+		} else {
+			layer.cornerRadius = 0
+			forgroundMeterLayer.cornerRadius = 0
+		}
 	}
 }

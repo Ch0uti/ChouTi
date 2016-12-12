@@ -8,20 +8,20 @@
 
 import UIKit
 
-public class SlideUpAnimator: Animator {
+open class SlideUpAnimator: Animator {
 	
-	public var presentedViewHeight: CGFloat = 400
-	public var presentedViewWidth: CGFloat?
+	open var presentedViewHeight: CGFloat = 400
+	open var presentedViewWidth: CGFloat?
 	
-	public var overlayViewStyle: OverlayViewStyle = .Normal(UIColor(white: 0.0, alpha: 0.75))
+	open var overlayViewStyle: OverlayViewStyle = .normal(UIColor(white: 0.0, alpha: 0.75))
 	
 	/// Whether presenting view should be dimmed when preseting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.
-	public var shouldDimPresentedView: Bool = false
+	open var shouldDimPresentedView: Bool = false
 	
 	// Tap to dismiss
-	public var shouldDismissOnTappingOutsideView: Bool = true
+	open var shouldDismissOnTappingOutsideView: Bool = true
 	
-	private var topConstraint: NSLayoutConstraint!
+	fileprivate var topConstraint: NSLayoutConstraint!
 	
 	public override init() {
 		super.init()
@@ -31,8 +31,8 @@ public class SlideUpAnimator: Animator {
 
 // MARK: - UIViewControllerAnimatedTransitioning
 extension SlideUpAnimator {
-	public override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-		super.animateTransition(transitionContext)
+	public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+		super.animateTransition(using: transitionContext)
 		
 		if presenting {
 			presentingAnimation(transitionContext)
@@ -41,7 +41,7 @@ extension SlideUpAnimator {
 		}
 	}
 	
-	private func presentingAnimation(transitionContext: UIViewControllerContextTransitioning) {
+	fileprivate func presentingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
 		// Necessary setup for presenting
 		guard
 			let presentedView = self.presentedViewController?.view,
@@ -59,12 +59,12 @@ extension SlideUpAnimator {
 		if let presentedViewWidth = presentedViewWidth {
             presentedView.constrainTo(width: presentedViewWidth)
 		} else {
-			NSLayoutConstraint(item: presentedView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
-			NSLayoutConstraint(item: presentedView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
+			NSLayoutConstraint(item: presentedView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: 0.0).isActive = true
+			NSLayoutConstraint(item: presentedView, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
 		}
 		
-		topConstraint = NSLayoutConstraint(item: presentedView, attribute: .Top, relatedBy: .Equal, toItem: containerView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-		topConstraint.active = true
+		topConstraint = NSLayoutConstraint(item: presentedView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+		topConstraint.isActive = true
 		
 		// Add a bottom dummy view to avoid bottom of presented view is off with spring animation
 		let emptyView = UIView()
@@ -76,21 +76,21 @@ extension SlideUpAnimator {
 		if let presentedViewWidth = presentedViewWidth {
             emptyView.constrainTo(width: presentedViewWidth)
 		} else {
-			NSLayoutConstraint(item: emptyView, attribute: .Leading, relatedBy: .Equal, toItem: containerView, attribute: .Leading, multiplier: 1.0, constant: 0.0).active = true
-			NSLayoutConstraint(item: emptyView, attribute: .Trailing, relatedBy: .Equal, toItem: containerView, attribute: .Trailing, multiplier: 1.0, constant: 0.0).active = true
+			NSLayoutConstraint(item: emptyView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: 0.0).isActive = true
+			NSLayoutConstraint(item: emptyView, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
 		}
-		NSLayoutConstraint(item: emptyView, attribute: .Top, relatedBy: .Equal, toItem: presentedView, attribute: .Bottom, multiplier: 1.0, constant: 0.0).active = true
+		NSLayoutConstraint(item: emptyView, attribute: .top, relatedBy: .equal, toItem: presentedView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
 		
 		// Update layout immediately
 		containerView.layoutIfNeeded()
 		
 		// Final constraints
-		topConstraint.active = false
-		topConstraint = NSLayoutConstraint(item: presentedView, attribute: .Bottom, relatedBy: .Equal, toItem: containerView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-		topConstraint.active = true
+		topConstraint.isActive = false
+		topConstraint = NSLayoutConstraint(item: presentedView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+		topConstraint.isActive = true
 		
 		// Presenting animations
-		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
+		UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
 			containerView.layoutIfNeeded()
 			}, completion: { finished in
 				emptyView.removeFromSuperview()
@@ -99,7 +99,7 @@ extension SlideUpAnimator {
 			})
 	}
 	
-	private func dismissingAnimation(transitionContext: UIViewControllerContextTransitioning) {
+	fileprivate func dismissingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
 		// Necessary setup for dismissing
 		guard
 			let fromView = self.fromViewController?.view,
@@ -108,20 +108,20 @@ extension SlideUpAnimator {
 				return
 		}
 		
-		topConstraint.active = false
+		topConstraint.isActive = false
 		
-		topConstraint = NSLayoutConstraint(item: fromView, attribute: .Top, relatedBy: .Equal, toItem: containerView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-		topConstraint.active = true
+		topConstraint = NSLayoutConstraint(item: fromView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+		topConstraint.isActive = true
 		
 		// Dismissing animations
-		UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: {
+		UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
 			containerView.layoutIfNeeded()
 			}, completion: { finished -> Void in
 				transitionContext.completeTransition(finished)
 		})
 	}
 	
-	public override func animationEnded(transitionCompleted: Bool) {
+	public override func animationEnded(_ transitionCompleted: Bool) {
 		if transitionCompleted == false {
 			return
 		}
@@ -137,7 +137,7 @@ extension SlideUpAnimator {
 		super.animationEnded(transitionCompleted)
 	}
     
-    public override func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
+    public override func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let overlayPresentationController = OverlayPresentationController(presentedViewController: presented, presentingViewController: presenting, overlayViewStyle: overlayViewStyle)
         overlayPresentationController.shouldDismissOnTappingOutsideView = shouldDismissOnTappingOutsideView
         overlayPresentationController.shouldDimPresentedView = shouldDimPresentedView

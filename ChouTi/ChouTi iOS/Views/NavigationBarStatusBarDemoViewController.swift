@@ -14,10 +14,10 @@ class NavigationBarStatusBarDemoViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		view.backgroundColor = UIColor.whiteColor()
+		view.backgroundColor = UIColor.white
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
 		let statusBar = navigationController?.navigationBar.showStatusBarWithText("Hello, World!", animated: true, autoDismiss: true, displayingDuration: 2)
@@ -26,7 +26,7 @@ class NavigationBarStatusBarDemoViewController: UIViewController {
 		statusBar?.statusBarHeight = 30.0
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		navigationController?.navigationBar.dismissStatusBar(true)
 	}

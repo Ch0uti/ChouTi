@@ -16,31 +16,31 @@ class DropPresentingDemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		view.backgroundColor = UIColor.whiteColor()
+		view.backgroundColor = UIColor.white
 		
 		animator.animationDuration = 0.75
 		animator.shouldDismissOnTappingOutsideView = true
 		animator.presentingViewSize = CGSize(width: ceil(screenWidth * 0.7), height: 160)
-		animator.overlayViewStyle = .Normal(UIColor(white: 0.0, alpha: 0.85))
+		animator.overlayViewStyle = .normal(UIColor(white: 0.0, alpha: 0.85))
 		
 		let button = Button()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(button)
 		
-		button.setBackgroundImageWithColor(UIColor.redColor(), forState: .Normal)
-		button.setBackgroundImageWithColor(UIColor.redColor().colorWithAlphaComponent(0.8), forState: .Highlighted)
-		button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-		button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+		button.setBackgroundImageWithColor(UIColor.red, forState: .normal)
+		button.setBackgroundImageWithColor(UIColor.red.withAlphaComponent(0.8), forState: .highlighted)
+		button.setTitleColor(UIColor.white, for: .normal)
+		button.setTitleColor(UIColor.white, for: .highlighted)
         
-        button.setCornerRadius(.Relative(percent: 0.3, attribute: .Height), forState: .Normal)
+        button.setCornerRadius(.relative(percent: 0.3, attribute: .height), forState: .normal)
         
-		button.setTitle("Present!", forState: .Normal)
-		button.titleLabel?.font = UIFont.systemFontOfSize(22)
+		button.setTitle("Present!", for: .normal)
+		button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
 		
         button.constrainTo(size: CGSize(width: 160, height: 50))
 		button.constrainToCenterInSuperview()
 		
-		button.addTarget(self, action: #selector(DropPresentingDemoViewController.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+		button.addTarget(self, action: #selector(DropPresentingDemoViewController.buttonTapped(sender:)), for: .touchUpInside)
     }
 	
 	func buttonTapped(sender: AnyObject) {
@@ -51,29 +51,29 @@ class DropPresentingDemoViewController: UIViewController {
         let button = Button()
         dummyViewController.view.addSubview(button)
         
-        button.setBackgroundImageWithColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00), forState: .Normal)
-        button.setBackgroundImageWithColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00).colorWithAlphaComponent(0.8), forState: .Highlighted)
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+        button.setBackgroundImageWithColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00), forState: .normal)
+        button.setBackgroundImageWithColor(UIColor(red:0.31, green:0.76, blue:0.63, alpha:1.00).withAlphaComponent(0.8), forState: .highlighted)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.white, for: .highlighted)
         
-        button.setTitle("Dismiss", forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(22)
+        button.setTitle("Dismiss", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
         
         button.clipsToBounds = true
         button.layer.cornerRadius = 25
         
-        button.addTarget(self, action: #selector(DropPresentingDemoViewController.dismiss(_:)), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(DropPresentingDemoViewController.dismiss(sender:)), for: .touchUpInside)
 		
         button.constrainTo(size: CGSize(width: 120, height: 50))
         button.constrainToCenterInSuperview()
         
-		dummyViewController.modalPresentationStyle = .Custom
+		dummyViewController.modalPresentationStyle = .custom
 		dummyViewController.transitioningDelegate = animator
 		
-		presentViewController(dummyViewController, animated: true, completion: nil)
+		present(dummyViewController, animated: true, completion: nil)
 	}
     
     func dismiss(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

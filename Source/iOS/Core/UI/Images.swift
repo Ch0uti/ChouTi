@@ -15,6 +15,6 @@ extension UIImage {
 	}
 	
 	convenience init!(asset: ImageAssets) {
-		self.init(named: asset.rawValue, inBundle: Resource.bundle, compatibleWithTraitCollection: nil)
+		self.init(named: asset.rawValue, in: Resource.bundle, compatibleWith: nil)
 	}
 }

@@ -38,7 +38,7 @@ class NSObject_AssociatedObjectTests: XCTestCase {
 		XCTAssertNil(host.getAssociatedObject())
 	}
     
-    private struct TestAssociateObjectKey {
+    fileprivate struct TestAssociateObjectKey {
         static var Key = "TestAssociateObjectKey"
     }
     

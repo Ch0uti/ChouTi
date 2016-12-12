@@ -19,7 +19,7 @@ public extension Comparable {
      
      - returns: number normalized in this range, if self is in the range, self is returned. otherwirse, it will return min or max.
      */
-    public func normalize(min: Self, _ max: Self) -> Self {
+    public func normalize(_ min: Self, _ max: Self) -> Self {
         guard min <= max else {
             fatalError("Error: min: \(min) is greater than max: \(max)")
         }
@@ -32,7 +32,7 @@ public extension Comparable {
 	- parameter min: min number
 	- parameter max: max number
 	*/
-	public mutating func normalizeInPlace(min: Self, _ max: Self) {
+	public mutating func normalizeInPlace(_ min: Self, _ max: Self) {
 		guard min <= max else {
 			fatalError("Error: min: \(min) is greater than max: \(max)")
 		}
@@ -59,8 +59,8 @@ public extension Int {
      
      - returns: a random integer
      */
-    public static func random(range: Range<Int>) -> Int {
-        return range.startIndex + Int(arc4random_uniform(UInt32(range.endIndex - range.startIndex)))
+    public static func random(_ range: Range<Int>) -> Int {
+        return range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound)))
     }
     
     /**
@@ -71,7 +71,7 @@ public extension Int {
      
      - returns: a random integer
      */
-    public static func random(lower: Int = 0, _ upper: Int = 100) -> Int {
+    public static func random(_ lower: Int = 0, _ upper: Int = 100) -> Int {
         return lower + Int(arc4random_uniform(UInt32(upper - lower + 1)))
     }
 }
@@ -130,14 +130,14 @@ public extension Double {
      
      - returns: a random number
      */
-    public static func random(lower: Double = 0, _ upper: Double = 100) -> Double {
+    public static func random(_ lower: Double = 0, _ upper: Double = 100) -> Double {
         return (Double(arc4random()) / 0xFFFFFFFF) * (upper - lower) + lower
     }
     
     /// Get a dispatchTime from double number
-    public var dispatchTime: dispatch_time_t {
+    public var dispatchTime: DispatchTime {
         get {
-            return dispatch_time(DISPATCH_TIME_NOW,Int64(self * Double(NSEC_PER_SEC)))
+            return DispatchTime.now() + Double(Int64(self * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         }
     }
 }
@@ -151,7 +151,7 @@ public extension Float {
      
      - returns: a random number
      */
-    public static func random(lower: Float = 0, _ upper: Float = 100) -> Float {
+    public static func random(_ lower: Float = 0, _ upper: Float = 100) -> Float {
         return (Float(arc4random()) / 0xFFFFFFFF) * (upper - lower) + lower
     }
 }
@@ -165,7 +165,7 @@ public extension CGFloat {
      
      - returns: a random number
      */
-    public static func random(lower: CGFloat = 0, _ upper: CGFloat = 1) -> CGFloat {
+    public static func random(_ lower: CGFloat = 0, _ upper: CGFloat = 1) -> CGFloat {
         return CGFloat(Float(arc4random()) / Float(UINT32_MAX)) * (upper - lower) + lower
     }
     
@@ -219,7 +219,7 @@ public extension CGFloat {
      
      - returns: new number
      */
-    public func toNumber(rightNumber: CGFloat, withPercent percent: CGFloat) -> CGFloat {
+    public func toNumber(_ rightNumber: CGFloat, withPercent percent: CGFloat) -> CGFloat {
         var span = rightNumber - self
         span *= percent
         return self + span

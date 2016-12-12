@@ -28,19 +28,19 @@ public final class StructWrapper<StructType>: NSObject, NSCopying {
 	
 	public init(_ structValue: StructType) { self.structValue = structValue }
 	
-	public func copyWithZone(zone: NSZone) -> AnyObject {
-		return self.dynamicType.init(structValue)
+	public func copy(with zone: NSZone?) -> Any {
+		return type(of: self).init(structValue)
 	}
 }
 
 extension StructWrapper where StructType: NSCopying {
-	public func copyWithZone(zone: NSZone) -> AnyObject {
-		return self.dynamicType.init(structValue.copyWithZone(zone) as! StructType)
+	public func copyWithZone(_ zone: NSZone?) -> Any {
+		return type(of: self).init(structValue.copy(with: zone) as! StructType)
 	}
 }
 
 extension StructWrapper {
-	public static func structFromObject(object: AnyObject?) -> StructType? {
+	public static func structFromObject(_ object: Any?) -> StructType? {
 		if object == nil {
 			return nil
 		}
@@ -48,7 +48,7 @@ extension StructWrapper {
 		return (object as? StructWrapper<StructType>)?.structValue
 	}
 	
-	public static func objectFromStruct(aStruct: StructType?) -> StructWrapper<StructType>? {
+	public static func objectFromStruct(_ aStruct: StructType?) -> StructWrapper<StructType>? {
 		if let aStruct = aStruct {
 			return StructWrapper<StructType>(aStruct)
 		} else {

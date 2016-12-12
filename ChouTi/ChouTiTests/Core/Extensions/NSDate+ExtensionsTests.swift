@@ -19,22 +19,9 @@ class NSDate_ExtensionsTests: XCTestCase {
 		super.tearDown()
 	}
 	
-	func testDateComparison() {
-		XCTAssertTrue(NSDate().isEarlierThanDate(NSDate(timeIntervalSinceNow: 20)))
-        XCTAssertTrue(NSDate().isBeforeDate(NSDate(timeIntervalSinceNow: 20)))
-        XCTAssertTrue(NSDate() < (NSDate(timeIntervalSinceNow: 20)))
-        XCTAssertFalse(NSDate().isEarlierThanDate(NSDate(timeIntervalSinceNow: -20)))
-        
-        XCTAssertTrue(NSDate().isLaterThanDate(NSDate(timeIntervalSinceNow: -20)))
-        XCTAssertTrue(NSDate().isAfterDate(NSDate(timeIntervalSinceNow: -20)))
-        XCTAssertFalse(NSDate().isLaterThanDate(NSDate(timeIntervalSinceNow: 20)))
-        
-        XCTAssertTrue(NSDate(timeIntervalSince1970: 10) == NSDate(timeIntervalSince1970: 10))
-	}
-	
 	func testForSettingUnit() {
-		let date = NSDate()
-		let dateWithUpdatedYear = date.dateBySettingUnit(.Year, newValue: 1900)
+		let date = Date()
+		let dateWithUpdatedYear = date.date(bySetting: .year, with: 1900)
 		XCTAssertEqual(dateWithUpdatedYear?.year, 1900)
 	}
 }

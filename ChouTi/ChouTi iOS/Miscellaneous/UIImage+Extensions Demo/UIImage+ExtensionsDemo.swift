@@ -25,15 +25,15 @@ class UIImageExtensionsDemoViewController: UIViewController {
             TableViewSection(rows: [
                 TableViewRow(title: "UIImage+CroppedImage",
                     cellSelectAction: { [weak self] indexPath, cell, tableView in
-                        self?.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                        self?.tableView.deselectRow(at: indexPath, animated: true)
                         let demoViewController = UIImage_CroppedImageDemoViewController()
-                        self?.showViewController(demoViewController, sender: nil)
+                        self?.show(demoViewController, sender: nil)
                     }),
                 TableViewRow(title: "UIImage+AnimatingImages", subtitle: "Sprite in UIKit",
                     cellSelectAction: { [weak self] indexPath, cell, tableView in
-                        self?.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                        self?.tableView.deselectRow(at: indexPath, animated: true)
                         let demoViewController = UIImage_AnimatingImagesDemoViewController()
-                        self?.showViewController(demoViewController, sender: nil)
+                        self?.show(demoViewController, sender: nil)
                     })
             ])
         ]

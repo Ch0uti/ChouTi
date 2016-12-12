@@ -21,7 +21,7 @@ class OperatorsTests: XCTestCase {
         XCTAssertEqual(-2 ** 2 * 3, ((-2) * (-2)) * 3)
         XCTAssertEqual(-2 ** 3, (-2) * (-2) * (-2))
         XCTAssertEqual(-(2 ** 3), -8)
-        
-        XCTAssertTrue(isnan(-2 ** 3.2))
+		
+        XCTAssertTrue((-2 ** 3.2).isNaN)
     }
 }

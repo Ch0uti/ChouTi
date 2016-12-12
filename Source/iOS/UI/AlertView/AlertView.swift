@@ -12,88 +12,88 @@ import UIKit
 *  Alert View mimics UIAlertController.view
 */
 @available(iOS 9.0, *)
-public class AlertView: UIView {
+open class AlertView: UIView {
     /// The preferred maximum width (in points) for alert view
-    public var preferredWidth: CGFloat = 270.0
+    open var preferredWidth: CGFloat = 270.0
     
     /// The title of the alert.
-    public var title: String? {
+    open var title: String? {
         didSet {
-			titleLabel.hidden = title == nil
+			titleLabel.isHidden = title == nil
             titleLabel.setText(title, withFadeTransitionAnimation: 0.25)
         }
     }
     
     /// Descriptive text that provides more details about the reason for the alert.
-    public var message: String? {
+    open var message: String? {
         didSet {
-			messageLabel.hidden = message == nil
+			messageLabel.isHidden = message == nil
             messageLabel.setText(message, withFadeTransitionAnimation: 0.25)
         }
     }
     
     /// Background view for alert view, default is blur view with extra light effect
-    public var backgroundView: UIView! {
+    open var backgroundView: UIView! {
         didSet {
             if let oldBackgroundView = oldValue {
                 oldBackgroundView.removeFromSuperview()
             }
             
             if backgroundView == nil {
-                backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
+                backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
             }
             
             backgroundView.translatesAutoresizingMaskIntoConstraints = false
-            insertSubview(backgroundView, atIndex: 0)
+            insertSubview(backgroundView, at: 0)
             
             setupBackgroundViewConstraints()
         }
     }
     
     /// Title label exposed, don't set its text, use `title` instead
-    public let titleLabel = UILabel()
+    open let titleLabel = UILabel()
     
     /// Message label exposed, don't set its text, use `message` instead
-    public let messageLabel = UILabel()
+    open let messageLabel = UILabel()
     
     /// Vertical spacing between title label and message label
-    public var titleMessageVerticalSpacing: CGFloat = 8.0 {
+    open var titleMessageVerticalSpacing: CGFloat = 8.0 {
         didSet {
             labelsStackView.spacing = titleMessageVerticalSpacing
         }
     }
     
     /// Spacing between buttons
-    public var buttonSpacing: CGFloat = 8.0 {
+    open var buttonSpacing: CGFloat = 8.0 {
         didSet {
             actionButtonsStackView.spacing = buttonSpacing
         }
     }
     
     /// Vertical spacing between message label and buttons
-    public var labelButtonVerticalSpacing: CGFloat = 24.0 {
+    open var labelButtonVerticalSpacing: CGFloat = 24.0 {
         didSet {
             containerStackView.spacing = labelButtonVerticalSpacing
         }
     }
     
     /// Vertical stack view for title and message labels
-    private let labelsStackView = UIStackView()
+    fileprivate let labelsStackView = UIStackView()
     
     /// Horizontal (less than 2 buttons) or Vertical (like an action sheet, more than 2 buttons) stack view for buttons
-    private let actionButtonsStackView = UIStackView()
+    fileprivate let actionButtonsStackView = UIStackView()
     
     /// Container stack view for labels and actions
-    private let containerStackView = UIStackView()
+    fileprivate let containerStackView = UIStackView()
     
     /// The actions that the user can take in response to the alert. (read-only)
-    public private(set) var actions = [AlertAction]() {
+    open fileprivate(set) var actions = [AlertAction]() {
         didSet {
-            actionButtonsStackView.hidden = actions.isEmpty
+            actionButtonsStackView.isHidden = actions.isEmpty
         }
     }
     
-    public override var layoutMargins: UIEdgeInsets {
+    open override var layoutMargins: UIEdgeInsets {
         didSet {
             titleLabel.preferredMaxLayoutWidth = preferredWidth - layoutMargins.left - layoutMargins.right
             messageLabel.preferredMaxLayoutWidth = preferredWidth - layoutMargins.left - layoutMargins.right
@@ -143,35 +143,35 @@ public class AlertView: UIView {
         // Labels
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont.boldSystemFontOfSize(17)
-        titleLabel.textAlignment = .Center
-        titleLabel.setContentHuggingPriority(1000, forAxis: .Vertical)
-        titleLabel.setContentCompressionResistancePriority(1000, forAxis: .Vertical)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        titleLabel.textAlignment = .center
+        titleLabel.setContentHuggingPriority(1000, for: .vertical)
+        titleLabel.setContentCompressionResistancePriority(1000, for: .vertical)
         titleLabel.preferredMaxLayoutWidth = preferredWidth - layoutMargins.left - layoutMargins.right
         
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.numberOfLines = 0
-        messageLabel.font = UIFont.systemFontOfSize(13)
-        messageLabel.textAlignment = .Center
-        messageLabel.setContentHuggingPriority(1000, forAxis: .Vertical)
-        messageLabel.setContentCompressionResistancePriority(1000, forAxis: .Vertical)
+        messageLabel.font = UIFont.systemFont(ofSize: 13)
+        messageLabel.textAlignment = .center
+        messageLabel.setContentHuggingPriority(1000, for: .vertical)
+        messageLabel.setContentCompressionResistancePriority(1000, for: .vertical)
         messageLabel.preferredMaxLayoutWidth = preferredWidth - layoutMargins.left - layoutMargins.right
         
-        labelsStackView.axis = .Vertical
-        labelsStackView.distribution = .EqualSpacing
+        labelsStackView.axis = .vertical
+        labelsStackView.distribution = .equalSpacing
         labelsStackView.spacing = titleMessageVerticalSpacing
         labelsStackView.addArrangedSubview(titleLabel)
         labelsStackView.addArrangedSubview(messageLabel)
         
         // Action Buttons
-        actionButtonsStackView.axis = .Horizontal
-        actionButtonsStackView.distribution = .FillEqually
+        actionButtonsStackView.axis = .horizontal
+        actionButtonsStackView.distribution = .fillEqually
         actionButtonsStackView.spacing = buttonSpacing
-        actionButtonsStackView.hidden = true // there's no actions, set to hidden by default
+        actionButtonsStackView.isHidden = true // there's no actions, set to hidden by default
         
         // Container
-        containerStackView.axis = .Vertical
-        containerStackView.distribution = .EqualSpacing
+        containerStackView.axis = .vertical
+        containerStackView.distribution = .equalSpacing
         containerStackView.spacing = labelButtonVerticalSpacing
         
         containerStackView.addArrangedSubview(labelsStackView)
@@ -184,32 +184,32 @@ public class AlertView: UIView {
     private func setupConstraints() {
         setupBackgroundViewConstraints()
         
-        let views = [
+		let views = [
             "containerStackView" : containerStackView
         ]
 
         var constraints = [NSLayoutConstraint]()
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[containerStackView]-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[containerStackView]-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[containerStackView]-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[containerStackView]-|", options: [], metrics: nil, views: views)
         
-        NSLayoutConstraint.activateConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
     }
     
-    private func setupBackgroundViewConstraints() {
-        let views = [
-            "backgroundView" : backgroundView
+    fileprivate func setupBackgroundViewConstraints() {
+		let views : [String : UIView] = [
+            "backgroundView" : backgroundView!
         ]
         
         var constraints = [NSLayoutConstraint]()
         
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[backgroundView]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[backgroundView]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[backgroundView]|", options: [], metrics: nil, views: views)
         
-        NSLayoutConstraint.activateConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
     }
     
-    public override func intrinsicContentSize() -> CGSize {
+    open override var intrinsicContentSize: CGSize {
         return CGSize(width: preferredWidth, height: UIViewNoIntrinsicMetric)
     }
     
@@ -218,7 +218,7 @@ public class AlertView: UIView {
      
      - parameter action: The action object to display as part of the alert. Actions are displayed as buttons in the alert. The action object provides the button text and the action to be performed when that button is tapped.
      */
-    public func addAction(action: AlertAction) {
+    open func addAction(_ action: AlertAction) {
         if actions.contains(action) {
             NSLog("Warning: adding duplicated action: \(action)")
             return
@@ -232,7 +232,7 @@ public class AlertView: UIView {
         actionButtonsStackView.addArrangedSubview(action.button)
         
         if actions.count > 2 {
-            actionButtonsStackView.axis = .Vertical
+            actionButtonsStackView.axis = .vertical
         }
     }
 }

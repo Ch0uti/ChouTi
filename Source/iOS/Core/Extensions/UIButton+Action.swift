@@ -10,9 +10,9 @@ import UIKit
 
 public extension UIButton {
     private class ButtonAction {
-        var action: UIButton -> Void
+        var action: (UIButton) -> Void
         
-        init(action: UIButton -> Void) {
+        init(action: @escaping (UIButton) -> Void) {
             self.action = action
         }
     }
@@ -34,10 +34,10 @@ public extension UIButton {
      
      - returns: An initialized UIButton.
      */
-    public convenience init(action: UIButton -> Void) {
+    public convenience init(action: @escaping (UIButton) -> Void) {
         self.init()
         buttonAction = ButtonAction(action: action)
-        addTarget(self, action: #selector(UIButton.handleAction(_:)), forControlEvents: .TouchUpInside)
+        addTarget(self, action: #selector(UIButton.handleAction(_:)), for: .touchUpInside)
     }
     
     
@@ -49,10 +49,10 @@ public extension UIButton {
      
      - returns: An initialized UIButton.
      */
-    public convenience init(frame: CGRect, action: UIButton -> Void) {
+    public convenience init(frame: CGRect, action: @escaping (UIButton) -> Void) {
         self.init(frame: frame)
         buttonAction = ButtonAction(action: action)
-        addTarget(self, action: #selector(UIButton.handleAction(_:)), forControlEvents: .TouchUpInside)
+        addTarget(self, action: #selector(UIButton.handleAction(_:)), for: .touchUpInside)
     }
     
     
@@ -64,10 +64,10 @@ public extension UIButton {
      
      - returns: An initialized UIButton.
      */
-    public convenience init(buttonType: UIButtonType, action: UIButton -> Void) {
+    public convenience init(buttonType: UIButtonType, action: @escaping (UIButton) -> Void) {
         self.init(type: buttonType)
         buttonAction = ButtonAction(action: action)
-        addTarget(self, action: #selector(UIButton.handleAction(_:)), forControlEvents: .TouchUpInside)
+        addTarget(self, action: #selector(UIButton.handleAction(_:)), for: .touchUpInside)
     }
     
     
@@ -77,12 +77,12 @@ public extension UIButton {
      - parameter controlEvents: The UIControlEvents upon which to execute this action.
      - parameter action:        The action closure to execute.
      */
-    public func addTarget(controlEvents controlEvents: UIControlEvents, action: UIButton -> Void) {
+    public func addTarget(controlEvents: UIControlEvents, action: @escaping (UIButton) -> Void) {
         buttonAction = ButtonAction(action: action)
-        addTarget(self, action: #selector(UIButton.handleAction(_:)), forControlEvents: controlEvents)
+        addTarget(self, action: #selector(UIButton.handleAction(_:)), for: controlEvents)
     }
     
-    private dynamic func handleAction(button: UIButton) {
+    fileprivate dynamic func handleAction(_ button: UIButton) {
         buttonAction?.action(button)
     }
 }

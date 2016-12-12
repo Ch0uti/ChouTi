@@ -16,7 +16,7 @@ public extension UIView {
      
      - returns: true for directly contains, otherwise false
      */
-    public func containSubview(view: UIView) -> Bool {
+    public func containSubview(_ view: UIView) -> Bool {
         return subviews.contains(view)
     }
     
@@ -24,11 +24,11 @@ public extension UIView {
         subviews.forEach{ $0.removeFromSuperview() }
     }
     
-    public func removeAllSubviewsExceptView(view: UIView) {
+    public func removeAllSubviewsExceptView(_ view: UIView) {
         subviews.filter({ $0 != view }).forEach { $0.removeFromSuperview() }
     }
     
-    public func removeAllSubviewsExceptViews(views: [UIView]) {
+    public func removeAllSubviewsExceptViews(_ views: [UIView]) {
         subviews.filter({ views.contains($0) }).forEach { $0.removeFromSuperview() }
     }
 }
@@ -43,29 +43,29 @@ public extension UIView {
 	- parameter duration:   Animation duration.
 	- parameter completion: Completion block.
 	*/
-    public func setHidden(toHide: Bool, animated: Bool = false, duration: NSTimeInterval = 0.25, completion: ((Bool) -> ())? = nil) {
-        if self.hidden == toHide {
+    public func setHidden(_ toHide: Bool, animated: Bool = false, duration: TimeInterval = 0.25, completion: ((Bool) -> ())? = nil) {
+        if self.isHidden == toHide {
             completion?(false)
             return
         }
         
         if animated == false {
             alpha = toHide ? 0.0 : 1.0
-            self.hidden = toHide
+            self.isHidden = toHide
             completion?(true)
         } else {
             // If is to visible, set hidden to false first, then animate alpha
             if toHide == false {
-                self.hidden = toHide
+                self.isHidden = toHide
                 if alpha == 1.0 {
                     debugPrint("\(self) has an alpha: 1.0, animation maybe broken.")
                 }
             }
             
-            UIView.animateWithDuration(duration, animations: { _ in
+            UIView.animate(withDuration: duration, animations: { _ in
                 self.alpha = toHide ? 0.0 : 1.0
 			}, completion: { finished -> Void in
-				self.hidden = toHide
+				self.isHidden = toHide
 				completion?(finished)
             })
         }
@@ -75,36 +75,32 @@ public extension UIView {
 
 
 // MARK: - addGestureRecognizer Swizzling
-public extension UIView {
+extension UIView {
     // Swizzling addGestureRecognizer(_: UIGestureRecognizer)
-    public override class func initialize() {
-        struct Static {
-            static var addGestureRecognizerToken: dispatch_once_t = 0
-        }
-        
+    open override class func initialize() {
         // make sure this isn't a subclass
         if self !== UIView.self {
             return
         }
-        
-        dispatch_once(&Static.addGestureRecognizerToken) {
-            let originalSelector = #selector(UIView.addGestureRecognizer(_:))
-            let swizzledSelector = #selector(UIView.zhh_addGestureRecognizer(_:))
-            
-            let originalMethod = class_getInstanceMethod(self, originalSelector)
-            let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
-            
-            let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
-            
-            if didAddMethod {
-                class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
-            } else {
-                method_exchangeImplementations(originalMethod, swizzledMethod)
-            }
-        }
+		
+		DispatchQueue.once(token: "zhh_addGestureRecognizerKey") {
+			let originalSelector = #selector(UIView.addGestureRecognizer(_:))
+			let swizzledSelector = #selector(UIView.zhh_addGestureRecognizer(_:))
+			
+			let originalMethod = class_getInstanceMethod(self, originalSelector)
+			let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+			
+			let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+			
+			if didAddMethod {
+				class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+			} else {
+				method_exchangeImplementations(originalMethod, swizzledMethod)
+			}
+		}
     }
-    
-    func zhh_addGestureRecognizer(gestureRecognizer: UIGestureRecognizer) {
+	
+    func zhh_addGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
         self.zhh_addGestureRecognizer(gestureRecognizer)
         
         if let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer {
@@ -122,10 +118,10 @@ public extension UIView {
      
      - returns: the view controller for presenting this view or nil
      */
-    private func firstRespondedViewController() -> UIViewController? {
-        if let viewController = nextResponder() as? UIViewController {
+    fileprivate func firstRespondedViewController() -> UIViewController? {
+        if let viewController = next as? UIViewController {
             return viewController
-        } else if let view = nextResponder() as? UIView {
+        } else if let view = next as? UIView {
             return view.firstRespondedViewController()
         } else {
             return nil
@@ -153,14 +149,14 @@ public extension UIView {
      
      - returns: the frame of self in the target view
      */
-    public func frameRectInView(view: UIView?) -> CGRect {
-        return self.convertRect(self.bounds, toView: view)
+    public func frameRectInView(_ view: UIView?) -> CGRect {
+        return self.convert(self.bounds, to: view)
     }
     
     /// Get bounds of screen, which is presenting this view.
     var screenBounds: CGRect? {
         guard let window = window else { return nil }
-        return window.convertRect(window.bounds, toWindow: nil)
+        return window.convert(window.bounds, to: nil)
     }
 }
 
@@ -171,8 +167,8 @@ public extension UIView {
      - returns: A copy of the View
      */
     public func viewCopy() -> UIView {
-        let data: NSData = NSKeyedArchiver.archivedDataWithRootObject(self)
-        let copy = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! UIView
+        let data: Data = NSKeyedArchiver.archivedData(withRootObject: self)
+        let copy = NSKeyedUnarchiver.unarchiveObject(with: data) as! UIView
         return copy
     }
 }
@@ -189,7 +185,7 @@ public extension UIView {
         let context = UIGraphicsGetCurrentContext()!
         
         // Good explanation of differences between drawViewHierarchyInRect:afterScreenUpdates: and renderInContext: https://github.com/radi/LiveFrost/issues/10#issuecomment-28959525
-        layer.renderInContext(context)
+        layer.render(in: context)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -212,18 +208,16 @@ public extension UIView {
 }
 
 public extension UIView {
-    /**
-     Get superview of sepcified type.
-     
-     - parameter type: type to find.
-     
-     - returns: superview of type specified or nil.
-     */
-    public func superviewOfType<T: UIView>(type: T.Type) -> T? {
+
+    /// Get superview of sepcified type.
+    ///
+    /// - Parameter type: type to find.
+    /// - Returns: superview of type specified or nil.
+    public func superview<T: UIView>(ofType type: T.Type) -> T? {
         if let view = self.superview as? T {
             return view
         }
-        return superview?.superviewOfType(type)
+		return superview?.superview(ofType: type)
     }
     
     /**
@@ -233,7 +227,7 @@ public extension UIView {
      
      - returns: subview of type specified or nil.
      */
-    public func subviewOfType<T: UIView>(type: T.Type) -> T? {
+    public func subviewOfType<T: UIView>(_ type: T.Type) -> T? {
         let queue = Queue<UIView>()
         for subview in self.subviews {
             queue.enqueue(subview)
@@ -260,7 +254,7 @@ public extension UIView {
      
      - returns: subviews of type specified or empty.
      */
-    public func subviewsOfType<T: UIView>(type: T.Type) -> [T] {
+    public func subviewsOfType<T: UIView>(_ type: T.Type) -> [T] {
         var views: [T] = []
         
         let queue = Queue<UIView>()
@@ -293,19 +287,19 @@ public extension UIView {
      - parameter paintedSegmentLength:   Painted segment length.
      - parameter unpaintedSegmentLength: Unpainted segment length.
      */
-    public func addDashedBorderLine(borderWidth: CGFloat, borderColor: UIColor, paintedSegmentLength: CGFloat = 2, unpaintedSegmentLength: CGFloat = 2) {
+    public func addDashedBorderLine(_ borderWidth: CGFloat, borderColor: UIColor, paintedSegmentLength: CGFloat = 2, unpaintedSegmentLength: CGFloat = 2) {
         layer.borderWidth = borderWidth
-        let patternImage = UIImage.imageWithColor(.clearColor(), size: CGSize(width: paintedSegmentLength + unpaintedSegmentLength, height: paintedSegmentLength + unpaintedSegmentLength))
+        let patternImage = UIImage.imageWithColor(.clear, size: CGSize(width: paintedSegmentLength + unpaintedSegmentLength, height: paintedSegmentLength + unpaintedSegmentLength))
             .fillRect(CGRect(x: 0, y: 0, width: paintedSegmentLength, height: paintedSegmentLength), withColor: borderColor)
             .fillRect(CGRect(x: unpaintedSegmentLength, y: unpaintedSegmentLength, width: paintedSegmentLength, height: paintedSegmentLength), withColor: borderColor)
-        layer.borderColor = UIColor(patternImage: patternImage).CGColor
+        layer.borderColor = UIColor(patternImage: patternImage).cgColor
     }
     
     /**
      Add a dark shadow
      */
     public func addDarkShadow() {
-        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize.zero
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 18.0

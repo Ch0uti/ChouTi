@@ -9,21 +9,21 @@
 import UIKit
 
 /// This class mimics UIAlertAction.
-public class AlertAction: Equatable {
+open class AlertAction: Equatable {
     /// The title of the action’s button. (read-only)
-    public let title: String?
+    open let title: String?
     
     /// The style that is applied to the action’s button. (read-only)
-    public let style: UIAlertActionStyle
+    open let style: UIAlertActionStyle
     
     /// Action handler
     let handler: ((AlertAction) -> Void)?
     
     /// Button associated with this alert action
-    public let button: UIButton
+    open let button: UIButton
     
     /// A Boolean value indicating whether the action is currently enabled.
-    public var enabled: Bool = true
+    open var enabled: Bool = true
     
     /**
      Create and return an action with the specified title and behavior.
@@ -42,7 +42,7 @@ public class AlertAction: Equatable {
         self.button = alertActionButton
         
         alertActionButton.alertAction = self
-        alertActionButton.addTarget(self, action: #selector(AlertAction.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+        alertActionButton.addTarget(self, action: #selector(AlertAction.buttonTapped(_:)), for: .touchUpInside)
     }
     
     /**
@@ -56,14 +56,14 @@ public class AlertAction: Equatable {
      */
     public init(title: String?, button: UIButton, handler: ((AlertAction) -> Void)?) {
         self.title = title
-        self.style = .Default
+        self.style = .default
         self.handler = handler
         self.button = button
         
-        button.addTarget(self, action: #selector(AlertAction.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(AlertAction.buttonTapped(_:)), for: .touchUpInside)
     }
     
-    @objc func buttonTapped(button: UIButton) {
+    @objc func buttonTapped(_ button: UIButton) {
         performActionHandler()
     }
     

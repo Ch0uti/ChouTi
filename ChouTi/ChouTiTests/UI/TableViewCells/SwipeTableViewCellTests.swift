@@ -62,8 +62,8 @@ class SwipeTableViewCellTests: QuickSpec {
                     rightSwipeAccessoryView = UIView()
                     rightSwipeAccessoryView.translatesAutoresizingMaskIntoConstraints = false
 
-                    rightViewWidthConstraint = rightSwipeAccessoryView.widthAnchor.constraintEqualToConstant(0).activate()
-                    rightViewHeightConstraint = rightSwipeAccessoryView.heightAnchor.constraintEqualToConstant(0).activate()
+                    rightViewWidthConstraint = rightSwipeAccessoryView.widthAnchor.constraint(equalToConstant: 0).activate()
+                    rightViewHeightConstraint = rightSwipeAccessoryView.heightAnchor.constraint(equalToConstant: 0).activate()
                     
                     swipeCell.rightSwipeAccessoryView = rightSwipeAccessoryView
                     swipeCell.setNeedsLayout()
@@ -189,7 +189,7 @@ class SwipeTableViewCellTests: QuickSpec {
                         }
                         
                         it("should collapse animated if willTransitionToState") {
-                            swipeCell.willTransitionToState(.ShowingEditControlMask)
+                            swipeCell.willTransition(to: .showingEditControlMask)
                             expect(swipeCell.swipeableContentView.frame) == originalFrame
                             // Expanded at first
                             expect(swipeCell.rightSwipeExpanded).to(beTrue())

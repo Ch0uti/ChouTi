@@ -12,8 +12,8 @@ public struct OrderedDictionary<KeyType: Hashable, ValueType> {
 	public typealias ArrayType = [KeyType]
 	public typealias DictionaryType = [KeyType: ValueType]
 	
-	public var array = ArrayType()
-	public var dictionary = DictionaryType()
+	public fileprivate(set) var array = ArrayType()
+	public fileprivate(set) var dictionary = DictionaryType()
 	
 	public var count: Int { return array.count }
 	
@@ -23,7 +23,7 @@ public struct OrderedDictionary<KeyType: Hashable, ValueType> {
 		}
 		
 		set {
-			if let _ = array.indexOf(key) {
+			if let _ = array.index(of: key) {
 			} else {
 				array.append(key)
 			}
@@ -42,33 +42,60 @@ public struct OrderedDictionary<KeyType: Hashable, ValueType> {
 			return (key, value)
 		}
 	}
+	
+	@discardableResult
+	public mutating func removeValue(forKey key: KeyType) -> ValueType? {
+		if let index = array.index(of: key) {
+			array.remove(at: index)
+		}
+		return dictionary.removeValue(forKey: key)
+	}
+	
+	public mutating func removeAll(keepingCapacity: Bool = false) {
+		dictionary.removeAll(keepingCapacity: keepingCapacity)
+		array.removeAll(keepingCapacity: keepingCapacity)
+	}
 }
 
 extension OrderedDictionary {
-	public mutating func insert(value: ValueType, forKey key: KeyType, atIndex index: Int) -> ValueType? {
+	@discardableResult
+	public mutating func insert(_ value: ValueType, forKey key: KeyType, atIndex index: Int) -> ValueType? {
+		precondition(index <= array.count, "index out of range")
+		
 		var adjustedIndex = index
+		
+		// If insert for key: b, at index 2
+		//
+		//        |
+		//        v
+		//   0    1    2
+		// ["a", "b", "c"]
+		// 
+		// Remove "b"
+		//   0    1
+		// ["a", "c"]
 		
 		let existingValue = dictionary[key]
 		if existingValue != nil {
-			let existingIndex = array.indexOf(key)
-			
-			if existingIndex < index {
+			let existingIndex = array.index(of: key)!
+			if existingIndex < index && index >= array.count {
 				adjustedIndex -= 1
 			}
 			
-			array.removeAtIndex(existingIndex!)
+			array.remove(at: existingIndex)
 		}
-		array.insert(key, atIndex: adjustedIndex)
+		array.insert(key, at: adjustedIndex)
 		dictionary[key] = value
 		
 		return existingValue
 	}
 	
-	public mutating func removeAtIndex(index: Int) -> (KeyType, ValueType) {
+	@discardableResult
+	public mutating func removeAtIndex(_ index: Int) -> (KeyType, ValueType) {
 		precondition(index < array.count, "index out of bounds")
 		
-		let key = array.removeAtIndex(index)
-		let value = dictionary.removeValueForKey(key)
+		let key = array.remove(at: index)
+		let value = dictionary.removeValue(forKey: key)
 		
 		return (key, value!)
 	}
