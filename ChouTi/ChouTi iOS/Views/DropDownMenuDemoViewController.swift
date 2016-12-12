@@ -17,10 +17,10 @@ class DropDownMenuDemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		view.backgroundColor = UIColor.whiteColor()
+		view.backgroundColor = UIColor.white
     }
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
 		if let navigationBar = navigationController?.navigationBar {
@@ -37,34 +37,34 @@ class DropDownMenuDemoViewController: UIViewController {
 			var constraints = [NSLayoutConstraint]()
 			
 			// navigationBarMenu
-			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .Top, relatedBy: .Equal, toItem: navigationBar, attribute: .Bottom, multiplier: 1.0, constant: 0.0)]
-			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0)]
-			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0)]
+			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .top, relatedBy: .equal, toItem: navigationBar, attribute: .bottom, multiplier: 1.0, constant: 0.0)]
+			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0.0)]
+			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0.0)]
 			
-			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .Height, relatedBy: .Equal, toItem: navigationBar, attribute: .Height, multiplier: 1.0, constant: 0.0)]
+			constraints += [NSLayoutConstraint(item: navigationBarMenu, attribute: .height, relatedBy: .equal, toItem: navigationBar, attribute: .height, multiplier: 1.0, constant: 0.0)]
 			
 			// smallMenu
 			smallMenu.translatesAutoresizingMaskIntoConstraints = false
 			smallMenu.dataSource = self
 			smallMenu.delegate = self
 			smallMenu.selectedIndex = 0
-			smallMenu.backgroundColor = UIColor.purpleColor()
-			smallMenu.statusBarStyle = .LightContent
+			smallMenu.backgroundColor = UIColor.purple
+			smallMenu.statusBarStyle = .lightContent
 			view.addSubview(smallMenu)
 			
-			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .Top, relatedBy: .Equal, toItem: navigationBar, attribute: .Bottom, multiplier: 1.0, constant: 100.0)]
-			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 100.0)]
-			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: -100.0)]
+			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .top, relatedBy: .equal, toItem: navigationBar, attribute: .bottom, multiplier: 1.0, constant: 100.0)]
+			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 100.0)]
+			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: -100.0)]
 			
-			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: 60.0)]
+			constraints += [NSLayoutConstraint(item: smallMenu, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 60.0)]
 			
-			NSLayoutConstraint.activateConstraints(constraints)
+			NSLayoutConstraint.activate(constraints)
 			
 			navigationBarMenu.setHidden(false, animated: true)
 		}
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		
 		navigationBarMenu.setHidden(true, animated: true, duration: 1.0, completion: { finished in
@@ -74,37 +74,37 @@ class DropDownMenuDemoViewController: UIViewController {
 }
 
 extension DropDownMenuDemoViewController : DropDownMenuDataSource {
-	func numberOfOptionsInDropDownMenu(dropDownMenu: DropDownMenu) -> Int {
+	func numberOfOptionsInDropDownMenu(_ dropDownMenu: DropDownMenu) -> Int {
 		return 6
 	}
 	
-	func dropDownMenu(dropDownMenu: DropDownMenu, optionTitleForIndex index: Int) -> String {
+	func dropDownMenu(_ dropDownMenu: DropDownMenu, optionTitleForIndex index: Int) -> String {
 		return "Option \(index)"
 	}
 }
 
 extension DropDownMenuDemoViewController : DropDownMenuDelegate {
-	func dropDownMenu(dropDownMenu: DropDownMenu, willSelectIndex index: Int) {
+	func dropDownMenu(_ dropDownMenu: DropDownMenu, willSelectIndex index: Int) {
 		print("dropDownMenu willSelectIndex: \(index)")
 	}
 	
-	func dropDownMenu(dropDownMenu: DropDownMenu, didSelectIndex index: Int) {
+	func dropDownMenu(_ dropDownMenu: DropDownMenu, didSelectIndex index: Int) {
 		print("dropDownMenu didSelectIndex: \(index)")
 	}
 	
-	func dropDownMenuWillExpand(dropDownMenu: DropDownMenu) {
+	func dropDownMenuWillExpand(_ dropDownMenu: DropDownMenu) {
 		print("dropDownMenuWillExpand")
 	}
 	
-	func dropDownMenuDidExpand(dropDownMenu: DropDownMenu) {
+	func dropDownMenuDidExpand(_ dropDownMenu: DropDownMenu) {
 		print("dropDownMenuDidExpand")
 	}
 	
-	func dropDownMenuWillCollapse(dropDownMenu: DropDownMenu) {
+	func dropDownMenuWillCollapse(_ dropDownMenu: DropDownMenu) {
 		print("dropDownMenuWillCollapse")
 	}
 	
-	func dropDownMenuDidCollapse(dropDownMenu: DropDownMenu) {
+	func dropDownMenuDidCollapse(_ dropDownMenu: DropDownMenu) {
 		print("dropDownMenuDidCollapse")
 	}
 }

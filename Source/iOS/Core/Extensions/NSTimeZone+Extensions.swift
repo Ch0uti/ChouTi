@@ -8,29 +8,29 @@
 
 import Foundation
 
-public extension NSTimeZone {
+public extension TimeZone {
     /**
-     Get GMT time zone
+     Get GMT time zone, if fails, fall back to `autoupdatingCurrent`
      
      - returns: GMT time zone
      */
-    public static func GMT() -> NSTimeZone {
-        guard let gmt = NSTimeZone(abbreviation: "GMT") else {
+    public static func GMT() -> TimeZone {
+        guard let gmt = TimeZone(abbreviation: "GMT") else {
             NSLog("Error: time zone with `GMT` abbreviation not found")
-            return NSTimeZone.defaultTimeZone()
+            return TimeZone.autoupdatingCurrent
         }
         return gmt
     }
     
     /**
-     Get EST time zone
+     Get EST time zone, if fails, fall back to `autoupdatingCurrent`
      
      - returns: EST time zone
      */
-    public static func EST() -> NSTimeZone {
-        guard let est = NSTimeZone(abbreviation: "EST") else {
+    public static func EST() -> TimeZone {
+        guard let est = TimeZone(abbreviation: "EST") else {
             NSLog("Error: time zone with `EST` abbreviation not found")
-            return NSTimeZone.defaultTimeZone()
+            return TimeZone.autoupdatingCurrent
         }
         return est
     }

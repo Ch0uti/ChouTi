@@ -11,11 +11,11 @@ import Foundation
 public struct TableViewRow : TableViewRowType {
 	public var title: String?
 	public var subtitle: String?
-	public var cellInitialization: ((NSIndexPath, UITableView) -> UITableViewCell)?
-	public var cellConfiguration: ((NSIndexPath, UITableViewCell, UITableView) -> Void)?
-    public var willDisplayCell: ((NSIndexPath, UITableViewCell, UITableView) -> Void)?
-	public var cellSelectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)?
-	public var cellDeselectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)?
+	public var cellInitialization: ((IndexPath, UITableView) -> UITableViewCell)?
+	public var cellConfiguration: ((IndexPath, UITableViewCell, UITableView) -> Void)?
+    public var willDisplayCell: ((IndexPath, UITableViewCell, UITableView) -> Void)?
+	public var cellSelectAction: ((IndexPath, UITableViewCell?, UITableView) -> Void)?
+	public var cellDeselectAction: ((IndexPath, UITableViewCell?, UITableView) -> Void)?
     
 	public init() {
 		setupDefaultCellConfiguration()
@@ -23,11 +23,11 @@ public struct TableViewRow : TableViewRowType {
 	
 	public init(title: String? = nil,
 	            subtitle: String? = nil,
-	            cellInitialization: ((NSIndexPath, UITableView) -> UITableViewCell)? = nil,
-	            cellConfiguration: ((NSIndexPath, UITableViewCell, UITableView) -> Void)? = nil,
-	            willDisplayCell: ((NSIndexPath, UITableViewCell, UITableView) -> Void)? = nil,
-	            cellSelectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? = nil,
-	            cellDeselectAction: ((NSIndexPath, UITableViewCell?, UITableView) -> Void)? = nil) {
+	            cellInitialization: ((IndexPath, UITableView) -> UITableViewCell)? = nil,
+	            cellConfiguration: ((IndexPath, UITableViewCell, UITableView) -> Void)? = nil,
+	            willDisplayCell: ((IndexPath, UITableViewCell, UITableView) -> Void)? = nil,
+	            cellSelectAction: ((IndexPath, UITableViewCell?, UITableView) -> Void)? = nil,
+	            cellDeselectAction: ((IndexPath, UITableViewCell?, UITableView) -> Void)? = nil) {
 		self.title = title
 		self.subtitle = subtitle
 		
@@ -44,10 +44,12 @@ public struct TableViewRow : TableViewRowType {
 		self.cellDeselectAction = cellDeselectAction
 	}
 	
-	private mutating func setupDefaultCellConfiguration() {
+	fileprivate mutating func setupDefaultCellConfiguration() {
+		let title = self.title
+		let subtitle = self.subtitle
 		self.cellConfiguration = { indexPath, cell, tableView in
-			cell.textLabel?.text = self.title
-			cell.detailTextLabel?.text = self.subtitle
+			cell.textLabel?.text = title
+			cell.detailTextLabel?.text = subtitle
 			cell.detailTextLabel?.textColor = UIColor(white: 0.25, alpha: 1.0)
 		}
 	}

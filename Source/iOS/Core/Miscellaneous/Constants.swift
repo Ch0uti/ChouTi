@@ -11,13 +11,13 @@ import Foundation
 public var isIOS7: Bool = !isIOS8
 public let isIOS8: Bool = floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1
 
-public var screenWidth: CGFloat { return UIScreen.mainScreen().bounds.size.width }
-public var screenHeight: CGFloat { return UIScreen.mainScreen().bounds.size.height }
+public var screenWidth: CGFloat { return UIScreen.main.bounds.size.width }
+public var screenHeight: CGFloat { return UIScreen.main.bounds.size.height }
 
-public var screenSize: CGSize { return UIScreen.mainScreen().bounds.size }
-public var screenBounds: CGRect { return UIScreen.mainScreen().bounds }
+public var screenSize: CGSize { return UIScreen.main.bounds.size }
+public var screenBounds: CGRect { return UIScreen.main.bounds }
 
-public var isIpad: Bool { return UIDevice.currentDevice().userInterfaceIdiom == .Pad }
+public var isIpad: Bool { return UIDevice.current.userInterfaceIdiom == .pad }
 
 public var is3_5InchScreen: Bool { return screenHeight ~= 480.0 }
 public var is4InchScreen: Bool { return screenHeight ~= 568.0 }

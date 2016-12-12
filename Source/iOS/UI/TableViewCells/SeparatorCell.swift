@@ -10,15 +10,15 @@ import UIKit
 
 // FIXME: Height is not settable
 
-public class SeparatorCell: TableViewCell {
+open class SeparatorCell: TableViewCell {
 
-	public var separatorView: UIView = UIView() {
+	open var separatorView: UIView = UIView() {
 		didSet {
 			
 		}
 	}
 	
-	override public func commonInit() {
+	override open func commonInit() {
 		super.commonInit()
 		
 		separatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +28,7 @@ public class SeparatorCell: TableViewCell {
 		setupConstraints()
 	}
 	
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		preservesSuperviewLayoutMargins = false
 		layoutMargins = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
 		
@@ -38,15 +38,15 @@ public class SeparatorCell: TableViewCell {
 		
 		var constraints = [NSLayoutConstraint]()
 		
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[separatorView(0.5)]-|", options: [], metrics: nil, views: views)
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[separatorView]-|", options: [], metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[separatorView(0.5)]-|", options: [], metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[separatorView]-|", options: [], metrics: nil, views: views)
 		
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
 }
 
 extension SeparatorCell {
-	public override class func estimatedHeight() -> CGFloat {
+	open override class func estimatedHeight() -> CGFloat {
 		return 0.5
 	}
 }

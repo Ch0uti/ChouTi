@@ -18,7 +18,7 @@ public protocol DropDownMenuDataSource : class {
 	
 	- returns: number of options, Int.
 	*/
-	func numberOfOptionsInDropDownMenu(dropDownMenu: DropDownMenu) -> Int
+	func numberOfOptionsInDropDownMenu(_ dropDownMenu: DropDownMenu) -> Int
 	
 	/**
 	Get option title for option index.
@@ -28,7 +28,7 @@ public protocol DropDownMenuDataSource : class {
 	
 	- returns: title for the option
 	*/
-	func dropDownMenu(dropDownMenu: DropDownMenu, optionTitleForIndex index: Int) -> String
+	func dropDownMenu(_ dropDownMenu: DropDownMenu, optionTitleForIndex index: Int) -> String
 }
 
 @objc public protocol DropDownMenuDelegate : class {
@@ -39,7 +39,7 @@ public protocol DropDownMenuDataSource : class {
 	- parameter dropDownMenu: the drop down menu.
 	- parameter index:        option index in option list.
 	*/
-	optional func dropDownMenu(dropDownMenu: DropDownMenu, willSelectIndex index: Int)
+	@objc optional func dropDownMenu(_ dropDownMenu: DropDownMenu, willSelectIndex index: Int)
 	
 	/**
 	Tells the delegate that the specified row is now selected.
@@ -47,33 +47,33 @@ public protocol DropDownMenuDataSource : class {
 	- parameter dropDownMenu: the drop down menu.
 	- parameter index:        option index in option list.
 	*/
-	optional func dropDownMenu(dropDownMenu: DropDownMenu, didSelectIndex index: Int)
+	@objc optional func dropDownMenu(_ dropDownMenu: DropDownMenu, didSelectIndex index: Int)
 	
 	/**
 	Tells the delegate that the drop down menu is about to expand.
 	
 	- parameter dropDownMenu: the drop down menu.
 	*/
-	optional func dropDownMenuWillExpand(dropDownMenu: DropDownMenu)
+	@objc optional func dropDownMenuWillExpand(_ dropDownMenu: DropDownMenu)
 	
 	/**
 	Tells the delegate that the drop down menu has expanded.
 	
 	- parameter dropDownMenu: the drop down menu.
 	*/
-	optional func dropDownMenuDidExpand(dropDownMenu: DropDownMenu)
+	@objc optional func dropDownMenuDidExpand(_ dropDownMenu: DropDownMenu)
 	
 	/**
 	Tells the delegate that the drop down menu is about to collapse.
 	
 	- parameter dropDownMenu: the drop down menu.
 	*/
-	optional func dropDownMenuWillCollapse(dropDownMenu: DropDownMenu)
+	@objc optional func dropDownMenuWillCollapse(_ dropDownMenu: DropDownMenu)
 	
 	/**
 	Tells the delegate that the drop down menu has collapsed.
 	
 	- parameter dropDownMenu: the drop down menu.
 	*/
-	optional func dropDownMenuDidCollapse(dropDownMenu: DropDownMenu)
+	@objc optional func dropDownMenuDidCollapse(_ dropDownMenu: DropDownMenu)
 }

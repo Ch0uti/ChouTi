@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class TableViewCellValue2 : TableViewCell {
+open class TableViewCellValue2 : TableViewCell {
 	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-		super.init(style: .Value2, reuseIdentifier: reuseIdentifier)
+		super.init(style: .value2, reuseIdentifier: reuseIdentifier)
 	}
 	
 	public required init?(coder aDecoder: NSCoder) {

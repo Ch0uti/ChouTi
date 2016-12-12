@@ -8,16 +8,13 @@
 
 import UIKit
 import ChouTi
-import Then
-
-extension TableViewSection : Then {}
 
 class DummyViewController: UIViewController {
     
     let label: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = UIFont.boldSystemFontOfSize(24)
-        $0.textColor = UIColor.whiteColor()
+        $0.font = UIFont.boldSystemFont(ofSize: 24)
+        $0.textColor = UIColor.white
         return $0
     }(UILabel())
     
@@ -26,7 +23,7 @@ class DummyViewController: UIViewController {
         self.label.text = label
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -41,58 +38,55 @@ class DummyViewController: UIViewController {
         view.addSubview(label)
         label.constrainToCenterInSuperview()
         
-        let tableView = UITableView(frame: .zero, style: .Grouped)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
-        tableView.userInteractionEnabled = true
+        tableView.isUserInteractionEnabled = true
 
-        tableView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
-        tableView.topAnchor.constraintEqualToAnchor(view.topAnchor, constant: 20).active = true
-        tableView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor, constant: 20).active = true
-        tableView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: -20).active = true
-        tableView.bottomAnchor.constraintEqualToAnchor(label.topAnchor, constant: -20).active = true
-        
-        tableView.sections = [
-            TableViewSection(headerTitle: "Test TableView",
-                rows: [
-                    TableViewRow(title: ".Value1 Cell",
-                        subtitle: "Detail Text",
-                        cellInitialization: { indexPath, tableView in
-                            return tableView.dequeueReusableCell(withClass: TableViewCellValue1.self, forIndexPath: indexPath)
-                        }
-                    ),
-                    TableViewRow(title: ".Value2 Cell",
-                        subtitle: "Detail Text",
-                        cellInitialization: { indexPath, tableView in
-                            return tableView.dequeueReusableCell(withClass: TableViewCellValue2.self, forIndexPath: indexPath)
-                        }
-                    ),
-                    TableViewRow(title: "Default Cell",
-                        subtitle: "By default Cell Style is .Subtitle"
-                    )
-                ]
-                ).then {
-                    $0.footerTitle = "This table view is used for testing user interaction in page child view controller."
-            }
-        ]
+        tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -20).isActive = true
+		
+		var section = TableViewSection(headerTitle: "Test TableView",
+		                               rows: [
+										TableViewRow(title: ".Value1 Cell",
+										             subtitle: "Detail Text",
+										             cellInitialization: { indexPath, tableView in
+														return tableView.dequeueReusableCell(withClass: TableViewCellValue1.self, forIndexPath: indexPath)
+										}),
+										TableViewRow(title: ".Value2 Cell",
+										             subtitle: "Detail Text",
+										             cellInitialization: { indexPath, tableView in
+														return tableView.dequeueReusableCell(withClass: TableViewCellValue2.self, forIndexPath: indexPath)
+										}),
+										TableViewRow(title: "Default Cell",
+										             subtitle: "By default Cell Style is .Subtitle"
+										)]
+		)
+		
+		section.footerTitle = "This table view is used for testing user interaction in page child view controller."
+		
+        tableView.sections = [section]
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("\(label.text!): viewWillAppear")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("\(label.text!): viewDidAppear")
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("\(label.text!): viewWillDisappear")
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         print("\(label.text!): viewDidDisappear")
     }

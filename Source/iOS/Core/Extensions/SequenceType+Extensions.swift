@@ -8,14 +8,13 @@
 
 import Foundation
 
-public extension SequenceType {
+public extension Sequence {
     /**
      Return a random subset
      
      - returns: a random subset
      */
-    @warn_unused_result
-    public func randomSubset() -> [Generator.Element] {
+    public func randomSubset() -> [Iterator.Element] {
         return self.filter { _ in Bool.random() }
     }
     
@@ -26,22 +25,20 @@ public extension SequenceType {
      
      - returns: true if all match.
      */
-    @warn_unused_result
-    public func allMatch(predicate: Generator.Element -> Bool) -> Bool {
+    public func allMatch(_ predicate: (Iterator.Element) -> Bool) -> Bool {
         // every element matches a predicate if no element doesn't match it
         return !self.contains { !predicate($0) }
     }
 }
 
-public extension SequenceType where Generator.Element: Hashable {
+public extension Sequence where Iterator.Element: Hashable {
     /**
      Find all unique elements in a sequence while still maintaining the original order.
      
      - returns: Unique items with order preserved.
      */
-    @warn_unused_result
-    public func unique() -> [Generator.Element] {
-        var seen: Set<Generator.Element> = []
+    public func unique() -> [Iterator.Element] {
+        var seen: Set<Iterator.Element> = []
         return self.filter {
             if seen.contains($0) {
                 return false

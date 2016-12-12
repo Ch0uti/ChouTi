@@ -21,36 +21,36 @@ class CenterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("CenterViewController: viewWillAppear")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("CenterViewController: viewDidAppear")
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("CenterViewController: viewWillDisappear")
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         print("CenterViewController: viewDidDisappear")
     }
     
-    @IBAction func exitTapped(sender: UIButton) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func exitTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func left(sender: UISwitch) {
-        slideViewController?.leftViewController = sender.on ? leftViewController : nil
+    @IBAction func left(_ sender: UISwitch) {
+        slideViewController?.leftViewController = sender.isOn ? leftViewController : nil
     }
     
     
-    @IBAction func right(sender: UISwitch) {
-        slideViewController?.rightViewController = sender.on ? rightViewController : nil
+    @IBAction func right(_ sender: UISwitch) {
+        slideViewController?.rightViewController = sender.isOn ? rightViewController : nil
     }
 }

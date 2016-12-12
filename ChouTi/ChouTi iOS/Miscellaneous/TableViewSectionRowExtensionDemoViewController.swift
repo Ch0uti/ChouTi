@@ -12,7 +12,7 @@ import ChouTi
 class TableViewSectionRowExtensionDemoViewController: UIViewController {
 
     let tableView = UITableView(frame: CGRect.zero, style: {
-        return (Bool.random() ? .Grouped : .Plain) }()
+        return (Bool.random() ? .grouped : .plain) }()
     )
     
     override func viewDidLoad() {
@@ -31,9 +31,9 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 				TableViewRow(title: "Cell with .Value1 Style",
 					subtitle: "Detail Text",
 					cellInitialization: { indexPath in
-						var cell = self.tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier())
+						var cell = self.tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier())
 						if cell == nil {
-							cell = TableViewCell(style: .Value1, reuseIdentifier: TableViewCell.identifier())
+							cell = TableViewCell(style: .value1, reuseIdentifier: TableViewCell.identifier())
 						}
 						return cell!
 					}
@@ -41,7 +41,7 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 				TableViewRow(title: "Cell with .Value2 Style",
 					subtitle: "Detail Text",
 					cellInitialization: { indexPath in
-						return self.tableView.dequeueReusableCellWithIdentifier(TableViewCellValue2.identifier())!
+						return self.tableView.dequeueReusableCell(withIdentifier: TableViewCellValue2.identifier())!
 					}
 				),
 				TableViewRow(title: "Cell with default Style (.Subtitle Style)",
@@ -58,9 +58,9 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 				TableViewRow(title: "Customized Cell",
 					subtitle: "Subtitle...",
 					cellInitialization: { (indexPath, tableView) -> UITableViewCell in
-						var cell = self.tableView.dequeueReusableCellWithIdentifier(TableViewCell.identifier())
+						var cell = self.tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier())
 						if cell == nil {
-							cell = TableViewCell(style: .Subtitle, reuseIdentifier: TableViewCell.identifier())
+							cell = TableViewCell(style: .subtitle, reuseIdentifier: TableViewCell.identifier())
 						}
 						
 						return cell!
@@ -68,15 +68,15 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 					cellConfiguration: { (indexPath, cell, tableView) -> Void in
 						(cell as? TableViewCell)?.cellHeight = 200
 						cell.textLabel?.text = "Click on Me"
-						cell.textLabel?.font = UIFont.boldSystemFontOfSize(22)
+						cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 22)
 						
 						cell.detailTextLabel?.text = "Now height is 200.0, it is calculated by constraints automatically!"
-						cell.detailTextLabel?.font = UIFont.systemFontOfSize(18)
+						cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 18)
 						cell.detailTextLabel?.numberOfLines = 0
 						cell.backgroundColor = UIColor.random()
 					},
 					cellSelectAction: { (indexPath, cell, tableView) -> Void in
-						self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+						self.tableView.deselectRow(at: indexPath, animated: true)
 						cell?.textLabel?.textColor = UIColor.random()
 						cell?.detailTextLabel?.textColor = UIColor.random()
 						cell?.backgroundColor = UIColor.random()
@@ -86,12 +86,12 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 				}),
 				TableViewRow(title: "",
 					cellInitialization: { (indexPath) -> UITableViewCell in
-						var cell = self.tableView.dequeueReusableCellWithIdentifier(SeparatorCell.identifier())
+						var cell = self.tableView.dequeueReusableCell(withIdentifier: SeparatorCell.identifier())
 						if cell == nil {
-							cell = TableViewCell(style: .Default, reuseIdentifier: SeparatorCell.identifier())
+							cell = TableViewCell(style: .default, reuseIdentifier: SeparatorCell.identifier())
 						}
 						
-						(cell as? SeparatorCell)?.separatorView.backgroundColor = UIColor.redColor()
+						(cell as? SeparatorCell)?.separatorView.backgroundColor = UIColor.red
 						
 						cell?.layoutMargins = UIEdgeInsets(top: 1, left: 0, bottom: 1, right: 0)
 						cell?.contentView.layoutMargins = UIEdgeInsets(top: 1, left: 0, bottom: 1, right: 0)

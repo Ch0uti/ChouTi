@@ -14,7 +14,7 @@ class NSCalendar_ExtensionsTests: QuickSpec {
     override func spec() {
         describe("NSCalendar+Extensions") {
             it("should get correct gregorian calendar") {
-                expect(NSCalendar.gregorianCalendar()?.calendarIdentifier) == NSCalendarIdentifierGregorian
+                expect(Calendar.gregorian.identifier) == Calendar.Identifier.gregorian
             }
         }
     }

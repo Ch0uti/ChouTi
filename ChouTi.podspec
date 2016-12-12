@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "ChouTi"
-  s.version          = "0.1"
+  s.version          = "0.2"
   s.summary          = "Chou Ti (抽屉) - A toolkit for iOS/OSX development."
   s.description      = <<-DESC
                        Chou Ti (抽屉) - My personal toolkit for iOS/OSX development.
@@ -16,6 +16,11 @@ Pod::Spec.new do |s|
   s.requires_arc 	   = true
 
   s.ios.deployment_target = "9.0"
+
+
+  # s.pod_target_xcconfig = {
+  #   'OTHER_SWIFT_FLAGS[config=Debug]' => '-D DEBUG'
+  # }
 
   s.default_subspecs = [
     "Core",

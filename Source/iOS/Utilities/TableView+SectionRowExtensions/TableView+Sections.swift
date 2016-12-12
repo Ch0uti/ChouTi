@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UITableView {
-	private struct zhSectionsKey {
+	fileprivate struct zhSectionsKey {
 		static var Key = "zhSectionsKey"
 	}
 	
@@ -31,7 +31,7 @@ public extension UITableView {
 		}
 	}
 	
-	private func setup() {
+	fileprivate func setup() {
 		if dataSource == nil {
 			dataSource = self
         } else if dataSource !== self {
@@ -52,14 +52,14 @@ public extension UITableView {
 		TableViewCellSubtitle.registerInTableView(self)
 	}
 	
-	private func tearUp() {
+	fileprivate func tearUp() {
 		dataSource = nil
 		delegate = nil
 		
-		TableViewCell.deregisterInTableView(self)
-		TableViewCellValue1.deregisterInTableView(self)
-		TableViewCellValue2.deregisterInTableView(self)
-		TableViewCellSubtitle.deregisterInTableView(self)
+		TableViewCell.unregisterInTableView(self)
+		TableViewCellValue1.unregisterInTableView(self)
+		TableViewCellValue2.unregisterInTableView(self)
+		TableViewCellSubtitle.unregisterInTableView(self)
 	}
 }
 
@@ -68,15 +68,15 @@ public extension UITableView {
 // MARK: - TableView DataSource Methods
 extension UITableView : UITableViewDataSource {
     // Row
-	public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	public func numberOfSections(in tableView: UITableView) -> Int {
 		return sections?.count ?? 0
 	}
 	
-	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sectionForIndex(section)?.rows.count ?? 0
 	}
 	
-	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let row = rowForIndexPath(indexPath) else {
 			print("Error: row not found")
 			return UITableViewCell()
@@ -95,12 +95,12 @@ extension UITableView : UITableViewDataSource {
 		return cell
 	}
 	
-	private func tableView(tableView: UITableView, cellConfigurationForCell cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+	fileprivate func tableView(_ tableView: UITableView, cellConfigurationForCell cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
         rowForIndexPath(indexPath)?.cellConfiguration?(indexPath, cell, tableView)
 	}
 	
     // Section Index
-	public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+	public func sectionIndexTitles(for tableView: UITableView) -> [String]? {
 		guard let sections = sections else {
 			print("Warning: no sections in \(self)")
 			return nil
@@ -115,12 +115,12 @@ extension UITableView : UITableViewDataSource {
 	}
 	
 	// Header
-    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionForIndex(section)?.headerTitle
     }
 	
 	// Footer
-    public func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return sectionForIndex(section)?.footerTitle
     }
 }
@@ -129,55 +129,55 @@ extension UITableView : UITableViewDataSource {
 // MARK: - TableView Delegate Methods
 extension UITableView : UITableViewDelegate {
     // Row
-	public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
 	}
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 	
-	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		rowForIndexPath(indexPath)?.cellSelectAction?(indexPath, tableView.cellForRowAtIndexPath(indexPath), tableView)
+	public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		rowForIndexPath(indexPath)?.cellSelectAction?(indexPath, tableView.cellForRow(at: indexPath), tableView)
 	}
 	
-	public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-		rowForIndexPath(indexPath)?.cellDeselectAction?(indexPath, tableView.cellForRowAtIndexPath(indexPath), tableView)
+	public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+		rowForIndexPath(indexPath)?.cellDeselectAction?(indexPath, tableView.cellForRow(at: indexPath), tableView)
 	}
     
-    public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         rowForIndexPath(indexPath)?.willDisplayCell?(indexPath, cell, tableView)
     }
     
     // Header
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return sectionForIndex(section)?.headerHeight?(section, tableView) ?? UITableViewAutomaticDimension
     }
     
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return sectionForIndex(section)?.headerView?(section, tableView)
     }
     
-    public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         sectionForIndex(section)?.headerWillDisplay?(section, view, tableView)
     }
     
     // Footer
-    public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return sectionForIndex(section)?.footerHeight?(section, tableView) ?? UITableViewAutomaticDimension
     }
     
-    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return sectionForIndex(section)?.footerView?(section, tableView)
     }
     
-    public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+    public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         sectionForIndex(section)?.footerWillDisplay?(section, view, tableView)
     }
 }
 
 public extension UITableView {
-	public func sectionForIndex(index: Int) -> TableViewSectionType? {
+	public func sectionForIndex(_ index: Int) -> TableViewSectionType? {
 		guard let sections = sections else {
 			print("Warning: no sections in \(self)")
 			return nil
@@ -192,7 +192,7 @@ public extension UITableView {
 		}
 	}
 	
-	public func rowForIndexPath(indexPath: NSIndexPath) -> TableViewRowType? {
+	public func rowForIndexPath(_ indexPath: IndexPath) -> TableViewRowType? {
 		guard let sections = sections else {
 			print("Warning: no sections in \(self)")
 			return nil

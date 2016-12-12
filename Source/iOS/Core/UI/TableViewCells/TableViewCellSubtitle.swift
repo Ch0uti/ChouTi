@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class TableViewCellSubtitle : TableViewCell {
+open class TableViewCellSubtitle : TableViewCell {
 	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-		super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
+		super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 	}
 	
 	public required init?(coder aDecoder: NSCoder) {

@@ -2,34 +2,24 @@ platform :ios, '9.0'
 use_frameworks!
 
 # Pods
-def pod_chouti_dependency
-
-end
-
 def pod_testing
-  pod 'Quick', '0.9.3'
-  pod 'Nimble', '~> 4.1.0'
+  pod 'Quick', '1.0'
+  pod 'Nimble', '~> 5.1'
 end
 
 # Targets
-target 'ChouTi' do
-  pod_chouti_dependency
-
-  target 'ChouTiTests' do
-    inherit! :search_paths
-    pod_testing
-  end
-
+target 'ChouTiTests' do
+  pod_testing
 end
 
-target 'ChouTi iOS' do
-  pod_chouti_dependency
-  pod 'Operations', '~> 3.4.0'
-  pod 'Then', '~> 1.0'
+target 'ChouTi iOSUITests' do
+  pod_testing
+end
 
-  target 'ChouTi iOSUITests' do
-    inherit! :search_paths
-    pod_testing
-  end
-
+post_install do |installer|
+	installer.pods_project.targets.each do |target|
+		target.build_configurations.each do |config|
+			config.build_settings['SWIFT_VERSION'] = '3.0.1'
+		end
+	end
 end

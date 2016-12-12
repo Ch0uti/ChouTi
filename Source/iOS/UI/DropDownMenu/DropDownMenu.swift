@@ -8,34 +8,34 @@
 
 import UIKit
 
-public class DropDownMenu: UIControl {
+open class DropDownMenu: UIControl {
 	
 	// MARK: - Public
 	
 	/// The main text label showing current selected option
-	public let textLabel = UILabel()
+	open let textLabel = UILabel()
 	
 	/// Indicator view on right side, this usually an arrow, subclass should use this as a container view to add indicator view
-	public let indicatorView = UIView()
+	open let indicatorView = UIView()
 	
-	public var statusBarStyle: UIStatusBarStyle = .Default {
+	open var statusBarStyle: UIStatusBarStyle = .default {
 		didSet {
 			pickerViewController.statusBarStyle = statusBarStyle
 		}
 	}
 	
 	/// overlayViewStyle is for the blurred/dimmed view behind the menu picker view
-	public var overlayViewStyle: OverlayViewStyle = .Blurred(.Dark, UIColor(white: 0.0, alpha: 0.4)) {
+	open var overlayViewStyle: OverlayViewStyle = .blurred(.dark, UIColor(white: 0.0, alpha: 0.4)) {
 		didSet {
 			menuAnimator.overlayViewStyle = overlayViewStyle
 		}
 	}
 	
 	/// Whether the menu is expanded
-	public internal(set) dynamic var expanded: Bool = false
+	open internal(set) dynamic var expanded: Bool = false
 	
 	/// Drop down animation duration
-	public var animationDuration: NSTimeInterval = 0.5 {
+	open var animationDuration: TimeInterval = 0.5 {
 		didSet {
 			menuAnimator.animationDuration = animationDuration
 			pickerViewController.animationDuration = animationDuration
@@ -43,10 +43,10 @@ public class DropDownMenu: UIControl {
 	}
     
     /// placeholder text when no option is selected
-	public var placeholder: String?
+	open var placeholder: String?
     
 	/// Current selected index
-	public var selectedIndex: Int? {
+	open var selectedIndex: Int? {
 		didSet {
             guard let selectedIndex = selectedIndex else {
                 textLabel.addFadeTransitionAnimation(animationDuration / 2.0)
@@ -65,45 +65,45 @@ public class DropDownMenu: UIControl {
 	}
 	
 	/// Menu options text color
-	public var optionTextColor: UIColor? {
+	open var optionTextColor: UIColor? {
 		didSet {
 			pickerViewController.optionTextColor = optionTextColor
 		}
 	}
 	
 	/// Menu options text font
-	public var optionTextFont: UIFont? {
+	open var optionTextFont: UIFont? {
 		didSet {
 			pickerViewController.optionTextFont = optionTextFont
 		}
 	}
 	
 	/// Menu options text alignment
-	public var optionTextAlignment: NSTextAlignment = .Left {
+	open var optionTextAlignment: NSTextAlignment = .left {
 		didSet {
 			pickerViewController.optionTextAlignment = optionTextAlignment
 		}
 	}
 	
 	/// Menu options cell background color
-	public var optionCellBackgroundColor: UIColor? {
+	open var optionCellBackgroundColor: UIColor? {
 		didSet {
 			pickerViewController.optionCellBackgroundColor = optionCellBackgroundColor
 		}
 	}
 	
 	/// Color for separator between options
-	public var optionSeparatorColor: UIColor? {
+	open var optionSeparatorColor: UIColor? {
 		didSet {
 			pickerViewController.optionSeparatorColor = optionSeparatorColor
 		}
 	}
 	
 	/// DropDownMenuDataSource for drop down menu, must be set
-	public weak var dataSource: DropDownMenuDataSource!
+	open weak var dataSource: DropDownMenuDataSource!
 	
 	/// DropDownMenuDelegate for drop down menu
-	public weak var delegate: DropDownMenuDelegate?
+	open weak var delegate: DropDownMenuDelegate?
 	
 	
 	
@@ -126,16 +126,16 @@ public class DropDownMenu: UIControl {
 	let menuAnimator = DropDownMenuAnimator()
 	
 	/// Whether is expading or collapsing
-	private var isAnimating: Bool = false
+	fileprivate var isAnimating: Bool = false
 	
 	// Constraints
-	private var wrapperTopConstraint: NSLayoutConstraint!
-	private var wrapperLeadingConstraint: NSLayoutConstraint!
-	private var wrapperBottomConstraint: NSLayoutConstraint!
-	private var wrapperTrailingConstraint: NSLayoutConstraint!
+	fileprivate var wrapperTopConstraint: NSLayoutConstraint!
+	fileprivate var wrapperLeadingConstraint: NSLayoutConstraint!
+	fileprivate var wrapperBottomConstraint: NSLayoutConstraint!
+	fileprivate var wrapperTrailingConstraint: NSLayoutConstraint!
 	
-	private var wrapperBaseWidthConstraint: NSLayoutConstraint!
-	private var wrapperBaseHeightConstraint: NSLayoutConstraint!
+	fileprivate var wrapperBaseWidthConstraint: NSLayoutConstraint!
+	fileprivate var wrapperBaseHeightConstraint: NSLayoutConstraint!
 	
 	// MARK: - Setups
 	public override init(frame: CGRect) {
@@ -148,7 +148,7 @@ public class DropDownMenu: UIControl {
 		commonInit()
 	}
 
-	private func commonInit() {
+	fileprivate func commonInit() {
 		menuAnimator.dropDownMenu = self
 		menuAnimator.overlayViewStyle = overlayViewStyle
 		menuAnimator.animationDuration = animationDuration
@@ -157,7 +157,7 @@ public class DropDownMenu: UIControl {
 		pickerViewController.statusBarStyle = statusBarStyle
 		pickerViewController.animationDuration = animationDuration
 		
-		pickerViewController.modalPresentationStyle = .Custom
+		pickerViewController.modalPresentationStyle = .custom
 		pickerViewController.transitioningDelegate = menuAnimator
 		
 		setupViews()
@@ -165,16 +165,16 @@ public class DropDownMenu: UIControl {
 		setupActions()
 	}
 	
-	private func setupViews() {
+	fileprivate func setupViews() {
 		// Some default styles
 		backgroundColor = UIColor(red: 255.0 / 255.0, green: 186.0 / 255.0, blue: 1.0 / 255.0, alpha: 255.0 / 255.0)
-		textLabel.textColor = UIColor.whiteColor()
+		textLabel.textColor = UIColor.white
 		
 		wrapperView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(wrapperView)
 		
-		wrapperView.userInteractionEnabled = false
-		wrapperView.backgroundColor = UIColor.clearColor()
+		wrapperView.isUserInteractionEnabled = false
+		wrapperView.backgroundColor = UIColor.clear
 		
 		textLabel.translatesAutoresizingMaskIntoConstraints = false
 		wrapperView.addSubview(textLabel)
@@ -185,7 +185,7 @@ public class DropDownMenu: UIControl {
 		wrapperView.addSubview(indicatorView)
 	}
 
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		preservesSuperviewLayoutMargins = false
 		layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
@@ -199,34 +199,34 @@ public class DropDownMenu: UIControl {
 
 		var constraints = [NSLayoutConstraint]()
 
-		wrapperTopConstraint = NSLayoutConstraint(item: wrapperView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0.0)
-		wrapperLeadingConstraint = NSLayoutConstraint(item: wrapperView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0.0)
-		wrapperBottomConstraint = NSLayoutConstraint(item: wrapperView, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-		wrapperTrailingConstraint = NSLayoutConstraint(item: wrapperView, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0.0)
+		wrapperTopConstraint = NSLayoutConstraint(item: wrapperView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0)
+		wrapperLeadingConstraint = NSLayoutConstraint(item: wrapperView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
+		wrapperBottomConstraint = NSLayoutConstraint(item: wrapperView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+		wrapperTrailingConstraint = NSLayoutConstraint(item: wrapperView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
 		
 		// Setup base width/height constraint for wrapper, this is used for keeping wrapper size if menu (self) is get removed somehow
-		wrapperBaseWidthConstraint = NSLayoutConstraint(item: wrapperView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: 0.0)
+		wrapperBaseWidthConstraint = NSLayoutConstraint(item: wrapperView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0)
 		wrapperBaseWidthConstraint.priority = 800 // 800 is greater 750, which is default content size constraint priority
-		wrapperBaseHeightConstraint = NSLayoutConstraint(item: wrapperView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: 0.0)
+		wrapperBaseHeightConstraint = NSLayoutConstraint(item: wrapperView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0)
 		wrapperBaseHeightConstraint.priority = 800
 		
 		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint, wrapperBaseWidthConstraint, wrapperBaseHeightConstraint]
 		
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[textLabel]-[indicatorView]-|", options: [], metrics: metrics, views: views)
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-[indicatorView]-|", options: [], metrics: metrics, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[textLabel]-[indicatorView]-|", options: [], metrics: metrics, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[indicatorView]-|", options: [], metrics: metrics, views: views)
 		constraints += [
-			NSLayoutConstraint(item: indicatorView, attribute: .Width, relatedBy: .Equal, toItem: indicatorView, attribute: .Height, multiplier: 1.0, constant: 0.0),
-			NSLayoutConstraint(item: textLabel, attribute: .CenterY, relatedBy: .GreaterThanOrEqual, toItem: wrapperView, attribute: .CenterY, multiplier: 1.0, constant: 0.0)
+			NSLayoutConstraint(item: indicatorView, attribute: .width, relatedBy: .equal, toItem: indicatorView, attribute: .height, multiplier: 1.0, constant: 0.0),
+			NSLayoutConstraint(item: textLabel, attribute: .centerY, relatedBy: .greaterThanOrEqual, toItem: wrapperView, attribute: .centerY, multiplier: 1.0, constant: 0.0)
 			]
 		
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
 	
-	private func setupActions() {
-        self.addTarget(self, action: #selector(DropDownMenu.tapped(_:forEvent:)), forControlEvents: .TouchUpInside)
+	fileprivate func setupActions() {
+        self.addTarget(self, action: #selector(DropDownMenu.tapped(_:forEvent:)), for: .touchUpInside)
 	}
 	
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 		// Update base width/height constraint for wrapper view.
 		wrapperBaseWidthConstraint.constant = bounds.width
 		wrapperBaseHeightConstraint.constant = bounds.height
@@ -246,11 +246,11 @@ public class DropDownMenu: UIControl {
 		
 		var constraints = [NSLayoutConstraint]()
 		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint]
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
     
-    public override func willMoveToWindow(newWindow: UIWindow?) {
-        super.willMoveToWindow(newWindow)
+    open override func willMove(toWindow newWindow: UIWindow?) {
+        super.willMove(toWindow: newWindow)
 		
 		if newWindow != nil {
 			setupWrapperViewConstraints()
@@ -262,7 +262,7 @@ public class DropDownMenu: UIControl {
 // MARK: - State Transition
 extension DropDownMenu {
 	
-	public func set(toExpand toExpand: Bool, animated: Bool) {
+	public func set(toExpand: Bool, animated: Bool) {
 		if isAnimating { return }
 		if expanded == toExpand { return }
 		if toExpand {
@@ -293,43 +293,43 @@ extension DropDownMenu {
 
 // MARK: - Actions
 extension DropDownMenu {
-	func tapped(sender: AnyObject, forEvent event: UIEvent) {
+	func tapped(_ sender: AnyObject, forEvent event: UIEvent) {
 		set(toExpand: !expanded, animated: true)
 	}
 	
-	private func expand(animated animated: Bool) {
+	fileprivate func expand(animated: Bool) {
 		// Access pickerViewController.view here instead of setupViews(), to avoid calling viewDidLoad in pickerViewController
-		if pickerViewController.view.userInteractionEnabled == false {
-			pickerViewController.view.userInteractionEnabled = true
+		if pickerViewController.view.isUserInteractionEnabled == false {
+			pickerViewController.view.isUserInteractionEnabled = true
 		}
 		
 		willExpand()
 		
 		if animated {
 			isAnimating = true
-			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: {
+			presentingViewController?.present(pickerViewController, animated: true, completion: {
 				self.isAnimating = false
 			})
 		} else {
 			let originalAnimationDuration = animationDuration
 			animationDuration = 0.0
 			
-			presentingViewController?.presentViewController(pickerViewController, animated: true, completion: { [unowned self] _ in
+			presentingViewController?.present(pickerViewController, animated: true, completion: { [unowned self] _ in
 				self.animationDuration = originalAnimationDuration
 			})
 		}
 	}
 
-	private func collapse(animated animated: Bool) {
+	fileprivate func collapse(animated: Bool) {
 		if animated {
 			isAnimating = true
-			pickerViewController.dismissViewControllerAnimated(true, completion: {
+			pickerViewController.dismiss(animated: true, completion: {
 				self.isAnimating = false
 			})
 		} else {
 			let originalAnimationDuration = animationDuration
 			animationDuration = 0.0
-			pickerViewController.dismissViewControllerAnimated(true, completion: { [unowned self] _ in
+			pickerViewController.dismiss(animated: true, completion: { [unowned self] _ in
 				self.animationDuration = originalAnimationDuration
 			})
 		}

@@ -7,7 +7,7 @@
 
 public extension CGContext {
     public func flipCoordinatesVertically() {
-        CGContextTranslateCTM(self, 0.0, CGFloat(CGBitmapContextGetHeight(self)))
-        CGContextScaleCTM(self, 1.0, -1.0)
+        self.translateBy(x: 0.0, y: CGFloat(self.height))
+        self.scaleBy(x: 1.0, y: -1.0)
     }
 }

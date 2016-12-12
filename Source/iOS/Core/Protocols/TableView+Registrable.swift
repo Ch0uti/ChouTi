@@ -41,7 +41,7 @@ public protocol TableViewRegistrable {
      
      - parameter tableView: target table view to use this cell
      */
-    static func registerInTableView(tableView: UITableView)
+    static func registerInTableView(_ tableView: UITableView)
     
     /**
      Register cell with nib in table view
@@ -50,21 +50,21 @@ public protocol TableViewRegistrable {
      - parameter nib:       A nib object that specifies the nib file to use to create the cell.
      - parameter tableView: target table view to use this cell
      */
-    static func registerNib(nib: UINib, inTableView tableView: UITableView)
+    static func registerNib(_ nib: UINib, inTableView tableView: UITableView)
     
     /**
-     Deregister cell in table view
+     Unregister cell in table view
      
      - parameter tableView: table view registered this cell
      */
-    static func deregisterInTableView(tableView: UITableView)
+    static func unregisterInTableView(_ tableView: UITableView)
     
     /**
-     Deregister cell with nib in table view
+     Unregister cell with nib in table view
      
      - parameter tableView: table view registered this cell
      */
-    static func deregisterNibInTableView(tableView: UITableView)
+    static func unregisterNibInTableView(_ tableView: UITableView)
 }
 
 /**
@@ -76,28 +76,28 @@ public protocol TableViewCellRegistrable: TableViewMetaInfo, TableViewRegistrabl
 
 // MARK: - TableViewCellRegistrable
 extension UITableViewCell : TableViewCellRegistrable {
-    public class func estimatedHeight() -> CGFloat {
+    open class func estimatedHeight() -> CGFloat {
         return 44.0
     }
     
-    public class func identifier() -> String {
-        return String(self)
+    open class func identifier() -> String {
+        return String(describing: self)
     }
     
-    public class func registerInTableView(tableView: UITableView) {
-        tableView.registerClass(self, forCellReuseIdentifier: identifier())
+    open class func registerInTableView(_ tableView: UITableView) {
+        tableView.register(self, forCellReuseIdentifier: identifier())
     }
     
-    public class func registerNib(nib: UINib, inTableView tableView: UITableView) {
-        tableView.registerNib(nib, forCellReuseIdentifier: identifier())
+    open class func registerNib(_ nib: UINib, inTableView tableView: UITableView) {
+        tableView.register(nib, forCellReuseIdentifier: identifier())
     }
     
-    public class func deregisterInTableView(tableView: UITableView) {
-        tableView.registerClass(nil, forCellReuseIdentifier: identifier())
+    open class func unregisterInTableView(_ tableView: UITableView) {
+        tableView.register(nil as AnyClass?, forCellReuseIdentifier: identifier())
     }
     
-    public class func deregisterNibInTableView(tableView: UITableView) {
-        tableView.registerNib(nil, forCellReuseIdentifier: identifier())
+    open class func unregisterNibInTableView(_ tableView: UITableView) {
+        tableView.register(nil as UINib?, forCellReuseIdentifier: identifier())
     }
 }
 
@@ -110,28 +110,28 @@ public protocol TableViewHeaderFooterViewRegistrable: TableViewMetaInfo, TableVi
 
 // MARK: - TableViewHeaderFooterViewRegistrable
 extension UITableViewHeaderFooterView : TableViewHeaderFooterViewRegistrable {
-    public class func estimatedHeight() -> CGFloat {
+    open class func estimatedHeight() -> CGFloat {
         return 20.0
     }
     
-    public class func identifier() -> String {
-        return String(self)
+    open class func identifier() -> String {
+        return String(describing: self)
     }
     
-    public class func registerInTableView(tableView: UITableView) {
-        tableView.registerClass(self, forHeaderFooterViewReuseIdentifier: identifier())
+    open class func registerInTableView(_ tableView: UITableView) {
+        tableView.register(self, forHeaderFooterViewReuseIdentifier: identifier())
     }
     
-    public class func registerNib(nib: UINib, inTableView tableView: UITableView) {
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: identifier())
+    open class func registerNib(_ nib: UINib, inTableView tableView: UITableView) {
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: identifier())
     }
     
-    public class func deregisterInTableView(tableView: UITableView) {
-        tableView.registerClass(nil, forHeaderFooterViewReuseIdentifier: identifier())
+    open class func unregisterInTableView(_ tableView: UITableView) {
+        tableView.register(nil as AnyClass?, forHeaderFooterViewReuseIdentifier: identifier())
     }
     
-    public class func deregisterNibInTableView(tableView: UITableView) {
-        tableView.registerNib(nil, forHeaderFooterViewReuseIdentifier: identifier())
+    open class func unregisterNibInTableView(_ tableView: UITableView) {
+        tableView.register(nil as UINib?, forHeaderFooterViewReuseIdentifier: identifier())
     }
 }
 
@@ -142,7 +142,7 @@ extension UITableView {
      
      - parameter `class`: table view cell class which conforms TableViewCellRegistrable.
      */
-    public func register<T: TableViewCellRegistrable>(cellClass `class`: T.Type) {
+    open func register<T: TableViewCellRegistrable>(cellClass class: T.Type) {
         `class`.registerInTableView(self)
     }
     
@@ -152,7 +152,7 @@ extension UITableView {
      - parameter nib:     A nib object that specifies the nib file to use to create the cell.
      - parameter `class`: table view cell class which conforms TableViewCellRegistrable.
      */
-    public func register<T: TableViewCellRegistrable>(nib: UINib, forClass `class`: T.Type) {
+    open func register<T: TableViewCellRegistrable>(_ nib: UINib, forClass class: T.Type) {
         `class`.registerNib(nib, inTableView: self)
     }
     
@@ -167,8 +167,8 @@ extension UITableView {
      - returns: Returns a view of the type requested if it was registered, `nil` otherwise.
      */
     
-    public func dequeueReusableCell<T: TableViewCellRegistrable>(withClass `class`: T.Type) -> T? {
-        return dequeueReusableCellWithIdentifier(`class`.identifier()) as? T
+    open func dequeueReusableCell<T: TableViewCellRegistrable>(withClass class: T.Type) -> T? {
+        return self.dequeueReusableCell(withIdentifier: `class`.identifier()) as? T
     }
     
     /**
@@ -186,8 +186,8 @@ extension UITableView {
      
      - returns: Returns a cell of the type requested.
      */
-    public func dequeueReusableCell<T: TableViewCellRegistrable>(withClass `class`: T.Type, forIndexPath indexPath: NSIndexPath) -> T {
-        guard let cell = dequeueReusableCellWithIdentifier(`class`.identifier(), forIndexPath: indexPath) as? T else {
+    open func dequeueReusableCell<T: TableViewCellRegistrable>(withClass class: T.Type, forIndexPath indexPath: IndexPath) -> T {
+        guard let cell = self.dequeueReusableCell(withIdentifier: `class`.identifier(), for: indexPath) as? T else {
             fatalError("Error: cell with identifier: \(`class`.identifier()) for index path: \(indexPath) is not \(T.self)")
         }
         return cell
@@ -201,7 +201,7 @@ extension UITableView {
      
      - parameter `class`: header/footer view class which conforms TableViewHeaderFooterViewRegistrable.
      */
-    public func register<T: TableViewHeaderFooterViewRegistrable>(headerFooterClass `class`: T.Type) {
+    open func register<T: TableViewHeaderFooterViewRegistrable>(headerFooterClass class: T.Type) {
         `class`.registerInTableView(self)
     }
     
@@ -211,7 +211,7 @@ extension UITableView {
      - parameter nib:     A nib object that specifies the nib file to use to create the header or footer view.
      - parameter `class`: header/footer view class which conforms TableViewHeaderFooterViewRegistrable.
      */
-    public func register<T: TableViewHeaderFooterViewRegistrable>(nib: UINib, forHeaderFooterClass `class`: T.Type) {
+    open func register<T: TableViewHeaderFooterViewRegistrable>(_ nib: UINib, forHeaderFooterClass class: T.Type) {
         `class`.registerNib(nib, inTableView: self)
     }
     
@@ -225,7 +225,7 @@ extension UITableView {
      
      - returns: Returns a view of the type requested if it was registered, `nil` otherwise.
      */
-    public func dequeueResuableHeaderFooterView<T: TableViewHeaderFooterViewRegistrable>(withClass `class`: T.Type) -> T? {
-        return dequeueReusableHeaderFooterViewWithIdentifier(`class`.identifier()) as? T
+    open func dequeueResuableHeaderFooterView<T: TableViewHeaderFooterViewRegistrable>(withClass class: T.Type) -> T? {
+        return dequeueReusableHeaderFooterView(withIdentifier: `class`.identifier()) as? T
     }
 }

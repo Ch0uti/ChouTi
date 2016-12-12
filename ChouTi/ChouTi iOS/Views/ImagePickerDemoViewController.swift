@@ -17,7 +17,7 @@ class ImagePickerDemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		view.backgroundColor = UIColor.whiteColor()
+		view.backgroundColor = UIColor.white
 		
 		imagePickerView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(imagePickerView)
@@ -25,7 +25,7 @@ class ImagePickerDemoViewController: UIViewController {
         imagePickerView.clipsToBounds = true
         imagePickerView.layer.cornerRadius = 6.0
 		
-		imagePickerView.tintColor = UIColor.redColor()
+		imagePickerView.tintColor = UIColor.red
         
 		let views = [
 			"imagePickerView" : imagePickerView
@@ -33,9 +33,9 @@ class ImagePickerDemoViewController: UIViewController {
 		
 		var constraints = [NSLayoutConstraint]()
 		
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-40-[imagePickerView]-40-|", options: [], metrics: nil, views: views)
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[imagePickerView(200)]", options: [], metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[imagePickerView]-40-|", options: [], metrics: nil, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-200-[imagePickerView(200)]", options: [], metrics: nil, views: views)
 		
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
     }
 }

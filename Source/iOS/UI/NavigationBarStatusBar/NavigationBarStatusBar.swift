@@ -8,20 +8,20 @@
 
 import UIKit
 
-public class NavigationBarStatusBar: UIView {
-	public let titleLabel = UILabel()
-	public var statusBarHeight: CGFloat? {
+open class NavigationBarStatusBar: UIView {
+	open let titleLabel = UILabel()
+	open var statusBarHeight: CGFloat? {
 		didSet {
-			if let height = statusBarHeight where height > 0 {
+			if let height = statusBarHeight, height > 0 {
 				_heightConstraint.constant = height
-				_heightConstraint.active = true
+				_heightConstraint.isActive = true
 			} else {
-				_heightConstraint.active = false
+				_heightConstraint.isActive = false
 			}
 		}
 	}
 	
-	private var _heightConstraint: NSLayoutConstraint!
+	fileprivate var _heightConstraint: NSLayoutConstraint!
 	
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -33,23 +33,23 @@ public class NavigationBarStatusBar: UIView {
 		commonInit()
 	}
 
-	private func commonInit() {
+	fileprivate func commonInit() {
 		setupViews()
 		setupConstraints()
 	}
 
-	private func setupViews() {
+	fileprivate func setupViews() {
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(titleLabel)
 		
-		titleLabel.textAlignment = .Center
-		titleLabel.textColor = UIColor.whiteColor()
-		titleLabel.font = UIFont.systemFontOfSize(24)
+		titleLabel.textAlignment = .center
+		titleLabel.textColor = UIColor.white
+		titleLabel.font = UIFont.systemFont(ofSize: 24)
 		
 		backgroundColor = UIColor(red:79/255.0, green:30/255.0, blue:169/255.0, alpha:255/255.0)
 	}
 
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		preservesSuperviewLayoutMargins = false
 		layoutMargins = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
 
@@ -63,12 +63,12 @@ public class NavigationBarStatusBar: UIView {
 
 		var constraints = [NSLayoutConstraint]()
 
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[titleLabel]-|", options: [], metrics: metrics, views: views)
-		constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(>=top_min_spacing)-[titleLabel]-(>=bottom_min_spacing)-|", options: [], metrics: metrics, views: views)
-		constraints += [NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0.0)]
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-|", options: [], metrics: metrics, views: views)
+		constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=top_min_spacing)-[titleLabel]-(>=bottom_min_spacing)-|", options: [], metrics: metrics, views: views)
+		constraints += [NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0)]
 		
         _heightConstraint = self.constrainTo(height: 44)
 
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
 }

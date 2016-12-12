@@ -8,10 +8,10 @@
 
 import UIKit
 
-public class ImageView: UIImageView {
-	public var rounded: Bool = false
+open class ImageView: UIImageView {
+	open var rounded: Bool = false
 	
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 		super.layoutSubviews()
 		
 		if rounded {

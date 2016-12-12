@@ -19,7 +19,7 @@ class PageControlDemoViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Page Control Demo"
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
@@ -34,32 +34,32 @@ class PageControlDemoViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.bounces = false
-        scrollView.pagingEnabled = true
+        scrollView.isPagingEnabled = true
         
         scrollView.delegate = self
         
         systemPageControl.numberOfPages = 5
         systemPageControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(systemPageControl)
-        systemPageControl.addTarget(self, action: #selector(PageControlDemoViewController.pageControlUpdated(_:)), forControlEvents: .ValueChanged)
+        systemPageControl.addTarget(self, action: #selector(PageControlDemoViewController.pageControlUpdated(_:)), for: .valueChanged)
         
         pageControl.numberOfPages = 5
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pageControl)
-        pageControl.addTarget(self, action: #selector(PageControlDemoViewController.pageControlUpdated(_:)), forControlEvents: .ValueChanged)
+        pageControl.addTarget(self, action: #selector(PageControlDemoViewController.pageControlUpdated(_:)), for: .valueChanged)
         
         pageControl.scrollView = scrollView
         
-        NSLayoutConstraint.activateConstraints([
-            pageControl.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
-            pageControl.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -40),
-            systemPageControl.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
-            systemPageControl.bottomAnchor.constraintEqualToAnchor(pageControl.bottomAnchor, constant: -40)
+        NSLayoutConstraint.activate([
+            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            systemPageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            systemPageControl.bottomAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: -40)
             ]
         )
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         delay(1.0) {
@@ -92,7 +92,7 @@ class PageControlDemoViewController: UIViewController {
         }
     }
     
-    func pageControlUpdated(sender: AnyObject?) {
+    func pageControlUpdated(_ sender: AnyObject?) {
         if let systemPageControl = sender as? UIPageControl {
             print("systemPageControl: \(systemPageControl.currentPage)")
         }
@@ -104,11 +104,11 @@ class PageControlDemoViewController: UIViewController {
 }
 
 extension PageControlDemoViewController : UIScrollViewDelegate {
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         systemPageControl.currentPage = scrollView.pageIndex
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         systemPageControl.currentPage = scrollView.pageIndex
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CollectionViewCell : UICollectionViewCell {
+open class CollectionViewCell : UICollectionViewCell {
 	
 	let textLabel = UILabel()
 	
@@ -22,13 +22,13 @@ public class CollectionViewCell : UICollectionViewCell {
 		commonInit()
 	}
 
-	public func commonInit() {
+	open func commonInit() {
 		setupViews()
 		setupConstraints()
 	}
 	
-	private func setupViews() {
-		backgroundColor = UIColor.whiteColor()
+	fileprivate func setupViews() {
+		backgroundColor = UIColor.white
 		
 		textLabel.translatesAutoresizingMaskIntoConstraints = false
 		contentView.addSubview(textLabel)
@@ -38,15 +38,15 @@ public class CollectionViewCell : UICollectionViewCell {
 		self.selectedBackgroundView = selectedBackgroundView
 	}
 
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		var constraints = [NSLayoutConstraint]()
 
 		constraints += [
-			NSLayoutConstraint(item: textLabel, attribute: .CenterX, relatedBy: .Equal, toItem: contentView, attribute: .CenterX, multiplier: 1.0, constant: 0.0),
-			NSLayoutConstraint(item: textLabel, attribute: .CenterY, relatedBy: .Equal, toItem: contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0)
+			NSLayoutConstraint(item: textLabel, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1.0, constant: 0.0),
+			NSLayoutConstraint(item: textLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1.0, constant: 0.0)
 		]
 
-		NSLayoutConstraint.activateConstraints(constraints)
+		NSLayoutConstraint.activate(constraints)
 	}
 }
 
@@ -55,10 +55,10 @@ public class CollectionViewCell : UICollectionViewCell {
 // MARK: - CollectionViewCellInfo
 extension CollectionViewCell : CollectionViewCellInfo {
 	public class func identifier() -> String {
-		return String(self)
+		return String(describing: self)
 	}
 	
-	public class func registerInCollectionView(collectionView: UICollectionView) {
-		collectionView.registerClass(self, forCellWithReuseIdentifier: identifier())
+	public class func registerInCollectionView(_ collectionView: UICollectionView) {
+		collectionView.register(self, forCellWithReuseIdentifier: identifier())
 	}
 }
