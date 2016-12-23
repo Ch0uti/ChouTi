@@ -23,7 +23,7 @@
 		022772B01D6258C900D9CAE7 /* ScalePresentingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772121D6258C900D9CAE7 /* ScalePresentingAnimator.swift */; };
 		022772B11D6258C900D9CAE7 /* SlideUpAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772131D6258C900D9CAE7 /* SlideUpAnimator.swift */; };
 		022772B21D6258C900D9CAE7 /* Attributes in Resources */ = {isa = PBXBuildFile; fileRef = 022772141D6258C900D9CAE7 /* Attributes */; };
-		022772B31D6258C900D9CAE7 /* ChouTi.h in Headers */ = {isa = PBXBuildFile; fileRef = 022772151D6258C900D9CAE7 /* ChouTi.h */; };
+		022772B31D6258C900D9CAE7 /* ChouTi.h in Headers */ = {isa = PBXBuildFile; fileRef = 022772151D6258C900D9CAE7 /* ChouTi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		022772B41D6258C900D9CAE7 /* TableCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772191D6258C900D9CAE7 /* TableCollectionViewLayout.swift */; };
 		022772B51D6258C900D9CAE7 /* TableCollectionViewSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227721A1D6258C900D9CAE7 /* TableCollectionViewSeparatorView.swift */; };
 		022772B61D6258C900D9CAE7 /* TextTableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227721B1D6258C900D9CAE7 /* TextTableCollectionView.swift */; };
@@ -141,7 +141,6 @@
 		0227732A1D6258C900D9CAE7 /* TableViewRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772A91D6258C900D9CAE7 /* TableViewRowType.swift */; };
 		0227732B1D6258C900D9CAE7 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772AA1D6258C900D9CAE7 /* TableViewSection.swift */; };
 		0227732C1D6258C900D9CAE7 /* TableViewSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772AB1D6258C900D9CAE7 /* TableViewSectionType.swift */; };
-		023050961D2440DB00D7B190 /* ChouTi.h in Headers */ = {isa = PBXBuildFile; fileRef = 023050951D2440DB00D7B190 /* ChouTi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0230509D1D2440DB00D7B190 /* ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023050921D2440DB00D7B190 /* ChouTi.framework */; };
 		023051BE1D24438A00D7B190 /* Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 023051BB1D24438A00D7B190 /* Camera.png */; };
 		023051BF1D24438A00D7B190 /* Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023051BC1D24438A00D7B190 /* Camera@2x.png */; };
@@ -396,7 +395,6 @@
 		022772AA1D6258C900D9CAE7 /* TableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
 		022772AB1D6258C900D9CAE7 /* TableViewSectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSectionType.swift; sourceTree = "<group>"; };
 		023050921D2440DB00D7B190 /* ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		023050951D2440DB00D7B190 /* ChouTi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ChouTi.h; path = ../../Source/iOS/ChouTi.h; sourceTree = "<group>"; };
 		023050971D2440DB00D7B190 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0230509C1D2440DB00D7B190 /* ChouTiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChouTiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		023050A31D2440DB00D7B190 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -944,7 +942,6 @@
 		023050941D2440DB00D7B190 /* ChouTi */ = {
 			isa = PBXGroup;
 			children = (
-				023050951D2440DB00D7B190 /* ChouTi.h */,
 				023050971D2440DB00D7B190 /* Info.plist */,
 				023050AC1D24418400D7B190 /* Source */,
 				023051B91D24438A00D7B190 /* Resources */,
@@ -1011,8 +1008,8 @@
 		025C913F1D62A970000C54D8 /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
-				025C91401D62A970000C54D8 /* QueueTests.swift */,
 				0275AE9F1DDFFF0B00DBA4D3 /* OrderedDictionaryTests.swift */,
+				025C91401D62A970000C54D8 /* QueueTests.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -1191,7 +1188,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				022772B31D6258C900D9CAE7 /* ChouTi.h in Headers */,
-				023050961D2440DB00D7B190 /* ChouTi.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1727,7 +1723,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1742,7 +1738,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1757,7 +1753,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "ChouTi iOS";
 			};
 			name = Debug;
@@ -1773,7 +1769,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.ChouTi-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "ChouTi iOS";
 			};
 			name = Release;
@@ -1895,7 +1891,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.ChouTi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1916,7 +1912,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.ChouTi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1932,7 +1928,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.ChouTiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1948,7 +1944,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.ChouTiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
