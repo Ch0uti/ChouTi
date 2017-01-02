@@ -17,6 +17,8 @@ public struct OrderedDictionary<KeyType: Hashable, ValueType> {
 	
 	public var count: Int { return array.count }
 	
+	public init() {}
+	
 	public subscript(key: KeyType) -> ValueType? {
 		get {
 			return dictionary[key]

@@ -42,15 +42,16 @@
 //		]
 //
 //		let metrics: [String : CGFloat] = [
-//			"vertical_spacing" : 4.0
+//			"v_spacing" : 4.0,
+//			"h_spacing" : 4.0
 //		]
 //
 //		var constraints = [NSLayoutConstraint]()
 //
 //		// TODO: Add constraints
-//		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[view]-|", options: [], metrics: metrics, views: views)
+//		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: [], metrics: metrics, views: views)
 //
-//		NSLayoutConstraint.activateConstraints(constraints)
+//		NSLayoutConstraint.activate(constraints)
 //	}
 //}
 //
