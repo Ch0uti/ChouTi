@@ -32,8 +32,6 @@
 //	}
 //
 //	private func setupConstraints() {
-//		preservesSuperviewLayoutMargins = false
-//		layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 //		contentView.preservesSuperviewLayoutMargins = false
 //		contentView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 //
