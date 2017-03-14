@@ -250,6 +250,7 @@ extension DropDownMenuPickerViewController {
 		NSLayoutConstraint.activate(expandedConstraints)
 		
 		isAnimating = true
+		tableView.reloadData()
 		UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: [.curveEaseInOut, .beginFromCurrentState], animations: {
 			self.view.layoutIfNeeded()
 		}, completion: { finished in
