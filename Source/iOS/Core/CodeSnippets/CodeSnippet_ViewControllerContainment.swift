@@ -10,13 +10,13 @@
 
 // MARK: - Add View Controller
 
-//addChildViewController(viewController)
+//addChildViewController(<#viewController#>)
 //
 //viewController.view.translatesAutoresizingMaskIntoConstraints = false
-//view.addSubview(viewController.view)
+//view.addSubview(<#viewController#>.view)
 //// TODO: Setup constraints...
 //
-//viewController.didMoveToParentViewController(self)
+//<#viewController#>.didMove(toParentViewController: self)
 
 
 
