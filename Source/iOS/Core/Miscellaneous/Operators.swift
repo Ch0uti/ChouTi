@@ -44,7 +44,12 @@ public func =? <T>(lhs: inout T?, rhs: T?) {
 /**
  *  Power Operator
  */
-infix operator ** : MultiplicationPrecedence
+precedencegroup ExponentiationPrecedence {
+    associativity: right
+    higherThan: MultiplicationPrecedence
+}
+
+infix operator ** : ExponentiationPrecedence
 
 /**
  Compute base raised to the power power.
@@ -54,18 +59,18 @@ infix operator ** : MultiplicationPrecedence
  
  - returns: base raised to the power.
  */
-func ** (base: Double, power: Double) -> Double {
+public func ** (base: Double, power: Double) -> Double {
     return pow(base, power)
 }
 
-func ** (base: CGFloat, power: CGFloat) -> CGFloat {
+public func ** (base: CGFloat, power: CGFloat) -> CGFloat {
     return pow(base, power)
 }
 
-func ** (base: Float, power: Float) -> Float {
-    return powf(base, power)
+public func ** (base: Float, power: Float) -> Float {
+    return pow(base, power)
 }
 
-func ** (base: Int, power: Int) -> Int {
+public func ** (base: Int, power: Int) -> Int {
     return Int(pow(Double(base), Double(power)))
 }

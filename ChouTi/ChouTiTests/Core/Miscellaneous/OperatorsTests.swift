@@ -18,10 +18,14 @@ class OperatorsTests: XCTestCase {
         XCTAssertEqual(-1 ** 0, 1)
         XCTAssertEqual(-2 ** 3, (-2) * (-2) * (-2))
         XCTAssertEqual((-2) ** 2, 4)
-        XCTAssertEqual(-2 ** 2 * 3, ((-2) * (-2)) * 3)
+		
+		XCTAssertEqual(-2 ** 2, (-2) * (-2))
+		XCTAssertEqual(1 - 2 ** 2, 1 - 2 * 2)
+		XCTAssertEqual(-2 ** 2 * 3, ((-2) * (-2)) * 3)
+		
         XCTAssertEqual(-2 ** 3, (-2) * (-2) * (-2))
         XCTAssertEqual(-(2 ** 3), -8)
-		
-        XCTAssertTrue((-2 ** 3.2).isNaN)
+		XCTAssertEqual(2 ** 0.5, sqrt(2))
+        XCTAssertTrue((-2.0 ** 3.2).isNaN)
     }
 }
