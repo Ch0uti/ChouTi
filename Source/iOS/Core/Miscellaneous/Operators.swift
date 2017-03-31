@@ -44,7 +44,12 @@ public func =? <T>(lhs: inout T?, rhs: T?) {
 /**
  *  Power Operator
  */
-infix operator ** : MultiplicationPrecedence
+precedencegroup ExponentiationPrecedence {
+    associativity: right
+    higherThan: MultiplicationPrecedence
+}
+
+infix operator ** : ExponentiationPrecedence
 
 /**
  Compute base raised to the power power.
@@ -54,18 +59,31 @@ infix operator ** : MultiplicationPrecedence
  
  - returns: base raised to the power.
  */
-func ** (base: Double, power: Double) -> Double {
+public func ** (base: Double, power: Double) -> Double {
     return pow(base, power)
 }
 
-func ** (base: CGFloat, power: CGFloat) -> CGFloat {
+public func ** (base: CGFloat, power: CGFloat) -> CGFloat {
     return pow(base, power)
 }
 
-func ** (base: Float, power: Float) -> Float {
-    return powf(base, power)
+public func ** (base: Float, power: Float) -> Float {
+    return pow(base, power)
 }
 
-func ** (base: Int, power: Int) -> Int {
+public func ** (base: Int, power: Int) -> Int {
     return Int(pow(Double(base), Double(power)))
+}
+
+/// Optional String Coalescing Operator
+/// Ref: https://oleb.net/blog/2016/12/optionals-string-interpolation/
+infix operator ??? : NilCoalescingPrecedence
+
+public func ??? <T>(lhs: T?, defaultValue: @autoclosure () -> String) -> String {
+	switch lhs {
+	case let value?:
+		return String(describing: value)
+	case nil:
+		return defaultValue()
+	}
 }
