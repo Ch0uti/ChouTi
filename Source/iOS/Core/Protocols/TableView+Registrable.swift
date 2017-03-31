@@ -111,7 +111,7 @@ public protocol TableViewHeaderFooterViewRegistrable: TableViewMetaInfo, TableVi
 // MARK: - TableViewHeaderFooterViewRegistrable
 extension UITableViewHeaderFooterView : TableViewHeaderFooterViewRegistrable {
     open class func estimatedHeight() -> CGFloat {
-        return 20.0
+        return 22.0
     }
     
     open class func identifier() -> String {
