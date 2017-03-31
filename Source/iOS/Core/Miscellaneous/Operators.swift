@@ -74,3 +74,16 @@ public func ** (base: Float, power: Float) -> Float {
 public func ** (base: Int, power: Int) -> Int {
     return Int(pow(Double(base), Double(power)))
 }
+
+/// Optional String Coalescing Operator
+/// Ref: https://oleb.net/blog/2016/12/optionals-string-interpolation/
+infix operator ??? : NilCoalescingPrecedence
+
+public func ??? <T>(lhs: T?, defaultValue: @autoclosure () -> String) -> String {
+	switch lhs {
+	case let value?:
+		return String(describing: value)
+	case nil:
+		return defaultValue()
+	}
+}
