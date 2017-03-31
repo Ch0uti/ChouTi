@@ -28,4 +28,12 @@ class OperatorsTests: XCTestCase {
 		XCTAssertEqual(2 ** 0.5, sqrt(2))
         XCTAssertTrue((-2.0 ** 3.2).isNaN)
     }
+	
+	func testOptionalStringCoalescingOperator() {
+		let isNumber: Int? = 99
+		XCTAssertEqual("\(isNumber ??? "No Number")", "99")
+		
+		let isNil: Int? = nil
+		XCTAssertEqual("\(isNil ??? "No Number")", "No Number")
+	}
 }
