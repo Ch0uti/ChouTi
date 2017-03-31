@@ -181,35 +181,39 @@ public extension UIImage {
         return newImage!
     }
 	
-	/**
-	Apply a new tint color for an image, using the alpha channel
-	
-	- parameter tintColor: new tint color
-	
-	- returns: new image with tint color provided
-	*/
+	/// Apply a new tint color for an image, using the alpha channel
+	///
+	/// - Parameter tintColor: new tint color
+	/// - Returns: new image with tint color provided
 	public func imageByApplyingTintColor(_ tintColor: UIColor) -> UIImage {
 		UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-		let ctx = UIGraphicsGetCurrentContext()
+		defer {
+			UIGraphicsEndImageContext()
+		}
 		
-		ctx!.translateBy(x: 0, y: size.height)
-		ctx!.scaleBy(x: 1.0, y: -1.0)
+		guard let context = UIGraphicsGetCurrentContext(), let cgImage = cgImage else {
+			return self
+		}
+		
+		context.translateBy(x: 0, y: size.height)
+		context.scaleBy(x: 1.0, y: -1.0)
 		
 		let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
 		
 		// Draw alpha-mask
-		ctx!.setBlendMode(.normal)
-		ctx!.draw(cgImage!, in: rect)
+		context.setBlendMode(.normal)
+		context.draw(cgImage, in: rect)
 		
 		// Draw tint color, preserving alpha values of original image
-		ctx!.setBlendMode(.sourceIn)
+		context.setBlendMode(.sourceIn)
 		tintColor.setFill()
-		ctx!.fill(rect)
+		context.fill(rect)
 		
-		let newImage = UIGraphicsGetImageFromCurrentImageContext()
-		UIGraphicsEndImageContext()
+		guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else {
+			return self
+		}
 		
-		return newImage!
+		return newImage
 	}
 	
 	/**
