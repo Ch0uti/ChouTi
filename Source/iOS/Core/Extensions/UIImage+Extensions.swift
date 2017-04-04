@@ -181,12 +181,21 @@ public extension UIImage {
         return newImage!
     }
 	
-	/// Apply a new tint color for an image, using the alpha channel
-	///
+	/// Apply a new tint color for an image, only alpha channel is kept
+	/// Reference: https://github.com/Raizlabs/BonMot/blob/master/Sources/Image%2BTinting.swift
+	/// 
 	/// - Parameter tintColor: new tint color
-	/// - Returns: new image with tint color provided
+	/// - Returns: A tinted copy of the image.
 	public func imageByApplyingTintColor(_ tintColor: UIColor) -> UIImage {
-		UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+		let imageRect = CGRect(origin: .zero, size: size)
+		
+		// Save original properties
+		let originalCapInsets = capInsets
+		let originalResizingMode = resizingMode
+		let originalAlignmentRectInsets = alignmentRectInsets
+		
+		UIGraphicsBeginImageContextWithOptions(size, false, scale)
+		
 		defer {
 			UIGraphicsEndImageContext()
 		}
@@ -195,25 +204,41 @@ public extension UIImage {
 			return self
 		}
 		
-		context.translateBy(x: 0, y: size.height)
+		// Flip the context vertically
+		context.translateBy(x: 0.0, y: size.height)
 		context.scaleBy(x: 1.0, y: -1.0)
 		
-		let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+		// Image tinting mostly inspired by http://stackoverflow.com/a/22528426/255489
 		
 		// Draw alpha-mask
 		context.setBlendMode(.normal)
-		context.draw(cgImage, in: rect)
+		context.draw(cgImage, in: imageRect)
 		
 		// Draw tint color, preserving alpha values of original image
+		// .sourceIn: resulting color = source color * destination alpha
 		context.setBlendMode(.sourceIn)
-		tintColor.setFill()
-		context.fill(rect)
+		context.setFillColor(tintColor.cgColor)
+		context.fill(imageRect)
 		
-		guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else {
+		guard var image = UIGraphicsGetImageFromCurrentImageContext() else {
 			return self
 		}
 		
-		return newImage
+		// Prevent further tinting
+		image = image.withRenderingMode(.alwaysOriginal)
+		
+		// Restore original properties
+		image = image.withAlignmentRectInsets(originalAlignmentRectInsets)
+		if !UIEdgeInsetsEqualToEdgeInsets(originalCapInsets, image.capInsets) || originalResizingMode != image.resizingMode {
+			image = image.resizableImage(withCapInsets: originalCapInsets, resizingMode: originalResizingMode)
+		}
+		
+		// Transfer accessibility label (watchOS not included; does not have accessibilityLabel on UIImage).
+		#if os(iOS) || os(tvOS)
+			image.accessibilityLabel = self.accessibilityLabel
+		#endif
+		
+		return image
 	}
 	
 	/**
