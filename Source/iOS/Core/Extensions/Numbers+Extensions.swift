@@ -175,7 +175,7 @@ public extension CGFloat {
      - returns: radians
      */
     public func toRadians() -> CGFloat {
-        return CGFloat(M_PI / 180) * self
+        return CGFloat.pi / 180 * self
     }
     
     /**
@@ -184,7 +184,7 @@ public extension CGFloat {
      - returns: degrees
      */
     public func toDegrees() -> CGFloat {
-        return CGFloat(180 / M_PI) * self
+        return 180 / CGFloat.pi * self
     }
     
     /**
