@@ -8,7 +8,7 @@
 
 import Foundation
 
-// StructWrapper is a generic container for Swift struct
+// StructWrapper is a generic container for Swift struct/enum
 // This is useful where NSObject is reqired
 
 // Sample Usage:
@@ -18,7 +18,7 @@ import Foundation
 // or
 // let object = StructWrapper<<#StructType#>>(<#structValue#>)
 
-// object - > struct
+// object -> struct
 // let theStruct = (object as? StructWrapper<<#StructType#>>).map { $0.structValue }
 // or
 // let theStruct = (object as? StructWrapper<<#StructType#>>)?.structValue
