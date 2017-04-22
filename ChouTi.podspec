@@ -131,7 +131,7 @@ Pod::Spec.new do |s|
 
     ss.subspec "AlertView" do |sss|
       # "Mimic UIAlertController's view"
-      sss.source_files = 'Source/iOS/UI/AlertView/*.*'
+      sss.source_files = 'Source/iOS/UI/AlertView/*.swift'
       ss.dependency "ChouTi/Animators"
     end
 

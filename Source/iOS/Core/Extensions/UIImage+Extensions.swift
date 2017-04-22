@@ -301,16 +301,16 @@ public extension UIImage {
         context!.scaleBy(x: 1.0, y: -1.0)
         
         if imageOrientation == .left {
-            context!.rotate(by: CGFloat(M_PI) / 2)
+            context!.rotate(by: .pi / 2)
             context!.translateBy(x: 0, y: -size.width)
         } else if imageOrientation == .right {
-            context!.rotate(by: -CGFloat(M_PI) / 2)
+            context!.rotate(by: -.pi / 2)
             context!.translateBy(x: -size.height, y: 0)
         } else if imageOrientation == .up {
             // Do nothing
         } else if imageOrientation == .down {
             context!.translateBy(x: size.width, y: size.height)
-            context!.rotate(by: CGFloat(M_PI))
+            context!.rotate(by: .pi)
         }
         
         context!.draw(cgImage!, in: imageRect)

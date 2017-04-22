@@ -77,14 +77,14 @@ extension DropPresentingAnimator {
 		
 		presentedView.bounds = CGRect(origin: CGPoint.zero, size: presentingViewSize)
 		presentedView.center = CGPoint(x: containerView.bounds.width / 2.0, y: 0 - presentingViewSize.height / 2.0)
-		presentedView.transform = CGAffineTransform(rotationAngle: (CGFloat.random(-15, 15) * CGFloat(M_PI)) / 180.0)
+		presentedView.transform = CGAffineTransform(rotationAngle: (CGFloat.random(-15, 15) * CGFloat.pi) / 180.0)
 		
 		containerView.addSubview(presentedView)
         
 		// Presenting animations
 		UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
 			presentedView.center = containerView.center
-			presentedView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat(M_PI)) / 180.0)
+			presentedView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat.pi) / 180.0)
 			}, completion: { finished -> Void in
 				transitionContext.completeTransition(finished)
 		})
@@ -107,7 +107,7 @@ extension DropPresentingAnimator {
 		// Dismissing animations
 		UIView.animate(withDuration: animationDuration * Double(1.0 - percentComplete), delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
 			fromView.center = CGPoint(x: containerView.bounds.width / 2.0, y: containerView.bounds.height + self.presentingViewSize.height)
-			fromView.transform = CGAffineTransform(rotationAngle: (self.interactiveAnimationTransformAngel ?? CGFloat.random(-15, 15) * CGFloat(M_PI)) / 180.0)
+			fromView.transform = CGAffineTransform(rotationAngle: (self.interactiveAnimationTransformAngel ?? CGFloat.random(-15, 15) * CGFloat.pi) / 180.0)
 			}, completion: { finished -> Void in
 				transitionContext.completeTransition(finished)
 		})
@@ -182,7 +182,7 @@ extension DropPresentingAnimator {
         
         UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             presentedView.center = containerView.center
-            presentedView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat(M_PI)) / 180.0)
+            presentedView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat.pi) / 180.0)
         }, completion: { [weak self] finished in
             self?.presentedViewController?.endAppearanceTransition()
             self?.transitionContext?.completeTransition(false)
