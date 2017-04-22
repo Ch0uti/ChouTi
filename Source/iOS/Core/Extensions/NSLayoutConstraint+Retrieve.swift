@@ -8,6 +8,8 @@
 
 import UIKit
 
+// TODO: 参考另一个framework关于如何找回constraint
+
 public extension UIView {
 	func constraints(withFirstItem firstItem: AnyObject, // TODO: nil or not
                                    firstAttribute: NSLayoutAttribute? = nil,

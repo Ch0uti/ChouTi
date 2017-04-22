@@ -8,6 +8,8 @@
 
 import UIKit
 
+// TODO: https://github.com/roberthein/TinyConstraints
+
 public extension NSLayoutConstraint {
     /**
      Activate this constraint

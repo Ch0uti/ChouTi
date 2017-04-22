@@ -11,7 +11,7 @@ import UIKit
 // MARK: - Overlay View
 public extension UIView {
     
-    fileprivate struct zhOverlayViewKey {
+    private struct zhOverlayViewKey {
         static var Key = "zhOverlayViewKey"
     }
     
