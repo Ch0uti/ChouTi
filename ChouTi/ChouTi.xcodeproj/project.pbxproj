@@ -245,14 +245,14 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		0275AE7C1DDE5CB200DBA4D3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
 				0275AE791DDE5CB200DBA4D3 /* ChouTi.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -575,10 +575,10 @@
 		0227720B1D6258C900D9CAE7 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				0227720C1D6258C900D9CAE7 /* Animators */,
 				022772141D6258C900D9CAE7 /* Attributes */,
 				022772151D6258C900D9CAE7 /* ChouTi.h */,
 				022772161D6258C900D9CAE7 /* ChouTi.modulemap */,
+				0227720C1D6258C900D9CAE7 /* Animators */,
 				022772171D6258C900D9CAE7 /* CollectionViewLayouts */,
 				0227721D1D6258C900D9CAE7 /* Core */,
 				022772751D6258C900D9CAE7 /* ThirdParty */,
