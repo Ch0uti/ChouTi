@@ -8,7 +8,7 @@ def pod_testing
 end
 
 # Targets
-target 'ChouTiTests' do
+target 'ChouTi Tests' do
   pod_testing
 end
 

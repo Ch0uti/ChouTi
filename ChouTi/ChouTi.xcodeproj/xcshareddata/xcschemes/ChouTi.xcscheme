@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0230509B1D2440DB00D7B190"
-               BuildableName = "ChouTiTests.xctest"
-               BlueprintName = "ChouTiTests"
+               BuildableName = "ChouTi Tests.xctest"
+               BlueprintName = "ChouTi Tests"
                ReferencedContainer = "container:ChouTi.xcodeproj">
             </BuildableReference>
          </TestableReference>
