@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "023050911D2440DB00D7B190"
-               BuildableName = "ChouTi.framework"
-               BlueprintName = "ChouTi"
+               BlueprintIdentifier = "020664F01D5FB0BE002A7E2A"
+               BuildableName = "ChouTi Example iOS.app"
+               BlueprintName = "ChouTi Example iOS"
                ReferencedContainer = "container:ChouTi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0230509B1D2440DB00D7B190"
-               BuildableName = "ChouTi Tests.xctest"
-               BlueprintName = "ChouTi Tests"
+               BlueprintIdentifier = "020665031D5FB0BE002A7E2A"
+               BuildableName = "ChouTi Example iOS UITests.xctest"
+               BlueprintName = "ChouTi Example iOS UITests"
                ReferencedContainer = "container:ChouTi.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "023050911D2440DB00D7B190"
-            BuildableName = "ChouTi.framework"
-            BlueprintName = "ChouTi"
+            BlueprintIdentifier = "020664F01D5FB0BE002A7E2A"
+            BuildableName = "ChouTi Example iOS.app"
+            BlueprintName = "ChouTi Example iOS"
             ReferencedContainer = "container:ChouTi.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -62,15 +62,23 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "023050911D2440DB00D7B190"
-            BuildableName = "ChouTi.framework"
-            BlueprintName = "ChouTi"
+            BlueprintIdentifier = "020664F01D5FB0BE002A7E2A"
+            BuildableName = "ChouTi Example iOS.app"
+            BlueprintName = "ChouTi Example iOS"
             ReferencedContainer = "container:ChouTi.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "OS_ACTIVITY_MODE"
+            value = "disable"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,15 +88,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "023050911D2440DB00D7B190"
-            BuildableName = "ChouTi.framework"
-            BlueprintName = "ChouTi"
+            BlueprintIdentifier = "020664F01D5FB0BE002A7E2A"
+            BuildableName = "ChouTi Example iOS.app"
+            BlueprintName = "ChouTi Example iOS"
             ReferencedContainer = "container:ChouTi.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
