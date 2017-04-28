@@ -7,8 +7,8 @@ env:
 
   # Framework
   - WORKSPACE="./ChouTi/ChouTi.xcworkspace"
-  - IOS_FRAMEWORK_SCHEME="ChouTi"
-  - IOS_EXAMPLE_SCHEME="ChouTi iOS"
+  - IOS_FRAMEWORK_SCHEME="ChouTi iOS"
+  - IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
 
   matrix:
     # Framework Schemes
