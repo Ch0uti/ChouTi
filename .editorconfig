@@ -1,4 +1,4 @@
-[*.{h,m,mm,swift}]
+[*.{h,m,mm,swift,c,cpp,cxx,hpp,pch}]
 indent_style = space
 indent_size = 4
-
+tab_width = 4
