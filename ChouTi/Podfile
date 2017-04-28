@@ -8,10 +8,10 @@ def pod_testing
 end
 
 # Targets
-target 'ChouTi Tests' do
+target 'ChouTi iOS Tests' do
   pod_testing
 end
 
-target 'ChouTi iOSUITests' do
+target 'ChouTi Example iOS UITests' do
   pod_testing
 end
