@@ -21,7 +21,7 @@ class AlertControllerDemoViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = ColorPalette.slackSidebarPurpleColor
+        view.backgroundColor = .white
         title = "⚠️ Alert Controller"
         
         let stackView = UIStackView()
@@ -42,12 +42,33 @@ class AlertControllerDemoViewController : UIViewController {
         stackView.addArrangedSubview(systemAlertButton)
         
         let customizedAlertButton = Button()
-        customizedAlertButton.setBackgroundImageWithColor(ColorPalette.lightSeaGreenColor, forState: .normal)
-        customizedAlertButton.setCornerRadius(.halfCircle, forState: .normal)
+        customizedAlertButton.clipsToBounds = false
+        
+        // setup title
         customizedAlertButton.setTitle("Present Customized Alert", for: .normal)
+        customizedAlertButton.setTitleColor(.white, for: .normal)
+        customizedAlertButton.setTitleColor(UIColor(white: 1.0, alpha: 0.7), for: .highlighted)
+        
+        // setup color/cornerRadius
+        customizedAlertButton.backgroundColor = ColorPalette.lightSeaGreenColor
+        customizedAlertButton.layer.cornerRadius = 44 / 2
+        
+        // setup shadow
+        customizedAlertButton.setShadowColor(ColorPalette.lightSeaGreenColor, for: .normal)
+        customizedAlertButton.setShadowOpacity(0.5, for: .normal)
+        customizedAlertButton.setShadowOffset(CGSize(width: 0, height: 7), for: .normal)
+        customizedAlertButton.setShadowRadius(9, for: .normal)
+        
+        customizedAlertButton.setShadowColor(ColorPalette.lightSeaGreenColor, for: .highlighted)
+        customizedAlertButton.setShadowOpacity(0.7, for: .highlighted)
+        customizedAlertButton.setShadowOffset(CGSize(width: 0, height: 2), for: .highlighted)
+        customizedAlertButton.setShadowRadius(3, for: .highlighted)
+        
         customizedAlertButton.addTarget(self, action: #selector(AlertControllerDemoViewController.presentCustomizedAlert(_:)), for: .touchUpInside)
         customizedAlertButton.constrainTo(size: CGSize(width: 270, height: 44))
         stackView.addArrangedSubview(customizedAlertButton)
+        
+
     }
     
     func presentDefaultAlert(_ sender: Button) {

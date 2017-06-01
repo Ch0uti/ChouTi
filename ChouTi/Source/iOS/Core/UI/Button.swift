@@ -30,12 +30,12 @@ open class Button: UIButton {
      - Relative:   relative corner radius, calculated by percetage multiply by width or height
      - HalfCircle: half-circle, capsule like
      */
-    public enum CornerRadius {
+    public enum CornerRadius: Equatable {
         case absolute(CGFloat)
         case relative(percent: CGFloat, attribute: Attribute)
         case halfCircle
         
-        public func cornerRadiusValue(forView view: UIView) -> CGFloat {
+        public func value(for view: UIView) -> CGFloat {
             switch self {
             case .absolute(let cornerRadius):
                 return cornerRadius
@@ -52,6 +52,20 @@ open class Button: UIButton {
                 return 0.5 * min(view.bounds.width, view.bounds.height)
             }
         }
+        
+        // MARK: - Equatable
+        static public func == (lhs: CornerRadius, rhs: CornerRadius) -> Bool {
+            switch (lhs, rhs) {
+            case (.absolute(let lValue), .absolute(let rValue)):
+                return lValue == rValue
+            case (.relative(let lPercent, let lAttribute), .relative(let rPercent, let rAttribute)):
+                return (lPercent == rPercent) && (lAttribute == rAttribute)
+            case (.halfCircle, .halfCircle):
+                return true
+            default:
+                return false
+            }
+        }
     }
     
     // MARK: - Storing Extra Presentation Styles
@@ -59,6 +73,12 @@ open class Button: UIButton {
     fileprivate var borderWidthForState = [UInt : CGFloat]()
     fileprivate var cornerRadiusForState = [UInt : CornerRadius]()
     fileprivate var backgroundImageColorForState = [UInt : UIColor]()
+    
+    fileprivate var shadowColorForState = [UInt : UIColor]()
+    fileprivate var shadowOpacityForState = [UInt : Float]()
+    fileprivate var shadowOffsetForState = [UInt : CGSize]()
+    fileprivate var shadowRadiusForState = [UInt : CGFloat]()
+    fileprivate var shadowPathForState = [UInt : CGPath]()
     
     // MARK: - Overriden
     open override var isHighlighted: Bool { didSet { refreshBorderStyles() } }
@@ -103,7 +123,7 @@ extension Button {
      - parameter state:        The state that uses the specified corner radius. The possible values are described in UIControlState.
      */
     public func setCornerRadius(_ cornerRadius: CornerRadius?, forState state: UIControlState) {
-        clipsToBounds = true
+        if !clipsToBounds { clipsToBounds = true }
         if cornerRadiusForState[state.rawValue] <-? cornerRadius { refreshBorderStyles() }
     }
     
@@ -121,6 +141,51 @@ extension Button {
                 setBackgroundImage(nil, for: state)
             }
         }
+    }
+    
+    /// Set the shadow color to use for the specified state. `clipsToBounds` should be `false` to see the effect.
+    ///
+    /// - Parameters:
+    ///   - shadowColor: The shadow color to use for the specified state.
+    ///   - state: The state that uses the specified shadow color. The possible values are described in UIControlState.
+    public func setShadowColor(_ shadowColor: UIColor?, for state: UIControlState) {
+        if shadowColorForState[state.rawValue] <-? shadowColor { refreshBorderStyles() }
+    }
+    
+    /// Set the shadow opacity to use for the specified state. `clipsToBounds` should be `false` to see the effect.
+    ///
+    /// - Parameters:
+    ///   - shadowOpacity: The shadow opacity to use for the specified state.
+    ///   - state: The state that uses the specified shadow opacity. The possible values are described in UIControlState.
+    public func setShadowOpacity(_ shadowOpacity: Float?, for state: UIControlState) {
+        if shadowOpacityForState[state.rawValue] <-? shadowOpacity { refreshBorderStyles() }
+    }
+    
+    /// Set the shadow offset to use for the specified state. `clipsToBounds` should be `false` to see the effect.
+    ///
+    /// - Parameters:
+    ///   - shadowOffset: The shadow offset to use for the specified state.
+    ///   - state: The state that uses the specified shadow offset. The possible values are described in UIControlState.
+    public func setShadowOffset(_ shadowOffset: CGSize?, for state: UIControlState) {
+        if shadowOffsetForState[state.rawValue] <-? shadowOffset { refreshBorderStyles() }
+    }
+    
+    /// Set the shadow radius to use for the specified state. `clipsToBounds` should be `false` to see the effect.
+    ///
+    /// - Parameters:
+    ///   - shadowRadius: The shadow radius to use for the specified state.
+    ///   - state: The state that uses the specified shadow radius. The possible values are described in UIControlState.
+    public func setShadowRadius(_ shadowRadius: CGFloat?, for state: UIControlState) {
+        if shadowRadiusForState[state.rawValue] <-? shadowRadius { refreshBorderStyles() }
+    }
+    
+    /// Set the shadow path to use for the specified state. `clipsToBounds` should be `false` to see the effect.
+    ///
+    /// - Parameters:
+    ///   - shadowPath: The shadow path to use for the specified state.
+    ///   - state: The state that uses the specified shadow path. The possible values are described in UIControlState.
+    public func setShadowPath(_ shadowPath: CGPath?, for state: UIControlState) {
+        if shadowPathForState[state.rawValue] <-? shadowPath { refreshBorderStyles() }
     }
     
     // MARK: - Getting Extra Presentation Styles
@@ -168,16 +233,50 @@ extension Button {
     public func backgroundImageColorForState(_ state: UIControlState) -> UIColor? {
         return backgroundImageColorForState[state.rawValue] ?? backgroundImageColorForState[UIControlState.normal.rawValue]
     }
+    
+    /// Returns the shadow color used for a state.
+    ///
+    /// - Parameter state: The state that uses the shadow color. The possible values are described in UIControlState.
+    /// - Returns: The shadow color for the specified state. If there's no shadow color is set for the state, shadow color for normal state is returned, otherwise, nil is returned.
+    public func shadowColorForState(_ state: UIControlState) -> UIColor? {
+        return shadowColorForState[state.rawValue] ?? shadowColorForState[UIControlState.normal.rawValue]
+    }
+    
+    /// Returns the shadow opacity used for a state.
+    ///
+    /// - Parameter state: The state that uses the shadow opacity. The possible values are described in UIControlState.
+    /// - Returns: The shadow opacity for the specified state. If there's no shadow opacity is set for the state, shadow opacity for normal state is returned, otherwise, nil is returned.
+    public func shadowOpacityForState(_ state: UIControlState) -> Float? {
+        return shadowOpacityForState[state.rawValue] ?? shadowOpacityForState[UIControlState.normal.rawValue]
+    }
+    
+    /// Returns the shadow offset used for a state.
+    ///
+    /// - Parameter state: The state that uses the shadow offset. The possible values are described in UIControlState.
+    /// - Returns: The shadow offset for the specified state. If there's no shadow offset is set for the state, shadow offset for normal state is returned, otherwise, nil is returned.
+    public func shadowOffsetForState(_ state: UIControlState) -> CGSize? {
+        return shadowOffsetForState[state.rawValue] ?? shadowOffsetForState[UIControlState.normal.rawValue]
+    }
+    
+    /// Returns the shadow radius used for a state.
+    ///
+    /// - Parameter state: The state that uses the shadow radius. The possible values are described in UIControlState.
+    /// - Returns: The shadow radius for the specified state. If there's no shadow radius is set for the state, shadow radius for normal state is returned, otherwise, nil is returned.
+    public func shadowRadiusForState(_ state: UIControlState) -> CGFloat? {
+        return shadowRadiusForState[state.rawValue] ?? shadowRadiusForState[UIControlState.normal.rawValue]
+    }
+    
+    /// Returns the shadow path used for a state.
+    ///
+    /// - Parameter state: The state that uses the shadow path. The possible values are described in UIControlState.
+    /// - Returns: The shadow path for the specified state. If there's no shadow path is set for the state, shadow path for normal state is returned, otherwise, nil is returned.
+    public func shadowPathForState(_ state: UIControlState) -> CGPath? {
+        return shadowPathForState[state.rawValue] ?? shadowPathForState[UIControlState.normal.rawValue]
+    }
 }
 
 // MARK: - Getting the Current State
 extension Button {
-    /// The current border color that is displayed on the button. (read-only)
-    public var currentBorderColor: UIColor? { return (layer.borderColor != nil) ? UIColor(cgColor: layer.borderColor!) : nil }
-    
-    /// The current border width that is displayed on the button. (read-only)
-    public var currentBorderWidth: CGFloat { return layer.borderWidth }
-    
     /// The current corner radius that is displayed on the button. (read-only)
     public var currentCornerRadius: CornerRadius {
         return cornerRadiusForState[state.rawValue] ?? cornerRadiusForState[UIControlState.normal.rawValue] ?? .absolute(layer.cornerRadius)
@@ -193,20 +292,45 @@ extension Button {
 extension Button {
     
     // MARK: - Convenient Values
-    fileprivate var normalBorderColor: UIColor? { return borderColorForState[UIControlState.normal.rawValue] }
-    fileprivate var highlightedBorderColor: UIColor? { return borderColorForState[UIControlState.highlighted.rawValue] }
-    fileprivate var disabledBorderColor: UIColor? { return borderColorForState[UIControlState.disabled.rawValue] }
-    fileprivate var selectedBorderColor: UIColor? { return borderColorForState[UIControlState.selected.rawValue] }
+    private var normalBorderColor: UIColor? { return borderColorForState[UIControlState.normal.rawValue] }
+    private var highlightedBorderColor: UIColor? { return borderColorForState[UIControlState.highlighted.rawValue] }
+    private var disabledBorderColor: UIColor? { return borderColorForState[UIControlState.disabled.rawValue] }
+    private var selectedBorderColor: UIColor? { return borderColorForState[UIControlState.selected.rawValue] }
     
-    fileprivate var normalBorderWidth: CGFloat? { return borderWidthForState[UIControlState.normal.rawValue] }
-    fileprivate var highlightedBorderWidth: CGFloat? { return borderWidthForState[UIControlState.highlighted.rawValue] }
-    fileprivate var disabledBorderWidth: CGFloat? { return borderWidthForState[UIControlState.disabled.rawValue] }
-    fileprivate var selectedBorderWidth: CGFloat? { return borderWidthForState[UIControlState.selected.rawValue] }
+    private var normalBorderWidth: CGFloat? { return borderWidthForState[UIControlState.normal.rawValue] }
+    private var highlightedBorderWidth: CGFloat? { return borderWidthForState[UIControlState.highlighted.rawValue] }
+    private var disabledBorderWidth: CGFloat? { return borderWidthForState[UIControlState.disabled.rawValue] }
+    private var selectedBorderWidth: CGFloat? { return borderWidthForState[UIControlState.selected.rawValue] }
     
-    fileprivate var normalCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.normal.rawValue]?.cornerRadiusValue(forView: self) }
-    fileprivate var highlightedCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.highlighted.rawValue]?.cornerRadiusValue(forView: self) }
-    fileprivate var disabledCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.disabled.rawValue]?.cornerRadiusValue(forView: self) }
-    fileprivate var selectedCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.selected.rawValue]?.cornerRadiusValue(forView: self) }
+    private var normalCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.normal.rawValue]?.value(for: self) }
+    private var highlightedCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.highlighted.rawValue]?.value(for: self) }
+    private var disabledCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.disabled.rawValue]?.value(for: self) }
+    private var selectedCornerRadius: CGFloat? { return cornerRadiusForState[UIControlState.selected.rawValue]?.value(for: self) }
+    
+    private var normalShadowColor: UIColor? { return shadowColorForState[UIControlState.normal.rawValue] }
+    private var highlightedShadowColor: UIColor? { return shadowColorForState[UIControlState.highlighted.rawValue] }
+    private var disabledShadowColor: UIColor? { return shadowColorForState[UIControlState.disabled.rawValue] }
+    private var selectedShadowColor: UIColor? { return shadowColorForState[UIControlState.selected.rawValue] }
+    
+    private var normalShadowOpacity: Float? { return shadowOpacityForState[UIControlState.normal.rawValue] }
+    private var highlightedShadowOpacity: Float? { return shadowOpacityForState[UIControlState.highlighted.rawValue] }
+    private var disabledShadowOpacity: Float? { return shadowOpacityForState[UIControlState.disabled.rawValue] }
+    private var selectedShadowOpacity: Float? { return shadowOpacityForState[UIControlState.selected.rawValue] }
+    
+    private var normalShadowOffset: CGSize? { return shadowOffsetForState[UIControlState.normal.rawValue] }
+    private var highlightedShadowOffset: CGSize? { return shadowOffsetForState[UIControlState.highlighted.rawValue] }
+    private var disabledShadowOffset: CGSize? { return shadowOffsetForState[UIControlState.disabled.rawValue] }
+    private var selectedShadowOffset: CGSize? { return shadowOffsetForState[UIControlState.selected.rawValue] }
+    
+    private var normalShadowRadius: CGFloat? { return shadowRadiusForState[UIControlState.normal.rawValue] }
+    private var highlightedShadowRadius: CGFloat? { return shadowRadiusForState[UIControlState.highlighted.rawValue] }
+    private var disabledShadowRadius: CGFloat? { return shadowRadiusForState[UIControlState.disabled.rawValue] }
+    private var selectedShadowRadius: CGFloat? { return shadowRadiusForState[UIControlState.selected.rawValue] }
+    
+    private var normalShadowPath: CGPath? { return shadowPathForState[UIControlState.normal.rawValue] }
+    private var highlightedShadowPath: CGPath? { return shadowPathForState[UIControlState.highlighted.rawValue] }
+    private var disabledShadowPath: CGPath? { return shadowPathForState[UIControlState.disabled.rawValue] }
+    private var selectedShadowPath: CGPath? { return shadowPathForState[UIControlState.selected.rawValue] }
     
     /**
      Refresh customized styles
@@ -225,14 +349,32 @@ extension Button {
             layer.borderColor =? highlightedBorderColor?.cgColor ?? normalBorderColor?.cgColor
             layer.borderWidth =? highlightedBorderWidth ?? normalBorderWidth
             layer.cornerRadius =? highlightedCornerRadius ?? normalCornerRadius
+            layer.shadowColor =? highlightedShadowColor?.cgColor ?? normalShadowColor?.cgColor
+            layer.shadowOpacity =? highlightedShadowOpacity ?? normalShadowOpacity
+            layer.shadowOffset =? highlightedShadowOffset ?? normalShadowOffset
+            layer.shadowRadius =? highlightedShadowRadius ?? normalShadowRadius
+            layer.shadowPath =? highlightedShadowPath ?? normalShadowPath
+            
         } else if state == .disabled {
             layer.borderColor =? disabledBorderColor?.cgColor ?? normalBorderColor?.cgColor
             layer.borderWidth =? disabledBorderWidth ?? normalBorderWidth
             layer.cornerRadius =? disabledCornerRadius ?? normalCornerRadius
+            layer.shadowColor = disabledShadowColor?.cgColor ?? normalShadowColor?.cgColor
+            layer.shadowOpacity =? disabledShadowOpacity ?? normalShadowOpacity
+            layer.shadowOffset =? disabledShadowOffset ?? normalShadowOffset
+            layer.shadowRadius =? disabledShadowRadius ?? normalShadowRadius
+            layer.shadowPath =? disabledShadowPath ?? normalShadowPath
+            
         } else if state == .selected {
             layer.borderColor =? selectedBorderColor?.cgColor ?? normalBorderColor?.cgColor
             layer.borderWidth =? selectedBorderWidth ?? normalBorderWidth
             layer.cornerRadius =? selectedCornerRadius ?? normalCornerRadius
+            layer.shadowColor = selectedShadowColor?.cgColor ?? normalShadowColor?.cgColor
+            layer.shadowOpacity =? selectedShadowOpacity ?? normalShadowOpacity
+            layer.shadowOffset =? selectedShadowOffset ?? normalShadowOffset
+            layer.shadowRadius =? selectedShadowRadius ?? normalShadowRadius
+            layer.shadowPath =? selectedShadowPath ?? normalShadowPath
+
         } else {
             // prolong the fade transition, this mimics UIButtonType.System behaviors
             transition.duration = 0.25
@@ -241,6 +383,11 @@ extension Button {
             layer.borderColor =? normalBorderColor?.cgColor
             layer.borderWidth =? normalBorderWidth
             layer.cornerRadius =? normalCornerRadius
+            layer.shadowColor =? normalShadowColor?.cgColor
+            layer.shadowOpacity =? normalShadowOpacity
+            layer.shadowOffset =? normalShadowOffset
+            layer.shadowRadius =? normalShadowRadius
+            layer.shadowPath =? normalShadowPath
         }
     }
 	
@@ -256,21 +403,6 @@ extension Button {
 //        let attributes = [NSFontAttributeName : titleLabel?.font]
 //        let textSize = text.
 //    }
-}
-
-// MARK: - Button.CornerRadius : Equatable
-extension Button.CornerRadius : Equatable {}
-public func == (lhs: Button.CornerRadius, rhs: Button.CornerRadius) -> Bool {
-    switch (lhs, rhs) {
-    case (.absolute(let lValue), .absolute(let rValue)):
-        return lValue == rValue
-    case (.relative(let lPercent, let lAttribute), .relative(let rPercent, let rAttribute)):
-        return (lPercent == rPercent) && (lAttribute == rAttribute)
-    case (.halfCircle, .halfCircle):
-        return true
-    default:
-        return false
-    }
 }
 
 // MARK: <-? Non-equal Assignment Operator
