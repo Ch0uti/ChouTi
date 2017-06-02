@@ -41,7 +41,7 @@ extension SlideUpAnimator {
 		}
 	}
 	
-	fileprivate func presentingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
+	private func presentingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
 		// Necessary setup for presenting
 		guard
 			let presentedView = self.presentedViewController?.view,
@@ -99,7 +99,7 @@ extension SlideUpAnimator {
 			})
 	}
 	
-	fileprivate func dismissingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
+	private func dismissingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
 		// Necessary setup for dismissing
 		guard
 			let fromView = self.fromViewController?.view,
@@ -136,7 +136,10 @@ extension SlideUpAnimator {
 		// Call super.animationEnded at end to avoid clear transitionContext
 		super.animationEnded(transitionCompleted)
 	}
-    
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension SlideUpAnimator {
     public override func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let overlayPresentationController = OverlayPresentationController(presentedViewController: presented, presentingViewController: presenting, overlayViewStyle: overlayViewStyle)
         overlayPresentationController.shouldDismissOnTappingOutsideView = shouldDismissOnTappingOutsideView

@@ -13,6 +13,8 @@ class ViewControllersSection: NSObject, TableViewSectionType {
     var headerTitle: String? = "View Controller Containers"
     var rows: [TableViewRowType] = []
     
+    let animator = FadeInPresentingAnimator()
+    
     override init() {
         super.init()
         
@@ -47,6 +49,9 @@ class ViewControllersSection: NSObject, TableViewSectionType {
                     centerVC.slideViewController = slideViewController
                     centerVC.leftViewController = leftVC
                     centerVC.rightViewController = rightVC
+                    
+                    slideViewController.modalPresentationStyle = .custom
+                    slideViewController.transitioningDelegate = self.animator
                     
                     cell?.tableView?.presentingViewController?.present(slideViewController, animated: true, completion: nil)
             })
