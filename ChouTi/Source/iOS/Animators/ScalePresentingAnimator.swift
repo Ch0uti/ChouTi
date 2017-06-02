@@ -43,7 +43,7 @@ extension ScalePresentingAnimator {
         }
     }
     
-    fileprivate func presentingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
+    private func presentingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
         // Necessary setup for presenting
         guard
             let presentedViewController = self.presentedViewController,
@@ -70,7 +70,7 @@ extension ScalePresentingAnimator {
         })
     }
     
-    fileprivate func dismissingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
+    private func dismissingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
         // Necessary setup for dismissing
         guard let fromView = self.fromViewController?.view else {
 			NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
@@ -84,7 +84,10 @@ extension ScalePresentingAnimator {
                 transitionContext.completeTransition(finished)
         }
     }
-    
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension ScalePresentingAnimator {
     public override func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let overlayPresentationController = OverlayPresentationController(presentedViewController: presented, presentingViewController: presenting, overlayViewStyle: overlayViewStyle)
         overlayPresentationController.shouldDismissOnTappingOutsideView = false

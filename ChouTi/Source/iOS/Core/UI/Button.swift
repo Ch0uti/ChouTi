@@ -68,6 +68,9 @@ open class Button: UIButton {
         }
     }
     
+    /// If the button appearance transition should be animated. Default value is `true`.
+    public var isAnimated: Bool = true
+    
     // MARK: - Storing Extra Presentation Styles
     fileprivate var borderColorForState = [UInt : UIColor]()
     fileprivate var borderWidthForState = [UInt : CGFloat]()
@@ -342,7 +345,9 @@ extension Button {
         transition.duration = 0.075
         
         defer {
-            layer.add(transition, forKey: kCATransition)
+            if isAnimated {
+                layer.add(transition, forKey: kCATransition)
+            }
         }
         
         if state == .highlighted {

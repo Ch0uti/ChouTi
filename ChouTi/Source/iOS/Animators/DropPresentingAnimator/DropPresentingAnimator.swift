@@ -61,7 +61,7 @@ extension DropPresentingAnimator {
 		}
 	}
 	
-	fileprivate func presentingAnimation(_ transitionContext: UIViewControllerContextTransitioning?) {
+	private func presentingAnimation(_ transitionContext: UIViewControllerContextTransitioning?) {
 		// Necessary setup for presenting
 		guard let transitionContext = transitionContext else {
 			NSLog("Error: transitionContext is nil")

@@ -20,9 +20,7 @@ public extension Comparable {
      - returns: number normalized in this range, if self is in the range, self is returned. otherwirse, it will return min or max.
      */
     public func normalize(_ min: Self, _ max: Self) -> Self {
-        guard min <= max else {
-            fatalError("Error: min: \(min) is greater than max: \(max)")
-        }
+        precondition(min <= max, "Error: min: \(min) is greater than max: \(max)")
         return Swift.min(Swift.max(min, self), max)
     }
 	
@@ -33,11 +31,24 @@ public extension Comparable {
 	- parameter max: max number
 	*/
 	public mutating func normalizeInPlace(_ min: Self, _ max: Self) {
-		guard min <= max else {
-			fatalError("Error: min: \(min) is greater than max: \(max)")
-		}
+        precondition(min <= max, "Error: min: \(min) is greater than max: \(max)")
 		self = Swift.min(Swift.max(min, self), max)
 	}
+    
+    /// Clamp `value` to the range min...max. This same as `normalize(_:_:)`.
+    ///
+    /// - Parameter limits: range to clamp
+    /// - Returns: a value between min ... max
+    public func clamp(to limits: ClosedRange<Self>) -> Self {
+        return Swift.min(Swift.max(limits.lowerBound, self), limits.upperBound)
+    }
+    
+    /// Clamp `self` to the range. This same as `normalizeInPlace(_:_:)`.
+    ///
+    /// - Parameter limits: range to clamp
+    public mutating func clampInPlace(to limits: ClosedRange<Self>) {
+        self = Swift.min(Swift.max(limits.lowerBound, self), limits.upperBound)
+    }
 }
 
 public extension Bool {

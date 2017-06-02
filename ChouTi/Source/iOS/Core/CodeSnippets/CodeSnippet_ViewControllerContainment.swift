@@ -22,6 +22,6 @@
 
 // MARK: - Remove View Controller
 
-//viewController.willMoveToParentViewController(nil)
+//viewController.willMove(toParentViewController: nil)
 //viewController.view.removeFromSuperview()
 //viewController.removeFromParentViewController()
