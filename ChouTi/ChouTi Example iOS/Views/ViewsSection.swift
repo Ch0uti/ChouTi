@@ -14,6 +14,12 @@ struct ViewsSection: TableViewSectionType {
     
     var rows: [TableViewRowType] = {
         return [
+            TableViewRow(title: "Buttons",
+                         subtitle: "Different button styles",
+                         cellSelectAction: { indexPath, cell, tableView in
+                            cell?.tableView?.deselectRow(at: indexPath, animated: true)
+                            cell?.tableView?.presentingViewController?.show(ButtonsDemoViewController(), sender: nil) }
+            ),
             TableViewRow(title: "Menu View",
                 subtitle: "Horizontal Menu View",
                 cellSelectAction: { indexPath, cell, tableView in

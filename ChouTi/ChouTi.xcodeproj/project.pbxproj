@@ -208,6 +208,8 @@
 		0275AE791DDE5CB200DBA4D3 /* ChouTi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 023050921D2440DB00D7B190 /* ChouTi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0275AEA01DDFFF0B00DBA4D3 /* OrderedDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0275AE9F1DDFFF0B00DBA4D3 /* OrderedDictionaryTests.swift */; };
 		027E4CB41EE06C7C009ADFFF /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E4CB31EE06C7C009ADFFF /* Math.swift */; };
+		028FC2FD1EE6021F005E25BC /* ButtonsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */; };
+		028FC2FF1EE60367005E25BC /* CodeSnippet_UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FC2FE1EE60367005E25BC /* CodeSnippet_UIStackView.swift */; };
 		029E5FBC1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E5FBB1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift */; };
 		02A245641EB2932300A15837 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A245631EB2932300A15837 /* Platform.swift */; };
 		02D8A67F1EE1BAF60058F1A4 /* FadeInPresentingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D8A67E1EE1BAF60058F1A4 /* FadeInPresentingAnimator.swift */; };
@@ -469,6 +471,8 @@
 		027B6F641EB391620096334E /* Parse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parse+Extensions.swift"; sourceTree = "<group>"; };
 		027B6F651EB391620096334E /* PFFile+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PFFile+Extensions.swift"; sourceTree = "<group>"; };
 		027E4CB31EE06C7C009ADFFF /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsDemoViewController.swift; sourceTree = "<group>"; };
+		028FC2FE1EE60367005E25BC /* CodeSnippet_UIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSnippet_UIStackView.swift; sourceTree = "<group>"; };
 		029E5FBB1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+RetrieveTests.swift"; sourceTree = "<group>"; };
 		02A245631EB2932300A15837 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		02D8A67E1EE1BAF60058F1A4 /* FadeInPresentingAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInPresentingAnimator.swift; sourceTree = "<group>"; };
@@ -570,6 +574,7 @@
 			isa = PBXGroup;
 			children = (
 				022772011D622FC600D9CAE7 /* ViewsSection.swift */,
+				028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */,
 				025C91721D63F79C000C54D8 /* MenuViewDemoController.swift */,
 				025C91711D63F79C000C54D8 /* ImagePickerDemoViewController.swift */,
 				025C91701D63F79C000C54D8 /* DropDownMenuDemoViewController.swift */,
@@ -663,6 +668,7 @@
 				022772251D6258C900D9CAE7 /* CodeSnippet_UITableViewCell.swift */,
 				022772261D6258C900D9CAE7 /* CodeSnippet_UITextField.swift */,
 				022772271D6258C900D9CAE7 /* CodeSnippet_UIView.swift */,
+				028FC2FE1EE60367005E25BC /* CodeSnippet_UIStackView.swift */,
 				022772281D6258C900D9CAE7 /* CodeSnippet_UIViewController.swift */,
 				022772291D6258C900D9CAE7 /* CodeSnippet_ViewControllerContainment.swift */,
 				0227722A1D6258C900D9CAE7 /* CodeSnippets_AppDelegate.swift */,
@@ -1545,6 +1551,7 @@
 				025C91B01D64007F000C54D8 /* TableLayoutDemoViewController.swift in Sources */,
 				025C917B1D63F79C000C54D8 /* NavigationBarStatusBarDemoViewController.swift in Sources */,
 				025C91B11D64007F000C54D8 /* TableViewSectionRowExtensionDemoViewController.swift in Sources */,
+				028FC2FF1EE60367005E25BC /* CodeSnippet_UIStackView.swift in Sources */,
 				022772021D622FC600D9CAE7 /* ViewsSection.swift in Sources */,
 				025C918C1D63F9FA000C54D8 /* MenuPageDemoViewController.swift in Sources */,
 				022772061D62387E00D9CAE7 /* TableViewCellsDemoVC.swift in Sources */,
@@ -1556,6 +1563,7 @@
 				02DAEC861DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift in Sources */,
 				025C91871D63F9E0000C54D8 /* CenterViewController.swift in Sources */,
 				02FFC4DF1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift in Sources */,
+				028FC2FD1EE6021F005E25BC /* ButtonsDemoViewController.swift in Sources */,
 				020665141D5FCD05002A7E2A /* MainViewController.swift in Sources */,
 				025C91761D63F79C000C54D8 /* AlertControllerDemoViewController.swift in Sources */,
 				025C91C31D64007F000C54D8 /* UIImage+CroppedImageDemo.swift in Sources */,

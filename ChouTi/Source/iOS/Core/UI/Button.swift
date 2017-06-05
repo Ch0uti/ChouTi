@@ -72,11 +72,16 @@ open class Button: UIButton {
     public var isAnimated: Bool = true
     
     // MARK: - Storing Extra Presentation Styles
+    fileprivate var _backgroundColorForState = [UInt : UIColor]()
+    fileprivate var backgroundImageColorForState = [UInt : UIColor]()
+    fileprivate var transformForState = [UInt : CGAffineTransform]()
+    
+    // Layer Related
     fileprivate var borderColorForState = [UInt : UIColor]()
     fileprivate var borderWidthForState = [UInt : CGFloat]()
     fileprivate var cornerRadiusForState = [UInt : CornerRadius]()
-    fileprivate var backgroundImageColorForState = [UInt : UIColor]()
     
+    // Shadow Related
     fileprivate var shadowColorForState = [UInt : UIColor]()
     fileprivate var shadowOpacityForState = [UInt : Float]()
     fileprivate var shadowOffsetForState = [UInt : CGSize]()
@@ -99,6 +104,40 @@ open class Button: UIButton {
 extension Button {
     // MARK: - Setting Extra Presentation Styles
     
+    /// Set the background color to use for the specified state.
+    ///
+    /// - Parameters:
+    ///   - color: The background color for the specified state.
+    ///   - state: The state that uses the specified background color. The possible values are described in UIControlState.
+    public func setBackgroundColor(_ color: UIColor?, forState state: UIControlState) {
+        if _backgroundColorForState[state.rawValue] <-? color { refreshBorderStyles() }
+    }
+    
+    /**
+     Set the background image with color to use for the specified state.
+     
+     - parameter color: The color for background image to use for the specified state.
+     - parameter state: The state that uses the specified background image color. The possible values are described in UIControlState.
+     */
+    public override func setBackgroundImageWithColor(_ color: UIColor?, forState state: UIControlState) {
+        if backgroundImageColorForState[state.rawValue] <-? color {
+            if let color = color {
+                setBackgroundImage(UIImage.imageWithColor(color), for: state)
+            } else {
+                setBackgroundImage(nil, for: state)
+            }
+        }
+    }
+    
+    /// Set the transform to use for the specified state.
+    ///
+    /// - Parameters:
+    ///   - transform: The transform for the specified state.
+    ///   - state: The state that uses the specified transform. The possible values are described in UIControlState.
+    public func setTransform(_ transform: CGAffineTransform?, forState state: UIControlState) {
+        if transformForState[state.rawValue] <-? transform { refreshBorderStyles() }
+    }
+    
     /**
      Set the border color to use for the specified state.
      
@@ -120,30 +159,13 @@ extension Button {
     }
     
     /**
-     Set the corner radius to use for the specified state. `clipsToBounds` is set to true.
+     Set the corner radius to use for the specified state.
      
      - parameter cornerRadius: The corner radius to use for the specified state.
      - parameter state:        The state that uses the specified corner radius. The possible values are described in UIControlState.
      */
     public func setCornerRadius(_ cornerRadius: CornerRadius?, forState state: UIControlState) {
-        if !clipsToBounds { clipsToBounds = true }
         if cornerRadiusForState[state.rawValue] <-? cornerRadius { refreshBorderStyles() }
-    }
-    
-    /**
-     Set the background image with color to use for the specified state.
-     
-     - parameter color: The color for background image to use for the specified state.
-     - parameter state: The state that uses the specified background image color. The possible values are described in UIControlState.
-     */
-    public override func setBackgroundImageWithColor(_ color: UIColor?, forState state: UIControlState) {
-        if backgroundImageColorForState[state.rawValue] <-? color {
-            if let color = color {
-                setBackgroundImage(UIImage.imageWithColor(color), for: state)
-            } else {
-                setBackgroundImage(nil, for: state)
-            }
-        }
     }
     
     /// Set the shadow color to use for the specified state. `clipsToBounds` should be `false` to see the effect.
@@ -193,6 +215,33 @@ extension Button {
     
     // MARK: - Getting Extra Presentation Styles
     
+    /// Returns the background color associated with the specified state.
+    ///
+    /// - Parameter state: The state that uses the background color. The possible values are described in UIControlState.
+    /// - Returns: The background color for the specified state. If no background color has been set for the specific state, this method returns the background color associated with the UIControlStateNormal state. If no background color has been set for the UIControlStateNormal state, nil is returned.
+    public func backgroundColorForState(_ state: UIControlState) -> UIColor? {
+        return _backgroundColorForState[state.rawValue] ?? _backgroundColorForState[UIControlState.normal.rawValue]
+    }
+    
+    /**
+     Returns the background image color associated with the specified state.
+     
+     - parameter state: The state that uses the background image color. The possible values are described in UIControlState.
+     
+     - returns: The background image color for the specified state. If no background image color has been set for the specific state, this method returns the background image color associated with the UIControlStateNormal state. If no background image color has been set for the UIControlStateNormal state, nil is returned.
+     */
+    public func backgroundImageColorForState(_ state: UIControlState) -> UIColor? {
+        return backgroundImageColorForState[state.rawValue] ?? backgroundImageColorForState[UIControlState.normal.rawValue]
+    }
+    
+    /// Returns the transform associated with the specified state.
+    ///
+    /// - Parameter state: The state that uses the transform. The possible values are described in UIControlState.
+    /// - Returns: The transform for the specified state. If no transform has been set for the specific state, this method returns the transform associated with the UIControlStateNormal state. If no transform has been set for the UIControlStateNormal state, nil is returned.
+    public func transformForState(_ state: UIControlState) -> CGAffineTransform? {
+        return transformForState[state.rawValue] ?? transformForState[UIControlState.normal.rawValue]
+    }
+    
     /**
      Returns the border color associated with the specified state.
      
@@ -224,17 +273,6 @@ extension Button {
      */
     public func cornerRadiusForState(_ state: UIControlState) -> CornerRadius? {
         return cornerRadiusForState[state.rawValue] ?? cornerRadiusForState[UIControlState.normal.rawValue]
-    }
-    
-    /**
-     Returns the background image color associated with the specified state.
-     
-     - parameter state: The state that uses the background image color. The possible values are described in UIControlState.
-     
-     - returns: The background image color for the specified state. If no background image color has been set for the specific state, this method returns the background image color associated with the UIControlStateNormal state. If no background image color has been set for the UIControlStateNormal state, nil is returned.
-     */
-    public func backgroundImageColorForState(_ state: UIControlState) -> UIColor? {
-        return backgroundImageColorForState[state.rawValue] ?? backgroundImageColorForState[UIControlState.normal.rawValue]
     }
     
     /// Returns the shadow color used for a state.
@@ -295,6 +333,16 @@ extension Button {
 extension Button {
     
     // MARK: - Convenient Values
+    private var normalBackgroundColor: UIColor? { return _backgroundColorForState[UIControlState.normal.rawValue] }
+    private var highlightedBackgroundColor: UIColor? { return _backgroundColorForState[UIControlState.highlighted.rawValue] }
+    private var disabledBackgroundColor: UIColor? { return _backgroundColorForState[UIControlState.disabled.rawValue] }
+    private var selectedBackgroundColor: UIColor? { return _backgroundColorForState[UIControlState.selected.rawValue] }
+    
+    private var normalTransform: CGAffineTransform? { return transformForState[UIControlState.normal.rawValue] }
+    private var highlightedTransform: CGAffineTransform? { return transformForState[UIControlState.highlighted.rawValue] }
+    private var disabledTransform: CGAffineTransform? { return transformForState[UIControlState.disabled.rawValue] }
+    private var selectedTransform: CGAffineTransform? { return transformForState[UIControlState.selected.rawValue] }
+    
     private var normalBorderColor: UIColor? { return borderColorForState[UIControlState.normal.rawValue] }
     private var highlightedBorderColor: UIColor? { return borderColorForState[UIControlState.highlighted.rawValue] }
     private var disabledBorderColor: UIColor? { return borderColorForState[UIControlState.disabled.rawValue] }
@@ -351,6 +399,8 @@ extension Button {
         }
         
         if state == .highlighted {
+            backgroundColor =? highlightedBackgroundColor ?? normalBackgroundColor
+            transform =? highlightedTransform ?? normalTransform
             layer.borderColor =? highlightedBorderColor?.cgColor ?? normalBorderColor?.cgColor
             layer.borderWidth =? highlightedBorderWidth ?? normalBorderWidth
             layer.cornerRadius =? highlightedCornerRadius ?? normalCornerRadius
@@ -361,6 +411,8 @@ extension Button {
             layer.shadowPath =? highlightedShadowPath ?? normalShadowPath
             
         } else if state == .disabled {
+            backgroundColor =? disabledBackgroundColor ?? normalBackgroundColor
+            transform =? disabledTransform ?? normalTransform
             layer.borderColor =? disabledBorderColor?.cgColor ?? normalBorderColor?.cgColor
             layer.borderWidth =? disabledBorderWidth ?? normalBorderWidth
             layer.cornerRadius =? disabledCornerRadius ?? normalCornerRadius
@@ -371,6 +423,8 @@ extension Button {
             layer.shadowPath =? disabledShadowPath ?? normalShadowPath
             
         } else if state == .selected {
+            backgroundColor =? selectedBackgroundColor ?? normalBackgroundColor
+            transform =? selectedTransform ?? normalTransform
             layer.borderColor =? selectedBorderColor?.cgColor ?? normalBorderColor?.cgColor
             layer.borderWidth =? selectedBorderWidth ?? normalBorderWidth
             layer.cornerRadius =? selectedCornerRadius ?? normalCornerRadius
@@ -385,6 +439,8 @@ extension Button {
             transition.duration = 0.25
             
             // Defaults to .Normal state
+            backgroundColor =? normalBackgroundColor
+            transform =? normalTransform
             layer.borderColor =? normalBorderColor?.cgColor
             layer.borderWidth =? normalBorderWidth
             layer.cornerRadius =? normalCornerRadius
