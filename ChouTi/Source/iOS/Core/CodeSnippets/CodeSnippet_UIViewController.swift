@@ -9,53 +9,51 @@
 //import UIKit
 //
 //class <#ViewController#>: UIViewController {
-//    convenience init() {
-//        self.init(nibName: nil, bundle: nil)
-//    }
 //    
-//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+//    // MARK: - Init
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 //        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 //        commonInit()
 //    }
 //    
 //    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        commonInit()
+//        fatalError("init(coder:) has not been implemented")
 //    }
 //    
-//    func commonInit() {
+//    private func commonInit() {
 //        // <#Common Init#>
 //    }
 //    
-//	override func viewDidLoad() {
-//		super.viewDidLoad()
-//		setupViews()
-//		setupConstraints()
-//	}
-//	
-//	private func setupViews() {
-//		// TODO: Setup view hierarchy
-//		<#view#>.translatesAutoresizingMaskIntoConstraints = false
-//		view.addSubview(<#view#>)
-//	}
-//	
-//	private func setupConstraints() {
-//		// TODO: Setup constraints
-//		let views = [
-//			"view" : <#view#>
-//		]
-//		
-//		let metrics: [String : CGFloat] = [
-//			"vertical_spacing" : 4.0
-//		]
-//		
-//		var constraints = [NSLayoutConstraint]()
-//		
-//		// TODO: Add constraints
-//		constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-[view]-|", options: [], metrics: metrics, views: views)
-//		
-//		NSLayoutConstraint.activateConstraints(constraints)
-//	}
+//    // MARK: - Life Cycle
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        setupViews()
+//        setupConstraints()
+//    }
+//    
+//    private func setupViews() {
+//        // TODO: Setup view hierarchy
+//        <#view#>.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(<#view#>)
+//    }
+//    
+//    private func setupConstraints() {
+//        // TODO: Setup constraints
+//        let views = [
+//            "view" : <#view#>
+//        ]
+//        
+//        let metrics: [String : CGFloat] = [
+//            "vertical_spacing" : 4.0
+//        ]
+//        
+//        var constraints = [NSLayoutConstraint]()
+//        
+//        // TODO: Add constraints
+//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: [], metrics: metrics, views: views)
+//        
+//        NSLayoutConstraint.activate(constraints)
+//    }
 //}
 
 
