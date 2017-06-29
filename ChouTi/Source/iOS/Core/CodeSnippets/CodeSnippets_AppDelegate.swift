@@ -9,21 +9,18 @@
 
 
 // MARK: - Programmatically Setup Root View Controller
-
+//
 //class AppDelegate: UIResponder, UIApplicationDelegate {
 //	
-//	var window: UIWindow?
+//	var window: UIWindow? = UIWindow()
 //	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 //		
 //		let viewController = UIViewController()
 //		let navigationController = UINavigationController(rootViewController: viewController)
 //		
-//		window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//		if let window = window {
-//			window.rootViewController = navigationController
-//			window.backgroundColor = .whiteColor()
-//			window.makeKeyAndVisible()
-//		}
+//		window?.rootViewController = navigationController
+//		window?.backgroundColor = .white
+//		window?.makeKeyAndVisible()
 //		
 //		return true
 //	}
