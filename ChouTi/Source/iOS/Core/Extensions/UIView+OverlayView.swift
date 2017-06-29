@@ -113,7 +113,7 @@ public extension UIView {
         
         if viewKeyPointer != nil {
             if getAssociatedViewForKeyPointer(viewKeyPointer!) != nil {
-                print("Warning: found existing overlay view with viewKeyPointer: \(viewKeyPointer)")
+                print("Warning: found existing overlay view with viewKeyPointer: \(String(describing: viewKeyPointer))")
             }
             
             setAssociatedView(overlayView, forKeyPointer: viewKeyPointer!)
@@ -318,7 +318,7 @@ public extension UIView {
         
         if viewKeyPointer != nil {
             if getAssociatedViewForKeyPointer(viewKeyPointer!) != nil {
-                print("Warning: found existing blurred overlay view with viewKeyPointer: \(viewKeyPointer)")
+                print("Warning: found existing blurred overlay view with viewKeyPointer: \(String(describing: viewKeyPointer))")
             }
             
             setAssociatedView(overlayView, forKeyPointer: viewKeyPointer!)
