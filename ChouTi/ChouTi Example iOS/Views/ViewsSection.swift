@@ -14,8 +14,8 @@ struct ViewsSection: TableViewSectionType {
     
     var rows: [TableViewRowType] = {
         return [
-            TableViewRow(title: "Buttons",
-                         subtitle: "Different button styles",
+            TableViewRow(title: "Button",
+                         subtitle: "Different Button Styles",
                          cellSelectAction: { indexPath, cell, tableView in
                             cell?.tableView?.deselectRow(at: indexPath, animated: true)
                             cell?.tableView?.presentingViewController?.show(ButtonsDemoViewController(), sender: nil) }

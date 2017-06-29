@@ -68,7 +68,7 @@ class ButtonsDemoViewController: UIViewController {
         flatButton2.constrainTo(size: CGSize(width: 240, height: 44))
         stackView.addArrangedSubview(flatButton2)
         
-        // Blur with shadow
+        // Glowing Button
         let blurButton1 = Button()
         blurButton1.clipsToBounds = false
         
@@ -77,11 +77,14 @@ class ButtonsDemoViewController: UIViewController {
         blurButton1.setTitleColor(ColorPalette.cloudsWhite, for: .normal)
         blurButton1.setTitleColor(ColorPalette.cloudsWhite.withAlphaComponent(0.7), for: .highlighted)
         
-        // setup color/cornerRadius
+        // setup color
         blurButton1.setBackgroundColor(ColorPalette.pomegranateRed, forState: .normal)
         blurButton1.setBackgroundColor(ColorPalette.pomegranateRed.darkerColor(brightnessDecreaseFactor: 0.9), forState: .highlighted)
+        
+        // setup corner radius
         blurButton1.setCornerRadius(.halfCircle, forState: .normal)
         
+        // setup transform
         blurButton1.setTransform(.identity, forState: .normal)
         blurButton1.setTransform(CGAffineTransform(scaleX: 0.99, y: 0.99), forState: .highlighted)
         

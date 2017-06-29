@@ -13,7 +13,7 @@ import UIKit
 open class Button: UIButton {
     
     /**
-     Corner radius attribute, used in CornerRadius .Relative case
+     Corner radius attribute, used in CornerRadius .relative case.
      
      - Width:  Width
      - Height: Height
@@ -24,11 +24,11 @@ open class Button: UIButton {
     }
     
     /**
-     Corner radius option
+     Corner radius option.
      
-     - Absolute:   absolute corner radius
-     - Relative:   relative corner radius, calculated by percetage multiply by width or height
-     - HalfCircle: half-circle, capsule like
+     - Absolute:   Absolute corner radius.
+     - Relative:   Relative corner radius, calculated by percetage multiply by width or height
+     - HalfCircle: Half-circle, capsule like
      */
     public enum CornerRadius: Equatable {
         case absolute(CGFloat)
@@ -438,7 +438,7 @@ extension Button {
             // prolong the fade transition, this mimics UIButtonType.System behaviors
             transition.duration = 0.25
             
-            // Defaults to .Normal state
+            // Defaults to .normal state
             backgroundColor =? normalBackgroundColor
             transform =? normalTransform
             layer.borderColor =? normalBorderColor?.cgColor

@@ -183,29 +183,31 @@ public extension UIImage {
 
 // MARK: - Mutating Image
 public extension UIImage {
-	/**
-	Apply a new alpha value for an image
-	
-	- parameter alpha: new alpha value
-	
-	- returns: new image with alpha provided
-	*/
+    /// Apply a new alpha value for an image.
+    ///
+    /// - Parameter alpha: New alpha value.
+    /// - Returns: New image with the alpha provided
     public func imageByApplyingAlpha(_ alpha: CGFloat) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        let ctx = UIGraphicsGetCurrentContext()
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        defer {
+            UIGraphicsEndImageContext()
+        }
         
-        let area: CGRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        guard let context = UIGraphicsGetCurrentContext() else { return self }
         
-        ctx!.scaleBy(x: 1, y: -1)
-        ctx!.translateBy(x: 0, y: -area.size.height)
-        ctx!.setBlendMode(.multiply)
-        ctx!.setAlpha(alpha)
-        ctx!.draw(cgImage!, in: area)
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        context.scaleBy(x: 1, y: -1)
+        context.translateBy(x: 0, y: -rect.size.height)
+
+        context.setAlpha(alpha)
+        guard let cgImage = cgImage else { return self }
+        context.draw(cgImage, in: rect)
         
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else {
+            return self
+        }
         
-        return newImage!
+        return newImage
     }
 	
 	/// Apply a new tint color for an image, only alpha channel is kept
