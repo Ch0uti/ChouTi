@@ -6,8 +6,8 @@
 //
 //
 
-//<#view#>.layer.shadowColor = UIColor.blackColor().CGColor
-//<#view#>.layer.shadowOffset = CGSizeZero
+//<#view#>.layer.shadowColor = UIColor.black.cgColor
+//<#view#>.layer.shadowOffset = .zero
 //<#view#>.layer.shadowOpacity = 0.6
-//<#view#>.layer.shadowRadius = 4.0
-//<#view#>.layer.shadowPath = UIBezierPath(rect: <#view#>.bounds).CGPath
+//<#view#>.layer.shadowRadius = 8
+//<#view#>.layer.shadowPath = UIBezierPath(rect: <#view#>.bounds).cgPath

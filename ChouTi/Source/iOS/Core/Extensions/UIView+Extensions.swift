@@ -300,7 +300,7 @@ public extension UIView {
      */
     public func addDarkShadow() {
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize.zero
+        layer.shadowOffset = .zero
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 18.0
         // layer.shadowPath = UIBezierPath(rect: bounds).CGPath
