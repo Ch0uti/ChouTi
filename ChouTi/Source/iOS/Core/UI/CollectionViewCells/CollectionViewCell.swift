@@ -49,16 +49,3 @@ open class CollectionViewCell : UICollectionViewCell {
 		NSLayoutConstraint.activate(constraints)
 	}
 }
-
-
-
-// MARK: - CollectionViewCellInfo
-extension CollectionViewCell : CollectionViewCellInfo {
-	public class func identifier() -> String {
-		return String(describing: self)
-	}
-	
-	public class func registerInCollectionView(_ collectionView: UICollectionView) {
-		collectionView.register(self, forCellWithReuseIdentifier: identifier())
-	}
-}
