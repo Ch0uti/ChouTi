@@ -1,10 +1,11 @@
 platform :ios, '9.0'
 use_frameworks!
+inhibit_all_warnings!
 
 # Pods
 def pod_testing
   pod 'Quick', '~> 1.1'
-  pod 'Nimble', '~> 6.1'
+  pod 'Nimble', '~> 7.0'
 end
 
 # Targets

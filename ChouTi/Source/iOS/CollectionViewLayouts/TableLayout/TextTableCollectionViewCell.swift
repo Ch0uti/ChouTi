@@ -34,7 +34,7 @@ class TextTableCollectionViewCell: UICollectionViewCell {
 }
 
 extension TextTableCollectionViewCell {
-	class func identifier() -> String {
+	override class func identifier() -> String {
 		return NSStringFromClass(TextTableCollectionViewCell.self)
 	}
 	
