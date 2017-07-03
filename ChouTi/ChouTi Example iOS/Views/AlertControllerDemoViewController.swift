@@ -79,7 +79,7 @@ class AlertControllerDemoViewController : UIViewController {
                 title: "OK",
                 style: .default,
                 handler: { (handler) -> Void in
-                    print("\(handler.title) pressed")
+                    print("\(handler.title ??? "Unknown") pressed")
             }))
         }
         
@@ -88,7 +88,7 @@ class AlertControllerDemoViewController : UIViewController {
                 title: "Cancel",
                 style: .cancel,
                 handler: { (handler) -> Void in
-                    print("\(handler.title) pressed")
+                    print("\(handler.title ??? "Unknown") pressed")
             }))
         }
         
@@ -97,7 +97,7 @@ class AlertControllerDemoViewController : UIViewController {
                 title: "Delete",
                 style: .destructive,
                 handler: { (handler) -> Void in
-                    print("\(handler.title) pressed")
+                    print("\(handler.title ??? "Unknown") pressed")
             }))
         }
         
@@ -106,7 +106,7 @@ class AlertControllerDemoViewController : UIViewController {
                 title: "Extra",
                 style: .default,
                 handler: { (handler) -> Void in
-                    print("\(handler.title) pressed")
+                    print("\(handler.title ??? "Unknown") pressed")
             }))
         }
         
@@ -132,7 +132,7 @@ class AlertControllerDemoViewController : UIViewController {
                 title: "OK",
                 style: .default,
                 handler: { (handler) -> Void in
-                    print("\(handler.title) pressed")
+                    print("\(handler.title ??? "Unknown") pressed")
             }))
         }
         
@@ -141,7 +141,7 @@ class AlertControllerDemoViewController : UIViewController {
                 title: "Cancel",
                 style: .cancel,
                 handler: { (handler) -> Void in
-                    print("\(handler.title) pressed")
+                    print("\(handler.title ??? "Unknown") pressed")
             }))
         }
         
@@ -150,7 +150,7 @@ class AlertControllerDemoViewController : UIViewController {
                 title: "Delete",
                 style: .destructive,
                 handler: { (handler) -> Void in
-                    print("\(handler.title) pressed")
+                    print("\(handler.title ??? "Unknown") pressed")
             }))
         }
         
@@ -159,7 +159,7 @@ class AlertControllerDemoViewController : UIViewController {
                 title: "Extra",
                 style: .default,
                 handler: { (handler) -> Void in
-                    print("\(handler.title) pressed")
+                    print("\(handler.title ??? "Unknown") pressed")
             }))
         }
         
@@ -176,7 +176,7 @@ class AlertControllerDemoViewController : UIViewController {
             button.setTitleColor(ColorPalette.facebookBlueColor, for: .normal)
             button.setTitleColor(ColorPalette.facebookBlueColor.darkerColor(), for: .highlighted)
             alert.addAction(AlertAction(title: "", button: button, handler: { (handler) -> Void in
-                print("\(handler.button.currentTitle) pressed")
+                print("\(handler.button.currentTitle ??? "Unknown") pressed")
             }))
         }
         
