@@ -79,7 +79,7 @@ open class TextTableCollectionView: UICollectionView {
     }
 	
 	fileprivate func commonInit() {
-		TextTableCollectionViewCell.registerInCollectionView(self)
+		TextTableCollectionViewCell.register(inCollectionView: self)
 		
 		self.dataSource = self
 		self.backgroundColor = UIColor.clear
