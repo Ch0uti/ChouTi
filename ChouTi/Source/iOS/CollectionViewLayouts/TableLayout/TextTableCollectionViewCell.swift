@@ -37,8 +37,8 @@ extension TextTableCollectionViewCell {
 	override class func identifier() -> String {
 		return NSStringFromClass(TextTableCollectionViewCell.self)
 	}
-	
-	class func registerInCollectionView(_ collectionView: UICollectionView) {
-		collectionView.register(TextTableCollectionViewCell.self, forCellWithReuseIdentifier: TextTableCollectionViewCell.identifier())
-	}
+    
+    override class func register(inCollectionView collectionView: UICollectionView) {
+        collectionView.register(TextTableCollectionViewCell.self, forCellWithReuseIdentifier: TextTableCollectionViewCell.identifier())
+    }
 }
