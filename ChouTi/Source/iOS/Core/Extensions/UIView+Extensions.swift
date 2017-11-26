@@ -44,7 +44,7 @@ public extension UIView {
 	- parameter completion: Completion block.
 	*/
     public func setHidden(_ toHide: Bool, animated: Bool = false, duration: TimeInterval = 0.25, completion: ((Bool) -> ())? = nil) {
-        if self.isHidden == toHide {
+        if self.isHidden == toHide && alpha == (toHide ? 0.0 : 1.0) {
             completion?(false)
             return
         }
@@ -62,11 +62,11 @@ public extension UIView {
                 }
             }
             
-            UIView.animate(withDuration: duration, animations: { _ in
+            UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut, .beginFromCurrentState, .allowUserInteraction], animations: { _ in
                 self.alpha = toHide ? 0.0 : 1.0
-			}, completion: { finished -> Void in
-				self.isHidden = toHide
-				completion?(finished)
+            }, completion: { finished -> Void in
+                self.isHidden = toHide
+                completion?(finished)
             })
         }
     }
