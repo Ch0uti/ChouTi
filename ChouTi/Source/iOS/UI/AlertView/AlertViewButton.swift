@@ -50,6 +50,7 @@ open class AlertViewButton: Button {
     }
     
     fileprivate func commonInit() {
+        self.clipsToBounds = true
         setCornerRadius(.halfCircle, forState: .normal)
         
         titleLabel?.adjustsFontSizeToFitWidth = true

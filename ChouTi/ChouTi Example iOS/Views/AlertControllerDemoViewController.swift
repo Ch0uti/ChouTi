@@ -34,6 +34,8 @@ class AlertControllerDemoViewController : UIViewController {
         stackView.constrainToCenterInSuperview()
         
         let systemAlertButton = Button()
+        systemAlertButton.clipsToBounds = true
+
         systemAlertButton.setBackgroundImageWithColor(ColorPalette.facebookMediumBlueColor, forState: .normal)
         systemAlertButton.setCornerRadius(.halfCircle, forState: .normal)
         systemAlertButton.setTitle("Present Default Alert", for: .normal)
@@ -67,8 +69,6 @@ class AlertControllerDemoViewController : UIViewController {
         customizedAlertButton.addTarget(self, action: #selector(AlertControllerDemoViewController.presentCustomizedAlert(_:)), for: .touchUpInside)
         customizedAlertButton.constrainTo(size: CGSize(width: 270, height: 44))
         stackView.addArrangedSubview(customizedAlertButton)
-        
-
     }
     
     func presentDefaultAlert(_ sender: Button) {

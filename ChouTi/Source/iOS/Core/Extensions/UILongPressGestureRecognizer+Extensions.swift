@@ -10,20 +10,20 @@ import UIKit
 
 // MARK: - Add Velocity for UILongPressGestureRecognizer
 public extension UILongPressGestureRecognizer {
-    fileprivate struct zhLastLocationKey {
+    private struct zhLastLocationKey {
         static var Key = "zhLastLocationKey"
     }
     
-    fileprivate var lastLocation: CGPoint? {
+    private var lastLocation: CGPoint? {
         get { return (objc_getAssociatedObject(self, &zhLastLocationKey.Key) as? NSValue)?.cgPointValue }
         set { objc_setAssociatedObject(self, &zhLastLocationKey.Key, (newValue != nil ? NSValue(cgPoint: newValue!) : nil), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
-    fileprivate struct zhLastUpdatedTimeIntervalSince1970Key {
+    private struct zhLastUpdatedTimeIntervalSince1970Key {
         static var Key = "zhLastUpdatedTimeIntervalSince1970Key"
     }
     
-    fileprivate var lastUpdatedTimeIntervalSince1970: TimeInterval? {
+    private var lastUpdatedTimeIntervalSince1970: TimeInterval? {
         get {
             return objc_getAssociatedObject(self, &zhLastUpdatedTimeIntervalSince1970Key.Key) as? TimeInterval
         }
@@ -32,20 +32,20 @@ public extension UILongPressGestureRecognizer {
         }
     }
     
-    fileprivate struct zhVelocityKey {
+    private struct zhVelocityKey {
         static var Key = "zhVelocityKey"
     }
     
-    fileprivate var _velocity: CGPoint? {
+    private var _velocity: CGPoint? {
         get { return (objc_getAssociatedObject(self, &zhVelocityKey.Key) as? NSValue)?.cgPointValue }
         set { objc_setAssociatedObject(self, &zhVelocityKey.Key, (newValue != nil ? NSValue(cgPoint: newValue!) : nil), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
     public func setupForDetectingVelocity() {
-        self.addTarget(self, action: #selector(UILongPressGestureRecognizer.longPressed(_:)))
+        self.addTarget(self, action: #selector(longPressed(_:)))
     }
     
-    func longPressed(_ gesture: UILongPressGestureRecognizer) {
+    dynamic private func longPressed(_ gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
         case .began:
             lastLocation = gesture.location(in: view)
