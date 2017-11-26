@@ -151,6 +151,7 @@
 		023A0BA81F0A9A200097986C /* StructWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A0BA11F0A9A200097986C /* StructWrapper.swift */; };
 		023A0BA91F0A9A200097986C /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A0BA21F0A9A200097986C /* Then.swift */; };
 		023A0BAA1F0A9A200097986C /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A0BA31F0A9A200097986C /* Utility.swift */; };
+		023A0BBA1F0D3C120097986C /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A0BB91F0D3C120097986C /* DateFormatter+Extensions.swift */; };
 		025C91551D62A970000C54D8 /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91401D62A970000C54D8 /* QueueTests.swift */; };
 		025C91561D62A970000C54D8 /* CGContext+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91421D62A970000C54D8 /* CGContext+ExtensionsTests.swift */; };
 		025C91571D62A970000C54D8 /* CGRect+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91431D62A970000C54D8 /* CGRect+ExtensionsTests.swift */; };
@@ -414,6 +415,7 @@
 		023A0BA11F0A9A200097986C /* StructWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructWrapper.swift; sourceTree = "<group>"; };
 		023A0BA21F0A9A200097986C /* Then.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		023A0BA31F0A9A200097986C /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		023A0BB91F0D3C120097986C /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		025C91401D62A970000C54D8 /* QueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTests.swift; sourceTree = "<group>"; };
 		025C91421D62A970000C54D8 /* CGContext+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGContext+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		025C91431D62A970000C54D8 /* CGRect+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+ExtensionsTests.swift"; sourceTree = "<group>"; };
@@ -981,6 +983,7 @@
 				023A0B4C1F0A9A0F0097986C /* CGRect+Extensions.swift */,
 				023A0B4D1F0A9A0F0097986C /* Collection+Extensions.swift */,
 				023A0B4E1F0A9A0F0097986C /* Date+Extensions.swift */,
+				023A0BB91F0D3C120097986C /* DateFormatter+Extensions.swift */,
 				023A0B4F1F0A9A0F0097986C /* Dictionary+Extensions.swift */,
 				023A0B501F0A9A0F0097986C /* DispatchQueue+Once.swift */,
 				023A0B511F0A9A0F0097986C /* Math.swift */,
@@ -1683,6 +1686,7 @@
 				023A0B8A1F0A9A0F0097986C /* UIGestureRecognizer+Extensions.swift in Sources */,
 				022772AC1D6258C900D9CAE7 /* Animator.swift in Sources */,
 				023A0BA41F0A9A200097986C /* Constants.swift in Sources */,
+				023A0BBA1F0D3C120097986C /* DateFormatter+Extensions.swift in Sources */,
 				022773221D6258C900D9CAE7 /* SingleTitleContentPairView.swift in Sources */,
 				023A0B861F0A9A0F0097986C /* UIButton+Action.swift in Sources */,
 				022773111D6258C900D9CAE7 /* DropDownMenu.swift in Sources */,

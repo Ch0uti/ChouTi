@@ -6,5 +6,6 @@
         <page name='Memory'/>
         <page name='LeftRightLabelsViewLayout'/>
         <page name='UIButton'/>
+        <page name='CollectionView ContentInset'/>
     </pages>
 </playground>
