@@ -145,16 +145,16 @@ open class AlertView: UIView {
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel.textAlignment = .center
-        titleLabel.setContentHuggingPriority(1000, for: .vertical)
-        titleLabel.setContentCompressionResistancePriority(1000, for: .vertical)
+        titleLabel.setContentHuggingPriority(.required, for: .vertical)
+        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         titleLabel.preferredMaxLayoutWidth = preferredWidth - layoutMargins.left - layoutMargins.right
         
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.numberOfLines = 0
         messageLabel.font = UIFont.systemFont(ofSize: 13)
         messageLabel.textAlignment = .center
-        messageLabel.setContentHuggingPriority(1000, for: .vertical)
-        messageLabel.setContentCompressionResistancePriority(1000, for: .vertical)
+        messageLabel.setContentHuggingPriority(.required, for: .vertical)
+        messageLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         messageLabel.preferredMaxLayoutWidth = preferredWidth - layoutMargins.left - layoutMargins.right
         
         labelsStackView.axis = .vertical
@@ -228,7 +228,7 @@ open class AlertView: UIView {
         
         // Setup default button height for 44.0
         action.button.translatesAutoresizingMaskIntoConstraints = false
-        action.button.constrainTo(height: 44).priority = 500
+        action.button.constrainTo(height: 44).priority = UILayoutPriority(500)
         actionButtonsStackView.addArrangedSubview(action.button)
         
         if actions.count > 2 {

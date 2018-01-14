@@ -102,7 +102,7 @@ open class ImagePickerView: UIView {
 
 @available(iOS 9.0, *)
 extension ImagePickerView {
-	public func selectPhoto(_ sender: AnyObject) {
+    @objc public func selectPhoto(_ sender: AnyObject) {
 		delegate?.cameraButtonTappedOnImagePickerView(self)
 		
 		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -147,7 +147,7 @@ extension ImagePickerView {
 		}
 		
 		imagePicker.delegate = self
-		imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
+        imagePicker.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
 		imagePicker.navigationBar.tintColor = tintColor
 
 		presentingViewController?.present(imagePicker, animated: true, completion: nil)

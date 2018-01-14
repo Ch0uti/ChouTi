@@ -30,8 +30,8 @@ open class AutoLinesLabel: UILabel {
 	
     fileprivate func commonInit() {
         // Content is never compressed
-        self.setContentCompressionResistancePriority(1000, for: .horizontal)
-        self.setContentCompressionResistancePriority(1000, for: .vertical)
+        self.setContentCompressionResistancePriority(.required, for: .horizontal)
+        self.setContentCompressionResistancePriority(.required, for: .vertical)
     }
     
     open override func layoutSubviews() {

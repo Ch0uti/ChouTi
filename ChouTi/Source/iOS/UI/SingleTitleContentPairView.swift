@@ -62,7 +62,7 @@ open class SingleTitleContentPairView: UIView {
 		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:[contentLabel]-|", options: [], metrics: metrics, views: views)
 		constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .lastBaseline, relatedBy: .equal, toItem: contentLabel, attribute: .lastBaseline, multiplier: 1.0, constant: 0.0))
 		horizontalSpacingEqualConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: contentLabel, attribute: .leading, multiplier: 1.0, constant: -horizontalSpacing)
-		horizontalSpacingEqualConstraint!.priority = 750
+		horizontalSpacingEqualConstraint!.priority = UILayoutPriority(750)
 		
 		horizontalSpacingGreaterThanConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .greaterThanOrEqual, toItem: contentLabel, attribute: .leading, multiplier: 1.0, constant: -horizontalSpacing)
 		

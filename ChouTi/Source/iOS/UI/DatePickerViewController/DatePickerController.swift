@@ -79,7 +79,7 @@ open class DatePickerController : UIViewController {
 }
 
 extension DatePickerController {
-	func dateUpdated(_ sender: AnyObject?) {
+    @objc func dateUpdated(_ sender: AnyObject?) {
 		guard let datePicker = sender as? UIDatePicker else {
 			NSLog("Error: datePicket is nil")
 			return
@@ -87,14 +87,14 @@ extension DatePickerController {
 		delegate?.datePickerController?(self, datePicker: datePicker, didScrollToDate: datePicker.date)
 	}
 	
-	func done(_ sender: AnyObject?) {
+    @objc func done(_ sender: AnyObject?) {
 		delegate?.datePickerController?(self, willDoneWithDate: datePicker.date)
 		dismiss(animated: true, completion: { [unowned self] in
 			self.delegate?.datePickerController?(self, didDoneWithDate: self.datePicker.date)
 		})
 	}
 	
-	func cancel(_ sender: AnyObject?) {
+    @objc func cancel(_ sender: AnyObject?) {
 		delegate?.datePickerController?(self, willCancelWithDate: datePicker.date)
 		dismiss(animated: true, completion: { [unowned self] in
 			self.delegate?.datePickerController?(self, didCancelWithDate: self.datePicker.date)

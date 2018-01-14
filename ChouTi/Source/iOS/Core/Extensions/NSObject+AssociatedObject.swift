@@ -39,35 +39,35 @@ public extension NSObject {
      */
 	@discardableResult
     public func setAssociatedObejct(_ object: Any, forKeyPointer pointer: UnsafeRawPointer? = nil, associationPolicy: objc_AssociationPolicy = .OBJC_ASSOCIATION_RETAIN_NONATOMIC) -> Any? {
-        if pointer == nil {
-            let currentAssociatedObject = associatedObject
-            associatedObject = object
-            return currentAssociatedObject
-        } else {
+        if let pointer = pointer {
             let currentAssociatedObject = getAssociatedObject(forKeyPointer: pointer)
             objc_setAssociatedObject(self, pointer, object, associationPolicy)
+            return currentAssociatedObject
+        } else {
+            let currentAssociatedObject = associatedObject
+            associatedObject = object
             return currentAssociatedObject
         }
     }
     
     public func getAssociatedObject(forKeyPointer pointer: UnsafeRawPointer? = nil) -> Any? {
-        if pointer == nil {
-            return associatedObject
-        } else {
+        if let pointer = pointer {
             return objc_getAssociatedObject(self, pointer)
+        } else {
+            return associatedObject
         }
     }
 	
 	@discardableResult
     public func clearAssociatedObject(forKeyPointer pointer: UnsafeRawPointer? = nil) -> Any? {
-        if pointer == nil {
-            let object = associatedObject
-            associatedObject = nil
-            return object
-        } else {
+        if let pointer = pointer {
             let object = getAssociatedObject(forKeyPointer: pointer)
             // policy is ignored if new value is nil, thus .OBJC_ASSOCIATION_RETAIN_NONATOMIC doesn't
             objc_setAssociatedObject(self, pointer, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return object
+        } else {
+            let object = associatedObject
+            associatedObject = nil
             return object
         }
     }

@@ -47,8 +47,8 @@ extension Dictionary {
 // MARK: - Random Subset
 extension Dictionary {
 	public func randomSubset() -> [Key : Value] {
-		return self.filter({ _ in Bool.random() }).reduce([:]) {
-			$0.0.merge(with: [$0.1.key : $0.1.value])
-		}
+        return self.filter({ _ in Bool.random() }).reduce([:]) {
+            $0.merge(with: [$1.key : $1.value])
+        }
 	}
 }

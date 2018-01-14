@@ -217,7 +217,7 @@ open class SwipeTableViewCell: UITableViewCell {
         
         // set 44.0 default cell height
         let cellHeightConstraint = NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 44.0)
-        cellHeightConstraint.priority = 250
+        cellHeightConstraint.priority = UILayoutPriority(250)
         constraints += [cellHeightConstraint]
         
         NSLayoutConstraint.activate(constraints)
@@ -302,7 +302,7 @@ extension SwipeTableViewCell {
 
 // MARK: - Gesture Recognizer Actions
 extension SwipeTableViewCell {
-    fileprivate dynamic func panSwipeableContentView(_ panRecognizer: UIPanGestureRecognizer) {
+    @objc private dynamic func panSwipeableContentView(_ panRecognizer: UIPanGestureRecognizer) {
         let currentPoint = panRecognizer.translation(in: swipeableContentView)
         let deltaX = { currentPoint.x - panStartPoint.x }()
         

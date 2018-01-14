@@ -18,7 +18,7 @@ public extension UILabel {
     public func exactSize_deprecated() -> CGSize {
         if let text = text {
             let text: NSString = text as NSString
-            var newSize = text.size(attributes: [NSFontAttributeName: font])
+            var newSize = text.size(withAttributes: [.font: font])
             newSize.width = ceil(newSize.width)
             newSize.height = ceil(newSize.height)
             return newSize

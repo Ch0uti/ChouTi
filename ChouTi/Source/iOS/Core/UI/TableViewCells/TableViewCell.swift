@@ -35,7 +35,7 @@ open class TableViewCell: UITableViewCell {
 	
 	open func commonInit() {
 		_heightConstraint = NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: cellHeight)
-		_heightConstraint?.priority = 250
+		_heightConstraint?.priority = UILayoutPriority(250)
 		_heightConstraint?.isActive = true
 	}
 	

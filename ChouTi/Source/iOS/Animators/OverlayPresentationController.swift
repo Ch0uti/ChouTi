@@ -155,7 +155,7 @@ extension OverlayPresentationController : UIGestureRecognizerDelegate {
 
 // MARK: - Actions
 extension OverlayPresentationController {
-    func overlayViewTapped(_ tapRecognizer: UITapGestureRecognizer) {
+    @objc func overlayViewTapped(_ tapRecognizer: UITapGestureRecognizer) {
         presentingViewController.dismiss(animated: true, completion: nil)
     }
 }

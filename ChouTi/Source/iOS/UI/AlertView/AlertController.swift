@@ -159,7 +159,7 @@ open class AlertController: UIViewController {
         alertView.addAction(action)
     }
     
-    func buttonTapped(_ button: UIButton) {
+    @objc func buttonTapped(_ button: UIButton) {
         // Call action handler when dismissing completed
         self.dismiss(animated: true, completion: { [weak self] in
             self?.alertView.actions.forEach {

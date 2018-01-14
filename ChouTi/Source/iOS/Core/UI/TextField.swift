@@ -24,13 +24,13 @@ open class TextField: UITextField {
             }
             
             if placeholderFont != nil || placeholderColor != nil {
-                var attributes = [String : AnyObject]()
+                var attributes = [NSAttributedStringKey : Any]()
                 if let placeholderColor = placeholderColor {
-                    attributes[NSForegroundColorAttributeName] = placeholderColor
+                    attributes[.foregroundColor] = placeholderColor
                 }
                 
                 if let placeholderFont = placeholderFont {
-                    attributes[NSFontAttributeName] = placeholderFont
+                    attributes[.font] = placeholderFont
                 }
                 
                 let attributedString = NSAttributedString(string: placeholder, attributes: attributes)
@@ -47,13 +47,13 @@ open class TextField: UITextField {
                 return
             }
             
-            var attributes = [String : AnyObject]()
+            var attributes = [NSAttributedStringKey : Any]()
             if let placeholderColor = placeholderColor {
-                attributes[NSForegroundColorAttributeName] = placeholderColor
+                attributes[.foregroundColor] = placeholderColor
             }
             
             if let placeholderFont = placeholderFont {
-                attributes[NSFontAttributeName] = placeholderFont
+                attributes[.font] = placeholderFont
             }
             
             let attributedString = NSAttributedString(string: placeholder, attributes: attributes)
@@ -69,13 +69,13 @@ open class TextField: UITextField {
                 return
             }
             
-            var attributes = [String : AnyObject]()
+            var attributes = [NSAttributedStringKey : Any]()
             if let placeholderColor = placeholderColor {
-                attributes[NSForegroundColorAttributeName] = placeholderColor
+                attributes[.foregroundColor] = placeholderColor
             }
             
             if let placeholderFont = placeholderFont {
-                attributes[NSFontAttributeName] = placeholderFont
+                attributes[.font] = placeholderFont
             }
             
             let attributedString = NSAttributedString(string: placeholder, attributes: attributes)

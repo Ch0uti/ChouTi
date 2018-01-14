@@ -69,7 +69,7 @@ extension DropPresentingPresentationController {
 
 // MARK: - Actions
 extension DropPresentingPresentationController {
-    func overlayViewPanned(_ sender: AnyObject) {
+    @objc func overlayViewPanned(_ sender: AnyObject) {
         guard let longPressGesture = sender as? UILongPressGestureRecognizer, longPressGesture == self.longPressGesture else {
             return
         }

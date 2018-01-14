@@ -16,7 +16,7 @@ public extension UIButton {
      - parameter color: The background image color to use for the specified state.
      - parameter state: The state that uses the specified background image color. The possible values are described in UIControlState.
      */
-    public func setBackgroundImageWithColor(_ color: UIColor, forState state: UIControlState) {
+    @objc public func setBackgroundImageWithColor(_ color: UIColor, forState state: UIControlState) {
         self.setBackgroundImage(UIImage.imageWithColor(color), for: state)
     }
 }

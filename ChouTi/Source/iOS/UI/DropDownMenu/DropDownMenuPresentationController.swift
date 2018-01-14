@@ -35,11 +35,11 @@ class DropDownMenuPresentationController: OverlayPresentationController {
         let frame = dropDownMenu.frameRectInView(containerView)
         
         let wrapperBaseLeadingConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: frame.origin.x)
-        wrapperBaseLeadingConstraint.priority = 800
+        wrapperBaseLeadingConstraint.priority = UILayoutPriority(800)
         wrapperBaseLeadingConstraint.isActive = true
         
         let wrapperBaseTopConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: frame.origin.y)
-        wrapperBaseTopConstraint.priority = 800
+        wrapperBaseTopConstraint.priority = UILayoutPriority(800)
         wrapperBaseTopConstraint.isActive = true
     }
     

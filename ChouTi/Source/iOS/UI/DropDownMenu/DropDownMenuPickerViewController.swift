@@ -166,7 +166,7 @@ class DropDownMenuPickerViewController : UIViewController {
 		var constraints = [NSLayoutConstraint]()
 
 		tableViewHeightConstraint = NSLayoutConstraint(item: tableView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: ceil((optionCellHeight + 0.5) * CGFloat(numberOfOptions)))
-		tableViewHeightConstraint.priority = 750
+		tableViewHeightConstraint.priority = UILayoutPriority(750)
 		constraints += [tableViewHeightConstraint]
 		
 		let maxHeightConstraint = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .lessThanOrEqual, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0.0)

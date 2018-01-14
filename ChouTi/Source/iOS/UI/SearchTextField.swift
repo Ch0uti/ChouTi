@@ -196,7 +196,7 @@ extension SearchTextField : UITextFieldDelegate {
         return originalDelegate?.textFieldShouldReturn?(textField) ?? true
     }
     
-	func zhh_searchTextFieldDidEdit(_ textField: UITextField) {
+    @objc func zhh_searchTextFieldDidEdit(_ textField: UITextField) {
         searchTextFieldDelegate?.searchTextFieldDidEdit(self)
 		if textField.text == nil || textField.text?.isEmpty == true {
             tearDownOverlayView()
@@ -270,7 +270,7 @@ extension SearchTextField {
         resultTableView.removeFromSuperview()
     }
     
-    func overlayViewTapped(_ tapGesture: UITapGestureRecognizer) {
+    @objc func overlayViewTapped(_ tapGesture: UITapGestureRecognizer) {
         self.resignFirstResponder()
     }
 }

@@ -37,10 +37,10 @@ public extension TitleContentTableViewCellViewModelType {
 	}
 	
 	var titleFont: UIFont? {
-		return UIFont.gillSansLightFont(18) ?? UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight)
+        return UIFont.gillSansLightFont(18) ?? UIFont.systemFont(ofSize: 18, weight: .light)
 	}
 	var contentFont: UIFont? {
-		return UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: UIFontWeightSemibold)
+		return UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: .semibold)
 	}
 }
 
@@ -51,8 +51,8 @@ open class TitleContentTableViewCellViewModel: TitleContentTableViewCellViewMode
 	open var titleColor: UIColor? = UIColor(hexString: "#535258")
 	open var contentColor: UIColor? = UIColor.black
 	
-	open var titleFont: UIFont? = UIFont.gillSansLightFont(18) ?? UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight)
-	open var contentFont: UIFont? = UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: UIFontWeightSemibold)
+    open var titleFont: UIFont? = UIFont.gillSansLightFont(18) ?? UIFont.systemFont(ofSize: 18, weight: .light)
+    open var contentFont: UIFont? = UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: .semibold)
 	
 	public init(title: String?, content: String?, titleColor: UIColor? = nil, contentColor: UIColor? = nil, titleFont: UIFont? = nil, contentFont: UIFont? = nil) {
 		self.title = title
@@ -67,13 +67,13 @@ open class TitleContentTableViewCellViewModel: TitleContentTableViewCellViewMode
 open class TitleContentTableViewCell: UITableViewCell {
 	open let titleLabel = UILabel().then {
 		$0.translatesAutoresizingMaskIntoConstraints = false
-		$0.font = UIFont.gillSansLightFont(18) ?? UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight)
+        $0.font = UIFont.gillSansLightFont(18) ?? UIFont.systemFont(ofSize: 18, weight: .light)
 		$0.textColor = UIColor(hexString: "#535258")
 	}
 	
 	open let contentLabel = UILabel().then {
 		$0.translatesAutoresizingMaskIntoConstraints = false
-		$0.font = UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: UIFontWeightSemibold)
+        $0.font = UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: .semibold)
 		$0.textColor = UIColor.black
 		$0.numberOfLines = 0
 	}
