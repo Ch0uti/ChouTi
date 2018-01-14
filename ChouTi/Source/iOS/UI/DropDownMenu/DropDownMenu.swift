@@ -32,7 +32,7 @@ open class DropDownMenu: UIControl {
 	}
 	
 	/// Whether the menu is expanded
-	open internal(set) dynamic var expanded: Bool = false
+    @objc open internal(set) dynamic var expanded: Bool = false
 	
 	/// Drop down animation duration
 	open var animationDuration: TimeInterval = 0.5 {
@@ -206,9 +206,9 @@ open class DropDownMenu: UIControl {
 		
 		// Setup base width/height constraint for wrapper, this is used for keeping wrapper size if menu (self) is get removed somehow
 		wrapperBaseWidthConstraint = NSLayoutConstraint(item: wrapperView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0)
-		wrapperBaseWidthConstraint.priority = 800 // 800 is greater 750, which is default content size constraint priority
+		wrapperBaseWidthConstraint.priority = UILayoutPriority(800) // 800 is greater 750, which is default content size constraint priority
 		wrapperBaseHeightConstraint = NSLayoutConstraint(item: wrapperView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0)
-		wrapperBaseHeightConstraint.priority = 800
+		wrapperBaseHeightConstraint.priority = UILayoutPriority(800)
 		
 		constraints += [wrapperTopConstraint, wrapperLeadingConstraint, wrapperBottomConstraint, wrapperTrailingConstraint, wrapperBaseWidthConstraint, wrapperBaseHeightConstraint]
 		
@@ -293,7 +293,7 @@ extension DropDownMenu {
 
 // MARK: - Actions
 extension DropDownMenu {
-	func tapped(_ sender: AnyObject, forEvent event: UIEvent) {
+    @objc func tapped(_ sender: AnyObject, forEvent event: UIEvent) {
 		set(toExpand: !expanded, animated: true)
 	}
 	
@@ -314,7 +314,7 @@ extension DropDownMenu {
 			let originalAnimationDuration = animationDuration
 			animationDuration = 0.0
 			
-			presentingViewController?.present(pickerViewController, animated: true, completion: { [unowned self] _ in
+			presentingViewController?.present(pickerViewController, animated: true, completion: { [unowned self] in
 				self.animationDuration = originalAnimationDuration
 			})
 		}
@@ -329,7 +329,7 @@ extension DropDownMenu {
 		} else {
 			let originalAnimationDuration = animationDuration
 			animationDuration = 0.0
-			pickerViewController.dismiss(animated: true, completion: { [unowned self] _ in
+			pickerViewController.dismiss(animated: true, completion: { [unowned self] in
 				self.animationDuration = originalAnimationDuration
 			})
 		}

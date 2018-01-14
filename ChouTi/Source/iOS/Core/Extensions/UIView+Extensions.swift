@@ -62,49 +62,12 @@ public extension UIView {
                 }
             }
             
-            UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut, .beginFromCurrentState, .allowUserInteraction], animations: { _ in
+            UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut, .beginFromCurrentState, .allowUserInteraction], animations: {
                 self.alpha = toHide ? 0.0 : 1.0
             }, completion: { finished -> Void in
                 self.isHidden = toHide
                 completion?(finished)
             })
-        }
-    }
-}
-
-
-
-// MARK: - addGestureRecognizer Swizzling
-extension UIView {
-    // Swizzling addGestureRecognizer(_: UIGestureRecognizer)
-    open override class func initialize() {
-        // make sure this isn't a subclass
-        if self !== UIView.self {
-            return
-        }
-		
-		DispatchQueue.once(token: "zhh_addGestureRecognizerKey") {
-			let originalSelector = #selector(UIView.addGestureRecognizer(_:))
-			let swizzledSelector = #selector(UIView.zhh_addGestureRecognizer(_:))
-			
-			let originalMethod = class_getInstanceMethod(self, originalSelector)
-			let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
-			
-			let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
-			
-			if didAddMethod {
-				class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
-			} else {
-				method_exchangeImplementations(originalMethod, swizzledMethod)
-			}
-		}
-    }
-	
-    func zhh_addGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
-        self.zhh_addGestureRecognizer(gestureRecognizer)
-        
-        if let longPressGesture = gestureRecognizer as? UILongPressGestureRecognizer {
-            longPressGesture.setupForDetectingVelocity()
         }
     }
 }

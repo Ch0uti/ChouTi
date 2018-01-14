@@ -40,19 +40,19 @@ public extension UINavigationBar {
         set {
             if let titleTextColor = newValue {
                 if titleTextAttributes != nil {
-                    titleTextAttributes?[NSForegroundColorAttributeName] = titleTextColor
+                    titleTextAttributes?[.foregroundColor] = titleTextColor
                 } else {
-                    titleTextAttributes = [NSForegroundColorAttributeName : titleTextColor]
+                    titleTextAttributes = [.foregroundColor : titleTextColor]
                 }
             } else {
 				// FIXME: revist it when Xcode 8.2
-                let _ = titleTextAttributes?.removeValue(forKey: NSForegroundColorAttributeName)
+                let _ = titleTextAttributes?.removeValue(forKey: .foregroundColor)
             }
         }
         
         get {
             if let titleTextAttributes = titleTextAttributes {
-                return titleTextAttributes[NSForegroundColorAttributeName] as? UIColor
+                return titleTextAttributes[.foregroundColor] as? UIColor
             } else {
                 return nil
             }
@@ -63,18 +63,18 @@ public extension UINavigationBar {
         set {
             if let titleTextFont = newValue {
                 if titleTextAttributes != nil {
-                    titleTextAttributes?[NSFontAttributeName] = titleTextFont
+                    titleTextAttributes?[.font] = titleTextFont
                 } else {
-                    titleTextAttributes = [NSFontAttributeName : titleTextFont]
+                    titleTextAttributes = [.font: titleTextFont]
                 }
             } else {
-                let _ = titleTextAttributes?.removeValue(forKey: NSFontAttributeName)
+                let _ = titleTextAttributes?.removeValue(forKey: .font)
             }
         }
         
         get {
             if let titleTextAttributes = titleTextAttributes {
-                return titleTextAttributes[NSFontAttributeName] as? UIFont
+                return titleTextAttributes[.font] as? UIFont
             } else {
                 return nil
             }

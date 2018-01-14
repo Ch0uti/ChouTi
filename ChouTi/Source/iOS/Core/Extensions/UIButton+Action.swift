@@ -82,7 +82,7 @@ public extension UIButton {
         addTarget(self, action: #selector(UIButton.handleAction(_:)), for: controlEvents)
     }
     
-    fileprivate dynamic func handleAction(_ button: UIButton) {
+    @objc fileprivate dynamic func handleAction(_ button: UIButton) {
         buttonAction?.action(button)
     }
 }

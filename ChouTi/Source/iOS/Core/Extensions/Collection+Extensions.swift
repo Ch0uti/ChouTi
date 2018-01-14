@@ -85,7 +85,7 @@ public extension Collection {
 	/// From http://stackoverflow.com/a/24029847/194869
 	///
 	/// - Returns: A shuffled version of this collection.
-	public func shuffled() -> [Generator.Element] {
+	public func shuffled() -> [Iterator.Element] {
 		var array = Array(self)
 		array.shuffle()
 		return array
@@ -101,7 +101,7 @@ public extension MutableCollection where Index == Int, IndexDistance == Int {
         for i in 0..<count - 1 {
 			let j = random(count - i) + i
             guard i != j else { continue }
-            swap(&self[i], &self[j])
+            self.swapAt(i, j)
         }
     }
 }

@@ -76,7 +76,7 @@ public protocol TableViewCellRegistrable: TableViewMetaInfo, TableViewRegistrabl
 
 // MARK: - TableViewCellRegistrable
 extension UITableViewCell : TableViewCellRegistrable {
-    open class func estimatedHeight() -> CGFloat {
+    @objc open class func estimatedHeight() -> CGFloat {
         return 44.0
     }
     
