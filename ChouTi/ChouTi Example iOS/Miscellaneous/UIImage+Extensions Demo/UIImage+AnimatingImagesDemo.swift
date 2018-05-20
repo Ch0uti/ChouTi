@@ -103,7 +103,7 @@ class UIImage_AnimatingImagesDemoViewController: UIViewController {
         fpsLabel.text = String(format: "FPS: %.1f", slider.value)
     }
     
-    func slide(_ sender: AnyObject?) {
+    @objc func slide(_ sender: AnyObject?) {
         if let slider = sender as? UISlider {
             fpsLabel.text = String(format: "FPS: %.1f", slider.value)
             

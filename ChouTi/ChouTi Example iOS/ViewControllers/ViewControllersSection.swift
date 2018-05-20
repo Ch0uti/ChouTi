@@ -80,11 +80,11 @@ class ViewControllersSection: NSObject, TableViewSectionType {
     
     var slideViewController: SlideController!
     
-    func expandLeft(_ sender: AnyObject) {
+    @objc func expandLeft(_ sender: AnyObject) {
         slideViewController.toggleLeftViewController()
     }
     
-    func expandRight(_ sender: AnyObject) {
+    @objc func expandRight(_ sender: AnyObject) {
         slideViewController.toggleRightViewController()
     }
 }

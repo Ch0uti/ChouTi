@@ -71,7 +71,7 @@ class AlertControllerDemoViewController : UIViewController {
         stackView.addArrangedSubview(customizedAlertButton)
     }
     
-    func presentDefaultAlert(_ sender: Button) {
+    @objc func presentDefaultAlert(_ sender: Button) {
         let alert = UIAlertController(title: "Default Alert Style", message: "This is system's default alert style.", preferredStyle: .alert)
         
         if rotation <= 0 {
@@ -120,7 +120,7 @@ class AlertControllerDemoViewController : UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func presentCustomizedAlert(_ sender: Button) {
+    @objc func presentCustomizedAlert(_ sender: Button) {
         let alert = AlertController(title: "Customized Alert Style", message: "This is customized alert style.")
         
         delay(1) { 

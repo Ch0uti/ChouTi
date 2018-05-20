@@ -92,7 +92,7 @@ class PageControlDemoViewController: UIViewController {
         }
     }
     
-    func pageControlUpdated(_ sender: AnyObject?) {
+    @objc func pageControlUpdated(_ sender: AnyObject?) {
         if let systemPageControl = sender as? UIPageControl {
             print("systemPageControl: \(systemPageControl.currentPage)")
         }

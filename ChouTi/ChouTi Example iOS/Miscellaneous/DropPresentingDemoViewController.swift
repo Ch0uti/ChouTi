@@ -43,7 +43,7 @@ class DropPresentingDemoViewController: UIViewController {
 		button.addTarget(self, action: #selector(DropPresentingDemoViewController.buttonTapped(sender:)), for: .touchUpInside)
     }
 	
-	func buttonTapped(sender: AnyObject) {
+	@objc func buttonTapped(sender: AnyObject) {
 		let dummyViewController = UIViewController()
 		dummyViewController.view.backgroundColor = UIColor(red:255/255.0, green:186/255.0, blue:1/255.0, alpha:255/255.0)
 		dummyViewController.view.layer.cornerRadius = 8.0
@@ -73,7 +73,7 @@ class DropPresentingDemoViewController: UIViewController {
 		present(dummyViewController, animated: true, completion: nil)
 	}
     
-    func dismiss(sender: AnyObject) {
+    @objc func dismiss(sender: AnyObject) {
         dismiss(animated: true, completion: nil)
     }
 }
