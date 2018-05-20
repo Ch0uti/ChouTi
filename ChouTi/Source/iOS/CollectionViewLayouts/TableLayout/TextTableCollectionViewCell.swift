@@ -32,13 +32,3 @@ class TextTableCollectionViewCell: UICollectionViewCell {
 		contentView.addConstraint(NSLayoutConstraint(item: textLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1.0, constant: 0.0))
 	}
 }
-
-extension TextTableCollectionViewCell {
-	override class func identifier() -> String {
-		return NSStringFromClass(TextTableCollectionViewCell.self)
-	}
-    
-    override class func register(inCollectionView collectionView: UICollectionView) {
-        collectionView.register(TextTableCollectionViewCell.self, forCellWithReuseIdentifier: TextTableCollectionViewCell.identifier())
-    }
-}
