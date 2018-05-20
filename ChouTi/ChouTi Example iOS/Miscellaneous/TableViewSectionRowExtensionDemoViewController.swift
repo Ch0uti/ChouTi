@@ -30,7 +30,7 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 			rows: [
 				TableViewRow(title: "Cell with .Value1 Style",
 					subtitle: "Detail Text",
-					cellInitialization: { indexPath in
+					cellInitialization: { indexPath, _ in
 						var cell = self.tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier())
 						if cell == nil {
 							cell = TableViewCell(style: .value1, reuseIdentifier: TableViewCell.identifier())
@@ -40,7 +40,7 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 				),
 				TableViewRow(title: "Cell with .Value2 Style",
 					subtitle: "Detail Text",
-					cellInitialization: { indexPath in
+					cellInitialization: { indexPath, _ in
 						return self.tableView.dequeueReusableCell(withIdentifier: TableViewCellValue2.identifier())!
 					}
 				),
@@ -85,7 +85,7 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 						//
 				}),
 				TableViewRow(title: "",
-					cellInitialization: { (indexPath) -> UITableViewCell in
+					cellInitialization: { (indexPath, _) -> UITableViewCell in
 						var cell = self.tableView.dequeueReusableCell(withIdentifier: SeparatorCell.identifier())
 						if cell == nil {
 							cell = TableViewCell(style: .default, reuseIdentifier: SeparatorCell.identifier())
