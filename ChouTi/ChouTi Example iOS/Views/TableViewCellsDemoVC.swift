@@ -46,7 +46,7 @@ class TableViewCellsDemoVC: UIViewController {
                                 
                                 return swipeCell
             },
-                            cellConfiguration: { _ in },
+                            cellConfiguration: { _, _, _ in },
                             cellSelectAction: { (indexPath, cell, tableView) in
                                 cell?.tableView?.deselectRow(at: indexPath, animated: true)
         })
