@@ -544,7 +544,7 @@ extension SlideController {
 }
 
 extension SlideController: UIGestureRecognizerDelegate {
-	func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
+	@objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
 		switch recognizer.state {
 		case .began:
 			switch state {
@@ -722,7 +722,7 @@ extension SlideController: UIGestureRecognizerDelegate {
 		}
 	}
 	
-	func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
+	@objc func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
 		// Tap center view controller to collapse
 		if state != .notExpanded {
 			collapse()
