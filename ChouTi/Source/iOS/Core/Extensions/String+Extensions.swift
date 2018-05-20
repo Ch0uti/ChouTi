@@ -53,10 +53,11 @@ public extension String {
     public func matchedStringForRegex(_ regex: NSRegularExpression) -> [String] {
         var matchedStrings = [String]()
         
-        let matchResult = regex.matches(in: self, options: [], range: self.fullNSRange())
-        for match in matchResult {
+        let matches = regex.matches(in: self, options: [], range: self.fullNSRange())
+        for match in matches {
             if let range = rangeFromNSRange(match.range) {
-                matchedStrings.append(self.substring(with: range))
+                let newMatchedString = String(self[range.lowerBound..<range.upperBound])
+                matchedStrings.append(newMatchedString)
             }
         }
         
@@ -66,20 +67,20 @@ public extension String {
     public func firstMatchStringForRegex(_ regex: NSRegularExpression) -> String? {
         let matchResult = regex.firstMatch(in: self, options: [], range: self.fullNSRange())
         if let nsRange = matchResult?.range, let range = rangeFromNSRange(nsRange) {
-            return self.substring(with: range)
+            return String(self[range.lowerBound..<range.upperBound])
         }
         
         return nil
     }
     
     public func fullNSRange() -> NSRange {
-        return NSRange(location: 0, length: self.characters.distance(from: self.startIndex, to: self.endIndex))
+        return NSRange(location: 0, length: self.distance(from: self.startIndex, to: self.endIndex))
     }
     
     public func rangeFromNSRange(_ nsRange: NSRange) -> Range<String.Index>? {
-        let from = self.characters.index(self.startIndex, offsetBy: nsRange.location, limitedBy: self.endIndex)
+        let from = self.index(self.startIndex, offsetBy: nsRange.location, limitedBy: self.endIndex)
 		
-        let to = self.characters.index(from!, offsetBy: nsRange.length, limitedBy: self.endIndex)
+        let to = self.index(from!, offsetBy: nsRange.length, limitedBy: self.endIndex)
         return from! ..< to!
     }
     
