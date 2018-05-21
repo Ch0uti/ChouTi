@@ -54,7 +54,7 @@ class UIImage_AnimatingImagesDemoViewController: UIViewController {
         bearImageView.constrainTo(width: screenWidth, height: screenHeight / 3.0)
         
         // Croppped
-        croppedBearFrames = bearFrames.flatMap {
+        croppedBearFrames = bearFrames.compactMap {
             return $0.imageCroppedWithRect(CGRect(
                 x: $0.size.width * 0.0,
                 y: $0.size.height * 0.25,
