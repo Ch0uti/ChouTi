@@ -31,7 +31,7 @@ script:
   - PROJECT_DIR=$(pwd)
   - cd "$WORKSPACE/.."
   - bundle install
-  - rake
+  - bundle exec rake
   - cd $PROJECT_DIR
 
   # Build in Debug and Run Tests if specified
