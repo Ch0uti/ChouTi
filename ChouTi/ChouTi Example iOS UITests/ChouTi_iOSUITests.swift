@@ -32,7 +32,7 @@ class ChouTi_iOSUITests: XCTestCase {
     
     func testTitle() {
         let app = XCUIApplication()
-        XCTAssert(app.navigationBars["🗄 抽屉(ChouTi)"].staticTexts["🗄 抽屉(ChouTi)"].exists)
+        XCTAssert(app.navigationBars["🗄 抽屉(ChouTi)"].exists)
     }
     
     func testExample() {
