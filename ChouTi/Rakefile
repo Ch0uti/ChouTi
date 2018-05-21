@@ -1,5 +1,4 @@
 require 'colorize'
-require 'optparse'
 
 begin
   tools = `xcode-select -p`
@@ -45,7 +44,7 @@ task :fetch => [:submodules, :pods]
 desc "Run pod install "
 task :pods  do
     puts "*** Installing CocoaPods dependencies ***".colorize(:light_blue)
-    sh "bundle exec pod install"
+    sh "pod install"
 end
 
 desc "Fetch git submodules used by the app"

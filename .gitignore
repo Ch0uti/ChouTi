@@ -31,3 +31,6 @@ DerivedData
 # Carthage/Checkouts
 
 Carthage/Build
+
+# Bundle
+ChouTi/Vendor/bundle
