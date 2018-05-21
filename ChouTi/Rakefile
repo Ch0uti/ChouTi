@@ -44,6 +44,7 @@ task :fetch => [:submodules, :pods]
 desc "Run pod install "
 task :pods  do
     puts "*** Installing CocoaPods dependencies ***".colorize(:light_blue)
+    sh "pod repo update"
     sh "pod install"
 end
 
