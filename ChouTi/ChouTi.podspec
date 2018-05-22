@@ -196,13 +196,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "ThirdParty" do |ss|
-    # "Code for third party"
-
-    ss.subspec "Parse" do |sss|
-      # "Extensions on Parse"
-      sss.source_files = 'Source/iOS/ThirdParty/Parse/*.*'
-      sss.dependency 'Parse'
-    end
+    # "Components that has third party dependencies"
 
     ss.subspec "LoadingMorphingLabel" do |sss|
       # "Showing a list of text in loop"
