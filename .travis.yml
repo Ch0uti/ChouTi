@@ -2,53 +2,31 @@ language: swift
 osx_image: xcode9.3
 env:
   global:
-  - LC_CTYPE=en_US.UTF-8
-  - LANG=en_US.UTF-8
-
-  # Framework
-  - WORKSPACE="./ChouTi/ChouTi.xcworkspace"
+  - PROJECT_DIR="./ChouTi"
+  - WORKSPACE="ChouTi.xcworkspace"
   - IOS_FRAMEWORK_SCHEME="ChouTi iOS"
   - IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
 
   matrix:
-    # Framework Schemes
-    - DESTINATION="OS=11.3,name=iPhone X"          SCHEME="$IOS_FRAMEWORK_SCHEME"   IS_FRAMEWORK="YES"   RUN_TESTS="YES"
-    - DESTINATION="OS=10.3.1,name=iPhone 7 Plus"   SCHEME="$IOS_FRAMEWORK_SCHEME"   IS_FRAMEWORK="YES"   RUN_TESTS="YES"
+    - DESTINATION="OS=11.3,name=iPhone X"           REPORT_CODECOV="YES"
+    - DESTINATION="OS=10.3.1,name=iPhone 7 Plus"    REPORT_CODECOV="NO"
 
-    # Example Schemes
-    - DESTINATION="OS=11.3,name=iPhone X"          SCHEME="$IOS_EXAMPLE_SCHEME"     IS_FRAMEWORK="NO"    RUN_TESTS="YES"
-    - DESTINATION="OS=10.3.1,name=iPhone 7 Plus"   SCHEME="$IOS_EXAMPLE_SCHEME"     IS_FRAMEWORK="NO"    RUN_TESTS="YES"
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - gem install bundler --no-rdoc --no-ri --no-document --quiet
+  - cd $PROJECT_DIR && bundle install && bundle exec rake
 
 script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
 
-  # Rake
-  - PROJECT_DIR=$(pwd)
-  - cd "$WORKSPACE/.."
-  - bundle install
-  - bundle exec rake
-  - cd $PROJECT_DIR
-
-  # Build in Debug and Run Tests if specified
-  - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty;
-    else
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty;
+  # Debug and Run Tests
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Debug test | xcpretty;
+  - if [ $REPORT_CODECOV == "YES" ]; then
+      bash <(curl -s https://codecov.io/bash) -J "^ChouTi$";
     fi
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_EXAMPLE_SCHEME" -destination "$DESTINATION" -configuration Debug test | xcpretty;
 
-  # Build Framework in Release and Run Tests if specified
-  - if [ $IS_FRAMEWORK == "YES" ]; then
-      if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty;
-      else
-        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty;
-      fi
-    fi
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash) -J "$IOS_FRAMEWORK_SCHEME"
+  # Release
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Release build | xcpretty;  

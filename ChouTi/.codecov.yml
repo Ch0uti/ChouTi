@@ -1,0 +1,7 @@
+ignore:
+  - "ChouTi Example iOS"
+  - "ChouTi Example iOS UITests"
+  - "Tests"
+  - "Pods"
+  - "Resources"
+  - "Vendor"
