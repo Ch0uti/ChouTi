@@ -1,8 +1,10 @@
 # 🗄 ChouTi（抽屉）
-[![CI Status](https://travis-ci.org/honghaoz/ChouTi.svg?branch=master)](https://travis-ci.org/honghaoz/ChouTi)
-[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5903672422d9170001035f3a&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5903672422d9170001035f3a/build/latest?branch=master)
+[![Version](https://img.shields.io/cocoapods/v/ChouTi.svg?style=flat)](http://cocoapods.org/pods/ChouTi)
+[![License](https://img.shields.io/cocoapods/l/ChouTi.svg?style=flat)](https://github.com/ChouTi-Lab/ChouTi/blob/master/LICENSE?raw=true)
+[![CI Status](https://travis-ci.org/ChouTi-Lab/ChouTi.svg?branch=master)](https://travis-ci.org/ChouTi-Lab/ChouTi)
+[![codecov](https://codecov.io/gh/ChouTi-Lab/ChouTi/branch/master/graph/badge.svg)](https://codecov.io/gh/ChouTi-Lab/ChouTi)
 
-Chou Ti (抽屉) - a Framework for iOS development.
+ChouTi (抽屉) - a framework for Swift development.
 
 ## Core
 #### UI
