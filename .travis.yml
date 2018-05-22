@@ -49,3 +49,6 @@ script:
         xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty;
       fi
     fi
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -J "$IOS_FRAMEWORK_SCHEME"
