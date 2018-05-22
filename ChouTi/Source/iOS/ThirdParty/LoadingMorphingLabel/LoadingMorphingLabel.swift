@@ -18,7 +18,7 @@ public class LoadingMorphingLabel: UIView {
 	}
 	private var _loopCount: Int = 10
 	
-	public var delayDuration: NSTimeInterval = 2.0
+	public var delayDuration: TimeInterval = 2.0
 	public var morphingDuration: Float {
 		get { return morphingLabel.morphingDuration }
 		set { morphingLabel.morphingDuration = newValue }
@@ -56,14 +56,14 @@ public class LoadingMorphingLabel: UIView {
 	public func startLoop() {
 		_loopCount = loopCount
 		if isAnimating { return }
-		showTextIndex(currentTextIndex)
+        showTextIndex(currentTextIndex)
 	}
 	
 	public func endLoop() {
 		_loopCount = 0
 	}
 	
-	private func showTextIndex(index: Int) {
+	private func showTextIndex(_ index: Int) {
 		if _loopCount > 0 {
             _loopCount -= 1
 			isAnimating = true

@@ -9,6 +9,10 @@ def pod_testing
 end
 
 # Targets
+target 'ChouTi iOS' do
+  pod 'LTMorphingLabel', '~> 0.5' 
+end
+
 target 'ChouTi iOS Tests' do
   pod_testing
 end
