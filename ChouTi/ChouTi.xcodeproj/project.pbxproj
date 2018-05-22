@@ -224,6 +224,7 @@
 		1E9A6BAA447E15935DC210D1 /* Pods_ChouTi_Example_iOS_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13F498408FDE6CFF1EA6E017 /* Pods_ChouTi_Example_iOS_UITests.framework */; };
 		5965574821B1C83AE885A47B /* Pods_ChouTi_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */; };
 		6289C51CA52B17B513C93150 /* Pods_ChouTi_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B98889732A852C9D8D059AA9 /* Pods_ChouTi_iOS_Tests.framework */; };
+		8D9CCDA1DBB312F49B7E5600 /* Pods_ChouTi_Example_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA3F397C80E368E3D87F662 /* Pods_ChouTi_Example_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -478,6 +479,7 @@
 		025C91C81D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue_LayoutMarginsGuideViewController.swift; sourceTree = "<group>"; };
 		025C91C91D64053F000C54D8 /* IssuesSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesSection.swift; sourceTree = "<group>"; };
 		0275AE9F1DDFFF0B00DBA4D3 /* OrderedDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionaryTests.swift; sourceTree = "<group>"; };
+		027B155520B4D89000D48048 /* LTMorphingLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LTMorphingLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		027B6F621EB391620096334E /* LoadingMorphingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMorphingLabel.swift; sourceTree = "<group>"; };
 		028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsDemoViewController.swift; sourceTree = "<group>"; };
 		029E5FBB1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+RetrieveTests.swift"; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 		5E8C7FDFCF9D13AA5703AF7C /* Pods-ChouTi_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi_Tests/Pods-ChouTi_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		93472D147EE0FF19B51A311F /* Pods-ChouTi iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOSUITests/Pods-ChouTi iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9F1CE703202E661667E8B3A0 /* Pods_ChouTi_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B02C65F66B3E2D524FFCFB21 /* Pods-ChouTi Example iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi Example iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi Example iOS/Pods-ChouTi Example iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B53E2A53EEE387A7D1A4FA8D /* Pods-ChouTi iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOS/Pods-ChouTi iOS.release.xcconfig"; sourceTree = "<group>"; };
 		B98889732A852C9D8D059AA9 /* Pods_ChouTi_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD189238B169905CBB73C1DC /* Pods-ChouTi Example iOS UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi Example iOS UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi Example iOS UITests/Pods-ChouTi Example iOS UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -506,6 +509,8 @@
 		D7AE077C9A119A6AA7B7A52D /* Pods-ChouTi Example iOS UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi Example iOS UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi Example iOS UITests/Pods-ChouTi Example iOS UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTiTests/Pods-ChouTiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD94FDE37E0E4C776AF43740 /* Pods-ChouTi Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi Tests/Pods-ChouTi Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		DEA3F397C80E368E3D87F662 /* Pods_ChouTi_Example_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_Example_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E225E972756CC3CEACDDFE7B /* Pods-ChouTi Example iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi Example iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi Example iOS/Pods-ChouTi Example iOS.release.xcconfig"; sourceTree = "<group>"; };
 		FEC2A5F68CC869551380F08A /* Pods-ChouTi iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChouTi iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChouTi iOSUITests/Pods-ChouTi iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -514,6 +519,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D9CCDA1DBB312F49B7E5600 /* Pods_ChouTi_Example_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1236,6 +1242,8 @@
 				0AF0AC0B1D0A37B6017485E1 /* Pods-ChouTi iOS Tests.release.xcconfig */,
 				2B1364BA6F755B010A2197E4 /* Pods-ChouTi iOS.debug.xcconfig */,
 				B53E2A53EEE387A7D1A4FA8D /* Pods-ChouTi iOS.release.xcconfig */,
+				B02C65F66B3E2D524FFCFB21 /* Pods-ChouTi Example iOS.debug.xcconfig */,
+				E225E972756CC3CEACDDFE7B /* Pods-ChouTi Example iOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1243,6 +1251,7 @@
 		FADE80030ACA432B35AAB68A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				027B155520B4D89000D48048 /* LTMorphingLabel.framework */,
 				2582D7686D9E144D59115335 /* Pods_ChouTi.framework */,
 				0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */,
 				4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */,
@@ -1250,6 +1259,7 @@
 				9F1CE703202E661667E8B3A0 /* Pods_ChouTi_Tests.framework */,
 				13F498408FDE6CFF1EA6E017 /* Pods_ChouTi_Example_iOS_UITests.framework */,
 				B98889732A852C9D8D059AA9 /* Pods_ChouTi_iOS_Tests.framework */,
+				DEA3F397C80E368E3D87F662 /* Pods_ChouTi_Example_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1272,10 +1282,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0206650F1D5FB0BE002A7E2A /* Build configuration list for PBXNativeTarget "ChouTi Example iOS" */;
 			buildPhases = (
+				C3A7EC0320BAEFEDF9DB0692 /* [CP] Check Pods Manifest.lock */,
 				020664ED1D5FB0BE002A7E2A /* Sources */,
 				020664EE1D5FB0BE002A7E2A /* Frameworks */,
 				020664EF1D5FB0BE002A7E2A /* Resources */,
 				0275AE7C1DDE5CB200DBA4D3 /* Embed Frameworks */,
+				B45F4315BBE8168C9544428C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1353,7 +1365,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Honghaoz;
 				TargetAttributes = {
 					020664F01D5FB0BE002A7E2A = {
@@ -1530,6 +1542,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi Example iOS UITests/Pods-ChouTi Example iOS UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B45F4315BBE8168C9544428C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi Example iOS/Pods-ChouTi Example iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTMorphingLabel.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi Example iOS/Pods-ChouTi Example iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3A7EC0320BAEFEDF9DB0692 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChouTi Example iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D0B02A54DBB45F058BD359C2 /* [CP] Check Pods Manifest.lock */ = {
@@ -1803,6 +1851,7 @@
 /* Begin XCBuildConfiguration section */
 		0206650B1D5FB0BE002A7E2A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B02C65F66B3E2D524FFCFB21 /* Pods-ChouTi Example iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UYW9ZSKZAQ;
@@ -1817,6 +1866,7 @@
 		};
 		0206650C1D5FB0BE002A7E2A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E225E972756CC3CEACDDFE7B /* Pods-ChouTi Example iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UYW9ZSKZAQ;
@@ -1868,14 +1918,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1921,14 +1979,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
