@@ -477,8 +477,6 @@
 		025C91C91D64053F000C54D8 /* IssuesSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesSection.swift; sourceTree = "<group>"; };
 		0275AE9F1DDFFF0B00DBA4D3 /* OrderedDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionaryTests.swift; sourceTree = "<group>"; };
 		027B6F621EB391620096334E /* LoadingMorphingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMorphingLabel.swift; sourceTree = "<group>"; };
-		027B6F641EB391620096334E /* Parse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parse+Extensions.swift"; sourceTree = "<group>"; };
-		027B6F651EB391620096334E /* PFFile+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PFFile+Extensions.swift"; sourceTree = "<group>"; };
 		028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsDemoViewController.swift; sourceTree = "<group>"; };
 		029E5FBB1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+RetrieveTests.swift"; sourceTree = "<group>"; };
 		02A245631EB2932300A15837 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
@@ -718,7 +716,6 @@
 			isa = PBXGroup;
 			children = (
 				027B6F611EB391620096334E /* LoadingMorphingLabel */,
-				027B6F631EB391620096334E /* Parse */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -1207,15 +1204,6 @@
 				027B6F621EB391620096334E /* LoadingMorphingLabel.swift */,
 			);
 			path = LoadingMorphingLabel;
-			sourceTree = "<group>";
-		};
-		027B6F631EB391620096334E /* Parse */ = {
-			isa = PBXGroup;
-			children = (
-				027B6F641EB391620096334E /* Parse+Extensions.swift */,
-				027B6F651EB391620096334E /* PFFile+Extensions.swift */,
-			);
-			path = Parse;
 			sourceTree = "<group>";
 		};
 		02FD94EB1E1EB5E200D3D5D4 /* Async */ = {
