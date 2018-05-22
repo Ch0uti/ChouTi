@@ -3,20 +3,28 @@ use_frameworks!
 inhibit_all_warnings!
 
 # Pods
-def pod_testing
+def pods_for_framework
+  pod 'LTMorphingLabel', '~> 0.5'
+end
+
+def pod_for_testing
   pod 'Quick', '~> 1.3'
   pod 'Nimble', '~> 7.1'
 end
 
 # Targets
 target 'ChouTi iOS' do
-  pod 'LTMorphingLabel', '~> 0.5' 
+  pods_for_framework
 end
 
 target 'ChouTi iOS Tests' do
-  pod_testing
+  pod_for_testing
+end
+
+target 'ChouTi Example iOS' do
+  pods_for_framework
 end
 
 target 'ChouTi Example iOS UITests' do
-  pod_testing
+  pod_for_testing
 end
