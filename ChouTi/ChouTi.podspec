@@ -55,6 +55,7 @@ Pod::Spec.new do |s|
 
     ss.subspec 'Extensions' do |sss|
       sss.source_files = 'ChouTi/Source/iOS/Core/Extensions/**/*.*'
+      sss.dependency 'ChouTi/Core/DataStructure'
     end
 
     ss.subspec 'Miscellaneous' do |sss|
@@ -201,7 +202,8 @@ Pod::Spec.new do |s|
     ss.subspec 'LoadingMorphingLabel' do |sss|
       # 'Showing a list of text in loop'
       sss.source_files = 'ChouTi/Source/iOS/ThirdParty/LoadingMorphingLabel/*.*'
-      sss.dependency 'LTMorphingLabel', '~> 0.5' 
+      sss.dependency 'LTMorphingLabel', '~> 0.5'
+      sss.dependency 'ChouTi/Core'
     end
   end
 
