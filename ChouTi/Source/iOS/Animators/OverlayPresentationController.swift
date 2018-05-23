@@ -100,8 +100,8 @@ open class OverlayPresentationController: UIPresentationController {
             
             self.overlayView.removeFromSuperview()
         })
-        
-        presentingViewController.transitionCoordinator?.notifyWhenInteractionEnds({ [unowned self] (coordinatorContext) in
+
+        presentingViewController.transitionCoordinator?.notifyWhenInteractionChanges({ [unowned self] (coordinatorContext) in
             if coordinatorContext.isCancelled == false {
                 let restPercent = Double(1.0 - coordinatorContext.percentComplete)
                 let restDuration = restPercent * coordinatorContext.transitionDuration
