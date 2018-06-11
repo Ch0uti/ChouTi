@@ -17,6 +17,8 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
 
+  # s.module_map = 'Source/ChouTi.modulemap'
+
   # s.pod_target_xcconfig = {
   #   'OTHER_SWIFT_FLAGS[config=Debug]' => '-D DEBUG'
   # }
