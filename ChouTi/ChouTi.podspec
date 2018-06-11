@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
 
                        DESC
   s.homepage         = 'https://github.com/ChouTi-Lab/ChouTi'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'MIT', :file => '../LICENSE' }
   s.author           = { 'Honghao Zhang' => 'zhh358@gmail.com' }
   s.source           = { :git => 'https://github.com/ChouTi-Lab/ChouTi.git', :tag => s.version.to_s }
 
