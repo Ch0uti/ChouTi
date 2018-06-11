@@ -79,7 +79,6 @@ public extension String {
     
     public func rangeFromNSRange(_ nsRange: NSRange) -> Range<String.Index>? {
         let from = self.index(self.startIndex, offsetBy: nsRange.location, limitedBy: self.endIndex)
-		
         let to = self.index(from!, offsetBy: nsRange.length, limitedBy: self.endIndex)
         return from! ..< to!
     }
