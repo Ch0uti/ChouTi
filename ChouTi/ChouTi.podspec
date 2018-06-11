@@ -58,6 +58,15 @@ Pod::Spec.new do |s|
     ss.subspec 'Extensions' do |sss|
       sss.source_files = 'Source/iOS/Core/Extensions/**/*.*'
       sss.dependency 'ChouTi/Core/DataStructure'
+
+      sss.subspec 'Foundation' do |ssss|
+        ssss.source_files = 'Source/iOS/Core/Extensions/Foundation/**/*.*'
+      end
+
+      sss.subspec 'UI' do |ssss|
+        ssss.source_files = 'Source/iOS/Core/Extensions/UI/**/*.*'
+      end
+
     end
 
     ss.subspec 'Miscellaneous' do |sss|
