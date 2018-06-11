@@ -211,7 +211,6 @@
 		025C91C61D64016C000C54D8 /* MiscellaneousSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91C51D64016C000C54D8 /* MiscellaneousSection.swift */; };
 		025C91CA1D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91C81D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift */; };
 		025C91CB1D64053F000C54D8 /* IssuesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91C91D64053F000C54D8 /* IssuesSection.swift */; };
-		0275AE791DDE5CB200DBA4D3 /* ChouTi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 023050921D2440DB00D7B190 /* ChouTi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0275AEA01DDFFF0B00DBA4D3 /* OrderedDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0275AE9F1DDFFF0B00DBA4D3 /* OrderedDictionaryTests.swift */; };
 		027B155120B4BC6900D48048 /* LoadingMorphingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B6F621EB391620096334E /* LoadingMorphingLabel.swift */; };
 		028FC2FD1EE6021F005E25BC /* ButtonsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */; };
@@ -235,13 +234,6 @@
 			remoteGlobalIDString = 023050911D2440DB00D7B190;
 			remoteInfo = ChouTi;
 		};
-		0275AE7A1DDE5CB200DBA4D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 023050891D2440DB00D7B190 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 023050911D2440DB00D7B190;
-			remoteInfo = ChouTi;
-		};
 		027B6F661EB398950096334E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 023050891D2440DB00D7B190 /* Project object */;
@@ -250,20 +242,6 @@
 			remoteInfo = "ChouTi Example iOS";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		0275AE7C1DDE5CB200DBA4D3 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0275AE791DDE5CB200DBA4D3 /* ChouTi.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		020664F11D5FB0BE002A7E2A /* ChouTi Example iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChouTi Example iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -737,7 +715,6 @@
 				0227727A1D6258C900D9CAE7 /* AlertView */,
 				0227727F1D6258C900D9CAE7 /* AutoLinesLabel */,
 				022772811D6258C900D9CAE7 /* CIImageFilter.swift */,
-				022772821D6258C900D9CAE7 /* CollectionViewCells */,
 				022772831D6258C900D9CAE7 /* DatePickerViewController */,
 				022772861D6258C900D9CAE7 /* DropDownMenu */,
 				0227728C1D6258C900D9CAE7 /* ImagePickerView.swift */,
@@ -772,13 +749,6 @@
 				022772801D6258C900D9CAE7 /* AutoLinesLabel.swift */,
 			);
 			path = AutoLinesLabel;
-			sourceTree = "<group>";
-		};
-		022772821D6258C900D9CAE7 /* CollectionViewCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		022772831D6258C900D9CAE7 /* DatePickerViewController */ = {
@@ -1286,13 +1256,11 @@
 				020664ED1D5FB0BE002A7E2A /* Sources */,
 				020664EE1D5FB0BE002A7E2A /* Frameworks */,
 				020664EF1D5FB0BE002A7E2A /* Resources */,
-				0275AE7C1DDE5CB200DBA4D3 /* Embed Frameworks */,
 				B45F4315BBE8168C9544428C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0275AE7B1DDE5CB200DBA4D3 /* PBXTargetDependency */,
 			);
 			name = "ChouTi Example iOS";
 			productName = "ChouTi iOS";
@@ -1552,10 +1520,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi Example iOS/Pods-ChouTi Example iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/ChouTi/ChouTi.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTMorphingLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChouTi.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1824,11 +1794,6 @@
 			isa = PBXTargetDependency;
 			target = 023050911D2440DB00D7B190 /* ChouTi iOS */;
 			targetProxy = 0230509E1D2440DB00D7B190 /* PBXContainerItemProxy */;
-		};
-		0275AE7B1DDE5CB200DBA4D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 023050911D2440DB00D7B190 /* ChouTi iOS */;
-			targetProxy = 0275AE7A1DDE5CB200DBA4D3 /* PBXContainerItemProxy */;
 		};
 		027B6F671EB398950096334E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -22,7 +22,7 @@ target 'ChouTi iOS Tests' do
 end
 
 target 'ChouTi Example iOS' do
-  pods_for_framework
+  pod 'ChouTi/All', :path => './'
 end
 
 target 'ChouTi Example iOS UITests' do
