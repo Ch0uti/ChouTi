@@ -71,7 +71,17 @@
             "ChouTi/Core/DataStructure": [
 
             ]
-          }
+          },
+          "subspecs": [
+            {
+              "name": "Foundation",
+              "source_files": "Source/iOS/Core/Extensions/Foundation/**/*.*"
+            },
+            {
+              "name": "UI",
+              "source_files": "Source/iOS/Core/Extensions/UI/**/*.*"
+            }
+          ]
         },
         {
           "name": "Miscellaneous",

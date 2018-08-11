@@ -28,6 +28,12 @@ PODS:
   - ChouTi/Core/DataStructure (0.4.1)
   - ChouTi/Core/Extensions (0.4.1):
     - ChouTi/Core/DataStructure
+    - ChouTi/Core/Extensions/Foundation (= 0.4.1)
+    - ChouTi/Core/Extensions/UI (= 0.4.1)
+  - ChouTi/Core/Extensions/Foundation (0.4.1):
+    - ChouTi/Core/DataStructure
+  - ChouTi/Core/Extensions/UI (0.4.1):
+    - ChouTi/Core/DataStructure
   - ChouTi/Core/Miscellaneous (0.4.1)
   - ChouTi/Core/Protocols (0.4.1)
   - ChouTi/Core/UI (0.4.1):
@@ -110,11 +116,11 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  ChouTi: afbd29c3afec5488187c183d91bc5a728e3586ca
+  ChouTi: 54d63a26e32a500ac543b3fe978e30b2cd36cbff
   LTMorphingLabel: bdb51d4682e9822da89da6f567bd8aa456fd6650
   Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
   Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
 
-PODFILE CHECKSUM: ec3c33886f98cf9d803778e84da77684540d4410
+PODFILE CHECKSUM: 924c1ae9087f4e50718983693b3b0480a986a28c
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3
