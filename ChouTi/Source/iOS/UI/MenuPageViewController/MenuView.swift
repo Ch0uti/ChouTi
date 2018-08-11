@@ -94,7 +94,7 @@ open class MenuView : UIView {
 	
 	// MARK: - Public
 	open var menuCollectionView: UICollectionView!
-	open let menuCollectionViewLayout = UICollectionViewFlowLayout()
+    public let menuCollectionViewLayout = UICollectionViewFlowLayout()
 	
 	open var spacingsBetweenMenus: CGFloat {
 		get { return menuCollectionViewLayout.minimumLineSpacing }

@@ -9,7 +9,7 @@
 import UIKit
 
 open class NavigationBarStatusBar: UIView {
-	open let titleLabel = UILabel()
+	public let titleLabel = UILabel()
 	open var statusBarHeight: CGFloat? {
 		didSet {
 			if let height = statusBarHeight, height > 0 {

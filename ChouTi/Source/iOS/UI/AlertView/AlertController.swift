@@ -16,7 +16,7 @@ import UIKit
 open class AlertController: UIViewController {
     
     /// AlertView will be presented
-    open let alertView = AlertView()
+    public let alertView = AlertView()
     
     /// Scale presenting/dismissing animator
     fileprivate let animator = ScalePresentingAnimator()

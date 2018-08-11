@@ -16,11 +16,11 @@ public protocol ImagePickerViewDelegate : class {
 
 @available(iOS 9.0, *)
 open class ImagePickerView: UIView {
-	open let backgroundImageView = UIImageView()
+    public let backgroundImageView = UIImageView()
 	
 	fileprivate let cameraButtonDescriptionLabelStackView = UIStackView()
-	open let cameraButton = UIButton()
-	open let descriptionLabel = UILabel()
+    public let cameraButton = UIButton()
+    public let descriptionLabel = UILabel()
 	
 	open var addImageDescription: String = "ADD COVER IMAGE"
 	open var editImageDescription: String = "EDIT COVER IMAGE"

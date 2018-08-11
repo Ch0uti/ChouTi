@@ -18,10 +18,10 @@ open class Task {
     open var executed: Bool { return _executed }
     
     /// Closure to be executed
-    open let task: ()->()
+    public let task: ()->()
 	
 	/// Queue the task will run
-    open let queue: DispatchQueue
+    public let queue: DispatchQueue
 	
 	/// Delay seconds
 	fileprivate let seconds: TimeInterval

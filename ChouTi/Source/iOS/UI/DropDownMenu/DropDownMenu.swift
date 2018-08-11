@@ -13,10 +13,10 @@ open class DropDownMenu: UIControl {
 	// MARK: - Public
 	
 	/// The main text label showing current selected option
-	open let textLabel = UILabel()
+	public let textLabel = UILabel()
 	
 	/// Indicator view on right side, this usually an arrow, subclass should use this as a container view to add indicator view
-	open let indicatorView = UIView()
+    public let indicatorView = UIView()
 	
 	open var statusBarStyle: UIStatusBarStyle = .default {
 		didSet {

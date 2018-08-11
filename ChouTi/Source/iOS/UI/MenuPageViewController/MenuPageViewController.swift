@@ -29,8 +29,8 @@ open class MenuPageViewController : UIViewController {
 	// MARK: - Public
 	open var menuTitleHeight: CGFloat = 44.0
 	
-	open let menuView = MenuView()
-	open let pageViewController = PageViewController()
+	public let menuView = MenuView()
+	public let pageViewController = PageViewController()
 	
 	fileprivate var _selectedIndex: Int = 0
 	open var selectedIndex: Int {
