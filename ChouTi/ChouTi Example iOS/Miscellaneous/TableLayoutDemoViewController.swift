@@ -13,7 +13,7 @@ class TableLayoutDemoViewController: UIViewController {
 
 	let doneButton = Button(type: .system)
 
-	let columns = Int.random(5, 20)
+    let columns = Int.random(in: 5...20)
 	var rows = [Int : Int]()
 	
     override func viewDidLoad() {

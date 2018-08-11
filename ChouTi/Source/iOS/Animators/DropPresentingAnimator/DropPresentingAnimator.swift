@@ -77,12 +77,12 @@ extension DropPresentingAnimator {
 		
 		presentedView.bounds = CGRect(origin: CGPoint.zero, size: presentingViewSize)
 		presentedView.center = CGPoint(x: containerView.bounds.width / 2.0, y: 0 - presentingViewSize.height / 2.0)
-		presentedView.transform = CGAffineTransform(rotationAngle: (CGFloat.random(-15, 15) * CGFloat.pi) / 180.0)
+        presentedView.transform = CGAffineTransform(rotationAngle: (CGFloat.random(in: -15...15) * CGFloat.pi) / 180.0)
 		
 		containerView.addSubview(presentedView)
         
 		// Presenting animations
-		UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: CGFloat.random(in: 0.55...0.8), initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
 			presentedView.center = containerView.center
 			presentedView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat.pi) / 180.0)
 			}, completion: { finished -> Void in
@@ -105,9 +105,9 @@ extension DropPresentingAnimator {
 		}
 		
 		// Dismissing animations
-		UIView.animate(withDuration: animationDuration * Double(1.0 - percentComplete), delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: animationDuration * Double(1.0 - percentComplete), delay: 0.0, usingSpringWithDamping: CGFloat.random(in: 0.55...0.8), initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
 			fromView.center = CGPoint(x: containerView.bounds.width / 2.0, y: containerView.bounds.height + self.presentingViewSize.height)
-			fromView.transform = CGAffineTransform(rotationAngle: (self.interactiveAnimationTransformAngel ?? CGFloat.random(-15, 15) * CGFloat.pi) / 180.0)
+            fromView.transform = CGAffineTransform(rotationAngle: (self.interactiveAnimationTransformAngel ?? CGFloat.random(in: -15...15) * CGFloat.pi) / 180.0)
 			}, completion: { finished -> Void in
 				transitionContext.completeTransition(finished)
 		})
@@ -180,7 +180,7 @@ extension DropPresentingAnimator {
         // Set a minimum duration, at least has 20% of animation duration.
         let duration = (animationDuration * Double(percentComplete)).normalize(animationDuration * 0.2, animationDuration)
         
-        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: CGFloat.random(0.55, 0.8), initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: CGFloat.random(in: 0.55...0.8), initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             presentedView.center = containerView.center
             presentedView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat.pi) / 180.0)
         }, completion: { [weak self] finished in

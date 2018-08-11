@@ -95,9 +95,9 @@ PODS:
     - "ChouTi/Utilities/TableView+SectionRowExtensions (= 0.4.1)"
   - "ChouTi/Utilities/TableView+SectionRowExtensions (0.4.1)":
     - ChouTi/Core
-  - LTMorphingLabel (0.5.6)
-  - Nimble (7.1.1)
-  - Quick (1.3.0)
+  - LTMorphingLabel (0.5.7)
+  - Nimble (7.1.3)
+  - Quick (1.3.1)
 
 DEPENDENCIES:
   - ChouTi/All (from `./`)
@@ -117,10 +117,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ChouTi: 54d63a26e32a500ac543b3fe978e30b2cd36cbff
-  LTMorphingLabel: bdb51d4682e9822da89da6f567bd8aa456fd6650
-  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
-  Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
+  LTMorphingLabel: 9d1c38bd602fe505f264d3e9fdb780995142f275
+  Nimble: 2839b01d1b31f6a6a7777a221f0d91cf52e8e27b
+  Quick: d17304d58d0d169dd0bd1c6e5c28e3318de32a1a
 
-PODFILE CHECKSUM: 924c1ae9087f4e50718983693b3b0480a986a28c
+PODFILE CHECKSUM: c60ef82c76a8fe3a879a8d3bfc8c24cf55eed094
 
 COCOAPODS: 1.5.3

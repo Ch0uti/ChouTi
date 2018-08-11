@@ -42,7 +42,7 @@ class NSLayoutConstraint_ExtensionsTests: XCTestCase {
     func testConstrainToSameLayoutAttributeOnCountTwoAndMore() {
         let containerView = UIView()
         var views: [UIView] = []
-        let viewsCount = Int.random(2, 10)
+        let viewsCount = Int.random(in: 2...10)
         for _ in 0 ..< viewsCount {
             let view = UIView()
             containerView.addSubview(view)

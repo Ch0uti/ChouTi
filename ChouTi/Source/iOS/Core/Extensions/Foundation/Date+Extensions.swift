@@ -18,7 +18,7 @@ public extension Date {
 	/// - Returns: a random day or nil
 	public static func randomDate(before date: Date, withinDays: Int) -> Date? {
 		let days = withinDays.normalize(1, Int.max)
-		return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -Int.random(1, days), to: date)
+        return Calendar.autoupdatingCurrent.date(byAdding: .day, value: -Int.random(in: 1...days), to: date)
     }
 	
     /// Get a random Date object, date is after 1970

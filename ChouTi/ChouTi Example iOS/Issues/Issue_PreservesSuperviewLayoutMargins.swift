@@ -118,10 +118,10 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
     fileprivate func shrink(_ view: UIView) {
         delay(2) {
             view.layoutMargins = UIEdgeInsets(
-                top: CGFloat.random(0, 100),
-                left: CGFloat.random(0, 150),
-                bottom: CGFloat.random(0, 100),
-                right: CGFloat.random(0, 150)
+                top: CGFloat.random(in: 0...100),
+                left: CGFloat.random(in: 0...150),
+                bottom: CGFloat.random(in: 0...100),
+                right: CGFloat.random(in: 0...150)
             )
             self.updateContainerViewLayoutMarginsLabel(view)
             UIView.animate(withDuration: 1.0, animations: {
