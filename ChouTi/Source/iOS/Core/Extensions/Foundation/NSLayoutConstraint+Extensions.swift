@@ -63,7 +63,19 @@ public extension UIView {
             NSLayoutConstraint(item: self, attribute: .trailingMargin, relatedBy: .equal, toItem: superview, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0)
         ].activate()
     }
-    
+
+    @discardableResult
+    public func constrainToSafeAreaInSuperview() -> [NSLayoutConstraint] {
+        guard let superview = self.superview else { fatalError("superview is nil") }
+
+        return [
+            self.topAnchor.constrain(to: superview.safeAreaLayoutGuide.topAnchor),
+            self.leadingAnchor.constrain(to: superview.safeAreaLayoutGuide.leadingAnchor),
+            self.bottomAnchor.constrain(to: superview.safeAreaLayoutGuide.bottomAnchor),
+            self.trailingAnchor.constrain(to: superview.safeAreaLayoutGuide.trailingAnchor),
+        ].activate()
+    }
+
     /**
      Setup center in superview constraints
      

@@ -72,8 +72,6 @@ open class MenuPageViewController : UIViewController {
 		pageViewController.dataSource = self
 		pageViewController.delegate = self
 		
-		automaticallyAdjustsScrollViewInsets = false
-		
 		menuView.spacingsBetweenMenus = 10.0
 	}
 	

@@ -1,5 +1,5 @@
 PODS:
-  - ChouTi/All (0.4.1):
+  - ChouTi/All (0.4.2):
     - ChouTi/Animators
     - ChouTi/CollectionViewLayouts
     - ChouTi/Core
@@ -7,93 +7,93 @@ PODS:
     - ChouTi/UI
     - ChouTi/UI-App-Extension-API-Unsafe
     - ChouTi/Utilities
-  - ChouTi/Animators (0.4.1):
-    - ChouTi/Animators/DropPresentingAnimator (= 0.4.1)
+  - ChouTi/Animators (0.4.2):
+    - ChouTi/Animators/DropPresentingAnimator (= 0.4.2)
     - ChouTi/Core
-  - ChouTi/Animators/DropPresentingAnimator (0.4.1):
+  - ChouTi/Animators/DropPresentingAnimator (0.4.2):
     - ChouTi/Core
-  - ChouTi/CollectionViewLayouts (0.4.1):
-    - ChouTi/CollectionViewLayouts/TableLayout (= 0.4.1)
+  - ChouTi/CollectionViewLayouts (0.4.2):
+    - ChouTi/CollectionViewLayouts/TableLayout (= 0.4.2)
     - ChouTi/Core
-  - ChouTi/CollectionViewLayouts/TableLayout (0.4.1):
+  - ChouTi/CollectionViewLayouts/TableLayout (0.4.2):
     - ChouTi/Core
-  - ChouTi/Core (0.4.1):
-    - ChouTi/Core/CodeSnippets (= 0.4.1)
-    - ChouTi/Core/DataStructure (= 0.4.1)
-    - ChouTi/Core/Extensions (= 0.4.1)
-    - ChouTi/Core/Miscellaneous (= 0.4.1)
-    - ChouTi/Core/Protocols (= 0.4.1)
-    - ChouTi/Core/UI (= 0.4.1)
-  - ChouTi/Core/CodeSnippets (0.4.1)
-  - ChouTi/Core/DataStructure (0.4.1)
-  - ChouTi/Core/Extensions (0.4.1):
+  - ChouTi/Core (0.4.2):
+    - ChouTi/Core/CodeSnippets (= 0.4.2)
+    - ChouTi/Core/DataStructure (= 0.4.2)
+    - ChouTi/Core/Extensions (= 0.4.2)
+    - ChouTi/Core/Miscellaneous (= 0.4.2)
+    - ChouTi/Core/Protocols (= 0.4.2)
+    - ChouTi/Core/UI (= 0.4.2)
+  - ChouTi/Core/CodeSnippets (0.4.2)
+  - ChouTi/Core/DataStructure (0.4.2)
+  - ChouTi/Core/Extensions (0.4.2):
     - ChouTi/Core/DataStructure
-    - ChouTi/Core/Extensions/Foundation (= 0.4.1)
-    - ChouTi/Core/Extensions/UI (= 0.4.1)
-  - ChouTi/Core/Extensions/Foundation (0.4.1):
+    - ChouTi/Core/Extensions/Foundation (= 0.4.2)
+    - ChouTi/Core/Extensions/UI (= 0.4.2)
+  - ChouTi/Core/Extensions/Foundation (0.4.2):
     - ChouTi/Core/DataStructure
-  - ChouTi/Core/Extensions/UI (0.4.1):
+  - ChouTi/Core/Extensions/UI (0.4.2):
     - ChouTi/Core/DataStructure
-  - ChouTi/Core/Miscellaneous (0.4.1)
-  - ChouTi/Core/Protocols (0.4.1)
-  - ChouTi/Core/UI (0.4.1):
-    - ChouTi/Core/UI/CollectionViewCells (= 0.4.1)
-    - ChouTi/Core/UI/TableViewCells (= 0.4.1)
-  - ChouTi/Core/UI/CollectionViewCells (0.4.1)
-  - ChouTi/Core/UI/TableViewCells (0.4.1)
-  - ChouTi/ThirdParty (0.4.1):
-    - ChouTi/ThirdParty/LoadingMorphingLabel (= 0.4.1)
-  - ChouTi/ThirdParty/LoadingMorphingLabel (0.4.1):
+  - ChouTi/Core/Miscellaneous (0.4.2)
+  - ChouTi/Core/Protocols (0.4.2)
+  - ChouTi/Core/UI (0.4.2):
+    - ChouTi/Core/UI/CollectionViewCells (= 0.4.2)
+    - ChouTi/Core/UI/TableViewCells (= 0.4.2)
+  - ChouTi/Core/UI/CollectionViewCells (0.4.2)
+  - ChouTi/Core/UI/TableViewCells (0.4.2)
+  - ChouTi/ThirdParty (0.4.2):
+    - ChouTi/ThirdParty/LoadingMorphingLabel (= 0.4.2)
+  - ChouTi/ThirdParty/LoadingMorphingLabel (0.4.2):
     - ChouTi/Core
     - LTMorphingLabel (~> 0.5)
-  - ChouTi/UI (0.4.1):
+  - ChouTi/UI (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
-    - ChouTi/UI/AlertView (= 0.4.1)
-    - ChouTi/UI/AutoLinesLabel (= 0.4.1)
-    - ChouTi/UI/CollectionViewCells (= 0.4.1)
-    - ChouTi/UI/DatePickerViewController (= 0.4.1)
-    - ChouTi/UI/DropDownMenu (= 0.4.1)
-    - ChouTi/UI/MenuPageViewController (= 0.4.1)
-    - ChouTi/UI/NavigationBarStatusBar (= 0.4.1)
-    - ChouTi/UI/SegmentedControl (= 0.4.1)
-    - ChouTi/UI/TableViewCells (= 0.4.1)
-  - ChouTi/UI-App-Extension-API-Unsafe (0.4.1):
+    - ChouTi/UI/AlertView (= 0.4.2)
+    - ChouTi/UI/AutoLinesLabel (= 0.4.2)
+    - ChouTi/UI/CollectionViewCells (= 0.4.2)
+    - ChouTi/UI/DatePickerViewController (= 0.4.2)
+    - ChouTi/UI/DropDownMenu (= 0.4.2)
+    - ChouTi/UI/MenuPageViewController (= 0.4.2)
+    - ChouTi/UI/NavigationBarStatusBar (= 0.4.2)
+    - ChouTi/UI/SegmentedControl (= 0.4.2)
+    - ChouTi/UI/TableViewCells (= 0.4.2)
+  - ChouTi/UI-App-Extension-API-Unsafe (0.4.2):
     - ChouTi/Core
-    - ChouTi/UI-App-Extension-API-Unsafe/SlideController (= 0.4.1)
-  - ChouTi/UI-App-Extension-API-Unsafe/SlideController (0.4.1):
+    - ChouTi/UI-App-Extension-API-Unsafe/SlideController (= 0.4.2)
+  - ChouTi/UI-App-Extension-API-Unsafe/SlideController (0.4.2):
     - ChouTi/Core
-  - ChouTi/UI/AlertView (0.4.1):
+  - ChouTi/UI/AlertView (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
-  - ChouTi/UI/AutoLinesLabel (0.4.1):
+  - ChouTi/UI/AutoLinesLabel (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
-  - ChouTi/UI/CollectionViewCells (0.4.1):
+  - ChouTi/UI/CollectionViewCells (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
-  - ChouTi/UI/DatePickerViewController (0.4.1):
+  - ChouTi/UI/DatePickerViewController (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
-  - ChouTi/UI/DropDownMenu (0.4.1):
+  - ChouTi/UI/DropDownMenu (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
-  - ChouTi/UI/MenuPageViewController (0.4.1):
+  - ChouTi/UI/MenuPageViewController (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
-  - ChouTi/UI/NavigationBarStatusBar (0.4.1):
+  - ChouTi/UI/NavigationBarStatusBar (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
-  - ChouTi/UI/SegmentedControl (0.4.1):
+  - ChouTi/UI/SegmentedControl (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
-  - ChouTi/UI/TableViewCells (0.4.1):
+  - ChouTi/UI/TableViewCells (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
-  - ChouTi/Utilities (0.4.1):
+  - ChouTi/Utilities (0.4.2):
     - ChouTi/Core
-    - "ChouTi/Utilities/TableView+SectionRowExtensions (= 0.4.1)"
-  - "ChouTi/Utilities/TableView+SectionRowExtensions (0.4.1)":
+    - "ChouTi/Utilities/TableView+SectionRowExtensions (= 0.4.2)"
+  - "ChouTi/Utilities/TableView+SectionRowExtensions (0.4.2)":
     - ChouTi/Core
   - LTMorphingLabel (0.5.7)
   - Nimble (7.1.3)
@@ -116,7 +116,7 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  ChouTi: 54d63a26e32a500ac543b3fe978e30b2cd36cbff
+  ChouTi: 6f35bac7859c5e1f7520b2f4b34b31ac402218ff
   LTMorphingLabel: 9d1c38bd602fe505f264d3e9fdb780995142f275
   Nimble: 2839b01d1b31f6a6a7777a221f0d91cf52e8e27b
   Quick: d17304d58d0d169dd0bd1c6e5c28e3318de32a1a

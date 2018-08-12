@@ -234,7 +234,7 @@ extension PageViewController {
 		pageScrollView.showsVerticalScrollIndicator = false
 		
 		pageScrollView.contentInset = UIEdgeInsets.zero
-		automaticallyAdjustsScrollViewInsets = false
+        pageScrollView.contentInsetAdjustmentBehavior = .never
 	}
 	
 	open override func viewWillAppear(_ animated: Bool) {

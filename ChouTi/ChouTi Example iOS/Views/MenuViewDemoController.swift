@@ -19,8 +19,6 @@ class MenuViewDemoController: UIViewController {
 		
 		view.backgroundColor = UIColor.white
 		
-		automaticallyAdjustsScrollViewInsets = false
-		
 		leadingMenuView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(leadingMenuView)
 		

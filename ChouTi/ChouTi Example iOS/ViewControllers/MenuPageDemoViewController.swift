@@ -29,8 +29,6 @@ class MenuPageDemoViewController : UIViewController {
 		
 		menuPageViewController.selectedIndex = 4
 		
-		self.automaticallyAdjustsScrollViewInsets = false
-		
 		addChildViewController(menuPageViewController)
 		let frame = menuPageViewController.view.frame
 		menuPageViewController.view.frame = CGRect(x: frame.origin.x, y: frame.origin.y + 22 + 44, width: frame.width, height: frame.height - 20 - 44)
