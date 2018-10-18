@@ -213,6 +213,8 @@
 		026E763020CF06F600CD73FC /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026E760620CF06F600CD73FC /* UIScrollView+Extensions.swift */; };
 		0275AEA01DDFFF0B00DBA4D3 /* OrderedDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0275AE9F1DDFFF0B00DBA4D3 /* OrderedDictionaryTests.swift */; };
 		027B155120B4BC6900D48048 /* LoadingMorphingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027B6F621EB391620096334E /* LoadingMorphingLabel.swift */; };
+		027EEFBB2179250A00B7FFBA /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027EEFBA2179250A00B7FFBA /* DispatchQueue+Extensions.swift */; };
+		027EEFBD2179252C00B7FFBA /* DispatchQueue+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027EEFBC2179252C00B7FFBA /* DispatchQueue+ExtensionsTests.swift */; };
 		028FC2FD1EE6021F005E25BC /* ButtonsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */; };
 		029E5FBC1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E5FBB1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift */; };
 		02A245641EB2932300A15837 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A245631EB2932300A15837 /* Platform.swift */; };
@@ -459,6 +461,8 @@
 		0275AE9F1DDFFF0B00DBA4D3 /* OrderedDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionaryTests.swift; sourceTree = "<group>"; };
 		027B155520B4D89000D48048 /* LTMorphingLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LTMorphingLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		027B6F621EB391620096334E /* LoadingMorphingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMorphingLabel.swift; sourceTree = "<group>"; };
+		027EEFBA2179250A00B7FFBA /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
+		027EEFBC2179252C00B7FFBA /* DispatchQueue+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsDemoViewController.swift; sourceTree = "<group>"; };
 		029E5FBB1D83652900364A23 /* NSLayoutConstraint+RetrieveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+RetrieveTests.swift"; sourceTree = "<group>"; };
 		02A245631EB2932300A15837 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
@@ -1013,6 +1017,7 @@
 				025C914D1D62A970000C54D8 /* UIColor+ExtensionsTests.swift */,
 				025C914E1D62A970000C54D8 /* UIView+ExtensionsTests.swift */,
 				025C914F1D62A970000C54D8 /* UIView+GeometryTests.swift */,
+				027EEFBC2179252C00B7FFBA /* DispatchQueue+ExtensionsTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1162,6 +1167,7 @@
 				026E75ED20CF06F600CD73FC /* Date+Extensions.swift */,
 				026E75EE20CF06F600CD73FC /* CGRect+Extensions.swift */,
 				026E75EF20CF06F600CD73FC /* Collection+Extensions.swift */,
+				027EEFBA2179250A00B7FFBA /* DispatchQueue+Extensions.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1738,6 +1744,7 @@
 				026E761420CF06F600CD73FC /* Optional+Extensions.swift in Sources */,
 				022773291D6258C900D9CAE7 /* TableViewRow.swift in Sources */,
 				022773231D6258C900D9CAE7 /* SlideController.swift in Sources */,
+				027EEFBB2179250A00B7FFBA /* DispatchQueue+Extensions.swift in Sources */,
 				022773261D6258C900D9CAE7 /* SwipeTableViewCell.swift in Sources */,
 				022773121D6258C900D9CAE7 /* DropDownMenuAnimator.swift in Sources */,
 				026E761020CF06F600CD73FC /* Calendar+Extensions.swift in Sources */,
@@ -1800,6 +1807,7 @@
 				025C915E1D62A970000C54D8 /* SequenceType+ExtensionsTests.swift in Sources */,
 				025C91671D62AB96000C54D8 /* SwipeTableViewCellTests.swift in Sources */,
 				025C91651D62A970000C54D8 /* OperatorsTests.swift in Sources */,
+				027EEFBD2179252C00B7FFBA /* DispatchQueue+ExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
