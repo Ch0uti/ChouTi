@@ -97,11 +97,11 @@ PODS:
     - ChouTi/Core
   - LTMorphingLabel (0.5.7)
   - Nimble (7.3.1)
-  - Quick (1.3.1)
+  - Quick (1.3.2)
 
 DEPENDENCIES:
   - ChouTi/All (from `./`)
-  - LTMorphingLabel (~> 0.5)
+  - LTMorphingLabel (~> 0.5.7)
   - Nimble (~> 7.3)
   - Quick (~> 1.3)
 
@@ -116,11 +116,11 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  ChouTi: 657581458e9a9caead2d1f1db2457937f7701f80
+  ChouTi: 537832290235c6c4ddb8f0c1b7fe9d884120ff22
   LTMorphingLabel: 9d1c38bd602fe505f264d3e9fdb780995142f275
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
-  Quick: d17304d58d0d169dd0bd1c6e5c28e3318de32a1a
+  Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
 
-PODFILE CHECKSUM: b84a6bff29a38a440a0404a26b692be8c76c3ad5
+PODFILE CHECKSUM: 1b44de2cf0d02c038a9c94c4470ab7edc0696352
 
 COCOAPODS: 1.6.0.beta.2

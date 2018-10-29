@@ -1,8 +1,8 @@
 {
   "name": "ChouTi",
   "version": "0.4.2",
-  "summary": "Chou Ti (抽屉) - A framework for Swift development.",
-  "description": "Chou Ti (抽屉) - A framework for Swift development.\nExtended data structures, classes, extensions.",
+  "summary": "ChouTi (抽屉) - A framework for Swift development.",
+  "description": "ChouTi (抽屉) - A framework for Swift development.",
   "homepage": "https://github.com/ChouTi-Lab/ChouTi",
   "license": {
     "type": "MIT",

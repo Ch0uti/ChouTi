@@ -401,7 +401,7 @@
 		1BF45E3BB1F63E4CB2BD206271FFD3A8 /* DSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DSL.h; path = Sources/NimbleObjectiveC/DSL.h; sourceTree = "<group>"; };
 		1C719DD9F069172C5723CD1698356059 /* Pods-ChouTi Example iOS UITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ChouTi Example iOS UITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		1C8A1C12DD342357BF26C8E430CAD5B9 /* Quick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Quick-dummy.m"; sourceTree = "<group>"; };
-		1D23D413A7A5F51509FB1920F06B6F13 /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D23D413A7A5F51509FB1920F06B6F13 /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Quick.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E7304A459192F52D19890BA69DB829C /* Pods-ChouTi iOS Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ChouTi iOS Tests.modulemap"; sourceTree = "<group>"; };
 		1E8CEFAF18EA9DDFC9B76BC8A2BD8315 /* Nimble.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Nimble.modulemap; sourceTree = "<group>"; };
 		1EE8515C6CE6E13EAE195C0DCAAA49BD /* LTEmitterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LTEmitterView.swift; path = LTMorphingLabel/LTEmitterView.swift; sourceTree = "<group>"; };
@@ -450,7 +450,7 @@
 		412E428DF8AACFDA2DE3C7C1E4AFD10F /* DropDownMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownMenu.swift; path = Source/iOS/UI/DropDownMenu/DropDownMenu.swift; sourceTree = "<group>"; };
 		421AF217E99A72CB285D3D5112FCC19D /* QCKDSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QCKDSL.m; path = Sources/QuickObjectiveC/DSL/QCKDSL.m; sourceTree = "<group>"; };
 		4497A5E0288700EB96584696B7A4456D /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
-		44A3A3E0E7A29544690BF55A3BCE41DD /* mach_excServer.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mach_excServer.c; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/mach_excServer.c; sourceTree = "<group>"; };
+		44A3A3E0E7A29544690BF55A3BCE41DD /* mach_excServer.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mach_excServer.c; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/mach_excServer.c; sourceTree = "<group>"; };
 		465C19211DA52F1D6CBDBD28DE68EE8A /* XCTestObservationCenter+Register.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestObservationCenter+Register.m"; path = "Sources/NimbleObjectiveC/XCTestObservationCenter+Register.m"; sourceTree = "<group>"; };
 		4790201D7FA982A01CF0CF736BBE57C5 /* LTMorphingLabel+Burn.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "LTMorphingLabel+Burn.swift"; path = "LTMorphingLabel/LTMorphingLabel+Burn.swift"; sourceTree = "<group>"; };
 		47A11876AA35841F22A814371D6D7B57 /* NimbleEnvironment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NimbleEnvironment.swift; path = Sources/Nimble/Adapters/NimbleEnvironment.swift; sourceTree = "<group>"; };
@@ -474,7 +474,7 @@
 		57B80A149B7A0B6111BB08F06596F6C2 /* NSRegularExpression+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+Extensions.swift"; sourceTree = "<group>"; };
 		5AB3581FD835C22B5F27CA0D8B34BB28 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		5BDBDAC344413A5E3616D1B91E6C7308 /* Pods-ChouTi Example iOS UITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ChouTi Example iOS UITests-frameworks.sh"; sourceTree = "<group>"; };
-		5BE9359A7AD1359B3F3FF9B41FEE456A /* ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BE9359A7AD1359B3F3FF9B41FEE456A /* ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ChouTi.framework; path = ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C0F928BE23876EA32FD6FF74EB50B96 /* Camera@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Camera@3x.png"; path = "Resources/Camera/Camera@3x.png"; sourceTree = "<group>"; };
 		5CC360516ECCAA29CE7AE431912BD792 /* Match.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Match.swift; path = Sources/Nimble/Matchers/Match.swift; sourceTree = "<group>"; };
 		5E77276493E96796C9252D7A42A2754B /* Pods-ChouTi Example iOS UITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ChouTi Example iOS UITests-umbrella.h"; sourceTree = "<group>"; };
@@ -497,13 +497,13 @@
 		6945CCD6AD9684842C5CEE3D604E19CD /* BeEmpty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeEmpty.swift; path = Sources/Nimble/Matchers/BeEmpty.swift; sourceTree = "<group>"; };
 		6A0909413AA14CC0C8579AC98C9BE6E3 /* DatePickerControllerDelagte.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePickerControllerDelagte.swift; path = Source/iOS/UI/DatePickerViewController/DatePickerControllerDelagte.swift; sourceTree = "<group>"; };
 		6B77F0DE7B093AD2943AC891AF0A6CB7 /* SatisfyAllOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SatisfyAllOf.swift; path = Sources/Nimble/Matchers/SatisfyAllOf.swift; sourceTree = "<group>"; };
-		6DDCC4A243F11DAEACD087D81E96EDF9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		6DDCC4A243F11DAEACD087D81E96EDF9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6EF65C48240F2ED5A0D60ADBBC69DDD1 /* NMBExceptionCapture.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMBExceptionCapture.m; path = Sources/NimbleObjectiveC/NMBExceptionCapture.m; sourceTree = "<group>"; };
 		6F68C00BD24859DEF22EB905ECA88100 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		6FB61442FBD02C357807D578CBDDA81C /* SeparatorCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeparatorCell.swift; path = Source/iOS/UI/TableViewCells/SeparatorCell.swift; sourceTree = "<group>"; };
 		721A81E671556E31A1CCD6A9C4EF2F7D /* Nimble-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Nimble-dummy.m"; sourceTree = "<group>"; };
 		7246F782C901B92955BE5A23A165239D /* TableViewCellValue2.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TableViewCellValue2.swift; sourceTree = "<group>"; };
-		73C06846D87BFDF2B4E97932F13566F5 /* ChouTi.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ChouTi.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		73C06846D87BFDF2B4E97932F13566F5 /* ChouTi.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ChouTi.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		74ADC83FD4422D66F11C3558B3877881 /* SwipeTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeTableViewCell.swift; path = Source/iOS/UI/TableViewCells/SwipeTableViewCell.swift; sourceTree = "<group>"; };
 		756C11D93E8494754AF6F95197475A04 /* Behavior.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Behavior.swift; path = Sources/Quick/Behavior.swift; sourceTree = "<group>"; };
 		764249FEFFD0D1E994653308C6C6983D /* CodeSnippets_NavigationItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodeSnippets_NavigationItem.swift; path = Source/iOS/Core/CodeSnippets/CodeSnippets_NavigationItem.swift; sourceTree = "<group>"; };
@@ -581,8 +581,8 @@
 		A9820FFB5B9D6D25E0ACA56671125112 /* UILongPressGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UILongPressGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		A9A89607ACB33931FE03FADE436358EB /* LTMorphingLabel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LTMorphingLabel-umbrella.h"; sourceTree = "<group>"; };
 		A9B99240B08ADEEEF6FC7881D6128DA1 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/Quick/Configuration/Configuration.swift; sourceTree = "<group>"; };
-		AA61B58A0BE75BD20A3B8E398FF7B8ED /* Pods_ChouTi_Example_iOS_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_Example_iOS_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB3479203A0197C096B41163C0B04D90 /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA61B58A0BE75BD20A3B8E398FF7B8ED /* Pods_ChouTi_Example_iOS_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ChouTi_Example_iOS_UITests.framework; path = "Pods-ChouTi Example iOS UITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB3479203A0197C096B41163C0B04D90 /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Nimble.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5522C0E274D80E649A3B67E3C95FC2 /* Numbers+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Numbers+Extensions.swift"; sourceTree = "<group>"; };
 		ABC10794BE540ECF09CE7A86B0638B0E /* CenterLabelTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CenterLabelTableViewCell.swift; sourceTree = "<group>"; };
 		ADF03EAECB4C4BFF6030556304CBEBA5 /* LTStringDiffResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LTStringDiffResult.swift; path = LTMorphingLabel/LTStringDiffResult.swift; sourceTree = "<group>"; };
@@ -595,7 +595,7 @@
 		B251AC36EB809EE60C52FB7B61DF3C42 /* CodeSnippets_UISegmentedControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodeSnippets_UISegmentedControl.swift; path = Source/iOS/Core/CodeSnippets/CodeSnippets_UISegmentedControl.swift; sourceTree = "<group>"; };
 		B2D425DDBB1CE4EB171BB6022DB99AC5 /* Pods-ChouTi iOS Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ChouTi iOS Tests-Info.plist"; sourceTree = "<group>"; };
 		B34EC154490EFA45B95CB704DE48BA01 /* SingleTitleContentPairView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SingleTitleContentPairView.swift; path = Source/iOS/UI/SingleTitleContentPairView.swift; sourceTree = "<group>"; };
-		B36AB396275697EEE1A5B13BA8A38FE3 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B36AB396275697EEE1A5B13BA8A38FE3 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B3EF5F7F259549DDCEACB7AA323E3067 /* Pods-ChouTi iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ChouTi iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B4D5A5466CF5C22F83021934FD40F809 /* StructWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StructWrapper.swift; path = Source/iOS/Core/Miscellaneous/StructWrapper.swift; sourceTree = "<group>"; };
 		B5FDCBBF72E5E8BE23F3F889B50F80FE /* LTMorphingLabel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LTMorphingLabel.xcconfig; sourceTree = "<group>"; };
@@ -620,7 +620,7 @@
 		C2CD0CCACA4D6AB7AB1383EF418CF8BA /* CodeSnippets_Shadow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodeSnippets_Shadow.swift; path = Source/iOS/Core/CodeSnippets/CodeSnippets_Shadow.swift; sourceTree = "<group>"; };
 		C52C0DE353C146147B948095C59CF449 /* QuickSelectedTestSuiteBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuickSelectedTestSuiteBuilder.swift; path = Sources/Quick/QuickSelectedTestSuiteBuilder.swift; sourceTree = "<group>"; };
 		C60EDE5777F966C2E85163EF5ED33475 /* String+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		C703A0314DBB55194081944EDB339CE4 /* Pods_ChouTi_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C703A0314DBB55194081944EDB339CE4 /* Pods_ChouTi_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ChouTi_iOS_Tests.framework; path = "Pods-ChouTi iOS Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73A01CA4A9F3284933EA4FF7377661E /* BeLogical.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeLogical.swift; path = Sources/Nimble/Matchers/BeLogical.swift; sourceTree = "<group>"; };
 		C7923EAF261EAB86AD9A7A8F90A9674C /* OverlayPresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OverlayPresentationController.swift; path = Source/iOS/Animators/OverlayPresentationController.swift; sourceTree = "<group>"; };
 		C8364859E19A5B2F1AC6CDB9AA5A0948 /* LTMorphingLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LTMorphingLabel.h; path = LTMorphingLabel/LTMorphingLabel.h; sourceTree = "<group>"; };
@@ -647,7 +647,7 @@
 		D38D8C5DCAEDED85457D42359F6E2B5C /* Pods-ChouTi Example iOS UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ChouTi Example iOS UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D3D91E2FA50CD966EE739E373A53C72B /* UINavigationBar+StatusBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationBar+StatusBar.swift"; path = "Source/iOS/UI/NavigationBarStatusBar/UINavigationBar+StatusBar.swift"; sourceTree = "<group>"; };
 		D452554C4D5FD004F06194612063B324 /* Pods-ChouTi Example iOS UITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ChouTi Example iOS UITests-dummy.m"; sourceTree = "<group>"; };
-		D4D0061E89A1387E0C734276A6041247 /* Pods_ChouTi_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4D0061E89A1387E0C734276A6041247 /* Pods_ChouTi_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ChouTi_iOS.framework; path = "Pods-ChouTi iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E61E7AFEB5B094F3BDE92CCC2F8D4C /* Pods-ChouTi iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ChouTi iOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		D7274773EDD10CF9A5FC607A1D21476D /* Functional.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Functional.swift; path = Sources/Nimble/Utils/Functional.swift; sourceTree = "<group>"; };
 		D8700EC36083C7A11B1DE2BC6C3B02CF /* ScalePresentingAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalePresentingAnimator.swift; path = Source/iOS/Animators/ScalePresentingAnimator.swift; sourceTree = "<group>"; };
@@ -664,14 +664,14 @@
 		E33CFEA820A48D6AD5C74435DB20B784 /* XCTestSuite+QuickTestSuiteBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestSuite+QuickTestSuiteBuilder.m"; path = "Sources/QuickObjectiveC/XCTestSuite+QuickTestSuiteBuilder.m"; sourceTree = "<group>"; };
 		E374512CE009B8714D9F1E437BE873CF /* LTMorphingLabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LTMorphingLabel-prefix.pch"; sourceTree = "<group>"; };
 		E38F3AE0EA4F6CF252A52B316896F425 /* Collection+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
-		E40CC78C27D444AC5E9A410E72EC1658 /* Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E40CC78C27D444AC5E9A410E72EC1658 /* Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Resources.bundle; path = "ChouTi-Resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E458C42F6CC94564489C0F5154897397 /* NSString+C99ExtendedIdentifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSString+C99ExtendedIdentifier.swift"; path = "Sources/Quick/NSString+C99ExtendedIdentifier.swift"; sourceTree = "<group>"; };
 		E4A45BD2CDED3A31793B5C14A64FB3B1 /* DropPresentingPresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DropPresentingPresentationController.swift; sourceTree = "<group>"; };
 		E59342EBAB7B179F67E9A36CDCAEE8FF /* TableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		E5C4307B1D53B73EA1E41F22994A1141 /* CodeSnippet_UILabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodeSnippet_UILabel.swift; path = Source/iOS/Core/CodeSnippets/CodeSnippet_UILabel.swift; sourceTree = "<group>"; };
 		E60498500EB52659A87E7A29144496FE /* NMBObjCMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NMBObjCMatcher.swift; path = Sources/Nimble/Adapters/NMBObjCMatcher.swift; sourceTree = "<group>"; };
 		E6A1BFFA02F9ABAF9ADC131CA27BBBF0 /* DropDownMenuPickerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownMenuPickerViewController.swift; path = Source/iOS/UI/DropDownMenu/DropDownMenuPickerViewController.swift; sourceTree = "<group>"; };
-		E889A2355540042A88BA75AC62FD133C /* Pods_ChouTi_Example_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChouTi_Example_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E889A2355540042A88BA75AC62FD133C /* Pods_ChouTi_Example_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ChouTi_Example_iOS.framework; path = "Pods-ChouTi Example iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91F03B32D156351E484ED33DFEE9063 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		E997B386B95CE51661E2C7143F9AEA7F /* Pods-ChouTi iOS Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ChouTi iOS Tests-frameworks.sh"; sourceTree = "<group>"; };
 		EA49CE3645592906889366FA74450A10 /* UILable+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UILable+Extensions.swift"; sourceTree = "<group>"; };
@@ -681,7 +681,7 @@
 		EC9877E83F8196D0CB2B3978CF9B881B /* CodeSnippet_ViewControllerContainment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodeSnippet_ViewControllerContainment.swift; path = Source/iOS/Core/CodeSnippets/CodeSnippet_ViewControllerContainment.swift; sourceTree = "<group>"; };
 		EE47445BB58E064F67437BE67EA3A0F5 /* CodeSnippet_UIView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodeSnippet_UIView.swift; path = Source/iOS/Core/CodeSnippets/CodeSnippet_UIView.swift; sourceTree = "<group>"; };
 		EECE15A1ABB3374423F6A929C4DA7FB1 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Sources/Quick/Filter.swift; sourceTree = "<group>"; };
-		EEE9E6DAE04E25198000BBC742D5B172 /* LTMorphingLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LTMorphingLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEE9E6DAE04E25198000BBC742D5B172 /* LTMorphingLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LTMorphingLabel.framework; path = LTMorphingLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00930889538C297DC1C164651D01302 /* Pods-ChouTi iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ChouTi iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		F1053C82E230E9A11D9AC28204B04E23 /* NMBExceptionCapture.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMBExceptionCapture.h; path = Sources/NimbleObjectiveC/NMBExceptionCapture.h; sourceTree = "<group>"; };
 		F2B85F72FBD472DBA6245756585E08C9 /* Pods-ChouTi Example iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ChouTi Example iOS-frameworks.sh"; sourceTree = "<group>"; };
@@ -1155,6 +1155,7 @@
 				465C19211DA52F1D6CBDBD28DE68EE8A /* XCTestObservationCenter+Register.m */,
 				3A91370CEE92CADBFC2711A89820C4A8 /* Support Files */,
 			);
+			name = Nimble;
 			path = Nimble;
 			sourceTree = "<group>";
 		};
@@ -1243,6 +1244,7 @@
 			children = (
 				C1648D5155C4C1E4D52449C1DDDCA662 /* CollectionViewCell.swift */,
 			);
+			name = CollectionViewCells;
 			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
@@ -1321,6 +1323,7 @@
 				0C708E530FB0AF9E139F0681FBE4F023 /* TableViewCellValue1.swift */,
 				7246F782C901B92955BE5A23A165239D /* TableViewCellValue2.swift */,
 			);
+			name = TableViewCells;
 			path = TableViewCells;
 			sourceTree = "<group>";
 		};
@@ -1387,6 +1390,7 @@
 				61FD5973A308852CEBDD44EB322C189C /* Resources */,
 				AC381701403CB4FC01FD7F19AC0652EE /* Support Files */,
 			);
+			name = LTMorphingLabel;
 			path = LTMorphingLabel;
 			sourceTree = "<group>";
 		};
@@ -1523,6 +1527,7 @@
 				E33CFEA820A48D6AD5C74435DB20B784 /* XCTestSuite+QuickTestSuiteBuilder.m */,
 				19C568EBB0EBC075B8CCF78FF80C887E /* Support Files */,
 			);
+			name = Quick;
 			path = Quick;
 			sourceTree = "<group>";
 		};
@@ -1855,11 +1860,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
-				TargetAttributes = {
-					972ABAFA3A35B2868B345E420FD33257 = {
-						LastSwiftMigration = 1000;
-					};
-				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2333,12 +2333,11 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		18C6E9103CA86D7079E49C63CAD8DF8C /* Release */ = {
+		2084354FCF9FF5B8367BFC2FB6903BA6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D76467C7747365B83093FE8428B18F2 /* ChouTi.xcconfig */;
+			baseConfigurationReference = A6032E93C4F66BB12CC0E6A7A49FAAD3 /* Quick.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2348,14 +2347,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ChouTi/ChouTi-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ChouTi/ChouTi-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Quick/Quick-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Quick/Quick-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ChouTi/ChouTi.modulemap";
-				PRODUCT_MODULE_NAME = ChouTi;
-				PRODUCT_NAME = ChouTi;
+				MODULEMAP_FILE = "Target Support Files/Quick/Quick.modulemap";
+				PRODUCT_MODULE_NAME = Quick;
+				PRODUCT_NAME = Quick;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -2402,9 +2401,9 @@
 			};
 			name = Debug;
 		};
-		30F71912EDDC6C39E3B318350B8BF6C7 /* Debug */ = {
+		2846203A562EA76D8B3C9D92275C39F2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6032E93C4F66BB12CC0E6A7A49FAAD3 /* Quick.xcconfig */;
+			baseConfigurationReference = 9EBEBD1AD9E8D31DF38276650A4248A5 /* Nimble.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CODE_SIGN_IDENTITY = "";
@@ -2416,23 +2415,58 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Quick/Quick-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Quick/Quick-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Nimble/Nimble-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Nimble/Nimble-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Quick/Quick.modulemap";
-				PRODUCT_MODULE_NAME = Quick;
-				PRODUCT_NAME = Quick;
+				MODULEMAP_FILE = "Target Support Files/Nimble/Nimble.modulemap";
+				PRODUCT_MODULE_NAME = Nimble;
+				PRODUCT_NAME = Nimble;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
+		};
+		36EE086E891AD382C1B8BB5DB557A5EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D76467C7747365B83093FE8428B18F2 /* ChouTi.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ChouTi/ChouTi-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ChouTi/ChouTi-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ChouTi/ChouTi.modulemap";
+				PRODUCT_MODULE_NAME = ChouTi;
+				PRODUCT_NAME = ChouTi;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		3C8B14E6245DB3D2840EAB75D80A12E2 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -2521,6 +2555,72 @@
 			};
 			name = Debug;
 		};
+		50E95B39789081B9FDD63FEB89584891 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5FDCBBF72E5E8BE23F3F889B50F80FE /* LTMorphingLabel.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LTMorphingLabel/LTMorphingLabel-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LTMorphingLabel/LTMorphingLabel-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LTMorphingLabel/LTMorphingLabel.modulemap";
+				PRODUCT_MODULE_NAME = LTMorphingLabel;
+				PRODUCT_NAME = LTMorphingLabel;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		523C2D4108A8BE12E4847B870E048E7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D76467C7747365B83093FE8428B18F2 /* ChouTi.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ChouTi/ChouTi-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ChouTi/ChouTi-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ChouTi/ChouTi.modulemap";
+				PRODUCT_MODULE_NAME = ChouTi;
+				PRODUCT_NAME = ChouTi;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		570F946C7E57A2B9B1D7424AD40F4E27 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D38D8C5DCAEDED85457D42359F6E2B5C /* Pods-ChouTi Example iOS UITests.debug.xcconfig */;
@@ -2591,6 +2691,38 @@
 			};
 			name = Debug;
 		};
+		741E775815BA2567395AA4E10BABE152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5FDCBBF72E5E8BE23F3F889B50F80FE /* LTMorphingLabel.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LTMorphingLabel/LTMorphingLabel-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LTMorphingLabel/LTMorphingLabel-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LTMorphingLabel/LTMorphingLabel.modulemap";
+				PRODUCT_MODULE_NAME = LTMorphingLabel;
+				PRODUCT_NAME = LTMorphingLabel;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		749A3881BF507DF1FDBA73E79D292109 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2655,23 +2787,7 @@
 			};
 			name = Debug;
 		};
-		8BAB803AB2D1B80E86A6B1C3A545CD2C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D76467C7747365B83093FE8428B18F2 /* ChouTi.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ChouTi";
-				INFOPLIST_FILE = "Target Support Files/ChouTi/ResourceBundle-Resources-ChouTi-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = Resources;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		98CA022CEF8661EF81D804BD30936E06 /* Debug */ = {
+		7C13C22CC22B6B0AD48F9F749B023B3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9EBEBD1AD9E8D31DF38276650A4248A5 /* Nimble.xcconfig */;
 			buildSettings = {
@@ -2696,19 +2812,18 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		9C28BE99655660D1DC5922CA504D636E /* Debug */ = {
+		84F4448B09045014E805FA948312082C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D76467C7747365B83093FE8428B18F2 /* ChouTi.xcconfig */;
+			baseConfigurationReference = A6032E93C4F66BB12CC0E6A7A49FAAD3 /* Quick.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2718,14 +2833,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ChouTi/ChouTi-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ChouTi/ChouTi-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Quick/Quick-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Quick/Quick-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ChouTi/ChouTi.modulemap";
-				PRODUCT_MODULE_NAME = ChouTi;
-				PRODUCT_NAME = ChouTi;
+				MODULEMAP_FILE = "Target Support Files/Quick/Quick.modulemap";
+				PRODUCT_MODULE_NAME = Quick;
+				PRODUCT_NAME = Quick;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -2735,6 +2850,22 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		8BAB803AB2D1B80E86A6B1C3A545CD2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D76467C7747365B83093FE8428B18F2 /* ChouTi.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ChouTi";
+				INFOPLIST_FILE = "Target Support Files/ChouTi/ResourceBundle-Resources-ChouTi-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = Resources;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
 		};
 		A1CBB4736B5B4470080F6F91A81682DE /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -2789,7 +2920,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -2831,39 +2963,6 @@
 			};
 			name = Release;
 		};
-		B760EEC226D40AFBF4DD6ACB29BA29E7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6032E93C4F66BB12CC0E6A7A49FAAD3 /* Quick.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Quick/Quick-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Quick/Quick-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Quick/Quick.modulemap";
-				PRODUCT_MODULE_NAME = Quick;
-				PRODUCT_NAME = Quick;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		CFB6ACFD2FE1178BFBBCE5EC4A19A2BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 073F437F87207BB3217AB132FA0AE311 /* Pods-ChouTi Example iOS UITests.release.xcconfig */;
@@ -2893,104 +2992,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D65B1233108CB75967ACE95AA2C871A8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5FDCBBF72E5E8BE23F3F889B50F80FE /* LTMorphingLabel.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LTMorphingLabel/LTMorphingLabel-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LTMorphingLabel/LTMorphingLabel-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LTMorphingLabel/LTMorphingLabel.modulemap";
-				PRODUCT_MODULE_NAME = LTMorphingLabel;
-				PRODUCT_NAME = LTMorphingLabel;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		E19504420BE125FAED5BFB4885C2CAD7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5FDCBBF72E5E8BE23F3F889B50F80FE /* LTMorphingLabel.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LTMorphingLabel/LTMorphingLabel-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LTMorphingLabel/LTMorphingLabel-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LTMorphingLabel/LTMorphingLabel.modulemap";
-				PRODUCT_MODULE_NAME = LTMorphingLabel;
-				PRODUCT_NAME = LTMorphingLabel;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		E833FFE5898BAC7EAB20B30B5D696302 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9EBEBD1AD9E8D31DF38276650A4248A5 /* Nimble.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Nimble/Nimble-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Nimble/Nimble-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Nimble/Nimble.modulemap";
-				PRODUCT_MODULE_NAME = Nimble;
-				PRODUCT_NAME = Nimble;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -3040,8 +3041,8 @@
 		10836172B46B0B0B73CE062C21769FF3 /* Build configuration list for PBXNativeTarget "Nimble" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				98CA022CEF8661EF81D804BD30936E06 /* Debug */,
-				E833FFE5898BAC7EAB20B30B5D696302 /* Release */,
+				7C13C22CC22B6B0AD48F9F749B023B3E /* Debug */,
+				2846203A562EA76D8B3C9D92275C39F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3067,8 +3068,8 @@
 		4A931AE4EE84C32D759D11E6A1855AE6 /* Build configuration list for PBXNativeTarget "Quick" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30F71912EDDC6C39E3B318350B8BF6C7 /* Debug */,
-				B760EEC226D40AFBF4DD6ACB29BA29E7 /* Release */,
+				84F4448B09045014E805FA948312082C /* Debug */,
+				2084354FCF9FF5B8367BFC2FB6903BA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3076,8 +3077,8 @@
 		59BE6D35072C109E0974B2177CB9A591 /* Build configuration list for PBXNativeTarget "LTMorphingLabel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E19504420BE125FAED5BFB4885C2CAD7 /* Debug */,
-				D65B1233108CB75967ACE95AA2C871A8 /* Release */,
+				741E775815BA2567395AA4E10BABE152 /* Debug */,
+				50E95B39789081B9FDD63FEB89584891 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3112,8 +3113,8 @@
 		EAD2552C67A97DB8D05DB1FDF97F620D /* Build configuration list for PBXNativeTarget "ChouTi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9C28BE99655660D1DC5922CA504D636E /* Debug */,
-				18C6E9103CA86D7079E49C63CAD8DF8C /* Release */,
+				523C2D4108A8BE12E4847B870E048E7F /* Debug */,
+				36EE086E891AD382C1B8BB5DB557A5EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

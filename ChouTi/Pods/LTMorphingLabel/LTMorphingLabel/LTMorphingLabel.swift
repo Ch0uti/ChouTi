@@ -105,6 +105,8 @@ typealias LTMorphingSkipFramesClosure =
 
     fileprivate var displayLink: CADisplayLink?
     
+    private var tempRenderMorphingEnabled = true
+    
     #if TARGET_INTERFACE_BUILDER
     let presentingInIB = true
     #else
@@ -136,6 +138,7 @@ typealias LTMorphingSkipFramesClosure =
             currentFrame = 0
             totalFrames = 0
             
+            tempRenderMorphingEnabled = morphingEnabled
             setNeedsLayout()
             
             if !morphingEnabled {
@@ -160,16 +163,16 @@ typealias LTMorphingSkipFramesClosure =
     open func start() {
         guard displayLink == nil else { return }
         displayLink = CADisplayLink(target: self, selector: #selector(displayFrameTick))
-        displayLink?.add(to: .current, forMode: .commonModes)
+        displayLink?.add(to: .current, forMode: RunLoop.Mode.common)
     }
 
     open func stop() {
-        displayLink?.remove(from: .current, forMode: .commonModes)
+        displayLink?.remove(from: .current, forMode: RunLoop.Mode.common)
         displayLink?.invalidate()
         displayLink = nil
     }
     
-    open var textAttributes: [NSAttributedStringKey: Any]? {
+    open var textAttributes: [NSAttributedString.Key: Any]? {
         didSet {
             setNeedsLayout()
         }
@@ -489,7 +492,7 @@ extension LTMorphingLabel {
     }
     
     override open func drawText(in rect: CGRect) {
-        if !morphingEnabled || limboOfCharacters().count == 0 {
+        if !tempRenderMorphingEnabled || limboOfCharacters().count == 0 {
             super.drawText(in: rect)
             return
         }
@@ -507,7 +510,7 @@ extension LTMorphingLabel {
                 }(charLimbo)
 
             if !willAvoidDefaultDrawing {
-                var attrs: [NSAttributedStringKey: Any] = [
+                var attrs: [NSAttributedString.Key: Any] = [
                     .foregroundColor: textColor.withAlphaComponent(charLimbo.alpha)
                 ]
 

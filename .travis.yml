@@ -9,8 +9,7 @@ env:
 
   matrix:
     - DESTINATION="OS=12.0,name=iPhone XS Max"      REPORT_CODECOV="YES"    TEST_EXAMPLE="YES"
-    - DESTINATION="OS=11.4,name=iPhone X"           REPORT_CODECOV="NO"     TEST_EXAMPLE="NO"
-    - DESTINATION="OS=10.3.1,name=iPhone 7 Plus"    REPORT_CODECOV="NO"     TEST_EXAMPLE="NO"
+    - DESTINATION="OS=11.4,name=iPhone X"           REPORT_CODECOV="NO"     TEST_EXAMPLE="YES"
 
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
@@ -24,16 +23,17 @@ script:
   - xcodebuild -showdestinations -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME"
 
   # Framework
-  ## Debug with Tests
+  ## Debug with tests
   - xcodebuild clean test -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Debug | xcpretty;
+  ## Gather code coverage
   - if [ $REPORT_CODECOV == "YES" ]; then
       bash <(curl -s https://codecov.io/bash) -J "^ChouTi$";
     fi
 
-  ## Release
+  ## Build for Release
   - xcodebuild clean build -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;  
 
-  # Example
+  # Example Tests
   - if [[ $TEST_EXAMPLE == "YES" ]]; then
-      xcodebuild clean test -workspace "$WORKSPACE" -scheme "$IOS_EXAMPLE_SCHEME" -destination "$DESTINATION" -configuration Debug | xcpretty;
+      xcodebuild clean test -workspace "$WORKSPACE" -scheme "$IOS_EXAMPLE_SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;
     fi
