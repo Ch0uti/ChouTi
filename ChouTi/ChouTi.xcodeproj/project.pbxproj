@@ -1498,7 +1498,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi iOS Tests/Pods-ChouTi iOS Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ChouTi iOS Tests/Pods-ChouTi iOS Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
@@ -1511,7 +1511,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi iOS Tests/Pods-ChouTi iOS Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChouTi iOS Tests/Pods-ChouTi iOS Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9CD1E524B419AE0BE93D0F57 /* [CP] Embed Pods Frameworks */ = {
@@ -1520,7 +1520,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi Example iOS UITests/Pods-ChouTi Example iOS UITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ChouTi Example iOS UITests/Pods-ChouTi Example iOS UITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
@@ -1531,7 +1531,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi Example iOS UITests/Pods-ChouTi Example iOS UITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChouTi Example iOS UITests/Pods-ChouTi Example iOS UITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B45F4315BBE8168C9544428C /* [CP] Embed Pods Frameworks */ = {
@@ -1540,7 +1540,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi Example iOS/Pods-ChouTi Example iOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ChouTi Example iOS/Pods-ChouTi Example iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/ChouTi/ChouTi.framework",
 			);
@@ -1551,7 +1551,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChouTi Example iOS/Pods-ChouTi Example iOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChouTi Example iOS/Pods-ChouTi Example iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C3A7EC0320BAEFEDF9DB0692 /* [CP] Check Pods Manifest.lock */ = {
