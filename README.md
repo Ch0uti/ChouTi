@@ -21,3 +21,11 @@ Name | Preview
 `PageControl` | ![PageControlDemo](./Screenshots/PageControl.gif)
 
 ## Utilities
+
+## How to build
+
+```bash
+cd ChouTi
+./bootstrap.sh
+rake build
+```

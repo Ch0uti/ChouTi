@@ -1,13 +1,17 @@
 require 'colorize'
 
+WORKSPACE="ChouTi.xcworkspace"
+IOS_FRAMEWORK_SCHEME="ChouTi iOS"
+IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
+DESTINATION="OS=12.0,name=iPhone XS Max"
+
 begin
   tools = `xcode-select -p`
-  raise "You must have Xcode command line tools. `xcode-select --install`" if $?.exitstatus != 0
+  raise "You must have Xcode command line tools installed. try `xcode-select --install`" if $?.exitstatus != 0
 
-  swift_version = "Apple Swift version 2.2"
+  swift_version = "Apple Swift version 4.2"
   tools = `xcrun swiftc --version`
-  raise "The wrong version of Xcode is installed the app uses #{swift_version}" if (tools <=> swift_version) != 1
-  # puts tools
+  raise "Incorrect Xcode installed. This project uses #{swift_version}, current swift version: #{tools}" if (tools <=> swift_version) != 1
 
   tools = `gem which bundler`
   raise "You must have bundler. `gem install bundler`" if $?.exitstatus != 0
@@ -24,6 +28,22 @@ task :default do
   end
 
   sh "rake fetch"
+end
+
+task :build do
+  sh "xcodebuild clean build -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | xcpretty"
+end
+
+task :release do
+  sh "xcodebuild clean build -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Release | xcpretty"
+end
+
+task :test do
+  sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | xcpretty"
+end
+
+task :test_ui do
+  sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_EXAMPLE_SCHEME}' -destination '#{DESTINATION}' -configuration Release | xcpretty"
 end
 
 #-------------------------------------------------------------------------------
