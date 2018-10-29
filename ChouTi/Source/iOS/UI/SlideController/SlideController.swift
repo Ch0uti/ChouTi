@@ -45,7 +45,7 @@ open class SlideController: UIViewController {
 		
 		didSet {
 			beginViewController(centerViewController, appearanceTransition: true, animated: false)
-			addChildViewController(centerViewController)
+			addChild(centerViewController)
 			
 			// Make sure newly added center view is below status bar
 			view.insertSubview(centerViewController.view, belowSubview: statusBarBackgroundView)
@@ -68,7 +68,7 @@ open class SlideController: UIViewController {
 				view.insertSubview(rightView, belowSubview: centerViewController.view)
 			}
 			
-			centerViewController.didMove(toParentViewController: self)
+			centerViewController.didMove(toParent: self)
 			endViewControllerAppearanceTransition(centerViewController)
 			
 			if useScreenEdgePanGestureRecognizer {
@@ -353,9 +353,9 @@ open class SlideController: UIViewController {
 		rightEdgePanGestureRecognizer.delegate = self
 		tapGestureRecognizer.delegate = self
 		
-		addChildViewController(centerViewController)
+		addChild(centerViewController)
 		view.addSubview(centerViewController.view)
-		centerViewController.didMove(toParentViewController: self)
+		centerViewController.didMove(toParent: self)
 		
 		if useScreenEdgePanGestureRecognizer {
 			centerViewController.view.addGestureRecognizer(leftEdgePanGestureRecognizer)
@@ -417,7 +417,7 @@ extension SlideController {
 			
 			state = .leftExpanding
 			animateCenterViewControllerWithXOffset(leftRevealWidth ?? revealWidth, completion: { [unowned self] finished -> Void in
-				self.leftViewController?.didMove(toParentViewController: self)
+				self.leftViewController?.didMove(toParent: self)
 				self.state = .leftExpanded
 				completion?(finished)
 			})
@@ -458,7 +458,7 @@ extension SlideController {
 			
 			state = .rightExpanding
 			animateCenterViewControllerWithXOffset(-(rightRevealWidth ?? revealWidth), completion: { [unowned self] finished -> Void in
-				self.rightViewController?.didMove(toParentViewController: self)
+				self.rightViewController?.didMove(toParent: self)
 				self.state = .rightExpanded
 				completion?(finished)
 			})
@@ -522,23 +522,23 @@ extension SlideController {
 	}
 	
 	fileprivate func replaceViewController(_ viewController: UIViewController?, withViewController: UIViewController?) {
-		if let viewController = viewController, childViewControllers.contains(viewController) {
+		if let viewController = viewController, children.contains(viewController) {
 			removeViewController(viewController)
 		}
 		
-		if let withViewController = withViewController, !childViewControllers.contains(withViewController) {
+		if let withViewController = withViewController, !children.contains(withViewController) {
 			addViewController(withViewController)
 		}
 	}
 	
 	fileprivate func removeViewController(_ viewController: UIViewController) {
-		viewController.willMove(toParentViewController: nil)
+		viewController.willMove(toParent: nil)
 		viewController.view.removeFromSuperview()
-		viewController.removeFromParentViewController()
+		viewController.removeFromParent()
 	}
 	
 	fileprivate func addViewController(_ viewController: UIViewController) {
-		addChildViewController(viewController)
+		addChild(viewController)
 		view.insertSubview(viewController.view, belowSubview: centerViewController.view)
 	}
 }

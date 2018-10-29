@@ -236,8 +236,8 @@ extension PageControl {
             
             let groupAnimation = CAAnimationGroup()
             groupAnimation.duration = animationDuration
-            groupAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            groupAnimation.fillMode = kCAFillModeBackwards
+            groupAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            groupAnimation.fillMode = CAMediaTimingFillMode.backwards
             groupAnimation.animations = [sizeAnimation, positionAnimation]
             
             currentDot.add(groupAnimation, forKey: nil)

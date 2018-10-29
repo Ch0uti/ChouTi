@@ -24,7 +24,7 @@ class DatePickerControllerDemoViewController : UIViewController {
 		
 		button.setBackgroundImageWithColor(UIColor.purple, forState: .normal)
 		button.setBackgroundImageWithColor(UIColor.purple.darkerColor(), forState: .highlighted)
-		button.setTitleColor(UIColor.white, for: UIControlState())
+		button.setTitleColor(UIColor.white, for: .normal)
 		button.setTitleColor(UIColor.white.darkerColor(), for: .highlighted)
 		button.setCornerRadius(.halfCircle, forState: .normal)
         

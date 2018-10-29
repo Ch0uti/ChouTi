@@ -51,10 +51,10 @@ open class AlertView: UIView {
     }
     
     /// Title label exposed, don't set its text, use `title` instead
-    open let titleLabel = UILabel()
+    public let titleLabel = UILabel()
     
     /// Message label exposed, don't set its text, use `message` instead
-    open let messageLabel = UILabel()
+    public let messageLabel = UILabel()
     
     /// Vertical spacing between title label and message label
     open var titleMessageVerticalSpacing: CGFloat = 8.0 {
@@ -210,7 +210,7 @@ open class AlertView: UIView {
     }
     
     open override var intrinsicContentSize: CGSize {
-        return CGSize(width: preferredWidth, height: UIViewNoIntrinsicMetric)
+        return CGSize(width: preferredWidth, height: UIView.noIntrinsicMetric)
     }
     
     /**

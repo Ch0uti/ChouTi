@@ -19,13 +19,13 @@ class CollectionType_ExtensionsTests: XCTestCase {
     }
     
     func testRandomItem() {
-        let randomInt = integers.randomItem()
+        let randomInt = integers.randomElement()!
         XCTAssert(integers.contains(randomInt))
         
-        let randomInt1 = integers.randomItem()
-        var randomInt2 = integers.randomItem()
+        let randomInt1 = integers.randomElement()!
+        var randomInt2 = integers.randomElement()!
         while randomInt2 == randomInt1 {
-            randomInt2 = integers.randomItem()
+            randomInt2 = integers.randomElement()!
         }
         
         XCTAssert(true)
@@ -33,7 +33,7 @@ class CollectionType_ExtensionsTests: XCTestCase {
     
     func testDictionaryRandomItem() {
         let dict = [1: "1", 2: "2", 3: "3", 4: "4"]
-        let randomKeyValue = dict.randomItem()
+        let randomKeyValue = dict.randomElement()!
         
         XCTAssertTrue(dict.contains { $0 == randomKeyValue })
     }

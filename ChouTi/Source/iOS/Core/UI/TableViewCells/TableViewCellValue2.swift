@@ -9,7 +9,7 @@
 import UIKit
 
 open class TableViewCellValue2 : TableViewCell {
-	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value2, reuseIdentifier: reuseIdentifier)
 	}
 	

@@ -23,7 +23,7 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(tableView)
 		tableView.constrainToFullSizeInSuperview()
-		tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
 		
 		tableView.sections = []
 		tableView.sections?.append(TableViewSection(headerTitle: "Section1",

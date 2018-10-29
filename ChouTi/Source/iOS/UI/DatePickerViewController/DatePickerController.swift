@@ -10,8 +10,8 @@ import UIKit
 
 open class DatePickerController : UIViewController {
 	
-	open let topToolBar = UIToolbar()
-	open let datePicker = UIDatePicker()
+	public let topToolBar = UIToolbar()
+	public let datePicker = UIDatePicker()
 	fileprivate let slideUpAnimator = SlideUpAnimator()
 	
 	open var overlayViewStyle: OverlayViewStyle = .normal(UIColor(white: 0.0, alpha: 0.75))

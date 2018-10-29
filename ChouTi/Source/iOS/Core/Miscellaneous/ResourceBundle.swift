@@ -10,8 +10,8 @@ import Foundation
 
 // MARK: - Pod Resources
 open class Resource {
-	open static let sharedResource = Resource()
-	open static var bundle: Bundle? {
+	public static let sharedResource = Resource()
+	public static var bundle: Bundle? {
 		return Resource.sharedResource?._bundle
 	}
 	

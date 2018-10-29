@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import ChouTi
 
 class ChouTi_iOSUITests: XCTestCase {
     let app = XCUIApplication()

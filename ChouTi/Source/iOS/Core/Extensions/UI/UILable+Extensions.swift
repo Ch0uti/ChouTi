@@ -73,12 +73,12 @@ public extension UILabel {
      - parameter animationDuration: transition animation duration
      */
     public func addFadeTransitionAnimation(_ animationDuration: TimeInterval = 0.25) {
-        if layer.animation(forKey: kCATransitionFade) == nil {
+        if layer.animation(forKey: convertFromCATransitionType(CATransitionType.fade)) == nil {
             let animation = CATransition()
             animation.duration = animationDuration
-            animation.type = kCATransitionFade
-            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            layer.add(animation, forKey: kCATransitionFade)
+            animation.type = CATransitionType.fade
+            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            layer.add(animation, forKey: convertFromCATransitionType(CATransitionType.fade))
         }
     }
     
@@ -106,4 +106,9 @@ public extension UILabel {
             self.text = text
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromCATransitionType(_ input: CATransitionType) -> String {
+	return input.rawValue
 }

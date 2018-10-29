@@ -102,6 +102,10 @@ typealias LTMorphingSkipFramesClosure =
     var newRects = [CGRect]()
     var charHeight: CGFloat = 0.0
     var skipFramesCount: Int = 0
+
+    fileprivate var displayLink: CADisplayLink?
+    
+    private var tempRenderMorphingEnabled = true
     
     #if TARGET_INTERFACE_BUILDER
     let presentingInIB = true
@@ -134,6 +138,7 @@ typealias LTMorphingSkipFramesClosure =
             currentFrame = 0
             totalFrames = 0
             
+            tempRenderMorphingEnabled = morphingEnabled
             setNeedsLayout()
             
             if !morphingEnabled {
@@ -144,7 +149,7 @@ typealias LTMorphingSkipFramesClosure =
                 morphingDuration = 0.01
                 morphingProgress = 0.5
             } else if previousText != text {
-                displayLink.isPaused = false
+                start()
                 let closureKey = "\(morphingEffect.description)\(LTMorphingPhases.start)"
                 if let closure = startClosures[closureKey] {
                     return closure()
@@ -152,6 +157,24 @@ typealias LTMorphingSkipFramesClosure =
                 
                 delegate?.morphingDidStart?(self)
             }
+        }
+    }
+
+    open func start() {
+        guard displayLink == nil else { return }
+        displayLink = CADisplayLink(target: self, selector: #selector(displayFrameTick))
+        displayLink?.add(to: .current, forMode: RunLoop.Mode.common)
+    }
+
+    open func stop() {
+        displayLink?.remove(from: .current, forMode: RunLoop.Mode.common)
+        displayLink?.invalidate()
+        displayLink = nil
+    }
+    
+    open var textAttributes: [NSAttributedString.Key: Any]? {
+        didSet {
+            setNeedsLayout()
         }
     }
     
@@ -180,19 +203,9 @@ typealias LTMorphingSkipFramesClosure =
             setNeedsLayout()
         }
     }
-    
-    fileprivate lazy var displayLink: CADisplayLink = {
-        let displayLink = CADisplayLink(
-            target: self,
-            selector: #selector(LTMorphingLabel.displayFrameTick)
-        )
-        displayLink.add(to: .current, forMode: .commonModes)
-        return displayLink
-        }()
 
     deinit {
-        displayLink.remove(from: .current, forMode: .commonModes)
-        displayLink.invalidate()
+        stop()
     }
     
     lazy var emitterView: LTEmitterView = {
@@ -206,6 +219,7 @@ typealias LTMorphingSkipFramesClosure =
 extension LTMorphingLabel {
 
     @objc func displayFrameTick() {
+        guard let displayLink = displayLink else { return }
         if displayLink.duration > 0.0 && totalFrames == 0 {
             var frameRate = Float(0)
             if #available(iOS 10.0, tvOS 10.0, *) {
@@ -247,7 +261,7 @@ extension LTMorphingLabel {
                 onProgress(self, morphingProgress)
             }
         } else {
-            displayLink.isPaused = true
+            stop()
 
             delegate?.morphingDidComplete?(self)
         }
@@ -459,6 +473,11 @@ extension LTMorphingLabel {
 extension LTMorphingLabel {
     
     override open func didMoveToSuperview() {
+        guard nil != superview else {
+            stop()
+            return
+        }
+
         if let s = text {
             text = s
         }
@@ -473,7 +492,7 @@ extension LTMorphingLabel {
     }
     
     override open func drawText(in rect: CGRect) {
-        if !morphingEnabled || limboOfCharacters().count == 0 {
+        if !tempRenderMorphingEnabled || limboOfCharacters().count == 0 {
             super.drawText(in: rect)
             return
         }
@@ -491,13 +510,18 @@ extension LTMorphingLabel {
                 }(charLimbo)
 
             if !willAvoidDefaultDrawing {
-                var attrs: [NSAttributedStringKey: Any] = [
+                var attrs: [NSAttributedString.Key: Any] = [
                     .foregroundColor: textColor.withAlphaComponent(charLimbo.alpha)
                 ]
 
                 if let font = UIFont(name: font.fontName, size: charLimbo.size) {
                     attrs[.font] = font
                 }
+                
+                for (key, value) in textAttributes ?? [:] {
+                    attrs[key] = value
+                }
+                
                 let s = String(charLimbo.char)
                 s.draw(in: charRect, withAttributes: attrs)
             }

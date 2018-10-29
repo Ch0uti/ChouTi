@@ -16,7 +16,7 @@ import UIKit
  */
 public enum OverlayViewStyle {
     case normal(UIColor)
-    case blurred(UIBlurEffectStyle, UIColor)
+    case blurred(UIBlurEffect.Style, UIColor)
 }
 
 /// Base Overlay Presentation Controller

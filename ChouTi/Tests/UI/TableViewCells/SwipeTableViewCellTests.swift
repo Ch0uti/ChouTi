@@ -189,7 +189,7 @@ class SwipeTableViewCellTests: QuickSpec {
                         }
                         
                         it("should collapse animated if willTransitionToState") {
-                            swipeCell.willTransition(to: .showingEditControlMask)
+                            swipeCell.willTransition(to: .showingEditControl)
                             expect(swipeCell.swipeableContentView.frame) == originalFrame
                             // Expanded at first
                             expect(swipeCell.rightSwipeExpanded).to(beTrue())

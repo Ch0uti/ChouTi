@@ -138,7 +138,7 @@ class DropDownMenuPickerViewController : UIViewController {
 		
 		tableView.dataSource = self
 		tableView.delegate = self
-		tableView.rowHeight = UITableViewAutomaticDimension
+		tableView.rowHeight = UITableView.automaticDimension
 		
 		tableView.canCancelContentTouches = true
 		tableView.delaysContentTouches = true

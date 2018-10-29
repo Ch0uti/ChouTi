@@ -51,42 +51,6 @@ public extension Comparable {
     }
 }
 
-public extension Bool {
-    /**
-     Get a random boolean value
-     
-     - returns: a random boolean value
-     */
-    public static func random() -> Bool {
-        return Int.random() % 2 == 0
-    }
-}
-
-public extension Int {
-    /**
-     Get a random integer from a range
-     
-     - parameter range: range for the random number
-     
-     - returns: a random integer
-     */
-    public static func random(_ range: Range<Int>) -> Int {
-        return range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound)))
-    }
-    
-    /**
-     Get a random integer
-     
-     - parameter lower: lower number, inclusive
-     - parameter upper: upper number, inclusive
-     
-     - returns: a random integer
-     */
-    public static func random(_ lower: Int = 0, _ upper: Int = 100) -> Int {
-        return lower + Int(arc4random_uniform(UInt32(upper - lower + 1)))
-    }
-}
-
 public extension Int {
     /// Get ordianl number abbreviation
     public var ordinalNumberAbbreviation: String {
@@ -133,18 +97,6 @@ public extension Int {
 }
 
 public extension Double {
-    /**
-     Get a random Double number
-     
-     - parameter lower: lower number, inclusive
-     - parameter upper: upper number, inclusive
-     
-     - returns: a random number
-     */
-    public static func random(_ lower: Double = 0, _ upper: Double = 100) -> Double {
-        return (Double(arc4random()) / 0xFFFFFFFF) * (upper - lower) + lower
-    }
-    
     /// Get a dispatchTime from double number
     public var dispatchTime: DispatchTime {
         get {
@@ -153,33 +105,7 @@ public extension Double {
     }
 }
 
-public extension Float {
-    /**
-     Get a random Float number
-     
-     - parameter lower: lower number, inclusive
-     - parameter upper: upper number, inclusive
-     
-     - returns: a random number
-     */
-    public static func random(_ lower: Float = 0, _ upper: Float = 100) -> Float {
-        return (Float(arc4random()) / 0xFFFFFFFF) * (upper - lower) + lower
-    }
-}
-
 public extension CGFloat {
-    /**
-     Get a random CGFloat number
-     
-     - parameter lower: lower number, inclusive
-     - parameter upper: upper number, inclusive
-     
-     - returns: a random number
-     */
-    public static func random(_ lower: CGFloat = 0, _ upper: CGFloat = 1) -> CGFloat {
-        return CGFloat(Float(arc4random()) / Float(UINT32_MAX)) * (upper - lower) + lower
-    }
-    
     /**
      Get radians from degrees
      

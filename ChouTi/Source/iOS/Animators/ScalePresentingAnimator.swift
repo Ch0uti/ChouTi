@@ -62,7 +62,7 @@ extension ScalePresentingAnimator {
         presentedView.center = containerView.center
         
         // Presenting animations
-        UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: UIViewAnimationOptions(), animations: { [unowned self] in
+        UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: UIView.AnimationOptions(), animations: { [unowned self] in
             presentedView.alpha = self.presentingFinalAlpha
             presentedView.transform = CGAffineTransform(scaleX: self.presentingFinalScaleFactor, y: self.presentingFinalScaleFactor)
         }, completion: { finished in

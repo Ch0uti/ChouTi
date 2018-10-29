@@ -64,7 +64,7 @@ open class ProgressBarView: UIView {
 		
 		CATransaction.begin()
 		if animated {
-			CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+			CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
 			CATransaction.setAnimationDuration(animationDuration)
 		} else {
 			CATransaction.setDisableActions(true)

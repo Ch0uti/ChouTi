@@ -70,7 +70,7 @@ open class AlertViewButton: Button {
 // MARK: - AlertViewButton Appearance Customization
 extension AlertViewButton {
     /// Default button appearance
-    fileprivate static var buttonAppearanceConfigurationForAlertActionStyle: [UIAlertActionStyle : ((AlertViewButton) -> Void)] = {[
+    fileprivate static var buttonAppearanceConfigurationForAlertActionStyle: [UIAlertAction.Style : ((AlertViewButton) -> Void)] = {[
         .default : { button in
             button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
             button.setBorderWidth(0.0, forState: .normal)
@@ -105,7 +105,7 @@ extension AlertViewButton {
      - parameter configuration:    button appearance configuration, this block has no return value and takes a button object as its only parameter. You can configure button title, color for different states. You can set button's height by adding a height constraint with 500 priority or above, setting bounds has no effects.
      - parameter alertActionStyle: UIAlertActionStyle
      */
-    public static func setButtonAppearanceConfiguration(_ configuration: @escaping ((AlertViewButton) -> Void), forAlertActionStyle alertActionStyle: UIAlertActionStyle) {
+    public static func setButtonAppearanceConfiguration(_ configuration: @escaping ((AlertViewButton) -> Void), forAlertActionStyle alertActionStyle: UIAlertAction.Style) {
         AlertViewButton.buttonAppearanceConfigurationForAlertActionStyle[alertActionStyle] = configuration
     }
 }

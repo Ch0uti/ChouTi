@@ -9,8 +9,8 @@
 import UIKit
 
 open class SingleTitleContentPairView: UIView {
-	open let titleLabel = UILabel()
-	open let contentLabel = UILabel()
+	public let titleLabel = UILabel()
+	public let contentLabel = UILabel()
 	
 	open var horizontalSpacing: CGFloat = 8.0 {
 		didSet {

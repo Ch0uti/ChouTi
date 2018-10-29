@@ -63,7 +63,19 @@ public extension UIView {
             NSLayoutConstraint(item: self, attribute: .trailingMargin, relatedBy: .equal, toItem: superview, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0)
         ].activate()
     }
-    
+
+    @discardableResult
+    public func constrainToSafeAreaInSuperview() -> [NSLayoutConstraint] {
+        guard let superview = self.superview else { fatalError("superview is nil") }
+
+        return [
+            self.topAnchor.constrain(to: superview.safeAreaLayoutGuide.topAnchor),
+            self.leadingAnchor.constrain(to: superview.safeAreaLayoutGuide.leadingAnchor),
+            self.bottomAnchor.constrain(to: superview.safeAreaLayoutGuide.bottomAnchor),
+            self.trailingAnchor.constrain(to: superview.safeAreaLayoutGuide.trailingAnchor),
+        ].activate()
+    }
+
     /**
      Setup center in superview constraints
      
@@ -187,7 +199,7 @@ public extension UIView {
      - returns: constraint added.
      */
 	@discardableResult
-    public func constrain(_ attribute1: NSLayoutAttribute, equalTo attribute2: NSLayoutAttribute, ofView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    public func constrain(_ attribute1: NSLayoutConstraint.Attribute, equalTo attribute2: NSLayoutConstraint.Attribute, ofView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: self, attribute: attribute1, relatedBy: .equal, toItem: view, attribute: attribute2, multiplier: multiplier, constant: constant).activate()
     }
     
@@ -202,7 +214,7 @@ public extension UIView {
      - returns: constraint added.
      */
 	@discardableResult
-    public func constrain(_ attribute: NSLayoutAttribute, toView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    public func constrain(_ attribute: NSLayoutConstraint.Attribute, toView view: UIView, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
         return constrain(attribute, equalTo: attribute, ofView: view, multiplier: multiplier, constant: constant)
     }
 }
@@ -217,7 +229,7 @@ public extension Sequence where Iterator.Element: UIView {
      - returns: a list of constraints.
      */
 	@discardableResult
-    public func constrainToSame(_ attribute: NSLayoutAttribute) -> [NSLayoutConstraint] {
+    public func constrainToSame(_ attribute: NSLayoutConstraint.Attribute) -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
         
         var last: UIView?

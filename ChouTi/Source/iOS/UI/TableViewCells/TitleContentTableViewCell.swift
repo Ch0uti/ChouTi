@@ -65,20 +65,20 @@ open class TitleContentTableViewCellViewModel: TitleContentTableViewCellViewMode
 }
 
 open class TitleContentTableViewCell: UITableViewCell {
-	open let titleLabel = UILabel().then {
+	public let titleLabel = UILabel().then {
 		$0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.gillSansLightFont(18) ?? UIFont.systemFont(ofSize: 18, weight: .light)
 		$0.textColor = UIColor(hexString: "#535258")
 	}
 	
-	open let contentLabel = UILabel().then {
+	public let contentLabel = UILabel().then {
 		$0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: .semibold)
 		$0.textColor = UIColor.black
 		$0.numberOfLines = 0
 	}
 	
-	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		commonInit()
 	}

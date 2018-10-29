@@ -10,7 +10,7 @@ import UIKit
 
 open class DatePickerCell : TableViewCell {
 
-	open let datePicker = UIDatePicker()
+	public let datePicker = UIDatePicker()
 	
 	override open func commonInit() {
 		super.commonInit()

@@ -136,7 +136,7 @@ open class SearchTextField: TextField {
 		
 		resultTableView.dataSource = self
 		resultTableView.delegate = self
-		resultTableView.rowHeight = UITableViewAutomaticDimension
+		resultTableView.rowHeight = UITableView.automaticDimension
 		resultTableView.tableFooterView = UIView()
         
 		resultTableView.canCancelContentTouches = true

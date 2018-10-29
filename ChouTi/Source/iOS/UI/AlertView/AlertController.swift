@@ -16,7 +16,7 @@ import UIKit
 open class AlertController: UIViewController {
     
     /// AlertView will be presented
-    open let alertView = AlertView()
+    public let alertView = AlertView()
     
     /// Scale presenting/dismissing animator
     fileprivate let animator = ScalePresentingAnimator()
@@ -177,7 +177,7 @@ extension AlertController {
      Update controller's preferred content size from action view's size
      */
     fileprivate func updatePreferredContentSize() {
-        preferredContentSize = alertView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        preferredContentSize = alertView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
     }
 }
 
@@ -205,7 +205,7 @@ extension AlertController {
 		
 		window.rootViewController = blankViewController
 		window.backgroundColor = UIColor.clear
-		window.windowLevel = UIWindowLevelAlert + 1 // +1 is necessary for present above a presented view controller
+		window.windowLevel = UIWindow.Level.alert + 1 // +1 is necessary for present above a presented view controller
 		window.makeKeyAndVisible()
 		
 		alertWindow = window

@@ -24,7 +24,7 @@ open class TextField: UITextField {
             }
             
             if placeholderFont != nil || placeholderColor != nil {
-                var attributes = [NSAttributedStringKey : Any]()
+                var attributes = [NSAttributedString.Key : Any]()
                 if let placeholderColor = placeholderColor {
                     attributes[.foregroundColor] = placeholderColor
                 }
@@ -47,7 +47,7 @@ open class TextField: UITextField {
                 return
             }
             
-            var attributes = [NSAttributedStringKey : Any]()
+            var attributes = [NSAttributedString.Key : Any]()
             if let placeholderColor = placeholderColor {
                 attributes[.foregroundColor] = placeholderColor
             }
@@ -69,7 +69,7 @@ open class TextField: UITextField {
                 return
             }
             
-            var attributes = [NSAttributedStringKey : Any]()
+            var attributes = [NSAttributedString.Key : Any]()
             if let placeholderColor = placeholderColor {
                 attributes[.foregroundColor] = placeholderColor
             }

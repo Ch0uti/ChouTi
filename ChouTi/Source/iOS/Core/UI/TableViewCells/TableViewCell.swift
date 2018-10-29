@@ -21,9 +21,9 @@ open class TableViewCell: UITableViewCell {
 	fileprivate var _heightConstraint: NSLayoutConstraint?
 	
 	open var selectedAccessoryView: UIView?
-	open var selectedAccessoryType: UITableViewCellAccessoryType = .none
+	open var selectedAccessoryType: UITableViewCell.AccessoryType = .none
 	
-	public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		commonInit()
 	}

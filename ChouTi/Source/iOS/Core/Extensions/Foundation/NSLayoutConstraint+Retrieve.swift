@@ -12,10 +12,10 @@ import UIKit
 
 public extension UIView {
 	func constraints(withFirstItem firstItem: AnyObject, // TODO: nil or not
-                                   firstAttribute: NSLayoutAttribute? = nil,
-                                   relation: NSLayoutRelation? = nil,
+                                   firstAttribute: NSLayoutConstraint.Attribute? = nil,
+                                   relation: NSLayoutConstraint.Relation? = nil,
                                    secondItem: AnyObject? = nil,
-                                   secondAttribute: NSLayoutAttribute? = nil,
+                                   secondAttribute: NSLayoutConstraint.Attribute? = nil,
                                    multiplier: CGFloat? = nil,
                                    constant: CGFloat? = nil) -> [NSLayoutConstraint]
 	{

@@ -1,8 +1,8 @@
 {
   "name": "ChouTi",
-  "version": "0.4.1",
-  "summary": "Chou Ti (抽屉) - A framework for Swift development.",
-  "description": "Chou Ti (抽屉) - A framework for Swift development.\nExtended data structures, classes, extensions.",
+  "version": "0.4.2",
+  "summary": "ChouTi (抽屉) - A framework for Swift development.",
+  "description": "ChouTi (抽屉) - A framework for Swift development.",
   "homepage": "https://github.com/ChouTi-Lab/ChouTi",
   "license": {
     "type": "MIT",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/ChouTi-Lab/ChouTi.git",
-    "tag": "0.4.1"
+    "tag": "0.4.2"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "11.0"
   },
   "requires_arc": true,
   "default_subspecs": [
@@ -71,7 +71,17 @@
             "ChouTi/Core/DataStructure": [
 
             ]
-          }
+          },
+          "subspecs": [
+            {
+              "name": "Foundation",
+              "source_files": "Source/iOS/Core/Extensions/Foundation/**/*.*"
+            },
+            {
+              "name": "UI",
+              "source_files": "Source/iOS/Core/Extensions/UI/**/*.*"
+            }
+          ]
         },
         {
           "name": "Miscellaneous",

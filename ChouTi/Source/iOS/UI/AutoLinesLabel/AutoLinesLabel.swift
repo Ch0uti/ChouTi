@@ -46,7 +46,7 @@ open class AutoLinesLabel: UILabel {
     
     open override func drawText(in rect: CGRect) {
         // Rect has been veritcally expanded in textRectForBounds
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, contentInset))
+        super.drawText(in: rect.inset(by: contentInset))
     }
     
     open override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
@@ -54,7 +54,7 @@ open class AutoLinesLabel: UILabel {
         // The width is same as preferredMaxLayoutWidth
         // Reference: http://stackoverflow.com/questions/21167226/resizing-a-uilabel-to-accomodate-insets
         
-        var rect = super.textRect(forBounds: UIEdgeInsetsInsetRect(bounds, contentInset), limitedToNumberOfLines: numberOfLines)
+        var rect = super.textRect(forBounds: bounds.inset(by: contentInset), limitedToNumberOfLines: numberOfLines)
         // Move rect to origin
         rect.origin.x    -= contentInset.left;
         rect.origin.y    -= contentInset.top;

@@ -172,7 +172,7 @@ class AlertControllerDemoViewController : UIViewController {
         if Bool.random() {
             let button = UIButton()
             button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-            button.setTitle("Customized Button", for: UIControlState())
+            button.setTitle("Customized Button", for: .normal)
             button.setTitleColor(ColorPalette.facebookBlueColor, for: .normal)
             button.setTitleColor(ColorPalette.facebookBlueColor.darkerColor(), for: .highlighted)
             alert.addAction(AlertAction(title: "", button: button, handler: { (handler) -> Void in

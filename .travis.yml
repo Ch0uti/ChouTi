@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode9.3
+osx_image: xcode10
 env:
   global:
   - PROJECT_DIR="./ChouTi"
@@ -8,8 +8,8 @@ env:
   - IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
 
   matrix:
-    - DESTINATION="OS=11.3,name=iPhone X"           REPORT_CODECOV="YES"
-    - DESTINATION="OS=10.3.1,name=iPhone 7 Plus"    REPORT_CODECOV="NO"
+    - DESTINATION="OS=12.0,name=iPhone XS Max"      REPORT_CODECOV="YES"    TEST_EXAMPLE="YES"
+    - DESTINATION="OS=11.4,name=iPhone X"           REPORT_CODECOV="NO"     TEST_EXAMPLE="YES"
 
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
@@ -20,13 +20,20 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
+  - xcodebuild -showdestinations -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME"
 
-  # Debug and Run Tests
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Debug test | xcpretty;
+  # Framework
+  ## Debug with tests
+  - xcodebuild clean test -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Debug | xcpretty;
+  ## Gather code coverage
   - if [ $REPORT_CODECOV == "YES" ]; then
       bash <(curl -s https://codecov.io/bash) -J "^ChouTi$";
     fi
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_EXAMPLE_SCHEME" -destination "$DESTINATION" -configuration Debug test | xcpretty;
 
-  # Release
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Release build | xcpretty;  
+  ## Build for Release
+  - xcodebuild clean build -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;  
+
+  # Example Tests
+  - if [[ $TEST_EXAMPLE == "YES" ]]; then
+      xcodebuild clean test -workspace "$WORKSPACE" -scheme "$IOS_EXAMPLE_SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;
+    fi

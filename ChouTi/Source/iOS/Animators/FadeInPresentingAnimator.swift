@@ -52,7 +52,7 @@ extension FadeInPresentingAnimator {
         // Initial state
         presentedView.alpha = 0.0
         
-        UIView.animate(withDuration: animationDuration, delay: 0.0, options: UIViewAnimationOptions(), animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0.0, options: UIView.AnimationOptions(), animations: {
             presentedView.alpha = 1.0
         }, completion: { finished in
             transitionContext.completeTransition(finished)
@@ -65,7 +65,7 @@ extension FadeInPresentingAnimator {
             return
         }
         
-        UIView.animate(withDuration: animationDuration, delay: 0.0, options: UIViewAnimationOptions(), animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0.0, options: UIView.AnimationOptions(), animations: {
             fromView.alpha = 0.0
         }, completion: { finished in
             transitionContext.completeTransition(finished)

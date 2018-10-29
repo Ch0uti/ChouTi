@@ -1,27 +1,21 @@
 Pod::Spec.new do |s|
   s.name             = 'ChouTi'
-  s.version          = '0.4.1'
-  s.summary          = 'Chou Ti (抽屉) - A framework for Swift development.'
+  s.version          = '0.4.2'
+  s.summary          = 'ChouTi (抽屉) - A framework for Swift development.'
   s.description      = <<-DESC
-                       Chou Ti (抽屉) - A framework for Swift development.
-                       Extended data structures, classes, extensions.
-
+                       ChouTi (抽屉) - A framework for Swift development.
                        DESC
   s.homepage         = 'https://github.com/ChouTi-Lab/ChouTi'
   s.license          = { :type => 'MIT', :file => '../LICENSE' }
   s.author           = { 'Honghao Zhang' => 'zhh358@gmail.com' }
   s.source           = { :git => 'https://github.com/ChouTi-Lab/ChouTi.git', :tag => s.version.to_s }
 
-  s.platform     	   = :ios, '10.0'
+  s.platform     	   = :ios, '11.0'
   s.requires_arc 	   = true
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
 
   # s.module_map = 'Source/ChouTi.modulemap'
-
-  # s.pod_target_xcconfig = {
-  #   'OTHER_SWIFT_FLAGS[config=Debug]' => '-D DEBUG'
-  # }
 
   s.default_subspecs = [
     'Core',

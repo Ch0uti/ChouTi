@@ -1,15 +1,15 @@
-platform :ios, '10.0'
+platform :ios, '12.0'
 use_frameworks!
 inhibit_all_warnings!
 
 # Pods
 def pods_for_framework
-  pod 'LTMorphingLabel', '~> 0.5'
+  pod 'LTMorphingLabel', '~> 0.5.7'
 end
 
 def pod_for_testing
   pod 'Quick', '~> 1.3'
-  pod 'Nimble', '~> 7.1'
+  pod 'Nimble', '~> 7.3'
 end
 
 # Targets

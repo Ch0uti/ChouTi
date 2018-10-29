@@ -11,16 +11,16 @@ import UIKit
 /// This class mimics UIAlertAction.
 open class AlertAction: Equatable {
     /// The title of the action’s button. (read-only)
-    open let title: String?
+    public let title: String?
     
     /// The style that is applied to the action’s button. (read-only)
-    open let style: UIAlertActionStyle
+    public let style: UIAlertAction.Style
     
     /// Action handler
     let handler: ((AlertAction) -> Void)?
     
     /// Button associated with this alert action
-    open let button: UIButton
+    public let button: UIButton
     
     /// A Boolean value indicating whether the action is currently enabled.
     open var enabled: Bool = true
@@ -34,7 +34,7 @@ open class AlertAction: Equatable {
      
      - returns: A new alert action object.
      */
-    public init(title: String?, style: UIAlertActionStyle, handler: ((AlertAction) -> Void)?) {
+    public init(title: String?, style: UIAlertAction.Style, handler: ((AlertAction) -> Void)?) {
         self.title = title
         self.style = style
         self.handler = handler

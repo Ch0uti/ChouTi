@@ -42,7 +42,7 @@ class NSLayoutConstraint_ExtensionsTests: XCTestCase {
     func testConstrainToSameLayoutAttributeOnCountTwoAndMore() {
         let containerView = UIView()
         var views: [UIView] = []
-        let viewsCount = Int.random(2, 10)
+        let viewsCount = Int.random(in: 2...10)
         for _ in 0 ..< viewsCount {
             let view = UIView()
             containerView.addSubview(view)
@@ -56,7 +56,7 @@ class NSLayoutConstraint_ExtensionsTests: XCTestCase {
             XCTAssertTrue(constraint.isActive)
             XCTAssertEqual(constraint.firstItem as? UIView, views[index])
             XCTAssertEqual(constraint.secondItem as? UIView, views[index + 1])
-            XCTAssertEqual(constraint.firstAttribute, NSLayoutAttribute.width)
+            XCTAssertEqual(constraint.firstAttribute, NSLayoutConstraint.Attribute.width)
             XCTAssertEqual(constraint.firstAttribute, constraint.secondAttribute)
             XCTAssertEqual(constraint.multiplier, 1.0)
             XCTAssertEqual(constraint.constant, 0.0)

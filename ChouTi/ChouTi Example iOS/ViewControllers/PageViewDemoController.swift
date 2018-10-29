@@ -29,9 +29,9 @@ class PageViewDemoController: UIViewController {
         // 2: Set view controllers by data source
         pageViewController.dataSource = self
 
-        addChildViewController(pageViewController)
+        addChild(pageViewController)
         view.addSubview(pageViewController.view)
-        pageViewController.didMove(toParentViewController: self)
+        pageViewController.didMove(toParent: self)
 	}
 }
 
