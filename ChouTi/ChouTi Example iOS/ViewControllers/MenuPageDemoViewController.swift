@@ -29,11 +29,11 @@ class MenuPageDemoViewController : UIViewController {
 		
 		menuPageViewController.selectedIndex = 4
 		
-		addChildViewController(menuPageViewController)
+        addChild(menuPageViewController)
 		let frame = menuPageViewController.view.frame
 		menuPageViewController.view.frame = CGRect(x: frame.origin.x, y: frame.origin.y + 22 + 44, width: frame.width, height: frame.height - 20 - 44)
 		view.addSubview(menuPageViewController.view)
-		menuPageViewController.didMove(toParentViewController: self)
+        menuPageViewController.didMove(toParent: self)
     }
 }
 

@@ -44,7 +44,7 @@ public extension UITableView {
             NSLog("Warning: tableView.delegate is not nil, setting sections won't have effects. TableView: \(self)")
         }
         
-        self.rowHeight = UITableViewAutomaticDimension
+        self.rowHeight = UITableView.automaticDimension
         
 		TableViewCell.registerInTableView(self)
 		TableViewCellValue1.registerInTableView(self)
@@ -130,11 +130,11 @@ extension UITableView : UITableViewDataSource {
 extension UITableView : UITableViewDelegate {
     // Row
 	public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
 	}
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 	
 	public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -151,7 +151,7 @@ extension UITableView : UITableViewDelegate {
     
     // Header
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sectionForIndex(section)?.headerHeight?(section, tableView) ?? UITableViewAutomaticDimension
+        return sectionForIndex(section)?.headerHeight?(section, tableView) ?? UITableView.automaticDimension
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -164,7 +164,7 @@ extension UITableView : UITableViewDelegate {
     
     // Footer
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return sectionForIndex(section)?.footerHeight?(section, tableView) ?? UITableViewAutomaticDimension
+        return sectionForIndex(section)?.footerHeight?(section, tableView) ?? UITableView.automaticDimension
     }
     
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

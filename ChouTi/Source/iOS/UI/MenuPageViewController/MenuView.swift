@@ -187,7 +187,7 @@ open class MenuView : UIView {
 		menuCollectionView.showsHorizontalScrollIndicator = false
 		menuCollectionView.showsVerticalScrollIndicator = false
 		
-		menuCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+		menuCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast
 		
 		menuCollectionView.allowsMultipleSelection = false
 		

@@ -218,9 +218,9 @@ public extension UIView {
         dampingRatio: CGFloat = 1.0,
         velocity: CGFloat = 1.0,
         blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
-        blurEffectStyle: UIBlurEffectStyle = .dark,
+        blurEffectStyle: UIBlurEffect.Style = .dark,
         viewKeyPointer: UnsafePointer<String>? = nil,
-        beginning: ((_ animated: Bool, _ duration: TimeInterval, _ delay: TimeInterval, _ dampingRatio: CGFloat, _ velocity: CGFloat, _ blurredViewBackgroundColor: UIColor, _ blurEffectStyle: UIBlurEffectStyle) -> ())? = nil,
+        beginning: ((_ animated: Bool, _ duration: TimeInterval, _ delay: TimeInterval, _ dampingRatio: CGFloat, _ velocity: CGFloat, _ blurredViewBackgroundColor: UIColor, _ blurEffectStyle: UIBlurEffect.Style) -> ())? = nil,
         completion: ((_ overlayView: UIView) -> ())? = nil) -> UIView
     {
         return _setupBlurredOverlayView({ [unowned self] overlayView in
@@ -246,9 +246,9 @@ public extension UIView {
         dampingRatio: CGFloat = 1.0,
         velocity: CGFloat = 1.0,
         blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
-        blurEffectStyle: UIBlurEffectStyle = .dark,
+        blurEffectStyle: UIBlurEffect.Style = .dark,
         viewKeyPointer: UnsafePointer<String>? = nil,
-        beginning: ((_ animated: Bool, _ duration: TimeInterval, _ delay: TimeInterval, _ dampingRatio: CGFloat, _ velocity: CGFloat, _ blurredViewBackgroundColor: UIColor, _ blurEffectStyle: UIBlurEffectStyle) -> ())? = nil,
+        beginning: ((_ animated: Bool, _ duration: TimeInterval, _ delay: TimeInterval, _ dampingRatio: CGFloat, _ velocity: CGFloat, _ blurredViewBackgroundColor: UIColor, _ blurEffectStyle: UIBlurEffect.Style) -> ())? = nil,
         completion: ((_ overlayView: UIView) -> ())? = nil) -> UIView
     {
         return _setupBlurredOverlayView({ [unowned self] overlayView in
@@ -274,9 +274,9 @@ public extension UIView {
         dampingRatio: CGFloat = 1.0,
         velocity: CGFloat = 1.0,
         blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
-        blurEffectStyle: UIBlurEffectStyle = .dark,
+        blurEffectStyle: UIBlurEffect.Style = .dark,
         viewKeyPointer: UnsafePointer<String>? = nil,
-        beginning: ((_ animated: Bool, _ duration: TimeInterval, _ delay: TimeInterval, _ dampingRatio: CGFloat, _ velocity: CGFloat, _ blurredViewBackgroundColor: UIColor, _ blurEffectStyle: UIBlurEffectStyle) -> ())? = nil,
+        beginning: ((_ animated: Bool, _ duration: TimeInterval, _ delay: TimeInterval, _ dampingRatio: CGFloat, _ velocity: CGFloat, _ blurredViewBackgroundColor: UIColor, _ blurEffectStyle: UIBlurEffect.Style) -> ())? = nil,
         completion: ((_ overlayView: UIView) -> ())? = nil) -> UIView
     {
         return _setupBlurredOverlayView({ [unowned self] overlayView in
@@ -302,9 +302,9 @@ public extension UIView {
         dampingRatio: CGFloat = 1.0,
         velocity: CGFloat = 1.0,
         blurredViewBackgroundColor: UIColor = UIColor(white: 0.0, alpha: 0.5),
-        blurEffectStyle: UIBlurEffectStyle = .dark,
+        blurEffectStyle: UIBlurEffect.Style = .dark,
         viewKeyPointer: UnsafePointer<String>? = nil,
-        beginning: ((_ animated: Bool, _ duration: TimeInterval, _ delay: TimeInterval, _ dampingRatio: CGFloat, _ velocity: CGFloat, _ blurredViewBackgroundColor: UIColor, _ blurEffectStyle: UIBlurEffectStyle) -> ())? = nil,
+        beginning: ((_ animated: Bool, _ duration: TimeInterval, _ delay: TimeInterval, _ dampingRatio: CGFloat, _ velocity: CGFloat, _ blurredViewBackgroundColor: UIColor, _ blurEffectStyle: UIBlurEffect.Style) -> ())? = nil,
         completion: ((_ overlayView: UIView) -> ())? = nil) -> UIView
     {
         

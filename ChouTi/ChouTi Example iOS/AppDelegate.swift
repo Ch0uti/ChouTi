@@ -13,13 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = UINavigationController(rootViewController: MainViewController())
-		window?.tintColor = UIColor(red:252/255.0, green:43/255.0, blue:27/255.0, alpha:255/255.0)
-		window?.makeKeyAndVisible()
-		
+        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
+        window?.tintColor = UIColor(red:252/255.0, green:43/255.0, blue:27/255.0, alpha:255/255.0)
+        window?.makeKeyAndVisible()
+
         return true
     }
 

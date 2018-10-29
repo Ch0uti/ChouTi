@@ -14,7 +14,7 @@ open class AlertAction: Equatable {
     public let title: String?
     
     /// The style that is applied to the action’s button. (read-only)
-    public let style: UIAlertActionStyle
+    public let style: UIAlertAction.Style
     
     /// Action handler
     let handler: ((AlertAction) -> Void)?
@@ -34,7 +34,7 @@ open class AlertAction: Equatable {
      
      - returns: A new alert action object.
      */
-    public init(title: String?, style: UIAlertActionStyle, handler: ((AlertAction) -> Void)?) {
+    public init(title: String?, style: UIAlertAction.Style, handler: ((AlertAction) -> Void)?) {
         self.title = title
         self.style = style
         self.handler = handler

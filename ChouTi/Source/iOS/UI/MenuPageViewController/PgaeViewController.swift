@@ -319,7 +319,7 @@ extension PageViewController {
 			
 			let viewController = loadedViewControllers[index]
 			
-			if !self.childViewControllers.contains(viewController) {
+			if !self.children.contains(viewController) {
 				addViewController(viewController)
 			}
 			viewController.view.frame = CGRect(x: CGFloat(index) * view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
@@ -412,15 +412,15 @@ extension PageViewController {
 // MARK: - ChildViewController Adding/Removing
 extension PageViewController {
 	fileprivate func removeViewController(_ viewController: UIViewController) {
-		viewController.willMove(toParentViewController: nil)
+		viewController.willMove(toParent: nil)
 		viewController.view.removeFromSuperview()
-		viewController.removeFromParentViewController()
+		viewController.removeFromParent()
 	}
 	
 	fileprivate func addViewController(_ viewController: UIViewController) {
-		addChildViewController(viewController)
+		addChild(viewController)
 		pageScrollView.addSubview(viewController.view)
-		viewController.didMove(toParentViewController: self)
+		viewController.didMove(toParent: self)
 	}
 }
 

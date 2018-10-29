@@ -210,7 +210,7 @@ open class AlertView: UIView {
     }
     
     open override var intrinsicContentSize: CGSize {
-        return CGSize(width: preferredWidth, height: UIViewNoIntrinsicMetric)
+        return CGSize(width: preferredWidth, height: UIView.noIntrinsicMetric)
     }
     
     /**

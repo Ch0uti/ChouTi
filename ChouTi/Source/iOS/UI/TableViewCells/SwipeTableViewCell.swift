@@ -157,7 +157,7 @@ open class SwipeTableViewCell: UITableViewCell {
     public final var blockingTableViewWhenExpanded: Bool = false
     
     // MARK: - Methods
-    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
     }
@@ -404,7 +404,7 @@ extension SwipeTableViewCell {
             let velocity = panRecognizer.velocity(in: nil)
             
             // Ignore touches if pans vertically
-            if fabs(velocity.y) > fabs(velocity.x) {
+            if abs(velocity.y) > abs(velocity.x) {
                 return false
             }
             
@@ -451,7 +451,7 @@ extension SwipeTableViewCell {
         collapse(animated: true)
     }
     
-    open override func willTransition(to state: UITableViewCellStateMask) {
+    open override func willTransition(to state: UITableViewCell.StateMask) {
         super.willTransition(to: state)
         // Any cell state transition should collapse
         collapse(animated: true)

@@ -108,10 +108,10 @@ extension MenuPageViewController {
 		view.addSubview(menuView)
 		
 		// PageViewController
-		addChildViewController(pageViewController)
+		addChild(pageViewController)
 		pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(pageViewController.view)
-		pageViewController.didMove(toParentViewController: self)
+		pageViewController.didMove(toParent: self)
 		
 		pageViewController.pageScrollView.delegate = self
 		
@@ -148,15 +148,15 @@ extension MenuPageViewController {
 
 extension MenuPageViewController {
 	fileprivate func removeViewController(_ viewController: UIViewController) {
-		viewController.willMove(toParentViewController: nil)
+		viewController.willMove(toParent: nil)
 		viewController.view.removeFromSuperview()
-		viewController.removeFromParentViewController()
+		viewController.removeFromParent()
 	}
 	
 	fileprivate func addViewController(_ viewController: UIViewController) {
-		addChildViewController(viewController)
+		addChild(viewController)
 		view.addSubview(viewController.view)
-		viewController.didMove(toParentViewController: self)
+		viewController.didMove(toParent: self)
 	}
 }
 

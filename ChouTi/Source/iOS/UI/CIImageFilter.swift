@@ -19,7 +19,7 @@ open class CIImageFilter {
 				kCIInputImageKey : image
 			] as [String : Any]
 			
-			let filter = CIFilter(name: "CIGaussianBlur", withInputParameters: parameters)
+			let filter = CIFilter(name: "CIGaussianBlur", parameters: parameters)
 			return filter?.outputImage
 		}
 	}
@@ -27,7 +27,7 @@ open class CIImageFilter {
 	open class func constantColorGenerator(_ color: UIColor) -> Filter {
 		return { _ in
 			let parameters = [kCIInputColorKey: CIColor(color: color)]
-			let filter = CIFilter(name: "CIConstantColorGenerator", withInputParameters: parameters)
+			let filter = CIFilter(name: "CIConstantColorGenerator", parameters: parameters)
 			return filter?.outputImage
 		}
 	}
@@ -38,7 +38,7 @@ open class CIImageFilter {
 				kCIInputImageKey : overlayImage,
 				kCIInputBackgroundImageKey : image
 			]
-			let filter = CIFilter(name: "CISourceOverCompositing", withInputParameters: parameters)
+			let filter = CIFilter(name: "CISourceOverCompositing", parameters: parameters)
 			let cropRect = image.extent
             return filter?.outputImage?.cropped(to: cropRect)
 		}

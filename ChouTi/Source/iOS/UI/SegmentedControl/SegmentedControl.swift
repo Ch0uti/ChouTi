@@ -265,7 +265,7 @@ open class SegmentedControl: UISegmentedControl {
 					
 					// Separator
 					let separator = itemSeparators[lastIndex]
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.leading, relatedBy: .equal, toItem: separator, attribute: .trailing, multiplier: 1.0, constant: 0.0))
+					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: .equal, toItem: separator, attribute: .trailing, multiplier: 1.0, constant: 0.0))
 					itemConstraints!.append(NSLayoutConstraint(item: separator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: borderWidth))
 					itemConstraints!.append(NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
 					itemConstraints!.append(NSLayoutConstraint(item: separator, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
@@ -314,7 +314,7 @@ open class SegmentedControl: UISegmentedControl {
 	
 	
 	// MARK: - Overridden
-	open override func removeTarget(_ target: Any?, action: Selector?, for controlEvents: UIControlEvents) {
+	open override func removeTarget(_ target: Any?, action: Selector?, for controlEvents: UIControl.Event) {
 		super.removeTarget(target, action: action, for: controlEvents)
 		
 		// If trying to remove all targets, add self as target back again
@@ -457,8 +457,8 @@ extension SegmentedControl {
 	*/
 	fileprivate func addFadeTransitionAnimationForLabel(_ label: UILabel?) {
 		let textAnimation = CATransition()
-		textAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-		textAnimation.type = kCATransitionFade
+		textAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+		textAnimation.type = CATransitionType.fade
 		textAnimation.duration = shouldBeAnimated ? animationDuration : 0.0
 		
 		label?.layer.add(textAnimation, forKey: "TextFadeAnimation")

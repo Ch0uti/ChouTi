@@ -26,7 +26,7 @@ public extension UIView {
 		}
 	}
 	
-	public func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, options: UIViewAnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
+	public func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
 		if condition {
 			UIView.animate(withDuration: duration, delay: delay, options: options, animations: animations, completion: completion)
 		} else {
@@ -35,7 +35,7 @@ public extension UIView {
 		}
 	}
 	
-	public func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIViewAnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
+	public func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIView.AnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
 		if condition {
 			UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: options, animations: animations, completion: completion)
 		} else {
