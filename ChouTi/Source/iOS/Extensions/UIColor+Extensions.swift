@@ -90,11 +90,11 @@ public extension UIColor {
     public class func colorBetweenMinColor(_ minColor: UIColor, maxColor: UIColor, percent: CGFloat) -> UIColor {
         let (leftR, leftG, leftB, leftA) = minColor.getRGBAComponents()
         let (rightR, rightG, rightB, rightA) = maxColor.getRGBAComponents()
-        
-        let newR = leftR.toNumber(rightR, withPercent: percent)
-        let newG = leftG.toNumber(rightG, withPercent: percent)
-        let newB = leftB.toNumber(rightB, withPercent: percent)
-        let newA = leftA.toNumber(rightA, withPercent: percent)
+
+        let newR = lerp(start: leftR, end: rightR, t: percent)
+        let newG = lerp(start: leftG, end: rightG, t: percent)
+        let newB = lerp(start: leftB, end: rightB, t: percent)
+        let newA = lerp(start: leftA, end: rightA, t: percent)
         
         return UIColor(red: newR, green: newG, blue: newB, alpha: newA)
     }

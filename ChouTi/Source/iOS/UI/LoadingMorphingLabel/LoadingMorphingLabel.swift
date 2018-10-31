@@ -9,6 +9,7 @@
 import Foundation
 import LTMorphingLabel
 
+/// A label shows a list of text in loop
 public class LoadingMorphingLabel: UIView {
 	
 	public var loopCount: Int = 10 {

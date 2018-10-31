@@ -146,19 +146,4 @@ public extension CGFloat {
     public mutating func normalizeInPlace() {
         self.normalizeInPlace(0, 1)
     }
-    
-    /**
-     Get a number to another number with a percentage
-     Example: self is 0.5, right number is 1.0, percentage is 50%, the result will be 0.75
-     
-     - parameter rightNumber: right number
-     - parameter percent:     distance in percentage to right number
-     
-     - returns: new number
-     */
-    public func toNumber(_ rightNumber: CGFloat, withPercent percent: CGFloat) -> CGFloat {
-        var span = rightNumber - self
-        span *= percent
-        return self + span
-    }
 }
