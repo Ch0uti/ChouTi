@@ -20,7 +20,6 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
-  - xcodebuild -showdestinations -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME"
 
   # Framework
   ## Debug with tests
