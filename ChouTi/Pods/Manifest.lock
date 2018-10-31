@@ -45,7 +45,7 @@ PODS:
     - ChouTi/ThirdParty/LoadingMorphingLabel (= 0.4.2)
   - ChouTi/ThirdParty/LoadingMorphingLabel (0.4.2):
     - ChouTi/Core
-    - LTMorphingLabel (~> 0.5)
+    - LTMorphingLabel (~> 0.5.8)
   - ChouTi/UI (0.4.2):
     - ChouTi/Animators
     - ChouTi/Core
@@ -95,13 +95,13 @@ PODS:
     - "ChouTi/Utilities/TableView+SectionRowExtensions (= 0.4.2)"
   - "ChouTi/Utilities/TableView+SectionRowExtensions (0.4.2)":
     - ChouTi/Core
-  - LTMorphingLabel (0.5.7)
+  - LTMorphingLabel (0.5.8)
   - Nimble (7.3.1)
   - Quick (1.3.2)
 
 DEPENDENCIES:
-  - ChouTi/All (from `./`)
-  - LTMorphingLabel (~> 0.5.7)
+  - ChouTi/All (from `../`)
+  - LTMorphingLabel (~> 0.5.8)
   - Nimble (~> 7.3)
   - Quick (~> 1.3)
 
@@ -113,14 +113,14 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   ChouTi:
-    :path: "./"
+    :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: 537832290235c6c4ddb8f0c1b7fe9d884120ff22
-  LTMorphingLabel: 9d1c38bd602fe505f264d3e9fdb780995142f275
+  ChouTi: 4143154b7d3ae0a37a059dfb4477a188d49dac90
+  LTMorphingLabel: 8adaba524476098ed307626d0bc42b7f8fadb7e0
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
 
-PODFILE CHECKSUM: 1b44de2cf0d02c038a9c94c4470ab7edc0696352
+PODFILE CHECKSUM: 3352d0d296e6258dfc7b3db48734fbd8eea88628
 
 COCOAPODS: 1.6.0.beta.2

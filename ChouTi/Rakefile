@@ -27,7 +27,12 @@ task :default do
     sh "rake setup"
   end
 
-  sh "rake fetch"
+  sh "pod install"
+  sh "rake open"
+end
+
+task :open do
+  sh "open ./ChouTi.xcworkspace"
 end
 
 task :build do
@@ -44,6 +49,12 @@ end
 
 task :test_ui do
   sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_EXAMPLE_SCHEME}' -destination '#{DESTINATION}' -configuration Release | xcpretty"
+end
+
+desc "Publish ChouTi pod"
+task :publish_pod do
+  sh "pod cache clean --all --verbose"
+  sh "pod trunk push --verbose"
 end
 
 #-------------------------------------------------------------------------------

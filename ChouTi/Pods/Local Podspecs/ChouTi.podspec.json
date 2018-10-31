@@ -2,11 +2,11 @@
   "name": "ChouTi",
   "version": "0.4.2",
   "summary": "ChouTi (抽屉) - A framework for Swift development.",
-  "description": "ChouTi (抽屉) - A framework for Swift development.",
+  "description": "ChouTi (抽屉) - A framework for Swift development.\n\nThis is a project includes extended data structures, classes, extensions.",
   "homepage": "https://github.com/ChouTi-Lab/ChouTi",
   "license": {
     "type": "MIT",
-    "file": "../LICENSE"
+    "file": "LICENSE"
   },
   "authors": {
     "Honghao Zhang": "zhh358@gmail.com"
@@ -58,15 +58,15 @@
       "subspecs": [
         {
           "name": "CodeSnippets",
-          "source_files": "Source/iOS/Core/CodeSnippets/**/*.*"
+          "source_files": "ChouTi/Source/iOS/Core/CodeSnippets/**/*.*"
         },
         {
           "name": "DataStructure",
-          "source_files": "Source/iOS/Core/DataStructure/**/*.*"
+          "source_files": "ChouTi/Source/iOS/Core/DataStructure/**/*.*"
         },
         {
           "name": "Extensions",
-          "source_files": "Source/iOS/Core/Extensions/**/*.*",
+          "source_files": "ChouTi/Source/iOS/Core/Extensions/**/*.*",
           "dependencies": {
             "ChouTi/Core/DataStructure": [
 
@@ -75,52 +75,52 @@
           "subspecs": [
             {
               "name": "Foundation",
-              "source_files": "Source/iOS/Core/Extensions/Foundation/**/*.*"
+              "source_files": "ChouTi/Source/iOS/Core/Extensions/Foundation/**/*.*"
             },
             {
               "name": "UI",
-              "source_files": "Source/iOS/Core/Extensions/UI/**/*.*"
+              "source_files": "ChouTi/Source/iOS/Core/Extensions/UI/**/*.*"
             }
           ]
         },
         {
           "name": "Miscellaneous",
-          "source_files": "Source/iOS/Core/Miscellaneous/**/*.*"
+          "source_files": "ChouTi/Source/iOS/Core/Miscellaneous/**/*.*"
         },
         {
           "name": "Protocols",
-          "source_files": "Source/iOS/Core/Protocols/**/*.*"
+          "source_files": "ChouTi/Source/iOS/Core/Protocols/**/*.*"
         },
         {
           "name": "UI",
           "source_files": [
-            "Source/iOS/Core/UI/*.*",
-            "Source/iOS/Core/DataStructure/**/*.*",
-            "Source/iOS/Core/Extensions/**/*.*",
-            "Source/iOS/Core/Miscellaneous/**/*.*",
-            "Source/iOS/Core/Protocols/**/*.*"
+            "ChouTi/Source/iOS/Core/UI/*.*",
+            "ChouTi/Source/iOS/Core/DataStructure/**/*.*",
+            "ChouTi/Source/iOS/Core/Extensions/**/*.*",
+            "ChouTi/Source/iOS/Core/Miscellaneous/**/*.*",
+            "ChouTi/Source/iOS/Core/Protocols/**/*.*"
           ],
           "subspecs": [
             {
               "name": "TableViewCells",
               "source_files": [
-                "Source/iOS/Core/UI/TableViewCells/**/*.*",
-                "Source/iOS/Core/UI/*.*",
-                "Source/iOS/Core/DataStructure/**/*.*",
-                "Source/iOS/Core/Extensions/**/*.*",
-                "Source/iOS/Core/Miscellaneous/**/*.*",
-                "Source/iOS/Core/Protocols/**/*.*"
+                "ChouTi/Source/iOS/Core/UI/TableViewCells/**/*.*",
+                "ChouTi/Source/iOS/Core/UI/*.*",
+                "ChouTi/Source/iOS/Core/DataStructure/**/*.*",
+                "ChouTi/Source/iOS/Core/Extensions/**/*.*",
+                "ChouTi/Source/iOS/Core/Miscellaneous/**/*.*",
+                "ChouTi/Source/iOS/Core/Protocols/**/*.*"
               ]
             },
             {
               "name": "CollectionViewCells",
               "source_files": [
-                "Source/iOS/Core/UI/CollectionViewCells/**/*.*",
-                "Source/iOS/Core/UI/*.*",
-                "Source/iOS/Core/DataStructure/**/*.*",
-                "Source/iOS/Core/Extensions/**/*.*",
-                "Source/iOS/Core/Miscellaneous/**/*.*",
-                "Source/iOS/Core/Protocols/**/*.*"
+                "ChouTi/Source/iOS/Core/UI/CollectionViewCells/**/*.*",
+                "ChouTi/Source/iOS/Core/UI/*.*",
+                "ChouTi/Source/iOS/Core/DataStructure/**/*.*",
+                "ChouTi/Source/iOS/Core/Extensions/**/*.*",
+                "ChouTi/Source/iOS/Core/Miscellaneous/**/*.*",
+                "ChouTi/Source/iOS/Core/Protocols/**/*.*"
               ]
             }
           ]
@@ -129,7 +129,7 @@
     },
     {
       "name": "Animators",
-      "source_files": "Source/iOS/Animators/*.*",
+      "source_files": "ChouTi/Source/iOS/Animators/*.*",
       "dependencies": {
         "ChouTi/Core": [
 
@@ -139,8 +139,8 @@
         {
           "name": "DropPresentingAnimator",
           "source_files": [
-            "Source/iOS/Animators/DropPresentingAnimator/**/*.*",
-            "Source/iOS/Animators/*.*"
+            "ChouTi/Source/iOS/Animators/DropPresentingAnimator/**/*.*",
+            "ChouTi/Source/iOS/Animators/*.*"
           ]
         }
       ]
@@ -155,15 +155,15 @@
       "subspecs": [
         {
           "name": "TableLayout",
-          "source_files": "Source/iOS/CollectionViewLayouts/**/*.*"
+          "source_files": "ChouTi/Source/iOS/CollectionViewLayouts/**/*.*"
         }
       ]
     },
     {
       "name": "UI",
-      "source_files": "Source/iOS/UI/*.*",
+      "source_files": "ChouTi/Source/iOS/UI/*.*",
       "resource_bundles": {
-        "Resources": "Resources/**/*.png"
+        "Resources": "ChouTi/Resources/**/*.png"
       },
       "dependencies": {
         "ChouTi/Core": [
@@ -176,38 +176,38 @@
       "subspecs": [
         {
           "name": "AlertView",
-          "source_files": "Source/iOS/UI/AlertView/*.swift"
+          "source_files": "ChouTi/Source/iOS/UI/AlertView/*.swift"
         },
         {
           "name": "AutoLinesLabel",
-          "source_files": "Source/iOS/UI/AutoLinesLabel/*.*"
+          "source_files": "ChouTi/Source/iOS/UI/AutoLinesLabel/*.*"
         },
         {
           "name": "CollectionViewCells"
         },
         {
           "name": "DatePickerViewController",
-          "source_files": "Source/iOS/UI/DatePickerViewController/*.*"
+          "source_files": "ChouTi/Source/iOS/UI/DatePickerViewController/*.*"
         },
         {
           "name": "DropDownMenu",
-          "source_files": "Source/iOS/UI/DropDownMenu/*.*"
+          "source_files": "ChouTi/Source/iOS/UI/DropDownMenu/*.*"
         },
         {
           "name": "MenuPageViewController",
-          "source_files": "Source/iOS/UI/MenuPageViewController/*.*"
+          "source_files": "ChouTi/Source/iOS/UI/MenuPageViewController/*.*"
         },
         {
           "name": "NavigationBarStatusBar",
-          "source_files": "Source/iOS/UI/NavigationBarStatusBar/*.*"
+          "source_files": "ChouTi/Source/iOS/UI/NavigationBarStatusBar/*.*"
         },
         {
           "name": "SegmentedControl",
-          "source_files": "Source/iOS/UI/SegmentedControl/*.*"
+          "source_files": "ChouTi/Source/iOS/UI/SegmentedControl/*.*"
         },
         {
           "name": "TableViewCells",
-          "source_files": "Source/iOS/UI/TableViewCells/**/*.*"
+          "source_files": "ChouTi/Source/iOS/UI/TableViewCells/**/*.*"
         }
       ]
     },
@@ -221,7 +221,7 @@
       "subspecs": [
         {
           "name": "SlideController",
-          "source_files": "Source/iOS/UI/SlideController/*.*"
+          "source_files": "ChouTi/Source/iOS/UI/SlideController/*.*"
         }
       ]
     },
@@ -235,7 +235,7 @@
       "subspecs": [
         {
           "name": "TableView+SectionRowExtensions",
-          "source_files": "Source/iOS/Utilities/TableView+SectionRowExtensions/*.*"
+          "source_files": "ChouTi/Source/iOS/Utilities/TableView+SectionRowExtensions/*.*"
         }
       ]
     },
@@ -244,10 +244,10 @@
       "subspecs": [
         {
           "name": "LoadingMorphingLabel",
-          "source_files": "Source/iOS/ThirdParty/LoadingMorphingLabel/*.*",
+          "source_files": "ChouTi/Source/iOS/ThirdParty/LoadingMorphingLabel/*.*",
           "dependencies": {
             "LTMorphingLabel": [
-              "~> 0.5"
+              "~> 0.5.8"
             ],
             "ChouTi/Core": [
 

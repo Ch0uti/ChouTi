@@ -4,7 +4,7 @@ inhibit_all_warnings!
 
 # Pods
 def pods_for_framework
-  pod 'LTMorphingLabel', '~> 0.5.7'
+  pod 'LTMorphingLabel', '~> 0.5.8'
 end
 
 def pod_for_testing
@@ -22,7 +22,7 @@ target 'ChouTi iOS Tests' do
 end
 
 target 'ChouTi Example iOS' do
-  pod 'ChouTi/All', :path => './'
+  pod 'ChouTi/All', :path => '../'
 end
 
 target 'ChouTi Example iOS UITests' do
