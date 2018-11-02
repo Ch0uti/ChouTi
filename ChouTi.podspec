@@ -8,9 +8,9 @@ Pod::Spec.new do |s|
 
                        This is a project includes extended data structures, classes, extensions.
                        DESC
-  s.homepage         = 'https://github.com/ChouTi-Lab/ChouTi'
+  s.homepage         = 'https://github.com/Ch0uTi/ChouTi'
   s.author           = { 'Honghao Zhang' => 'zhh358@gmail.com' }
-  s.source           = { :git => 'https://github.com/ChouTi-Lab/ChouTi.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/Ch0uTi/ChouTi.git', :tag => s.version.to_s }
 
   s.requires_arc 	   = true
   s.swift_version    = '4.2'
