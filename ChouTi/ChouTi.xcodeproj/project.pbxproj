@@ -1360,7 +1360,6 @@
 				TargetAttributes = {
 					020664F01D5FB0BE002A7E2A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = UYW9ZSKZAQ;
 						LastSwiftMigration = 0810;
 					};
 					020665031D5FB0BE002A7E2A = {
@@ -1374,7 +1373,6 @@
 					};
 					0230509B1D2440DB00D7B190 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = UYW9ZSKZAQ;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
@@ -1843,7 +1841,7 @@
 			baseConfigurationReference = B02C65F66B3E2D524FFCFB21 /* Pods-ChouTi Example iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = UYW9ZSKZAQ;
+				DEVELOPMENT_TEAM = "";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = "ChouTi Example iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1857,7 +1855,7 @@
 			baseConfigurationReference = E225E972756CC3CEACDDFE7B /* Pods-ChouTi Example iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = UYW9ZSKZAQ;
+				DEVELOPMENT_TEAM = "";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = "ChouTi Example iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2026,7 +2024,7 @@
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.ChouTi;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chouti.chouti-ios";
 				PRODUCT_NAME = ChouTi;
 				SKIP_INSTALL = YES;
 			};
@@ -2046,7 +2044,7 @@
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.ChouTi;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chouti.chouti-ios";
 				PRODUCT_NAME = ChouTi;
 				SKIP_INSTALL = YES;
 			};
@@ -2058,7 +2056,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = UYW9ZSKZAQ;
+				DEVELOPMENT_TEAM = "";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
@@ -2073,7 +2071,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = UYW9ZSKZAQ;
+				DEVELOPMENT_TEAM = "";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
