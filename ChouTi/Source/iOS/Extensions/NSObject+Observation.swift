@@ -22,7 +22,7 @@ open class Observer: NSObject {
 
     var handlerDictionary = [String: ObserverHandler]()
 
-    private struct ObservingContext { static var Key = "zhObservingContextKey" }
+    private enum ObservingContext { static var Key = "zhObservingContextKey" }
 
     open func observe(_ object: AnyObject, forKeyPath keyPath: String, withHandler handler: @escaping ObserverHandler) {
         if self.object == nil {
@@ -83,7 +83,7 @@ open class Observer: NSObject {
 public extension NSObject {
 
     // Add an Observer to NSObject
-    private struct ObserverKey { static var Key = "zhh_ObserverKey" }
+    private enum ObserverKey { static var Key = "zhh_ObserverKey" }
 
     private var observer: Observer? {
         get {

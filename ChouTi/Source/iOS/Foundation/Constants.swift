@@ -20,4 +20,4 @@ public var is3_5InchScreen: Bool { return screenHeight ~= 480.0 }
 public var is4InchScreen: Bool { return screenHeight ~= 568.0 }
 
 // Ref: http://stackoverflow.com/a/30284266/3164091
-public struct Device { static var isSimulator: Bool { return TARGET_OS_SIMULATOR != 0 } }
+public enum Device { static var isSimulator: Bool { return TARGET_OS_SIMULATOR != 0 } }

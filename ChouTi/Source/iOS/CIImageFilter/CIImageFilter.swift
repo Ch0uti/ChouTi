@@ -9,10 +9,10 @@
 import QuartzCore
 import UIKit
 
-open class CIImageFilter {
+public enum CIImageFilter {
 	public typealias Filter = (CIImage) -> CIImage?
 
-	open class func gaussianBlur(_ radius: Double) -> Filter {
+	public static func gaussianBlur(_ radius: Double) -> Filter {
 		return { image in
 			let parameters = [
 				kCIInputRadiusKey: radius,
@@ -24,7 +24,7 @@ open class CIImageFilter {
 		}
 	}
 
-	open class func constantColorGenerator(_ color: UIColor) -> Filter {
+	public static func constantColorGenerator(_ color: UIColor) -> Filter {
 		return { _ in
 			let parameters = [kCIInputColorKey: CIColor(color: color)]
 			let filter = CIFilter(name: "CIConstantColorGenerator", parameters: parameters)
@@ -32,7 +32,7 @@ open class CIImageFilter {
 		}
 	}
 
-	open class func sourceOverCompositing(_ overlayImage: CIImage) -> Filter {
+	public static func sourceOverCompositing(_ overlayImage: CIImage) -> Filter {
 		return { image in
 			let parameters = [
 				kCIInputImageKey: overlayImage,
@@ -44,7 +44,7 @@ open class CIImageFilter {
 		}
 	}
 
-	open class func colorOverlay(_ color: UIColor) -> Filter {
+	public static func colorOverlay(_ color: UIColor) -> Filter {
 		return { image in
 			if let overlay = constantColorGenerator(color)(image) {
 				return sourceOverCompositing(overlay)(image)

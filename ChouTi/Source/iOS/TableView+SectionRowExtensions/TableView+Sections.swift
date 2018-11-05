@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UITableView {
-	private struct zhSectionsKey {
+	private enum zhSectionsKey {
 		static var Key = "zhSectionsKey"
 	}
 
