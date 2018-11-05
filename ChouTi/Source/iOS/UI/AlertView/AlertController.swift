@@ -22,7 +22,7 @@ open class AlertController: UIViewController {
     private let animator = ScalePresentingAnimator()
 
     /// The title of the alert.
-    open override var title: String? {
+    override open var title: String? {
         get { return alertView.title }
         set {
 			alertView.title = newValue
@@ -45,7 +45,7 @@ open class AlertController: UIViewController {
     }
 
     /// Override preferredContentSize to make sure view layout is always updated and centered
-    open override var preferredContentSize: CGSize {
+    override open var preferredContentSize: CGSize {
         didSet {
             guard let widthConstraint = widthConstraint,
 				let heightConstraint = heightConstraint,
@@ -84,7 +84,7 @@ open class AlertController: UIViewController {
         alertView.message = message
     }
 
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         commonInit()
     }
@@ -103,7 +103,7 @@ open class AlertController: UIViewController {
         transitioningDelegate = animator
     }
 
-    open override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Initially I want to set self.view = alertView.
@@ -115,14 +115,14 @@ open class AlertController: UIViewController {
         alertView.constrainToFullSizeInSuperview()
     }
 
-    open override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         // at this moment, view size is about to be determined by presenting animator, preferred content size should be updated.
         updatePreferredContentSize()
     }
 
-    open override func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         // Use constraint-based layout to center alert view
@@ -136,7 +136,7 @@ open class AlertController: UIViewController {
         heightConstraint = view.constrainTo(height: preferredContentSize.height)
     }
 
-    open override func viewDidDisappear(_ animated: Bool) {
+    override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
 		alertWindow?.isHidden = true

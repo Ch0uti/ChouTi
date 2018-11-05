@@ -29,7 +29,7 @@ open class SearchTextField: TextField {
 	open weak var searchTextFieldDataSource: SearchTextFieldDataSource?
 
     private weak var originalDelegate: UITextFieldDelegate?
-    open override weak var delegate: UITextFieldDelegate? {
+    override open weak var delegate: UITextFieldDelegate? {
         didSet {
             originalDelegate = delegate
             super.delegate = self

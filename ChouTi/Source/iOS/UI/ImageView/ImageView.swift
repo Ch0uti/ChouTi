@@ -11,7 +11,7 @@ import UIKit
 open class ImageView: UIImageView {
 	open var rounded: Bool = false
 
-	open override func layoutSubviews() {
+	override open func layoutSubviews() {
 		super.layoutSubviews()
 
 		if rounded {

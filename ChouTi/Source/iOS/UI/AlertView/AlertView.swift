@@ -93,7 +93,7 @@ open class AlertView: UIView {
         }
     }
 
-    open override var layoutMargins: UIEdgeInsets {
+    override open var layoutMargins: UIEdgeInsets {
         didSet {
             titleLabel.preferredMaxLayoutWidth = preferredWidth - layoutMargins.left - layoutMargins.right
             messageLabel.preferredMaxLayoutWidth = preferredWidth - layoutMargins.left - layoutMargins.right
@@ -118,12 +118,12 @@ open class AlertView: UIView {
         }
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -209,7 +209,7 @@ open class AlertView: UIView {
         NSLayoutConstraint.activate(constraints)
     }
 
-    open override var intrinsicContentSize: CGSize {
+    override open var intrinsicContentSize: CGSize {
         return CGSize(width: preferredWidth, height: UIView.noIntrinsicMetric)
     }
 

@@ -23,7 +23,7 @@ import UIKit
 
 open class DropPresentingAnimator: Animator {
 
-	public override init() {
+	override public init() {
 		super.init()
 		animationDuration = 0.5
 	}
@@ -49,7 +49,7 @@ open class DropPresentingAnimator: Animator {
 
 // MARK: - UIViewControllerAnimatedTransitioning
 extension DropPresentingAnimator {
-	public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+	override public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 		super.animateTransition(using: transitionContext)
 
 		if presenting {
@@ -111,7 +111,7 @@ extension DropPresentingAnimator {
 		})
 	}
 
-	public override func animationEnded(_ transitionCompleted: Bool) {
+	override public func animationEnded(_ transitionCompleted: Bool) {
 		interactiveAnimationDraggingRange = nil
 		interactiveAnimationTransformAngel = nil
 

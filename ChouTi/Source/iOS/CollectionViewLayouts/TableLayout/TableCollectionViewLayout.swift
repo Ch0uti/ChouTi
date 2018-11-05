@@ -80,7 +80,7 @@ open class TableCollectionViewLayout: UICollectionViewLayout {
     private let separatorViewKind = "Separator"
 
 	// MARK: - Init
-	public override init() {
+	override public init() {
         super.init()
 		commmonInit()
     }
@@ -95,11 +95,11 @@ open class TableCollectionViewLayout: UICollectionViewLayout {
 	}
 
 	// MARK: - Override
-    open override func prepare() {
+    override open func prepare() {
         buildMaxWidthsHeight()
     }
 
-    open override var collectionViewContentSize: CGSize {
+    override open var collectionViewContentSize: CGSize {
         var width: CGFloat = maxWidthForColumn.reduce(0, +)
         width += CGFloat(numberOfColumns() - 1) * separatorLineWidth
         width += CGFloat(numberOfColumns()) * horizontalPadding * 2
@@ -107,11 +107,11 @@ open class TableCollectionViewLayout: UICollectionViewLayout {
         return CGSize(width: width, height: maxContentHeight)
     }
 
-    open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override open func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cellAttrisForIndexPath(indexPath)
     }
 
-    open override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override open func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         if elementKind == separatorViewKind {
             if indexPath.item == 0 {
 				let attrs = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, with: indexPath)
@@ -140,7 +140,7 @@ open class TableCollectionViewLayout: UICollectionViewLayout {
 		return nil
     }
 
-    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attrs = [UICollectionViewLayoutAttributes]()
         let cellIndexPaths = cellIndexPathsForRect(rect)
         for indexPath in cellIndexPaths {
@@ -160,7 +160,7 @@ open class TableCollectionViewLayout: UICollectionViewLayout {
         return attrs
     }
 
-    open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+    override open func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return false
     }
 }

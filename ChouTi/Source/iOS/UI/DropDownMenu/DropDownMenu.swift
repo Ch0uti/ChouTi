@@ -134,7 +134,7 @@ open class DropDownMenu: UIControl {
 	private var wrapperBaseHeightConstraint: NSLayoutConstraint!
 
 	// MARK: - Setups
-	public override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		commonInit()
 	}
@@ -222,7 +222,7 @@ open class DropDownMenu: UIControl {
         self.addTarget(self, action: #selector(DropDownMenu.tapped(_:forEvent:)), for: .touchUpInside)
 	}
 
-	open override func layoutSubviews() {
+	override open func layoutSubviews() {
 		// Update base width/height constraint for wrapper view.
 		wrapperBaseWidthConstraint.constant = bounds.width
 		wrapperBaseHeightConstraint.constant = bounds.height
@@ -245,7 +245,7 @@ open class DropDownMenu: UIControl {
 		NSLayoutConstraint.activate(constraints)
 	}
 
-    open override func willMove(toWindow newWindow: UIWindow?) {
+    override open func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
 
 		if newWindow != nil {

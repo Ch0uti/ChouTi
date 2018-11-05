@@ -17,7 +17,7 @@ open class TextField: UITextField {
     }
 
     /// Placeholder text
-    open override var placeholder: String? {
+    override open var placeholder: String? {
         didSet {
             guard let placeholder = placeholder else {
                 return
@@ -84,15 +84,15 @@ open class TextField: UITextField {
         }
     }
 
-    open override func textRect(forBounds bounds: CGRect) -> CGRect {
+    override open func textRect(forBounds bounds: CGRect) -> CGRect {
         return customizedTextRectForBounds(bounds)
     }
 
-    open override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         return customizedTextRectForBounds(bounds)
     }
 
-    open override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
         return customizedTextRectForBounds(bounds)
     }
 
@@ -110,13 +110,13 @@ open class TextField: UITextField {
 }
 
 extension TextField {
-    open override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+    override open func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.rightViewRect(forBounds: bounds)
         rect.origin.x -= layoutMargins.right
         return rect
     }
 
-    open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+    override open func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.leftViewRect(forBounds: bounds)
         rect.origin.x += layoutMargins.left
         return rect

@@ -41,7 +41,7 @@ open class ProgressBarView: UIView {
 		self.percent = percent
 	}
 
-	public override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		commonInit()
 	}
@@ -59,7 +59,7 @@ open class ProgressBarView: UIView {
 		layer.addSublayer(forgroundMeterLayer)
 	}
 
-	open override func layoutSubviews() {
+	override open func layoutSubviews() {
 		super.layoutSubviews()
 
 		CATransaction.begin()

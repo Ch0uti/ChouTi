@@ -196,11 +196,11 @@ open class PageViewController: UIViewController {
 
 // MARK: - Override
 extension PageViewController {
-	open override var shouldAutomaticallyForwardAppearanceMethods: Bool {
+	override open var shouldAutomaticallyForwardAppearanceMethods: Bool {
 		return false
 	}
 
-	open override func viewDidLoad() {
+	override open func viewDidLoad() {
 		super.viewDidLoad()
 		setupViews()
 
@@ -230,25 +230,25 @@ extension PageViewController {
         pageScrollView.contentInsetAdjustmentBehavior = .never
 	}
 
-	open override func viewWillAppear(_ animated: Bool) {
+	override open func viewWillAppear(_ animated: Bool) {
 		_selectedViewController?.zhh_beginAppearanceTransition(true, animated: animated)
 		isInTransition = true
 		super.viewWillAppear(animated)
 	}
 
-	open override func viewDidAppear(_ animated: Bool) {
+	override open func viewDidAppear(_ animated: Bool) {
 		_selectedViewController?.zhh_endAppearanceTransition()
 		isInTransition = false
 		super.viewDidAppear(animated)
 	}
 
-	open override func viewWillDisappear(_ animated: Bool) {
+	override open func viewWillDisappear(_ animated: Bool) {
 		_selectedViewController?.zhh_beginAppearanceTransition(false, animated: animated)
 		isInTransition = true
 		super.viewWillDisappear(animated)
 	}
 
-	open override func viewDidDisappear(_ animated: Bool) {
+	override open func viewDidDisappear(_ animated: Bool) {
 		_selectedViewController?.zhh_endAppearanceTransition()
 		isInTransition = false
 		super.viewDidDisappear(animated)

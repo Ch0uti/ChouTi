@@ -64,7 +64,7 @@ open class TextTableCollectionView: UICollectionView {
 		self.init(frame: CGRect.zero, collectionViewLayout: tableLayout)
 	}
 
-    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+    override public init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
 		guard layout is TableCollectionViewLayout else {
 			fatalError("layout must be a TableCollectionViewLayout class")
@@ -85,7 +85,7 @@ open class TextTableCollectionView: UICollectionView {
 		self.backgroundColor = UIColor.clear
 	}
 
-	open override var intrinsicContentSize: CGSize {
+	override open var intrinsicContentSize: CGSize {
 		tableLayout.buildMaxWidthsHeight()
 		return tableLayout.collectionViewContentSize
 	}

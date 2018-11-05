@@ -145,7 +145,7 @@ open class MenuView: UIView {
 		self.scrollingOption = scrollingOption
 	}
 
-	public override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		commonInit()
 	}
@@ -232,7 +232,7 @@ open class MenuView: UIView {
 		delegate?.menuView(self, didSelectIndex: index)
 	}
 
-	open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+	override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
 		guard let change = change as? [NSKeyValueChangeKey: NSValue] else { return }
 		if object as? UICollectionView === menuCollectionView {
 			if keyPath == "contentSize" {

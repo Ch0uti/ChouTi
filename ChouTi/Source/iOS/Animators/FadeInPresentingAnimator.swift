@@ -15,7 +15,7 @@ open class FadeInPresentingAnimator: Animator {
     /// Whether presenting view should be dimmed when preseting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.
     open var shouldDimPresentedView: Bool = true
 
-	public override init() {
+	override public init() {
 		super.init()
 		animationDuration = 0.3
 	}
@@ -23,7 +23,7 @@ open class FadeInPresentingAnimator: Animator {
 
 // MARK: - UIViewControllerAnimatedTransitioning
 extension FadeInPresentingAnimator {
-    public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    override public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(using: transitionContext)
 
         if presenting {

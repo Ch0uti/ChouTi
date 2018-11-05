@@ -18,7 +18,7 @@ open class DatePickerController: UIViewController {
 
 	open weak var delegate: DatePickerControllerDelagte?
 
-	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+	override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 		commonInit()
 	}
@@ -39,7 +39,7 @@ open class DatePickerController: UIViewController {
 		topToolBar.tintColor = UIColor.white
 	}
 
-	open override func viewDidLoad() {
+	override open func viewDidLoad() {
 		super.viewDidLoad()
 
 		view.backgroundColor = UIColor.white

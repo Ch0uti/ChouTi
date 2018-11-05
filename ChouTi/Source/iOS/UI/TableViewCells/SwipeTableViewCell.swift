@@ -155,7 +155,7 @@ open class SwipeTableViewCell: UITableViewCell {
     public final var blockingTableViewWhenExpanded: Bool = false
 
     // MARK: - Methods
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
     }
@@ -221,7 +221,7 @@ open class SwipeTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(constraints)
     }
 
-	open override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+	override open func setHighlighted(_ highlighted: Bool, animated: Bool) {
 		if let selectedBackgroundView = selectedBackgroundView {
 			if highlighted {
 				swipeableContentView.insertSubview(selectedBackgroundView, at: 0)
@@ -231,7 +231,7 @@ open class SwipeTableViewCell: UITableViewCell {
 		}
 	}
 
-	open override func setSelected(_ selected: Bool, animated: Bool) {
+	override open func setSelected(_ selected: Bool, animated: Bool) {
 		if let selectedBackgroundView = selectedBackgroundView {
 			if selected {
 				swipeableContentView.insertSubview(selectedBackgroundView, at: 0)
@@ -352,7 +352,7 @@ extension SwipeTableViewCell {
 
 // MARK: - UIGestureRecognizerDelegate
 extension SwipeTableViewCell {
-    open override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    override open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if rightSwipeEnabled == false {
             return false
         }
@@ -437,30 +437,30 @@ extension SwipeTableViewCell {
 
 // MARK: - Automatic collapsing
 extension SwipeTableViewCell {
-    open override func prepareForReuse() {
+    override open func prepareForReuse() {
         super.prepareForReuse()
         collapse(animated: true)
     }
 
-    open override func willTransition(to state: UITableViewCell.StateMask) {
+    override open func willTransition(to state: UITableViewCell.StateMask) {
         super.willTransition(to: state)
         // Any cell state transition should collapse
         collapse(animated: true)
     }
 
-    open override func didMoveToWindow() {
+    override open func didMoveToWindow() {
         super.didMoveToWindow()
         collapse(animated: true)
     }
 
-    open override func didMoveToSuperview() {
+    override open func didMoveToSuperview() {
         super.didMoveToSuperview()
         // Setup tableViewImmediateTouchRecognizer to new tableView
         guard let tableView = tableView else { return }
         tableView.addGestureRecognizer(tableViewImmediateTouchRecognizer)
     }
 
-    open override func willMove(toSuperview newSuperview: UIView?) {
+    override open func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         // Remove tableViewImmediateTouchRecognizer from current tableView
         guard let tableView = tableView else { return }

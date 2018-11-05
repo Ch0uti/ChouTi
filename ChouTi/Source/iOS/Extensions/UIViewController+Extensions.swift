@@ -19,7 +19,7 @@ public extension UIViewController {
      
      :returns: An instance of view controller.
      */
-    class public func viewControllerInStoryboard(_ storyboardName: String, viewControllerName: String) -> UIViewController {
+    class func viewControllerInStoryboard(_ storyboardName: String, viewControllerName: String) -> UIViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: viewControllerName)
         return viewController
