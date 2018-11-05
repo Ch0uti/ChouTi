@@ -11,7 +11,7 @@ import UIKit
 // MARK: - Overlay View
 public extension UIView {
 
-    private struct zhOverlayViewKey {
+    private enum zhOverlayViewKey {
         static var Key = "zhOverlayViewKey"
     }
 
@@ -198,7 +198,7 @@ public extension UIView {
     }
 
     // MARK: - Blurred Overlay View
-    private struct zhBlurredOverlayViewKey {
+    private enum zhBlurredOverlayViewKey {
         static var Key = "zhBlurredOverlayViewKey"
     }
 

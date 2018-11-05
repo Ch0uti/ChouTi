@@ -590,7 +590,7 @@ extension PageViewController: UIScrollViewDelegate {
 
 // MARK: - ViewController Appearance State Swizzling
 private extension UIViewController {
-    struct AssociatedKeys {
+    enum AssociatedKeys {
         static var AppearanceStateKey = "zhh_AppearanceStateKey"
     }
 

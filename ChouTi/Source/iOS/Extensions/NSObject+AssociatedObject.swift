@@ -12,7 +12,7 @@ import Foundation
 //Ref: [objc_setAssociatedObject with nil to remove - is policy is ignored](http://stackoverflow.com/questions/19920591/objc-setassociatedobject-with-nil-to-remove-is-policy-checked)
 
 public extension NSObject {
-    private struct zhAssociateObjectKey {
+    private enum zhAssociateObjectKey {
         static var Key = "zhAssociateObjectKey"
     }
 

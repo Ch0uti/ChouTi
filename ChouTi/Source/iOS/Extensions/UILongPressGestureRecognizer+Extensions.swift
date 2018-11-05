@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - Add Velocity for UILongPressGestureRecognizer
 public extension UILongPressGestureRecognizer {
-    private struct zhLastLocationKey {
+    private enum zhLastLocationKey {
         static var Key = "zhLastLocationKey"
     }
 
@@ -19,7 +19,7 @@ public extension UILongPressGestureRecognizer {
         set { objc_setAssociatedObject(self, &zhLastLocationKey.Key, (newValue != nil ? NSValue(cgPoint: newValue!) : nil), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
-    private struct zhLastUpdatedTimeIntervalSince1970Key {
+    private enum zhLastUpdatedTimeIntervalSince1970Key {
         static var Key = "zhLastUpdatedTimeIntervalSince1970Key"
     }
 
@@ -32,7 +32,7 @@ public extension UILongPressGestureRecognizer {
         }
     }
 
-    private struct zhVelocityKey {
+    private enum zhVelocityKey {
         static var Key = "zhVelocityKey"
     }
 

@@ -12,7 +12,7 @@ import UIKit
 // 
 
 public extension UINavigationBar {
-	private struct StatusBarKey {
+	private enum StatusBarKey {
 		static var Key = "StatusBarKey"
 	}
 
@@ -32,7 +32,7 @@ public extension UINavigationBar {
 		}
 	}
 
-	private struct HiddenConstraintKey {
+	private enum HiddenConstraintKey {
 		static var Key = "HiddenConstraintKey"
 	}
 
@@ -46,7 +46,7 @@ public extension UINavigationBar {
         }
 	}
 
-	private struct ShownConstraintKey {
+	private enum ShownConstraintKey {
 		static var Key = "ShownConstraintKey"
 	}
 

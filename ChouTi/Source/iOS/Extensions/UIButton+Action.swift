@@ -17,7 +17,7 @@ public extension UIButton {
         }
     }
 
-    private struct AssociatedKeys {
+    private enum AssociatedKeys {
         static var ActionName = "action"
     }
 

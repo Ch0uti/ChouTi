@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct ColorPalette {
+public enum ColorPalette {
     // Black
     public static var rockBlackColor = UIColor(red: 0.18, green: 0.19, blue: 0.25, alpha: 1.00)
 
