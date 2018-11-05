@@ -193,14 +193,18 @@ public extension UIImage {
             UIGraphicsEndImageContext()
         }
 
-        guard let context = UIGraphicsGetCurrentContext() else { return self }
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return self
+        }
 
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         context.scaleBy(x: 1, y: -1)
         context.translateBy(x: 0, y: -rect.size.height)
 
         context.setAlpha(alpha)
-        guard let cgImage = cgImage else { return self }
+        guard let cgImage = cgImage else {
+            return self
+        }
         context.draw(cgImage, in: rect)
 
         guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else {
@@ -302,7 +306,9 @@ public extension UIImage {
                           y: rect.origin.y * scale,
                           width: rect.width * scale,
                           height: rect.height * scale)
-        guard let imageRef = self.cgImage!.cropping(to: rect) else { return nil }
+        guard let imageRef = self.cgImage!.cropping(to: rect) else {
+            return nil
+        }
         let croppedImage = UIImage(cgImage: imageRef, scale: scale, orientation: imageOrientation)
         return croppedImage
     }
@@ -368,7 +374,9 @@ public extension UIImage {
      - returns: returns color for the pixel.
      */
     func colorAtPoint(_ point: CGPoint) -> UIColor {
-        guard let cgImage = self.cgImage else { return UIColor.clear }
+        guard let cgImage = self.cgImage else {
+            return UIColor.clear
+        }
         let width = CGFloat(cgImage.width)
         let height = CGFloat(cgImage.height)
 

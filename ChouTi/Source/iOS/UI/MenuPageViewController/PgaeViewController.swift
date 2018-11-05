@@ -127,7 +127,9 @@ open class PageViewController: UIViewController {
 		didSet {
 			if let offsetX = beginDraggingContentOffsetX {
 				// Round off begin content offset x
-				if offsetX.truncatingRemainder(dividingBy: view.bounds.width) == 0 { return }
+				if offsetX.truncatingRemainder(dividingBy: view.bounds.width) == 0 {
+                    return
+                }
 				beginDraggingContentOffsetX = CGFloat(Int(offsetX) / Int(view.bounds.width)) * view.bounds.width
 			}
 		}
@@ -136,7 +138,9 @@ open class PageViewController: UIViewController {
 
 	private var draggingOffsetX: CGFloat? { return beginDraggingContentOffsetX == nil ? nil : pageScrollView.contentOffset.x - beginDraggingContentOffsetX! }
 	private var draggingForward: Bool? {
-		guard let draggingOffsetX = draggingOffsetX else { return nil }
+		guard let draggingOffsetX = draggingOffsetX else {
+            return nil
+        }
 
 		if draggingOffsetX == 0 {
 			return nil
@@ -160,7 +164,9 @@ open class PageViewController: UIViewController {
 		if index < 0 || index >= viewControllersCount {
 			return
 		}
-		if _selectedIndex == index { return }
+		if _selectedIndex == index {
+            return
+        }
 
         let targetContentOffset = CGPoint(x: CGFloat(index) * view.bounds.width, y: pageScrollView.contentOffset.y)
 		pageScrollView.setContentOffset(targetContentOffset, animated: animated)
@@ -292,7 +298,9 @@ extension PageViewController {
 	- returns: the view controller at the index.
 	*/
 	private func viewControllerForIndex(_ index: Int) -> UIViewController? {
-		if index == -1 || index >= viewControllersCount { return nil }
+		if index == -1 || index >= viewControllersCount {
+            return nil
+        }
 		if viewControllers != nil {
 			// Using view controllers
 			return loadedViewControllers[index]
@@ -327,7 +335,9 @@ extension PageViewController {
 	*/
 	private func loadViewControllerFromIndex(_ fromIndex: Int, toIndex: Int) {
 		precondition(viewControllers == nil && dataSource != nil)
-		if fromIndex > toIndex { return }
+		if fromIndex > toIndex {
+            return
+        }
 		for i in fromIndex ... toIndex {
 			let viewController = dataSource!.pageViewController(self, viewControllerForIndex: i)
 			if i < loadedViewControllers.count {
@@ -425,7 +435,9 @@ extension PageViewController: UIScrollViewDelegate {
 		delegate?.pageViewController(self, didScrollWithSelectedIndex: selectedIndex, offsetPercent: scrollOffsetPercent)
 
 		if !isDragging {
-			guard let willEndDraggingTargetContentOffsetX = willEndDraggingTargetContentOffsetX else { return }
+			guard let willEndDraggingTargetContentOffsetX = willEndDraggingTargetContentOffsetX else {
+                return
+            }
 			let willSelectedIndex = Int(willEndDraggingTargetContentOffsetX) / Int(view.bounds.width)
 			let willSelectedViewController = viewControllerForIndex(willSelectedIndex)
 
@@ -506,7 +518,9 @@ extension PageViewController: UIScrollViewDelegate {
 
 	public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 		isDragging = false
-		guard let beginDraggingContentOffsetX = beginDraggingContentOffsetX else { return }
+		guard let beginDraggingContentOffsetX = beginDraggingContentOffsetX else {
+            return
+        }
 		willEndDraggingTargetContentOffsetX = targetContentOffset.pointee.x
 		if willEndDraggingTargetContentOffsetX == beginDraggingContentOffsetX {
 			// If will end equals begin dragging content offset x,
@@ -539,7 +553,9 @@ extension PageViewController: UIScrollViewDelegate {
 		// If for some reasons, scrollView.contentOffset.x is not matched with willEndDraggingTargetContentOffset
 		// End current transitions
 		// Add missing transitions
-		guard let willEndDraggingTargetContentOffsetX = willEndDraggingTargetContentOffsetX else { return }
+		guard let willEndDraggingTargetContentOffsetX = willEndDraggingTargetContentOffsetX else {
+            return
+        }
 		if willEndDraggingTargetContentOffsetX != scrollView.contentOffset.x {
 			let appearingViewControllers = Set(loadedViewControllers.filter { $0.isAppearing == true })
 			assert(appearingViewControllers.count <= 1)

@@ -83,7 +83,9 @@ open class SwipeTableViewCell: UITableViewCell {
     /// Note: This view requires constraint based layout. Make sure this view has size constrained.
     open var rightSwipeAccessoryView: UIView? {
         didSet {
-            guard let rightSwipeAccessoryView = rightSwipeAccessoryView else { return }
+            guard let rightSwipeAccessoryView = rightSwipeAccessoryView else {
+                return
+            }
             rightSwipeAccessoryView.translatesAutoresizingMaskIntoConstraints = false
             contentView.insertSubview(rightSwipeAccessoryView, belowSubview: swipeableContentView)
 
@@ -280,7 +282,9 @@ extension SwipeTableViewCell {
      */
     private final func setExpandOffset(_ offset: CGFloat, animated: Bool) {
         // Avoid duplicated calls, avoid unnecessary `layoutIfNeeded` calls
-        guard swipeableContentViewCenterXConstraint.constant != -offset else { return }
+        guard swipeableContentViewCenterXConstraint.constant != -offset else {
+            return
+        }
 
         swipeableContentViewCenterXConstraint.constant = -offset
         swipeTableViewCellDelegate?.swipeTableViewCell(self, didSwipeToOffset: -offset)
@@ -406,8 +410,12 @@ extension SwipeTableViewCell {
             }
 
             // Normal State
-            guard isEmbeddedInScrollView() else { return true }
-            guard let window = window else { return false }
+            guard isEmbeddedInScrollView() else {
+                return true
+            }
+            guard let window = window else {
+                return false
+            }
 
             // Ignore screen edge pans
             let locationInWindow = panRecognizer.location(in: window)
@@ -456,14 +464,18 @@ extension SwipeTableViewCell {
     override open func didMoveToSuperview() {
         super.didMoveToSuperview()
         // Setup tableViewImmediateTouchRecognizer to new tableView
-        guard let tableView = tableView else { return }
+        guard let tableView = tableView else {
+            return
+        }
         tableView.addGestureRecognizer(tableViewImmediateTouchRecognizer)
     }
 
     override open func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         // Remove tableViewImmediateTouchRecognizer from current tableView
-        guard let tableView = tableView else { return }
+        guard let tableView = tableView else {
+            return
+        }
         tableView.removeGestureRecognizer(tableViewImmediateTouchRecognizer)
     }
 }

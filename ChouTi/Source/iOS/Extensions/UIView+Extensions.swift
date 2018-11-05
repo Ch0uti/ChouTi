@@ -115,7 +115,9 @@ public extension UIView {
 
     /// Get bounds of screen, which is presenting this view.
     var screenBounds: CGRect? {
-        guard let window = window else { return nil }
+        guard let window = window else {
+            return nil
+        }
         return window.convert(window.bounds, to: nil)
     }
 }

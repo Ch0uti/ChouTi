@@ -23,7 +23,9 @@ infix operator =? : AssignmentPrecedence
  - parameter rhs: an optional value of type T?
  */
 public func =? <T>(lhs: inout T, rhs: T?) {
-    guard let rhs = rhs else { return }
+    guard let rhs = rhs else {
+        return
+    }
     lhs = rhs
 }
 
@@ -37,7 +39,9 @@ public func =? <T>(lhs: inout T, rhs: T?) {
  - parameter rhs: an optional value of type T?
  */
 public func =? <T>(lhs: inout T?, rhs: T?) {
-    guard let rhs = rhs else { return }
+    guard let rhs = rhs else {
+        return
+    }
     lhs = rhs
 }
 

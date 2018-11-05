@@ -258,8 +258,12 @@ open class DropDownMenu: UIControl {
 extension DropDownMenu {
 
 	public func set(toExpand: Bool, animated: Bool) {
-		if isAnimating { return }
-		if expanded == toExpand { return }
+		if isAnimating {
+            return
+        }
+		if expanded == toExpand {
+            return
+        }
 		if toExpand {
 			expand(animated: animated)
 		} else {

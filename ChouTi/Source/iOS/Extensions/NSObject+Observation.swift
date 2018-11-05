@@ -47,7 +47,9 @@ open class Observer: NSObject {
     }
 
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        guard let object = object, pauseObservation == false else { return }
+        guard let object = object, pauseObservation == false else {
+            return
+        }
         guard let keyPath = keyPath else {
             print("Warning: Observer: keyPath is nil")
             return

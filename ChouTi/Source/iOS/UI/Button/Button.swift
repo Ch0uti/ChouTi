@@ -479,7 +479,9 @@ infix operator <-? : AssignmentPrecedence
  - returns: ture if lhs is assigned, false otherwise
  */
 private func <-? <T: Equatable>(lhs: inout T?, rhs: T?) -> Bool {
-    if lhs == rhs { return false }
+    if lhs == rhs {
+        return false
+    }
     lhs = rhs
     return true
 }

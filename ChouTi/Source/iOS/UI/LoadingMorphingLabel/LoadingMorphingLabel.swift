@@ -56,7 +56,9 @@ public class LoadingMorphingLabel: UIView {
 
 	public func startLoop() {
 		_loopCount = loopCount
-		if isAnimating { return }
+		if isAnimating {
+            return
+        }
         showTextIndex(currentTextIndex)
 	}
 

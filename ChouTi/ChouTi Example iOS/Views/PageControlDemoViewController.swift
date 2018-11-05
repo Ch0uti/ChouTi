@@ -116,7 +116,9 @@ extension PageControlDemoViewController: UIScrollViewDelegate {
 
 extension UIScrollView {
     var pageIndex: Int {
-        guard bounds.width > 0 else { return 0 }
+        guard bounds.width > 0 else {
+            return 0
+        }
         return Int(contentOffset.x) / Int(bounds.width)
     }
 }
