@@ -34,7 +34,7 @@ public protocol TableViewRegistrable {
      - returns: a cell reuse identifier
      */
     static func identifier() -> String
-    
+
     /**
      Register cell in table view
      Sample: tableView.registerClass(self, forCellReuseIdentifier: identifier())
@@ -42,7 +42,7 @@ public protocol TableViewRegistrable {
      - parameter tableView: target table view to use this cell
      */
     static func registerInTableView(_ tableView: UITableView)
-    
+
     /**
      Register cell with nib in table view
      Sample: tableView.registerClass(aNib, forCellReuseIdentifier: identifier())
@@ -51,14 +51,14 @@ public protocol TableViewRegistrable {
      - parameter tableView: target table view to use this cell
      */
     static func registerNib(_ nib: UINib, inTableView tableView: UITableView)
-    
+
     /**
      Unregister cell in table view
      
      - parameter tableView: table view registered this cell
      */
     static func unregisterInTableView(_ tableView: UITableView)
-    
+
     /**
      Unregister cell with nib in table view
      
@@ -75,27 +75,28 @@ public protocol TableViewCellRegistrable: TableViewMetaInfo, TableViewRegistrabl
 }
 
 // MARK: - TableViewCellRegistrable
-extension UITableViewCell : TableViewCellRegistrable {
-    @objc open class func estimatedHeight() -> CGFloat {
+extension UITableViewCell: TableViewCellRegistrable {
+    @objc
+    open class func estimatedHeight() -> CGFloat {
         return 44.0
     }
-    
+
     open class func identifier() -> String {
         return String(describing: self)
     }
-    
+
     open class func registerInTableView(_ tableView: UITableView) {
         tableView.register(self, forCellReuseIdentifier: identifier())
     }
-    
+
     open class func registerNib(_ nib: UINib, inTableView tableView: UITableView) {
         tableView.register(nib, forCellReuseIdentifier: identifier())
     }
-    
+
     open class func unregisterInTableView(_ tableView: UITableView) {
         tableView.register(nil as AnyClass?, forCellReuseIdentifier: identifier())
     }
-    
+
     open class func unregisterNibInTableView(_ tableView: UITableView) {
         tableView.register(nil as UINib?, forCellReuseIdentifier: identifier())
     }
@@ -105,31 +106,31 @@ extension UITableViewCell : TableViewCellRegistrable {
  *  TableViewHeaderFooterView + Registrable
  */
 public protocol TableViewHeaderFooterViewRegistrable: TableViewMetaInfo, TableViewRegistrable {
-    
+
 }
 
 // MARK: - TableViewHeaderFooterViewRegistrable
-extension UITableViewHeaderFooterView : TableViewHeaderFooterViewRegistrable {
+extension UITableViewHeaderFooterView: TableViewHeaderFooterViewRegistrable {
     open class func estimatedHeight() -> CGFloat {
         return 22.0
     }
-    
+
     open class func identifier() -> String {
         return String(describing: self)
     }
-    
+
     open class func registerInTableView(_ tableView: UITableView) {
         tableView.register(self, forHeaderFooterViewReuseIdentifier: identifier())
     }
-    
+
     open class func registerNib(_ nib: UINib, inTableView tableView: UITableView) {
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: identifier())
     }
-    
+
     open class func unregisterInTableView(_ tableView: UITableView) {
         tableView.register(nil as AnyClass?, forHeaderFooterViewReuseIdentifier: identifier())
     }
-    
+
     open class func unregisterNibInTableView(_ tableView: UITableView) {
         tableView.register(nil as UINib?, forHeaderFooterViewReuseIdentifier: identifier())
     }
@@ -145,7 +146,7 @@ extension UITableView {
     open func register<T: TableViewCellRegistrable>(cellClass class: T.Type) {
         `class`.registerInTableView(self)
     }
-    
+
     /**
      Register cell with nib and class type
      
@@ -155,7 +156,7 @@ extension UITableView {
     open func register<T: TableViewCellRegistrable>(_ nib: UINib, forClass class: T.Type) {
         `class`.registerNib(nib, inTableView: self)
     }
-    
+
     /**
      Dequeue a Reusable Cell in a way that provides type information.
      
@@ -166,11 +167,11 @@ extension UITableView {
      
      - returns: Returns a view of the type requested if it was registered, `nil` otherwise.
      */
-    
+
     open func dequeueReusableCell<T: TableViewCellRegistrable>(withClass class: T.Type) -> T? {
         return self.dequeueReusableCell(withIdentifier: `class`.identifier()) as? T
     }
-    
+
     /**
      Dequeue a Reusable Cell in a way that provides type information.
      
@@ -204,7 +205,7 @@ extension UITableView {
     open func register<T: TableViewHeaderFooterViewRegistrable>(headerFooterClass class: T.Type) {
         `class`.registerInTableView(self)
     }
-    
+
     /**
      Register Header/Footer view with nib and class type
      
@@ -214,7 +215,7 @@ extension UITableView {
     open func register<T: TableViewHeaderFooterViewRegistrable>(_ nib: UINib, forHeaderFooterClass class: T.Type) {
         `class`.registerNib(nib, inTableView: self)
     }
-    
+
     /**
      Dequeue a Header/Footer View in a way that provides type information.
      

@@ -6,24 +6,24 @@
 //
 //
 
-import UIKit
 import QuartzCore
+import UIKit
 
 open class CIImageFilter {
 	public typealias Filter = (CIImage) -> CIImage?
-	
+
 	open class func gaussianBlur(_ radius: Double) -> Filter {
 		return { image in
 			let parameters = [
-				kCIInputRadiusKey : radius,
-				kCIInputImageKey : image
-			] as [String : Any]
-			
+				kCIInputRadiusKey: radius,
+				kCIInputImageKey: image
+			] as [String: Any]
+
 			let filter = CIFilter(name: "CIGaussianBlur", parameters: parameters)
 			return filter?.outputImage
 		}
 	}
-	
+
 	open class func constantColorGenerator(_ color: UIColor) -> Filter {
 		return { _ in
 			let parameters = [kCIInputColorKey: CIColor(color: color)]
@@ -35,15 +35,15 @@ open class CIImageFilter {
 	open class func sourceOverCompositing(_ overlayImage: CIImage) -> Filter {
 		return { image in
 			let parameters = [
-				kCIInputImageKey : overlayImage,
-				kCIInputBackgroundImageKey : image
+				kCIInputImageKey: overlayImage,
+				kCIInputBackgroundImageKey: image
 			]
 			let filter = CIFilter(name: "CISourceOverCompositing", parameters: parameters)
 			let cropRect = image.extent
             return filter?.outputImage?.cropped(to: cropRect)
 		}
 	}
-	
+
 	open class func colorOverlay(_ color: UIColor) -> Filter {
 		return { image in
 			if let overlay = constantColorGenerator(color)(image) {

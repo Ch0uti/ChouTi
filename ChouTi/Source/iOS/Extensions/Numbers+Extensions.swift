@@ -19,62 +19,62 @@ public extension Comparable {
      
      - returns: number normalized in this range, if self is in the range, self is returned. otherwirse, it will return min or max.
      */
-    public func normalize(_ min: Self, _ max: Self) -> Self {
+    func normalize(_ min: Self, _ max: Self) -> Self {
         precondition(min <= max, "Error: min: \(min) is greater than max: \(max)")
         return Swift.min(Swift.max(min, self), max)
     }
-	
+
 	/**
 	Normalize a number to a range in place.
 	
 	- parameter min: min number
 	- parameter max: max number
 	*/
-	public mutating func normalizeInPlace(_ min: Self, _ max: Self) {
+    mutating func normalizeInPlace(_ min: Self, _ max: Self) {
         precondition(min <= max, "Error: min: \(min) is greater than max: \(max)")
 		self = Swift.min(Swift.max(min, self), max)
 	}
-    
+
     /// Clamp `value` to the range min...max. This same as `normalize(_:_:)`.
     ///
     /// - Parameter limits: range to clamp
     /// - Returns: a value between min ... max
-    public func clamp(to limits: ClosedRange<Self>) -> Self {
+    func clamp(to limits: ClosedRange<Self>) -> Self {
         return Swift.min(Swift.max(limits.lowerBound, self), limits.upperBound)
     }
-    
+
     /// Clamp `self` to the range. This same as `normalizeInPlace(_:_:)`.
     ///
     /// - Parameter limits: range to clamp
-    public mutating func clampInPlace(to limits: ClosedRange<Self>) {
+    mutating func clampInPlace(to limits: ClosedRange<Self>) {
         self = Swift.min(Swift.max(limits.lowerBound, self), limits.upperBound)
     }
 }
 
 public extension Int {
     /// Get ordianl number abbreviation
-    public var ordinalNumberAbbreviation: String {
+    var ordinalNumberAbbreviation: String {
         var suffix: String = ""
         let ones: Int = self % 10
         let tens: Int = (self / 10) % 10
-        
-        if (tens == 1) {
+
+        if tens == 1 {
             suffix = "th"
-        } else if (ones == 1) {
+        } else if ones == 1 {
             suffix = "st"
-        } else if (ones == 2) {
+        } else if ones == 2 {
             suffix = "nd"
-        } else if (ones == 3) {
+        } else if ones == 3 {
             suffix = "rd"
         } else {
             suffix = "th"
         }
-        
+
         return "\(self)\(suffix)"
     }
-    
+
     /// Return weekday string (0 - Sunday, 1 - Monday, ...)
-    public var weekdayString: String? {
+    var weekdayString: String? {
         switch self {
         case 0:
             return "Sunday"
@@ -98,10 +98,8 @@ public extension Int {
 
 public extension Double {
     /// Get a dispatchTime from double number
-    public var dispatchTime: DispatchTime {
-        get {
-            return DispatchTime.now() + Double(Int64(self * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-        }
+    var dispatchTime: DispatchTime {
+        return DispatchTime.now() + Double(Int64(self * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
     }
 }
 
@@ -111,39 +109,39 @@ public extension CGFloat {
      
      - returns: radians
      */
-    public func toRadians() -> CGFloat {
+    func toRadians() -> CGFloat {
         return CGFloat.pi / 180 * self
     }
-    
+
     /**
      Get degrees from radians
      
      - returns: degrees
      */
-    public func toDegrees() -> CGFloat {
+    func toDegrees() -> CGFloat {
         return 180 / CGFloat.pi * self
     }
-    
+
     /**
      Get a safe multuplier for NSLayoutConstraint
      
      - returns: a safe multipler, which is not zero
      */
-    public func safeConstraintMulpilter() -> CGFloat {
-        return Swift.max(CGFloat(0.0001), self)
+    func safeConstraintMulpilter() -> CGFloat {
+        return Swift.max(CGFloat(0.000_1), self)
     }
-    
+
     /**
      Normalize a number, which will limit into 0...1
      */
-    public func normalize() -> CGFloat {
+    func normalize() -> CGFloat {
         return self.normalize(0, 1)
     }
-    
+
     /**
      Normalize a number in place, which will limit into 0...1
      */
-    public mutating func normalizeInPlace() {
+    mutating func normalizeInPlace() {
         self.normalizeInPlace(0, 1)
     }
 }

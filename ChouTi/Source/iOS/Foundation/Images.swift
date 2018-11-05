@@ -9,11 +9,11 @@
 import UIKit
 
 extension UIImage {
-	
+
 	enum ImageAssets: String {
-		case Camera = "Camera"
+		case Camera
 	}
-	
+
 	convenience init!(asset: ImageAssets) {
 		self.init(named: asset.rawValue, in: Resource.bundle, compatibleWith: nil)
 	}

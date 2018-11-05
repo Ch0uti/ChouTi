@@ -6,8 +6,6 @@
 //
 //
 
-
-
 // MARK: - Add View Controller
 
 //addChildViewController(<#viewController#>)
@@ -17,8 +15,6 @@
 //// TODO: Setup constraints...
 //
 //<#viewController#>.didMove(toParentViewController: self)
-
-
 
 // MARK: - Remove View Controller
 

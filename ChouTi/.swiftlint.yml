@@ -1,0 +1,69 @@
+opt_in_rules:
+  - anyobject_protocol
+  - array_init
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - contains_over_first_not_nil
+  - empty_count
+  - empty_string
+  - empty_xctest_method
+  - explicit_init
+  - extension_access_modifier
+  - fallthrough
+  - fatal_error_message
+  - file_header
+  - file_name
+  - first_where
+  - joined_default_parameter
+  - let_var_whitespace
+  - literal_expression_end_indentation
+  - lower_acl_than_parent
+  - nimble_operator
+  - number_separator
+  - object_literal
+  - operator_usage_whitespace
+  - overridden_super_call
+  - override_in_extension
+  - pattern_matching_keywords
+  - private_action
+  - private_outlet
+  - prohibited_super_call
+  - quick_discouraged_call
+  - quick_discouraged_focused_test
+  - quick_discouraged_pending_test
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - single_test_class
+  - sorted_first_last
+  - sorted_imports
+  - unavailable_function
+  - unneeded_parentheses_in_closure_argument
+  - untyped_error_in_catch
+  - vertical_parameter_alignment_on_call
+  - yoda_condition
+
+disabled_rules:
+  - force_cast
+  - force_try
+  - cyclomatic_complexity
+  - function_body_length
+  - line_length
+  - identifier_name
+  - large_tuple
+  - object_literal
+  - file_name
+  # restore later
+  - fallthrough
+  - type_name
+  - file_length
+  - type_body_length
+  - todo
+  - file_header
+  - block_based_kvo
+
+excluded:
+  - Carthage
+  - Pods
+
+line_length: 180

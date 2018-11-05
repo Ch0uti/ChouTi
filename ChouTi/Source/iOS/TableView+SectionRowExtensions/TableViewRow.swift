@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TableViewRow : TableViewRowType {
+public struct TableViewRow: TableViewRowType {
 	public var title: String?
 	public var subtitle: String?
 	public var cellInitialization: ((IndexPath, UITableView) -> UITableViewCell)?
@@ -16,11 +16,11 @@ public struct TableViewRow : TableViewRowType {
     public var willDisplayCell: ((IndexPath, UITableViewCell, UITableView) -> Void)?
 	public var cellSelectAction: ((IndexPath, UITableViewCell?, UITableView) -> Void)?
 	public var cellDeselectAction: ((IndexPath, UITableViewCell?, UITableView) -> Void)?
-    
+
 	public init() {
 		setupDefaultCellConfiguration()
 	}
-	
+
 	public init(title: String? = nil,
 	            subtitle: String? = nil,
 	            cellInitialization: ((IndexPath, UITableView) -> UITableViewCell)? = nil,
@@ -30,21 +30,21 @@ public struct TableViewRow : TableViewRowType {
 	            cellDeselectAction: ((IndexPath, UITableViewCell?, UITableView) -> Void)? = nil) {
 		self.title = title
 		self.subtitle = subtitle
-		
+
 		self.cellInitialization = cellInitialization
-		
+
 		if let cellConfiguration = cellConfiguration {
 			self.cellConfiguration = cellConfiguration
 		} else {
 			setupDefaultCellConfiguration()
 		}
-		
+
         self.willDisplayCell = willDisplayCell
 		self.cellSelectAction = cellSelectAction
 		self.cellDeselectAction = cellDeselectAction
 	}
-	
-	fileprivate mutating func setupDefaultCellConfiguration() {
+
+	private mutating func setupDefaultCellConfiguration() {
 		let title = self.title
 		let subtitle = self.subtitle
 		self.cellConfiguration = { indexPath, cell, tableView in

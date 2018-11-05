@@ -6,35 +6,35 @@
 //  Copyright © 2015 Honghao Zhang. All rights reserved.
 //
 
-import UIKit
 import ChouTi
+import UIKit
 
-class DatePickerControllerDemoViewController : UIViewController {
-	
+class DatePickerControllerDemoViewController: UIViewController {
+
 	let resultLabel = UILabel()
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		view.backgroundColor = UIColor.white
-		
+
 		let button = Button()
 		button.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(button)
-		
+
 		button.setBackgroundImageWithColor(UIColor.purple, forState: .normal)
 		button.setBackgroundImageWithColor(UIColor.purple.darkerColor(), forState: .highlighted)
 		button.setTitleColor(UIColor.white, for: .normal)
 		button.setTitleColor(UIColor.white.darkerColor(), for: .highlighted)
 		button.setCornerRadius(.halfCircle, forState: .normal)
-        
+
 		button.setTitle("Select Date", for: .normal)
 		button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
-		
+
         button.constrainTo(size: CGSize(width: 160, height: 50))
 		button.constrainToCenterInSuperview()
-		
-        button.addTarget(controlEvents: .touchUpInside) { [unowned self] button in
+
+        button.addTarget(controlEvents: .touchUpInside) { [unowned self] _ in
             let pickerController = DatePickerController()
             pickerController.datePicker.setDate(Date(), animated: true)
             pickerController.datePicker.datePickerMode = .dateAndTime
@@ -43,7 +43,7 @@ class DatePickerControllerDemoViewController : UIViewController {
             pickerController.delegate = self
             self.present(pickerController, animated: true, completion: nil)
         }
-		
+
 		resultLabel.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(resultLabel)
 		resultLabel.font = UIFont.AvenirMediumFont(21)
@@ -55,18 +55,18 @@ class DatePickerControllerDemoViewController : UIViewController {
 	}
 }
 
-extension DatePickerControllerDemoViewController : DatePickerControllerDelagte {
+extension DatePickerControllerDemoViewController: DatePickerControllerDelagte {
 	func datePickerController(_ datePickerController: DatePickerController, datePicker: UIDatePicker, didScrollToDate date: Date) {
 		print("didScrollToDate: \(date)")
 	}
-	
+
 	func datePickerController(_ datePickerController: DatePickerController, willDoneWithDate date: Date) {
 		print("doneWithDate: \(date)")
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "hh:mm a, EEE, MMM d, yyyy"
 		resultLabel.text = dateFormatter.string(from: date)
 	}
-	
+
 	func datePickerController(_ datePickerController: DatePickerController, didCancelWithDate date: Date) {
 		print("didCancelWithDate: \(date)")
 	}

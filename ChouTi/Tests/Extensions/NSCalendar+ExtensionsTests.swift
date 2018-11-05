@@ -6,9 +6,9 @@
 //  Copyright © 2016 Honghaoz. All rights reserved.
 //
 
-import Quick
-import Nimble
 @testable import ChouTi
+import Nimble
+import Quick
 
 class NSCalendar_ExtensionsTests: QuickSpec {
     override func spec() {

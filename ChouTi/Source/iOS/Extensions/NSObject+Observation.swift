@@ -13,17 +13,17 @@ import Foundation
 // MARK: - Observer
 open class Observer: NSObject {
     public typealias ObserverHandler = (_ object: AnyObject, _ oldValue: AnyObject, _ newValue: AnyObject) -> Void
-    
+
     /// Object that is being observed
-    open fileprivate(set) var object: AnyObject?
-    
+    open private(set) var object: AnyObject?
+
     /// Pause observation
     open var pauseObservation: Bool = false
-    
-    var handlerDictionary = [String : ObserverHandler]()
-    
+
+    var handlerDictionary = [String: ObserverHandler]()
+
     private struct ObservingContext { static var Key = "zhObservingContextKey" }
-    
+
     open func observe(_ object: AnyObject, forKeyPath keyPath: String, withHandler handler: @escaping ObserverHandler) {
         if self.object == nil {
             self.object = object
@@ -31,59 +31,59 @@ open class Observer: NSObject {
             print("Error: Observer: \(self) is observing: \(object)")
             return
         }
-        
+
         handlerDictionary[keyPath] = handler
         object.addObserver(self, forKeyPath: keyPath, options: [.old, .new], context: &ObservingContext.Key)
     }
-    
+
     open func removeObservation(_ object: AnyObject, forKeyPath keyPath: String) {
         if self.object !== object {
             print("Error: Observer: \(self) is not observing: \(object)")
             return
         }
-        
+
         object.removeObserver(self, forKeyPath: keyPath, context: &ObservingContext.Key)
         handlerDictionary.removeValue(forKey: keyPath)
     }
-	
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard let object = object, pauseObservation == false else { return }
         guard let keyPath = keyPath else {
             print("Warning: Observer: keyPath is nil")
             return
         }
-        
+
         guard let change = change else {
             print("Warning: Observer: change dictionary is nil")
             return
         }
-        
+
         guard let handler = handlerDictionary[keyPath] else {
             print("Warning: Observer: handler for keyPath: \(keyPath) is nil")
             return
         }
-        
+
         guard let oldValue = change[NSKeyValueChangeKey.oldKey] else {
             print("Warning: Observer: oldValue not found")
             return
         }
-        
+
         guard let newValue = change[NSKeyValueChangeKey.newKey] else {
             print("Warning: Observer: newValue not found")
             return
         }
-        
+
         handler(object as AnyObject, oldValue as AnyObject, newValue as AnyObject)
     }
 }
 
 // MARK: - NSObject+Observation
 public extension NSObject {
-    
+
     // Add an Observer to NSObject
-    fileprivate struct ObserverKey { static var Key = "zhh_ObserverKey" }
-    
-    fileprivate var observer: Observer? {
+    private struct ObserverKey { static var Key = "zhh_ObserverKey" }
+
+    private var observer: Observer? {
         get {
             if let existingObserver = objc_getAssociatedObject(self, &ObserverKey.Key) as? Observer {
                 return existingObserver
@@ -93,7 +93,7 @@ public extension NSObject {
                 return newObserver
             }
         }
-        
+
         set {
             if let newValue = newValue {
                 objc_setAssociatedObject(self, &ObserverKey.Key, newValue as Observer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -102,7 +102,7 @@ public extension NSObject {
             }
         }
     }
-    
+
     // MARK: - Public
     /**
      Observe property with keyPath.
@@ -116,10 +116,10 @@ public extension NSObject {
             print("Error: observer is nil")
             return
         }
-        
+
         observer.observe(self, forKeyPath: keyPath, withHandler: handler)
     }
-    
+
     /**
      Remove the observation for keyPath
      
@@ -130,9 +130,9 @@ public extension NSObject {
             print("Error: observer is nil")
             return
         }
-        
+
         observer.removeObservation(self, forKeyPath: keyPath)
-        
+
         // Clean observer if needed
         if observer.handlerDictionary.isEmpty {
             self.observer = nil

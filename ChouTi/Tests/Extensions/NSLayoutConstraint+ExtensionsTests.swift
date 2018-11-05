@@ -6,39 +6,39 @@
 //  Copyright © 2016 Honghaoz. All rights reserved.
 //
 
-import XCTest
 @testable import ChouTi
+import XCTest
 
 class NSLayoutConstraint_ExtensionsTests: XCTestCase {
     func testActivate() {
         let containerView = UIView()
         let view = UIView()
         containerView.addSubview(view)
-        
+
         let constraint = view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor)
-        
+
         XCTAssertFalse(constraint.isActive)
         constraint.activate()
         XCTAssertTrue(constraint.isActive)
     }
-    
+
     func testConstrainToSameLayoutAttributeOnEmpty() {
         let constraints = [].constrainToSame(.width)
         XCTAssertTrue(constraints.isEmpty)
     }
-    
+
     func testConstrainToSameLayoutAttributeOnCount1() {
         let containerView = UIView()
-        
+
         let v1 = UIView()
         containerView.addSubview(v1)
-        
+
         let views = [v1]
-        
+
         let constraints = views.constrainToSame(.width)
         XCTAssertTrue(constraints.isEmpty)
     }
-    
+
     func testConstrainToSameLayoutAttributeOnCountTwoAndMore() {
         let containerView = UIView()
         var views: [UIView] = []
@@ -48,10 +48,10 @@ class NSLayoutConstraint_ExtensionsTests: XCTestCase {
             containerView.addSubview(view)
             views.append(view)
         }
-        
+
         let constraints = views.constrainToSame(.width)
         XCTAssertEqual(constraints.count, viewsCount - 1)
-        
+
         for (index, constraint) in constraints.enumerated() {
             XCTAssertTrue(constraint.isActive)
             XCTAssertEqual(constraint.firstItem as? UIView, views[index])

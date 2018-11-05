@@ -16,10 +16,10 @@ public extension Collection {
      
      - returns: An optional element from the collection at the specified index.
      */
-    public subscript (safe index: Index) -> Iterator.Element? {
+    subscript (safe index: Index) -> Iterator.Element? {
         return at(index)
     }
-    
+
     /**
      Returns an optional element. If the `index` does not exist in the collection, the function returns nil.
      
@@ -27,7 +27,7 @@ public extension Collection {
      
      - returns: An optional element from the collection at the specified index.
      */
-    public func at(_ index: Index) -> Iterator.Element? {
+    func at(_ index: Index) -> Iterator.Element? {
         return (startIndex..<endIndex).contains(index) ? self[index] : nil
     }
 }

@@ -6,22 +6,22 @@
 //  Copyright © 2015 Honghao Zhang. All rights reserved.
 //
 
-import XCTest
 @testable import ChouTi
+import XCTest
 
 class NSObject_AssociatedObjectTests: XCTestCase {
 	var host: NSObject!
-	
+
 	override func setUp() {
 		super.setUp()
 		host = NSObject()
 	}
-	
+
 	override func tearDown() {
 		super.tearDown()
 		host = nil
 	}
-	
+
 	func testAssociatedObject() {
 		let associatedNumber = 123
 		host.associatedObject = associatedNumber
@@ -29,7 +29,7 @@ class NSObject_AssociatedObjectTests: XCTestCase {
 		host.associatedObject = nil
 		XCTAssertNil(host.associatedObject)
 	}
-	
+
 	func testGetAssociatedObject() {
 		host.setAssociatedObejct("998")
 		XCTAssertEqual(host.getAssociatedObject() as? String, "998")
@@ -37,11 +37,11 @@ class NSObject_AssociatedObjectTests: XCTestCase {
 		XCTAssertEqual(host.clearAssociatedObject() as? Int, 778)
 		XCTAssertNil(host.getAssociatedObject())
 	}
-    
-    fileprivate struct TestAssociateObjectKey {
+
+    private struct TestAssociateObjectKey {
         static var Key = "TestAssociateObjectKey"
     }
-    
+
     func testAssociatedObjectWithPointer() {
         host.setAssociatedObejct("998", forKeyPointer: &TestAssociateObjectKey.Key)
         XCTAssertEqual(host.setAssociatedObejct(778, forKeyPointer: &TestAssociateObjectKey.Key) as? String, "998")

@@ -8,35 +8,35 @@
 
 import UIKit
 
-open class DatePickerCell : TableViewCell {
+open class DatePickerCell: TableViewCell {
 
 	public let datePicker = UIDatePicker()
-	
+
 	override open func commonInit() {
 		super.commonInit()
-		
+
 		setupViews()
 		setupConstraints()
 	}
-	
-	fileprivate func setupViews() {
+
+	private func setupViews() {
 		datePicker.translatesAutoresizingMaskIntoConstraints = false
 		contentView.addSubview(datePicker)
 	}
-	
-	fileprivate func setupConstraints() {
+
+	private func setupConstraints() {
 		let views = [
-			"datePicker" : datePicker
+			"datePicker": datePicker
 		]
 
 		var constraints = [NSLayoutConstraint]()
 
 		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[datePicker]-|", options: [], metrics: nil, views: views)
-		
+
 		constraints += [NSLayoutConstraint(item: datePicker, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1.0, constant: 0.0)]
-		
+
 		constraints += [NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 200.0)]
-		
+
 		NSLayoutConstraint.activate(constraints)
 	}
 }

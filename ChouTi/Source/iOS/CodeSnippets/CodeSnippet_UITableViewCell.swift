@@ -79,8 +79,5 @@
 //    }
 //}
 
-
-
-
 // MARK: - Common Usage
 //cell.selectionStyle = .None

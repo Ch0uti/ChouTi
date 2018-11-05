@@ -12,35 +12,35 @@ import UIKit
 
 open class SeparatorCell: TableViewCell {
 
-	open var separatorView: UIView = UIView() {
+	open var separatorView = UIView() {
 		didSet {
-			
+
 		}
 	}
-	
+
 	override open func commonInit() {
 		super.commonInit()
-		
+
 		separatorView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(separatorView)
 		separatorView.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
-		
+
 		setupConstraints()
 	}
-	
-	fileprivate func setupConstraints() {
+
+	private func setupConstraints() {
 		preservesSuperviewLayoutMargins = false
 		layoutMargins = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
-		
+
 		let views = [
-			"separatorView" : separatorView
+			"separatorView": separatorView
 		]
-		
+
 		var constraints = [NSLayoutConstraint]()
-		
+
 		constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[separatorView(0.5)]-|", options: [], metrics: nil, views: views)
 		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[separatorView]-|", options: [], metrics: nil, views: views)
-		
+
 		NSLayoutConstraint.activate(constraints)
 	}
 }

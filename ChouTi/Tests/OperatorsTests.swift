@@ -6,8 +6,8 @@
 //  Copyright © 2016 Honghaoz. All rights reserved.
 //
 
-import XCTest
 @testable import ChouTi
+import XCTest
 
 class OperatorsTests: XCTestCase {
     func testPowerOperator() {
@@ -18,21 +18,21 @@ class OperatorsTests: XCTestCase {
         XCTAssertEqual(-1 ** 0, 1)
         XCTAssertEqual(-2 ** 3, (-2) * (-2) * (-2))
         XCTAssertEqual((-2) ** 2, 4)
-		
+
 		XCTAssertEqual(-2 ** 2, (-2) * (-2))
 		XCTAssertEqual(1 - 2 ** 2, 1 - 2 * 2)
 		XCTAssertEqual(-2 ** 2 * 3, ((-2) * (-2)) * 3)
-		
+
         XCTAssertEqual(-2 ** 3, (-2) * (-2) * (-2))
         XCTAssertEqual(-(2 ** 3), -8)
 		XCTAssertEqual(2 ** 0.5, sqrt(2))
         XCTAssertTrue((-2.0 ** 3.2).isNaN)
     }
-	
+
 	func testOptionalStringCoalescingOperator() {
 		let isNumber: Int? = 99
 		XCTAssertEqual("\(isNumber ??? "No Number")", "99")
-		
+
 		let isNil: Int? = nil
 		XCTAssertEqual("\(isNil ??? "No Number")", "No Number")
 	}

@@ -15,13 +15,13 @@ public extension NSObject {
     private struct zhAssociateObjectKey {
         static var Key = "zhAssociateObjectKey"
     }
-    
+
     /// Strong referenced associated object
     public var associatedObject: Any? {
         get { return objc_getAssociatedObject(self, &zhAssociateObjectKey.Key) }
         set { objc_setAssociatedObject(self, &zhAssociateObjectKey.Key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
-    
+
     /**
      set an associated object for key pointer
      Example usage:
@@ -49,7 +49,7 @@ public extension NSObject {
             return currentAssociatedObject
         }
     }
-    
+
     public func getAssociatedObject(forKeyPointer pointer: UnsafeRawPointer? = nil) -> Any? {
         if let pointer = pointer {
             return objc_getAssociatedObject(self, pointer)
@@ -57,7 +57,7 @@ public extension NSObject {
             return associatedObject
         }
     }
-	
+
 	@discardableResult
     public func clearAssociatedObject(forKeyPointer pointer: UnsafeRawPointer? = nil) -> Any? {
         if let pointer = pointer {

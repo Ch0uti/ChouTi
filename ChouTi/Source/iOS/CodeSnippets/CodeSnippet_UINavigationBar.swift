@@ -6,13 +6,9 @@
 //
 //
 
-
-
 // MARK: - NavigationBar Title Color
 
 //navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-
-
 
 // MARK: - NavigationBat Title View
 

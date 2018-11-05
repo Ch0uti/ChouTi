@@ -6,35 +6,35 @@
 //  Copyright © 2016 Honghaoz. All rights reserved.
 //
 
-import XCTest
 @testable import ChouTi
+import XCTest
 
 class CollectionType_ExtensionsTests: XCTestCase {
-    
+
     var integers: [Int] = []
-    
+
     override func setUp() {
         super.setUp()
         integers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     }
-    
+
     func testRandomItem() {
         let randomInt = integers.randomElement()!
         XCTAssert(integers.contains(randomInt))
-        
+
         let randomInt1 = integers.randomElement()!
         var randomInt2 = integers.randomElement()!
         while randomInt2 == randomInt1 {
             randomInt2 = integers.randomElement()!
         }
-        
+
         XCTAssert(true)
     }
-    
+
     func testDictionaryRandomItem() {
         let dict = [1: "1", 2: "2", 3: "3", 4: "4"]
         let randomKeyValue = dict.randomElement()!
-        
+
         XCTAssertTrue(dict.contains { $0 == randomKeyValue })
     }
 }
@@ -51,12 +51,12 @@ extension CollectionType_ExtensionsTests {
         var empty: [Int] = []
         empty.shuffle()
         XCTAssertEqual(empty, [])
-        
+
         let originalIntegers = integers
         integers.shuffle()
         XCTAssertNotEqual(originalIntegers, integers)
     }
-    
+
     func testShuffled() {
         XCTAssertNotEqual(integers, integers.shuffled())
     }

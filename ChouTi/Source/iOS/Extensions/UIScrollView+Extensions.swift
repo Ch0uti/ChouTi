@@ -14,16 +14,16 @@ public extension UIScrollView {
      
      - parameter animated: whether it's animated
      */
-    public func scrollsToTop(animated: Bool) {
+    func scrollsToTop(animated: Bool) {
         setContentOffset(CGPoint(x: contentOffset.x, y: -contentInset.top), animated: animated)
     }
-    
+
     /**
      Scrolls ScrollView to the bottom
      
      - parameter animated: whether it's animated
      */
-    public func scrollsToBottom(animated: Bool) {
+    func scrollsToBottom(animated: Bool) {
         let bottomOffset = CGPoint(x: contentOffset.x, y: contentSize.height - bounds.size.height + contentInset.bottom)
         setContentOffset(bottomOffset, animated: animated)
     }

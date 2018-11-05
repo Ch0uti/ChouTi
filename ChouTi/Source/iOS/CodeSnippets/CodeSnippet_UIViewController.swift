@@ -56,8 +56,6 @@
 //    }
 //}
 
-
-
 // MARK: - Detecting Poping or Pushing
 
 //override func viewWillDisappear(animated: Bool) {

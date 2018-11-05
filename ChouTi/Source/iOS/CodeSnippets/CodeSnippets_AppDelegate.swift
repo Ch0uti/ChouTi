@@ -6,8 +6,6 @@
 //
 //
 
-
-
 // MARK: - Programmatically Setup Root View Controller
 //
 //class AppDelegate: UIResponder, UIApplicationDelegate {
