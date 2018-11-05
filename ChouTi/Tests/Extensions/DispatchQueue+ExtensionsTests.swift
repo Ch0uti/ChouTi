@@ -6,9 +6,9 @@
 //  Copyright © 2018 Honghaoz. All rights reserved.
 //
 
-import Quick
-import Nimble
 @testable import ChouTi
+import Nimble
+import Quick
 
 class DispatchQueue_ExtensionsTests: QuickSpec {
     override func spec() {

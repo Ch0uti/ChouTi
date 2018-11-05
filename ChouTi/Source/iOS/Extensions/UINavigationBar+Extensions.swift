@@ -12,27 +12,26 @@ public extension UINavigationBar {
         let navigationBarImageView = hairlineImageViewInNavigationBar(self)
         navigationBarImageView?.isHidden = true
     }
-    
+
     public func showBottomHairline() {
         let navigationBarImageView = hairlineImageViewInNavigationBar(self)
         navigationBarImageView?.isHidden = false
     }
-    
+
     private func hairlineImageViewInNavigationBar(_ view: UIView) -> UIImageView? {
         if let view = view as? UIImageView, view.bounds.height <= 1.0 {
             return view
         }
-        
+
         for subview in view.subviews {
             if let imageView = hairlineImageViewInNavigationBar(subview) {
                 return imageView
             }
         }
-        
+
         return nil
     }
 }
-
 
 // MARK: - Customization of navigation bar title
 public extension UINavigationBar {
@@ -42,14 +41,14 @@ public extension UINavigationBar {
                 if titleTextAttributes != nil {
                     titleTextAttributes?[.foregroundColor] = titleTextColor
                 } else {
-                    titleTextAttributes = [.foregroundColor : titleTextColor]
+                    titleTextAttributes = [.foregroundColor: titleTextColor]
                 }
             } else {
 				// FIXME: revist it when Xcode 8.2
-                let _ = titleTextAttributes?.removeValue(forKey: .foregroundColor)
+                _ = titleTextAttributes?.removeValue(forKey: .foregroundColor)
             }
         }
-        
+
         get {
             if let titleTextAttributes = titleTextAttributes {
                 return titleTextAttributes[.foregroundColor] as? UIColor
@@ -58,7 +57,7 @@ public extension UINavigationBar {
             }
         }
     }
-    
+
     var titleTextFont: UIFont? {
         set {
             if let titleTextFont = newValue {
@@ -68,10 +67,10 @@ public extension UINavigationBar {
                     titleTextAttributes = [.font: titleTextFont]
                 }
             } else {
-                let _ = titleTextAttributes?.removeValue(forKey: .font)
+                _ = titleTextAttributes?.removeValue(forKey: .font)
             }
         }
-        
+
         get {
             if let titleTextAttributes = titleTextAttributes {
                 return titleTextAttributes[.font] as? UIFont
@@ -82,10 +81,9 @@ public extension UINavigationBar {
     }
 }
 
-
 // MARK: - Transparent
 public extension UINavigationBar {
-    public func setToTransparent(_ transparent: Bool) {
+    func setToTransparent(_ transparent: Bool) {
         if transparent {
             setBackgroundImage(UIImage(), for: .default)
             shadowImage = UIImage()

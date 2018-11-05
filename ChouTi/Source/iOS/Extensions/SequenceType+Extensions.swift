@@ -14,10 +14,10 @@ public extension Sequence {
      
      - returns: a random subset
      */
-    public func randomSubset() -> [Iterator.Element] {
+    func randomSubset() -> [Iterator.Element] {
         return self.filter { _ in Bool.random() }
     }
-    
+
     /**
      If all element match predicate
 
@@ -25,7 +25,7 @@ public extension Sequence {
      
      - returns: true if all match.
      */
-    public func allMatch(_ predicate: (Iterator.Element) -> Bool) -> Bool {
+    func allMatch(_ predicate: (Iterator.Element) -> Bool) -> Bool {
         // every element matches a predicate if no element doesn't match it
         return !self.contains { !predicate($0) }
     }
@@ -37,7 +37,7 @@ public extension Sequence where Iterator.Element: Hashable {
      
      - returns: Unique items with order preserved.
      */
-    public func unique() -> [Iterator.Element] {
+    func unique() -> [Iterator.Element] {
         var seen: Set<Iterator.Element> = []
         return self.filter {
             if seen.contains($0) {

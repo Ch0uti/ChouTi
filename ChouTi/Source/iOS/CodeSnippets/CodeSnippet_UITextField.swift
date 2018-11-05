@@ -6,8 +6,6 @@
 //
 //
 
-
-
 //// MARK: - Setup
 //let <#textField#> = TextField()
 //<#textField#>.backgroundColor = UIColor(white: 52 / 255, alpha: 1.0)
@@ -23,8 +21,6 @@
 //
 //<#textField#>.delegate = self
 //<#textField#>.addTarget(self, action: "textFieldDidEdit:", forControlEvents: .EditingChanged)
-
-
 
 //// MARK: - UITextFieldDelegate
 //extension <#ViewController#> : UITextFieldDelegate {

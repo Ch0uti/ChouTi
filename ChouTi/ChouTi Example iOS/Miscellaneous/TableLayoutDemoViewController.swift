@@ -6,19 +6,19 @@
 //  Copyright (c) 2015 Honghao Zhang. All rights reserved.
 //
 
-import UIKit
 import ChouTi
+import UIKit
 
 class TableLayoutDemoViewController: UIViewController {
 
 	let doneButton = Button(type: .system)
 
     let columns = Int.random(in: 5...20)
-	var rows = [Int : Int]()
-	
+	var rows = [Int: Int]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+
 //		view.backgroundColor = UIColor.white
 //		title = "Table Layout"
 //        
@@ -52,25 +52,25 @@ class TableLayoutDemoViewController: UIViewController {
 //		
 //		NSLayoutConstraint.activate(constraints)
     }
-	
+
 	func doneButtonPressed(_ sender: UIButton) {
 		self.dismiss(animated: true, completion: nil)
 	}
 }
 
-extension TableLayoutDemoViewController : TextTableCollectionViewDataSource {
+extension TableLayoutDemoViewController: TextTableCollectionViewDataSource {
 	func numberOfColumnsInTableCollectionView(_ tableCollectionView: TextTableCollectionView) -> Int {
 		return columns
 	}
-	
+
 	func tableCollectionView(_ tableCollectionView: TextTableCollectionView, numberOfRowsInColumn column: Int) -> Int {
 		return rows[column]!
 	}
-	
+
 	func tableCollectionView(_ tableCollectionView: TextTableCollectionView, layout collectionViewLayout: TableCollectionViewLayout, titleForColumn column: Int) -> String {
 		return "Title: \(column)"
 	}
-	
+
 	func tableCollectionView(_ tableCollectionView: TextTableCollectionView, layout collectionViewLayout: TableCollectionViewLayout, contentForColumn column: Int, row: Int) -> String {
         return "Content: (\(row),\(column))"
 	}

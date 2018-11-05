@@ -3,6 +3,9 @@ use_frameworks!
 inhibit_all_warnings!
 
 # Pods
+
+pod 'SwiftLint'
+
 def pods_for_framework
   pod 'LTMorphingLabel', '~> 0.5.8'
 end

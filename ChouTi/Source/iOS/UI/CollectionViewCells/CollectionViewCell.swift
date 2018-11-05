@@ -8,10 +8,10 @@
 
 import UIKit
 
-open class CollectionViewCell : UICollectionViewCell {
-	
+open class CollectionViewCell: UICollectionViewCell {
+
 	let textLabel = UILabel()
-	
+
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 		commonInit()
@@ -26,19 +26,19 @@ open class CollectionViewCell : UICollectionViewCell {
 		setupViews()
 		setupConstraints()
 	}
-	
-	fileprivate func setupViews() {
+
+	private func setupViews() {
 		backgroundColor = UIColor.white
-		
+
 		textLabel.translatesAutoresizingMaskIntoConstraints = false
 		contentView.addSubview(textLabel)
-		
+
 		let selectedBackgroundView = UIView()
 		selectedBackgroundView.backgroundColor = UIColor(white: 0.0, alpha: 0.25)
 		self.selectedBackgroundView = selectedBackgroundView
 	}
 
-	fileprivate func setupConstraints() {
+	private func setupConstraints() {
 		var constraints = [NSLayoutConstraint]()
 
 		constraints += [

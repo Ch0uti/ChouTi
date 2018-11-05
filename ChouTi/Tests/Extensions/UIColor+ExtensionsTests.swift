@@ -6,10 +6,9 @@
 //  Copyright © 2016 Honghao Zhang. All rights reserved.
 //
 
-import Quick
-import Nimble
 @testable import ChouTi
-
+import Nimble
+import Quick
 
 class UIColor_ExtensionsTests: QuickSpec {
     override func spec() {

@@ -6,11 +6,11 @@
 //  Copyright © 2015 Honghao Zhang. All rights reserved.
 //
 
-import XCTest
 @testable import ChouTi
+import XCTest
 
 class String_ExtensionsTest: XCTestCase {
-    
+
 	func testFullNSRange() {
 		let string = "123456abc"
 		let nsRange = string.fullNSRange()

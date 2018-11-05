@@ -6,52 +6,53 @@
 //  Copyright © 2016 Honghaoz. All rights reserved.
 //
 
-import XCTest
 @testable import ChouTi
+import XCTest
 
 class OrderedDictionaryTests: XCTestCase {
 	var dict: OrderedDictionary<String, Int>!
-	
+
 	override func setUp() {
+        super.setUp()
 		dict = OrderedDictionary<String, Int>()
 	}
-	
+
 	func testBasicOperations() {
 		XCTAssertNil(dict["none"])
-		
+
 		dict["apple"] = 1
 		XCTAssertEqual(dict["apple"], 1)
 		XCTAssertEqual(dict[0].0, "apple")
 		XCTAssertEqual(dict[0].1, 1)
 		XCTAssertEqual(dict.count, 1)
-		
+
 		dict["apple"] = 11
 		XCTAssertEqual(dict["apple"], 11)
 		XCTAssertEqual(dict[0].0, "apple")
 		XCTAssertEqual(dict[0].1, 11)
 		XCTAssertEqual(dict.count, 1)
-		
+
 		dict["banana"] = 2
 		XCTAssertEqual(dict["banana"], 2)
 		XCTAssertEqual(dict[1].0, "banana")
 		XCTAssertEqual(dict[1].1, 2)
 		XCTAssertEqual(dict.count, 2)
-		
+
 		dict.removeValue(forKey: "apple")
 		XCTAssertNil(dict["apple"])
 		XCTAssertEqual(dict.count, 1)
-		
+
 		dict.removeAll()
 		XCTAssertEqual(dict.count, 0)
 	}
-	
+
 	func testInsertionAtIndex() {
 		dict["apple"] = 1
 		XCTAssertEqual(dict["apple"], 1)
 		XCTAssertEqual(dict[0].0, "apple")
 		XCTAssertEqual(dict[0].1, 1)
 		XCTAssertEqual(dict.count, 1)
-		
+
 		dict.insert(2, forKey: "banana", atIndex: 1)
 		XCTAssertEqual(dict["banana"], 2)
 		XCTAssertEqual(dict[0].0, "apple")
@@ -69,7 +70,7 @@ class OrderedDictionaryTests: XCTestCase {
 		XCTAssertEqual(dict[2].0, "banana")
 		XCTAssertEqual(dict[2].1, 2)
 		XCTAssertEqual(dict.count, 3)
-		
+
 		var newDict = dict!
 		newDict.insert(4, forKey: "apple", atIndex: 2)
 		XCTAssertEqual(newDict["apple"], 4)
@@ -80,7 +81,7 @@ class OrderedDictionaryTests: XCTestCase {
 		XCTAssertEqual(newDict[2].0, "apple")
 		XCTAssertEqual(newDict[2].1, 4)
 		XCTAssertEqual(newDict.count, 3)
-		
+
 		newDict = dict!
 		newDict.insert(4, forKey: "apple", atIndex: 3)
 		XCTAssertEqual(newDict["apple"], 4)
@@ -91,7 +92,7 @@ class OrderedDictionaryTests: XCTestCase {
 		XCTAssertEqual(newDict[2].0, "apple")
 		XCTAssertEqual(newDict[2].1, 4)
 		XCTAssertEqual(newDict.count, 3)
-		
+
 		newDict = dict!
 		newDict.insert(4, forKey: "apple", atIndex: 1)
 		XCTAssertEqual(newDict["apple"], 4)
@@ -102,7 +103,7 @@ class OrderedDictionaryTests: XCTestCase {
 		XCTAssertEqual(newDict[2].0, "banana")
 		XCTAssertEqual(newDict[2].1, 2)
 		XCTAssertEqual(newDict.count, 3)
-		
+
 		let removed = dict.removeAtIndex(1)
 		XCTAssertEqual(removed.0, "orange")
 		XCTAssertEqual(removed.1, 3)

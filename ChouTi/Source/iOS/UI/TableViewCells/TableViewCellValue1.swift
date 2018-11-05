@@ -8,11 +8,11 @@
 
 import UIKit
 
-open class TableViewCellValue1 : TableViewCell {
+open class TableViewCellValue1: TableViewCell {
 	public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value1, reuseIdentifier: reuseIdentifier)
 	}
-	
+
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}

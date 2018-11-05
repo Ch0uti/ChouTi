@@ -9,26 +9,26 @@
 import UIKit
 
 public protocol CollectionViewCellRegistrable {
-	
+
 	/// Default cell reuse identifier for cell.
 	/// Sample: `return String(describing: self)`.
 	///
 	/// - Returns: A cell reuse identifier.
 	static func identifier() -> String
-	
+
 	/// Register cell in collection view.
 	/// Sample: `collectionView.register(self, forCellWithReuseIdentifier: identifier())`.
 	///
 	/// - Parameter collectionView: The target collection view to use this cell.
 	static func register(inCollectionView collectionView: UICollectionView)
-	
+
 	/// Register cell with nib in collection view.
 	///
 	/// - Parameters:
 	///   - nib: A nib object that specifies the nib file to use to create the cell.
 	///   - collectionView: Target collection view to use this cell.
 	static func registerNib(_ nib: UINib, inCollectionView collectionView: UICollectionView)
-	
+
 	/// Unregister cell in collection view.
 	///
 	/// - Parameter collectionView: The collection view registered this cell
@@ -45,11 +45,11 @@ extension UICollectionViewCell: CollectionViewCellRegistrable {
 	open class func identifier() -> String {
 		return String(describing: self)
 	}
-	
+
 	open class func register(inCollectionView collectionView: UICollectionView) {
 		collectionView.register(self, forCellWithReuseIdentifier: identifier())
 	}
-	
+
 	open class func registerNib(_ nib: UINib, inCollectionView collectionView: UICollectionView) {
 		collectionView.register(nib, forCellWithReuseIdentifier: identifier())
 	}
@@ -57,7 +57,7 @@ extension UICollectionViewCell: CollectionViewCellRegistrable {
 	open class func unregister(inCollectionView collectionView: UICollectionView) {
 		collectionView.register(nil as AnyClass?, forCellWithReuseIdentifier: identifier())
 	}
-	
+
 	open class func unregisterNib(inCollectionView collectionView: UICollectionView) {
 		collectionView.register(nil as UINib?, forCellWithReuseIdentifier: identifier())
 	}
@@ -65,7 +65,7 @@ extension UICollectionViewCell: CollectionViewCellRegistrable {
 
 // MARK: - Cell Registration + Dequeuing
 extension UICollectionView {
-	
+
 	/// Register cell with class type
 	///
 	/// - Parameter class: collection view cell class which conforms CollectionViewCellRegistrable.
@@ -81,7 +81,7 @@ extension UICollectionView {
 	open func register<T: CollectionViewCellRegistrable>(_ nib: UINib, forClass class: T.Type) {
 		`class`.registerNib(nib, inCollectionView: self)
 	}
-	
+
 	/// Returns a reusable cell object located by its class type and index path.
 	/// This call will raise a fatal error if the cell was not registered with `identifier()`.
 	///

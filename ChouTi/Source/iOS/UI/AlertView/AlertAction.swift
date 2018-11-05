@@ -12,19 +12,19 @@ import UIKit
 open class AlertAction: Equatable {
     /// The title of the action’s button. (read-only)
     public let title: String?
-    
+
     /// The style that is applied to the action’s button. (read-only)
     public let style: UIAlertAction.Style
-    
+
     /// Action handler
     let handler: ((AlertAction) -> Void)?
-    
+
     /// Button associated with this alert action
     public let button: UIButton
-    
+
     /// A Boolean value indicating whether the action is currently enabled.
     open var enabled: Bool = true
-    
+
     /**
      Create and return an action with the specified title and behavior.
      
@@ -40,11 +40,11 @@ open class AlertAction: Equatable {
         self.handler = handler
         let alertActionButton = AlertViewButton()
         self.button = alertActionButton
-        
+
         alertActionButton.alertAction = self
         alertActionButton.addTarget(self, action: #selector(AlertAction.buttonTapped(_:)), for: .touchUpInside)
     }
-    
+
     /**
      Create and return an action with customized button and action handler.
      
@@ -59,14 +59,15 @@ open class AlertAction: Equatable {
         self.style = .default
         self.handler = handler
         self.button = button
-        
+
         button.addTarget(self, action: #selector(AlertAction.buttonTapped(_:)), for: .touchUpInside)
     }
-    
-    @objc func buttonTapped(_ button: UIButton) {
+
+    @objc
+    func buttonTapped(_ button: UIButton) {
         performActionHandler()
     }
-    
+
     /**
      Try to perform action handler, if enabled is false, nothing happens.
      */

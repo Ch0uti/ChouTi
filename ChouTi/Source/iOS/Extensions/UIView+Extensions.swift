@@ -8,7 +8,7 @@
 import UIKit
 
 public extension UIView {
-    
+
     /**
      Directly contaitns a view, not recursively
      
@@ -16,19 +16,19 @@ public extension UIView {
      
      - returns: true for directly contains, otherwise false
      */
-    public func containSubview(_ view: UIView) -> Bool {
+    func containSubview(_ view: UIView) -> Bool {
         return subviews.contains(view)
     }
-    
-    public func removeAllSubviews() {
-        subviews.forEach{ $0.removeFromSuperview() }
+
+    func removeAllSubviews() {
+        subviews.forEach { $0.removeFromSuperview() }
     }
-    
-    public func removeAllSubviewsExceptView(_ view: UIView) {
+
+    func removeAllSubviewsExceptView(_ view: UIView) {
         subviews.filter({ $0 != view }).forEach { $0.removeFromSuperview() }
     }
-    
-    public func removeAllSubviewsExceptViews(_ views: [UIView]) {
+
+    func removeAllSubviewsExceptViews(_ views: [UIView]) {
         subviews.filter({ views.contains($0) }).forEach { $0.removeFromSuperview() }
     }
 }
@@ -43,12 +43,12 @@ public extension UIView {
 	- parameter duration:   Animation duration.
 	- parameter completion: Completion block.
 	*/
-    public func setHidden(_ toHide: Bool, animated: Bool = false, duration: TimeInterval = 0.25, completion: ((Bool) -> ())? = nil) {
+    func setHidden(_ toHide: Bool, animated: Bool = false, duration: TimeInterval = 0.25, completion: ((Bool) -> Void)? = nil) {
         if self.isHidden == toHide && alpha == (toHide ? 0.0 : 1.0) {
             completion?(false)
             return
         }
-        
+
         if animated == false {
             alpha = toHide ? 0.0 : 1.0
             self.isHidden = toHide
@@ -61,7 +61,7 @@ public extension UIView {
                     debugPrint("\(self) has an alpha: 1.0, animation maybe broken.")
                 }
             }
-            
+
             UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut, .beginFromCurrentState, .allowUserInteraction], animations: {
                 self.alpha = toHide ? 0.0 : 1.0
             }, completion: { finished -> Void in
@@ -72,8 +72,6 @@ public extension UIView {
     }
 }
 
-
-
 // MARK: - Utility
 public extension UIView {
     /**
@@ -81,7 +79,7 @@ public extension UIView {
      
      - returns: the view controller for presenting this view or nil
      */
-    fileprivate func firstRespondedViewController() -> UIViewController? {
+    private func firstRespondedViewController() -> UIViewController? {
         if let viewController = next as? UIViewController {
             return viewController
         } else if let view = next as? UIView {
@@ -90,21 +88,20 @@ public extension UIView {
             return nil
         }
     }
-    
+
     /// Get the view controller presenting this view
-    public var presentingViewController: UIViewController? {
+    var presentingViewController: UIViewController? {
         return firstRespondedViewController()
     }
-    
+
     /// Whether this view is currnetly visible
-    public var isVisible: Bool {
+    var isVisible: Bool {
         return window != nil
     }
 }
 
-
 // MARK: - CGRect Related
-public extension UIView {    
+public extension UIView {
     /**
      Get frame for self in another view
      
@@ -112,10 +109,10 @@ public extension UIView {
      
      - returns: the frame of self in the target view
      */
-    public func frameRectInView(_ view: UIView?) -> CGRect {
+    func frameRectInView(_ view: UIView?) -> CGRect {
         return self.convert(self.bounds, to: view)
     }
-    
+
     /// Get bounds of screen, which is presenting this view.
     var screenBounds: CGRect? {
         guard let window = window else { return nil }
@@ -129,7 +126,7 @@ public extension UIView {
      
      - returns: A copy of the View
      */
-    public func viewCopy() -> UIView {
+    func viewCopy() -> UIView {
         let data: Data = NSKeyedArchiver.archivedData(withRootObject: self)
         let copy = NSKeyedUnarchiver.unarchiveObject(with: data) as! UIView
         return copy
@@ -142,30 +139,30 @@ public extension UIView {
      
      - returns: an Image.
      */
-    public func toImage() -> UIImage {
+    func toImage() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
-        
+
         let context = UIGraphicsGetCurrentContext()!
-        
+
         // Good explanation of differences between drawViewHierarchyInRect:afterScreenUpdates: and renderInContext: https://github.com/radi/LiveFrost/issues/10#issuecomment-28959525
         layer.render(in: context)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return image!
     }
-    
+
     /**
      Get a snapshot (image representation) of this view.
      
      - returns: an Image snapshot.
      */
-    public func snapshot() -> UIImage {
+    func snapshot() -> UIImage {
         return self.toImage()
     }
-    
+
     /// Snapshot of view
-    public var 📷: UIImage {
+    var 📷: UIImage {
         return self.snapshot()
     }
 }
@@ -176,13 +173,13 @@ public extension UIView {
     ///
     /// - Parameter type: type to find.
     /// - Returns: superview of type specified or nil.
-    public func superview<T: UIView>(ofType type: T.Type) -> T? {
+    func superview<T: UIView>(ofType type: T.Type) -> T? {
         if let view = self.superview as? T {
             return view
         }
 		return superview?.superview(ofType: type)
     }
-    
+
     /**
      BFS search for first subview of type.
      
@@ -190,12 +187,12 @@ public extension UIView {
      
      - returns: subview of type specified or nil.
      */
-    public func subviewOfType<T: UIView>(_ type: T.Type) -> T? {
+    func subviewOfType<T: UIView>(_ type: T.Type) -> T? {
         let queue = Queue<UIView>()
         for subview in self.subviews {
             queue.enqueue(subview)
         }
-        
+
         while queue.isEmpty() == false {
             guard let current = queue.dequeue() else { continue }
             if let view = current as? T {
@@ -206,10 +203,10 @@ public extension UIView {
                 }
             }
         }
-        
+
         return nil
     }
-    
+
     /**
      BFS search for subviews of type.
      
@@ -217,14 +214,14 @@ public extension UIView {
      
      - returns: subviews of type specified or empty.
      */
-    public func subviewsOfType<T: UIView>(_ type: T.Type) -> [T] {
+    func subviewsOfType<T: UIView>(_ type: T.Type) -> [T] {
         var views: [T] = []
-        
+
         let queue = Queue<UIView>()
         for subview in self.subviews {
             queue.enqueue(subview)
         }
-        
+
         while queue.isEmpty() == false {
             guard let current = queue.dequeue() else { continue }
             if let view = current as? T {
@@ -235,7 +232,7 @@ public extension UIView {
                 }
             }
         }
-        
+
         return views
     }
 }
@@ -250,18 +247,18 @@ public extension UIView {
      - parameter paintedSegmentLength:   Painted segment length.
      - parameter unpaintedSegmentLength: Unpainted segment length.
      */
-    public func addDashedBorderLine(_ borderWidth: CGFloat, borderColor: UIColor, paintedSegmentLength: CGFloat = 2, unpaintedSegmentLength: CGFloat = 2) {
+    func addDashedBorderLine(_ borderWidth: CGFloat, borderColor: UIColor, paintedSegmentLength: CGFloat = 2, unpaintedSegmentLength: CGFloat = 2) {
         layer.borderWidth = borderWidth
         let patternImage = UIImage.imageWithColor(.clear, size: CGSize(width: paintedSegmentLength + unpaintedSegmentLength, height: paintedSegmentLength + unpaintedSegmentLength))
             .fillRect(CGRect(x: 0, y: 0, width: paintedSegmentLength, height: paintedSegmentLength), withColor: borderColor)
             .fillRect(CGRect(x: unpaintedSegmentLength, y: unpaintedSegmentLength, width: paintedSegmentLength, height: paintedSegmentLength), withColor: borderColor)
         layer.borderColor = UIColor(patternImage: patternImage).cgColor
     }
-    
+
     /**
      Add a dark shadow
      */
-    public func addDarkShadow() {
+    func addDarkShadow() {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = .zero
         layer.shadowOpacity = 0.5

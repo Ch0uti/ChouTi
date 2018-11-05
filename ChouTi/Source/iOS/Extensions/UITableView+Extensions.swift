@@ -14,11 +14,11 @@ public extension UITableView {
      
      - parameter animated: whether the deselection is animated
      */
-    public func clearSelectedIndexPaths(animated: Bool) {
+    func clearSelectedIndexPaths(animated: Bool) {
         guard let selectedIndexPaths = indexPathsForSelectedRows else {
             return
         }
-        
+
         selectedIndexPaths.forEach { [unowned self] in
             self.deselectRow(at: $0, animated: animated)
         }

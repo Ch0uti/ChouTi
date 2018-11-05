@@ -11,7 +11,7 @@
 private class QueueItem<T> {
     let value: T
     var next: QueueItem?
-    
+
     init(_ value: T) {
         self.value = value
     }
@@ -24,8 +24,8 @@ private class QueueItem<T> {
  */
 open class Queue<T> {
     public typealias Element = T
-    
-    fileprivate var head: QueueItem<Element>? {
+
+    private var head: QueueItem<Element>? {
         didSet {
 			// When dequeued, from non-empty to empty
             if head == nil && tail != nil {
@@ -33,8 +33,8 @@ open class Queue<T> {
             }
         }
     }
-    
-    fileprivate var tail: QueueItem<Element>? {
+
+    private var tail: QueueItem<Element>? {
         didSet {
 			// When enqueued, from empty to non-empty
             if head == nil && tail != nil {
@@ -42,9 +42,9 @@ open class Queue<T> {
             }
         }
     }
-    
+
     public init () {}
-    
+
     /**
      Enqueue a new item at the end of the queue.
      
@@ -55,7 +55,7 @@ open class Queue<T> {
         tail?.next = queueItem
         tail = queueItem
     }
-    
+
     /**
      Dequeue an item at the front of the queue.
      
@@ -68,7 +68,7 @@ open class Queue<T> {
         }
         return nil
     }
-    
+
     open func isEmpty() -> Bool {
         return head == nil
     }

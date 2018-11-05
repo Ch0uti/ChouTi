@@ -6,8 +6,6 @@
 //
 //
 
-
-
 // MARK: - Table View Setup
 //tableView.translatesAutoresizingMaskIntoConstraints = false
 //<#view#>.addSubview(tableView)
@@ -22,7 +20,6 @@
 //tableView.delaysContentTouches = true
 
 //<#TableViewCell#>.registerInTableView(tableView)
-
 
 // MARK: - Optional
 //// Remove extra separator lines in table view
@@ -44,8 +41,6 @@
 //		return cell
 //	}
 //}
-
-
 
 //// MARK: - UITableViewDelegate
 //extension <#Class#> : UITableViewDelegate {

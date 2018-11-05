@@ -8,11 +8,11 @@
 
 import UIKit
 
-open class TableViewCellSubtitle : TableViewCell {
+open class TableViewCellSubtitle: TableViewCell {
 	public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 	}
-	
+
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}

@@ -9,15 +9,15 @@
 import UIKit
 
 public extension UIView {
-	public func animateIf(_ condition: Bool, duration: TimeInterval, animations: @escaping () -> Void) {
+	func animateIf(_ condition: Bool, duration: TimeInterval, animations: @escaping () -> Void) {
 		if condition {
 			UIView.animate(withDuration: duration, animations: animations)
 		} else {
 			animations()
 		}
 	}
-	
-	public func animateIf(_ condition: Bool, duration: TimeInterval, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
+
+	func animateIf(_ condition: Bool, duration: TimeInterval, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
 		if condition {
 			UIView.animate(withDuration: duration, animations: animations, completion: completion)
 		} else {
@@ -25,8 +25,9 @@ public extension UIView {
 			completion?(false)
 		}
 	}
-	
-	public func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
+
+    // swiftlint:disable function_parameter_count
+	func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
 		if condition {
 			UIView.animate(withDuration: duration, delay: delay, options: options, animations: animations, completion: completion)
 		} else {
@@ -34,8 +35,10 @@ public extension UIView {
 			completion?(false)
 		}
 	}
-	
-	public func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIView.AnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
+    // swiftlint:enable function_parameter_count
+
+    // swiftlint:disable function_parameter_count
+	func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIView.AnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
 		if condition {
 			UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: options, animations: animations, completion: completion)
 		} else {
@@ -43,4 +46,5 @@ public extension UIView {
 			completion?(false)
 		}
 	}
+    // swiftlint:enable function_parameter_count
 }

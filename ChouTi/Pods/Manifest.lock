@@ -12,6 +12,7 @@ PODS:
   - LTMorphingLabel (0.5.8)
   - Nimble (7.3.1)
   - Quick (1.3.2)
+  - SwiftLint (0.27.0)
 
 DEPENDENCIES:
   - ChouTi (from `../`)
@@ -20,23 +21,26 @@ DEPENDENCIES:
   - LTMorphingLabel (~> 0.5.8)
   - Nimble (~> 7.3)
   - Quick (~> 1.3)
+  - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - LTMorphingLabel
     - Nimble
     - Quick
+    - SwiftLint
 
 EXTERNAL SOURCES:
   ChouTi:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: acc42b082056a3c579f4c57d5202f2e53c29c48c
+  ChouTi: 788915507c411b21c0da7acdfa3cf9b439aadaaf
   LTMorphingLabel: 8adaba524476098ed307626d0bc42b7f8fadb7e0
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 24b57b7cfe2264ab6c6a83e63bea49ec22106bc1
+PODFILE CHECKSUM: 256b40e49440f9d3f0573fc47e56b56bfdca6123
 
 COCOAPODS: 1.6.0.beta.2
