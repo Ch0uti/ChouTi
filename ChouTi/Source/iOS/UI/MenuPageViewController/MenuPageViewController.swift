@@ -51,7 +51,7 @@ open class MenuPageViewController: UIViewController {
 
 	private var isUpdatingSelectedIndex: Bool = false
 
-	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+	override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 		commonInit()
 	}
@@ -89,7 +89,7 @@ open class MenuPageViewController: UIViewController {
 
 // MARK: - Override
 extension MenuPageViewController {
-	open override func viewDidLoad() {
+	override open func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.white
 

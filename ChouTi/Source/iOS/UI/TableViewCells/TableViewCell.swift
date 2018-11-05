@@ -23,7 +23,7 @@ open class TableViewCell: UITableViewCell {
 	open var selectedAccessoryView: UIView?
 	open var selectedAccessoryType: UITableViewCell.AccessoryType = .none
 
-	public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+	override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		commonInit()
 	}
@@ -39,7 +39,7 @@ open class TableViewCell: UITableViewCell {
 		_heightConstraint?.isActive = true
 	}
 
-	open override func setSelected(_ selected: Bool, animated: Bool) {
+	override open func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
 
 		if selectedAccessoryType != .none {

@@ -54,7 +54,7 @@ open class Button: UIButton {
         }
 
         // MARK: - Equatable
-        static public func == (lhs: CornerRadius, rhs: CornerRadius) -> Bool {
+        public static func == (lhs: CornerRadius, rhs: CornerRadius) -> Bool {
             switch (lhs, rhs) {
             case let (.absolute(lValue), .absolute(rValue)):
                 return lValue == rValue
@@ -89,11 +89,11 @@ open class Button: UIButton {
     private var shadowPathForState = [UInt: CGPath]()
 
     // MARK: - Overriden
-    open override var isHighlighted: Bool { didSet { refreshBorderStyles() } }
-    open override var isEnabled: Bool { didSet { refreshBorderStyles() } }
-    open override var isSelected: Bool { didSet { refreshBorderStyles() } }
+    override open var isHighlighted: Bool { didSet { refreshBorderStyles() } }
+    override open var isEnabled: Bool { didSet { refreshBorderStyles() } }
+    override open var isSelected: Bool { didSet { refreshBorderStyles() } }
 
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
 
         refreshBorderStyles()

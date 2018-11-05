@@ -56,7 +56,7 @@ open class OverlayPresentationController: UIPresentationController {
     }
 
     // MARK: - Transition
-    open override func presentationTransitionWillBegin() {
+    override open func presentationTransitionWillBegin() {
         guard let containerView = containerView else {
             NSLog("Error: containerView is nil")
             return
@@ -82,7 +82,7 @@ open class OverlayPresentationController: UIPresentationController {
         }, completion: nil)
     }
 
-    open override func dismissalTransitionWillBegin() {
+    override open func dismissalTransitionWillBegin() {
         if shouldDimPresentedView {
             presentingViewController.view.tintAdjustmentMode = .normal
         }
@@ -116,7 +116,7 @@ open class OverlayPresentationController: UIPresentationController {
     }
 
     // MARK: - Layout of the Presentation
-    open override func containerViewWillLayoutSubviews() {
+    override open func containerViewWillLayoutSubviews() {
         guard let containerView = containerView else {
             NSLog("Error: containerView is nil")
             return

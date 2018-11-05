@@ -123,7 +123,7 @@ open class SegmentedControl: UISegmentedControl {
 	
 	:returns: An initalized segmented control
 	*/
-	public override init(items: [Any]?) {
+	override public init(items: [Any]?) {
 		super.init(items: items)
 		if let titles = items as? [String] {
 			setupWithTitles(titles)
@@ -132,7 +132,7 @@ open class SegmentedControl: UISegmentedControl {
 		}
 	}
 
-	public override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		commonInit()
 	}
@@ -306,7 +306,7 @@ open class SegmentedControl: UISegmentedControl {
 	}
 
 	// MARK: - Overridden
-	open override func removeTarget(_ target: Any?, action: Selector?, for controlEvents: UIControl.Event) {
+	override open func removeTarget(_ target: Any?, action: Selector?, for controlEvents: UIControl.Event) {
 		super.removeTarget(target, action: action, for: controlEvents)
 
 		// If trying to remove all targets, add self as target back again
@@ -317,16 +317,16 @@ open class SegmentedControl: UISegmentedControl {
 
 	// MARK: - Managing Segment Control
     @available(*, unavailable)
-	open override func setImage(_ image: UIImage?, forSegmentAt segment: Int) {
+	override open func setImage(_ image: UIImage?, forSegmentAt segment: Int) {
 		fatalError("Image segment control is not supported yet")
 	}
 
     @available(*, unavailable)
-	open override func imageForSegment(at segment: Int) -> UIImage? {
+	override open func imageForSegment(at segment: Int) -> UIImage? {
 		fatalError("Image segment control is not supported yet")
 	}
 
-	open override func setTitle(_ title: String?, forSegmentAt segment: Int) {
+	override open func setTitle(_ title: String?, forSegmentAt segment: Int) {
 		precondition(segment < itemTitles.count, "segment index out of range")
 		if let titleText = title {
 			super.setTitle(titleText, forSegmentAt: segment)
@@ -335,36 +335,36 @@ open class SegmentedControl: UISegmentedControl {
 		}
 	}
 
-	open override func titleForSegment(at segment: Int) -> String? {
+	override open func titleForSegment(at segment: Int) -> String? {
 		precondition(segment < itemTitles.count, "segment index out of range")
 		return itemTitles[segment]
 	}
 
 	// MARK: - Managing Segments
     @available(*, unavailable)
-	open override func insertSegment(with image: UIImage?, at segment: Int, animated: Bool) {
+	override open func insertSegment(with image: UIImage?, at segment: Int, animated: Bool) {
 		fatalError("Image segment control is not supported yet")
 	}
 
     @available(*, unavailable)
-	open override func insertSegment(withTitle title: String!, at segment: Int, animated: Bool) {
+	override open func insertSegment(withTitle title: String!, at segment: Int, animated: Bool) {
 		fatalError("Not implemented")
 	}
 
-	open override var numberOfSegments: Int {
+	override open var numberOfSegments: Int {
 		return itemTitles.count
 	}
 
-	open override func removeAllSegments() {
+	override open func removeAllSegments() {
 		setupWithTitles([])
 	}
 
     @available(*, unavailable)
-	open override func removeSegment(at segment: Int, animated: Bool) {
+	override open func removeSegment(at segment: Int, animated: Bool) {
 		fatalError("Not implemented")
 	}
 
-	open override var selectedSegmentIndex: Int {
+	override open var selectedSegmentIndex: Int {
 		didSet {
 			updateSelectedIndex(selectedSegmentIndex)
 			previousSelectedIndex = selectedSegmentIndex
@@ -372,43 +372,43 @@ open class SegmentedControl: UISegmentedControl {
 	}
 
 	// MARK: - Managing Segment Behavior and Appearance
-	open override var isMomentary: Bool {
+	override open var isMomentary: Bool {
 		didSet {
 			fatalError("Not implemented")
 		}
 	}
 
-	open override func setEnabled(_ enabled: Bool, forSegmentAt segment: Int) {
+	override open func setEnabled(_ enabled: Bool, forSegmentAt segment: Int) {
 		super.setEnabled(enabled, forSegmentAt: segment)
 		precondition(segment < itemTitles.count, "segment is out of range")
 		itemLabels[segment].isEnabled = false
 	}
 
-	open override func isEnabledForSegment(at segment: Int) -> Bool {
+	override open func isEnabledForSegment(at segment: Int) -> Bool {
 		return super.isEnabledForSegment(at: segment)
 	}
 
     @available(*, unavailable)
-	open override func setContentOffset(_ offset: CGSize, forSegmentAt segment: Int) {
+	override open func setContentOffset(_ offset: CGSize, forSegmentAt segment: Int) {
 		fatalError("Not implemented")
 	}
 
     @available(*, unavailable)
-	open override func contentOffsetForSegment(at segment: Int) -> CGSize {
+	override open func contentOffsetForSegment(at segment: Int) -> CGSize {
 		fatalError("Not implemented")
 	}
 
     @available(*, unavailable)
-	open override func setWidth(_ width: CGFloat, forSegmentAt segment: Int) {
+	override open func setWidth(_ width: CGFloat, forSegmentAt segment: Int) {
 		fatalError("Not implemented")
 	}
 
     @available(*, unavailable)
-	open override func widthForSegment(at segment: Int) -> CGFloat {
+	override open func widthForSegment(at segment: Int) -> CGFloat {
 		fatalError("Not implemented")
 	}
 
-	open override var apportionsSegmentWidthsByContent: Bool {
+	override open var apportionsSegmentWidthsByContent: Bool {
 		didSet {
 			fatalError("Not implemented")
 		}

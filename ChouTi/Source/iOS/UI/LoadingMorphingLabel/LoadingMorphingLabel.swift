@@ -36,7 +36,7 @@ public class LoadingMorphingLabel: UIView {
 	public var currentTextIndex: Int = 0
 	private var isAnimating: Bool = false
 
-	public override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		commonInit()
 	}
@@ -78,7 +78,7 @@ public class LoadingMorphingLabel: UIView {
 		}
 	}
 
-	public override func didMoveToWindow() {
+	override public func didMoveToWindow() {
 		super.didMoveToWindow()
 		startLoop()
 	}

@@ -22,7 +22,7 @@ open class SingleTitleContentPairView: UIView {
 	private var horizontalSpacingEqualConstraint: NSLayoutConstraint?
 	private var horizontalSpacingGreaterThanConstraint: NSLayoutConstraint?
 
-	public override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		commonInit()
 	}

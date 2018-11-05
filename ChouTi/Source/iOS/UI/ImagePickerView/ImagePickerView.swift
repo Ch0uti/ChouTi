@@ -48,7 +48,7 @@ open class ImagePickerView: UIView {
 
 	open weak var delegate: ImagePickerViewDelegate?
 
-	public override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		commonInit()
 	}

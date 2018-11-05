@@ -23,7 +23,7 @@ open class SlideUpAnimator: Animator {
 
 	private var topConstraint: NSLayoutConstraint!
 
-	public override init() {
+	override public init() {
 		super.init()
 		animationDuration = 0.5
 	}
@@ -31,7 +31,7 @@ open class SlideUpAnimator: Animator {
 
 // MARK: - UIViewControllerAnimatedTransitioning
 extension SlideUpAnimator {
-	public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+	override public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 		super.animateTransition(using: transitionContext)
 
 		if presenting {
@@ -121,7 +121,7 @@ extension SlideUpAnimator {
 		})
 	}
 
-	public override func animationEnded(_ transitionCompleted: Bool) {
+	override public func animationEnded(_ transitionCompleted: Bool) {
 		if transitionCompleted == false {
 			return
 		}

@@ -18,7 +18,7 @@ open class AutoLinesLabel: UILabel {
         }
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
@@ -34,7 +34,7 @@ open class AutoLinesLabel: UILabel {
         self.setContentCompressionResistancePriority(.required, for: .vertical)
     }
 
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         let targetWidth = bounds.width
 		// Once label's width is changed, update preferredMaxLayoutWidth, this will lead recall textRectForBounds
@@ -44,12 +44,12 @@ open class AutoLinesLabel: UILabel {
         self.superview?.setNeedsLayout()
     }
 
-    open override func drawText(in rect: CGRect) {
+    override open func drawText(in rect: CGRect) {
         // Rect has been veritcally expanded in textRectForBounds
         super.drawText(in: rect.inset(by: contentInset))
     }
 
-    open override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+    override open func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         // Use a shrinked rect to calculate new rect, this will lead to a higher rectangle to draw
         // The width is same as preferredMaxLayoutWidth
         // Reference: http://stackoverflow.com/questions/21167226/resizing-a-uilabel-to-accomodate-insets

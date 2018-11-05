@@ -89,7 +89,7 @@ open class PageControl: UIControl {
         }
     }
 
-    lazy private var scrollViewObserver = Observer()
+    private lazy var scrollViewObserver = Observer()
 
     // MARK: - Private
     /// Unhighlighted indicators
@@ -103,7 +103,7 @@ open class PageControl: UIControl {
     /// true if current page index is being set in progress.
     private var setCurrentPageIsInProgress: Bool = false
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
@@ -117,7 +117,7 @@ open class PageControl: UIControl {
         setupDots()
     }
 
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         guard numberOfPages > 0 else { return }
 
@@ -132,14 +132,14 @@ open class PageControl: UIControl {
         currentDot.removeAllAnimations()
     }
 
-    open override var intrinsicContentSize: CGSize {
+    override open var intrinsicContentSize: CGSize {
         let width = lengthFromFirstDotCenterToLastDotCenter + spacingBetweenDotCenter * 2
         let height = max(pageIndicatorSpacing * 2, 37)
 
         return CGSize(width: width, height: height)
     }
 
-    open override func removeFromSuperview() {
+    override open func removeFromSuperview() {
         scrollView = nil
         super.removeFromSuperview()
     }
@@ -272,7 +272,7 @@ extension PageControl {
 
 // MARK: - Touch Handling
 extension PageControl {
-    open override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+    override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         guard let location = touch?.location(in: self) else { return }
         let currentDotCenterX = currentDot.frame.origin.x + pageIndicatorSize / 2.0
 

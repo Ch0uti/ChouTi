@@ -46,7 +46,7 @@ open class SeparatorCell: TableViewCell {
 }
 
 extension SeparatorCell {
-	open override class func estimatedHeight() -> CGFloat {
+	override open class func estimatedHeight() -> CGFloat {
 		return 0.5
 	}
 }

@@ -46,7 +46,7 @@ public extension UILongPressGestureRecognizer {
     }
 
     @objc
-    dynamic private func longPressed(_ gesture: UILongPressGestureRecognizer) {
+    private dynamic func longPressed(_ gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
         case .began:
             lastLocation = gesture.location(in: view)

@@ -268,16 +268,16 @@ open class SlideController: UIViewController {
 		self.rightViewController = rightViewController
 	}
 
-	required public init?(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		self.centerViewController = UIViewController()
 	    super.init(coder: aDecoder)
 	}
 
-	open override var shouldAutomaticallyForwardAppearanceMethods: Bool {
+	override open var shouldAutomaticallyForwardAppearanceMethods: Bool {
 		return false
 	}
 
-	open override func viewWillAppear(_ animated: Bool) {
+	override open func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
 		switch state {
@@ -291,7 +291,7 @@ open class SlideController: UIViewController {
 		centerViewController.beginAppearanceTransition(true, animated: animated)
 	}
 
-	open override func viewDidAppear(_ animated: Bool) {
+	override open func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
 		switch state {
@@ -305,7 +305,7 @@ open class SlideController: UIViewController {
 		centerViewController.endAppearanceTransition()
 	}
 
-	open override func viewWillDisappear(_ animated: Bool) {
+	override open func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
 		super.viewWillAppear(animated)
@@ -320,7 +320,7 @@ open class SlideController: UIViewController {
 		centerViewController.beginAppearanceTransition(false, animated: animated)
 	}
 
-	open override func viewDidDisappear(_ animated: Bool) {
+	override open func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 
 		switch state {
@@ -334,7 +334,7 @@ open class SlideController: UIViewController {
 		centerViewController.endAppearanceTransition()
 	}
 
-	open override func viewDidLoad() {
+	override open func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.white
 
