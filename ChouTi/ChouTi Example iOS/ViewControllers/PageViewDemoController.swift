@@ -13,7 +13,7 @@ class PageViewDemoController: UIViewController {
 
 	let pageViewController = PageViewController()
     let viewControllers: [UIViewController] = {
-        return [0, 1, 2, 3].map { DummyViewController(label: "vc\($0)") }
+        [0, 1, 2, 3].map { DummyViewController(label: "vc\($0)") }
     }()
 
     override func viewDidLoad() {

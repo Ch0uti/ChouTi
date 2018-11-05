@@ -12,7 +12,7 @@ import Foundation
 struct IssuesSection: TableViewSectionType {
     var headerTitle: String? = "Issues"
     var rows: [TableViewRowType] = {
-        return [
+        [
             TableViewRow(title: "Issue: `layoutMarginsGuide`",
                          subtitle: "layoutMarginsGuide.topAnchor is not same as .TopMargin",
                          cellSelectAction: { indexPath, cell, tableView -> Void in
