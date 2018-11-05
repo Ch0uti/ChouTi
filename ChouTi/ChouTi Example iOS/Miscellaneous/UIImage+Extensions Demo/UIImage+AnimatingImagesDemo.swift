@@ -55,7 +55,7 @@ class UIImage_AnimatingImagesDemoViewController: UIViewController {
 
         // Croppped
         croppedBearFrames = bearFrames.compactMap {
-            return $0.imageCroppedWithRect(CGRect(
+            $0.imageCroppedWithRect(CGRect(
                 x: $0.size.width * 0.0,
                 y: $0.size.height * 0.25,
                 width: $0.size.width * 0.3,

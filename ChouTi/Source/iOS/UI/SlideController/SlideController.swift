@@ -236,7 +236,7 @@ open class SlideController: UIViewController {
 	}
 
 	private lazy var statusBarBackgroundView: UIView = {
-		return UIView(frame: UIApplication.shared.statusBarFrame)
+        UIView(frame: UIApplication.shared.statusBarFrame)
 	}()
 
 	/**

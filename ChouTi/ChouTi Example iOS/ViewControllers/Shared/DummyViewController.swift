@@ -56,12 +56,12 @@ class DummyViewController: UIViewController {
                 TableViewRow(title: ".Value1 Cell",
                              subtitle: "Detail Text",
                              cellInitialization: { indexPath, tableView in
-                                return tableView.dequeueReusableCell(withClass: TableViewCellValue1.self, forIndexPath: indexPath)
+                                tableView.dequeueReusableCell(withClass: TableViewCellValue1.self, forIndexPath: indexPath)
                 }),
                 TableViewRow(title: ".Value2 Cell",
                              subtitle: "Detail Text",
                              cellInitialization: { indexPath, tableView in
-                                return tableView.dequeueReusableCell(withClass: TableViewCellValue2.self, forIndexPath: indexPath)
+                                tableView.dequeueReusableCell(withClass: TableViewCellValue2.self, forIndexPath: indexPath)
                 }),
                 TableViewRow(title: "Default Cell",
                              subtitle: "By default Cell Style is .Subtitle"

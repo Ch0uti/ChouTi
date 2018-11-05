@@ -13,7 +13,7 @@ struct MiscellaneousSection: TableViewSectionType {
     var headerTitle: String? = "Miscellaneous"
 
     var rows: [TableViewRowType] = {
-        return [
+        [
             TableViewRow(title: "Drop Presenting Animator",
                          subtitle: "Path style drop down presenting",
                          cellSelectAction: { indexPath, cell, tableView -> Void in

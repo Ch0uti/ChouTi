@@ -12,7 +12,7 @@ import UIKit
 class TableViewSectionRowExtensionDemoViewController: UIViewController {
 
     let tableView = UITableView(frame: CGRect.zero, style: {
-        return (Bool.random() ? .grouped : .plain) }()
+        (Bool.random() ? .grouped : .plain) }()
     )
 
     override func viewDidLoad() {
@@ -42,7 +42,7 @@ class TableViewSectionRowExtensionDemoViewController: UIViewController {
                     TableViewRow(title: "Cell with .Value2 Style",
                                  subtitle: "Detail Text",
                                  cellInitialization: { _, _ in
-                                    return self.tableView.dequeueReusableCell(withIdentifier: TableViewCellValue2.identifier())!
+                                    self.tableView.dequeueReusableCell(withIdentifier: TableViewCellValue2.identifier())!
                     }),
                     TableViewRow(title: "Cell with default Style (.Subtitle Style)",
                                  subtitle: "By default Cell Style is .Subtitle"

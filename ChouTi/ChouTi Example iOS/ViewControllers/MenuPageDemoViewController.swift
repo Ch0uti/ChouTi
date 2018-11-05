@@ -12,7 +12,7 @@ import UIKit
 class MenuPageDemoViewController: UIViewController {
 
     let viewControllers: [UIViewController] = {
-        return [0, 1, 2, 3, 4, 5].map { DummyViewController(label: "vc\($0)") }
+        [0, 1, 2, 3, 4, 5].map { DummyViewController(label: "vc\($0)") }
     }()
 
 	let menuPageViewController = MenuPageViewController()

@@ -12,7 +12,7 @@ import Foundation
 struct UITestsSection: TableViewSectionType {
     var headerTitle: String? = "UI Tests"
     var rows: [TableViewRowType] = {
-        return [
+        [
             TableViewRow(title: "TableViewCell Selection Action Test",
                          cellSelectAction: { indexPath, cell, tableView -> Void in
                             // Test accessing tableView
@@ -32,8 +32,7 @@ struct UITestsSection: TableViewSectionType {
                             cell.addSubview(label)
                             label.constrain(.centerY, equalTo: .centerY, ofView: cell)
                             label.constrain(.trailing, equalTo: .trailing, ofView: cell, constant: -16.0)
-            }
-            )
+            })
         ]
     }()
 }

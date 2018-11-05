@@ -13,7 +13,7 @@ struct ViewsSection: TableViewSectionType {
     var headerTitle: String? = "Views"
 
     var rows: [TableViewRowType] = {
-        return [
+        [
             TableViewRow(title: "Button",
                          subtitle: "Different Button Styles",
                          cellSelectAction: { indexPath, cell, tableView in
