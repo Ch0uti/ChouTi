@@ -29,7 +29,9 @@ public extension Dictionary {
 	///   - right: right dictionary
 	/// - Returns: Merged dictionary, existing keys in left dictionary is overrided by right dictionary
     static func + (left: [Key: Value], right: [Key: Value]?) -> [Key: Value] {
-		guard let right = right else { return left }
+		guard let right = right else {
+            return left
+        }
 		return left.merge(with: right)
 	}
 
@@ -39,7 +41,9 @@ public extension Dictionary {
 	///   - left: left dictionary
 	///   - right: right dictionary
     static func += (left: inout [Key: Value], right: [Key: Value]?) {
-		guard let right = right else { return }
+		guard let right = right else {
+            return
+        }
 		left.merged(with: right)
 	}
 }

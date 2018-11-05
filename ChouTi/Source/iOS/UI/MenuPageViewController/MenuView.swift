@@ -216,7 +216,9 @@ open class MenuView: UIView {
 	}
 
 	open func setSelectedIndex(_ index: Int, animated: Bool) {
-		if _selectedIndex == index { return }
+		if _selectedIndex == index {
+            return
+        }
 		_selectedIndex = index
 //		switch scrollingOption {
 //		case .None:
@@ -233,11 +235,17 @@ open class MenuView: UIView {
 	}
 
 	override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-		guard let change = change as? [NSKeyValueChangeKey: NSValue] else { return }
+		guard let change = change as? [NSKeyValueChangeKey: NSValue] else {
+            return
+        }
 		if object as? UICollectionView === menuCollectionView {
 			if keyPath == "contentSize" {
-				guard let oldContentSize = change[NSKeyValueChangeKey.oldKey]?.cgSizeValue else { return }
-				guard let newContentSize = change[NSKeyValueChangeKey.newKey]?.cgSizeValue else { return }
+				guard let oldContentSize = change[NSKeyValueChangeKey.oldKey]?.cgSizeValue else {
+                    return
+                }
+				guard let newContentSize = change[NSKeyValueChangeKey.newKey]?.cgSizeValue else {
+                    return
+                }
 				// If this is the first time size changed, which means view firstly appears
 				if oldContentSize == CGSize.zero && newContentSize != CGSize.zero {
 					// In this case, update content size
@@ -331,7 +339,9 @@ extension MenuView: UIScrollViewDelegate {
 
 public extension MenuView {
 	func scrollWithSelectedIndex(_ index: Int, withOffsetPercent percent: CGFloat = 0.0, animated: Bool = false, ignoreAutoScrollingEnabled: Bool = false) {
-		if index < 0 || index >= dataSource?.numberOfMenusInMenuView(self) { return }
+		if index < 0 || index >= dataSource?.numberOfMenusInMenuView(self) {
+            return
+        }
 		let targetContentOffset = contentOffsetForIndex(index, offsetPercent: percent, ignoreAutoScrollingEnabled: ignoreAutoScrollingEnabled)
 		menuCollectionView.setContentOffset(targetContentOffset, animated: animated)
 	}

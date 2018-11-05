@@ -72,7 +72,9 @@ open class MenuPageViewController: UIViewController {
 	}
 
 	open func setSelectedIndex(_ index: Int, animated: Bool, completion: ((Bool) -> Void)? = nil) {
-		if _selectedIndex == index { return }
+		if _selectedIndex == index {
+            return
+        }
 		_selectedIndex = index
 
 		isUpdatingSelectedIndex = true

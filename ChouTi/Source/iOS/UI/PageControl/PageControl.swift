@@ -43,7 +43,9 @@ open class PageControl: UIControl {
     /// Page indicator size/
     open var pageIndicatorSize: CGFloat = 7.0 {
         didSet {
-            if oldValue == pageIndicatorSize { return }
+            if oldValue == pageIndicatorSize {
+                return
+            }
             currentDot.bounds = CGRect(x: 0, y: 0, width: pageIndicatorSize, height: pageIndicatorSize)
             currentDot.cornerRadius = pageIndicatorSize / 2.0
 
@@ -62,7 +64,9 @@ open class PageControl: UIControl {
     /// Spacings between two indicators.
     open var pageIndicatorSpacing: CGFloat = 9.0 {
         didSet {
-            if oldValue == pageIndicatorSpacing { return }
+            if oldValue == pageIndicatorSpacing {
+                return
+            }
             if setCurrentPageIsInProgress {
                 set(currentPage: _currentPage, progress: 1.0, animated: true)
             }
@@ -119,7 +123,9 @@ open class PageControl: UIControl {
 
     override open func layoutSubviews() {
         super.layoutSubviews()
-        guard numberOfPages > 0 else { return }
+        guard numberOfPages > 0 else {
+            return
+        }
 
         for (index, dot) in dots.enumerated() {
             dot.position = center(forIndex: index)
@@ -127,7 +133,9 @@ open class PageControl: UIControl {
         }
 
         // if current page index is being updated in progress, avoid updating position
-        if setCurrentPageIsInProgress { return }
+        if setCurrentPageIsInProgress {
+            return
+        }
         currentDot.position = center(forIndex: _currentPage)
         currentDot.removeAllAnimations()
     }
@@ -162,7 +170,9 @@ extension PageControl {
 
         // update scroll view content offset
         if let scrollView = scrollView {
-            guard scrollView.bounds.width > 0 else { return }
+            guard scrollView.bounds.width > 0 else {
+                return
+            }
             let contentOffset = CGPoint(x: CGFloat(currentPage) * scrollView.bounds.width, y: scrollView.contentOffset.y)
 
             // updating currentPage will also update scrollView's contentOffset, however, we don't want the observation cause setting current page again. Thus, pasue observation for the moment.
@@ -192,7 +202,9 @@ extension PageControl {
         // sanitize new current page
         let currentPage = currentPage.normalize(0, numberOfPages - 1)
 
-        if self._currentPage == currentPage { return }
+        if self._currentPage == currentPage {
+            return
+        }
 
         // begin frame, end frame
         let fromPosition = center(forIndex: self._currentPage)
@@ -256,7 +268,9 @@ extension PageControl {
      - parameter scrollView: scroll view
      */
     private func update(withScrollView scrollView: UIScrollView) {
-        if scrollView.width == 0 { return }
+        if scrollView.width == 0 {
+            return
+        }
 
         let offset = scrollView.contentOffset.x
         let progress = (offset - CGFloat(_currentPage) * scrollView.width) / scrollView.width
@@ -273,7 +287,9 @@ extension PageControl {
 // MARK: - Touch Handling
 extension PageControl {
     override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
-        guard let location = touch?.location(in: self) else { return }
+        guard let location = touch?.location(in: self) else {
+            return
+        }
         let currentDotCenterX = currentDot.frame.origin.x + pageIndicatorSize / 2.0
 
         if location.x - currentDotCenterX > pageIndicatorSpacing / 2.0 {
@@ -292,7 +308,9 @@ extension PageControl {
      Setup unhighlighted dots and current dot
      */
     private func setupDots() {
-        guard numberOfPages > 0 else { return }
+        guard numberOfPages > 0 else {
+            return
+        }
 
         // Setup current dot
         if currentDot.superlayer == nil {

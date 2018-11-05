@@ -391,8 +391,12 @@ extension SlideController {
 	Toggle left view controller
 	*/
 	public func toggleLeftViewController() {
-		if leftViewController == nil { return }
-		if isAnimating { return }
+		if leftViewController == nil {
+            return
+        }
+		if isAnimating {
+            return
+        }
 		let leftViewControllerShouldExapnd = (state != .leftExpanded)
 		if leftViewControllerShouldExapnd {
 			beginViewController(leftViewController, appearanceTransition: true, animated: animated)
@@ -433,8 +437,12 @@ extension SlideController {
 	Toggle right view controller
 	*/
 	public func toggleRightViewController() {
-		if rightViewController == nil { return }
-		if isAnimating { return }
+		if rightViewController == nil {
+            return
+        }
+		if isAnimating {
+            return
+        }
 		let rightViewControllerShouldExapnd = (state != .rightExpanded)
 		if rightViewControllerShouldExapnd {
 			beginViewController(rightViewController, appearanceTransition: true, animated: animated)
