@@ -17,18 +17,6 @@ begin
   raise "You must have bundler. `gem install bundler`" if $?.exitstatus != 0
 end
 
-#-------------------------------------------------------------------------------
-# Build environment
-#-------------------------------------------------------------------------------
-desc "Setup the build tools environment."
-task :setup do
-  puts "* Installing Build Tools"
-  sh "bundle install"
-end
-
-#-------------------------------------------------------------------------------
-# Rake Tasks
-#-------------------------------------------------------------------------------
 task :default do
   # Check the build Environment
   `bundle check > /dev/null`
@@ -40,67 +28,96 @@ task :default do
   sh "open ./ChouTi.xcworkspace"
 end
 
-desc "Build for Debug and Release"
+#-------------------------------------------------------------------------------
+# Setup Environment
+#-------------------------------------------------------------------------------
+
+desc "Setup the build tools environment."
+task :setup do
+  puts "* Installing Build Tools"
+  sh "bundle install"
+end
+
+#-------------------------------------------------------------------------------
+# Development Tasks
+#-------------------------------------------------------------------------------
+
+desc "Build for Debug and Release."
 task :build => [:build_debug, :build_release]
 
-desc "Build for Debug"
+desc "Build for Debug."
 task :build_debug do
   sh "xcodebuild clean build -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | xcpretty"
 end
 
-desc "Build for Release"
+desc "Build for Release."
 task :build_release do
   sh "xcodebuild clean build -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Release | xcpretty"
 end
 
-desc "Run tests"
+desc "Run tests."
 task :test => [:test_framework, :test_ui]
 
-desc "Run framework tests"
+desc "Run framework tests."
 task :test_framework do
   sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | xcpretty"
 end
 
-desc "Run UI tests"
+desc "Run UI tests."
 task :test_ui do
   sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_EXAMPLE_SCHEME}' -destination '#{DESTINATION}' -configuration Release | xcpretty"
 end
 
-desc "Lint pod locally"
+desc "Lint Swift code."
+task :lint do
+  sh "Pods/SwiftLint/swiftlint"
+end
+
+desc "Correct Swift code."
+task :autocorrect do
+  sh "Pods/SwiftLint/swiftlint autocorrect"
+end
+
+#-------------------------------------------------------------------------------
+# Publish Pod
+#-------------------------------------------------------------------------------
+
+desc "Lint pod locally."
 task :pod_lib_lint do
   sh "pod cache clean --all --verbose"
   sh "pod lib lint ../ChouTi.podspec --verbose"
 end
 
-desc "Lint pod remotely"
+desc "Lint pod remotely."
 task :pod_spec_lint do
   sh "pod cache clean --all --verbose"
   sh "pod spec lint ../ChouTi.podspec --verbose"
 end
 
-desc "Publish pod"
+desc "Publish pod."
 task :pod_publish do
   sh "pod cache clean --all --verbose"
   sh "pod trunk push ../ChouTi.podspec --verbose"
 end
 
 #-------------------------------------------------------------------------------
-# Fetch Resources
+# Update Dependencies
 #-------------------------------------------------------------------------------
-desc "Fetch all dependencies and libraries"
-task :fetch => [:fetch_submodules, :fetch_pods]
 
-desc "Fetch pods."
-task :fetch_pods  do
+desc "Update all dependencies and libraries."
+task :update => [:update_submodules, :update_pods]
+
+desc "Update git submodules."
+task :update_submodules do
+  puts "*** Pulling Git submodules ***".colorize(:light_blue)
+  sh "git submodule update --init --recursive"
+end
+
+desc "Update pods with repo update."
+task :update_pods  do
     puts "*** Installing CocoaPods dependencies ***".colorize(:light_blue)
     sh "pod repo update"
     sh "pod install"
-end
-
-desc "Fetch git submodules."
-task :fetch_submodules do
-  puts "*** Pulling Git submodules ***".colorize(:light_blue)
-  sh "git submodule update --init --recursive"
 end
 
 #-------------------------------------------------------------------------------
@@ -112,7 +129,7 @@ task :clean => [:clean_pods, :clean_xcode]
 
 desc "Clean pods."
 task :clean_pods do
-  puts "*** Cleaning Fetched Cocoapods ***".colorize(:light_blue)
+  puts "*** Cleaning Fetched CocoaPods ***".colorize(:light_blue)
   sh "rm -rf Pods"
 
   if File.file?('Podfile.lock') == true

@@ -81,14 +81,22 @@ public extension Date {
 		var components = calendar.dateComponents([.era, .year, .month, .day, .hour, .minute, .second, .nanosecond], from: self)
 
 		switch component {
-		case .era: components.era = newValue
-		case .year: components.year = newValue
-		case .month: components.month = newValue
-		case .day: components.day = newValue
-		case .hour: components.hour = newValue
-		case .minute: components.minute = newValue
-		case .second: components.second = newValue
-		case .nanosecond: components.nanosecond = newValue
+		case .era:
+            components.era = newValue
+		case .year:
+            components.year = newValue
+		case .month:
+            components.month = newValue
+		case .day:
+            components.day = newValue
+		case .hour:
+            components.hour = newValue
+		case .minute:
+            components.minute = newValue
+		case .second:
+            components.second = newValue
+		case .nanosecond:
+            components.nanosecond = newValue
 		default:
 			NSLog("Error: unsupported calendar component: \(component)")
 		}

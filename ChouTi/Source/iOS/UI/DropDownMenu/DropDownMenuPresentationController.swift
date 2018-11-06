@@ -34,10 +34,13 @@ class DropDownMenuPresentationController: OverlayPresentationController {
         // Note: wrapper view size alraedy has base constraints
         let frame = dropDownMenu.frameRectInView(containerView)
 
-        let wrapperBaseLeadingConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView, attribute: .leading,
+        let wrapperBaseLeadingConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView,
+                                                              attribute: .leading,
                                                               relatedBy: .equal,
-                                                              toItem: containerView, attribute: .leading,
-                                                              multiplier: 1.0, constant: frame.origin.x)
+                                                              toItem: containerView,
+                                                              attribute: .leading,
+                                                              multiplier: 1.0,
+                                                              constant: frame.origin.x)
         wrapperBaseLeadingConstraint.priority = UILayoutPriority(800)
         wrapperBaseLeadingConstraint.isActive = true
 

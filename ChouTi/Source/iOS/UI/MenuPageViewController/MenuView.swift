@@ -405,9 +405,10 @@ extension MenuView {
 		targetOffsetX -= spacingsBetweenMenus / 2.0
 
 		switch scrollingOption {
-		case .none: break
-		case .leading: break
-		case .center: targetOffsetX -= (bounds.width - menuWidthForIndex(index) - spacingsBetweenMenus) / 2.0
+		case .none, .leading:
+            break
+		case .center:
+            targetOffsetX -= (bounds.width - menuWidthForIndex(index) - spacingsBetweenMenus) / 2.0
 		}
 
 		return CGPoint(x: targetOffsetX, y: 0)
@@ -416,8 +417,8 @@ extension MenuView {
 	public func closestIndexForOffsetX(_ offsetX: CGFloat) -> Int {
         var offsetX = offsetX
 		switch scrollingOption {
-		case .none: break
-		case .leading: break
+		case .none, .leading:
+            break
 		case .center:
 			// FIXME: calculation is bad
 			offsetX += (bounds.width - menuWidthForIndex(0)) / 2.0

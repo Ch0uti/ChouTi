@@ -19,13 +19,17 @@ opt_in_rules:
   - file_header
   - file_name
   - first_where
+  - force_unwrapping
   - joined_default_parameter
   - identical_operands
   - implicit_return
+  - legacy_random
   - let_var_whitespace
   - literal_expression_end_indentation
   - lower_acl_than_parent
+  - missing_docs
   - modifier_order
+  - multiline_arguments
   - nimble_operator
   - number_separator
   - object_literal
@@ -36,20 +40,26 @@ opt_in_rules:
   - private_action
   - private_outlet
   - prohibited_super_call
+  - protocol_property_accessors_order
   - quick_discouraged_call
   - quick_discouraged_focused_test
   - quick_discouraged_pending_test
   - redundant_nil_coalescing
   - redundant_type_annotation
+  - required_enum_case
   - single_test_class
   - sorted_first_last
   - sorted_imports
+  - static_operator
+  - switch_case_on_newline
+  - toggle_bool
   - unavailable_function
   - unneeded_parentheses_in_closure_argument
   - untyped_error_in_catch
+  - unused_import
+  - unused_private_declaration
   - vertical_parameter_alignment_on_call
   - yoda_condition
-  - force_unwrapping
 
 disabled_rules:
   - force_cast
@@ -70,6 +80,8 @@ disabled_rules:
   - file_header
   - block_based_kvo
   - force_unwrapping
+  - missing_docs
+  - multiline_arguments
 
 excluded:
   - Carthage
