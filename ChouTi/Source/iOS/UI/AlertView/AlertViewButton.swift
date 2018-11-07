@@ -42,6 +42,7 @@ open class AlertViewButton: Button {
 
     override private init(frame: CGRect) {
         super.init(frame: frame)
+
         commonInit()
     }
 

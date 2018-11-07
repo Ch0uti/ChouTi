@@ -20,11 +20,13 @@ open class AutoLinesLabel: UILabel {
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
+
         commonInit()
     }
 
     public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+
 		commonInit()
     }
 
@@ -36,6 +38,7 @@ open class AutoLinesLabel: UILabel {
 
     override open func layoutSubviews() {
         super.layoutSubviews()
+
         let targetWidth = bounds.width
 		// Once label's width is changed, update preferredMaxLayoutWidth, this will lead recall textRectForBounds
         if self.preferredMaxLayoutWidth != targetWidth {

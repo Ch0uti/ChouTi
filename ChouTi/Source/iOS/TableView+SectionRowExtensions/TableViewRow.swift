@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 public struct TableViewRow: TableViewRowType {
 	public var title: String?

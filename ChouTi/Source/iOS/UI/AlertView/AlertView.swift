@@ -110,8 +110,6 @@ open class AlertView: UIView {
      */
     public convenience init(title: String?, message: String?) {
         self.init()
-
-        // defer
         defer {
             self.title = title
             self.message = message
@@ -120,11 +118,13 @@ open class AlertView: UIView {
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
+
         commonInit()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         commonInit()
     }
 

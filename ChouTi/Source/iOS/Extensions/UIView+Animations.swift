@@ -26,7 +26,7 @@ public extension UIView {
 		}
 	}
 
-    // swiftlint:disable function_parameter_count
+    // swiftlint:disable:next function_parameter_count
 	func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
 		if condition {
 			UIView.animate(withDuration: duration, delay: delay, options: options, animations: animations, completion: completion)
@@ -35,9 +35,8 @@ public extension UIView {
 			completion?(false)
 		}
 	}
-    // swiftlint:enable function_parameter_count
 
-    // swiftlint:disable function_parameter_count
+    // swiftlint:disable:next function_parameter_count
 	func animateIf(_ condition: Bool, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIView.AnimationOptions, animations: @escaping () -> Void, completion: ((Bool) -> Void)?) {
 		if condition {
 			UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity, options: options, animations: animations, completion: completion)
@@ -46,5 +45,4 @@ public extension UIView {
 			completion?(false)
 		}
 	}
-    // swiftlint:enable function_parameter_count
 }

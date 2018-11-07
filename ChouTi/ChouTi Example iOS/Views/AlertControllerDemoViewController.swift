@@ -46,16 +46,16 @@ class AlertControllerDemoViewController: UIViewController {
         let customizedAlertButton = Button()
         customizedAlertButton.clipsToBounds = false
 
-        // setup title
+        // Setup title
         customizedAlertButton.setTitle("Present Customized Alert", for: .normal)
         customizedAlertButton.setTitleColor(.white, for: .normal)
         customizedAlertButton.setTitleColor(UIColor(white: 1.0, alpha: 0.7), for: .highlighted)
 
-        // setup color/cornerRadius
+        // Setup color/cornerRadius
         customizedAlertButton.backgroundColor = ColorPalette.lightSeaGreenColor
         customizedAlertButton.layer.cornerRadius = 44 / 2
 
-        // setup shadow
+        // Setup shadow
         customizedAlertButton.setShadowColor(ColorPalette.lightSeaGreenColor, for: .normal)
         customizedAlertButton.setShadowOpacity(0.5, for: .normal)
         customizedAlertButton.setShadowOffset(CGSize(width: 0, height: 7), for: .normal)

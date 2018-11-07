@@ -13,6 +13,8 @@
 		020665091D5FB0BE002A7E2A /* ChouTi_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665081D5FB0BE002A7E2A /* ChouTi_iOSUITests.swift */; };
 		020665141D5FCD05002A7E2A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665131D5FCD05002A7E2A /* MainViewController.swift */; };
 		0206651A1D5FD37E002A7E2A /* UITestsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020665191D5FD37E002A7E2A /* UITestsSection.swift */; };
+		0207669B21916DDE0076E37C /* SlideState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207669A21916DDD0076E37C /* SlideState.swift */; };
+		0207669D219170290076E37C /* SlideController+UIGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207669C219170290076E37C /* SlideController+UIGestureRecognizerDelegate.swift */; };
 		022772021D622FC600D9CAE7 /* ViewsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772011D622FC600D9CAE7 /* ViewsSection.swift */; };
 		022772061D62387E00D9CAE7 /* TableViewCellsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022772051D62387E00D9CAE7 /* TableViewCellsDemoVC.swift */; };
 		022772B31D6258C900D9CAE7 /* ChouTi.h in Headers */ = {isa = PBXBuildFile; fileRef = 022772151D6258C900D9CAE7 /* ChouTi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -57,7 +59,6 @@
 		025569F1218A50830020D032 /* RandomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0255695B218A50830020D032 /* RandomImageView.swift */; };
 		025569F2218A50830020D032 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0255695D218A50830020D032 /* PageControl.swift */; };
 		025569F3218A50830020D032 /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0255695F218A50830020D032 /* MenuPageViewController.swift */; };
-		025569F4218A50830020D032 /* PgaeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556960218A50830020D032 /* PgaeViewController.swift */; };
 		025569F5218A50830020D032 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556961218A50830020D032 /* MenuView.swift */; };
 		025569F6218A50830020D032 /* LoadingMorphingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556963218A50830020D032 /* LoadingMorphingLabel.swift */; };
 		025569F7218A50830020D032 /* CIImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556965218A50830020D032 /* CIImageFilter.swift */; };
@@ -219,6 +220,8 @@
 		025C91CA1D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91C81D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift */; };
 		025C91CB1D64053F000C54D8 /* IssuesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025C91C91D64053F000C54D8 /* IssuesSection.swift */; };
 		028FC2FD1EE6021F005E25BC /* ButtonsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */; };
+		02A1DCB921925598008F162F /* PgaeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1DCB721925598008F162F /* PgaeViewController.swift */; };
+		02A1DCBA21925598008F162F /* PgaeViewController+UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1DCB821925598008F162F /* PgaeViewController+UIScrollViewDelegate.swift */; };
 		02A245641EB2932300A15837 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A245631EB2932300A15837 /* Platform.swift */; };
 		02DAEC861DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DAEC851DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift */; };
 		02FFC4DF1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FFC4DE1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift */; };
@@ -256,6 +259,8 @@
 		0206650A1D5FB0BE002A7E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		020665131D5FCD05002A7E2A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		020665191D5FD37E002A7E2A /* UITestsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestsSection.swift; sourceTree = "<group>"; };
+		0207669A21916DDD0076E37C /* SlideState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideState.swift; sourceTree = "<group>"; };
+		0207669C219170290076E37C /* SlideController+UIGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SlideController+UIGestureRecognizerDelegate.swift"; sourceTree = "<group>"; };
 		022772011D622FC600D9CAE7 /* ViewsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewsSection.swift; sourceTree = "<group>"; };
 		022772051D62387E00D9CAE7 /* TableViewCellsDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellsDemoVC.swift; sourceTree = "<group>"; };
 		022772151D6258C900D9CAE7 /* ChouTi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChouTi.h; sourceTree = "<group>"; };
@@ -304,7 +309,6 @@
 		0255695B218A50830020D032 /* RandomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomImageView.swift; sourceTree = "<group>"; };
 		0255695D218A50830020D032 /* PageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		0255695F218A50830020D032 /* MenuPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
-		02556960218A50830020D032 /* PgaeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PgaeViewController.swift; sourceTree = "<group>"; };
 		02556961218A50830020D032 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		02556963218A50830020D032 /* LoadingMorphingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingMorphingLabel.swift; sourceTree = "<group>"; };
 		02556965218A50830020D032 /* CIImageFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIImageFilter.swift; sourceTree = "<group>"; };
@@ -467,6 +471,8 @@
 		025C91C91D64053F000C54D8 /* IssuesSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesSection.swift; sourceTree = "<group>"; };
 		027B155520B4D89000D48048 /* LTMorphingLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LTMorphingLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsDemoViewController.swift; sourceTree = "<group>"; };
+		02A1DCB721925598008F162F /* PgaeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PgaeViewController.swift; sourceTree = "<group>"; };
+		02A1DCB821925598008F162F /* PgaeViewController+UIScrollViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PgaeViewController+UIScrollViewDelegate.swift"; sourceTree = "<group>"; };
 		02A245631EB2932300A15837 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		02DAEC851DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue_IncorrectTableViewCellContentViewWidth.swift; sourceTree = "<group>"; };
 		02FFC4DE1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue_PreservesSuperviewLayoutMargins.swift; sourceTree = "<group>"; };
@@ -823,6 +829,8 @@
 			isa = PBXGroup;
 			children = (
 				0255694D218A50830020D032 /* SlideController.swift */,
+				0207669A21916DDD0076E37C /* SlideState.swift */,
+				0207669C219170290076E37C /* SlideController+UIGestureRecognizerDelegate.swift */,
 			);
 			path = SlideController;
 			sourceTree = "<group>";
@@ -883,7 +891,7 @@
 			isa = PBXGroup;
 			children = (
 				0255695F218A50830020D032 /* MenuPageViewController.swift */,
-				02556960218A50830020D032 /* PgaeViewController.swift */,
+				02A1DCB621925598008F162F /* PgaeViewController */,
 				02556961218A50830020D032 /* MenuView.swift */,
 			);
 			path = MenuPageViewController;
@@ -1215,6 +1223,15 @@
 				02DAEC851DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift */,
 			);
 			path = Issues;
+			sourceTree = "<group>";
+		};
+		02A1DCB621925598008F162F /* PgaeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				02A1DCB721925598008F162F /* PgaeViewController.swift */,
+				02A1DCB821925598008F162F /* PgaeViewController+UIScrollViewDelegate.swift */,
+			);
+			path = PgaeViewController;
 			sourceTree = "<group>";
 		};
 		6BF21BC51D6EE92CC6CF3805 /* Pods */ = {
@@ -1734,6 +1751,7 @@
 				025569FF218A50830020D032 /* Animator.swift in Sources */,
 				025569F9218A50830020D032 /* TableViewSectionType.swift in Sources */,
 				02556A32218A50830020D032 /* UIColor+Extensions.swift in Sources */,
+				02A1DCBA21925598008F162F /* PgaeViewController+UIScrollViewDelegate.swift in Sources */,
 				02556A0A218A50830020D032 /* DelayedTask.swift in Sources */,
 				025569ED218A50830020D032 /* AlertView.swift in Sources */,
 				02556A38218A50830020D032 /* UIScreen+Extensions.swift in Sources */,
@@ -1757,6 +1775,7 @@
 				02556A41218A50830020D032 /* UIView+Geometry.swift in Sources */,
 				02556A13218A50830020D032 /* CodeSnippet_UITableView.swift in Sources */,
 				02556A22218A50830020D032 /* CodeSnippet_ViewControllerContainment.swift in Sources */,
+				0207669B21916DDE0076E37C /* SlideState.swift in Sources */,
 				025569DC218A50830020D032 /* TitleContentTableViewCell.swift in Sources */,
 				02556A46218A50830020D032 /* UITableViewCell+Extensions.swift in Sources */,
 				02556A2F218A50830020D032 /* UIFont+Extensions.swift in Sources */,
@@ -1791,6 +1810,7 @@
 				025569D1218A50830020D032 /* DropDownMenuAnimator.swift in Sources */,
 				02556A2C218A50830020D032 /* DateFormatter+Extensions.swift in Sources */,
 				025569E3218A50830020D032 /* CollectionViewCell.swift in Sources */,
+				0207669D219170290076E37C /* SlideController+UIGestureRecognizerDelegate.swift in Sources */,
 				025569D8218A50830020D032 /* TableViewCellSubtitle.swift in Sources */,
 				02556A08218A50830020D032 /* Operators.swift in Sources */,
 				025569FC218A50830020D032 /* TableViewRow.swift in Sources */,
@@ -1832,7 +1852,6 @@
 				02556A1E218A50830020D032 /* CodeSnippet_UIViewController.swift in Sources */,
 				02556A4E218A50830020D032 /* Queue.swift in Sources */,
 				02556A18218A50830020D032 /* CodeSnippet_ImageAssets.swift in Sources */,
-				025569F4218A50830020D032 /* PgaeViewController.swift in Sources */,
 				02556A29218A50830020D032 /* DispatchQueue+Extensions.swift in Sources */,
 				02556A4C218A50830020D032 /* CGRect+Extensions.swift in Sources */,
 				02556A1A218A50830020D032 /* CodeSnippet_UITableViewCell.swift in Sources */,
@@ -1854,6 +1873,7 @@
 				02556A2B218A50830020D032 /* UIView+Extensions.swift in Sources */,
 				02556A27218A50830020D032 /* UIImageView+Extensions.swift in Sources */,
 				02556A04218A50830020D032 /* Constants.swift in Sources */,
+				02A1DCB921925598008F162F /* PgaeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

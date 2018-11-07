@@ -182,7 +182,7 @@ public extension Task {
                 task.task()
                 task._executed = true
 
-                // dispatch next task if needed
+                // Dispatch next task if needed
                 if let nextTask = task.nextTask {
                     dispatch(nextTask)
                 }

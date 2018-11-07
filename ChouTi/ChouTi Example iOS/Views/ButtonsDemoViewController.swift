@@ -14,6 +14,7 @@ class ButtonsDemoViewController: UIViewController {
     // MARK: - Init
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
         commonInit()
     }
 
@@ -73,23 +74,23 @@ class ButtonsDemoViewController: UIViewController {
         let blurButton1 = Button()
         blurButton1.clipsToBounds = false
 
-        // setup title
+        // Setup title
         blurButton1.setTitle("Red Blur", for: .normal)
         blurButton1.setTitleColor(ColorPalette.cloudsWhite, for: .normal)
         blurButton1.setTitleColor(ColorPalette.cloudsWhite.withAlphaComponent(0.7), for: .highlighted)
 
-        // setup color
+        // Setup color
         blurButton1.setBackgroundColor(ColorPalette.pomegranateRed, forState: .normal)
         blurButton1.setBackgroundColor(ColorPalette.pomegranateRed.darkerColor(brightnessDecreaseFactor: 0.9), forState: .highlighted)
 
-        // setup corner radius
+        // Setup corner radius
         blurButton1.setCornerRadius(.halfCircle, forState: .normal)
 
-        // setup transform
+        // Setup transform
         blurButton1.setTransform(.identity, forState: .normal)
         blurButton1.setTransform(CGAffineTransform(scaleX: 0.99, y: 0.99), forState: .highlighted)
 
-        // setup shadow
+        // Setup shadow
         blurButton1.setShadowColor(ColorPalette.pomegranateRed, for: .normal)
         blurButton1.setShadowOpacity(0.5, for: .normal)
         blurButton1.setShadowOffset(CGSize(width: 0, height: 7), for: .normal)

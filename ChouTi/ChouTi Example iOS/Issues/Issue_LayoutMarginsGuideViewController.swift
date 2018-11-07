@@ -13,6 +13,7 @@ class Issue_LayoutMarginsGuideViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = UIColor.white
 
         setupViews()

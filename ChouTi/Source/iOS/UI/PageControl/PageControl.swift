@@ -78,7 +78,7 @@ open class PageControl: UIControl {
         }
     }
 
-    /// scrollView the page control binds
+    /// The `UIScrollView` the page control binds
     open weak var scrollView: UIScrollView? {
         didSet {
             if let oldScrollView = oldValue {
@@ -104,11 +104,12 @@ open class PageControl: UIControl {
 
     private let animationDuration: TimeInterval = 0.333
 
-    /// true if current page index is being set in progress.
+    /// `true` if current page index is being set in progress.
     private var setCurrentPageIsInProgress: Bool = false
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
+
         commonInit()
     }
 
@@ -123,6 +124,7 @@ open class PageControl: UIControl {
 
     override open func layoutSubviews() {
         super.layoutSubviews()
+
         guard numberOfPages > 0 else {
             return
         }
@@ -132,7 +134,7 @@ open class PageControl: UIControl {
             dot.removeAllAnimations()
         }
 
-        // if current page index is being updated in progress, avoid updating position
+        // If current page index is being updated in progress, avoid updating position
         if setCurrentPageIsInProgress {
             return
         }
@@ -168,19 +170,19 @@ extension PageControl {
     public func set(currentPage: Int, animated: Bool) {
         set(currentPage: currentPage, progress: 1.0, animated: animated)
 
-        // update scroll view content offset
+        // Update scroll view content offset
         if let scrollView = scrollView {
             guard scrollView.bounds.width > 0 else {
                 return
             }
             let contentOffset = CGPoint(x: CGFloat(currentPage) * scrollView.bounds.width, y: scrollView.contentOffset.y)
 
-            // updating currentPage will also update scrollView's contentOffset, however, we don't want the observation cause setting current page again. Thus, pasue observation for the moment.
+            // Updating currentPage will also update scrollView's contentOffset, however, we don't want the observation cause setting current page again. Thus, pasue observation for the moment.
             scrollViewObserver.pauseObservation = true
             UIView.animate(withDuration: animationDuration, animations: {
                 scrollView.contentOffset = contentOffset
                 }, completion: { [weak self] _ in
-                    // restore the contentOffset observation once animated setting contentOffset ends.
+                    // Restore the contentOffset observation once animated setting contentOffset ends.
                     self?.scrollViewObserver.pauseObservation = false
             })
         }
@@ -199,32 +201,32 @@ extension PageControl {
     }
 
     private func set(currentPage: Int, progress: CGFloat, animated: Bool) {
-        // sanitize new current page
+        // Sanitize new current page
         let currentPage = currentPage.normalize(0, numberOfPages - 1)
 
         if self._currentPage == currentPage {
             return
         }
 
-        // begin frame, end frame
+        // Begin frame, end frame
         let fromPosition = center(forIndex: self._currentPage)
         let targetPosition = center(forIndex: currentPage)
         let toPosition = CGPoint(x: fromPosition.x + (targetPosition.x - fromPosition.x) * progress,
                                  y: fromPosition.y + (targetPosition.y - fromPosition.y) * progress)
 
-        // size
+        // Size
         let indicatorSize = CGSize(width: pageIndicatorSize, height: pageIndicatorSize)
         // 0.75 make the animation cooler
         let distanceBetweenFromPositionToTargetPosition = abs(fromPosition.x - targetPosition.x) * 0.75
         let mostlyExpandedSize = CGSize(width: distanceBetweenFromPositionToTargetPosition + pageIndicatorSize,
                                         height: pageIndicatorSize)
 
-        // progress:   0.0 -> 0.2 -> 0.5 -> 0.7 -> 1.0
-        // size.width: 0.0 -> 0.4 -> 1.0 -> 0.6 -> 0.0 * distance from fromPosition.x to targetPosition.x + indicator size
+        // `progress`:   0.0 -> 0.2 -> 0.5 -> 0.7 -> 1.0
+        // `size.width`: 0.0 -> 0.4 -> 1.0 -> 0.6 -> 0.0 * distance from fromPosition.x to targetPosition.x + indicator size
         let distanceToHalf = abs(progress - 0.5)
         let sizeFactor = 2 * (0.5 - distanceToHalf)
 
-        // update to final state
+        // Update to final state
         currentDot.bounds.size = CGSize(width: distanceBetweenFromPositionToTargetPosition * sizeFactor + pageIndicatorSize, height: pageIndicatorSize)
         currentDot.position = toPosition
 
@@ -238,7 +240,7 @@ extension PageControl {
         }
 
         if animated {
-            // add animations
+            // Add animations
             let sizeAnimation = CAKeyframeAnimation(keyPath: "bounds.size")
             sizeAnimation.values = [NSValue(cgSize: indicatorSize), NSValue(cgSize: mostlyExpandedSize), NSValue(cgSize: indicatorSize)]
             sizeAnimation.keyTimes = [0.0, 0.5, 1.0]

@@ -394,7 +394,7 @@ public extension UIImage {
 		let green: UInt8 = data[offset + 2]
 		let blue: UInt8 = data[offset + 3]
 
-        // dealloc memeory allocated in createBitmapContext
+        // Dealloc memeory allocated in createBitmapContext
         free(data)
 
         let color = UIColor(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: CGFloat(alpha) / 255.0)
@@ -414,17 +414,16 @@ public extension UIImage {
         // Use the generic RGB color space.
         let colorSpace = CGColorSpaceCreateDeviceRGB()
 
-        // Allocate memory for image data. This is the destination in memory
-        // where any drawing to the bitmap context will be rendered.
+        // Allocate memory for image data. This is the destination in memory where any drawing to the bitmap context will be rendered.
         let bitmapData = malloc(bitmapByteCount)
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
         let size = CGSize(width: CGFloat(pixelsWide), height: CGFloat(pixelsHigh))
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        // create bitmap
+        // Create bitmap
         let context = CGContext(data: bitmapData, width: pixelsWide, height: pixelsHigh, bitsPerComponent: 8,
                                 bytesPerRow: bitmapBytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
 
-        // draw the image onto the context
+        // Draw the image onto the context
         let rect = CGRect(x: 0, y: 0, width: pixelsWide, height: pixelsHigh)
         context!.draw(image, in: rect)
 

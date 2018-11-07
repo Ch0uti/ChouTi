@@ -42,7 +42,7 @@ open class DropDownMenu: UIControl {
 		}
 	}
 
-    /// placeholder text when no option is selected
+    /// Placeholder text when no option is selected
 	open var placeholder: String?
 
 	/// Current selected index

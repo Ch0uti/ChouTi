@@ -74,21 +74,25 @@ class DummyViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         print("\(label.text!): viewWillAppear")
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         print("\(label.text!): viewDidAppear")
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
         print("\(label.text!): viewWillDisappear")
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+
         print("\(label.text!): viewDidDisappear")
     }
 }

@@ -7,17 +7,17 @@
 //
 
 // Sample Usage:
-//let <#animator#> = DropPresentingAnimator()
+//    let <#animator#> = DropPresentingAnimator()
 //
-//<#animator#>.animationDuration = 0.75
-//<#animator#>.shouldDismissOnTappingOutsideView = true
-//<#animator#>.presentingViewSize = CGSize(width: ceil(screenWidth * 0.7), height: 160)
-//<#animator#>.overlayViewStyle = .Blurred(UIColor(white: 0.2, alpha: 1.0))
+//    <#animator#>.animationDuration = 0.75
+//    <#animator#>.shouldDismissOnTappingOutsideView = true
+//    <#animator#>.presentingViewSize = CGSize(width: ceil(screenWidth * 0.7), height: 160)
+//    <#animator#>.overlayViewStyle = .Blurred(UIColor(white: 0.2, alpha: 1.0))
 //
-//<#presentedViewController#>.modalPresentationStyle = .Custom
-//<#presentedViewController#>.transitioningDelegate = animator
+//    <#presentedViewController#>.modalPresentationStyle = .Custom
+//    <#presentedViewController#>.transitioningDelegate = animator
 //
-//presentViewController(<#presentedViewController#>, animated: true, completion: nil)
+//    presentViewController(<#presentedViewController#>, animated: true, completion: nil)
 
 import UIKit
 

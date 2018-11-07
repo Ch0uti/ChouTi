@@ -8,8 +8,8 @@
 
 import Foundation
 
-//Ref: [Associated Objects](http://nshipster.com/associated-objects/)
-//Ref: [objc_setAssociatedObject with nil to remove - is policy is ignored](http://stackoverflow.com/questions/19920591/objc-setassociatedobject-with-nil-to-remove-is-policy-checked)
+// Ref: [Associated Objects](http://nshipster.com/associated-objects/)
+// Ref: [objc_setAssociatedObject with nil to remove - is policy is ignored](http://stackoverflow.com/questions/19920591/objc-setassociatedobject-with-nil-to-remove-is-policy-checked)
 
 public extension NSObject {
     private enum zhAssociateObjectKey {
@@ -62,7 +62,7 @@ public extension NSObject {
     public func clearAssociatedObject(forKeyPointer pointer: UnsafeRawPointer? = nil) -> Any? {
         if let pointer = pointer {
             let object = getAssociatedObject(forKeyPointer: pointer)
-            // policy is ignored if new value is nil, thus .OBJC_ASSOCIATION_RETAIN_NONATOMIC doesn't
+            // Policy is ignored if new value is nil, thus .OBJC_ASSOCIATION_RETAIN_NONATOMIC doesn't
             objc_setAssociatedObject(self, pointer, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return object
         } else {

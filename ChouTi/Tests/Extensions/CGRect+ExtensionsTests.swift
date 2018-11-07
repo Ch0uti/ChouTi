@@ -15,6 +15,7 @@ class CGRect_ExtensionsTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+
         frame = CGRect(x: 100, y: 200, width: 300, height: 400)
     }
 

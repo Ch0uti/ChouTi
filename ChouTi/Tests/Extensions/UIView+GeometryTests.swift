@@ -14,6 +14,7 @@ class UIView_GeometryTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+
         view.frame = CGRect(x: 100, y: 200, width: 300, height: 400)
     }
 
@@ -120,6 +121,7 @@ class UIView_GeometryTests: XCTestCase {
 class UIViewLeftToRight_GeometryTests: UIView_GeometryTests {
     override func setUp() {
         super.setUp()
+
         view.semanticContentAttribute = .forceLeftToRight
     }
 
@@ -149,6 +151,7 @@ class UIViewLeftToRight_GeometryTests: UIView_GeometryTests {
 class UIViewRightToLeft_GeometryTests: UIView_GeometryTests {
     override func setUp() {
         super.setUp()
+
         view.semanticContentAttribute = .forceRightToLeft
     }
 

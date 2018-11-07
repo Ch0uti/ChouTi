@@ -27,6 +27,7 @@ open class ScalePresentingAnimator: Animator {
 
     override public init() {
         super.init()
+
         animationDuration = 0.3
     }
 }

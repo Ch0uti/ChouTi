@@ -90,7 +90,7 @@ class DropDownMenuPickerViewController: UIViewController {
 		}
 	}
 
-    /// an offset cover view, which covers the gap between the menu and the first option cell
+    /// An offset cover view, which covers the gap between the menu and the first option cell
     private let topOffsetView = UIView()
 
     private(set) var isExpanded: Bool = false {

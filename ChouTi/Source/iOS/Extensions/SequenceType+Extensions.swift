@@ -26,7 +26,7 @@ public extension Sequence {
      - returns: true if all match.
      */
     func allMatch(_ predicate: (Iterator.Element) -> Bool) -> Bool {
-        // every element matches a predicate if no element doesn't match it
+        // Every element matches a predicate if no element doesn't match it
         return !self.contains { !predicate($0) }
     }
 }

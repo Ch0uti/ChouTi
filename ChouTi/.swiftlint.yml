@@ -71,10 +71,9 @@ disabled_rules:
   - large_tuple
   - object_literal
   - file_name
+  - type_name
   # restore later
   - fallthrough
-  - type_name
-  - file_length
   - type_body_length
   - todo
   - file_header
@@ -86,5 +85,50 @@ disabled_rules:
 excluded:
   - Carthage
   - Pods
+  - Source/iOS/CodeSnippets
 
-line_length: 180
+line_length:
+  warning: 180
+  error: 300
+
+file_length:
+  warning: 500
+
+custom_rules:
+  comments_space:
+    name: "Space After Comment"
+    regex: "(^ *//\\w+)"
+    message: "There should be a space after //"
+    severity: error
+
+  comments_capitalized_ignore_possible_code:
+    name: "Capitalize First Word In Comment or Documentation"
+    regex: "(^ +(//|///) +(?!swiftlint|http)[a-z]+)"
+    message: "The first word of a comment or documentation should be capitalized"
+    severity: warning
+
+  empty_line_after_guard:
+    name: "Empty Line After Guard"
+    regex: "(^ *guard[ a-zA-Z0-9=?.\\(\\),><!]*\\{[ a-zA-Z0-9=?.\\(\\),><!]*\\}\\n *(?!(?:return|guard))\\S+)"
+    message: "There should be an empty line after a guard"
+    severity: error
+
+  empty_line_after_super:
+    name: "Empty Line After Super"
+    regex: "(^ *super\\.[ a-zA-Z0-9=?.\\(\\)\\{\\}:,><!]*\\n *(?!(?:\\}|return))\\S+)"
+    message: "There should be an empty line after super"
+    severity: error
+
+  multiple_empty_lines:
+    name: "Multiple Empty Lines"
+    regex: "((?:\\s*\n){3,})"
+    message: "There are too many line breaks"
+    severity: warning
+
+  double_space:
+    include: "*.swift"
+    name: "Double Space" 
+    regex: "([a-z,A-Z] \\s+)" 
+    message: "Double space between keywords" 
+    match_kinds: keyword 
+    severity: warning

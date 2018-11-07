@@ -116,13 +116,9 @@ open class SegmentedControl: UISegmentedControl {
 	private var underScoreTrailingConstraint: NSLayoutConstraint?
 
 	// MARK: - Init
-	/**
-	Init with items. Note here, items must be an array of title strings, images segments are not supported yet.
-	
-	:param: items An array of title strings
-	
-	:returns: An initalized segmented control
-	*/
+    /// Init with items. Note here, items must be an array of title strings, images segments are not supported yet.
+    ///
+    /// - Parameter items: An array of title strings
 	override public init(items: [Any]?) {
 		super.init(items: items)
 		if let titles = items as? [String] {
@@ -156,11 +152,9 @@ open class SegmentedControl: UISegmentedControl {
 	}
 
 	// MARK: - Setup with Titles
-	/**
-	Setup segmented control with a list of titles, this will removed all previous titles.
-	
-	:param: titles an array of titles
-	*/
+    /// Setup segmented control with a list of titles, this will removed all previous titles.
+    ///
+    /// - Parameter titles: an array of titles
 	open func setupWithTitles(_ titles: [String]) {
 		// If existed titles are same with new titles, return
 		if itemTitles == titles {
@@ -181,11 +175,9 @@ open class SegmentedControl: UISegmentedControl {
 	}
 
 	// MARK: - Setup Views
-	/**
-	Setup title labels and separators. This will clear all previous title labels and separators and setup new ones.
-	
-	:param: titles title strings
-	*/
+    /// Setup title labels and separators. This will clear all previous title labels and separators and setup new ones.
+    ///
+    /// - Parameter titles: titles title strings
 	private func setupItemsWithTitles(_ titles: [String]) {
 		itemLabels.forEach { $0.removeFromSuperview() }
 		itemSeparators.forEach { $0.removeFromSuperview() }
@@ -208,9 +200,7 @@ open class SegmentedControl: UISegmentedControl {
 		}
 	}
 
-	/**
-	Setup under score bar view, which is a hightlight bottom bar for selected title
-	*/
+	/// Setup under score bar view, which is a hightlight bottom bar for selected title
 	private func setupUnderScoreView() {
 		if selectedUnderScoreView == nil {
 			selectedUnderScoreView = UIView()
@@ -221,9 +211,7 @@ open class SegmentedControl: UISegmentedControl {
 	}
 
 	// MARK: - Setup Layout
-	/**
-	Setup constraints for title labels and separators. It chains labels and separators from leading to trailing
-	*/
+    /// Setup constraints for title labels and separators. It chains labels and separators from leading to trailing
 	private func setupItemConstraints() {
 		// Consider borderWidth in layout margins, this will let under score bar align to border correctly
 		layoutMargins = UIEdgeInsets(top: borderWidth, left: borderWidth, bottom: borderWidth, right: borderWidth)
@@ -276,9 +264,7 @@ open class SegmentedControl: UISegmentedControl {
 		NSLayoutConstraint.activate(itemConstraints!)
 	}
 
-	/**
-	Setup constraints for under score bar view. By default, it's height is zero.
-	*/
+    /// Setup constraints for under score bar view. By default, it's height is zero.
 	private func setupUnderScoreViewConstraints() {
 		if underScoreConstraints != nil {
 			NSLayoutConstraint.deactivate(underScoreConstraints!)
@@ -418,13 +404,10 @@ open class SegmentedControl: UISegmentedControl {
 // MARK: - Helper
 private extension SegmentedControl {
 	// Creators
-	/**
-	Create a title label, common setups.
-	
-	:param: title title string
-	
-	:returns: a new UILabel instance
-	*/
+    /// Create a title label, common setups.
+    ///
+    /// - Parameter title: title string
+    /// - Returns: a new UILabel instance
 	func itemLabelWithTitle(_ title: String) -> UILabel {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -437,11 +420,9 @@ private extension SegmentedControl {
 		return label
 	}
 
-	/**
-	Create a separator line view
-	
-	:returns: a new UIView instance
-	*/
+    /// Create a separator line view
+    ///
+    /// - Returns: a new UIView instance
 	func itemSeparatorView() -> UIView {
 		let separator = UIView()
 		separator.translatesAutoresizingMaskIntoConstraints = false
@@ -451,11 +432,9 @@ private extension SegmentedControl {
 		return separator
 	}
 
-	/**
-	Add a fade in/out transition animation for UILabel
-	
-	:param: label label that needs a fade in/out animation
-	*/
+    /// Add a fade in/out transition animation for UILabel
+    ///
+    /// - Parameter label: label that needs a fade in/out animation
 	func addFadeTransitionAnimationForLabel(_ label: UILabel?) {
 		let textAnimation = CATransition()
 		textAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -466,11 +445,9 @@ private extension SegmentedControl {
 	}
 
 	// Others
-	/**
-	Perform animation for updating selected index
-	
-	:param: index new selected index
-	*/
+    /// Perform animation for updating selected index
+    ///
+    /// - Parameter index: index new selected index
 	func updateSelectedIndex(_ index: Int) {
 		var previousLabel: UILabel?
 		if previousSelectedIndex >= 0 {

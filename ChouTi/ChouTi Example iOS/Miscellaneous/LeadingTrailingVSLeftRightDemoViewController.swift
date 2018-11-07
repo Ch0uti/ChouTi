@@ -13,6 +13,7 @@ class LeadingTrailingVSLeftRightDemoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = UIColor.white
 
         setupViews()
@@ -112,11 +113,13 @@ class LeadingTrailingVSLeftRightDemoViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         UIApplication.shared.keyWindow?.applySemanticContentAttribute(.forceRightToLeft)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
         UIApplication.shared.keyWindow?.applySemanticContentAttribute(.forceLeftToRight)
     }
 }

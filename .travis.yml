@@ -14,7 +14,7 @@ env:
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   - gem install bundler --no-rdoc --no-ri --no-document --quiet
-  - cd $PROJECT_DIR && ./bootstrap.sh && bundle exec rake fetch
+  - cd $PROJECT_DIR && ./bootstrap.sh && bundle exec rake update
 
 script:
   - set -o pipefail
@@ -28,6 +28,8 @@ script:
   - if [ $REPORT_CODECOV == "YES" ]; then
       bash <(curl -s https://codecov.io/bash) -J "^ChouTi$";
     fi
+  ## Code Lint
+  - bundle exec rake update
 
   ## Build for Release
   - xcodebuild clean build -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;  

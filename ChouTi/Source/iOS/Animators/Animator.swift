@@ -7,10 +7,10 @@
 //
 
 // Sample Usage:
-//<#presentedViewController#>.modalPresentationStyle = .Custom
-//<#presentedViewController#>.transitioningDelegate = animator
+//    <#presentedViewController#>.modalPresentationStyle = .Custom
+//    <#presentedViewController#>.transitioningDelegate = animator
 //
-//presentViewController(<#presentedViewController#>, animated: true, completion: nil)
+//    presentViewController(<#presentedViewController#>, animated: true, completion: nil)
 
 import UIKit
 

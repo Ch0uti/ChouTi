@@ -61,10 +61,10 @@ open class AlertController: UIViewController {
         }
     }
 
-    /// width constraint for view
+    /// Width constraint for view
     private var widthConstraint: NSLayoutConstraint?
 
-    /// height constraint for view
+    /// Height constraint for view
     private var heightConstraint: NSLayoutConstraint?
 
 	/// An UIWindow instance which its rootViewController is presenting self.
@@ -86,6 +86,7 @@ open class AlertController: UIViewController {
 
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
         commonInit()
     }
 
@@ -118,7 +119,7 @@ open class AlertController: UIViewController {
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        // at this moment, view size is about to be determined by presenting animator, preferred content size should be updated.
+        // At this moment, view size is about to be determined by presenting animator, preferred content size should be updated.
         updatePreferredContentSize()
     }
 
@@ -142,7 +143,7 @@ open class AlertController: UIViewController {
 		alertWindow?.isHidden = true
 		alertWindow = nil
 
-        // restore to use frame (default state)
+        // Restore to use frame (default state)
         view.translatesAutoresizingMaskIntoConstraints = true
     }
 

@@ -12,12 +12,10 @@ import UIKit
 /// You can set borderColor, borderWidth, cornerRadius and backgroundColor for different states
 open class Button: UIButton {
 
-    /**
-     Corner radius attribute, used in CornerRadius .relative case.
-     
-     - Width:  Width
-     - Height: Height
-     */
+    /// Corner radius attribute, used in CornerRadius .relative case.
+    ///
+    /// - width: Width
+    /// - height: Height
     public enum Attribute {
         case width
         case height
@@ -387,7 +385,7 @@ extension Button {
      Refresh customized styles
      */
     private func refreshBorderStyles() {
-        // add a fade transition.
+        // Add a fade transition.
         let transition = CATransition()
         transition.type = CATransitionType.fade
         transition.duration = 0.075
@@ -435,7 +433,7 @@ extension Button {
             layer.shadowPath =? selectedShadowPath ?? normalShadowPath
 
         } else {
-            // prolong the fade transition, this mimics UIButtonType.System behaviors
+            // Prolong the fade transition, this mimics UIButtonType.System behaviors
             transition.duration = 0.25
 
             // Defaults to .normal state

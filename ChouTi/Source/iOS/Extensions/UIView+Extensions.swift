@@ -197,6 +197,7 @@ public extension UIView {
 
         while queue.isEmpty() == false {
             guard let current = queue.dequeue() else { continue }
+
             if let view = current as? T {
                 return view
             } else {
@@ -226,6 +227,7 @@ public extension UIView {
 
         while queue.isEmpty() == false {
             guard let current = queue.dequeue() else { continue }
+
             if let view = current as? T {
                 views.append(view)
             } else {
@@ -265,6 +267,6 @@ public extension UIView {
         layer.shadowOffset = .zero
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 18.0
-        // layer.shadowPath = UIBezierPath(rect: bounds).CGPath
+        // ?layer.shadowPath = UIBezierPath(rect: bounds).CGPath
     }
 }

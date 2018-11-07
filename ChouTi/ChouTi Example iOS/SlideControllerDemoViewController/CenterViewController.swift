@@ -23,21 +23,25 @@ class CenterViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         print("CenterViewController: viewWillAppear")
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         print("CenterViewController: viewDidAppear")
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
         print("CenterViewController: viewWillDisappear")
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+
         print("CenterViewController: viewDidDisappear")
     }
 

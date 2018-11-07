@@ -25,13 +25,8 @@ struct UITestsSection: TableViewSectionType {
                             guard let cell = tableView.cellForRow(at: indexPath) else {
                                 return
                             }
-                            let label = UILabel()
-                            label.translatesAutoresizingMaskIntoConstraints = false
-                            label.text = "👍🏼"
 
-                            cell.addSubview(label)
-                            label.constrain(.centerY, equalTo: .centerY, ofView: cell)
-                            label.constrain(.trailing, equalTo: .trailing, ofView: cell, constant: -16.0)
+                            cell.textLabel?.text = "👍🏼"
             })
         ]
     }()

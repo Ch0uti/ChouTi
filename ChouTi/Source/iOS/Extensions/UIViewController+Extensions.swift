@@ -31,7 +31,7 @@ public extension UIViewController {
     /// Retrieve the view controller currently on-screen
     ///
     /// Based off code here: http://stackoverflow.com/questions/24825123/get-the-current-view-controller-from-the-app-delegate
-    public class var currentViewController: UIViewController? {
+    class var currentViewController: UIViewController? {
         if let controller = UIApplication.shared.keyWindow?.rootViewController {
             return findCurrentViewController(controller)
         }
@@ -50,6 +50,11 @@ public extension UIViewController {
         } else {
             return controller
         }
+    }
+
+    /// Whether this view controller's view is currnetly visible.
+    var isVisible: Bool {
+         return isViewLoaded && (view.window != nil)
     }
 }
 

@@ -102,19 +102,19 @@ open class SwipeTableViewCell: UITableViewCell {
         }
 
         if swipeableContentViewCenterXConstraint.constant < 0.0 {
-            // final state is right expanded
+            // Final state is right expanded
             return true
         } else if swipeableContentViewCenterXConstraint.constant > 0.0 {
-            // final state is left expanded, not supported yet
+            // Final state is left expanded, not supported yet
             print("Error: left expanding is not supported yet")
             return false
         } else if swipeableContentViewCenterXConstraint.constant == 0 {
-            // final state is collapsed
+            // Final state is collapsed
             if isAnimating == false {
-                // and is not animating
+                // And is not animating
                 return false
             } else {
-                // is animating, which means currently is still expanded
+                // Is animating, which means currently is still expanded
                 return true
             }
         }
@@ -159,11 +159,13 @@ open class SwipeTableViewCell: UITableViewCell {
     // MARK: - Methods
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         commonInit()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         commonInit()
     }
 
@@ -212,10 +214,10 @@ open class SwipeTableViewCell: UITableViewCell {
         ]
 
         // This resolves `UITableViewCellContentView`'s NSAutoresizingMaskLayoutConstraint or `UIView-Encapsulated-Layout-Height` warnings when setting `contentView` height using constraints.
-        // http://stackoverflow.com/a/38086932/3164091
+        // Ref: http://stackoverflow.com/a/38086932/3164091
         contentView.autoresizingMask = [.flexibleHeight]
 
-        // set 44.0 default cell height
+        // Set 44.0 default cell height
         let cellHeightConstraint = NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 44.0)
         cellHeightConstraint.priority = UILayoutPriority(250)
         constraints += [cellHeightConstraint]
@@ -447,22 +449,26 @@ extension SwipeTableViewCell {
 extension SwipeTableViewCell {
     override open func prepareForReuse() {
         super.prepareForReuse()
+
         collapse(animated: true)
     }
 
     override open func willTransition(to state: UITableViewCell.StateMask) {
         super.willTransition(to: state)
+
         // Any cell state transition should collapse
         collapse(animated: true)
     }
 
     override open func didMoveToWindow() {
         super.didMoveToWindow()
+
         collapse(animated: true)
     }
 
     override open func didMoveToSuperview() {
         super.didMoveToSuperview()
+
         // Setup tableViewImmediateTouchRecognizer to new tableView
         guard let tableView = tableView else {
             return
@@ -472,6 +478,7 @@ extension SwipeTableViewCell {
 
     override open func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
+
         // Remove tableViewImmediateTouchRecognizer from current tableView
         guard let tableView = tableView else {
             return
