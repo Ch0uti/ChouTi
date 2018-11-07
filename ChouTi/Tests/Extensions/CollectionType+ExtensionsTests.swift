@@ -16,49 +16,13 @@ class CollectionType_ExtensionsTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        integers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        integers = [1, 2, 3, 4, 5]
     }
 
-    func testRandomItem() {
-        let randomInt = integers.randomElement()!
-        XCTAssert(integers.contains(randomInt))
-
-        let randomInt1 = integers.randomElement()!
-        var randomInt2 = integers.randomElement()!
-        while randomInt2 == randomInt1 {
-            randomInt2 = integers.randomElement()!
-        }
-
-        XCTAssert(true)
-    }
-
-    func testDictionaryRandomItem() {
-        let dict = [1: "1", 2: "2", 3: "3", 4: "4"]
-        let randomKeyValue = dict.randomElement()!
-
-        XCTAssertTrue(dict.contains { $0 == randomKeyValue })
-    }
-}
-
-extension CollectionType_ExtensionsTests {
     func testSafeSubscript() {
+        XCTAssertEqual(integers[safe: -1], nil)
         XCTAssertEqual(integers[safe: 0], 1)
-        XCTAssertEqual(integers[safe: 10], nil)
-    }
-}
-
-extension CollectionType_ExtensionsTests {
-    func testShuffleInPlace() {
-        var empty: [Int] = []
-        empty.shuffle()
-        XCTAssertEqual(empty, [])
-
-        let originalIntegers = integers
-        integers.shuffle()
-        XCTAssertNotEqual(originalIntegers, integers)
-    }
-
-    func testShuffled() {
-        XCTAssertNotEqual(integers, integers.shuffled())
+        XCTAssertEqual(integers[safe: 2], 3)
+        XCTAssertEqual(integers[safe: 5], nil)
     }
 }
