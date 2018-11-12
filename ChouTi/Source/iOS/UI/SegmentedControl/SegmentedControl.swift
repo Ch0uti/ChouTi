@@ -1,8 +1,5 @@
 //
-//  SegmentedControl.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-06-16.
+//  Created by Honghao Zhang on 06/16/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

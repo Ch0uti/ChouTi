@@ -1,8 +1,5 @@
 //
-//  Issue_IncorrectTableViewCellContentViewWidth.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-11-21.
+//  Created by Honghao Zhang on 11/21/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

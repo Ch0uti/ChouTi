@@ -1,8 +1,5 @@
 //
-//  NSLayoutConstraint+Extensions.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-07-04.
+//  Created by Honghao Zhang on 07/04/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

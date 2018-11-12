@@ -1,10 +1,9 @@
 //
-//  DropPresentingAnimator.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-03-29.
+//  Created by Honghao Zhang on 03/29/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
+
+import UIKit
 
 // Sample Usage:
 //    let <#animator#> = DropPresentingAnimator()
@@ -18,9 +17,6 @@
 //    <#presentedViewController#>.transitioningDelegate = animator
 //
 //    presentViewController(<#presentedViewController#>, animated: true, completion: nil)
-
-import UIKit
-
 open class DropPresentingAnimator: Animator {
 
 	override public init() {

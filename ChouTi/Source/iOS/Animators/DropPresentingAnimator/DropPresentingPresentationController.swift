@@ -1,8 +1,5 @@
 //
-//  DropPresentingPresentationController.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-04-25.
+//  Created by Honghao Zhang on 04/25/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

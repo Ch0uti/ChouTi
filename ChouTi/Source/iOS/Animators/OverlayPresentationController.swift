@@ -1,8 +1,5 @@
 //
-//  OverlayPresentationController.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-02-23.
+//  Created by Honghao Zhang on 02/23/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

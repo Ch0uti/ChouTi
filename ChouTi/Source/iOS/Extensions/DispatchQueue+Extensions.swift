@@ -1,8 +1,5 @@
 //
-//  DispatchQueue+Extensions.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2018-10-18.
+//  Created by Honghao Zhang on 10/18/2018.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

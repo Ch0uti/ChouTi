@@ -1,8 +1,5 @@
 //
-//  PgaeViewController.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-10-05.
+//  Created by Honghao Zhang on 10/05/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

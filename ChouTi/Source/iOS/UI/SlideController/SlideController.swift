@@ -1,8 +1,5 @@
 //
-//  UIViewController+Utility.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-08-11.
+//  Created by Honghao Zhang on 08/11/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

@@ -1,8 +1,5 @@
 //
-//  NavigationBarStatusBarDemoViewController.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-01-16.
+//  Created by Honghao Zhang on 01/16/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

@@ -1,8 +1,5 @@
 //
-//  AutoLinesLabel.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2014-12-18.
+//  Created by Honghao Zhang on 12/18/2014.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

@@ -1,8 +1,5 @@
 //
-//  ChouTi_iOSUITests.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-08-13.
+//  Created by Honghao Zhang on 08/13/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

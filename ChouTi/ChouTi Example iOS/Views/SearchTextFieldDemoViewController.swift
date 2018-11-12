@@ -1,8 +1,5 @@
 //
-//  SearchTextFieldDemoViewController.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-03-12.
+//  Created by Honghao Zhang on 03/12/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

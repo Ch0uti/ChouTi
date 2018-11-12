@@ -1,8 +1,5 @@
 //
-//  MenuViewDemoController.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-10-15.
+//  Created by Honghao Zhang on 10/15/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

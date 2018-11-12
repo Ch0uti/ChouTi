@@ -1,18 +1,15 @@
 //
-//  Animator.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-09-16.
+//  Created by Honghao Zhang on 09/16/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
+
+import UIKit
 
 // Sample Usage:
 //    <#presentedViewController#>.modalPresentationStyle = .Custom
 //    <#presentedViewController#>.transitioningDelegate = animator
 //
 //    presentViewController(<#presentedViewController#>, animated: true, completion: nil)
-
-import UIKit
 
 open class Animator: NSObject {
 	/// Animation Durations, by default, it's 0.25s

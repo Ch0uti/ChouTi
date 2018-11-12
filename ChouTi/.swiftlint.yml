@@ -94,12 +94,15 @@ file_length:
   warning: 500
 
 file_header:
+  forbidden_pattern: |
+                     \/\/
+                     \/\/
+                     |
+                     \/\/
+                     \/\/.*
   required_pattern: |
-                    \/\/
-                    \/\/  .*?\.swift
-                    \/\/  ChouTi
-                    \/\/
-                    \/\/  Created by .*? on \d{4}\-\d{2}\-\d{2}\.
+                    (?<!.)\/\/
+                    \/\/  Created by .*? on \d{2}\/\d{2}\/\d{4}\.
                     \/\/  Copyright © \d{4} ChouTi\. All rights reserved\.
                     \/\/
 

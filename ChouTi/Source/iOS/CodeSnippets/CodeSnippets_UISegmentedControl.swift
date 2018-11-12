@@ -1,8 +1,5 @@
 //
-//  CodeSnippets_UISegmentedControl.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-03-18.
+//  Created by Honghao Zhang on 03/18/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

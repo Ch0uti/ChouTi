@@ -1,8 +1,5 @@
 //
-//  Constants.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-11-10.
+//  Created by Honghao Zhang on 11/10/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

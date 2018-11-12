@@ -1,8 +1,5 @@
 //
-//  DatePickerControllerDelagte.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-12-12.
+//  Created by Honghao Zhang on 12/12/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

@@ -1,8 +1,5 @@
 //
-//  NSObject+Observation.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-02-11.
+//  Created by Honghao Zhang on 02/11/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

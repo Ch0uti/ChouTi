@@ -1,8 +1,5 @@
 //
-//  TitleContentTableViewCell.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2017-01-02.
+//  Created by Honghao Zhang on 01/02/2017.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

@@ -1,8 +1,5 @@
 //
-//  ImageView.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-01-08.
+//  Created by Honghao Zhang on 01/08/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

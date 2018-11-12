@@ -1,8 +1,5 @@
 //
-//  Operators.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-05-27.
+//  Created by Honghao Zhang on 05/27/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

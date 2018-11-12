@@ -1,8 +1,5 @@
 //
-//  UIViewController+Extensions.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-10-28.
+//  Created by Honghao Zhang on 10/28/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

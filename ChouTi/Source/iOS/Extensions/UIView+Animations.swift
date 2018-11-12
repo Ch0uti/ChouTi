@@ -1,8 +1,5 @@
 //
-//  UIView+Animations.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-04-13.
+//  Created by Honghao Zhang on 04/13/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

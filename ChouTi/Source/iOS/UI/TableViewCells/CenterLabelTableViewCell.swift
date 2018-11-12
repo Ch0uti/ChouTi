@@ -1,8 +1,5 @@
 //
-//  CenterLabelTableViewCell.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-12-30.
+//  Created by Honghao Zhang on 12/30/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

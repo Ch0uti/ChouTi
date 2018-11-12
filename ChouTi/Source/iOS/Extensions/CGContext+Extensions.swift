@@ -1,8 +1,5 @@
 //
-//  CGContext+Extensions.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-09-03.
+//  Created by Honghao Zhang on 09/03/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

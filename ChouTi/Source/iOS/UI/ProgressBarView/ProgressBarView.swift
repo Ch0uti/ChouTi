@@ -1,8 +1,5 @@
 //
-//  ProgressBarView.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-11-02.
+//  Created by Honghao Zhang on 11/02/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

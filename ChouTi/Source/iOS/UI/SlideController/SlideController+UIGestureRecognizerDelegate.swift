@@ -1,8 +1,5 @@
 //
-//  SlideController+UIGestureRecognizerDelegate.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2018-11-05.
+//  Created by Honghao Zhang on 11/05/2018.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

@@ -1,8 +1,5 @@
 //
-//  DispatchQueue+Once.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-11-14.
+//  Created by Honghao Zhang on 11/14/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

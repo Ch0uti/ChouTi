@@ -1,8 +1,5 @@
 //
-//  MenuView.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-10-11.
+//  Created by Honghao Zhang on 10/11/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

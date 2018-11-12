@@ -1,8 +1,5 @@
 //
-//  DropDownMenuAnimator.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-12-03.
+//  Created by Honghao Zhang on 12/03/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

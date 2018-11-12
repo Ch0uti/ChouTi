@@ -1,8 +1,5 @@
 //
-//  Optional+Extensions.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-06-06.
+//  Created by Honghao Zhang on 06/06/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

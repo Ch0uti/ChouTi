@@ -1,8 +1,5 @@
 //
-//  OrderedDictionaryTests.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-11-18.
+//  Created by Honghao Zhang on 11/18/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

@@ -1,8 +1,5 @@
 //
-//  NSLayoutConstraint+RetrieveTests.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2016-09-09.
+//  Created by Honghao Zhang on 09/09/2016.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

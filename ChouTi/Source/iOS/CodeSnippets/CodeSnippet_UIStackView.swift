@@ -1,8 +1,5 @@
 //
-//  CodeSnippet_UIStackView.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2017-06-05.
+//  Created by Honghao Zhang on 06/05/2017.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //  Copyright © 2018 ChouTi. All rights reserved.
 

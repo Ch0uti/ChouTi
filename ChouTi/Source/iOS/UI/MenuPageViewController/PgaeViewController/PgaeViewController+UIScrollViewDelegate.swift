@@ -1,8 +1,5 @@
 //
-//  PgaeViewController+UIScrollViewDelegate.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2018-11-06.
+//  Created by Honghao Zhang on 11/06/2018.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

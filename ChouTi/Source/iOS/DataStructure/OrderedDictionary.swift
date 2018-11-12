@@ -1,8 +1,5 @@
 //
-//  OrderedDictionary.swift
-//  ChouTi
-//
-//  Created by Honghao Zhang on 2015-09-25.
+//  Created by Honghao Zhang on 09/25/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 

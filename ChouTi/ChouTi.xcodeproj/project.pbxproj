@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1377,7 +1377,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = Honghaoz;
+				ORGANIZATIONNAME = ChouTi;
 				TargetAttributes = {
 					020664F01D5FB0BE002A7E2A = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1400,7 +1400,7 @@
 				};
 			};
 			buildConfigurationList = 0230508C1D2440DB00D7B190 /* Build configuration list for PBXProject "ChouTi" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
