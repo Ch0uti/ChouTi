@@ -1,9 +1,9 @@
 //
 //  UIColor+ExtensionsTests.swift
-//  ChouTi_FrameworkTests
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2016-01-28.
-//  Copyright © 2016 Honghao Zhang. All rights reserved.
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 @testable import ChouTi

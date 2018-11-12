@@ -1,9 +1,9 @@
 //
 //  CodeSnippet_UICollectionViewCell.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2017-07-02.
-//
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 //import UIKit

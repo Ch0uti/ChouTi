@@ -1,9 +1,9 @@
 //
 //  CodeSnippet_CLLocationManager.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2015-12-13.
-//
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 //import CoreLocation

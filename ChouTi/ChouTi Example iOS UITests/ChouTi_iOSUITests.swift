@@ -1,9 +1,9 @@
 //
 //  ChouTi_iOSUITests.swift
-//  ChouTi iOSUITests
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2016-08-13.
-//  Copyright © 2016 Honghaoz. All rights reserved.
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 import XCTest

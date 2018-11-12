@@ -2,8 +2,8 @@
 //  DropPresentingAnimator.swift
 //  ChouTi
 //
-//  Created by Honghao Zhang on 3/29/15.
-//  Copyright (c) 2015 Honghao Zhang. All rights reserved.
+//  Created by Honghao Zhang on 2015-03-29.
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 // Sample Usage:

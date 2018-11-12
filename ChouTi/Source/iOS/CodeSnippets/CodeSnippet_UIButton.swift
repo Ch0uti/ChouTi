@@ -1,9 +1,9 @@
 //
 //  CodeSnippet_UIButton.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2015-11-24.
-//
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 //import UIKit

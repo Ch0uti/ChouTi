@@ -2,7 +2,8 @@
 //  TextTableCollectionView.swift
 //  ChouTi
 //
-//  Created by Honghao Zhang on 3/1/15.
+//  Created by Honghao Zhang on 2015-03-01.
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 import UIKit

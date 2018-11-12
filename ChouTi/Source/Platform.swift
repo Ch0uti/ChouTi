@@ -3,7 +3,7 @@
 //  ChouTi
 //
 //  Created by Honghao Zhang on 2017-03-31.
-//  Copyright © 2017 Honghaoz. All rights reserved.
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS) || os(watchOS)

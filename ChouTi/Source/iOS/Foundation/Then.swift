@@ -1,3 +1,4 @@
+// swiftlint:disable:next file_header
 // The MIT License (MIT)
 //
 // Copyright (c) 2015 Suyeol Jeon (xoul.kr)

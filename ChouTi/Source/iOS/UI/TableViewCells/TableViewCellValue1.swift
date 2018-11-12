@@ -1,9 +1,9 @@
 //
 //  TableViewCellValue1.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2015-12-14.
-//
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 import UIKit

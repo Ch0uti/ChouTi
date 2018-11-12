@@ -1,13 +1,12 @@
 //
 //  CIImageFilter.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2016-01-11.
-//
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 import QuartzCore
-import UIKit
 
 public enum CIImageFilter {
 	public typealias Filter = (CIImage) -> CIImage?
@@ -24,7 +23,7 @@ public enum CIImageFilter {
 		}
 	}
 
-	public static func constantColorGenerator(_ color: UIColor) -> Filter {
+	public static func constantColorGenerator(_ color: Color) -> Filter {
 		return { _ in
 			let parameters = [kCIInputColorKey: CIColor(color: color)]
 			let filter = CIFilter(name: "CIConstantColorGenerator", parameters: parameters)
@@ -44,7 +43,7 @@ public enum CIImageFilter {
 		}
 	}
 
-	public static func colorOverlay(_ color: UIColor) -> Filter {
+	public static func colorOverlay(_ color: Color) -> Filter {
 		return { image in
 			if let overlay = constantColorGenerator(color)(image) {
 				return sourceOverCompositing(overlay)(image)

@@ -3,7 +3,7 @@
 //  ChouTi
 //
 //  Created by Honghao Zhang on 2016-08-14.
-//  Copyright © 2016 Honghaoz. All rights reserved.
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 // Ref: https://gist.github.com/kareman/931017634606b7f7b9c0

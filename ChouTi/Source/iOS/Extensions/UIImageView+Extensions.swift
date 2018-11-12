@@ -1,9 +1,9 @@
 //
 //  UIImageView+Extensions.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2016-08-07.
-//
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 import UIKit

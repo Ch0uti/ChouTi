@@ -1,9 +1,9 @@
 //
 //  CodeSnippets_AppDelegate.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2015-11-11.
-//
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 // MARK: - Programmatically Setup Root View Controller

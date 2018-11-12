@@ -1,9 +1,9 @@
 //
 //  CenterLabelTableViewCell.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2016-12-30.
-//
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 import UIKit

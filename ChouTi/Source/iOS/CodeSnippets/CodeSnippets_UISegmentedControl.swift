@@ -1,9 +1,9 @@
 //
 //  CodeSnippets_UISegmentedControl.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2016-03-18.
-//
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 //let <#segmentedControl#> = UISegmentedControl(items: ["A", "B", "C"])

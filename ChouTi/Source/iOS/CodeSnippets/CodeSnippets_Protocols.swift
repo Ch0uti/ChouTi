@@ -1,9 +1,9 @@
 //
 //  CodeSnippet_Protocols.swift
-//  Pods
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2015-12-01.
-//
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 // MARK: - Equatable

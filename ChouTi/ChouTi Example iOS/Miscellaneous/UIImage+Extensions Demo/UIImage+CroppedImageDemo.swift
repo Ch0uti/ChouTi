@@ -1,9 +1,9 @@
 //
 //  UIImage+CroppedImageDemo.swift
-//  ChouTi iOS Example
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2016-08-07.
-//  Copyright © 2016 Honghaoz. All rights reserved.
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 import ChouTi

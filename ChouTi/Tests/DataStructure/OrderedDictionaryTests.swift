@@ -3,7 +3,7 @@
 //  ChouTi
 //
 //  Created by Honghao Zhang on 2016-11-18.
-//  Copyright © 2016 Honghaoz. All rights reserved.
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 @testable import ChouTi

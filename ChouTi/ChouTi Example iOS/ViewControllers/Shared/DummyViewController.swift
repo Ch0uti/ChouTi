@@ -1,9 +1,9 @@
 //
 //  DummyViewController.swift
-//  ChouTi iOS Example
+//  ChouTi
 //
 //  Created by Honghao Zhang on 2015-08-28.
-//  Copyright (c) 2015 Honghao Zhang. All rights reserved.
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 import ChouTi

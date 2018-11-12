@@ -3,7 +3,7 @@
 //  ChouTi
 //
 //  Created by Honghao Zhang on 2016-08-04.
-//  Copyright © 2016 Honghao Zhang. All rights reserved.
+//  Copyright © 2018 ChouTi. All rights reserved.
 //
 
 import UIKit
