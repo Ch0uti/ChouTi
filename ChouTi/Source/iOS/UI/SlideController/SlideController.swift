@@ -243,63 +243,6 @@ open class SlideController: UIViewController {
 		return false
 	}
 
-	override open func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-
-		switch state {
-		case .leftExpanded, .leftExpanding, .leftCollapsing:
-			leftViewController?.beginAppearanceTransition(true, animated: animated)
-		case .rightExpanded, .rightExpanding, .rightCollapsing:
-			rightViewController?.beginAppearanceTransition(true, animated: animated)
-		case .notExpanded:
-			break
-		}
-		centerViewController.beginAppearanceTransition(true, animated: animated)
-	}
-
-	override open func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-
-		switch state {
-		case .leftExpanded, .leftExpanding, .leftCollapsing:
-			leftViewController?.endAppearanceTransition()
-		case .rightExpanded, .rightExpanding, .rightCollapsing:
-			rightViewController?.endAppearanceTransition()
-		case .notExpanded:
-			break
-		}
-		centerViewController.endAppearanceTransition()
-	}
-
-	override open func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-
-		super.viewWillAppear(animated)
-		switch state {
-		case .leftExpanded, .leftExpanding, .leftCollapsing:
-			leftViewController?.beginAppearanceTransition(false, animated: animated)
-		case .rightExpanded, .rightExpanding, .rightCollapsing:
-			rightViewController?.beginAppearanceTransition(false, animated: animated)
-		case .notExpanded:
-			break
-		}
-		centerViewController.beginAppearanceTransition(false, animated: animated)
-	}
-
-	override open func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(animated)
-
-		switch state {
-		case .leftExpanded, .leftExpanding, .leftCollapsing:
-			leftViewController?.endAppearanceTransition()
-		case .rightExpanded, .rightExpanding, .rightCollapsing:
-			rightViewController?.endAppearanceTransition()
-		case .notExpanded:
-			break
-		}
-		centerViewController.endAppearanceTransition()
-	}
-
 	override open func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = UIColor.white
@@ -336,6 +279,65 @@ open class SlideController: UIViewController {
 			view.addSubview(statusBarBackgroundView)
 		}
 	}
+}
+
+// MARK: - View Appearance
+extension SlideController {
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        switch state {
+        case .leftExpanded, .leftExpanding, .leftCollapsing:
+            leftViewController?.beginAppearanceTransition(true, animated: animated)
+        case .rightExpanded, .rightExpanding, .rightCollapsing:
+            rightViewController?.beginAppearanceTransition(true, animated: animated)
+        case .notExpanded:
+            break
+        }
+        centerViewController.beginAppearanceTransition(true, animated: animated)
+    }
+
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        switch state {
+        case .leftExpanded, .leftExpanding, .leftCollapsing:
+            leftViewController?.endAppearanceTransition()
+        case .rightExpanded, .rightExpanding, .rightCollapsing:
+            rightViewController?.endAppearanceTransition()
+        case .notExpanded:
+            break
+        }
+        centerViewController.endAppearanceTransition()
+    }
+
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        switch state {
+        case .leftExpanded, .leftExpanding, .leftCollapsing:
+            leftViewController?.beginAppearanceTransition(false, animated: animated)
+        case .rightExpanded, .rightExpanding, .rightCollapsing:
+            rightViewController?.beginAppearanceTransition(false, animated: animated)
+        case .notExpanded:
+            break
+        }
+        centerViewController.beginAppearanceTransition(false, animated: animated)
+    }
+
+    override open func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        switch state {
+        case .leftExpanded, .leftExpanding, .leftCollapsing:
+            leftViewController?.endAppearanceTransition()
+        case .rightExpanded, .rightExpanding, .rightCollapsing:
+            rightViewController?.endAppearanceTransition()
+        case .notExpanded:
+            break
+        }
+        centerViewController.endAppearanceTransition()
+    }
 }
 
 extension SlideController {

@@ -453,6 +453,6 @@ extension MenuView {
 			return cell.contentView.subviews.last
 		}
 
-		return cell.contentView.subviews.first!
+		return cell.contentView.subviews.first
 	}
 }

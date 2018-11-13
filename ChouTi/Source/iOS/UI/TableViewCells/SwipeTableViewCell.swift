@@ -195,18 +195,19 @@ open class SwipeTableViewCell: UITableViewCell {
         var constraints: [NSLayoutConstraint] = []
 
         // Swipeable content view
-        swipeableContentViewCenterXConstraint = NSLayoutConstraint(item: swipeableContentView,
-                                                                   attribute: .centerX,
-                                                                   relatedBy: .equal,
-                                                                   toItem: contentView,
-                                                                   attribute: .centerX,
-                                                                   multiplier: 1.0,
-                                                                   constant: 0.0)
+        let swipeableContentViewCenterXConstraint = NSLayoutConstraint(item: swipeableContentView,
+                                                                       attribute: .centerX,
+                                                                       relatedBy: .equal,
+                                                                       toItem: contentView,
+                                                                       attribute: .centerX,
+                                                                       multiplier: 1.0,
+                                                                       constant: 0.0)
 
+        self.swipeableContentViewCenterXConstraint = swipeableContentViewCenterXConstraint
         constraints += [
 			swipeableContentView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
 			swipeableContentView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-			swipeableContentViewCenterXConstraint!,
+			swipeableContentViewCenterXConstraint,
 			swipeableContentView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ]
 

@@ -58,13 +58,15 @@ open class SingleTitleContentPairView: UIView {
 		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]", options: [], metrics: metrics, views: views)
 		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:[contentLabel]-|", options: [], metrics: metrics, views: views)
 		constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .lastBaseline, relatedBy: .equal, toItem: contentLabel, attribute: .lastBaseline, multiplier: 1.0, constant: 0.0))
-		horizontalSpacingEqualConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: contentLabel, attribute: .leading, multiplier: 1.0, constant: -horizontalSpacing)
-		horizontalSpacingEqualConstraint!.priority = UILayoutPriority(750)
+		let horizontalSpacingEqualConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: contentLabel, attribute: .leading, multiplier: 1.0, constant: -horizontalSpacing)
+		horizontalSpacingEqualConstraint.priority = UILayoutPriority(750)
+        self.horizontalSpacingEqualConstraint = horizontalSpacingEqualConstraint
 
-		horizontalSpacingGreaterThanConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .greaterThanOrEqual, toItem: contentLabel, attribute: .leading, multiplier: 1.0, constant: -horizontalSpacing)
+		let horizontalSpacingGreaterThanConstraint = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .greaterThanOrEqual, toItem: contentLabel, attribute: .leading, multiplier: 1.0, constant: -horizontalSpacing)
+        self.horizontalSpacingGreaterThanConstraint = horizontalSpacingGreaterThanConstraint
 
-		constraints.append(horizontalSpacingEqualConstraint!)
-		constraints.append(horizontalSpacingGreaterThanConstraint!)
+		constraints.append(horizontalSpacingEqualConstraint)
+		constraints.append(horizontalSpacingGreaterThanConstraint)
 
 		constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[titleLabel]-|", options: [], metrics: metrics, views: views)
 

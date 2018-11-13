@@ -214,11 +214,11 @@ open class SegmentedControl: UISegmentedControl {
 		// Consider borderWidth in layout margins, this will let under score bar align to border correctly
 		layoutMargins = UIEdgeInsets(top: borderWidth, left: borderWidth, bottom: borderWidth, right: borderWidth)
 
-		if itemConstraints != nil {
-			NSLayoutConstraint.deactivate(itemConstraints!)
+		if let itemConstraints = self.itemConstraints {
+			NSLayoutConstraint.deactivate(itemConstraints)
 		}
 
-		itemConstraints = [NSLayoutConstraint]()
+        var itemConstraints: [NSLayoutConstraint] = []
 
 		// Check titles count after cleaning itemConstraints
 		let titlesCount = itemLabels.count
@@ -228,65 +228,71 @@ open class SegmentedControl: UISegmentedControl {
 
 		if titlesCount == 1 {
 			let views = ["label": itemLabels[0]]
-			itemConstraints! += NSLayoutConstraint.constraints(withVisualFormat: "|[label]|", options: [], metrics: nil, views: views)
-			itemConstraints! += NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]|", options: [], metrics: nil, views: views)
+			itemConstraints += NSLayoutConstraint.constraints(withVisualFormat: "|[label]|", options: [], metrics: nil, views: views)
+			itemConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]|", options: [], metrics: nil, views: views)
 		} else {
 			for (index, label) in itemLabels.enumerated() {
 				if index == 0 {
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0))
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
 				} else {
 					let lastIndex = index - 1
 					let previousLabel = itemLabels[lastIndex]
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: previousLabel, attribute: .trailing, multiplier: 1.0, constant: borderWidth))
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: .width, relatedBy: .equal, toItem: previousLabel, attribute: .width, multiplier: 1.0, constant: 0.0))
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: previousLabel, attribute: .centerY, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: previousLabel, attribute: .trailing, multiplier: 1.0, constant: borderWidth))
+					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .width, relatedBy: .equal, toItem: previousLabel, attribute: .width, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: previousLabel, attribute: .centerY, multiplier: 1.0, constant: 0.0))
 
 					// Separator
 					let separator = itemSeparators[lastIndex]
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: .equal, toItem: separator, attribute: .trailing, multiplier: 1.0, constant: 0.0))
-					itemConstraints!.append(NSLayoutConstraint(item: separator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: borderWidth))
-					itemConstraints!.append(NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
-					itemConstraints!.append(NSLayoutConstraint(item: separator, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: label, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: .equal, toItem: separator, attribute: .trailing, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: separator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: borderWidth))
+					itemConstraints.append(NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: separator, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
 				}
 
 				if index == titlesCount - 1 {
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0))
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
-					itemConstraints!.append(NSLayoutConstraint(item: label, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
+					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
 				}
 			}
 		}
 
-		NSLayoutConstraint.activate(itemConstraints!)
+        self.itemConstraints = itemConstraints
+
+		NSLayoutConstraint.activate(itemConstraints)
 	}
 
     /// Setup constraints for under score bar view. By default, it's height is zero.
 	private func setupUnderScoreViewConstraints() {
-		if underScoreConstraints != nil {
-			NSLayoutConstraint.deactivate(underScoreConstraints!)
+		if let underScoreConstraints = self.underScoreConstraints {
+			NSLayoutConstraint.deactivate(underScoreConstraints)
 		}
 
-		underScoreConstraints = [NSLayoutConstraint]()
+        var underScoreConstraints: [NSLayoutConstraint] = []
 
 		// If there's no items, don't setup constraints
 		if itemLabels.isEmpty {
 			return
 		}
 
-		underScoreHeightConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0)
-		underScoreConstraints!.append(underScoreHeightConstraint!)
+		let underScoreHeightConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0)
+        self.underScoreHeightConstraint = underScoreHeightConstraint
+		underScoreConstraints.append(underScoreHeightConstraint)
 
-		underScoreLeadingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
-		underScoreConstraints!.append(underScoreLeadingConstraint!)
+		let underScoreLeadingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
+        self.underScoreLeadingConstraint = underScoreLeadingConstraint
+		underScoreConstraints.append(underScoreLeadingConstraint)
 
-		underScoreTrailingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
-		underScoreConstraints!.append(underScoreTrailingConstraint!)
+		let underScoreTrailingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        self.underScoreTrailingConstraint = underScoreTrailingConstraint
+		underScoreConstraints.append(underScoreTrailingConstraint)
 
-		underScoreConstraints!.append(NSLayoutConstraint(item: selectedUnderScoreView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+		underScoreConstraints.append(NSLayoutConstraint(item: selectedUnderScoreView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
 
-		NSLayoutConstraint.activate(underScoreConstraints!)
+        self.underScoreConstraints = underScoreConstraints
+		NSLayoutConstraint.activate(underScoreConstraints)
 	}
 
 	// MARK: - Overridden
@@ -298,105 +304,114 @@ open class SegmentedControl: UISegmentedControl {
             self.addTarget(self, action: #selector(SegmentedControl.zh_selectedIndexChanged(_:)), for: .valueChanged)
 		}
 	}
+}
 
-	// MARK: - Managing Segment Control
+// MARK: - Managing Segment Control
+extension SegmentedControl {
     @available(*, unavailable)
-	override open func setImage(_ image: UIImage?, forSegmentAt segment: Int) {
-		fatalError("Image segment control is not supported yet")
-	}
-
-    @available(*, unavailable)
-	override open func imageForSegment(at segment: Int) -> UIImage? {
-		fatalError("Image segment control is not supported yet")
-	}
-
-	override open func setTitle(_ title: String?, forSegmentAt segment: Int) {
-		precondition(segment < itemTitles.count, "segment index out of range")
-		if let titleText = title {
-			super.setTitle(titleText, forSegmentAt: segment)
-			itemTitles[segment] = titleText
-			itemLabels[segment].text = titleText
-		}
-	}
-
-	override open func titleForSegment(at segment: Int) -> String? {
-		precondition(segment < itemTitles.count, "segment index out of range")
-		return itemTitles[segment]
-	}
-
-	// MARK: - Managing Segments
-    @available(*, unavailable)
-	override open func insertSegment(with image: UIImage?, at segment: Int, animated: Bool) {
-		fatalError("Image segment control is not supported yet")
-	}
+    override open func setImage(_ image: UIImage?, forSegmentAt segment: Int) {
+        fatalError("Image segment control is not supported yet")
+    }
 
     @available(*, unavailable)
-	override open func insertSegment(withTitle title: String!, at segment: Int, animated: Bool) {
-		fatalError("Not implemented")
-	}
+    override open func imageForSegment(at segment: Int) -> UIImage? {
+        fatalError("Image segment control is not supported yet")
+    }
 
-	override open var numberOfSegments: Int {
-		return itemTitles.count
-	}
+    override open func setTitle(_ title: String?, forSegmentAt segment: Int) {
+        precondition(segment < itemTitles.count, "segment index out of range")
+        if let titleText = title {
+            super.setTitle(titleText, forSegmentAt: segment)
 
-	override open func removeAllSegments() {
-		setupWithTitles([])
-	}
+            itemTitles[segment] = titleText
+            itemLabels[segment].text = titleText
+        }
+    }
+
+    override open func titleForSegment(at segment: Int) -> String? {
+        precondition(segment < itemTitles.count, "segment index out of range")
+        return itemTitles[segment]
+    }
+}
+
+// MARK: - Managing Segments
+extension SegmentedControl {
+    @available(*, unavailable)
+    override open func insertSegment(with image: UIImage?, at segment: Int, animated: Bool) {
+        fatalError("Image segment control is not supported yet")
+    }
 
     @available(*, unavailable)
-	override open func removeSegment(at segment: Int, animated: Bool) {
-		fatalError("Not implemented")
-	}
+    override open func insertSegment(withTitle title: String!, at segment: Int, animated: Bool) {
+        fatalError("Not implemented")
+    }
 
-	override open var selectedSegmentIndex: Int {
-		didSet {
-			updateSelectedIndex(selectedSegmentIndex)
-			previousSelectedIndex = selectedSegmentIndex
-		}
-	}
+    override open var numberOfSegments: Int {
+        return itemTitles.count
+    }
 
-	// MARK: - Managing Segment Behavior and Appearance
-	override open var isMomentary: Bool {
-		didSet {
-			fatalError("Not implemented")
-		}
-	}
-
-	override open func setEnabled(_ enabled: Bool, forSegmentAt segment: Int) {
-		super.setEnabled(enabled, forSegmentAt: segment)
-		precondition(segment < itemTitles.count, "segment is out of range")
-		itemLabels[segment].isEnabled = false
-	}
-
-	override open func isEnabledForSegment(at segment: Int) -> Bool {
-		return super.isEnabledForSegment(at: segment)
-	}
+    override open func removeAllSegments() {
+        setupWithTitles([])
+    }
 
     @available(*, unavailable)
-	override open func setContentOffset(_ offset: CGSize, forSegmentAt segment: Int) {
-		fatalError("Not implemented")
-	}
+    override open func removeSegment(at segment: Int, animated: Bool) {
+        fatalError("Not implemented")
+    }
+
+    override open var selectedSegmentIndex: Int {
+        didSet {
+            updateSelectedIndex(selectedSegmentIndex)
+            previousSelectedIndex = selectedSegmentIndex
+        }
+    }
+}
+
+// MARK: - Managing Segment Behavior and Appearance
+extension SegmentedControl {
+    @available(*, unavailable)
+    override open var isMomentary: Bool {
+        didSet {
+            fatalError("Not implemented")
+        }
+    }
+
+    override open func setEnabled(_ enabled: Bool, forSegmentAt segment: Int) {
+        super.setEnabled(enabled, forSegmentAt: segment)
+
+        precondition(segment < itemTitles.count, "segment is out of range")
+        itemLabels[segment].isEnabled = false
+    }
+
+    override open func isEnabledForSegment(at segment: Int) -> Bool {
+        return super.isEnabledForSegment(at: segment)
+    }
 
     @available(*, unavailable)
-	override open func contentOffsetForSegment(at segment: Int) -> CGSize {
-		fatalError("Not implemented")
-	}
+    override open func setContentOffset(_ offset: CGSize, forSegmentAt segment: Int) {
+        fatalError("Not implemented")
+    }
 
     @available(*, unavailable)
-	override open func setWidth(_ width: CGFloat, forSegmentAt segment: Int) {
-		fatalError("Not implemented")
-	}
+    override open func contentOffsetForSegment(at segment: Int) -> CGSize {
+        fatalError("Not implemented")
+    }
 
     @available(*, unavailable)
-	override open func widthForSegment(at segment: Int) -> CGFloat {
-		fatalError("Not implemented")
-	}
+    override open func setWidth(_ width: CGFloat, forSegmentAt segment: Int) {
+        fatalError("Not implemented")
+    }
 
-	override open var apportionsSegmentWidthsByContent: Bool {
-		didSet {
-			fatalError("Not implemented")
-		}
-	}
+    @available(*, unavailable)
+    override open func widthForSegment(at segment: Int) -> CGFloat {
+        fatalError("Not implemented")
+    }
+
+    override open var apportionsSegmentWidthsByContent: Bool {
+        didSet {
+            fatalError("Not implemented")
+        }
+    }
 }
 
 // MARK: - Helper

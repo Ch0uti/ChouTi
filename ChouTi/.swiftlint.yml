@@ -73,8 +73,8 @@ disabled_rules:
   - file_name
   - type_name
   # restore later
+  - file_length
   - fallthrough
-  - type_body_length
   - todo
   - block_based_kvo
   - force_unwrapping

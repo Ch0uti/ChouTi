@@ -139,7 +139,7 @@ public extension UIView {
      
      - returns: an Image.
      */
-    func toImage() -> UIImage {
+    func toImage() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
 
         let context = UIGraphicsGetCurrentContext()!
@@ -149,7 +149,7 @@ public extension UIView {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return image!
+        return image
     }
 
     /**
@@ -157,13 +157,8 @@ public extension UIView {
      
      - returns: an Image snapshot.
      */
-    func snapshot() -> UIImage {
+    func snapshot() -> UIImage? {
         return self.toImage()
-    }
-
-    /// Snapshot of view
-    var 📷: UIImage {
-        return self.snapshot()
     }
 }
 

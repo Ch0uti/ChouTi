@@ -194,8 +194,12 @@ open class AlertView: UIView {
     }
 
     private func setupBackgroundViewConstraints() {
+        guard let backgroundView = backgroundView else {
+            fatalError("Fixit")
+        }
+
 		let views: [String: UIView] = [
-            "backgroundView": backgroundView!
+            "backgroundView": backgroundView
 		]
 
         var constraints = [NSLayoutConstraint]()
