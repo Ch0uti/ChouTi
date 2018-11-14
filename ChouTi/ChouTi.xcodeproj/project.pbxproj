@@ -542,16 +542,16 @@
 		020664F21D5FB0BE002A7E2A /* ChouTi Example iOS */ = {
 			isa = PBXGroup;
 			children = (
-				020664F31D5FB0BE002A7E2A /* AppDelegate.swift */,
-				020665131D5FCD05002A7E2A /* MainViewController.swift */,
-				022772001D622FA500D9CAE7 /* Views */,
-				025C917E1D63F98F000C54D8 /* ViewControllers */,
-				025C918D1D64007F000C54D8 /* Miscellaneous */,
 				025C91C71D64053F000C54D8 /* Issues */,
+				025C918D1D64007F000C54D8 /* Miscellaneous */,
 				020665181D5FD37E002A7E2A /* UITests */,
+				025C917E1D63F98F000C54D8 /* ViewControllers */,
+				022772001D622FA500D9CAE7 /* Views */,
+				020664F31D5FB0BE002A7E2A /* AppDelegate.swift */,
 				020664FA1D5FB0BE002A7E2A /* Assets.xcassets */,
-				020664FC1D5FB0BE002A7E2A /* LaunchScreen.storyboard */,
 				020664FF1D5FB0BE002A7E2A /* Info.plist */,
+				020664FC1D5FB0BE002A7E2A /* LaunchScreen.storyboard */,
+				020665131D5FCD05002A7E2A /* MainViewController.swift */,
 			);
 			path = "ChouTi Example iOS";
 			sourceTree = "<group>";
@@ -576,17 +576,17 @@
 		022772001D622FA500D9CAE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				022772011D622FC600D9CAE7 /* ViewsSection.swift */,
-				028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */,
-				025C91721D63F79C000C54D8 /* MenuViewDemoController.swift */,
-				025C91711D63F79C000C54D8 /* ImagePickerDemoViewController.swift */,
-				025C91701D63F79C000C54D8 /* DropDownMenuDemoViewController.swift */,
-				025C916F1D63F79C000C54D8 /* DatePickerControllerDemoViewController.swift */,
-				025C91731D63F79C000C54D8 /* NavigationBarStatusBarDemoViewController.swift */,
-				025C91751D63F79C000C54D8 /* SearchTextFieldDemoViewController.swift */,
 				025C916E1D63F79C000C54D8 /* AlertControllerDemoViewController.swift */,
+				028FC2FC1EE6021F005E25BC /* ButtonsDemoViewController.swift */,
+				025C916F1D63F79C000C54D8 /* DatePickerControllerDemoViewController.swift */,
+				025C91701D63F79C000C54D8 /* DropDownMenuDemoViewController.swift */,
+				025C91711D63F79C000C54D8 /* ImagePickerDemoViewController.swift */,
+				025C91721D63F79C000C54D8 /* MenuViewDemoController.swift */,
+				025C91731D63F79C000C54D8 /* NavigationBarStatusBarDemoViewController.swift */,
 				025C91741D63F79C000C54D8 /* PageControlDemoViewController.swift */,
+				025C91751D63F79C000C54D8 /* SearchTextFieldDemoViewController.swift */,
 				022772051D62387E00D9CAE7 /* TableViewCellsDemoVC.swift */,
+				022772011D622FC600D9CAE7 /* ViewsSection.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -608,10 +608,10 @@
 		023050931D2440DB00D7B190 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				023050921D2440DB00D7B190 /* ChouTi.framework */,
-				0230509C1D2440DB00D7B190 /* ChouTi iOS Tests.xctest */,
-				020664F11D5FB0BE002A7E2A /* ChouTi Example iOS.app */,
 				020665041D5FB0BE002A7E2A /* ChouTi Example iOS UITests.xctest */,
+				020664F11D5FB0BE002A7E2A /* ChouTi Example iOS.app */,
+				0230509C1D2440DB00D7B190 /* ChouTi iOS Tests.xctest */,
+				023050921D2440DB00D7B190 /* ChouTi.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -619,8 +619,8 @@
 		023050941D2440DB00D7B190 /* ChouTi */ = {
 			isa = PBXGroup;
 			children = (
-				023050AC1D24418400D7B190 /* Source */,
 				023051B91D24438A00D7B190 /* Resources */,
+				023050AC1D24418400D7B190 /* Source */,
 			);
 			name = ChouTi;
 			path = Source;
@@ -629,12 +629,12 @@
 		023050A01D2440DB00D7B190 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				023050A31D2440DB00D7B190 /* Info.plist */,
-				02556A7E218A50CA0020D032 /* DelayTaskTests.swift */,
-				02556A5B218A50BE0020D032 /* OperatorsTests.swift */,
 				02556A80218A50D00020D032 /* DataStructure */,
 				02556A5D218A50C50020D032 /* Extensions */,
 				02556A57218A50B60020D032 /* UI */,
+				02556A7E218A50CA0020D032 /* DelayTaskTests.swift */,
+				023050A31D2440DB00D7B190 /* Info.plist */,
+				02556A5B218A50BE0020D032 /* OperatorsTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -642,12 +642,12 @@
 		023050AC1D24418400D7B190 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				023050971D2440DB00D7B190 /* Info.plist */,
-				022772151D6258C900D9CAE7 /* ChouTi.h */,
-				022772161D6258C900D9CAE7 /* ChouTi.modulemap */,
-				02A245631EB2932300A15837 /* Platform.swift */,
 				02556926218A50830020D032 /* iOS */,
 				0230513F1D24418400D7B190 /* OSX */,
+				022772151D6258C900D9CAE7 /* ChouTi.h */,
+				022772161D6258C900D9CAE7 /* ChouTi.modulemap */,
+				023050971D2440DB00D7B190 /* Info.plist */,
+				02A245631EB2932300A15837 /* Platform.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -682,16 +682,16 @@
 		02556926218A50830020D032 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				02556927218A50830020D032 /* UI */,
-				02556964218A50830020D032 /* CIImageFilter */,
-				02556966218A50830020D032 /* TableView+SectionRowExtensions */,
 				0255696C218A50830020D032 /* Animators */,
-				02556975218A50830020D032 /* Foundation */,
+				02556964218A50830020D032 /* CIImageFilter */,
 				0255697F218A50830020D032 /* CodeSnippets */,
-				02556997218A50830020D032 /* Extensions */,
-				025569C2218A50830020D032 /* DataStructure */,
 				025569C5218A50830020D032 /* CollectionViewLayouts */,
+				025569C2218A50830020D032 /* DataStructure */,
+				02556997218A50830020D032 /* Extensions */,
+				02556975218A50830020D032 /* Foundation */,
 				025569CB218A50830020D032 /* Protocols */,
+				02556966218A50830020D032 /* TableView+SectionRowExtensions */,
+				02556927218A50830020D032 /* UI */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -699,26 +699,26 @@
 		02556927218A50830020D032 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				02556928218A50830020D032 /* ImageView */,
-				0255692A218A50830020D032 /* DropDownMenu */,
-				02556930218A50830020D032 /* NavigationBarStatusBar */,
-				02556933218A50830020D032 /* TableViewCells */,
-				0255693D218A50830020D032 /* DatePickerViewController */,
-				02556940218A50830020D032 /* TextField */,
-				02556942218A50830020D032 /* CollectionViewCells */,
-				02556944218A50830020D032 /* SearchTextField */,
-				02556946218A50830020D032 /* ImagePickerView */,
-				02556948218A50830020D032 /* Button */,
-				0255694A218A50830020D032 /* SegmentedControl */,
-				0255694C218A50830020D032 /* SlideController */,
 				0255694E218A50830020D032 /* AlertView */,
-				02556954218A50830020D032 /* ProgressBarView */,
 				02556956218A50830020D032 /* AutoLinesLabel */,
-				02556958218A50830020D032 /* SingleTitleContentPairView */,
-				0255695A218A50830020D032 /* RandomImageView */,
-				0255695C218A50830020D032 /* PageControl */,
-				0255695E218A50830020D032 /* MenuPageViewController */,
+				02556948218A50830020D032 /* Button */,
+				02556942218A50830020D032 /* CollectionViewCells */,
+				0255693D218A50830020D032 /* DatePickerViewController */,
+				0255692A218A50830020D032 /* DropDownMenu */,
+				02556946218A50830020D032 /* ImagePickerView */,
+				02556928218A50830020D032 /* ImageView */,
 				02556962218A50830020D032 /* LoadingMorphingLabel */,
+				0255695E218A50830020D032 /* MenuPageViewController */,
+				02556930218A50830020D032 /* NavigationBarStatusBar */,
+				0255695C218A50830020D032 /* PageControl */,
+				02556954218A50830020D032 /* ProgressBarView */,
+				0255695A218A50830020D032 /* RandomImageView */,
+				02556944218A50830020D032 /* SearchTextField */,
+				0255694A218A50830020D032 /* SegmentedControl */,
+				02556958218A50830020D032 /* SingleTitleContentPairView */,
+				0255694C218A50830020D032 /* SlideController */,
+				02556933218A50830020D032 /* TableViewCells */,
+				02556940218A50830020D032 /* TextField */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -734,11 +734,11 @@
 		0255692A218A50830020D032 /* DropDownMenu */ = {
 			isa = PBXGroup;
 			children = (
-				0255692B218A50830020D032 /* DropDownMenuProtocols.swift */,
-				0255692C218A50830020D032 /* DropDownMenuAnimator.swift */,
-				0255692D218A50830020D032 /* DropDownMenuPresentationController.swift */,
-				0255692E218A50830020D032 /* DropDownMenuPickerViewController.swift */,
 				0255692F218A50830020D032 /* DropDownMenu.swift */,
+				0255692C218A50830020D032 /* DropDownMenuAnimator.swift */,
+				0255692E218A50830020D032 /* DropDownMenuPickerViewController.swift */,
+				0255692D218A50830020D032 /* DropDownMenuPresentationController.swift */,
+				0255692B218A50830020D032 /* DropDownMenuProtocols.swift */,
 			);
 			path = DropDownMenu;
 			sourceTree = "<group>";
@@ -746,8 +746,8 @@
 		02556930218A50830020D032 /* NavigationBarStatusBar */ = {
 			isa = PBXGroup;
 			children = (
-				02556931218A50830020D032 /* UINavigationBar+StatusBar.swift */,
 				02556932218A50830020D032 /* NavigationBarStatusBar.swift */,
+				02556931218A50830020D032 /* UINavigationBar+StatusBar.swift */,
 			);
 			path = NavigationBarStatusBar;
 			sourceTree = "<group>";
@@ -755,15 +755,15 @@
 		02556933218A50830020D032 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				02556934218A50830020D032 /* TableViewCellValue1.swift */,
-				02556935218A50830020D032 /* TableViewCellSubtitle.swift */,
-				02556936218A50830020D032 /* TableViewCell.swift */,
-				02556937218A50830020D032 /* SeparatorCell.swift */,
-				02556938218A50830020D032 /* TableViewCellValue2.swift */,
-				02556939218A50830020D032 /* TitleContentTableViewCell.swift */,
 				0255693A218A50830020D032 /* CenterLabelTableViewCell.swift */,
 				0255693B218A50830020D032 /* DatePickerCell.swift */,
+				02556937218A50830020D032 /* SeparatorCell.swift */,
 				0255693C218A50830020D032 /* SwipeTableViewCell.swift */,
+				02556936218A50830020D032 /* TableViewCell.swift */,
+				02556935218A50830020D032 /* TableViewCellSubtitle.swift */,
+				02556934218A50830020D032 /* TableViewCellValue1.swift */,
+				02556938218A50830020D032 /* TableViewCellValue2.swift */,
+				02556939218A50830020D032 /* TitleContentTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -771,8 +771,8 @@
 		0255693D218A50830020D032 /* DatePickerViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0255693E218A50830020D032 /* DatePickerControllerDelagte.swift */,
 				0255693F218A50830020D032 /* DatePickerController.swift */,
+				0255693E218A50830020D032 /* DatePickerControllerDelagte.swift */,
 			);
 			path = DatePickerViewController;
 			sourceTree = "<group>";
@@ -828,9 +828,9 @@
 		0255694C218A50830020D032 /* SlideController */ = {
 			isa = PBXGroup;
 			children = (
+				0207669C219170290076E37C /* SlideController+UIGestureRecognizerDelegate.swift */,
 				0255694D218A50830020D032 /* SlideController.swift */,
 				0207669A21916DDD0076E37C /* SlideState.swift */,
-				0207669C219170290076E37C /* SlideController+UIGestureRecognizerDelegate.swift */,
 			);
 			path = SlideController;
 			sourceTree = "<group>";
@@ -840,9 +840,9 @@
 			children = (
 				0255694F218A50830020D032 /* AlertAction.swift */,
 				02556950218A50830020D032 /* AlertController.swift */,
-				02556951218A50830020D032 /* iOS default alert view reference.jpg */,
-				02556952218A50830020D032 /* AlertViewButton.swift */,
 				02556953218A50830020D032 /* AlertView.swift */,
+				02556952218A50830020D032 /* AlertViewButton.swift */,
+				02556951218A50830020D032 /* iOS default alert view reference.jpg */,
 			);
 			path = AlertView;
 			sourceTree = "<group>";
@@ -890,8 +890,8 @@
 		0255695E218A50830020D032 /* MenuPageViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0255695F218A50830020D032 /* MenuPageViewController.swift */,
 				02A1DCB621925598008F162F /* PgaeViewController */,
+				0255695F218A50830020D032 /* MenuPageViewController.swift */,
 				02556961218A50830020D032 /* MenuView.swift */,
 			);
 			path = MenuPageViewController;
@@ -916,11 +916,11 @@
 		02556966218A50830020D032 /* TableView+SectionRowExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				02556967218A50830020D032 /* TableViewRowType.swift */,
-				02556968218A50830020D032 /* TableViewSectionType.swift */,
-				02556969218A50830020D032 /* TableViewSection.swift */,
 				0255696A218A50830020D032 /* TableView+Sections.swift */,
 				0255696B218A50830020D032 /* TableViewRow.swift */,
+				02556967218A50830020D032 /* TableViewRowType.swift */,
+				02556969218A50830020D032 /* TableViewSection.swift */,
+				02556968218A50830020D032 /* TableViewSectionType.swift */,
 			);
 			path = "TableView+SectionRowExtensions";
 			sourceTree = "<group>";
@@ -928,12 +928,12 @@
 		0255696C218A50830020D032 /* Animators */ = {
 			isa = PBXGroup;
 			children = (
-				0255696D218A50830020D032 /* FadeInPresentingAnimator.swift */,
-				0255696E218A50830020D032 /* ScalePresentingAnimator.swift */,
-				0255696F218A50830020D032 /* Animator.swift */,
-				02556970218A50830020D032 /* SlideUpAnimator.swift */,
-				02556971218A50830020D032 /* OverlayPresentationController.swift */,
 				02556972218A50830020D032 /* DropPresentingAnimator */,
+				0255696F218A50830020D032 /* Animator.swift */,
+				0255696D218A50830020D032 /* FadeInPresentingAnimator.swift */,
+				02556971218A50830020D032 /* OverlayPresentationController.swift */,
+				0255696E218A50830020D032 /* ScalePresentingAnimator.swift */,
+				02556970218A50830020D032 /* SlideUpAnimator.swift */,
 			);
 			path = Animators;
 			sourceTree = "<group>";
@@ -950,15 +950,15 @@
 		02556975218A50830020D032 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				0255697E218A50830020D032 /* ColorPalette.swift */,
 				02556976218A50830020D032 /* Constants.swift */,
-				02556977218A50830020D032 /* Math.swift */,
-				02556978218A50830020D032 /* StructWrapper.swift */,
-				02556979218A50830020D032 /* Resource.swift */,
-				0255697A218A50830020D032 /* Operators.swift */,
-				0255697B218A50830020D032 /* Then.swift */,
 				0255697C218A50830020D032 /* DelayedTask.swift */,
 				0255697D218A50830020D032 /* Images.swift */,
-				0255697E218A50830020D032 /* ColorPalette.swift */,
+				02556977218A50830020D032 /* Math.swift */,
+				0255697A218A50830020D032 /* Operators.swift */,
+				02556979218A50830020D032 /* Resource.swift */,
+				02556978218A50830020D032 /* StructWrapper.swift */,
+				0255697B218A50830020D032 /* Then.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -966,29 +966,29 @@
 		0255697F218A50830020D032 /* CodeSnippets */ = {
 			isa = PBXGroup;
 			children = (
-				02556980218A50830020D032 /* CodeSnippets_UIVisualEffectView.swift */,
-				02556981218A50830020D032 /* CodeSnippet_UIView.swift */,
-				02556982218A50830020D032 /* CodeSnippets_Shadow.swift */,
-				02556983218A50830020D032 /* CodeSnippets_UIDevice.swift */,
-				02556984218A50830020D032 /* CodeSnippets_AppDelegate.swift */,
-				02556985218A50830020D032 /* CodeSnippet_UITextField.swift */,
-				02556986218A50830020D032 /* CodeSnippet_UITableView.swift */,
-				02556987218A50830020D032 /* CodeSnippets_Protocols.swift */,
-				02556988218A50830020D032 /* CodeSnippets_ImageAsset.swift */,
-				02556989218A50830020D032 /* CodeSnippets_UISegmentedControl.swift */,
-				0255698A218A50830020D032 /* CodeSnippet_UICollectionViewCell.swift */,
+				02556992218A50830020D032 /* CodeSnippet_CLLocationManager.swift */,
 				0255698B218A50830020D032 /* CodeSnippet_ImageAssets.swift */,
-				0255698C218A50830020D032 /* CodeSnippets_NSDateFormatter.swift */,
-				0255698D218A50830020D032 /* CodeSnippet_UITableViewCell.swift */,
+				02556990218A50830020D032 /* CodeSnippet_UIButton.swift */,
+				0255698A218A50830020D032 /* CodeSnippet_UICollectionViewCell.swift */,
+				02556994218A50830020D032 /* CodeSnippet_UILabel.swift */,
 				0255698E218A50830020D032 /* CodeSnippet_UINavigationBar.swift */,
 				0255698F218A50830020D032 /* CodeSnippet_UIStackView.swift */,
-				02556990218A50830020D032 /* CodeSnippet_UIButton.swift */,
+				02556986218A50830020D032 /* CodeSnippet_UITableView.swift */,
+				0255698D218A50830020D032 /* CodeSnippet_UITableViewCell.swift */,
+				02556985218A50830020D032 /* CodeSnippet_UITextField.swift */,
+				02556981218A50830020D032 /* CodeSnippet_UIView.swift */,
 				02556991218A50830020D032 /* CodeSnippet_UIViewController.swift */,
-				02556992218A50830020D032 /* CodeSnippet_CLLocationManager.swift */,
-				02556993218A50830020D032 /* CodeSnippets_NavigationItem.swift */,
-				02556994218A50830020D032 /* CodeSnippet_UILabel.swift */,
 				02556995218A50830020D032 /* CodeSnippet_ViewControllerContainment.swift */,
+				02556984218A50830020D032 /* CodeSnippets_AppDelegate.swift */,
+				02556988218A50830020D032 /* CodeSnippets_ImageAsset.swift */,
+				02556993218A50830020D032 /* CodeSnippets_NavigationItem.swift */,
+				0255698C218A50830020D032 /* CodeSnippets_NSDateFormatter.swift */,
+				02556987218A50830020D032 /* CodeSnippets_Protocols.swift */,
+				02556982218A50830020D032 /* CodeSnippets_Shadow.swift */,
 				02556996218A50830020D032 /* CodeSnippets_Swizzling.swift */,
+				02556983218A50830020D032 /* CodeSnippets_UIDevice.swift */,
+				02556989218A50830020D032 /* CodeSnippets_UISegmentedControl.swift */,
+				02556980218A50830020D032 /* CodeSnippets_UIVisualEffectView.swift */,
 			);
 			path = CodeSnippets;
 			sourceTree = "<group>";
@@ -996,48 +996,48 @@
 		02556997218A50830020D032 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				02556998218A50830020D032 /* CGContext+Extensions.swift */,
-				02556999218A50830020D032 /* DispatchQueue+Once.swift */,
-				0255699A218A50830020D032 /* NSObject+Observation.swift */,
-				0255699B218A50830020D032 /* UIImageView+Extensions.swift */,
-				0255699C218A50830020D032 /* UIViewController+Extensions.swift */,
-				0255699D218A50830020D032 /* DispatchQueue+Extensions.swift */,
-				0255699E218A50830020D032 /* UIButton+Extensions.swift */,
-				0255699F218A50830020D032 /* UIView+Extensions.swift */,
-				025569A0218A50830020D032 /* DateFormatter+Extensions.swift */,
-				025569A1218A50830020D032 /* UIView+Animations.swift */,
-				025569A2218A50830020D032 /* String+Extensions.swift */,
-				025569A3218A50830020D032 /* UIFont+Extensions.swift */,
-				025569A4218A50830020D032 /* NSRegularExpression+Extensions.swift */,
-				025569A5218A50830020D032 /* UIButton+Action.swift */,
-				025569A6218A50830020D032 /* UIColor+Extensions.swift */,
-				025569A7218A50830020D032 /* UIImage+Extensions.swift */,
-				025569A8218A50830020D032 /* UINavigationBar+Extensions.swift */,
-				025569A9218A50830020D032 /* UIGestureRecognizer+Extensions.swift */,
-				025569AA218A50830020D032 /* UISearchBar+Extensions.swift */,
-				025569AB218A50830020D032 /* NSLayoutConstraint+Retrieve.swift */,
-				025569AC218A50830020D032 /* UIScreen+Extensions.swift */,
-				025569AD218A50830020D032 /* NSLayoutConstraint+Extensions.swift */,
-				025569AE218A50830020D032 /* UIView+OverlayView.swift */,
-				025569AF218A50830020D032 /* UINavigationController+Extensions.swift */,
 				025569B0218A50830020D032 /* Calendar+Extensions.swift */,
-				025569B1218A50830020D032 /* SequenceType+Extensions.swift */,
-				025569B2218A50830020D032 /* NSLayoutAnchor+Extensions.swift */,
-				025569B3218A50830020D032 /* NSObject+AssociatedObject.swift */,
-				025569B4218A50830020D032 /* UIStackView+Extensions.swift */,
-				025569B5218A50830020D032 /* UIView+Geometry.swift */,
-				025569B6218A50830020D032 /* UITableView+Extensions.swift */,
-				025569B7218A50830020D032 /* UILable+Extensions.swift */,
-				025569B8218A50830020D032 /* Optional+Extensions.swift */,
-				025569B9218A50830020D032 /* UILongPressGestureRecognizer+Extensions.swift */,
-				025569BA218A50830020D032 /* UITableViewCell+Extensions.swift */,
-				025569BB218A50830020D032 /* Dictionary+Extensions.swift */,
-				025569BC218A50830020D032 /* NSTimeZone+Extensions.swift */,
-				025569BD218A50830020D032 /* UIScrollView+Extensions.swift */,
-				025569BE218A50830020D032 /* Numbers+Extensions.swift */,
-				025569BF218A50830020D032 /* Date+Extensions.swift */,
+				02556998218A50830020D032 /* CGContext+Extensions.swift */,
 				025569C0218A50830020D032 /* CGRect+Extensions.swift */,
 				025569C1218A50830020D032 /* Collection+Extensions.swift */,
+				025569BF218A50830020D032 /* Date+Extensions.swift */,
+				025569A0218A50830020D032 /* DateFormatter+Extensions.swift */,
+				025569BB218A50830020D032 /* Dictionary+Extensions.swift */,
+				0255699D218A50830020D032 /* DispatchQueue+Extensions.swift */,
+				02556999218A50830020D032 /* DispatchQueue+Once.swift */,
+				025569B2218A50830020D032 /* NSLayoutAnchor+Extensions.swift */,
+				025569AD218A50830020D032 /* NSLayoutConstraint+Extensions.swift */,
+				025569AB218A50830020D032 /* NSLayoutConstraint+Retrieve.swift */,
+				025569B3218A50830020D032 /* NSObject+AssociatedObject.swift */,
+				0255699A218A50830020D032 /* NSObject+Observation.swift */,
+				025569A4218A50830020D032 /* NSRegularExpression+Extensions.swift */,
+				025569BC218A50830020D032 /* NSTimeZone+Extensions.swift */,
+				025569BE218A50830020D032 /* Numbers+Extensions.swift */,
+				025569B8218A50830020D032 /* Optional+Extensions.swift */,
+				025569B1218A50830020D032 /* SequenceType+Extensions.swift */,
+				025569A2218A50830020D032 /* String+Extensions.swift */,
+				025569A5218A50830020D032 /* UIButton+Action.swift */,
+				0255699E218A50830020D032 /* UIButton+Extensions.swift */,
+				025569A6218A50830020D032 /* UIColor+Extensions.swift */,
+				025569A3218A50830020D032 /* UIFont+Extensions.swift */,
+				025569A9218A50830020D032 /* UIGestureRecognizer+Extensions.swift */,
+				025569A7218A50830020D032 /* UIImage+Extensions.swift */,
+				0255699B218A50830020D032 /* UIImageView+Extensions.swift */,
+				025569B7218A50830020D032 /* UILable+Extensions.swift */,
+				025569B9218A50830020D032 /* UILongPressGestureRecognizer+Extensions.swift */,
+				025569A8218A50830020D032 /* UINavigationBar+Extensions.swift */,
+				025569AF218A50830020D032 /* UINavigationController+Extensions.swift */,
+				025569AC218A50830020D032 /* UIScreen+Extensions.swift */,
+				025569BD218A50830020D032 /* UIScrollView+Extensions.swift */,
+				025569AA218A50830020D032 /* UISearchBar+Extensions.swift */,
+				025569B4218A50830020D032 /* UIStackView+Extensions.swift */,
+				025569B6218A50830020D032 /* UITableView+Extensions.swift */,
+				025569BA218A50830020D032 /* UITableViewCell+Extensions.swift */,
+				025569A1218A50830020D032 /* UIView+Animations.swift */,
+				0255699F218A50830020D032 /* UIView+Extensions.swift */,
+				025569B5218A50830020D032 /* UIView+Geometry.swift */,
+				025569AE218A50830020D032 /* UIView+OverlayView.swift */,
+				0255699C218A50830020D032 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1045,8 +1045,8 @@
 		025569C2218A50830020D032 /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
-				025569C3218A50830020D032 /* Queue.swift */,
 				025569C4218A50830020D032 /* OrderedDictionary.swift */,
+				025569C3218A50830020D032 /* Queue.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -1063,9 +1063,9 @@
 			isa = PBXGroup;
 			children = (
 				025569C7218A50830020D032 /* TableCollectionViewLayout.swift */,
+				025569CA218A50830020D032 /* TableCollectionViewSeparatorView.swift */,
 				025569C8218A50830020D032 /* TextTableCollectionView.swift */,
 				025569C9218A50830020D032 /* TextTableCollectionViewCell.swift */,
-				025569CA218A50830020D032 /* TableCollectionViewSeparatorView.swift */,
 			);
 			path = TableLayout;
 			sourceTree = "<group>";
@@ -1074,8 +1074,8 @@
 			isa = PBXGroup;
 			children = (
 				025569CC218A50830020D032 /* Analytics.swift */,
-				025569CD218A50830020D032 /* TableView+Registrable.swift */,
 				025569CE218A50830020D032 /* CollectionView+Registrable.swift */,
+				025569CD218A50830020D032 /* TableView+Registrable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1099,22 +1099,22 @@
 		02556A5D218A50C50020D032 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				02556A5E218A50C50020D032 /* NSCalendar+ExtensionsTests.swift */,
+				02556A63218A50C50020D032 /* CGContext+ExtensionsTests.swift */,
+				02556A6A218A50C50020D032 /* CGRect+ExtensionsTests.swift */,
 				02556A5F218A50C50020D032 /* CollectionType+ExtensionsTests.swift */,
+				02556A68218A50C50020D032 /* Dictionary+ExtensionsTests.swift */,
+				02556A6B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift */,
+				02556A5E218A50C50020D032 /* NSCalendar+ExtensionsTests.swift */,
+				02556A6D218A50C50020D032 /* NSDate+ExtensionsTests.swift */,
 				02556A60218A50C50020D032 /* NSLayoutConstraint+ExtensionsTests.swift */,
 				02556A61218A50C50020D032 /* NSLayoutConstraint+RetrieveTests.swift */,
-				02556A62218A50C50020D032 /* UIColor+ExtensionsTests.swift */,
-				02556A63218A50C50020D032 /* CGContext+ExtensionsTests.swift */,
+				02556A67218A50C50020D032 /* NSObject+AssociatedObjectTests.swift */,
+				02556A69218A50C50020D032 /* SequenceType+ExtensionsTests.swift */,
 				02556A64218A50C50020D032 /* String+ExtensionsTests.swift */,
 				02556A65218A50C50020D032 /* UIButton+ActionTests.swift */,
-				02556A66218A50C50020D032 /* UIView+GeometryTests.swift */,
-				02556A67218A50C50020D032 /* NSObject+AssociatedObjectTests.swift */,
-				02556A68218A50C50020D032 /* Dictionary+ExtensionsTests.swift */,
-				02556A69218A50C50020D032 /* SequenceType+ExtensionsTests.swift */,
-				02556A6A218A50C50020D032 /* CGRect+ExtensionsTests.swift */,
-				02556A6B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift */,
+				02556A62218A50C50020D032 /* UIColor+ExtensionsTests.swift */,
 				02556A6C218A50C50020D032 /* UIView+ExtensionsTests.swift */,
-				02556A6D218A50C50020D032 /* NSDate+ExtensionsTests.swift */,
+				02556A66218A50C50020D032 /* UIView+GeometryTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1122,8 +1122,8 @@
 		02556A80218A50D00020D032 /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
-				02556A81218A50D00020D032 /* QueueTests.swift */,
 				02556A82218A50D00020D032 /* OrderedDictionaryTests.swift */,
+				02556A81218A50D00020D032 /* QueueTests.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -1131,11 +1131,11 @@
 		025C917E1D63F98F000C54D8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				025C917F1D63F9AD000C54D8 /* ViewControllersSection.swift */,
 				025C91811D63F9D9000C54D8 /* Shared */,
 				025C91841D63F9E0000C54D8 /* SlideControllerDemoViewController */,
-				025C91891D63F9F4000C54D8 /* PageViewDemoController.swift */,
 				025C918B1D63F9FA000C54D8 /* MenuPageDemoViewController.swift */,
+				025C91891D63F9F4000C54D8 /* PageViewDemoController.swift */,
+				025C917F1D63F9AD000C54D8 /* ViewControllersSection.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1161,13 +1161,13 @@
 		025C918D1D64007F000C54D8 /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
-				025C91C51D64016C000C54D8 /* MiscellaneousSection.swift */,
-				025C918E1D64007F000C54D8 /* DropPresentingDemoViewController.swift */,
-				025C91931D64007F000C54D8 /* TableLayoutDemoViewController.swift */,
-				025C918F1D64007F000C54D8 /* HideNavigationBarBottomLineDemoViewController.swift */,
-				025C91941D64007F000C54D8 /* TableViewSectionRowExtensionDemoViewController.swift */,
-				025C91901D64007F000C54D8 /* LeadingTrailingVSLeftRightDemoViewController.swift */,
 				025C91951D64007F000C54D8 /* UIImage+Extensions Demo */,
+				025C918E1D64007F000C54D8 /* DropPresentingDemoViewController.swift */,
+				025C918F1D64007F000C54D8 /* HideNavigationBarBottomLineDemoViewController.swift */,
+				025C91901D64007F000C54D8 /* LeadingTrailingVSLeftRightDemoViewController.swift */,
+				025C91C51D64016C000C54D8 /* MiscellaneousSection.swift */,
+				025C91931D64007F000C54D8 /* TableLayoutDemoViewController.swift */,
+				025C91941D64007F000C54D8 /* TableViewSectionRowExtensionDemoViewController.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -1217,10 +1217,10 @@
 		025C91C71D64053F000C54D8 /* Issues */ = {
 			isa = PBXGroup;
 			children = (
-				025C91C91D64053F000C54D8 /* IssuesSection.swift */,
+				02DAEC851DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift */,
 				025C91C81D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift */,
 				02FFC4DE1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift */,
-				02DAEC851DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift */,
+				025C91C91D64053F000C54D8 /* IssuesSection.swift */,
 			);
 			path = Issues;
 			sourceTree = "<group>";
@@ -1228,8 +1228,8 @@
 		02A1DCB621925598008F162F /* PgaeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				02A1DCB721925598008F162F /* PgaeViewController.swift */,
 				02A1DCB821925598008F162F /* PgaeViewController+UIScrollViewDelegate.swift */,
+				02A1DCB721925598008F162F /* PgaeViewController.swift */,
 			);
 			path = PgaeViewController;
 			sourceTree = "<group>";
@@ -1237,22 +1237,22 @@
 		6BF21BC51D6EE92CC6CF3805 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */,
-				CFF91EB292EA2A1C68B76AA1 /* Pods-ChouTiTests.release.xcconfig */,
+				D7AE077C9A119A6AA7B7A52D /* Pods-ChouTi Example iOS UITests.debug.xcconfig */,
+				CD189238B169905CBB73C1DC /* Pods-ChouTi Example iOS UITests.release.xcconfig */,
+				B02C65F66B3E2D524FFCFB21 /* Pods-ChouTi Example iOS.debug.xcconfig */,
+				E225E972756CC3CEACDDFE7B /* Pods-ChouTi Example iOS.release.xcconfig */,
+				128F6CC0BF5360BA0A101BE3 /* Pods-ChouTi iOS Tests.debug.xcconfig */,
+				0AF0AC0B1D0A37B6017485E1 /* Pods-ChouTi iOS Tests.release.xcconfig */,
+				2B1364BA6F755B010A2197E4 /* Pods-ChouTi iOS.debug.xcconfig */,
+				B53E2A53EEE387A7D1A4FA8D /* Pods-ChouTi iOS.release.xcconfig */,
 				FEC2A5F68CC869551380F08A /* Pods-ChouTi iOSUITests.debug.xcconfig */,
 				93472D147EE0FF19B51A311F /* Pods-ChouTi iOSUITests.release.xcconfig */,
 				DD94FDE37E0E4C776AF43740 /* Pods-ChouTi Tests.debug.xcconfig */,
 				5BA8DBD8B8F92AC3193E57C7 /* Pods-ChouTi Tests.release.xcconfig */,
 				135F2AA4F2E5B0FDBC9F436D /* Pods-ChouTi_Tests.debug.xcconfig */,
 				5E8C7FDFCF9D13AA5703AF7C /* Pods-ChouTi_Tests.release.xcconfig */,
-				D7AE077C9A119A6AA7B7A52D /* Pods-ChouTi Example iOS UITests.debug.xcconfig */,
-				CD189238B169905CBB73C1DC /* Pods-ChouTi Example iOS UITests.release.xcconfig */,
-				128F6CC0BF5360BA0A101BE3 /* Pods-ChouTi iOS Tests.debug.xcconfig */,
-				0AF0AC0B1D0A37B6017485E1 /* Pods-ChouTi iOS Tests.release.xcconfig */,
-				2B1364BA6F755B010A2197E4 /* Pods-ChouTi iOS.debug.xcconfig */,
-				B53E2A53EEE387A7D1A4FA8D /* Pods-ChouTi iOS.release.xcconfig */,
-				B02C65F66B3E2D524FFCFB21 /* Pods-ChouTi Example iOS.debug.xcconfig */,
-				E225E972756CC3CEACDDFE7B /* Pods-ChouTi Example iOS.release.xcconfig */,
+				D94FE367641F0162F11D1A12 /* Pods-ChouTiTests.debug.xcconfig */,
+				CFF91EB292EA2A1C68B76AA1 /* Pods-ChouTiTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1262,13 +1262,13 @@
 			children = (
 				027B155520B4D89000D48048 /* LTMorphingLabel.framework */,
 				2582D7686D9E144D59115335 /* Pods_ChouTi.framework */,
-				0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */,
+				DEA3F397C80E368E3D87F662 /* Pods_ChouTi_Example_iOS.framework */,
+				13F498408FDE6CFF1EA6E017 /* Pods_ChouTi_Example_iOS_UITests.framework */,
 				4709340B247A9FBB0F39EBC9 /* Pods_ChouTi_iOS.framework */,
+				B98889732A852C9D8D059AA9 /* Pods_ChouTi_iOS_Tests.framework */,
 				4B2D6CD28927A2FC2A68ABAD /* Pods_ChouTi_iOSUITests.framework */,
 				9F1CE703202E661667E8B3A0 /* Pods_ChouTi_Tests.framework */,
-				13F498408FDE6CFF1EA6E017 /* Pods_ChouTi_Example_iOS_UITests.framework */,
-				B98889732A852C9D8D059AA9 /* Pods_ChouTi_iOS_Tests.framework */,
-				DEA3F397C80E368E3D87F662 /* Pods_ChouTi_Example_iOS.framework */,
+				0FFF7924A0E59197E32ACB32 /* Pods_ChouTiTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1425,25 +1425,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				025C91C01D64007F000C54D8 /* bear8.png in Resources */,
-				025C91B81D64007F000C54D8 /* bear4.png in Resources */,
-				025C91B41D64007F000C54D8 /* bear2.png in Resources */,
-				025C91BF1D64007F000C54D8 /* bear7@2x.png in Resources */,
-				025C91BC1D64007F000C54D8 /* bear6.png in Resources */,
-				025C91B71D64007F000C54D8 /* bear3@2x.png in Resources */,
-				025C91BA1D64007F000C54D8 /* bear5.png in Resources */,
-				025C91B61D64007F000C54D8 /* bear3.png in Resources */,
-				025C91BD1D64007F000C54D8 /* bear6@2x.png in Resources */,
-				020664FE1D5FB0BE002A7E2A /* LaunchScreen.storyboard in Resources */,
 				020664FB1D5FB0BE002A7E2A /* Assets.xcassets in Resources */,
-				025C91B51D64007F000C54D8 /* bear2@2x.png in Resources */,
-				025C91881D63F9E0000C54D8 /* CenterViewController.xib in Resources */,
-				025C91C11D64007F000C54D8 /* bear8@2x.png in Resources */,
-				025C91B31D64007F000C54D8 /* bear1@2x.png in Resources */,
-				025C91B91D64007F000C54D8 /* bear4@2x.png in Resources */,
-				025C91BE1D64007F000C54D8 /* bear7.png in Resources */,
-				025C91BB1D64007F000C54D8 /* bear5@2x.png in Resources */,
 				025C91B21D64007F000C54D8 /* bear1.png in Resources */,
+				025C91B31D64007F000C54D8 /* bear1@2x.png in Resources */,
+				025C91B41D64007F000C54D8 /* bear2.png in Resources */,
+				025C91B51D64007F000C54D8 /* bear2@2x.png in Resources */,
+				025C91B61D64007F000C54D8 /* bear3.png in Resources */,
+				025C91B71D64007F000C54D8 /* bear3@2x.png in Resources */,
+				025C91B81D64007F000C54D8 /* bear4.png in Resources */,
+				025C91B91D64007F000C54D8 /* bear4@2x.png in Resources */,
+				025C91BA1D64007F000C54D8 /* bear5.png in Resources */,
+				025C91BB1D64007F000C54D8 /* bear5@2x.png in Resources */,
+				025C91BC1D64007F000C54D8 /* bear6.png in Resources */,
+				025C91BD1D64007F000C54D8 /* bear6@2x.png in Resources */,
+				025C91BE1D64007F000C54D8 /* bear7.png in Resources */,
+				025C91BF1D64007F000C54D8 /* bear7@2x.png in Resources */,
+				025C91C01D64007F000C54D8 /* bear8.png in Resources */,
+				025C91C11D64007F000C54D8 /* bear8@2x.png in Resources */,
+				025C91881D63F9E0000C54D8 /* CenterViewController.xib in Resources */,
+				020664FE1D5FB0BE002A7E2A /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1459,9 +1459,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				023051BE1D24438A00D7B190 /* Camera.png in Resources */,
-				025569EB218A50830020D032 /* iOS default alert view reference.jpg in Resources */,
-				023051C01D24438A00D7B190 /* Camera@3x.png in Resources */,
 				023051BF1D24438A00D7B190 /* Camera@2x.png in Resources */,
+				023051C01D24438A00D7B190 /* Camera@3x.png in Resources */,
+				025569EB218A50830020D032 /* iOS default alert view reference.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1688,38 +1688,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				025C91B01D64007F000C54D8 /* TableLayoutDemoViewController.swift in Sources */,
-				025C917B1D63F79C000C54D8 /* NavigationBarStatusBarDemoViewController.swift in Sources */,
-				025C91B11D64007F000C54D8 /* TableViewSectionRowExtensionDemoViewController.swift in Sources */,
-				022772021D622FC600D9CAE7 /* ViewsSection.swift in Sources */,
-				025C918C1D63F9FA000C54D8 /* MenuPageDemoViewController.swift in Sources */,
-				022772061D62387E00D9CAE7 /* TableViewCellsDemoVC.swift in Sources */,
+				025C91761D63F79C000C54D8 /* AlertControllerDemoViewController.swift in Sources */,
+				020664F41D5FB0BE002A7E2A /* AppDelegate.swift in Sources */,
+				028FC2FD1EE6021F005E25BC /* ButtonsDemoViewController.swift in Sources */,
+				025C91871D63F9E0000C54D8 /* CenterViewController.swift in Sources */,
+				025C91771D63F79C000C54D8 /* DatePickerControllerDemoViewController.swift in Sources */,
+				025C91781D63F79C000C54D8 /* DropDownMenuDemoViewController.swift in Sources */,
+				025C91AB1D64007F000C54D8 /* DropPresentingDemoViewController.swift in Sources */,
+				025C91831D63F9D9000C54D8 /* DummyViewController.swift in Sources */,
+				025C91AC1D64007F000C54D8 /* HideNavigationBarBottomLineDemoViewController.swift in Sources */,
+				025C91791D63F79C000C54D8 /* ImagePickerDemoViewController.swift in Sources */,
+				02DAEC861DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift in Sources */,
+				025C91CA1D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift in Sources */,
+				02FFC4DF1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift in Sources */,
 				025C91CB1D64053F000C54D8 /* IssuesSection.swift in Sources */,
+				025C91AD1D64007F000C54D8 /* LeadingTrailingVSLeftRightDemoViewController.swift in Sources */,
+				020665141D5FCD05002A7E2A /* MainViewController.swift in Sources */,
+				025C918C1D63F9FA000C54D8 /* MenuPageDemoViewController.swift in Sources */,
+				025C917A1D63F79C000C54D8 /* MenuViewDemoController.swift in Sources */,
+				025C91C61D64016C000C54D8 /* MiscellaneousSection.swift in Sources */,
+				025C917B1D63F79C000C54D8 /* NavigationBarStatusBarDemoViewController.swift in Sources */,
+				025C917C1D63F79C000C54D8 /* PageControlDemoViewController.swift in Sources */,
+				025C918A1D63F9F4000C54D8 /* PageViewDemoController.swift in Sources */,
+				025C917D1D63F79C000C54D8 /* SearchTextFieldDemoViewController.swift in Sources */,
+				025C91B01D64007F000C54D8 /* TableLayoutDemoViewController.swift in Sources */,
+				022772061D62387E00D9CAE7 /* TableViewCellsDemoVC.swift in Sources */,
+				025C91B11D64007F000C54D8 /* TableViewSectionRowExtensionDemoViewController.swift in Sources */,
+				025C91C21D64007F000C54D8 /* UIImage+AnimatingImagesDemo.swift in Sources */,
+				025C91C31D64007F000C54D8 /* UIImage+CroppedImageDemo.swift in Sources */,
+				025C91C41D64007F000C54D8 /* UIImage+ExtensionsDemo.swift in Sources */,
 				0206651A1D5FD37E002A7E2A /* UITestsSection.swift in Sources */,
 				025C91801D63F9AD000C54D8 /* ViewControllersSection.swift in Sources */,
-				025C91AC1D64007F000C54D8 /* HideNavigationBarBottomLineDemoViewController.swift in Sources */,
-				025C91AD1D64007F000C54D8 /* LeadingTrailingVSLeftRightDemoViewController.swift in Sources */,
-				02DAEC861DE3E06600665323 /* Issue_IncorrectTableViewCellContentViewWidth.swift in Sources */,
-				025C91871D63F9E0000C54D8 /* CenterViewController.swift in Sources */,
-				02FFC4DF1D651098004E27BF /* Issue_PreservesSuperviewLayoutMargins.swift in Sources */,
-				028FC2FD1EE6021F005E25BC /* ButtonsDemoViewController.swift in Sources */,
-				020665141D5FCD05002A7E2A /* MainViewController.swift in Sources */,
-				025C91761D63F79C000C54D8 /* AlertControllerDemoViewController.swift in Sources */,
-				025C91C31D64007F000C54D8 /* UIImage+CroppedImageDemo.swift in Sources */,
-				025C91AB1D64007F000C54D8 /* DropPresentingDemoViewController.swift in Sources */,
-				025C91C21D64007F000C54D8 /* UIImage+AnimatingImagesDemo.swift in Sources */,
-				025C917D1D63F79C000C54D8 /* SearchTextFieldDemoViewController.swift in Sources */,
-				025C91781D63F79C000C54D8 /* DropDownMenuDemoViewController.swift in Sources */,
-				025C91CA1D64053F000C54D8 /* Issue_LayoutMarginsGuideViewController.swift in Sources */,
-				025C917A1D63F79C000C54D8 /* MenuViewDemoController.swift in Sources */,
-				025C918A1D63F9F4000C54D8 /* PageViewDemoController.swift in Sources */,
-				025C917C1D63F79C000C54D8 /* PageControlDemoViewController.swift in Sources */,
-				025C91791D63F79C000C54D8 /* ImagePickerDemoViewController.swift in Sources */,
-				020664F41D5FB0BE002A7E2A /* AppDelegate.swift in Sources */,
-				025C91C41D64007F000C54D8 /* UIImage+ExtensionsDemo.swift in Sources */,
-				025C91831D63F9D9000C54D8 /* DummyViewController.swift in Sources */,
-				025C91771D63F79C000C54D8 /* DatePickerControllerDemoViewController.swift in Sources */,
-				025C91C61D64016C000C54D8 /* MiscellaneousSection.swift in Sources */,
+				022772021D622FC600D9CAE7 /* ViewsSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1735,145 +1735,145 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				025569E0218A50830020D032 /* DatePickerControllerDelagte.swift in Sources */,
-				02556A2A218A50830020D032 /* UIButton+Extensions.swift in Sources */,
-				02556A11218A50830020D032 /* CodeSnippets_AppDelegate.swift in Sources */,
-				025569CF218A50830020D032 /* ImageView.swift in Sources */,
-				02556A2E218A50830020D032 /* String+Extensions.swift in Sources */,
-				025569F2218A50830020D032 /* PageControl.swift in Sources */,
-				02556A37218A50830020D032 /* NSLayoutConstraint+Retrieve.swift in Sources */,
-				02556A3D218A50830020D032 /* SequenceType+Extensions.swift in Sources */,
-				02556A26218A50830020D032 /* NSObject+Observation.swift in Sources */,
-				025569D7218A50830020D032 /* TableViewCellValue1.swift in Sources */,
-				02556A53218A50830020D032 /* TableCollectionViewSeparatorView.swift in Sources */,
-				025569E2218A50830020D032 /* TextField.swift in Sources */,
-				02556A44218A50830020D032 /* Optional+Extensions.swift in Sources */,
-				025569FF218A50830020D032 /* Animator.swift in Sources */,
-				025569F9218A50830020D032 /* TableViewSectionType.swift in Sources */,
-				02556A32218A50830020D032 /* UIColor+Extensions.swift in Sources */,
-				02A1DCBA21925598008F162F /* PgaeViewController+UIScrollViewDelegate.swift in Sources */,
-				02556A0A218A50830020D032 /* DelayedTask.swift in Sources */,
-				025569ED218A50830020D032 /* AlertView.swift in Sources */,
-				02556A38218A50830020D032 /* UIScreen+Extensions.swift in Sources */,
-				025569E5218A50830020D032 /* ImagePickerView.swift in Sources */,
-				02556A21218A50830020D032 /* CodeSnippet_UILabel.swift in Sources */,
-				02556A16218A50830020D032 /* CodeSnippets_UISegmentedControl.swift in Sources */,
-				02556A33218A50830020D032 /* UIImage+Extensions.swift in Sources */,
-				02556A40218A50830020D032 /* UIStackView+Extensions.swift in Sources */,
-				02556A31218A50830020D032 /* UIButton+Action.swift in Sources */,
-				025569F5218A50830020D032 /* MenuView.swift in Sources */,
-				025569EC218A50830020D032 /* AlertViewButton.swift in Sources */,
-				02556A1D218A50830020D032 /* CodeSnippet_UIButton.swift in Sources */,
-				02556A03218A50830020D032 /* DropPresentingPresentationController.swift in Sources */,
-				02556A4D218A50830020D032 /* Collection+Extensions.swift in Sources */,
-				02556A0C218A50830020D032 /* ColorPalette.swift in Sources */,
-				02556A07218A50830020D032 /* Resource.swift in Sources */,
-				02556A1F218A50830020D032 /* CodeSnippet_CLLocationManager.swift in Sources */,
-				02556A19218A50830020D032 /* CodeSnippets_NSDateFormatter.swift in Sources */,
-				02556A28218A50830020D032 /* UIViewController+Extensions.swift in Sources */,
-				02556A3E218A50830020D032 /* NSLayoutAnchor+Extensions.swift in Sources */,
-				02556A41218A50830020D032 /* UIView+Geometry.swift in Sources */,
-				02556A13218A50830020D032 /* CodeSnippet_UITableView.swift in Sources */,
-				02556A22218A50830020D032 /* CodeSnippet_ViewControllerContainment.swift in Sources */,
-				0207669B21916DDE0076E37C /* SlideState.swift in Sources */,
-				025569DC218A50830020D032 /* TitleContentTableViewCell.swift in Sources */,
-				02556A46218A50830020D032 /* UITableViewCell+Extensions.swift in Sources */,
-				02556A2F218A50830020D032 /* UIFont+Extensions.swift in Sources */,
 				025569E9218A50830020D032 /* AlertAction.swift in Sources */,
-				02556A01218A50830020D032 /* OverlayPresentationController.swift in Sources */,
-				02556A35218A50830020D032 /* UIGestureRecognizer+Extensions.swift in Sources */,
-				025569D5218A50830020D032 /* UINavigationBar+StatusBar.swift in Sources */,
-				02556A24218A50830020D032 /* CGContext+Extensions.swift in Sources */,
-				025569F8218A50830020D032 /* TableViewRowType.swift in Sources */,
-				02556A3A218A50830020D032 /* UIView+OverlayView.swift in Sources */,
-				02556A4F218A50830020D032 /* OrderedDictionary.swift in Sources */,
-				025569E8218A50830020D032 /* SlideController.swift in Sources */,
-				02A245641EB2932300A15837 /* Platform.swift in Sources */,
-				025569DB218A50830020D032 /* TableViewCellValue2.swift in Sources */,
-				02556A30218A50830020D032 /* NSRegularExpression+Extensions.swift in Sources */,
-				02556A17218A50830020D032 /* CodeSnippet_UICollectionViewCell.swift in Sources */,
-				02556A36218A50830020D032 /* UISearchBar+Extensions.swift in Sources */,
-				02556A0D218A50830020D032 /* CodeSnippets_UIVisualEffectView.swift in Sources */,
-				025569DA218A50830020D032 /* SeparatorCell.swift in Sources */,
 				025569EA218A50830020D032 /* AlertController.swift in Sources */,
-				025569E4218A50830020D032 /* SearchTextField.swift in Sources */,
-				02556A00218A50830020D032 /* SlideUpAnimator.swift in Sources */,
-				02556A05218A50830020D032 /* Math.swift in Sources */,
-				025569FB218A50830020D032 /* TableView+Sections.swift in Sources */,
-				02556A39218A50830020D032 /* NSLayoutConstraint+Extensions.swift in Sources */,
-				025569F7218A50830020D032 /* CIImageFilter.swift in Sources */,
-				025569FD218A50830020D032 /* FadeInPresentingAnimator.swift in Sources */,
-				02556A43218A50830020D032 /* UILable+Extensions.swift in Sources */,
-				02556A0F218A50830020D032 /* CodeSnippets_Shadow.swift in Sources */,
-				02556A50218A50830020D032 /* TableCollectionViewLayout.swift in Sources */,
-				025569FA218A50830020D032 /* TableViewSection.swift in Sources */,
-				025569D1218A50830020D032 /* DropDownMenuAnimator.swift in Sources */,
-				02556A2C218A50830020D032 /* DateFormatter+Extensions.swift in Sources */,
-				025569E3218A50830020D032 /* CollectionViewCell.swift in Sources */,
-				0207669D219170290076E37C /* SlideController+UIGestureRecognizerDelegate.swift in Sources */,
-				025569D8218A50830020D032 /* TableViewCellSubtitle.swift in Sources */,
-				02556A08218A50830020D032 /* Operators.swift in Sources */,
-				025569FC218A50830020D032 /* TableViewRow.swift in Sources */,
-				02556A12218A50830020D032 /* CodeSnippet_UITextField.swift in Sources */,
-				025569D0218A50830020D032 /* DropDownMenuProtocols.swift in Sources */,
-				025569F3218A50830020D032 /* MenuPageViewController.swift in Sources */,
-				025569E6218A50830020D032 /* Button.swift in Sources */,
-				02556A2D218A50830020D032 /* UIView+Animations.swift in Sources */,
-				02556A52218A50830020D032 /* TextTableCollectionViewCell.swift in Sources */,
-				02556A1C218A50830020D032 /* CodeSnippet_UIStackView.swift in Sources */,
-				02556A0E218A50830020D032 /* CodeSnippet_UIView.swift in Sources */,
-				025569EE218A50830020D032 /* ProgressBarView.swift in Sources */,
-				025569DF218A50830020D032 /* SwipeTableViewCell.swift in Sources */,
-				025569EF218A50830020D032 /* AutoLinesLabel.swift in Sources */,
-				025569D4218A50830020D032 /* DropDownMenu.swift in Sources */,
-				02556A48218A50830020D032 /* NSTimeZone+Extensions.swift in Sources */,
-				02556A25218A50830020D032 /* DispatchQueue+Once.swift in Sources */,
-				02556A02218A50830020D032 /* DropPresentingAnimator.swift in Sources */,
-				025569E1218A50830020D032 /* DatePickerController.swift in Sources */,
-				02556A0B218A50830020D032 /* Images.swift in Sources */,
-				02556A47218A50830020D032 /* Dictionary+Extensions.swift in Sources */,
-				025569DE218A50830020D032 /* DatePickerCell.swift in Sources */,
-				025569D3218A50830020D032 /* DropDownMenuPickerViewController.swift in Sources */,
+				025569ED218A50830020D032 /* AlertView.swift in Sources */,
+				025569EC218A50830020D032 /* AlertViewButton.swift in Sources */,
 				02556A54218A50830020D032 /* Analytics.swift in Sources */,
-				02556A20218A50830020D032 /* CodeSnippets_NavigationItem.swift in Sources */,
-				02556A3B218A50830020D032 /* UINavigationController+Extensions.swift in Sources */,
-				02556A49218A50830020D032 /* UIScrollView+Extensions.swift in Sources */,
-				02556A45218A50830020D032 /* UILongPressGestureRecognizer+Extensions.swift in Sources */,
-				02556A09218A50830020D032 /* Then.swift in Sources */,
-				02556A23218A50830020D032 /* CodeSnippets_Swizzling.swift in Sources */,
-				02556A14218A50830020D032 /* CodeSnippets_Protocols.swift in Sources */,
+				025569FF218A50830020D032 /* Animator.swift in Sources */,
+				025569EF218A50830020D032 /* AutoLinesLabel.swift in Sources */,
+				025569E6218A50830020D032 /* Button.swift in Sources */,
 				02556A3C218A50830020D032 /* Calendar+Extensions.swift in Sources */,
-				02556A06218A50830020D032 /* StructWrapper.swift in Sources */,
-				025569F6218A50830020D032 /* LoadingMorphingLabel.swift in Sources */,
-				02556A1B218A50830020D032 /* CodeSnippet_UINavigationBar.swift in Sources */,
-				02556A4A218A50830020D032 /* Numbers+Extensions.swift in Sources */,
-				025569F1218A50830020D032 /* RandomImageView.swift in Sources */,
-				02556A10218A50830020D032 /* CodeSnippets_UIDevice.swift in Sources */,
-				02556A1E218A50830020D032 /* CodeSnippet_UIViewController.swift in Sources */,
-				02556A4E218A50830020D032 /* Queue.swift in Sources */,
-				02556A18218A50830020D032 /* CodeSnippet_ImageAssets.swift in Sources */,
-				02556A29218A50830020D032 /* DispatchQueue+Extensions.swift in Sources */,
-				02556A4C218A50830020D032 /* CGRect+Extensions.swift in Sources */,
-				02556A1A218A50830020D032 /* CodeSnippet_UITableViewCell.swift in Sources */,
-				025569D9218A50830020D032 /* TableViewCell.swift in Sources */,
-				025569FE218A50830020D032 /* ScalePresentingAnimator.swift in Sources */,
-				02556A34218A50830020D032 /* UINavigationBar+Extensions.swift in Sources */,
-				02556A55218A50830020D032 /* TableView+Registrable.swift in Sources */,
-				02556A56218A50830020D032 /* CollectionView+Registrable.swift in Sources */,
-				025569E7218A50830020D032 /* SegmentedControl.swift in Sources */,
-				02556A3F218A50830020D032 /* NSObject+AssociatedObject.swift in Sources */,
-				02556A51218A50830020D032 /* TextTableCollectionView.swift in Sources */,
-				02556A42218A50830020D032 /* UITableView+Extensions.swift in Sources */,
-				02556A15218A50830020D032 /* CodeSnippets_ImageAsset.swift in Sources */,
 				025569DD218A50830020D032 /* CenterLabelTableViewCell.swift in Sources */,
-				02556A4B218A50830020D032 /* Date+Extensions.swift in Sources */,
-				025569D2218A50830020D032 /* DropDownMenuPresentationController.swift in Sources */,
-				025569F0218A50830020D032 /* SingleTitleContentPairView.swift in Sources */,
-				025569D6218A50830020D032 /* NavigationBarStatusBar.swift in Sources */,
-				02556A2B218A50830020D032 /* UIView+Extensions.swift in Sources */,
-				02556A27218A50830020D032 /* UIImageView+Extensions.swift in Sources */,
+				02556A24218A50830020D032 /* CGContext+Extensions.swift in Sources */,
+				02556A4C218A50830020D032 /* CGRect+Extensions.swift in Sources */,
+				025569F7218A50830020D032 /* CIImageFilter.swift in Sources */,
+				02556A1F218A50830020D032 /* CodeSnippet_CLLocationManager.swift in Sources */,
+				02556A18218A50830020D032 /* CodeSnippet_ImageAssets.swift in Sources */,
+				02556A1D218A50830020D032 /* CodeSnippet_UIButton.swift in Sources */,
+				02556A17218A50830020D032 /* CodeSnippet_UICollectionViewCell.swift in Sources */,
+				02556A21218A50830020D032 /* CodeSnippet_UILabel.swift in Sources */,
+				02556A1B218A50830020D032 /* CodeSnippet_UINavigationBar.swift in Sources */,
+				02556A1C218A50830020D032 /* CodeSnippet_UIStackView.swift in Sources */,
+				02556A13218A50830020D032 /* CodeSnippet_UITableView.swift in Sources */,
+				02556A1A218A50830020D032 /* CodeSnippet_UITableViewCell.swift in Sources */,
+				02556A12218A50830020D032 /* CodeSnippet_UITextField.swift in Sources */,
+				02556A0E218A50830020D032 /* CodeSnippet_UIView.swift in Sources */,
+				02556A1E218A50830020D032 /* CodeSnippet_UIViewController.swift in Sources */,
+				02556A22218A50830020D032 /* CodeSnippet_ViewControllerContainment.swift in Sources */,
+				02556A11218A50830020D032 /* CodeSnippets_AppDelegate.swift in Sources */,
+				02556A15218A50830020D032 /* CodeSnippets_ImageAsset.swift in Sources */,
+				02556A20218A50830020D032 /* CodeSnippets_NavigationItem.swift in Sources */,
+				02556A19218A50830020D032 /* CodeSnippets_NSDateFormatter.swift in Sources */,
+				02556A14218A50830020D032 /* CodeSnippets_Protocols.swift in Sources */,
+				02556A0F218A50830020D032 /* CodeSnippets_Shadow.swift in Sources */,
+				02556A23218A50830020D032 /* CodeSnippets_Swizzling.swift in Sources */,
+				02556A10218A50830020D032 /* CodeSnippets_UIDevice.swift in Sources */,
+				02556A16218A50830020D032 /* CodeSnippets_UISegmentedControl.swift in Sources */,
+				02556A0D218A50830020D032 /* CodeSnippets_UIVisualEffectView.swift in Sources */,
+				02556A4D218A50830020D032 /* Collection+Extensions.swift in Sources */,
+				02556A56218A50830020D032 /* CollectionView+Registrable.swift in Sources */,
+				025569E3218A50830020D032 /* CollectionViewCell.swift in Sources */,
+				02556A0C218A50830020D032 /* ColorPalette.swift in Sources */,
 				02556A04218A50830020D032 /* Constants.swift in Sources */,
+				02556A4B218A50830020D032 /* Date+Extensions.swift in Sources */,
+				02556A2C218A50830020D032 /* DateFormatter+Extensions.swift in Sources */,
+				025569DE218A50830020D032 /* DatePickerCell.swift in Sources */,
+				025569E1218A50830020D032 /* DatePickerController.swift in Sources */,
+				025569E0218A50830020D032 /* DatePickerControllerDelagte.swift in Sources */,
+				02556A0A218A50830020D032 /* DelayedTask.swift in Sources */,
+				02556A47218A50830020D032 /* Dictionary+Extensions.swift in Sources */,
+				02556A29218A50830020D032 /* DispatchQueue+Extensions.swift in Sources */,
+				02556A25218A50830020D032 /* DispatchQueue+Once.swift in Sources */,
+				025569D4218A50830020D032 /* DropDownMenu.swift in Sources */,
+				025569D1218A50830020D032 /* DropDownMenuAnimator.swift in Sources */,
+				025569D3218A50830020D032 /* DropDownMenuPickerViewController.swift in Sources */,
+				025569D2218A50830020D032 /* DropDownMenuPresentationController.swift in Sources */,
+				025569D0218A50830020D032 /* DropDownMenuProtocols.swift in Sources */,
+				02556A02218A50830020D032 /* DropPresentingAnimator.swift in Sources */,
+				02556A03218A50830020D032 /* DropPresentingPresentationController.swift in Sources */,
+				025569FD218A50830020D032 /* FadeInPresentingAnimator.swift in Sources */,
+				025569E5218A50830020D032 /* ImagePickerView.swift in Sources */,
+				02556A0B218A50830020D032 /* Images.swift in Sources */,
+				025569CF218A50830020D032 /* ImageView.swift in Sources */,
+				025569F6218A50830020D032 /* LoadingMorphingLabel.swift in Sources */,
+				02556A05218A50830020D032 /* Math.swift in Sources */,
+				025569F3218A50830020D032 /* MenuPageViewController.swift in Sources */,
+				025569F5218A50830020D032 /* MenuView.swift in Sources */,
+				025569D6218A50830020D032 /* NavigationBarStatusBar.swift in Sources */,
+				02556A3E218A50830020D032 /* NSLayoutAnchor+Extensions.swift in Sources */,
+				02556A39218A50830020D032 /* NSLayoutConstraint+Extensions.swift in Sources */,
+				02556A37218A50830020D032 /* NSLayoutConstraint+Retrieve.swift in Sources */,
+				02556A3F218A50830020D032 /* NSObject+AssociatedObject.swift in Sources */,
+				02556A26218A50830020D032 /* NSObject+Observation.swift in Sources */,
+				02556A30218A50830020D032 /* NSRegularExpression+Extensions.swift in Sources */,
+				02556A48218A50830020D032 /* NSTimeZone+Extensions.swift in Sources */,
+				02556A4A218A50830020D032 /* Numbers+Extensions.swift in Sources */,
+				02556A08218A50830020D032 /* Operators.swift in Sources */,
+				02556A44218A50830020D032 /* Optional+Extensions.swift in Sources */,
+				02556A4F218A50830020D032 /* OrderedDictionary.swift in Sources */,
+				02556A01218A50830020D032 /* OverlayPresentationController.swift in Sources */,
+				025569F2218A50830020D032 /* PageControl.swift in Sources */,
+				02A1DCBA21925598008F162F /* PgaeViewController+UIScrollViewDelegate.swift in Sources */,
 				02A1DCB921925598008F162F /* PgaeViewController.swift in Sources */,
+				02A245641EB2932300A15837 /* Platform.swift in Sources */,
+				025569EE218A50830020D032 /* ProgressBarView.swift in Sources */,
+				02556A4E218A50830020D032 /* Queue.swift in Sources */,
+				025569F1218A50830020D032 /* RandomImageView.swift in Sources */,
+				02556A07218A50830020D032 /* Resource.swift in Sources */,
+				025569FE218A50830020D032 /* ScalePresentingAnimator.swift in Sources */,
+				025569E4218A50830020D032 /* SearchTextField.swift in Sources */,
+				025569E7218A50830020D032 /* SegmentedControl.swift in Sources */,
+				025569DA218A50830020D032 /* SeparatorCell.swift in Sources */,
+				02556A3D218A50830020D032 /* SequenceType+Extensions.swift in Sources */,
+				025569F0218A50830020D032 /* SingleTitleContentPairView.swift in Sources */,
+				0207669D219170290076E37C /* SlideController+UIGestureRecognizerDelegate.swift in Sources */,
+				025569E8218A50830020D032 /* SlideController.swift in Sources */,
+				0207669B21916DDE0076E37C /* SlideState.swift in Sources */,
+				02556A00218A50830020D032 /* SlideUpAnimator.swift in Sources */,
+				02556A2E218A50830020D032 /* String+Extensions.swift in Sources */,
+				02556A06218A50830020D032 /* StructWrapper.swift in Sources */,
+				025569DF218A50830020D032 /* SwipeTableViewCell.swift in Sources */,
+				02556A50218A50830020D032 /* TableCollectionViewLayout.swift in Sources */,
+				02556A53218A50830020D032 /* TableCollectionViewSeparatorView.swift in Sources */,
+				02556A55218A50830020D032 /* TableView+Registrable.swift in Sources */,
+				025569FB218A50830020D032 /* TableView+Sections.swift in Sources */,
+				025569D9218A50830020D032 /* TableViewCell.swift in Sources */,
+				025569D8218A50830020D032 /* TableViewCellSubtitle.swift in Sources */,
+				025569D7218A50830020D032 /* TableViewCellValue1.swift in Sources */,
+				025569DB218A50830020D032 /* TableViewCellValue2.swift in Sources */,
+				025569FC218A50830020D032 /* TableViewRow.swift in Sources */,
+				025569F8218A50830020D032 /* TableViewRowType.swift in Sources */,
+				025569FA218A50830020D032 /* TableViewSection.swift in Sources */,
+				025569F9218A50830020D032 /* TableViewSectionType.swift in Sources */,
+				025569E2218A50830020D032 /* TextField.swift in Sources */,
+				02556A51218A50830020D032 /* TextTableCollectionView.swift in Sources */,
+				02556A52218A50830020D032 /* TextTableCollectionViewCell.swift in Sources */,
+				02556A09218A50830020D032 /* Then.swift in Sources */,
+				025569DC218A50830020D032 /* TitleContentTableViewCell.swift in Sources */,
+				02556A31218A50830020D032 /* UIButton+Action.swift in Sources */,
+				02556A2A218A50830020D032 /* UIButton+Extensions.swift in Sources */,
+				02556A32218A50830020D032 /* UIColor+Extensions.swift in Sources */,
+				02556A2F218A50830020D032 /* UIFont+Extensions.swift in Sources */,
+				02556A35218A50830020D032 /* UIGestureRecognizer+Extensions.swift in Sources */,
+				02556A33218A50830020D032 /* UIImage+Extensions.swift in Sources */,
+				02556A27218A50830020D032 /* UIImageView+Extensions.swift in Sources */,
+				02556A43218A50830020D032 /* UILable+Extensions.swift in Sources */,
+				02556A45218A50830020D032 /* UILongPressGestureRecognizer+Extensions.swift in Sources */,
+				02556A34218A50830020D032 /* UINavigationBar+Extensions.swift in Sources */,
+				025569D5218A50830020D032 /* UINavigationBar+StatusBar.swift in Sources */,
+				02556A3B218A50830020D032 /* UINavigationController+Extensions.swift in Sources */,
+				02556A38218A50830020D032 /* UIScreen+Extensions.swift in Sources */,
+				02556A49218A50830020D032 /* UIScrollView+Extensions.swift in Sources */,
+				02556A36218A50830020D032 /* UISearchBar+Extensions.swift in Sources */,
+				02556A40218A50830020D032 /* UIStackView+Extensions.swift in Sources */,
+				02556A42218A50830020D032 /* UITableView+Extensions.swift in Sources */,
+				02556A46218A50830020D032 /* UITableViewCell+Extensions.swift in Sources */,
+				02556A2D218A50830020D032 /* UIView+Animations.swift in Sources */,
+				02556A2B218A50830020D032 /* UIView+Extensions.swift in Sources */,
+				02556A41218A50830020D032 /* UIView+Geometry.swift in Sources */,
+				02556A3A218A50830020D032 /* UIView+OverlayView.swift in Sources */,
+				02556A28218A50830020D032 /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1881,27 +1881,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02556A6E218A50C50020D032 /* NSCalendar+ExtensionsTests.swift in Sources */,
-				02556A7C218A50C50020D032 /* UIView+ExtensionsTests.swift in Sources */,
-				02556A5A218A50B60020D032 /* SwipeTableViewCellTests.swift in Sources */,
-				02556A7F218A50CA0020D032 /* DelayTaskTests.swift in Sources */,
-				02556A74218A50C50020D032 /* String+ExtensionsTests.swift in Sources */,
-				02556A7D218A50C50020D032 /* NSDate+ExtensionsTests.swift in Sources */,
-				02556A84218A50D00020D032 /* OrderedDictionaryTests.swift in Sources */,
-				02556A5C218A50BF0020D032 /* OperatorsTests.swift in Sources */,
-				02556A83218A50D00020D032 /* QueueTests.swift in Sources */,
-				02556A76218A50C50020D032 /* UIView+GeometryTests.swift in Sources */,
-				02556A70218A50C50020D032 /* NSLayoutConstraint+ExtensionsTests.swift in Sources */,
-				02556A79218A50C50020D032 /* SequenceType+ExtensionsTests.swift in Sources */,
-				02556A72218A50C50020D032 /* UIColor+ExtensionsTests.swift in Sources */,
-				02556A6F218A50C50020D032 /* CollectionType+ExtensionsTests.swift in Sources */,
-				02556A7B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift in Sources */,
-				02556A78218A50C50020D032 /* Dictionary+ExtensionsTests.swift in Sources */,
-				02556A77218A50C50020D032 /* NSObject+AssociatedObjectTests.swift in Sources */,
-				02556A75218A50C50020D032 /* UIButton+ActionTests.swift in Sources */,
-				02556A71218A50C50020D032 /* NSLayoutConstraint+RetrieveTests.swift in Sources */,
 				02556A73218A50C50020D032 /* CGContext+ExtensionsTests.swift in Sources */,
 				02556A7A218A50C50020D032 /* CGRect+ExtensionsTests.swift in Sources */,
+				02556A6F218A50C50020D032 /* CollectionType+ExtensionsTests.swift in Sources */,
+				02556A7F218A50CA0020D032 /* DelayTaskTests.swift in Sources */,
+				02556A78218A50C50020D032 /* Dictionary+ExtensionsTests.swift in Sources */,
+				02556A7B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift in Sources */,
+				02556A6E218A50C50020D032 /* NSCalendar+ExtensionsTests.swift in Sources */,
+				02556A7D218A50C50020D032 /* NSDate+ExtensionsTests.swift in Sources */,
+				02556A70218A50C50020D032 /* NSLayoutConstraint+ExtensionsTests.swift in Sources */,
+				02556A71218A50C50020D032 /* NSLayoutConstraint+RetrieveTests.swift in Sources */,
+				02556A77218A50C50020D032 /* NSObject+AssociatedObjectTests.swift in Sources */,
+				02556A5C218A50BF0020D032 /* OperatorsTests.swift in Sources */,
+				02556A84218A50D00020D032 /* OrderedDictionaryTests.swift in Sources */,
+				02556A83218A50D00020D032 /* QueueTests.swift in Sources */,
+				02556A79218A50C50020D032 /* SequenceType+ExtensionsTests.swift in Sources */,
+				02556A74218A50C50020D032 /* String+ExtensionsTests.swift in Sources */,
+				02556A5A218A50B60020D032 /* SwipeTableViewCellTests.swift in Sources */,
+				02556A75218A50C50020D032 /* UIButton+ActionTests.swift in Sources */,
+				02556A72218A50C50020D032 /* UIColor+ExtensionsTests.swift in Sources */,
+				02556A7C218A50C50020D032 /* UIView+ExtensionsTests.swift in Sources */,
+				02556A76218A50C50020D032 /* UIView+GeometryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

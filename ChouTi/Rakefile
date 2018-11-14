@@ -25,6 +25,7 @@ task :default do
   end
 
   sh "pod install"
+  sh "rake sort_xcode_project_files"
   sh "open ./ChouTi.xcworkspace"
 end
 
@@ -36,6 +37,11 @@ desc "Setup the build tools environment."
 task :setup do
   puts "* Installing Build Tools"
   sh "bundle install"
+end
+
+desc "sort Xcode project files"
+task :sort_xcode_project_files do
+  sh "perl ./Scripts/sort-Xcode-project-file ./ChouTi.xcodeproj"
 end
 
 #-------------------------------------------------------------------------------
