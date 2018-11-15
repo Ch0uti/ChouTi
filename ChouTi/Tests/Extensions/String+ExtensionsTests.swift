@@ -7,6 +7,18 @@
 import XCTest
 
 class String_ExtensionsTest: XCTestCase {
+    func testExpressionPatterns() {
+        XCTAssertEqual("\t123\t abc ".matchedStrings(of: String.RegularExpressionPattern.tabs).count, 2)
+        XCTAssertEqual("\t123\t \tabc ".matchedStrings(of: String.RegularExpressionPattern.tabs).count, 3)
+        XCTAssertEqual("""
+                       123 abc
+                       456\n
+                       """.matchedStrings(of: String.RegularExpressionPattern.newlines).count, 2)
+        XCTAssertEqual("1  2 3 ".matchedStrings(of: String.RegularExpressionPattern.whitespaces).count, 3)
+        XCTAssertEqual("1\t\t2 3 ".matchedStrings(of: String.RegularExpressionPattern.whitespaces).count, 3)
+        XCTAssertEqual("1   2 3 ".matchedStrings(of: String.RegularExpressionPattern.whitespacesExtented).count, 3)
+    }
+
     func testTrimmed() {
         XCTAssertEqual("123".trimmed(), "123")
         XCTAssertEqual("123 ".trimmed(), "123")
@@ -72,6 +84,9 @@ class String_ExtensionsTest: XCTestCase {
         XCTAssertEqual("".substring(with: nsrange1_3), nil)
         XCTAssertEqual("1".substring(with: nsrange1_3), nil)
         XCTAssertEqual("12".substring(with: nsrange1_3), nil)
+
+        XCTAssertEqual("Cafe\u{0301}".substring(with: NSRange(location: 0, length: 4)), "Cafe")
+        XCTAssertEqual("Cafe\u{0301}".substring(with: NSRange(location: 0, length: 5)), "Café")
     }
 
     func testRangeFromNsrange() {
@@ -79,40 +94,21 @@ class String_ExtensionsTest: XCTestCase {
         XCTAssertEqual(string.range(from: NSRange(location: -1, length: -1)), nil)
         XCTAssertEqual(string.range(from: NSRange(location: -1, length: 0)), nil)
         XCTAssertEqual(string.range(from: NSRange(location: -1, length: 2)), nil)
-
         XCTAssertEqual(string.range(from: NSRange(location: 0, length: -1)), nil)
-        let range0_0 = string.range(from: NSRange(location: 0, length: 0))
-        if let range0_0 = range0_0 {
-            XCTAssertEqual(string[range0_0], "")
-        } else {
-            XCTFail("nil range")
-        }
-
-        let range0_1 = string.range(from: NSRange(location: 0, length: 1))
-        if let range0_1 = range0_1 {
-            XCTAssertEqual(string[range0_1], "1")
-        } else {
-            XCTFail("nil range")
-        }
-
+        XCTAssertEqual(string[string.range(from: NSRange(location: 0, length: 0)) ?? String.Index(encodedOffset: 1)..<String.Index(encodedOffset: 1)], "")
+        XCTAssertEqual(string[string.range(from: NSRange(location: 0, length: 1)) ?? String.Index(encodedOffset: 0)..<String.Index(encodedOffset: 0)], "1")
         XCTAssertEqual(string.range(from: NSRange(location: 0, length: 7)), nil)
-
-        let range6_0 = string.range(from: NSRange(location: 6, length: 0))
-        if let range6_0 = range6_0 {
-            XCTAssertEqual(string[range6_0], "")
-        } else {
-            XCTFail("nil range")
-        }
-
+        XCTAssertEqual(string[string.range(from: NSRange(location: 6, length: 0)) ?? String.Index(encodedOffset: 1)..<String.Index(encodedOffset: 1)], "")
         XCTAssertEqual(string.range(from: NSRange(location: 7, length: 1)), nil)
 
         let emojiString = "1😃23abc"
-        let rangeEmoji0_3 = string.range(from: NSRange(location: 0, length: 3))
-        if let rangeEmoji0_3 = rangeEmoji0_3 {
-            XCTAssertEqual(emojiString[rangeEmoji0_3], "1😃")
-        } else {
-            XCTFail("nil range")
-        }
+        XCTAssertEqual(emojiString[string.range(from: NSRange(location: 0, length: 3))!], "1😃")
+
+        let cafe = "Cafe\u{0301}" // "Café"
+        XCTAssertEqual(cafe[cafe.range(from: NSRange(location: 0, length: 3)) ?? String.Index(encodedOffset: 0)..<String.Index(encodedOffset: 0)], "Caf")
+        XCTAssertEqual(cafe[cafe.range(from: NSRange(location: 0, length: 4)) ?? String.Index(encodedOffset: 0)..<String.Index(encodedOffset: 0)], "Cafe")
+        XCTAssertEqual(cafe[cafe.range(from: NSRange(location: 0, length: 5)) ?? String.Index(encodedOffset: 0)..<String.Index(encodedOffset: 0)], "Café")
+        XCTAssertEqual(cafe.range(from: NSRange(location: 0, length: 6)), nil)
     }
 
     func testIsEmail() {

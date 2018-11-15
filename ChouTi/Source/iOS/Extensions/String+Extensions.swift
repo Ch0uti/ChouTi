@@ -5,6 +5,36 @@
 
 import Foundation
 
+// MARK: - Regular Expression Patterns
+public extension String {
+    enum RegularExpressionPattern {
+        /// Matching one or more tabs.
+        static var tabs: String {
+            return "\\t+"
+        }
+
+        /// Matching one or more newlines.
+        static var newlines: String {
+            return "[\\r|\\n]+"
+        }
+
+        /// Matching one or more white spaces.
+        static var whitespaces: String {
+            return "\\s+"
+        }
+
+        /// Matching one or more white spaces, tabs and newlines
+        static var whitespacesExtented: String {
+            return "[\\s|\\t|\\r|\\n]+"
+        }
+
+        /// Matching percentage strings like: 25%, .1%.
+        static var percentage: String {
+            return "\\d*\\.?\\d+?%"
+        }
+    }
+}
+
 public extension String {
     /// Returns a new string made by removing whitespaces and newlines from both ends of the receiver.
     func trimmed() -> String {
@@ -15,21 +45,16 @@ public extension String {
     func whitespacesTrimmed() -> String {
         return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
-}
 
-public extension String {
     /// An `NSRange` that represents the full range of the string.
     var fullNsrange: NSRange {
         return NSRange(location: 0, length: utf16.count)
     }
 
+    /// Naively convert NSRange to Range<UTF16View.Index>, the result Range<UTF16View.Index> maybe invalid within a string.
     private func utf16Range(from nsrange: NSRange) -> Range<UTF16View.Index>? {
-        guard let range = Range(nsrange) else {
-            return nil
-        }
-
-        let utf16Start = UTF16Index(encodedOffset: range.lowerBound)
-        let utf16End = UTF16Index(encodedOffset: range.upperBound)
+        let utf16Start = UTF16View.Index(encodedOffset: nsrange.lowerBound)
+        let utf16End = UTF16View.Index(encodedOffset: nsrange.upperBound)
         guard (utf16Start <= utf16End) &&
             (utf16.startIndex <= utf16Start && utf16Start <= utf16.endIndex) &&
             (utf16.startIndex <= utf16End && utf16End <= utf16.endIndex) else {
@@ -53,8 +78,8 @@ public extension String {
             return nil
         }
 
-        guard let start = Index(utf16Range.lowerBound, within: self),
-            let end = Index(utf16Range.upperBound, within: self) else {
+        guard let start = Index(utf16Range.lowerBound, within: utf16),
+            let end = Index(utf16Range.upperBound, within: utf16) else {
                 return nil
         }
 
@@ -67,6 +92,7 @@ public extension String {
 
     /// Check if the string is an email address.
     var isEmail: Bool {
+        // Ref: https://stackoverflow.com/a/39550723/3164091
         let emailRegex = try! NSRegularExpression(pattern: "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" +
             "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" +
             "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" +
@@ -143,35 +169,5 @@ public extension String {
         return try self.replacingMatches(of: whitespacesExceptLastOne.pattern, with: "")
             .replacingMatches(of: whitespacesExtented, with: " ")
             .trimmed()
-    }
-}
-
-// MARK: - Regular Expression Patterns
-public extension String {
-    enum RegularExpressionPattern {
-        /// Matching one or more tabs.
-        static var tabs: String {
-            return "\\t+"
-        }
-
-        /// Matching one or more newlines.
-        static var newlines: String {
-            return "[\\r|\\n]+"
-        }
-
-        /// Matching one or more white spaces.
-        static var whitespaces: String {
-            return "\\s+"
-        }
-
-        /// Matching one or more white spaces, tabs and newlines
-        static var whitespacesExtented: String {
-            return "[\\s|\\t|\\r|\\n]+"
-        }
-
-        /// Matching percentage strings like: 25%, .1%.
-        static var percentage: String {
-            return "\\d*\\.?\\d+?%"
-        }
     }
 }
