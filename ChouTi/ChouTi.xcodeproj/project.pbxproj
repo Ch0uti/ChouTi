@@ -142,7 +142,7 @@
 		02556A45218A50830020D032 /* UILongPressGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025569B9218A50830020D032 /* UILongPressGestureRecognizer+Extensions.swift */; };
 		02556A46218A50830020D032 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025569BA218A50830020D032 /* UITableViewCell+Extensions.swift */; };
 		02556A47218A50830020D032 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025569BB218A50830020D032 /* Dictionary+Extensions.swift */; };
-		02556A48218A50830020D032 /* NSTimeZone+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025569BC218A50830020D032 /* NSTimeZone+Extensions.swift */; };
+		02556A48218A50830020D032 /* TimeZone+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025569BC218A50830020D032 /* TimeZone+Extensions.swift */; };
 		02556A49218A50830020D032 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025569BD218A50830020D032 /* UIScrollView+Extensions.swift */; };
 		02556A4A218A50830020D032 /* Numbers+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025569BE218A50830020D032 /* Numbers+Extensions.swift */; };
 		02556A4B218A50830020D032 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025569BF218A50830020D032 /* Date+Extensions.swift */; };
@@ -392,7 +392,7 @@
 		025569B9218A50830020D032 /* UILongPressGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILongPressGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		025569BA218A50830020D032 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		025569BB218A50830020D032 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
-		025569BC218A50830020D032 /* NSTimeZone+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimeZone+Extensions.swift"; sourceTree = "<group>"; };
+		025569BC218A50830020D032 /* TimeZone+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeZone+Extensions.swift"; sourceTree = "<group>"; };
 		025569BD218A50830020D032 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		025569BE218A50830020D032 /* Numbers+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Numbers+Extensions.swift"; sourceTree = "<group>"; };
 		025569BF218A50830020D032 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -1011,11 +1011,11 @@
 				025569B3218A50830020D032 /* NSObject+AssociatedObject.swift */,
 				0255699A218A50830020D032 /* NSObject+Observation.swift */,
 				025569A4218A50830020D032 /* NSRegularExpression+Extensions.swift */,
-				025569BC218A50830020D032 /* NSTimeZone+Extensions.swift */,
 				025569BE218A50830020D032 /* Numbers+Extensions.swift */,
 				025569B8218A50830020D032 /* Optional+Extensions.swift */,
 				025569B1218A50830020D032 /* SequenceType+Extensions.swift */,
 				025569A2218A50830020D032 /* String+Extensions.swift */,
+				025569BC218A50830020D032 /* TimeZone+Extensions.swift */,
 				025569A5218A50830020D032 /* UIButton+Action.swift */,
 				0255699E218A50830020D032 /* UIButton+Extensions.swift */,
 				025569A6218A50830020D032 /* UIColor+Extensions.swift */,
@@ -1103,9 +1103,9 @@
 				02556A63218A50C50020D032 /* CGContext+ExtensionsTests.swift */,
 				02556A6A218A50C50020D032 /* CGRect+ExtensionsTests.swift */,
 				02556A5F218A50C50020D032 /* CollectionType+ExtensionsTests.swift */,
+				02556A6D218A50C50020D032 /* Date+ExtensionsTests.swift */,
 				02556A68218A50C50020D032 /* Dictionary+ExtensionsTests.swift */,
 				02556A6B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift */,
-				02556A6D218A50C50020D032 /* Date+ExtensionsTests.swift */,
 				02556A60218A50C50020D032 /* NSLayoutConstraint+ExtensionsTests.swift */,
 				02556A61218A50C50020D032 /* NSLayoutConstraint+RetrieveTests.swift */,
 				02556A67218A50C50020D032 /* NSObject+AssociatedObjectTests.swift */,
@@ -1807,7 +1807,6 @@
 				02556A3F218A50830020D032 /* NSObject+AssociatedObject.swift in Sources */,
 				02556A26218A50830020D032 /* NSObject+Observation.swift in Sources */,
 				02556A30218A50830020D032 /* NSRegularExpression+Extensions.swift in Sources */,
-				02556A48218A50830020D032 /* NSTimeZone+Extensions.swift in Sources */,
 				02556A4A218A50830020D032 /* Numbers+Extensions.swift in Sources */,
 				02556A08218A50830020D032 /* Operators.swift in Sources */,
 				02556A44218A50830020D032 /* Optional+Extensions.swift in Sources */,
@@ -1850,6 +1849,7 @@
 				02556A51218A50830020D032 /* TextTableCollectionView.swift in Sources */,
 				02556A52218A50830020D032 /* TextTableCollectionViewCell.swift in Sources */,
 				02556A09218A50830020D032 /* Then.swift in Sources */,
+				02556A48218A50830020D032 /* TimeZone+Extensions.swift in Sources */,
 				025569DC218A50830020D032 /* TitleContentTableViewCell.swift in Sources */,
 				02556A31218A50830020D032 /* UIButton+Action.swift in Sources */,
 				02556A2A218A50830020D032 /* UIButton+Extensions.swift in Sources */,
@@ -1885,10 +1885,10 @@
 				02556A73218A50C50020D032 /* CGContext+ExtensionsTests.swift in Sources */,
 				02556A7A218A50C50020D032 /* CGRect+ExtensionsTests.swift in Sources */,
 				02556A6F218A50C50020D032 /* CollectionType+ExtensionsTests.swift in Sources */,
+				02556A7D218A50C50020D032 /* Date+ExtensionsTests.swift in Sources */,
 				02556A7F218A50CA0020D032 /* DelayTaskTests.swift in Sources */,
 				02556A78218A50C50020D032 /* Dictionary+ExtensionsTests.swift in Sources */,
 				02556A7B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift in Sources */,
-				02556A7D218A50C50020D032 /* Date+ExtensionsTests.swift in Sources */,
 				02556A70218A50C50020D032 /* NSLayoutConstraint+ExtensionsTests.swift in Sources */,
 				02556A71218A50C50020D032 /* NSLayoutConstraint+RetrieveTests.swift in Sources */,
 				02556A77218A50C50020D032 /* NSObject+AssociatedObjectTests.swift in Sources */,

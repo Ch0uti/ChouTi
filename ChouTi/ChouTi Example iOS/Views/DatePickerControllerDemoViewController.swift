@@ -35,8 +35,8 @@ class DatePickerControllerDemoViewController: UIViewController {
             let pickerController = DatePickerController()
             pickerController.datePicker.setDate(Date(), animated: true)
             pickerController.datePicker.datePickerMode = .dateAndTime
-            pickerController.datePicker.minimumDate = Date().date(bySetting: .day, with: -30)
-            pickerController.datePicker.maximumDate = Date().date(bySetting: .day, with: 30)
+            pickerController.datePicker.minimumDate = Date().setting(.day, with: -30)
+            pickerController.datePicker.maximumDate = Date().setting(.day, with: 30)
             pickerController.delegate = self
             self.present(pickerController, animated: true, completion: nil)
         }

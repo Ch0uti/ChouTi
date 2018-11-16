@@ -6,7 +6,7 @@
 import Foundation
 
 public extension Calendar {
-    /// Return Gregorian calendar.
+    /// Returns Gregorian calendar.
 	static var gregorian: Calendar {
         return self.init(identifier: Calendar.Identifier.gregorian)
     }
