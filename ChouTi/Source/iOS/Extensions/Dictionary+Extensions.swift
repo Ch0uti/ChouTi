@@ -7,32 +7,35 @@ import Foundation
 
 // MARK: - Merging for Dictionary
 public extension Dictionary {
-    mutating func merged(with another: [Key: Value]) {
+
+    /// Merge with another dictionary, existing keys in left dictionary are overrided by keys right dictionary.
+    mutating func merge(with another: [Key: Value]) {
 		for (k, v) in another {
 			self.updateValue(v, forKey: k)
 		}
 	}
 
-    func merge(with another: [Key: Value]) -> [Key: Value] {
+    /// Returns a new dictionary by merging right dictionary into left dictionary.
+    func merged(with another: [Key: Value]) -> [Key: Value] {
 		var result = self
-		result.merged(with: another)
+		result.merge(with: another)
 		return result
 	}
 
-	/// Merge two dictionaries
+	/// Merge two dictionaries.
 	///
 	/// - Parameters:
 	///   - left: left dictionary
 	///   - right: right dictionary
-	/// - Returns: Merged dictionary, existing keys in left dictionary is overrided by right dictionary
+	/// - Returns: Merged dictionary, existing keys in left dictionary is overrided by right dictionary.
     static func + (left: [Key: Value], right: [Key: Value]?) -> [Key: Value] {
 		guard let right = right else {
             return left
         }
-		return left.merge(with: right)
+		return left.merged(with: right)
 	}
 
-	/// Merge two dictionaries and left is updated
+	/// Merge two dictionaries and left is updated.
 	///
 	/// - Parameters:
 	///   - left: left dictionary
@@ -41,15 +44,17 @@ public extension Dictionary {
 		guard let right = right else {
             return
         }
-		left.merged(with: right)
+		left.merge(with: right)
 	}
 }
 
 // MARK: - Random Subset
 public extension Dictionary {
+
+    /// Returns a random subsect of the dictionary.
     func randomSubset() -> [Key: Value] {
         return self.filter({ _ in Bool.random() }).reduce([:]) {
-            $0.merge(with: [$1.key: $1.value])
+            $0.merged(with: [$1.key: $1.value])
         }
 	}
 }
