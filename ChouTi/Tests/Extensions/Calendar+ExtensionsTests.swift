@@ -7,9 +7,9 @@
 import Nimble
 import Quick
 
-class NSCalendar_ExtensionsTests: QuickSpec {
+class Calendar_ExtensionsTests: QuickSpec {
     override func spec() {
-        describe("NSCalendar+Extensions") {
+        describe("Calendar+Extensions") {
             it("should get correct gregorian calendar") {
                 expect(Calendar.gregorian.identifier) == Calendar.Identifier.gregorian
             }

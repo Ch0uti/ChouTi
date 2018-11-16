@@ -159,7 +159,7 @@
 		02556A56218A50830020D032 /* CollectionView+Registrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025569CE218A50830020D032 /* CollectionView+Registrable.swift */; };
 		02556A5A218A50B60020D032 /* SwipeTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A59218A50B60020D032 /* SwipeTableViewCellTests.swift */; };
 		02556A5C218A50BF0020D032 /* OperatorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A5B218A50BE0020D032 /* OperatorsTests.swift */; };
-		02556A6E218A50C50020D032 /* NSCalendar+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A5E218A50C50020D032 /* NSCalendar+ExtensionsTests.swift */; };
+		02556A6E218A50C50020D032 /* Calendar+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A5E218A50C50020D032 /* Calendar+ExtensionsTests.swift */; };
 		02556A6F218A50C50020D032 /* CollectionType+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A5F218A50C50020D032 /* CollectionType+ExtensionsTests.swift */; };
 		02556A70218A50C50020D032 /* NSLayoutConstraint+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A60218A50C50020D032 /* NSLayoutConstraint+ExtensionsTests.swift */; };
 		02556A71218A50C50020D032 /* NSLayoutConstraint+RetrieveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A61218A50C50020D032 /* NSLayoutConstraint+RetrieveTests.swift */; };
@@ -174,7 +174,7 @@
 		02556A7A218A50C50020D032 /* CGRect+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A6A218A50C50020D032 /* CGRect+ExtensionsTests.swift */; };
 		02556A7B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A6B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift */; };
 		02556A7C218A50C50020D032 /* UIView+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A6C218A50C50020D032 /* UIView+ExtensionsTests.swift */; };
-		02556A7D218A50C50020D032 /* NSDate+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A6D218A50C50020D032 /* NSDate+ExtensionsTests.swift */; };
+		02556A7D218A50C50020D032 /* Date+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A6D218A50C50020D032 /* Date+ExtensionsTests.swift */; };
 		02556A7F218A50CA0020D032 /* DelayTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A7E218A50CA0020D032 /* DelayTaskTests.swift */; };
 		02556A83218A50D00020D032 /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A81218A50D00020D032 /* QueueTests.swift */; };
 		02556A84218A50D00020D032 /* OrderedDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02556A82218A50D00020D032 /* OrderedDictionaryTests.swift */; };
@@ -409,7 +409,7 @@
 		025569CE218A50830020D032 /* CollectionView+Registrable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionView+Registrable.swift"; sourceTree = "<group>"; };
 		02556A59218A50B60020D032 /* SwipeTableViewCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeTableViewCellTests.swift; sourceTree = "<group>"; };
 		02556A5B218A50BE0020D032 /* OperatorsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorsTests.swift; sourceTree = "<group>"; };
-		02556A5E218A50C50020D032 /* NSCalendar+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		02556A5E218A50C50020D032 /* Calendar+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Calendar+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		02556A5F218A50C50020D032 /* CollectionType+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		02556A60218A50C50020D032 /* NSLayoutConstraint+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		02556A61218A50C50020D032 /* NSLayoutConstraint+RetrieveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+RetrieveTests.swift"; sourceTree = "<group>"; };
@@ -424,7 +424,7 @@
 		02556A6A218A50C50020D032 /* CGRect+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		02556A6B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		02556A6C218A50C50020D032 /* UIView+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ExtensionsTests.swift"; sourceTree = "<group>"; };
-		02556A6D218A50C50020D032 /* NSDate+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		02556A6D218A50C50020D032 /* Date+ExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		02556A7E218A50CA0020D032 /* DelayTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayTaskTests.swift; sourceTree = "<group>"; };
 		02556A81218A50D00020D032 /* QueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTests.swift; sourceTree = "<group>"; };
 		02556A82218A50D00020D032 /* OrderedDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionaryTests.swift; sourceTree = "<group>"; };
@@ -1099,13 +1099,13 @@
 		02556A5D218A50C50020D032 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				02556A5E218A50C50020D032 /* Calendar+ExtensionsTests.swift */,
 				02556A63218A50C50020D032 /* CGContext+ExtensionsTests.swift */,
 				02556A6A218A50C50020D032 /* CGRect+ExtensionsTests.swift */,
 				02556A5F218A50C50020D032 /* CollectionType+ExtensionsTests.swift */,
 				02556A68218A50C50020D032 /* Dictionary+ExtensionsTests.swift */,
 				02556A6B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift */,
-				02556A5E218A50C50020D032 /* NSCalendar+ExtensionsTests.swift */,
-				02556A6D218A50C50020D032 /* NSDate+ExtensionsTests.swift */,
+				02556A6D218A50C50020D032 /* Date+ExtensionsTests.swift */,
 				02556A60218A50C50020D032 /* NSLayoutConstraint+ExtensionsTests.swift */,
 				02556A61218A50C50020D032 /* NSLayoutConstraint+RetrieveTests.swift */,
 				02556A67218A50C50020D032 /* NSObject+AssociatedObjectTests.swift */,
@@ -1881,14 +1881,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02556A6E218A50C50020D032 /* Calendar+ExtensionsTests.swift in Sources */,
 				02556A73218A50C50020D032 /* CGContext+ExtensionsTests.swift in Sources */,
 				02556A7A218A50C50020D032 /* CGRect+ExtensionsTests.swift in Sources */,
 				02556A6F218A50C50020D032 /* CollectionType+ExtensionsTests.swift in Sources */,
 				02556A7F218A50CA0020D032 /* DelayTaskTests.swift in Sources */,
 				02556A78218A50C50020D032 /* Dictionary+ExtensionsTests.swift in Sources */,
 				02556A7B218A50C50020D032 /* DispatchQueue+ExtensionsTests.swift in Sources */,
-				02556A6E218A50C50020D032 /* NSCalendar+ExtensionsTests.swift in Sources */,
-				02556A7D218A50C50020D032 /* NSDate+ExtensionsTests.swift in Sources */,
+				02556A7D218A50C50020D032 /* Date+ExtensionsTests.swift in Sources */,
 				02556A70218A50C50020D032 /* NSLayoutConstraint+ExtensionsTests.swift in Sources */,
 				02556A71218A50C50020D032 /* NSLayoutConstraint+RetrieveTests.swift in Sources */,
 				02556A77218A50C50020D032 /* NSObject+AssociatedObjectTests.swift in Sources */,
