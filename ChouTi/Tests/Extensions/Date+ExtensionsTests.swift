@@ -83,11 +83,11 @@ class Date_ExtensionsTests: QuickSpec {
                             minute: 13,
                             second: 14,
                             nanosecond: 678000000,
-                            timeZone: TimeZone.autoupdatingCurrent,
+                            timeZone: TimeZone.pst,
                             calendar: Calendar.gregorian) ?? Date()
             }
 
-            it("should get correct calendar components") {
+            it("should get correct date components") {
                 expect(date.era) == 1
                 expect(date.year) == 2018
                 expect(date.month) == 11
@@ -102,6 +102,11 @@ class Date_ExtensionsTests: QuickSpec {
                 expect(date.weekOfYear) == 46
                 expect(date.yearForWeekOfYear) == 2018
                 expect(abs(date.nanosecond - 678000000)) < 100
+            }
+
+            it("should get correct date components in time zone") {
+                expect(date.hour(in: TimeZone.est, for: Calendar.gregorian)) == 15
+                expect(date.minute(in: TimeZone.est, for: Calendar.gregorian)) == 13
             }
 
             it("should get correct date by setting date components") {
@@ -194,20 +199,37 @@ class Date_ExtensionsTests: QuickSpec {
                 // `quarter`
                 let quarter2 = date.setting(.quarter, with: 2)
                 expect(quarter2?.quarter) == 2
-                expect(quarter2?.day) == 8
+                expect(quarter2?.month) == date.month - 6
+                expect(quarter2?.day) == 15
+                let quarter_1 = date.setting(.quarter, with: -1)
+                expect(quarter_1?.quarter) == 3
+                expect(quarter_1?.month) == date.month - 3
+                expect(quarter_1?.day) == 15
 
                 // `weekOfMonth`
                 let weekOfMonth4 = date.setting(.weekOfMonth, with: 4)
                 expect(weekOfMonth4?.weekOfMonth) == 4
                 expect(weekOfMonth4?.day) == 22
                 expect(weekOfMonth4?.weekdayOrdinal) == 4
+                let weekOfMonth_1 = date.setting(.weekOfMonth, with: -1)
+                expect(weekOfMonth_1?.weekOfMonth) == 3
+                expect(weekOfMonth_1?.month) == 10
+                expect(weekOfMonth_1?.day) == 18
 
                 // `weekOfYear`
                 let weekOfYear47 = date.setting(.weekOfYear, with: 47)
                 expect(weekOfYear47?.weekOfYear) == 47
                 expect(weekOfYear47?.weekOfMonth) == 4
+                expect(weekOfYear47?.month) == 11
                 expect(weekOfYear47?.day) == 22
                 expect(weekOfYear47?.weekdayOrdinal) == 4
+                let weekOfYear_1 = date.setting(.weekOfYear, with: -1)
+                expect(weekOfYear_1?.weekOfYear) == 51
+                expect(weekOfYear_1?.weekOfMonth) == 4
+                expect(weekOfYear_1?.year) == 2017
+                expect(weekOfYear_1?.month) == 12
+                expect(weekOfYear_1?.day) == 21
+                expect(weekOfYear_1?.weekdayOrdinal) == 3
 
                 // `yearForWeekOfYear`
                 let yearForWeekOfYear2019 = date.setting(.yearForWeekOfYear, with: 2019)
@@ -222,6 +244,41 @@ class Date_ExtensionsTests: QuickSpec {
                 expect(date.setting(.calendar, with: 1)) == date
             }
 
+            it("should get correct date by setting date components, leap month") {
+                let date0229 = Date(year: 2020,
+                                    month: 2,
+                                    day: 29,
+                                    hour: 12,
+                                    minute: 13,
+                                    second: 14,
+                                    nanosecond: 678000000,
+                                    timeZone: TimeZone.autoupdatingCurrent,
+                                    calendar: Calendar.gregorian) ?? Date()
+                // `year`
+                let year2019 = date0229.setting(.year, with: 2019)
+                expect(year2019?.year) == 2019
+                expect(year2019?.month) == 3
+                expect(year2019?.day) == 1
+
+                let date0331 = Date(year: 2020,
+                                    month: 3,
+                                    day: 31,
+                                    hour: 12,
+                                    minute: 13,
+                                    second: 14,
+                                    nanosecond: 678000000,
+                                    timeZone: TimeZone.autoupdatingCurrent,
+                                    calendar: Calendar.gregorian) ?? Date()
+                // `month`
+                let month4 = date0331.setting(.month, with: 4)
+                expect(month4?.month) == 5
+                expect(month4?.day) == 1
+            }
+
+            it("should get correct date by setting date components in timezone") {
+                let hour14 = date.setting(.hour, with: 14, in: TimeZone.est)
+                expect(hour14?.hour(in: TimeZone.pst)) == 11
+            }
         }
     }
 }
