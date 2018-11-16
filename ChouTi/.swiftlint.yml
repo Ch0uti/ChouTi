@@ -31,7 +31,6 @@ opt_in_rules:
   - modifier_order
   - multiline_arguments
   - nimble_operator
-  - number_separator
   - object_literal
   - operator_usage_whitespace
   - overridden_super_call

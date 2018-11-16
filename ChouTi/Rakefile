@@ -1,17 +1,18 @@
 require 'colorize'
 
+XCODE_VERSION="Xcode 10.1"
+SWIFT_VERSION="Apple Swift version 4.2"
 WORKSPACE="ChouTi.xcworkspace"
 IOS_FRAMEWORK_SCHEME="ChouTi iOS"
 IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
-DESTINATION="OS=12.0,name=iPhone XS Max"
+DESTINATION="OS=12.1,name=iPhone XS Max"
 
 begin
-  tools = `xcode-select -p`
-  raise "You must have Xcode command line tools installed. try `xcode-select --install`" if $?.exitstatus != 0
+  xcodebuild_version = `xcodebuild -version`
+  raise "Incorrect Xcode version installed. This project uses #{XCODE_VERSION}, current Xcode version: #{xcodebuild_version} " if (xcodebuild_version <=> XCODE_VERSION) != 1
 
-  swift_version = "Apple Swift version 4.2"
-  tools = `xcrun swiftc --version`
-  raise "Incorrect Xcode installed. This project uses #{swift_version}, current swift version: #{tools}" if (tools <=> swift_version) != 1
+  swift_version = `xcrun swiftc --version`
+  raise "Incorrect Swift version installed. This project uses #{SWIFT_VERSION}, current Swift version: #{swift_version}" if (swift_version <=> SWIFT_VERSION) != 1
 
   tools = `gem which bundler`
   raise "You must have bundler. `gem install bundler`" if $?.exitstatus != 0
@@ -53,25 +54,25 @@ task :build => [:build_debug, :build_release]
 
 desc "Build for Debug."
 task :build_debug do
-  sh "xcodebuild clean build -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | xcpretty"
+  sh "xcodebuild clean build -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | bundle exec xcpretty"
 end
 
 desc "Build for Release."
 task :build_release do
-  sh "xcodebuild clean build -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Release | xcpretty"
+  sh "xcodebuild clean build -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Release | bundle exec xcpretty"
 end
 
 desc "Run tests."
-task :test => [:test_framework, :test_ui]
+task :test => [:lint, :test_framework, :test_ui]
 
 desc "Run framework tests."
 task :test_framework do
-  sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | xcpretty"
+  sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | bundle exec xcpretty"
 end
 
 desc "Run UI tests."
 task :test_ui do
-  sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_EXAMPLE_SCHEME}' -destination '#{DESTINATION}' -configuration Release | xcpretty"
+  sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_EXAMPLE_SCHEME}' -destination '#{DESTINATION}' -configuration Release | bundle exec xcpretty"
 end
 
 desc "Lint Swift code."
@@ -80,7 +81,7 @@ task :lint do
 end
 
 desc "Correct Swift code."
-task :autocorrect do
+task :lint_autocorrect do
   sh "Pods/SwiftLint/swiftlint autocorrect"
 end
 
