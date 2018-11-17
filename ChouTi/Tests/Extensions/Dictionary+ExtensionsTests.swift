@@ -39,11 +39,11 @@ class Dictionary_ExtensionsTests: XCTestCase {
 
 extension Dictionary_ExtensionsTests {
     func testMerge() {
-        XCTAssertEqual(dict1.merge(with: dict2), mergedDict)
+        XCTAssertEqual(dict1.merged(with: dict2), mergedDict)
     }
 
     func testMergeInPlace() {
-        dict1.merged(with: dict2)
+        dict1.merge(with: dict2)
         XCTAssertEqual(dict1, mergedDict)
     }
 }

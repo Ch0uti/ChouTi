@@ -26,10 +26,10 @@ script:
   - xcodebuild clean test -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Debug | xcpretty;
   ## Gather code coverage
   - if [ $REPORT_CODECOV == "YES" ]; then
-      bash <(curl -s https://codecov.io/bash) -J "^ChouTi$";
+      bash <(curl -s https://codecov.io/bash) -J '^ChouTi$' -t a88d8339-78a4-452f-bf2f-45cc83580e41;
     fi
   ## Code Lint
-  - bundle exec rake update
+  - bundle exec rake lint
 
   ## Build for Release
   - xcodebuild clean build -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;  

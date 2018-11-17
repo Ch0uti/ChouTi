@@ -6,24 +6,12 @@
 import Foundation
 
 public extension Collection {
-    /**
-     Returns an optional element. If the `index` does not exist in the collection, the subscript returns nil.
-     
-     - parameter safe: The index of the element to return, if it exists.
-     
-     - returns: An optional element from the collection at the specified index.
-     */
+    /// Returns an optional element. Returns nil if the `index` is out of bounds.
     subscript (safe index: Index) -> Iterator.Element? {
         return at(index)
     }
 
-    /**
-     Returns an optional element. If the `index` does not exist in the collection, the function returns nil.
-     
-     - parameter index: The index of the element to return, if it exists.
-     
-     - returns: An optional element from the collection at the specified index.
-     */
+    /// Returns an optional element. Returns nil if the `index` is out of bounds.
     func at(_ index: Index) -> Iterator.Element? {
         return (startIndex..<endIndex).contains(index) ? self[index] : nil
     }

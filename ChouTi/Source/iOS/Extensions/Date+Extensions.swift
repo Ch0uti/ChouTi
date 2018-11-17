@@ -5,7 +5,6 @@
 
 import Foundation
 
-// MARK: - Random date
 public extension Date {
 
     /// Get random int from a range of Int.
