@@ -2,6 +2,7 @@ opt_in_rules:
   - anyobject_protocol
   - array_init
   - attributes
+  - block_based_kvo
   - closure_body_length
   - closure_end_indentation
   - closure_spacing
@@ -17,6 +18,7 @@ opt_in_rules:
   - fallthrough
   - fatal_error_message
   - file_header
+  - file_length
   - file_name
   - first_where
   - force_unwrapping
@@ -51,6 +53,7 @@ opt_in_rules:
   - sorted_imports
   - static_operator
   - switch_case_on_newline
+  - todo
   - toggle_bool
   - unavailable_function
   - unneeded_parentheses_in_closure_argument
@@ -101,7 +104,7 @@ file_header:
                      \/\/.*
   required_pattern: |
                     (?<!.)\/\/
-                    \/\/  Created by .*? on \d{2}\/\d{2}\/\d{4}\.
+                    \/\/  Created by .*? on \d{1,2}\/\d{1,2}\/\d{4}\.
                     \/\/  Copyright © \d{4} ChouTi\. All rights reserved\.
                     \/\/
 
