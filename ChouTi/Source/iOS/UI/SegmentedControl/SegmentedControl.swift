@@ -1,5 +1,5 @@
 //
-//  Created by Honghao Zhang on 06/16/2015.
+//  Created by Honghao Zhang on 6/16/2015.
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 
