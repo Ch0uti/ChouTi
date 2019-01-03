@@ -28,20 +28,35 @@ extension Date_ExtensionsTests {
                     return
                 }
 
-                let randomDate = Date.randomDate(in: fromDate..<toDate)
+                let randomDate = Date.random(in: fromDate..<toDate)
                 expect(randomDate) >= fromDate
                 expect(randomDate) < toDate
             }
 
-            it("should get nil date when range is empty") {
-                guard let fromDate = Date(year: 1989, month: 12, day: 24) else {
+            it("should get date with full range of months") {
+                // For 1989/1/1 - 1990/1/1, shoul get any possible months in between, not just 1.
+                guard let fromDate = Date(year: 1989, month: 1, day: 1) else {
                     fail()
                     return
                 }
 
-                let toDate = fromDate
-                let randomDate = Date.randomDate(in: fromDate..<toDate)
-                expect(randomDate).to(beNil())
+                guard let toDate = fromDate.setting(.year, with: 1990) else {
+                    fail()
+                    return
+                }
+
+                for i in 0..<5 {
+                    if i == 4 {
+                        fail()
+                    }
+
+                    let randomDate = Date.random(in: fromDate..<toDate)
+                    expect(randomDate) >= fromDate
+                    expect(randomDate) < toDate
+                    if randomDate.month != 1 {
+                        break
+                    }
+                }
             }
         })
 
@@ -57,7 +72,7 @@ extension Date_ExtensionsTests {
                     return
                 }
 
-                let randomDate = Date.randomDate(in: fromDate..<toDate)
+                let randomDate = Date.random(in: fromDate..<toDate)
                 expect(randomDate) >= fromDate
                 expect(randomDate) <= toDate
             }
@@ -69,15 +84,10 @@ extension Date_ExtensionsTests {
                 }
 
                 let toDate = fromDate
-                let randomDate = Date.randomDate(in: fromDate...toDate)
+                let randomDate = Date.random(in: fromDate...toDate)
                 expect(randomDate) == fromDate
             }
         })
-
-        it("should get a random date since 1970.") {
-            expect(Date.randomDateSince1970()) > Date(timeIntervalSince1970: 0)
-            expect(Date.randomDateSince1970()) != Date.randomDateSince1970()
-        }
     }
 }
 

@@ -7,47 +7,16 @@ import Foundation
 
 public extension Date {
 
-    /// Get random int from a range of Int.
-    private static func randomInt(from range: Range<Int>) -> Int {
-        if range.lowerBound == range.upperBound {
-            return range.lowerBound
-        }
-        return Int.random(in: range.lowerBound..<range.upperBound)
+    /// Returns a random date within the specified date range.
+    static func random(in range: Range<Date>) -> Date {
+        let timeInterval = range.upperBound.timeIntervalSince(range.lowerBound)
+        return range.lowerBound.addingTimeInterval(TimeInterval.random(in: 0..<timeInterval))
     }
 
     /// Returns a random date within the specified date range.
-    static func randomDate(in range: Range<Date>) -> Date? {
-        guard range.lowerBound < range.upperBound else {
-            return nil
-        }
-
-        return Date(year: randomInt(from: range.lowerBound.year..<range.upperBound.year),
-                    month: randomInt(from: range.lowerBound.month..<range.upperBound.month),
-                    day: randomInt(from: range.lowerBound.day..<range.upperBound.day),
-                    hour: randomInt(from: range.lowerBound.hour..<range.upperBound.hour),
-                    minute: randomInt(from: range.lowerBound.minute..<range.upperBound.minute),
-                    second: randomInt(from: range.lowerBound.second..<range.upperBound.second),
-                    nanosecond: randomInt(from: range.lowerBound.nanosecond..<range.upperBound.nanosecond),
-                    timeZone: TimeZone.autoupdatingCurrent,
-                    calendar: Calendar.autoupdatingCurrent)
-    }
-
-    /// Returns a random date within the specified date range.
-    static func randomDate(in range: ClosedRange<Date>) -> Date? {
-        return Date(year: Int.random(in: range.lowerBound.year...range.upperBound.year),
-                    month: Int.random(in: range.lowerBound.month...range.upperBound.month),
-                    day: Int.random(in: range.lowerBound.day...range.upperBound.day),
-                    hour: Int.random(in: range.lowerBound.hour...range.upperBound.hour),
-                    minute: Int.random(in: range.lowerBound.minute...range.upperBound.minute),
-                    second: Int.random(in: range.lowerBound.second...range.upperBound.second),
-                    nanosecond: Int.random(in: range.lowerBound.nanosecond...range.upperBound.nanosecond),
-                    timeZone: TimeZone.autoupdatingCurrent,
-                    calendar: Calendar.autoupdatingCurrent)
-    }
-
-    /// Get a random date which is after 00:00:00 UTC on 1 January 1970.
-    static func randomDateSince1970() -> Date {
-        return Date(timeIntervalSince1970: TimeInterval.random(in: 0..<TimeInterval(Int.max)))
+    static func random(in range: ClosedRange<Date>) -> Date {
+        let timeInterval = range.upperBound.timeIntervalSince(range.lowerBound)
+        return range.lowerBound.addingTimeInterval(TimeInterval.random(in: 0...timeInterval))
     }
 }
 
