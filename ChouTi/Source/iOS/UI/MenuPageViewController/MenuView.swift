@@ -4,40 +4,6 @@
 //
 
 import UIKit
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-private func >= <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l >= r
-  default:
-    return !(lhs < rhs)
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-private func <= <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l <= r
-  default:
-    return !(rhs < lhs)
-  }
-}
 
 public protocol MenuViewDataSource: AnyObject {
 	/**
@@ -336,7 +302,11 @@ extension MenuView: UIScrollViewDelegate {
 
 public extension MenuView {
 	func scrollWithSelectedIndex(_ index: Int, withOffsetPercent percent: CGFloat = 0.0, animated: Bool = false, ignoreAutoScrollingEnabled: Bool = false) {
-		if index < 0 || index >= dataSource?.numberOfMenusInMenuView(self) {
+        guard let dataSource = dataSource else {
+            return
+        }
+
+		if index < 0 || index >= dataSource.numberOfMenusInMenuView(self) {
             return
         }
 		let targetContentOffset = contentOffsetForIndex(index, offsetPercent: percent, ignoreAutoScrollingEnabled: ignoreAutoScrollingEnabled)
@@ -377,7 +347,10 @@ extension MenuView {
 	}
 
 	public func contentOffsetForIndex(_ index: Int, offsetPercent: CGFloat = 0.0, ignoreAutoScrollingEnabled: Bool = false) -> CGPoint {
-		precondition(0 <= index && index <= dataSource?.numberOfMenusInMenuView(self), "invalid index: \(index)")
+        guard let dataSource = dataSource else {
+            preconditionFailure()
+        }
+		precondition(0 <= index && index <= dataSource.numberOfMenusInMenuView(self), "invalid index: \(index)")
 
 		if !ignoreAutoScrollingEnabled && autoScrollingEnabled == false {
 			return menuCollectionView.contentOffset
