@@ -5,6 +5,8 @@
 
 import Foundation
 
+// swiftlint:disable static_operator
+
 /**
  *  Optional Assignment Operator
  */
@@ -42,6 +44,21 @@ public func =? <T>(lhs: inout T?, rhs: T?) {
     lhs = rhs
 }
 
+/// Optional String Coalescing Operator
+/// Ref: https://oleb.net/blog/2016/12/optionals-string-interpolation/
+infix operator ??? : NilCoalescingPrecedence
+
+public func ??? <T>(lhs: T?, defaultValue: @autoclosure () -> String) -> String {
+    switch lhs {
+    case let value?:
+        return String(describing: value)
+    case nil:
+        return defaultValue()
+    }
+}
+
+// swiftlint:enable static_operator
+
 /**
  *  Power Operator
  */
@@ -52,39 +69,26 @@ precedencegroup ExponentiationPrecedence {
 
 infix operator ** : ExponentiationPrecedence
 
-/**
- Compute base raised to the power power.
- 
- - parameter base:  base numbr.
- - parameter power: power number.
- 
- - returns: base raised to the power.
- */
-public func ** (base: Double, power: Double) -> Double {
-    return pow(base, power)
+public extension Double {
+    static func ** (base: Double, power: Double) -> Double {
+        return pow(base, power)
+    }
 }
 
-public func ** (base: CGFloat, power: CGFloat) -> CGFloat {
-    return pow(base, power)
+public extension CGFloat {
+    static func ** (base: CGFloat, power: CGFloat) -> CGFloat {
+        return pow(base, power)
+    }
 }
 
-public func ** (base: Float, power: Float) -> Float {
-    return pow(base, power)
+public extension Float {
+    static func ** (base: Float, power: Float) -> Float {
+        return pow(base, power)
+    }
 }
 
-public func ** (base: Int, power: Int) -> Int {
-    return Int(pow(Double(base), Double(power)))
-}
-
-/// Optional String Coalescing Operator
-/// Ref: https://oleb.net/blog/2016/12/optionals-string-interpolation/
-infix operator ??? : NilCoalescingPrecedence
-
-public func ??? <T>(lhs: T?, defaultValue: @autoclosure () -> String) -> String {
-	switch lhs {
-	case let value?:
-		return String(describing: value)
-	case nil:
-		return defaultValue()
-	}
+public extension Int {
+    static func ** (base: Int, power: Int) -> Int {
+        return Int(pow(Double(base), Double(power)))
+    }
 }

@@ -75,6 +75,8 @@ open class AlertAction: Equatable {
     }
 }
 
-public func == (lhs: AlertAction, rhs: AlertAction) -> Bool {
-    return (lhs.title == rhs.title) && (lhs.style == rhs.style) && (lhs.button == rhs.button)
+public extension AlertAction {
+    static func == (lhs: AlertAction, rhs: AlertAction) -> Bool {
+        return (lhs.title == rhs.title) && (lhs.style == rhs.style) && (lhs.button == rhs.button)
+    }
 }

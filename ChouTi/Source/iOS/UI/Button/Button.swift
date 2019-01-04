@@ -462,21 +462,24 @@ extension Button {
 }
 
 // MARK: <-? Non-equal Assignment Operator
+
 infix operator <-? : AssignmentPrecedence
 
-/**
- Nonequal Assignment Operator
- If lhs and rhs are equal, no assignment
- 
- - parameter lhs: a variable of type T: Equatable
- - parameter rhs: a variable of type T: Equatable
- 
- - returns: ture if lhs is assigned, false otherwise
- */
-private func <-? <T: Equatable>(lhs: inout T?, rhs: T?) -> Bool {
-    if lhs == rhs {
-        return false
+private extension Equatable {
+    /**
+     Nonequal Assignment Operator
+     If lhs and rhs are equal, no assignment
+
+     - parameter lhs: a variable of type T: Equatable
+     - parameter rhs: a variable of type T: Equatable
+
+     - returns: ture if lhs is assigned, false otherwise
+     */
+    static func <-? (lhs: inout Self, rhs: Self) -> Bool {
+        if lhs == rhs {
+            return false
+        }
+        lhs = rhs
+        return true
     }
-    lhs = rhs
-    return true
 }

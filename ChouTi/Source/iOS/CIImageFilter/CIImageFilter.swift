@@ -51,10 +51,10 @@ public enum CIImageFilter {
 	}
 }
 
-public typealias Filter = CIImageFilter.Filter
-
 infix operator >>> : AdditionPrecedence
-public func >>> (filter1: @escaping Filter, filter2: @escaping Filter) -> Filter {
+
+// swiftlint:disable:next static_operator
+public func >>> (filter1: @escaping CIImageFilter.Filter, filter2: @escaping CIImageFilter.Filter) -> CIImageFilter.Filter {
 	return { image in
 		if let imageAfterFilter1 = filter1(image) {
 			return filter2(imageAfterFilter1)
