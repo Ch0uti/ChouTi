@@ -134,7 +134,7 @@ open class SwipeTableViewCell: UITableViewCell {
     private final var isAnimating: Bool = false // whether cell expand/collapse is being animated
 
     // MARK: - Gesture Recognizers
-    private final lazy var panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeTableViewCell.panSwipeableContentView(_:)))
+    private lazy final var panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeTableViewCell.panSwipeableContentView(_:)))
     private final let tapRecognizer = UITapGestureRecognizer()
     // This is a so called immediate touch gesture recognizer (no delay, triggers faster than tap gesture recognizer). Set `minimumPressDuration = 0`.
     // This gesture recognizer will be added on tableView. If cell is expanded, touch anywhere on tableView can collapse it. (mimics UIKIt behavior)
