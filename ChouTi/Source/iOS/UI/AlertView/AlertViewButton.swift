@@ -6,7 +6,7 @@
 import UIKit
 
 /// Buttons on alert view
-open class AlertViewButton: Button {
+public class AlertViewButton: Button {
     /// AlertAction binded to this button
     weak var alertAction: AlertAction? {
         didSet {
@@ -24,17 +24,17 @@ open class AlertViewButton: Button {
 
     /**
      Create and return an alert view button.
-     
+
      - parameter alertAction: AlertAction object to configure this button.
-     
+
      - returns: A new alert view button.
      */
-    public required convenience init(alertAction: AlertAction) {
-        self.init()
-
+    public convenience init(alertAction: AlertAction) {
         defer {
             self.alertAction = alertAction
         }
+
+        self.init()
     }
 
     override private init(frame: CGRect) {

@@ -39,7 +39,7 @@ open class AlertAction: Equatable {
         self.button = alertActionButton
 
         alertActionButton.alertAction = self
-        alertActionButton.addTarget(self, action: #selector(AlertAction.buttonTapped(_:)), for: .touchUpInside)
+        alertActionButton.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
     }
 
     /**
@@ -57,7 +57,7 @@ open class AlertAction: Equatable {
         self.handler = handler
         self.button = button
 
-        button.addTarget(self, action: #selector(AlertAction.buttonTapped(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
     }
 
     @objc

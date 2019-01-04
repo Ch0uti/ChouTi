@@ -106,11 +106,12 @@ open class AlertView: UIView {
      - returns: An initialized alert view object.
      */
     public convenience init(title: String?, message: String?) {
-        self.init()
         defer {
             self.title = title
             self.message = message
         }
+
+        self.init()
     }
 
     override public init(frame: CGRect) {

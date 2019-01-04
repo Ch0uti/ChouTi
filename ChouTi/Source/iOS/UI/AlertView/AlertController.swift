@@ -151,9 +151,9 @@ open class AlertController: UIViewController {
      */
     open func addAction(_ action: AlertAction) {
         // Remove the default target action, handler should be called after dismissing completed
-        action.button.removeTarget(action, action: #selector(AlertAction.buttonTapped(_:)), for: .touchUpInside)
+        action.button.removeTarget(action, action: #selector(action.buttonTapped(_:)), for: .touchUpInside)
         // Add customized action
-        action.button.addTarget(self, action: #selector(AlertController.buttonTapped(_:)), for: .touchUpInside)
+        action.button.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
 
         alertView.addAction(action)
     }
@@ -162,11 +162,9 @@ open class AlertController: UIViewController {
     func buttonTapped(_ button: UIButton) {
         // Call action handler when dismissing completed
         self.dismiss(animated: true, completion: { [weak self] in
-            self?.alertView.actions.forEach {
-                if $0.button === button {
-                    $0.performActionHandler()
-                }
-            }
+            self?.alertView.actions
+                .first(where: { $0.button === button })?
+                .performActionHandler()
         })
     }
 }
