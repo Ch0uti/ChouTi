@@ -17,23 +17,23 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '11.0'
 
   s.subspec 'Default' do |ss|
-    ss.ios.source_files = 'ChouTi/Source/**/*.swift'
+    ss.ios.source_files = 'ChouTi/Sources/**/*.swift'
     ss.ios.exclude_files = [
-      'ChouTi/Source/iOS/UI/LoadingMorphingLabel',
-      'ChouTi/Source/iOS/UI/SlideController',
+      'ChouTi/Sources/iOS/UI/LoadingMorphingLabel',
+      'ChouTi/Sources/iOS/UI/SlideController',
     ]
     ss.ios.resource_bundle = { 'Resources' => 'ChouTi/Resources/**/*.png' }
   end
 
   # Not campatible with extensions
   s.subspec 'AppExtensionUnsafe' do |ss|
-    ss.ios.source_files = 'ChouTi/Source/iOS/UI/SlideController'
+    ss.ios.source_files = 'ChouTi/Sources/iOS/UI/SlideController'
     ss.ios.dependency 'ChouTi/Default'
   end
 
   # Components that has third party dependencies
   s.subspec 'LoadingMorphingLabel' do |ss|
-    ss.ios.source_files = 'ChouTi/Source/iOS/UI/LoadingMorphingLabel'
+    ss.ios.source_files = 'ChouTi/Sources/iOS/UI/LoadingMorphingLabel'
     ss.ios.dependency 'ChouTi/Default'
     ss.ios.dependency 'LTMorphingLabel', '~> 0.5.8'
   end

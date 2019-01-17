@@ -3,6 +3,7 @@
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 
+import CoreGraphics
 import Foundation
 
 // swiftlint:disable static_operator

@@ -3,7 +3,7 @@
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public extension NSLayoutXAxisAnchor {
 	@discardableResult

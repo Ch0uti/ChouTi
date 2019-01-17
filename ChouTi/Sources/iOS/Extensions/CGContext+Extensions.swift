@@ -3,6 +3,8 @@
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 
+import CoreGraphics
+
 public extension CGContext {
     func flipCoordinatesVertically() {
         self.translateBy(x: 0.0, y: CGFloat(self.height))

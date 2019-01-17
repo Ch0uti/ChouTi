@@ -32,7 +32,7 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "972ABAFA3A35B2868B345E420FD33257"
+            BlueprintIdentifier = "1810843FED4F1C9BD6C634A0AC86535C"
             BuildableName = "ChouTi.framework"
             BlueprintName = "ChouTi"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">

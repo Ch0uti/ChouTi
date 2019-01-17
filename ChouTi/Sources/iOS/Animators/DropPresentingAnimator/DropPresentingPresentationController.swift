@@ -3,7 +3,8 @@
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 
-import Foundation
+import CoreGraphics
+import UIKit
 
 class DropPresentingPresentationController: OverlayPresentationController {
     weak var dropPresentingAnimator: DropPresentingAnimator?

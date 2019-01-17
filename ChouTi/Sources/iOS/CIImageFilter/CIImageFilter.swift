@@ -3,7 +3,7 @@
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 
-import QuartzCore
+import CoreImage
 
 public enum CIImageFilter {
 	public typealias Filter = (CIImage) -> CIImage?

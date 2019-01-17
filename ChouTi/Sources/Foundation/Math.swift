@@ -3,7 +3,7 @@
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 
-import Foundation
+import CoreGraphics
 
 /// Linearly interpolates between start and end by t. The parameter t is clamped to the range [0, 1].
 /// When t = 0 returns start.

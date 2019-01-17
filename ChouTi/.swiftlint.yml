@@ -87,7 +87,7 @@ disabled_rules:
 excluded:
   - Carthage
   - Pods
-  - Source/iOS/CodeSnippets
+  - Sources/CodeSnippets
 
 line_length:
   warning: 180

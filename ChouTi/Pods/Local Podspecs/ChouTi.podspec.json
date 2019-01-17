@@ -39,10 +39,10 @@
     {
       "name": "Default",
       "ios": {
-        "source_files": "ChouTi/Source/**/*.swift",
+        "source_files": "ChouTi/Sources/**/*.swift",
         "exclude_files": [
-          "ChouTi/Source/iOS/UI/LoadingMorphingLabel",
-          "ChouTi/Source/iOS/UI/SlideController"
+          "ChouTi/Sources/iOS/UI/LoadingMorphingLabel",
+          "ChouTi/Sources/iOS/UI/SlideController"
         ],
         "resource_bundles": {
           "Resources": "ChouTi/Resources/**/*.png"
@@ -52,7 +52,7 @@
     {
       "name": "AppExtensionUnsafe",
       "ios": {
-        "source_files": "ChouTi/Source/iOS/UI/SlideController",
+        "source_files": "ChouTi/Sources/iOS/UI/SlideController",
         "dependencies": {
           "ChouTi/Default": [
 
@@ -63,7 +63,7 @@
     {
       "name": "LoadingMorphingLabel",
       "ios": {
-        "source_files": "ChouTi/Source/iOS/UI/LoadingMorphingLabel",
+        "source_files": "ChouTi/Sources/iOS/UI/LoadingMorphingLabel",
         "dependencies": {
           "ChouTi/Default": [
 

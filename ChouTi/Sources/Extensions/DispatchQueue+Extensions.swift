@@ -3,6 +3,8 @@
 //  Copyright © 2018 ChouTi. All rights reserved.
 //
 
+import Foundation
+
 extension DispatchQueue {
     /// Dispatch the block to main queue asynchronously if needed.
     class func onMainAsync(_ block: @escaping () -> Void) {
