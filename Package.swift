@@ -5,19 +5,39 @@ import PackageDescription
 let package = Package(
   name: "ChouTi",
   products: [
-    .librart(
+    .library(
       name: "ChouTi",
       targets: ["ChouTi"]
     ),
   ],
+  dependencies: [
+    .package(url: "https://github.com/Quick/Quick", from: "1.3.2"),
+    .package(url: "https://github.com/Quick/Nimble", from: "7.3.1"),
+  ],
   targets: [
     .target(
       name: "ChouTi",
-      path: "Chouti/Sources"
+      path: "ChouTi/Sources",
+      exclude: [
+        "ChouTi.h",
+        "ChouTi.modulemap",
+        "CodeSnippets",
+        "Info.plist",
+        "iOS",
+        "Platform.swift"
+      ]
     ),
     .testTarget(
       name: "ChouTiTests",
-      dependencies: ["ChouTi"]
-    )
+      dependencies: [
+        "ChouTi",
+        "Quick",
+        "Nimble",
+      ],
+      path: "ChouTi/Tests",
+      exclude: [
+        "ChouTiTests/iOS"
+      ]
+    ),
   ]
 )
