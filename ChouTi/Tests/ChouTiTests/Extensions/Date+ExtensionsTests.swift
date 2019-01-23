@@ -4,6 +4,7 @@
 //
 
 @testable import ChouTi
+import Foundation
 import Nimble
 import Quick
 
@@ -16,7 +17,7 @@ class Date_ExtensionsTests: QuickSpec {
 
 extension Date_ExtensionsTests {
     func randomDateSpec() {
-        context("random date in range", {
+        context("random date in range") {
             it("should get a random date in range.") {
                 guard let fromDate = Date(year: 1989, month: 12, day: 24) else {
                     fail()
@@ -58,9 +59,9 @@ extension Date_ExtensionsTests {
                     }
                 }
             }
-        })
+        }
 
-        context("random date in closed range", {
+        context("random date in closed range") {
             it("should get a random date in range.") {
                 guard let fromDate = Date(year: 1989, month: 12, day: 24) else {
                     fail()
@@ -87,7 +88,7 @@ extension Date_ExtensionsTests {
                 let randomDate = Date.random(in: fromDate...toDate)
                 expect(randomDate) == fromDate
             }
-        })
+        }
     }
 }
 

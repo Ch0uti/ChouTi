@@ -1,5 +1,12 @@
+# macOS
+.DS_Store
+
+# Swift
+/.build
+/Packages
+/*.xcodeproj
+
 # Xcode
-#
 build/
 *.pbxuser
 !default.pbxuser

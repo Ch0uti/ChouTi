@@ -25,7 +25,7 @@ task :default do
     sh "rake setup"
   end
 
-  sh "pod install"
+  sh "bundle exec pod install"
   sh "rake sort_xcode_project_files"
   sh "open ./ChouTi.xcworkspace"
 end
@@ -91,20 +91,20 @@ end
 
 desc "Lint pod locally."
 task :pod_lib_lint do
-  sh "pod cache clean --all --verbose"
-  sh "pod lib lint ../ChouTi.podspec --verbose"
+  sh "bundle exec pod cache clean --all --verbose"
+  sh "bundle exec pod lib lint ../ChouTi.podspec --verbose"
 end
 
 desc "Lint pod remotely."
 task :pod_spec_lint do
-  sh "pod cache clean --all --verbose"
-  sh "pod spec lint ../ChouTi.podspec --verbose"
+  sh "bundle exec pod cache clean --all --verbose"
+  sh "bundle exec pod spec lint ../ChouTi.podspec --verbose"
 end
 
 desc "Publish pod."
 task :pod_publish do
-  sh "pod cache clean --all --verbose"
-  sh "pod trunk push ../ChouTi.podspec --verbose"
+  sh "bundle exec pod cache clean --all --verbose"
+  sh "bundle exec pod trunk push ../ChouTi.podspec --verbose"
 end
 
 #-------------------------------------------------------------------------------
@@ -123,8 +123,8 @@ end
 desc "Update pods with repo update."
 task :update_pods  do
     puts "*** Installing CocoaPods dependencies ***".colorize(:light_blue)
-    sh "pod repo update"
-    sh "pod install"
+    sh "bundle exec pod repo update"
+    sh "bundle exec pod install"
 end
 
 #-------------------------------------------------------------------------------
