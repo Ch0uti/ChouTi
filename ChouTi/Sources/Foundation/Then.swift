@@ -1,5 +1,4 @@
-// swiftlint:disable file_header
-// swiftformat:disable fileHeader
+// swiftformat:disable fileHeader swiftlint:disable file_header
 
 // The MIT License (MIT)
 //
