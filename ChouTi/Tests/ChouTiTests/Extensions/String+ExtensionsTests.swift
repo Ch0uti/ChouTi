@@ -1,19 +1,18 @@
-//
-//  Created by Honghao Zhang on 10/30/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import XCTest
+@testable import ChouTi
 
 class String_ExtensionsTest: XCTestCase {
     func testExpressionPatterns() {
         XCTAssertEqual("\t123\t abc ".matchedStrings(of: String.RegularExpressionPattern.tabs).count, 2)
         XCTAssertEqual("\t123\t \tabc ".matchedStrings(of: String.RegularExpressionPattern.tabs).count, 3)
-        XCTAssertEqual("""
-                       123 abc
-                       456\n
-                       """.matchedStrings(of: String.RegularExpressionPattern.newlines).count, 2)
+        XCTAssertEqual(
+            """
+            123 abc
+            456\n
+            """.matchedStrings(of: String.RegularExpressionPattern.newlines).count, 2
+        )
         XCTAssertEqual("1  2 3 ".matchedStrings(of: String.RegularExpressionPattern.whitespaces).count, 3)
         XCTAssertEqual("1\t\t2 3 ".matchedStrings(of: String.RegularExpressionPattern.whitespaces).count, 3)
         XCTAssertEqual("1   2 3 ".matchedStrings(of: String.RegularExpressionPattern.whitespacesExtented).count, 3)
@@ -23,14 +22,16 @@ class String_ExtensionsTest: XCTestCase {
         XCTAssertEqual("123".trimmed(), "123")
         XCTAssertEqual("123 ".trimmed(), "123")
         XCTAssertEqual("  123 ".trimmed(), "123")
-        XCTAssertEqual("""
-                       123
-                       abd
-                       """.trimmed(),
-                       """
-                       123
-                       abd
-                       """)
+        XCTAssertEqual(
+            """
+            123
+            abd
+            """.trimmed(),
+            """
+            123
+            abd
+            """
+        )
         XCTAssertEqual("\n 123".trimmed(), "123")
         XCTAssertEqual("123 \n".trimmed(), "123")
         XCTAssertEqual("\n123\n".trimmed(), "123")
@@ -131,31 +132,49 @@ class String_ExtensionsTest: XCTestCase {
     }
 
     func testReplacingMatches() {
-        XCTAssertEqual(try? "foo123bar".replacingMatches(of: "([a-z]+)(\\d+)([a-z]+)", with: "($1)-($2)-($3)"),
-                       "(foo)-(123)-(bar)")
+        XCTAssertEqual(
+            try? "foo123bar".replacingMatches(of: "([a-z]+)(\\d+)([a-z]+)", with: "($1)-($2)-($3)"),
+            "(foo)-(123)-(bar)"
+        )
 
-        XCTAssertEqual(try? "foo123bar".replacingMatches(of: "(\\d)", with: "($1)"),
-                       "foo(1)(2)(3)bar")
-        XCTAssertEqual(try? "foo123bar".replacingMatches(of: "(\\d)(\\d)", with: "($1)-($2)"),
-                       "foo(1)-(2)3bar")
+        XCTAssertEqual(
+            try? "foo123bar".replacingMatches(of: "(\\d)", with: "($1)"),
+            "foo(1)(2)(3)bar"
+        )
+        XCTAssertEqual(
+            try? "foo123bar".replacingMatches(of: "(\\d)(\\d)", with: "($1)-($2)"),
+            "foo(1)-(2)3bar"
+        )
         // The next matche starts from end of last match
-        XCTAssertEqual(try? "foo1234bar".replacingMatches(of: "(\\d)(\\d)", with: "($1)-($2)"),
-                       "foo(1)-(2)(3)-(4)bar")
+        XCTAssertEqual(
+            try? "foo1234bar".replacingMatches(of: "(\\d)(\\d)", with: "($1)-($2)"),
+            "foo(1)-(2)(3)-(4)bar"
+        )
 
-        XCTAssertEqual(try? "foo1234bar".replacingMatches(of: "(\\d)(\\d)", with: "($0)"),
-                       "foo(12)(34)bar")
-        XCTAssertEqual(try? "foo1234bar".replacingMatches(of: "(\\d)(\\d)", with: "($0)-($1)"),
-                       "foo(12)-(1)(34)-(3)bar")
+        XCTAssertEqual(
+            try? "foo1234bar".replacingMatches(of: "(\\d)(\\d)", with: "($0)"),
+            "foo(12)(34)bar"
+        )
+        XCTAssertEqual(
+            try? "foo1234bar".replacingMatches(of: "(\\d)(\\d)", with: "($0)-($1)"),
+            "foo(12)-(1)(34)-(3)bar"
+        )
 
-        XCTAssertEqual(try? "foo1234bar".replacingMatches(of: "(\\d{2})", with: "($0)"),
-                       "foo(12)(34)bar")
-        XCTAssertEqual(try? "foo1234bar".replacingMatches(of: "(\\d{2})", with: "($1)"),
-                       "foo(12)(34)bar")
+        XCTAssertEqual(
+            try? "foo1234bar".replacingMatches(of: "(\\d{2})", with: "($0)"),
+            "foo(12)(34)bar"
+        )
+        XCTAssertEqual(
+            try? "foo1234bar".replacingMatches(of: "(\\d{2})", with: "($1)"),
+            "foo(12)(34)bar"
+        )
 
         // Ref: https://stackoverflow.com/a/38907873/3164091
         let emojiCharacters = "\\U0001F600-\\U0001F64F\\U0001F300-\\U0001F5FF\\U0001F680-\\U0001F6FF\\u2600-\\u26FF"
-        XCTAssertEqual(try? "foo123😀bar".replacingMatches(of: "(\\w+)([\(emojiCharacters)]+)([a-z]+)", with: "($1)-($2)-($3)"),
-                       "(foo123)-(😀)-(bar)")
+        XCTAssertEqual(
+            try? "foo123😀bar".replacingMatches(of: "(\\w+)([\(emojiCharacters)]+)([a-z]+)", with: "($1)-($2)-($3)"),
+            "(foo123)-(😀)-(bar)"
+        )
     }
 
     func testMatchedStrings() {
@@ -206,15 +225,18 @@ class String_ExtensionsTest: XCTestCase {
         XCTAssertEqual(try? "123  foo".whitespacesNormalized(), "123 foo")
         XCTAssertEqual(try? " 123     foo".whitespacesNormalized(), "123 foo")
         XCTAssertEqual(try? " 123     foo    ".whitespacesNormalized(), "123 foo")
-        XCTAssertEqual(try?
-            """
-             123 foo
-            """.whitespacesNormalized(), "123 foo")
-        XCTAssertEqual(try?
-            """
-                123     foo
+        XCTAssertEqual(
+            try?
+                """
+                 123 foo
+                """.whitespacesNormalized(), "123 foo"
+        )
+        XCTAssertEqual(
+            try?
+                """
+                    123     foo
 
-            """.whitespacesNormalized(), "123 foo")
+                """.whitespacesNormalized(), "123 foo"
+        )
     }
-
 }

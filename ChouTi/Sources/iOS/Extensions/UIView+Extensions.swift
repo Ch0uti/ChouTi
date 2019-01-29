@@ -1,17 +1,13 @@
-//
-//  Created by Honghao Zhang on 9/4/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 public extension UIView {
-
     /**
      Directly contaitns a view, not recursively
-     
+
      - parameter view: child view
-     
+
      - returns: true for directly contains, otherwise false
      */
     func containSubview(_ view: UIView) -> Bool {
@@ -32,29 +28,30 @@ public extension UIView {
 }
 
 // MARK: - Set Hidden
+
 public extension UIView {
-	/**
-	Set hidden animated with completion.
-	
-	- parameter toHide:     New hidden value to set.
-	- parameter animated:   Whether setting should be animated
-	- parameter duration:   Animation duration.
-	- parameter completion: Completion block.
-	*/
+    /**
+     Set hidden animated with completion.
+
+     - parameter toHide:     New hidden value to set.
+     - parameter animated:   Whether setting should be animated
+     - parameter duration:   Animation duration.
+     - parameter completion: Completion block.
+     */
     func setHidden(_ toHide: Bool, animated: Bool = false, duration: TimeInterval = 0.25, completion: ((Bool) -> Void)? = nil) {
-        if self.isHidden == toHide && alpha == (toHide ? 0.0 : 1.0) {
+        if isHidden == toHide, alpha == (toHide ? 0.0 : 1.0) {
             completion?(false)
             return
         }
 
         if animated == false {
             alpha = toHide ? 0.0 : 1.0
-            self.isHidden = toHide
+            isHidden = toHide
             completion?(true)
         } else {
             // If is to visible, set hidden to false first, then animate alpha
             if toHide == false {
-                self.isHidden = toHide
+                isHidden = toHide
                 if alpha == 1.0 {
                     debugPrint("\(self) has an alpha: 1.0, animation maybe broken.")
                 }
@@ -71,10 +68,11 @@ public extension UIView {
 }
 
 // MARK: - Utility
+
 public extension UIView {
     /**
      Get the view controller presenting this view
-     
+
      - returns: the view controller for presenting this view or nil
      */
     private func firstRespondedViewController() -> UIViewController? {
@@ -99,16 +97,17 @@ public extension UIView {
 }
 
 // MARK: - CGRect Related
+
 public extension UIView {
     /**
      Get frame for self in another view
-     
+
      - parameter view: the target view
-     
+
      - returns: the frame of self in the target view
      */
     func frameRectInView(_ view: UIView?) -> CGRect {
-        return self.convert(self.bounds, to: view)
+        return convert(bounds, to: view)
     }
 
     /// Get bounds of screen, which is presenting this view.
@@ -123,7 +122,7 @@ public extension UIView {
 public extension UIView {
     /**
      Get a copy of the view. Note: this is not workinhg as expected
-     
+
      - returns: A copy of the View
      */
     func viewCopy() -> UIView {
@@ -136,7 +135,7 @@ public extension UIView {
 public extension UIView {
     /**
      Get an image representation of this view.
-     
+
      - returns: an Image.
      */
     func toImage() -> UIImage? {
@@ -154,16 +153,15 @@ public extension UIView {
 
     /**
      Get a snapshot (image representation) of this view.
-     
+
      - returns: an Image snapshot.
      */
     func snapshot() -> UIImage? {
-        return self.toImage()
+        return toImage()
     }
 }
 
 public extension UIView {
-
     /// Get superview of sepcified type.
     ///
     /// - Parameter type: type to find.
@@ -172,19 +170,19 @@ public extension UIView {
         if let view = self.superview as? T {
             return view
         }
-		return superview?.superview(ofType: type)
+        return superview?.superview(ofType: type)
     }
 
     /**
      BFS search for first subview of type.
-     
+
      - parameter type: type to find.
-     
+
      - returns: subview of type specified or nil.
      */
-    func subviewOfType<T: UIView>(_ type: T.Type) -> T? {
+    func subviewOfType<T: UIView>(_: T.Type) -> T? {
         let queue = Queue<UIView>()
-        for subview in self.subviews {
+        for subview in subviews {
             queue.enqueue(subview)
         }
 
@@ -205,16 +203,16 @@ public extension UIView {
 
     /**
      BFS search for subviews of type.
-     
+
      - parameter type: type to find.
-     
+
      - returns: subviews of type specified or empty.
      */
-    func subviewsOfType<T: UIView>(_ type: T.Type) -> [T] {
+    func subviewsOfType<T: UIView>(_: T.Type) -> [T] {
         var views: [T] = []
 
         let queue = Queue<UIView>()
-        for subview in self.subviews {
+        for subview in subviews {
             queue.enqueue(subview)
         }
 
@@ -235,10 +233,11 @@ public extension UIView {
 }
 
 // MARK: - View Ornaments
+
 public extension UIView {
     /**
      Add dashed border line.
-     
+
      - parameter borderWidth:            Border width.
      - parameter borderColor:            Border color.
      - parameter paintedSegmentLength:   Painted segment length.

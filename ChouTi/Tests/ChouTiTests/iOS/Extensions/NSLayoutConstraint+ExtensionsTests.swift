@@ -1,10 +1,7 @@
-//
-//  Created by Honghao Zhang on 7/5/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import XCTest
+@testable import ChouTi
 
 class NSLayoutConstraint_ExtensionsTests: XCTestCase {
     func testActivate() {
@@ -40,7 +37,7 @@ class NSLayoutConstraint_ExtensionsTests: XCTestCase {
         let containerView = UIView()
         var views: [UIView] = []
         let viewsCount = Int.random(in: 2...10)
-        for _ in 0 ..< viewsCount {
+        for _ in 0..<viewsCount {
             let view = UIView()
             containerView.addSubview(view)
             views.append(view)

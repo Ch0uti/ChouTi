@@ -1,11 +1,9 @@
-//
-//  Created by Honghao Zhang on 7/2/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 // MARK: - CGRect Related
+
 public extension UIView {
     /// Width for self
     var width: CGFloat {

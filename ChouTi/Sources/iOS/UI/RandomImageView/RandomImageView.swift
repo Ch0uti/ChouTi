@@ -1,10 +1,8 @@
-//
-//  Created by Honghao Zhang on 5/5/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
+// Temp:
 //    public class RandomImage: UIImage {
 //        override init() {
 //            self.images

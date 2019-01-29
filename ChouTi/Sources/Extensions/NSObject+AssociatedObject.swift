@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 12/14/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import Foundation
 
@@ -25,16 +22,16 @@ public extension NSObject {
      private struct SomeKey {
      static var Key = "RandomKey"
      }
-     
+
      setAssociatedObejct(someObject, forKeyPointer: &SomeKey.Key)
-     
+
      - parameter object:  an object to be associated
      - parameter pointer: pointer
      - parameter associationPolicy: associationPolicy, default to .OBJC_ASSOCIATION_RETAIN_NONATOMIC (strong reference). Use .OBJC_ASSOCIATION_ASSIGN for weak reference.
-     
+
      - returns: old associated object if existed
      */
-	@discardableResult
+    @discardableResult
     public func setAssociatedObejct(_ object: Any, forKeyPointer pointer: UnsafeRawPointer? = nil, associationPolicy: objc_AssociationPolicy = .OBJC_ASSOCIATION_RETAIN_NONATOMIC) -> Any? {
         if let pointer = pointer {
             let currentAssociatedObject = getAssociatedObject(forKeyPointer: pointer)
@@ -55,7 +52,7 @@ public extension NSObject {
         }
     }
 
-	@discardableResult
+    @discardableResult
     public func clearAssociatedObject(forKeyPointer pointer: UnsafeRawPointer? = nil) -> Any? {
         if let pointer = pointer {
             let object = getAssociatedObject(forKeyPointer: pointer)

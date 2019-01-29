@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 8/14/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 // Ref: https://gist.github.com/kareman/931017634606b7f7b9c0
 
@@ -24,8 +21,8 @@ open class Queue<T> {
 
     private var head: QueueItem<Element>? {
         didSet {
-			// When dequeued, from non-empty to empty
-            if head == nil && tail != nil {
+            // When dequeued, from non-empty to empty
+            if head == nil, tail != nil {
                 tail = head
             }
         }
@@ -33,18 +30,18 @@ open class Queue<T> {
 
     private var tail: QueueItem<Element>? {
         didSet {
-			// When enqueued, from empty to non-empty
-            if head == nil && tail != nil {
+            // When enqueued, from empty to non-empty
+            if head == nil, tail != nil {
                 head = tail
             }
         }
     }
 
-    public init () {}
+    public init() {}
 
     /**
      Enqueue a new item at the end of the queue.
-     
+
      - parameter value: new value
      */
     open func enqueue(_ value: Element) {
@@ -55,7 +52,7 @@ open class Queue<T> {
 
     /**
      Dequeue an item at the front of the queue.
-     
+
      - returns: value dequeued.
      */
     open func dequeue() -> Element? {

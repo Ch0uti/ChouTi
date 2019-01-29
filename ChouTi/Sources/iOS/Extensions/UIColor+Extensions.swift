@@ -1,58 +1,55 @@
-//
-//  Created by Honghao Zhang on 9/4/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 public extension UIColor {
     /**
      Get Red component from this UIColor
-     
+
      :returns: Red value
      */
     func redComponent() -> CGFloat {
         var red: CGFloat = 0.0
-        self.getRed(&red, green: nil, blue: nil, alpha: nil)
+        getRed(&red, green: nil, blue: nil, alpha: nil)
         return red
     }
 
     /**
      Get Green component from this UIColor
-     
+
      :returns: Green value
      */
     func greenComponent() -> CGFloat {
         var green: CGFloat = 0.0
-        self.getRed(nil, green: &green, blue: nil, alpha: nil)
+        getRed(nil, green: &green, blue: nil, alpha: nil)
         return green
     }
 
     /**
      Get Blue component from this UIColor
-     
+
      :returns: Blue value
      */
     func blueComponent() -> CGFloat {
         var blue: CGFloat = 0.0
-        self.getRed(nil, green: nil, blue: &blue, alpha: nil)
+        getRed(nil, green: nil, blue: &blue, alpha: nil)
         return blue
     }
 
     /**
      Get Alpha component from this UIColor
-     
+
      :returns: Alpha value
      */
     func alphaComponent() -> CGFloat {
         var alpha: CGFloat = 0.0
-        self.getRed(nil, green: nil, blue: nil, alpha: &alpha)
+        getRed(nil, green: nil, blue: nil, alpha: &alpha)
         return alpha
     }
 
     /**
      Get (Red, Green, Blue, Alpha) components from this UIColor
-     
+
      :returns: (Red, Green, Blue, Alpha)
      */
     func getRGBAComponents() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
@@ -60,7 +57,7 @@ public extension UIColor {
         var green: CGFloat = 0.0
         var blue: CGFloat = 0.0
         var alpha: CGFloat = 0.0
-        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         return (red, green, blue, alpha)
     }
 }
@@ -78,11 +75,11 @@ public extension UIColor {
 public extension UIColor {
     /**
      Get color between two colors, with percentage
-     
+
      - parameter minColor: color on one end
      - parameter maxColor: color on the other end
      - parameter percent:  percentage from minColor
-     
+
      - returns: color between two colors
      */
     class func colorBetweenMinColor(_ minColor: UIColor, maxColor: UIColor, percent: CGFloat) -> UIColor {
@@ -99,9 +96,9 @@ public extension UIColor {
 
     /**
      Get a darker color for self
-     
+
      - parameter brightnessDecreaseFactor: factor applied to brightness, should be greater than 0.0 and less than 1.0
-     
+
      - returns: a darker UIColor object
      */
     func darkerColor(brightnessDecreaseFactor: CGFloat = 0.75) -> UIColor {
@@ -111,7 +108,7 @@ public extension UIColor {
         var brightness: CGFloat = 0.0
         var alpha: CGFloat = 0.0
 
-        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+        if getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
             return UIColor(hue: hue, saturation: saturation, brightness: brightness * brightnessDecreaseFactor, alpha: alpha)
         }
 
@@ -120,7 +117,7 @@ public extension UIColor {
 
     /**
      Get a lighter color for self
-     
+
      - returns: a lighter color
      */
     func lighterColor(brightnessIncreaseFactor: CGFloat = 1.3) -> UIColor {
@@ -130,7 +127,7 @@ public extension UIColor {
         var brightness: CGFloat = 0.0
         var alpha: CGFloat = 0.0
 
-        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+        if getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
             return UIColor(hue: hue, saturation: saturation, brightness: brightness * brightnessIncreaseFactor, alpha: alpha)
         }
 
@@ -174,7 +171,7 @@ public extension UIColor {
         let divisor = CGFloat(15)
         let red = CGFloat((hex3 & 0xF00) >> 8) / divisor
         let green = CGFloat((hex3 & 0x0F0) >> 4) / divisor
-        let blue = CGFloat( hex3 & 0x00F      ) / divisor
+        let blue = CGFloat(hex3 & 0x00F) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
@@ -189,7 +186,7 @@ public extension UIColor {
         let red = CGFloat((hex4 & 0xF000) >> 12) / divisor
         let green = CGFloat((hex4 & 0x0F00) >> 8) / divisor
         let blue = CGFloat((hex4 & 0x00F0) >> 4) / divisor
-        let alpha = CGFloat( hex4 & 0x000F       ) / divisor
+        let alpha = CGFloat(hex4 & 0x000F) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
@@ -202,7 +199,7 @@ public extension UIColor {
         let divisor = CGFloat(255)
         let red = CGFloat((hex6 & 0xFF0000) >> 16) / divisor
         let green = CGFloat((hex6 & 0x00FF00) >> 8) / divisor
-        let blue = CGFloat( hex6 & 0x0000FF       ) / divisor
+        let blue = CGFloat(hex6 & 0x0000FF) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
@@ -216,7 +213,7 @@ public extension UIColor {
         let red = CGFloat((hex8 & 0xFF000000) >> 24) / divisor
         let green = CGFloat((hex8 & 0x00FF0000) >> 16) / divisor
         let blue = CGFloat((hex8 & 0x0000FF00) >> 8) / divisor
-        let alpha = CGFloat( hex8 & 0x000000FF       ) / divisor
+        let alpha = CGFloat(hex8 & 0x000000FF) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
@@ -261,9 +258,9 @@ public extension UIColor {
         var g: CGFloat = 0
         var b: CGFloat = 0
         var a: CGFloat = 0
-        self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        getRed(&r, green: &g, blue: &b, alpha: &a)
 
-        guard r >= 0 && r <= 1 && g >= 0 && g <= 1 && b >= 0 && b <= 1 else {
+        guard r >= 0, r <= 1, g >= 0, g <= 1, b >= 0, b <= 1 else {
             return nil
         }
 

@@ -1,12 +1,8 @@
-//
-//  Created by Honghao Zhang on 12/14/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 public extension UITableViewCell {
-
     /**
      Enable full width separtor for UITableViewCell
      Note: This will mutate separtor inset and layout margins, call this method carefully
@@ -19,9 +15,10 @@ public extension UITableViewCell {
 }
 
 // MARK: - Access `tabelView` in UITableView
+
 public extension UITableViewCell {
     /// Return tableView managing this cell
     var tableView: UITableView? {
-		return superview(ofType: UITableView.self)
-	}
+        return superview(ofType: UITableView.self)
+    }
 }

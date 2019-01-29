@@ -1,5 +1,7 @@
-import UIKit
+// Copyright © 2019 ChouTi. All rights reserved.
+
 import PlaygroundSupport
+import UIKit
 
 let view = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 667))
 view.backgroundColor = .white

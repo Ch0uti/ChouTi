@@ -1,4 +1,5 @@
-// swiftlint:disable:next file_header
+// swiftformat:disable fileHeader swiftlint:disable file_header
+
 // The MIT License (MIT)
 //
 // Copyright (c) 2015 Suyeol Jeon (xoul.kr)
@@ -21,15 +22,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-// swiftlint:disable comments_capitalized_ignore_possible_code
-
 import CoreGraphics
 import Foundation
 
 public protocol Then {}
 
 public extension Then where Self: Any {
-
     /// Makes it available to set properties with closures just after initializing.
     ///
     ///     let frame = CGRect().with {
@@ -52,11 +50,9 @@ public extension Then where Self: Any {
     func `do`(_ block: (Self) throws -> Void) rethrows {
         try block(self)
     }
-
 }
 
 public extension Then where Self: AnyObject {
-
     /// Makes it available to set properties with closures just after initializing.
     ///
     ///     let label = UILabel().then {
@@ -68,7 +64,6 @@ public extension Then where Self: AnyObject {
         try block(self)
         return self
     }
-
 }
 
 extension NSObject: Then {}
@@ -79,8 +74,8 @@ extension CGSize: Then {}
 extension CGVector: Then {}
 
 #if os(iOS) || os(tvOS)
-import UIKit.UIGeometry
-extension UIEdgeInsets: Then {}
-extension UIOffset: Then {}
-extension UIRectEdge: Then {}
+    import UIKit.UIGeometry
+    extension UIEdgeInsets: Then {}
+    extension UIOffset: Then {}
+    extension UIRectEdge: Then {}
 #endif

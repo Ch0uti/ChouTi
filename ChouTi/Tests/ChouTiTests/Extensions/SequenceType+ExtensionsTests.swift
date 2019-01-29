@@ -1,10 +1,7 @@
-//
-//  Created by Honghao Zhang on 7/3/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import XCTest
+@testable import ChouTi
 
 class SequenceType_ExtensionsTests: XCTestCase {
     func testRandomSubset() {
@@ -28,7 +25,7 @@ class SequenceType_ExtensionsTests: XCTestCase {
     }
 
     func testUnique() {
-        let integers = [1, 2, 2, 1, 3, 4, 5, 3, 4, 5 ]
+        let integers = [1, 2, 2, 1, 3, 4, 5, 3, 4, 5]
         XCTAssertEqual(integers.unique(), [1, 2, 3, 4, 5])
     }
 }

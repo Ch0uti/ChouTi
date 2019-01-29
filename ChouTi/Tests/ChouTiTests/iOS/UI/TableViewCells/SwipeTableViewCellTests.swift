@@ -1,11 +1,8 @@
-//
-//  Created by Honghao Zhang on 8/15/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import Nimble
 import Quick
+@testable import ChouTi
 
 class SwipeTableViewCellTests: QuickSpec {
     override func spec() {

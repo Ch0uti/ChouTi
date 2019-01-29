@@ -1,13 +1,9 @@
-//
-//  Created by Honghao Zhang on 1/28/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import XCTest
+@testable import ChouTi
 
 class Dictionary_ExtensionsTests: XCTestCase {
-
     var dict1 = ["1": 1, "2": 2, "3": 5, "5": 155]
     let dict2 = ["3": 3, "4": 4, "5": 5]
     let mergedDict = ["1": 1, "2": 2, "3": 3, "4": 4, "5": 5]

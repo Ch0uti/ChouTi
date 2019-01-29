@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 11/14/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -14,7 +11,7 @@ open class TextField: UITextField {
     }
 
     /// Placeholder text
-    override open var placeholder: String? {
+    open override var placeholder: String? {
         didSet {
             guard let placeholder = placeholder else {
                 return
@@ -81,15 +78,15 @@ open class TextField: UITextField {
         }
     }
 
-    override open func textRect(forBounds bounds: CGRect) -> CGRect {
+    open override func textRect(forBounds bounds: CGRect) -> CGRect {
         return customizedTextRectForBounds(bounds)
     }
 
-    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+    open override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         return customizedTextRectForBounds(bounds)
     }
 
-    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
+    open override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return customizedTextRectForBounds(bounds)
     }
 
@@ -107,13 +104,13 @@ open class TextField: UITextField {
 }
 
 extension TextField {
-    override open func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+    open override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.rightViewRect(forBounds: bounds)
         rect.origin.x -= layoutMargins.right
         return rect
     }
 
-    override open func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+    open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.leftViewRect(forBounds: bounds)
         rect.origin.x += layoutMargins.left
         return rect

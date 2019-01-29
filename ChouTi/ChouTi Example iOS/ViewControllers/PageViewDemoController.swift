@@ -1,22 +1,18 @@
-//
-//  Created by Honghao Zhang on 9/29/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import UIKit
 
 class PageViewDemoController: UIViewController {
-
-	let pageViewController = PageViewController()
+    let pageViewController = PageViewController()
     let viewControllers: [UIViewController] = {
         [0, 1, 2, 3].map { DummyViewController(label: "vc\($0)") }
     }()
 
     override func viewDidLoad() {
-		super.viewDidLoad()
+        super.viewDidLoad()
 
-		self.view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.white
 
         pageViewController.delegate = self
 
@@ -29,26 +25,26 @@ class PageViewDemoController: UIViewController {
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParent: self)
-	}
+    }
 }
 
 extension PageViewDemoController: PageViewControllerDataSource {
-	func numberOfViewControllersInPageViewController(_ pageViewController: PageViewController) -> Int {
-		return viewControllers.count
-	}
+    func numberOfViewControllersInPageViewController(_: PageViewController) -> Int {
+        return viewControllers.count
+    }
 
-	func pageViewController(_ pageViewController: PageViewController, viewControllerForIndex index: Int) -> UIViewController {
-		print("asking for index: \(index)")
-		return viewControllers[index]
-	}
+    func pageViewController(_: PageViewController, viewControllerForIndex index: Int) -> UIViewController {
+        print("asking for index: \(index)")
+        return viewControllers[index]
+    }
 }
 
 extension PageViewDemoController: PageViewControllerDelegate {
-	func pageViewController(_ pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
-		print("did selected: \(selectedIndex)")
-	}
+    func pageViewController(_: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController _: UIViewController) {
+        print("did selected: \(selectedIndex)")
+    }
 
-	func pageViewController(_ pageViewController: PageViewController, didScrollWithSelectedIndex selectedIndex: Int, offsetPercent: CGFloat) {
-//		print("scroll offset: \(offsetPercent)")
-	}
+    func pageViewController(_: PageViewController, didScrollWithSelectedIndex _: Int, offsetPercent _: CGFloat) {
+        //		print("scroll offset: \(offsetPercent)")
+    }
 }

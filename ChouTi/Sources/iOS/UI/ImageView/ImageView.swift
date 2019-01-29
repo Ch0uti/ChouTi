@@ -1,18 +1,15 @@
-//
-//  Created by Honghao Zhang on 1/8/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 open class ImageView: UIImageView {
-	open var rounded: Bool = false
+    open var rounded: Bool = false
 
-	override open func layoutSubviews() {
-		super.layoutSubviews()
+    open override func layoutSubviews() {
+        super.layoutSubviews()
 
-		if rounded {
-			layer.cornerRadius = min(bounds.width, bounds.height) / 2.0
-		}
-	}
+        if rounded {
+            layer.cornerRadius = min(bounds.width, bounds.height) / 2.0
+        }
+    }
 }

@@ -1,13 +1,9 @@
-//
-//  Created by Honghao Zhang on 8/13/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import Foundation
 
 class MainViewController: UIViewController {
-
     let tableView = UITableView(frame: .zero, style: .grouped)
 
     override func viewDidLoad() {
@@ -33,7 +29,7 @@ class MainViewController: UIViewController {
             ViewControllersSection(),
             MiscellaneousSection(),
             IssuesSection(),
-            UITestsSection()
+            UITestsSection(),
         ]
     }
 }

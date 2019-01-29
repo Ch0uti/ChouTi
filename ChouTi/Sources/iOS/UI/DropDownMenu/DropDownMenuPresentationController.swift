@@ -1,15 +1,12 @@
-//
-//  Created by Honghao Zhang on 2/23/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 class DropDownMenuPresentationController: OverlayPresentationController {
-
     weak var dropDownMenu: DropDownMenu?
 
     // MARK: - Transition
+
     override func presentationTransitionWillBegin() {
         super.presentationTransitionWillBegin()
 
@@ -31,20 +28,24 @@ class DropDownMenuPresentationController: OverlayPresentationController {
         // Note: wrapper view size alraedy has base constraints
         let frame = dropDownMenu.frameRectInView(containerView)
 
-        let wrapperBaseLeadingConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView,
-                                                              attribute: .leading,
-                                                              relatedBy: .equal,
-                                                              toItem: containerView,
-                                                              attribute: .leading,
-                                                              multiplier: 1.0,
-                                                              constant: frame.origin.x)
+        let wrapperBaseLeadingConstraint = NSLayoutConstraint(
+            item: dropDownMenu.wrapperView,
+            attribute: .leading,
+            relatedBy: .equal,
+            toItem: containerView,
+            attribute: .leading,
+            multiplier: 1.0,
+            constant: frame.origin.x
+        )
         wrapperBaseLeadingConstraint.priority = UILayoutPriority(800)
         wrapperBaseLeadingConstraint.isActive = true
 
-        let wrapperBaseTopConstraint = NSLayoutConstraint(item: dropDownMenu.wrapperView, attribute: .top,
-                                                          relatedBy: .equal,
-                                                          toItem: containerView, attribute: .top,
-                                                          multiplier: 1.0, constant: frame.origin.y)
+        let wrapperBaseTopConstraint = NSLayoutConstraint(
+            item: dropDownMenu.wrapperView, attribute: .top,
+            relatedBy: .equal,
+            toItem: containerView, attribute: .top,
+            multiplier: 1.0, constant: frame.origin.y
+        )
         wrapperBaseTopConstraint.priority = UILayoutPriority(800)
         wrapperBaseTopConstraint.isActive = true
     }
@@ -86,30 +87,33 @@ class DropDownMenuPresentationController: OverlayPresentationController {
             return presentedView.frame
         }
 
-		let menuFrame = dropDownMenu.frameRectInView(containerView)
+        let menuFrame = dropDownMenu.frameRectInView(containerView)
         return CGRect(x: menuFrame.left, y: menuFrame.bottom, width: menuFrame.width, height: containerView.height - menuFrame.bottom)
     }
 }
 
 // MARK: - Actions
+
 extension DropDownMenuPresentationController {
-    override func overlayViewTapped(_ tapRecognizer: UITapGestureRecognizer) {
+    override func overlayViewTapped(_: UITapGestureRecognizer) {
         dropDownMenu?.set(toExpand: false, animated: true)
     }
 }
 
 // MARK: - UIContentContainer
+
 extension DropDownMenuPresentationController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { [unowned self] _ in
             self.presentedView?.frame = self.frameOfPresentedViewInContainerView
-            }, completion: nil)
+        }, completion: nil)
     }
 }
 
 // MARK: - Private Helper Extensions
+
 private extension UIView {
     func switchBackgroundColorWithAnotherView(_ anotherView: UIView) {
         let anotherViewBackgroundColor = anotherView.backgroundColor

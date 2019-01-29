@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 5/5/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -24,11 +21,11 @@ open class AlertAction: Equatable {
 
     /**
      Create and return an action with the specified title and behavior.
-     
+
      - parameter title:   The text to use for the button title. The value you specify should be localized for the user’s current language.
      - parameter style:   Additional styling information to apply to the button. Use the style information to convey the type of action that is performed by the button. For a list of possible values, see the constants in UIAlertActionStyle.
      - parameter handler: A block to execute when the user selects the action. This block has no return value and takes the selected action object as its only parameter.
-     
+
      - returns: A new alert action object.
      */
     public init(title: String?, style: UIAlertAction.Style, handler: ((AlertAction) -> Void)?) {
@@ -44,11 +41,11 @@ open class AlertAction: Equatable {
 
     /**
      Create and return an action with customized button and action handler.
-     
+
      - parameter title:   The action title, this is not associated with button title, you should setup button title correctly.
      - parameter button:  Customized button.
      - parameter handler: A block to execute when the user selects the action. This block has no return value and takes the selected action object as its only parameter.
-     
+
      - returns: A new alert action object.
      */
     public init(title: String?, button: UIButton, handler: ((AlertAction) -> Void)?) {
@@ -61,7 +58,7 @@ open class AlertAction: Equatable {
     }
 
     @objc
-    func buttonTapped(_ button: UIButton) {
+    func buttonTapped(_: UIButton) {
         performActionHandler()
     }
 

@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 11/5/2018.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -15,12 +12,12 @@ extension SlideController: UIGestureRecognizerDelegate {
                 // If going to expand
                 showShadowForCenterViewController(true)
                 let velocity = recognizer.velocity(in: view)
-                if velocity.x > 0 && leftViewController != nil {
+                if velocity.x > 0, leftViewController != nil {
                     // Show left
                     beginViewController(leftViewController, appearanceTransition: true, animated: true)
                     state = .leftExpanding
                     beginViewController(centerViewController, appearanceTransition: false, animated: true)
-                } else if velocity.x < 0 && rightViewController != nil {
+                } else if velocity.x < 0, rightViewController != nil {
                     // Show right
                     beginViewController(rightViewController, appearanceTransition: true, animated: true)
                     state = .rightExpanding
@@ -64,7 +61,7 @@ extension SlideController: UIGestureRecognizerDelegate {
                 statusBarBackgroundView.backgroundColor = statusBarBackgroundColor?.withAlphaComponent(min(abs(recognizer.view!.center.x - centerX) / (leftRevealWidth ?? revealWidth), 1.0))
 
                 // If revealed width is greater than reveal width set, stop it
-                if shouldExceedRevealWidth == false && (centerXToBe - centerX >= leftRevealWidth ?? revealWidth) {
+                if shouldExceedRevealWidth == false, (centerXToBe - centerX >= leftRevealWidth ?? revealWidth) {
                     recognizer.view!.center.x = centerX + (leftRevealWidth ?? revealWidth)
                     recognizer.setTranslation(CGPoint.zero, in: view)
                     return
@@ -84,7 +81,7 @@ extension SlideController: UIGestureRecognizerDelegate {
 
                 statusBarBackgroundView.backgroundColor = statusBarBackgroundColor?.withAlphaComponent(min(abs(recognizer.view!.center.x - centerX) / (rightRevealWidth ?? revealWidth), 1.0))
 
-                if shouldExceedRevealWidth == false && (centerX - centerXToBe >= rightRevealWidth ?? revealWidth) {
+                if shouldExceedRevealWidth == false, (centerX - centerXToBe >= rightRevealWidth ?? revealWidth) {
                     recognizer.view!.center.x = centerX - (rightRevealWidth ?? revealWidth)
                     recognizer.setTranslation(CGPoint.zero, in: view)
                     return
@@ -186,7 +183,7 @@ extension SlideController: UIGestureRecognizerDelegate {
     }
 
     @objc
-    func handleTapGesture(_ recognizer: UITapGestureRecognizer) {
+    func handleTapGesture(_: UITapGestureRecognizer) {
         // Tap center view controller to collapse
         if state != .notExpanded {
             collapse()

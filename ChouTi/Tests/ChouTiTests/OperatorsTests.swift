@@ -1,10 +1,7 @@
-//
-//  Created by Honghao Zhang on 7/2/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import XCTest
+@testable import ChouTi
 
 class OperatorsTests: XCTestCase {
     func testPowerOperator() {
@@ -16,21 +13,21 @@ class OperatorsTests: XCTestCase {
         XCTAssertEqual(-2 ** 3, (-2) * (-2) * (-2))
         XCTAssertEqual((-2) ** 2, 4)
 
-		XCTAssertEqual(-2 ** 2, (-2) * (-2))
-		XCTAssertEqual(1 - 2 ** 2, 1 - 2 * 2)
-		XCTAssertEqual(-2 ** 2 * 3, ((-2) * (-2)) * 3)
+        XCTAssertEqual(-2 ** 2, (-2) * (-2))
+        XCTAssertEqual(1 - 2 ** 2, 1 - 2 * 2)
+        XCTAssertEqual(-2 ** 2 * 3, ((-2) * (-2)) * 3)
 
         XCTAssertEqual(-2 ** 3, (-2) * (-2) * (-2))
         XCTAssertEqual(-(2 ** 3), -8)
-		XCTAssertEqual(2 ** 0.5, sqrt(2))
+        XCTAssertEqual(2 ** 0.5, sqrt(2))
         XCTAssertTrue((-2.0 ** 3.2).isNaN)
     }
 
-	func testOptionalStringCoalescingOperator() {
-		let isNumber: Int? = 99
-		XCTAssertEqual("\(isNumber ??? "No Number")", "99")
+    func testOptionalStringCoalescingOperator() {
+        let isNumber: Int? = 99
+        XCTAssertEqual("\(isNumber ??? "No Number")", "99")
 
-		let isNil: Int? = nil
-		XCTAssertEqual("\(isNil ??? "No Number")", "No Number")
-	}
+        let isNil: Int? = nil
+        XCTAssertEqual("\(isNil ??? "No Number")", "No Number")
+    }
 }

@@ -1,15 +1,11 @@
-//
-//  Created by Honghao Zhang on 8/14/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 // Ref: https://gist.github.com/kareman/931017634606b7f7b9c0
 
-@testable import ChouTi
 import XCTest
+@testable import ChouTi
 
 class QueueTests: XCTestCase {
-
     func testAdd1ToQueue() {
         let q = Queue<String>()
         q.enqueue("1")

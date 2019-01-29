@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 10/18/2018.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import Foundation
 

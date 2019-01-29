@@ -1,13 +1,9 @@
-//
-//  Created by Honghao Zhang on 7/2/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import XCTest
+@testable import ChouTi
 
 class CollectionType_ExtensionsTests: XCTestCase {
-
     var integers: [Int] = []
 
     override func setUp() {

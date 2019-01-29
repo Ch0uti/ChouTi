@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 3/1/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -14,41 +11,42 @@ import UIKit
 //   3  |  foo   |    bar   |  something
 
 public protocol TableLayoutDataSource: AnyObject {
-	/**
-	Get number of columns
-	
-	- parameter tableLayout: the tableLayout
-	
-	- returns: number of columns
-	*/
-	func numberOfColumnsInTableLayout(_ tableLayout: TableCollectionViewLayout) -> Int
+    /**
+     Get number of columns
 
-	/**
-	Get number of rows in one column
-	
-	- parameter tableLayout: the tableLayout
-	- parameter column:      column index, from 0 ... numberOfColumns
-	
-	- returns: number of rows in the column
-	*/
-	func tableLayout(_ tableLayout: TableCollectionViewLayout, numberOfRowsInColumn column: Int) -> Int
+     - parameter tableLayout: the tableLayout
 
-	/**
-	Preferred size for the cell at the column and the row
-	
-	- parameter tableLayout: the tableLayout
-	- parameter column:      column index, from 0 ... numberOfColumns
-	- parameter row:         row index, begin with 0
-	
-	- returns: Size for the cell
-	*/
-	func tableLayout(_ tableLayout: TableCollectionViewLayout, sizeForColumn column: Int, row: Int) -> CGSize
+     - returns: number of columns
+     */
+    func numberOfColumnsInTableLayout(_ tableLayout: TableCollectionViewLayout) -> Int
+
+    /**
+     Get number of rows in one column
+
+     - parameter tableLayout: the tableLayout
+     - parameter column:      column index, from 0 ... numberOfColumns
+
+     - returns: number of rows in the column
+     */
+    func tableLayout(_ tableLayout: TableCollectionViewLayout, numberOfRowsInColumn column: Int) -> Int
+
+    /**
+     Preferred size for the cell at the column and the row
+
+     - parameter tableLayout: the tableLayout
+     - parameter column:      column index, from 0 ... numberOfColumns
+     - parameter row:         row index, begin with 0
+
+     - returns: Size for the cell
+     */
+    func tableLayout(_ tableLayout: TableCollectionViewLayout, sizeForColumn column: Int, row: Int) -> CGSize
 }
 
 open class TableCollectionViewLayout: UICollectionViewLayout {
     // SeparatorLine is decorationViews
 
-	// MARK: - Appearance Customization	
+    // MARK: - Appearance Customization
+
     open var horizontalPadding: CGFloat = 5.0
     open var verticalPadding: CGFloat = 1.0
     open var separatorLineWidth: CGFloat = 1.0
@@ -58,62 +56,68 @@ open class TableCollectionViewLayout: UICollectionViewLayout {
         }
     }
 
-	// MARK: - DataSource/Delegate
+    // MARK: - DataSource/Delegate
+
     open weak var dataSourceTableLayout: TableLayoutDataSource!
 
-	open func numberOfColumns() -> Int {
-		return dataSourceTableLayout.numberOfColumnsInTableLayout(self)
-	}
-	open func numberOfRowsInColumn(_ column: Int) -> Int {
-		return dataSourceTableLayout.tableLayout(self, numberOfRowsInColumn: column)
-	}
+    open func numberOfColumns() -> Int {
+        return dataSourceTableLayout.numberOfColumnsInTableLayout(self)
+    }
+
+    open func numberOfRowsInColumn(_ column: Int) -> Int {
+        return dataSourceTableLayout.tableLayout(self, numberOfRowsInColumn: column)
+    }
 
     private var maxWidthForColumn = [CGFloat]()
-	private var maxHeightForRow = [CGFloat]()
+    private var maxHeightForRow = [CGFloat]()
 
-	private var maxNumberOfRows: Int = 0
-	/// Max height, not include paddings/separatorWidth
-	private var maxHeight: CGFloat = 0
+    private var maxNumberOfRows: Int = 0
+    /// Max height, not include paddings/separatorWidth
+    private var maxHeight: CGFloat = 0
 
     private let separatorViewKind = "Separator"
 
-	// MARK: - Init
-	override public init() {
+    // MARK: - Init
+
+    public override init() {
         super.init()
-		commmonInit()
+
+        commmonInit()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-		commmonInit()
+
+        commmonInit()
     }
 
-	private func commmonInit() {
-		self.register(TableCollectionViewSeparatorView.self, forDecorationViewOfKind: separatorViewKind)
-	}
+    private func commmonInit() {
+        register(TableCollectionViewSeparatorView.self, forDecorationViewOfKind: separatorViewKind)
+    }
 
-	// MARK: - Override
-    override open func prepare() {
+    // MARK: - Override
+
+    open override func prepare() {
         buildMaxWidthsHeight()
     }
 
-    override open var collectionViewContentSize: CGSize {
+    open override var collectionViewContentSize: CGSize {
         var width: CGFloat = maxWidthForColumn.reduce(0, +)
         width += CGFloat(numberOfColumns() - 1) * separatorLineWidth
         width += CGFloat(numberOfColumns()) * horizontalPadding * 2
-		let maxContentHeight = maxHeight + separatorLineWidth + verticalPadding * 2 * CGFloat(maxNumberOfRows)
+        let maxContentHeight = maxHeight + separatorLineWidth + verticalPadding * 2 * CGFloat(maxNumberOfRows)
         return CGSize(width: width, height: maxContentHeight)
     }
 
-    override open func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cellAttrisForIndexPath(indexPath)
     }
 
-    override open func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    open override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         if elementKind == separatorViewKind {
             if indexPath.item == 0 {
-				let attrs = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, with: indexPath)
-				// Section 0 decoration view (separator line) is horizontal line
+                let attrs = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, with: indexPath)
+                // Section 0 decoration view (separator line) is horizontal line
                 if indexPath.section == 0 {
                     let x: CGFloat = 0
                     let y = maxHeightForRow[0] + verticalPadding * 2
@@ -121,7 +125,7 @@ open class TableCollectionViewLayout: UICollectionViewLayout {
                     attrs.frame = CGRect(x: x, y: y, width: width, height: separatorLineWidth)
                 } else {
                     var x: CGFloat = 0
-                    for sec in 0 ..< indexPath.section {
+                    for sec in 0..<indexPath.section {
                         x += maxWidthForColumn[sec] + separatorLineWidth + horizontalPadding * 2
                     }
                     x -= separatorLineWidth
@@ -131,53 +135,54 @@ open class TableCollectionViewLayout: UICollectionViewLayout {
                     attrs.frame = CGRect(x: x, y: y, width: width, height: height)
                 }
 
-				return attrs
+                return attrs
             }
         }
 
-		return nil
+        return nil
     }
 
-    override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attrs = [UICollectionViewLayoutAttributes]()
         let cellIndexPaths = cellIndexPathsForRect(rect)
         for indexPath in cellIndexPaths {
             attrs.append(cellAttrisForIndexPath(indexPath))
         }
 
-		let columns = numberOfColumns()
-        for sec in 0 ..< columns {
-			let rows = numberOfRowsInColumn(sec)
-            for row in 0 ..< rows {
-				if let attr = layoutAttributesForDecorationView(ofKind: separatorViewKind, at: IndexPath(item: row, section: sec)) {
-					attrs.append(attr)
-				}
+        let columns = numberOfColumns()
+        for sec in 0..<columns {
+            let rows = numberOfRowsInColumn(sec)
+            for row in 0..<rows {
+                if let attr = layoutAttributesForDecorationView(ofKind: separatorViewKind, at: IndexPath(item: row, section: sec)) {
+                    attrs.append(attr)
+                }
             }
         }
 
         return attrs
     }
 
-    override open func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+    open override func shouldInvalidateLayout(forBoundsChange _: CGRect) -> Bool {
         return false
     }
 }
 
 // MARK: Helper functions
-extension TableCollectionViewLayout {
-	func buildMaxWidthsHeight() {
-        maxWidthForColumn.removeAll()
-		maxHeight = 0
 
-		let columns = numberOfColumns()
-        for col in 0 ..< columns {
-			var maxWidth: CGFloat = 0
-			var height: CGFloat = 0
-			let rows = numberOfRowsInColumn(col)
-            for row in 0 ..< rows {
-				let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: col, row: row)
-				let width = size.width
-				height += size.height
+extension TableCollectionViewLayout {
+    func buildMaxWidthsHeight() {
+        maxWidthForColumn.removeAll()
+        maxHeight = 0
+
+        let columns = numberOfColumns()
+        for col in 0..<columns {
+            var maxWidth: CGFloat = 0
+            var height: CGFloat = 0
+            let rows = numberOfRowsInColumn(col)
+            for row in 0..<rows {
+                let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: col, row: row)
+                let width = size.width
+                height += size.height
                 if width > maxWidth {
                     maxWidth = width
                 }
@@ -185,59 +190,59 @@ extension TableCollectionViewLayout {
 
             maxWidthForColumn.append(maxWidth)
 
-			if height > maxHeight {
-				maxHeight = height
-			}
+            if height > maxHeight {
+                maxHeight = height
+            }
         }
 
-		// Calculate max number of rows
-		maxNumberOfRows = 0
-		for col in 0 ..< columns {
-			let rows = numberOfRowsInColumn(col)
-			if rows > maxNumberOfRows {
-				maxNumberOfRows = rows
-			}
-		}
+        // Calculate max number of rows
+        maxNumberOfRows = 0
+        for col in 0..<columns {
+            let rows = numberOfRowsInColumn(col)
+            if rows > maxNumberOfRows {
+                maxNumberOfRows = rows
+            }
+        }
 
-		// Calculate max height for row
-		maxHeightForRow.removeAll()
-		for row in 0 ..< maxNumberOfRows {
-			var maxHeight: CGFloat = 0
-			for col in 0 ..< columns {
-				let rowsInColumn = numberOfRowsInColumn(col)
-				if row < rowsInColumn {
-					let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: col, row: row)
-					if size.height > maxHeight {
-						maxHeight = size.height
-					}
-				}
-			}
-			maxHeightForRow.append(maxHeight)
-		}
+        // Calculate max height for row
+        maxHeightForRow.removeAll()
+        for row in 0..<maxNumberOfRows {
+            var maxHeight: CGFloat = 0
+            for col in 0..<columns {
+                let rowsInColumn = numberOfRowsInColumn(col)
+                if row < rowsInColumn {
+                    let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: col, row: row)
+                    if size.height > maxHeight {
+                        maxHeight = size.height
+                    }
+                }
+            }
+            maxHeightForRow.append(maxHeight)
+        }
     }
 
     private func cellAttrisForIndexPath(_ indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
         let attrs = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-		// Calculate Cell size with max width and max height
-		let maxWidth = maxWidthForColumn[indexPath.section] + horizontalPadding * 2
-		let maxHeight = maxHeightForRow[indexPath.row] + verticalPadding * 2
+        // Calculate Cell size with max width and max height
+        let maxWidth = maxWidthForColumn[indexPath.section] + horizontalPadding * 2
+        let maxHeight = maxHeightForRow[indexPath.row] + verticalPadding * 2
 
-		var x: CGFloat = 0
-		for sec in 0 ..< indexPath.section {
-			x += maxWidthForColumn[sec] + separatorLineWidth + horizontalPadding * 2
-		}
+        var x: CGFloat = 0
+        for sec in 0..<indexPath.section {
+            x += maxWidthForColumn[sec] + separatorLineWidth + horizontalPadding * 2
+        }
 
-		var y: CGFloat = 0
-		for row in 0 ..< indexPath.item {
-			y += maxHeightForRow[row] + verticalPadding * 2
-			if row == 0 {
-				y += separatorLineWidth
-			}
-		}
+        var y: CGFloat = 0
+        for row in 0..<indexPath.item {
+            y += maxHeightForRow[row] + verticalPadding * 2
+            if row == 0 {
+                y += separatorLineWidth
+            }
+        }
 
-		// Until now, we have frame for full size cell.
-		// the frame for the cell should have size from dataSource and put it in center
-		let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: indexPath.section, row: indexPath.item)
+        // Until now, we have frame for full size cell.
+        // The frame for the cell should have size from dataSource and put it in center
+        let size = dataSourceTableLayout.tableLayout(self, sizeForColumn: indexPath.section, row: indexPath.item)
         attrs.bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         attrs.center = CGPoint(x: x + maxWidth / 2.0, y: y + maxHeight / 2.0)
 
@@ -255,13 +260,13 @@ extension TableCollectionViewLayout {
 
         // Determin section
         var calX: CGFloat = 0.0
-		let columns = numberOfColumns()
-        for col in 0 ..< columns {
+        let columns = numberOfColumns()
+        for col in 0..<columns {
             let nextWidth = maxWidthForColumn[col] + horizontalPadding * 2 + separatorLineWidth
-            if calX < rectLeft && rectLeft <= (calX + nextWidth) {
+            if calX < rectLeft, rectLeft <= (calX + nextWidth) {
                 fromSectionIndex = col
             }
-            if calX < rectRight && rectRight <= (calX + nextWidth) {
+            if calX < rectRight, rectRight <= (calX + nextWidth) {
                 endSectionIndex = col
                 break
             }
@@ -274,42 +279,42 @@ extension TableCollectionViewLayout {
             endSectionIndex = columns - 1
         }
 
-		// Create array of indexPaths
-		var indexPaths = [IndexPath]()
+        // Create array of indexPaths
+        var indexPaths = [IndexPath]()
 
-		// Determin row
-		for col in fromSectionIndex ... endSectionIndex {
-			var fromRowIndex = -1
-			var endRowIndex = -1
-			var calY: CGFloat = 0.0
-			let rowsCount = numberOfRowsInColumn(col)
+        // Determin row
+        for col in fromSectionIndex...endSectionIndex {
+            var fromRowIndex = -1
+            var endRowIndex = -1
+            var calY: CGFloat = 0.0
+            let rowsCount = numberOfRowsInColumn(col)
 
-			for row in 0 ..< rowsCount {
-				var nextHeight = maxHeightForRow[row]
-				if row == 0 {
-					nextHeight += separatorLineWidth
-				}
-				if calY < rectTop && rectTop <= (calY + nextHeight) {
-					fromRowIndex = row
-				}
-				if calY < rectBottom && rectBottom <= (calY + nextHeight) {
-					endRowIndex = row
-					break
-				}
-				calY += nextHeight
-			}
+            for row in 0..<rowsCount {
+                var nextHeight = maxHeightForRow[row]
+                if row == 0 {
+                    nextHeight += separatorLineWidth
+                }
+                if calY < rectTop, rectTop <= (calY + nextHeight) {
+                    fromRowIndex = row
+                }
+                if calY < rectBottom, rectBottom <= (calY + nextHeight) {
+                    endRowIndex = row
+                    break
+                }
+                calY += nextHeight
+            }
 
-			if fromRowIndex == -1 {
-				fromRowIndex = 0
-			}
-			if endRowIndex == -1 {
-				endRowIndex = rowsCount - 1
-			}
+            if fromRowIndex == -1 {
+                fromRowIndex = 0
+            }
+            if endRowIndex == -1 {
+                endRowIndex = rowsCount - 1
+            }
 
-			for row in fromRowIndex ... endRowIndex {
-				indexPaths.append(IndexPath(item: row, section: col))
-			}
-		}
+            for row in fromRowIndex...endRowIndex {
+                indexPaths.append(IndexPath(item: row, section: col))
+            }
+        }
 
         return indexPaths
     }

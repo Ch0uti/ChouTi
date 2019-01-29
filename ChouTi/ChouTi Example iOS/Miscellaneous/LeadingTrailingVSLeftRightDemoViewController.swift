@@ -1,13 +1,9 @@
-//
-//  Created by Honghao Zhang on 7/5/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import UIKit
 
 class LeadingTrailingVSLeftRightDemoViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -127,6 +123,6 @@ private extension UIView {
             subviews.forEach { $0.applySemanticContentAttribute(attribute) }
         }
 
-        self.semanticContentAttribute = attribute
+        semanticContentAttribute = attribute
     }
 }

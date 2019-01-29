@@ -1,19 +1,16 @@
-//
-//  Created by Honghao Zhang on 10/28/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 // MARK: - Storyboard
-public extension UIViewController {
 
+public extension UIViewController {
     /**
      Initialize a view controller in storyboard.
-     
+
      :param: storyboardName     Storyboard name
      :param: viewControllerName Storyboard ID of the view controller
-     
+
      :returns: An instance of view controller.
      */
     class func viewControllerInStoryboard(_ storyboardName: String, viewControllerName: String) -> UIViewController {
@@ -24,6 +21,7 @@ public extension UIViewController {
 }
 
 // MARK: - Utility
+
 public extension UIViewController {
     /// Retrieve the view controller currently on-screen
     ///
@@ -51,16 +49,16 @@ public extension UIViewController {
 
     /// Whether this view controller's view is currnetly visible.
     var isVisible: Bool {
-         return isViewLoaded && (view.window != nil)
+        return isViewLoaded && (view.window != nil)
     }
 }
 
 // MARK: - UI
-public extension UIViewController {
 
+public extension UIViewController {
     /**
      Create a left navigation bar backrgound view, this view will spans between leading and title's leading
-     
+
      - returns: a newly created background view
      */
     func addLeftNavigationBarBackgroundView() -> UIView? {
@@ -89,7 +87,7 @@ public extension UIViewController {
 
     /**
      Create a right navigation bar backrgound view, this view will spans between title's trailing and trailing
-     
+
      - returns: a newly created background view
      */
     func addRightNavigationBarBackgroundView() -> UIView? {

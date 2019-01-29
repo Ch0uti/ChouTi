@@ -1,188 +1,187 @@
-//
-//  Created by Honghao Zhang on 11/24/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 @available(iOS 9.0, *)
 public protocol ImagePickerViewDelegate: AnyObject {
-	func imagePickerView(_ imagePickerView: ImagePickerView, pickedImageUpdated image: UIImage)
-	func cameraButtonTappedOnImagePickerView(_ imagePickerView: ImagePickerView)
+    func imagePickerView(_ imagePickerView: ImagePickerView, pickedImageUpdated image: UIImage)
+    func cameraButtonTappedOnImagePickerView(_ imagePickerView: ImagePickerView)
 }
 
 @available(iOS 9.0, *)
 open class ImagePickerView: UIView {
     public let backgroundImageView = UIImageView()
 
-	private let cameraButtonDescriptionLabelStackView = UIStackView()
+    private let cameraButtonDescriptionLabelStackView = UIStackView()
     public let cameraButton = UIButton()
     public let descriptionLabel = UILabel()
 
-	open var addImageDescription: String = "ADD COVER IMAGE"
-	open var editImageDescription: String = "EDIT COVER IMAGE"
+    open var addImageDescription: String = "ADD COVER IMAGE"
+    open var editImageDescription: String = "EDIT COVER IMAGE"
 
-	open var pickedImage: UIImage? {
-		didSet {
-			if let pickedImage = pickedImage {
-				backgroundImageView.image = pickedImage
-				descriptionLabel.text = editImageDescription
-			} else {
-				backgroundImageView.image = nil
-				descriptionLabel.text = addImageDescription
-			}
-		}
-	}
+    open var pickedImage: UIImage? {
+        didSet {
+            if let pickedImage = pickedImage {
+                backgroundImageView.image = pickedImage
+                descriptionLabel.text = editImageDescription
+            } else {
+                backgroundImageView.image = nil
+                descriptionLabel.text = addImageDescription
+            }
+        }
+    }
 
-	// This related to a tint color bug for AlertViewContrller
-	// http://stackoverflow.com/questions/32693369/uialertcontroller-tint-color-defaults-to-blue-on-highlight
-	private var _customizedTintColor: UIColor!
-	override open var tintColor: UIColor! {
-		didSet {
-			_customizedTintColor = tintColor
-		}
-	}
+    // This related to a tint color bug for AlertViewContrller
+    // http://stackoverflow.com/questions/32693369/uialertcontroller-tint-color-defaults-to-blue-on-highlight
+    private var _customizedTintColor: UIColor!
+    open override var tintColor: UIColor! {
+        didSet {
+            _customizedTintColor = tintColor
+        }
+    }
 
-	open weak var delegate: ImagePickerViewDelegate?
+    open weak var delegate: ImagePickerViewDelegate?
 
-	override public init(frame: CGRect) {
-		super.init(frame: frame)
-		commonInit()
-	}
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
 
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		commonInit()
-	}
+        commonInit()
+    }
 
-	private func commonInit() {
-		_customizedTintColor = tintColor
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
 
-		backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-		addSubview(backgroundImageView)
-		backgroundImageView.backgroundColor = UIColor(white: 129.0 / 255.0, alpha: 1.0)
-		backgroundImageView.clipsToBounds = true
-		backgroundImageView.contentMode = .scaleAspectFill
+        commonInit()
+    }
 
-		cameraButtonDescriptionLabelStackView.translatesAutoresizingMaskIntoConstraints = false
-		addSubview(cameraButtonDescriptionLabelStackView)
+    private func commonInit() {
+        _customizedTintColor = tintColor
 
-		cameraButtonDescriptionLabelStackView.alpha = 0.75
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(backgroundImageView)
+        backgroundImageView.backgroundColor = UIColor(white: 129.0 / 255.0, alpha: 1.0)
+        backgroundImageView.clipsToBounds = true
+        backgroundImageView.contentMode = .scaleAspectFill
 
-		cameraButtonDescriptionLabelStackView.axis = .vertical
-		cameraButtonDescriptionLabelStackView.alignment = .center
-		cameraButtonDescriptionLabelStackView.spacing = 13.5 * 2
+        cameraButtonDescriptionLabelStackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(cameraButtonDescriptionLabelStackView)
 
-		cameraButtonDescriptionLabelStackView.addArrangedSubview(cameraButton)
-		cameraButtonDescriptionLabelStackView.addArrangedSubview(descriptionLabel)
+        cameraButtonDescriptionLabelStackView.alpha = 0.75
 
-		let cameraImage = UIImage(asset: .Camera)
+        cameraButtonDescriptionLabelStackView.axis = .vertical
+        cameraButtonDescriptionLabelStackView.alignment = .center
+        cameraButtonDescriptionLabelStackView.spacing = 13.5 * 2
 
-		cameraButton.setImage(cameraImage?.scaledToMaxWidth(40 * 2, maxHeight: 40 * 2), for: .normal)
+        cameraButtonDescriptionLabelStackView.addArrangedSubview(cameraButton)
+        cameraButtonDescriptionLabelStackView.addArrangedSubview(descriptionLabel)
+
+        let cameraImage = UIImage(asset: .Camera)
+
+        cameraButton.setImage(cameraImage?.scaledToMaxWidth(40 * 2, maxHeight: 40 * 2), for: .normal)
         cameraButton.addTarget(self, action: #selector(ImagePickerView.selectPhoto(_:)), for: .touchUpInside)
 
-		descriptionLabel.font = UIFont.AvenirMediumFont(12.5 * 2)
-		descriptionLabel.textColor = UIColor.white
-		descriptionLabel.text = addImageDescription
+        descriptionLabel.font = UIFont.AvenirMediumFont(12.5 * 2)
+        descriptionLabel.textColor = UIColor.white
+        descriptionLabel.text = addImageDescription
 
-		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ImagePickerView.selectPhoto(_:)))
-		addGestureRecognizer(tapGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ImagePickerView.selectPhoto(_:)))
+        addGestureRecognizer(tapGesture)
 
-		setupConstraints()
-	}
+        setupConstraints()
+    }
 
-	private func setupConstraints() {
-		backgroundImageView.constrainToFullSizeInSuperview()
-		cameraButtonDescriptionLabelStackView.constrainToCenterInSuperview()
-	}
+    private func setupConstraints() {
+        backgroundImageView.constrainToFullSizeInSuperview()
+        cameraButtonDescriptionLabelStackView.constrainToCenterInSuperview()
+    }
 }
 
 @available(iOS 9.0, *)
 extension ImagePickerView {
     @objc
-    public func selectPhoto(_ sender: AnyObject) {
-		delegate?.cameraButtonTappedOnImagePickerView(self)
+    public func selectPhoto(_: AnyObject) {
+        delegate?.cameraButtonTappedOnImagePickerView(self)
 
-		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-		alert.view.tintColor = tintColor
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.view.tintColor = tintColor
 
-		if UIImagePickerController.isSourceTypeAvailable(.camera) {
-			alert.addAction(UIAlertAction(
-				title: "Take Photo",
-				style: .default,
-				handler: { _ -> Void in
-					self.pickImageFromSourceType(.camera)
-				}))
-		}
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            alert.addAction(UIAlertAction(
+                title: "Take Photo",
+                style: .default,
+                handler: { _ -> Void in
+                    self.pickImageFromSourceType(.camera)
+                }
+            ))
+        }
 
-		if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-			alert.addAction(UIAlertAction(
-				title: "Choose From Library",
-				style: .default,
-				handler: { _ -> Void in
-					self.pickImageFromSourceType(.photoLibrary)
-				}))
-		}
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            alert.addAction(UIAlertAction(
+                title: "Choose From Library",
+                style: .default,
+                handler: { _ -> Void in
+                    self.pickImageFromSourceType(.photoLibrary)
+                }
+            ))
+        }
 
-		alert.addAction(UIAlertAction(
-			title: "Cancel",
-			style: .cancel,
-			handler: { _ -> Void in
-			}))
+        alert.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: { _ -> Void in
+            }
+        ))
 
-		presentingViewController?.present(alert, animated: true, completion: {
-			alert.view.tintColor = self._customizedTintColor
-		})
-	}
+        presentingViewController?.present(alert, animated: true, completion: {
+            alert.view.tintColor = self._customizedTintColor
+        })
+    }
 
-	func pickImageFromSourceType(_ type: UIImagePickerController.SourceType) {
-		let imagePicker = UIImagePickerController()
-		imagePicker.allowsEditing = true
+    func pickImageFromSourceType(_ type: UIImagePickerController.SourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
 
-		imagePicker.sourceType = type
-		if type == .camera {
-			imagePicker.showsCameraControls = true
-		}
+        imagePicker.sourceType = type
+        if type == .camera {
+            imagePicker.showsCameraControls = true
+        }
 
-		imagePicker.delegate = self
+        imagePicker.delegate = self
         imagePicker.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
-		imagePicker.navigationBar.tintColor = tintColor
+        imagePicker.navigationBar.tintColor = tintColor
 
-		presentingViewController?.present(imagePicker, animated: true, completion: nil)
-	}
+        presentingViewController?.present(imagePicker, animated: true, completion: nil)
+    }
 }
 
 @available(iOS 9.0, *)
 extension ImagePickerView: UIImagePickerControllerDelegate {
+    public func imagePickerController(_: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
-	public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
+            self.pickedImage = pickedImage
+            delegate?.imagePickerView(self, pickedImageUpdated: pickedImage)
+        }
 
-		if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
-			self.pickedImage = pickedImage
-			delegate?.imagePickerView(self, pickedImageUpdated: pickedImage)
-		}
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
 
-		presentingViewController?.dismiss(animated: true, completion: nil)
-	}
-
-	public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-		presentingViewController?.dismiss(animated: true, completion: nil)
-	}
+    public func imagePickerControllerDidCancel(_: UIImagePickerController) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
 }
 
 @available(iOS 9.0, *)
-extension ImagePickerView: UINavigationControllerDelegate {
-
-}
+extension ImagePickerView: UINavigationControllerDelegate {}
 
 // Helper function inserted by Swift 4.2 migrator.
 private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (key.rawValue, value) })
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (key.rawValue, value) })
 }
 
 // Helper function inserted by Swift 4.2 migrator.
 private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
+    return input.rawValue
 }

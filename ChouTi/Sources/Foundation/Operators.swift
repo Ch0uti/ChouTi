@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 5/27/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import CoreGraphics
 import Foundation
@@ -11,14 +8,14 @@ import Foundation
 /**
  *  Optional Assignment Operator
  */
-infix operator =? : AssignmentPrecedence
+infix operator =?: AssignmentPrecedence
 
 /**
  Optional Assignment Operator
- 
+
  If the rhs is `.None` then this operator behaves as a no operation.
  If the rhs is `.Some(T) then this operator safely unwraps and binds the value so that it can be assigned to lhs
- 
+
  - parameter lhs: a non-optional varaible of a given type T
  - parameter rhs: an optional value of type T?
  */
@@ -31,10 +28,10 @@ public func =? <T>(lhs: inout T, rhs: T?) {
 
 /**
  Optional Assignment Operator
- 
+
  If the rhs is `.None` then this operator behaves as a no operation.
  If the rhs is `.Some(T) then this operator safely unwraps and binds the value so that it can be assigned to lhs
- 
+
  - parameter lhs: a non-optional varaible of a given type T
  - parameter rhs: an optional value of type T?
  */
@@ -47,7 +44,7 @@ public func =? <T>(lhs: inout T?, rhs: T?) {
 
 /// Optional String Coalescing Operator
 /// Ref: https://oleb.net/blog/2016/12/optionals-string-interpolation/
-infix operator ??? : NilCoalescingPrecedence
+infix operator ???: NilCoalescingPrecedence
 
 public func ??? <T>(lhs: T?, defaultValue: @autoclosure () -> String) -> String {
     switch lhs {
@@ -68,7 +65,7 @@ precedencegroup ExponentiationPrecedence {
     higherThan: MultiplicationPrecedence
 }
 
-infix operator ** : ExponentiationPrecedence
+infix operator **: ExponentiationPrecedence
 
 public extension Double {
     static func ** (base: Double, power: Double) -> Double {

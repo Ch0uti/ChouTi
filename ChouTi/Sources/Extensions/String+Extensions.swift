@@ -1,11 +1,9 @@
-//
-//  Created by Honghao Zhang on 9/24/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import Foundation
 
 // MARK: - Regular Expression Patterns
+
 public extension String {
     enum RegularExpressionPattern {
         /// Matching one or more tabs.
@@ -38,12 +36,12 @@ public extension String {
 public extension String {
     /// Returns a new string made by removing whitespaces and newlines from both ends of the receiver.
     func trimmed() -> String {
-        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 
     /// Returns a new string made by removing whitespaces from both ends of the receiver.
     func whitespacesTrimmed() -> String {
-        return self.trimmingCharacters(in: CharacterSet.whitespaces)
+        return trimmingCharacters(in: CharacterSet.whitespaces)
     }
 
     /// An `NSRange` that represents the full range of the string.
@@ -55,10 +53,10 @@ public extension String {
     private func utf16Range(from nsrange: NSRange) -> Range<UTF16View.Index>? {
         let utf16Start = UTF16View.Index(encodedOffset: nsrange.lowerBound)
         let utf16End = UTF16View.Index(encodedOffset: nsrange.upperBound)
-        guard (utf16Start <= utf16End) &&
-            (utf16.startIndex <= utf16Start && utf16Start <= utf16.endIndex) &&
+        guard utf16Start <= utf16End,
+            (utf16.startIndex <= utf16Start && utf16Start <= utf16.endIndex),
             (utf16.startIndex <= utf16End && utf16End <= utf16.endIndex) else {
-                return nil
+            return nil
         }
 
         return utf16Start..<utf16End
@@ -80,7 +78,7 @@ public extension String {
 
         guard let start = Index(utf16Range.lowerBound, within: utf16),
             let end = Index(utf16Range.upperBound, within: utf16) else {
-                return nil
+            return nil
         }
 
         return start..<end
@@ -88,39 +86,47 @@ public extension String {
 }
 
 // MARK: - Regex Related
-public extension String {
 
+public extension String {
     /// Check if the string is an email address.
     var isEmail: Bool {
         // Ref: https://stackoverflow.com/a/39550723/3164091
-        let emailRegex = try! NSRegularExpression(pattern: "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" +
-            "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" +
-            "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" +
-            "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" +
-            "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" +
-            "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" +
-            "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
-                                                  options: [.caseInsensitive])
-        return emailRegex.firstMatch(in: self, options: [], range: NSRange(0..<self.utf16.count)) != nil
+        let emailRegex = try! NSRegularExpression(
+            pattern: "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" +
+                "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" +
+                "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" +
+                "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" +
+                "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" +
+                "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" +
+                "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
+            options: [.caseInsensitive]
+        )
+        return emailRegex.firstMatch(in: self, options: [], range: NSRange(0..<utf16.count)) != nil
     }
 
     /// Replacing regular expression matches with template string.
     /// Could use `self.replacingOccurrences(of: pattern, with: template, options: .regularExpression)`
-    func replacingMatches(of pattern: String,
-                          options: NSRegularExpression.Options = [],
-                          matchingOptions: NSRegularExpression.MatchingOptions = [],
-                          with template: String) throws -> String {
+    func replacingMatches(
+        of pattern: String,
+        options: NSRegularExpression.Options = [],
+        matchingOptions: NSRegularExpression.MatchingOptions = [],
+        with template: String
+    ) throws -> String {
         let regex = try NSRegularExpression(pattern: pattern, options: options)
-        return regex.stringByReplacingMatches(in: self,
-                                              options: matchingOptions,
-                                              range: NSRange(0..<self.utf16.count),
-                                              withTemplate: template)
+        return regex.stringByReplacingMatches(
+            in: self,
+            options: matchingOptions,
+            range: NSRange(0..<utf16.count),
+            withTemplate: template
+        )
     }
 
     /// Returns matched strings of a regular expression pattern.
-    func matchedStrings(of pattern: String,
-                        options: NSRegularExpression.Options = [],
-                        matchingOptions: NSRegularExpression.MatchingOptions = []) -> [String] {
+    func matchedStrings(
+        of pattern: String,
+        options: NSRegularExpression.Options = [],
+        matchingOptions _: NSRegularExpression.MatchingOptions = []
+    ) -> [String] {
         let regex: NSRegularExpression
         do {
             regex = try NSRegularExpression(pattern: pattern, options: options)
@@ -128,17 +134,19 @@ public extension String {
             return []
         }
 
-        let matches = regex.matches(in: self, options: [], range: NSRange(0..<self.utf16.count))
+        let matches = regex.matches(in: self, options: [], range: NSRange(0..<utf16.count))
         return matches.compactMap {
             substring(with: $0.range)
         }
     }
 
     /// Returns captured groups of a regular expression pattern for provided match index.
-    func capturedGroups(of pattern: String,
-                        options: NSRegularExpression.Options = [],
-                        matchingOptions: NSRegularExpression.MatchingOptions = [],
-                        matchIndex: Int = 0) -> [String] {
+    func capturedGroups(
+        of pattern: String,
+        options: NSRegularExpression.Options = [],
+        matchingOptions: NSRegularExpression.MatchingOptions = [],
+        matchIndex: Int = 0
+    ) -> [String] {
         let regex: NSRegularExpression
         do {
             regex = try NSRegularExpression(pattern: pattern, options: options)
@@ -146,9 +154,11 @@ public extension String {
             return []
         }
 
-        guard let match = regex.matches(in: self,
-                                        options: matchingOptions,
-                                        range: NSRange(0..<self.utf16.count)).at(matchIndex) else {
+        guard let match = regex.matches(
+            in: self,
+            options: matchingOptions,
+            range: NSRange(0..<self.utf16.count)
+        ).at(matchIndex) else {
             return []
         }
 
@@ -166,7 +176,7 @@ public extension String {
     func whitespacesNormalized() throws -> String {
         let whitespacesExceptLastOne = NSRegularExpression.whitespacesExceptLastOne()
         let whitespacesExtented = RegularExpressionPattern.whitespacesExtented
-        return try self.replacingMatches(of: whitespacesExceptLastOne.pattern, with: "")
+        return try replacingMatches(of: whitespacesExceptLastOne.pattern, with: "")
             .replacingMatches(of: whitespacesExtented, with: " ")
             .trimmed()
     }

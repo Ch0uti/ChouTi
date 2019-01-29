@@ -1,28 +1,26 @@
-//
-//  Created by Honghao Zhang on 6/6/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import Foundation
 
+// Temp:
 //    public extension Optional {
 //        typealias MessageClosure = () -> String?
-//        
+//
 //        /**
 //         Access optional value with warning message
-//         
+//
 //         - parameter message: Warning message.
-//         
+//
 //         - returns: Optional value.
 //         */
 //        @inline(__always) public func warning(_ message: @autoclosure MessageClosure = nil, file: String = #file, line: Int = #line) -> Wrapped? {
 //            if self == nil { print(message() ?? "Warning: [\((file as NSString).lastPathComponent):\(line)] \(Wrapped.self)? is nil") }
 //            return self
 //        }
-//        
+//
 //        /**
 //         Unwrapp an optional value, with a fatal error message
-//         
+//
 //         - returns: Unwrapped value
 //         */
 //        @inline(__always) public func unwrapped(_ message: @autoclosure MessageClosure = nil, file: String = #file, line: Int = #line) -> Wrapped {
@@ -34,10 +32,10 @@ import Foundation
 //    public extension Optional {
 //        /**
 //         Attempts to unwrap the optional, and executes the closure if a value exists
-//         
+//
 //         Ref: https://github.com/ovenbits/Alexandria
 //         https://github.com/ovenbits/Alexandria/blob/master/Sources/Optional%2BExtensions.swift
-//         
+//
 //         - parameter block: The closure to execute if a value is found
 //         */
 //        public func unwrap(block: (Wrapped) throws -> ()) rethrows {

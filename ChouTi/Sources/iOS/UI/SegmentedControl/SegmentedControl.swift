@@ -1,324 +1,336 @@
-//
-//  Created by Honghao Zhang on 6/16/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 open class SegmentedControl: UISegmentedControl {
+    // MARK: - Appearance
 
-	// MARK: - Appearance
+    /// Override tintColor, super.tintColor will be always clearColor
+    /// When titleSelectedColor is nil, tintColor will be used
+    private var _tintColor = UIColor.blue.withAlphaComponent(0.5) {
+        didSet {
+            titleSelectedColor = _tintColor
+            selectedUnderScoreView?.backgroundColor = _tintColor
+        }
+    }
 
-	/// Override tintColor, super.tintColor will be always clearColor
-	/// When titleSelectedColor is nil, tintColor will be used
-	private var _tintColor = UIColor.blue.withAlphaComponent(0.5) {
-		didSet {
-			titleSelectedColor = _tintColor
-			selectedUnderScoreView?.backgroundColor = _tintColor
-		}
-	}
-	/// tintColor will be used for selected underscore bar color and it's a backup color for titleSelectedColor
-	override open var tintColor: UIColor! {
-		set {
-			_tintColor = newValue
-		}
+    /// `tintColor` will be used for selected underscore bar color and it's a backup color for titleSelectedColor
+    open override var tintColor: UIColor! {
+        set {
+            _tintColor = newValue
+        }
 
-		get {
-			return _tintColor
-		}
-	}
+        get {
+            return _tintColor
+        }
+    }
 
-	/// Selected color for item, if this color is nil, tintColor will be used
-	open var titleSelectedColor: UIColor? {
-		didSet {
-			if selectedSegmentIndex >= 0, let color = titleSelectedColor {
-				itemLabels[selectedSegmentIndex].textColor = color
-			}
-		}
-	}
-	/// Unselected color for item, if this color is nil, border color will be used
-	open var titleUnSelectedColor: UIColor? {
-		didSet {
-			if let color = titleUnSelectedColor {
-				for (index, label) in itemLabels.enumerated() {
-					if index == selectedSegmentIndex {
-						continue
-					} else {
-						label.textColor = color
-					}
-				}
-			}
-		}
-	}
+    /// Selected color for item, if this color is nil, tintColor will be used
+    open var titleSelectedColor: UIColor? {
+        didSet {
+            if selectedSegmentIndex >= 0, let color = titleSelectedColor {
+                itemLabels[selectedSegmentIndex].textColor = color
+            }
+        }
+    }
 
-	open var titleFont = UIFont.systemFont(ofSize: 13.0) {
-		didSet {
-			itemLabels.forEach { $0.font = self.titleFont }
-		}
-	}
+    /// Unselected color for item, if this color is nil, border color will be used
+    open var titleUnSelectedColor: UIColor? {
+        didSet {
+            if let color = titleUnSelectedColor {
+                for (index, label) in itemLabels.enumerated() {
+                    if index == selectedSegmentIndex {
+                        continue
+                    } else {
+                        label.textColor = color
+                    }
+                }
+            }
+        }
+    }
 
-	// Selected Under Score Indicator
-	open var underScoreHeight: CGFloat = 4.0 {
-		didSet {
-			if let constraint = underScoreHeightConstraint {
-				constraint.constant = underScoreHeight
-			}
-		}
-	}
+    open var titleFont = UIFont.systemFont(ofSize: 13.0) {
+        didSet {
+            itemLabels.forEach { $0.font = self.titleFont }
+        }
+    }
 
-	// MARK: - Animations Related
-	/// true for selection transition animation, false to turn off
-	open var shouldBeAnimated: Bool = true
-	/// transition animation duration
-	open var animationDuration: TimeInterval = 0.2
+    // Selected Under Score Indicator
+    open var underScoreHeight: CGFloat = 4.0 {
+        didSet {
+            if let constraint = underScoreHeightConstraint {
+                constraint.constant = underScoreHeight
+            }
+        }
+    }
 
-	// MARK: - Layer Related
-	/// Border color for border and separator, default color is light grey
-	open var borderColor = UIColor(white: 0.0, alpha: 0.10) {
-		didSet {
-			layer.borderColor = borderColor.cgColor
-			itemSeparators.forEach { $0.backgroundColor = self.borderColor }
-			if titleUnSelectedColor == nil { titleUnSelectedColor = borderColor }
-		}
-	}
+    // MARK: - Animations Related
 
-	open var cornerRadius: CGFloat = 0.0 {
-		didSet {
-			layer.cornerRadius = cornerRadius
-		}
-	}
+    /// `true` for selection transition animation, false to turn off
+    open var shouldBeAnimated: Bool = true
+    /// Transition animation duration
+    open var animationDuration: TimeInterval = 0.2
 
-	private var borderWidth: CGFloat = 1.0 {
-		didSet {
-			layer.borderWidth = borderWidth
-			layoutMargins = UIEdgeInsets(top: borderWidth, left: borderWidth, bottom: borderWidth, right: borderWidth)
-		}
-	}
+    // MARK: - Layer Related
 
-	// MARK: - Privates
-	/// titles on the segmented control
-	open private(set) var itemTitles = [String]()
-	private var itemLabels = [UILabel]()
-	private var itemSeparators = [UIView]()
+    /// Border color for border and separator, default color is light grey
+    open var borderColor = UIColor(white: 0.0, alpha: 0.10) {
+        didSet {
+            layer.borderColor = borderColor.cgColor
+            itemSeparators.forEach { $0.backgroundColor = self.borderColor }
+            if titleUnSelectedColor == nil { titleUnSelectedColor = borderColor }
+        }
+    }
 
-	private var selectedUnderScoreView: UIView!
-	/// A flag marks whether the selection is the first time
-	private var previousSelectedIndex: Int = -1
+    open var cornerRadius: CGFloat = 0.0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+        }
+    }
 
-	// MARK: - Inner Constraints
-	private var itemConstraints: [NSLayoutConstraint]?
+    private var borderWidth: CGFloat = 1.0 {
+        didSet {
+            layer.borderWidth = borderWidth
+            layoutMargins = UIEdgeInsets(top: borderWidth, left: borderWidth, bottom: borderWidth, right: borderWidth)
+        }
+    }
 
-	private var underScoreConstraints: [NSLayoutConstraint]?
-	private var underScoreHeightConstraint: NSLayoutConstraint?
-	private var underScoreLeadingConstraint: NSLayoutConstraint?
-	private var underScoreTrailingConstraint: NSLayoutConstraint?
+    // MARK: - Privates
 
-	// MARK: - Init
+    /// Titles on the segmented control
+    open private(set) var itemTitles = [String]()
+    private var itemLabels = [UILabel]()
+    private var itemSeparators = [UIView]()
+
+    private var selectedUnderScoreView: UIView!
+    /// A flag marks whether the selection is the first time
+    private var previousSelectedIndex: Int = -1
+
+    // MARK: - Inner Constraints
+
+    private var itemConstraints: [NSLayoutConstraint]?
+
+    private var underScoreConstraints: [NSLayoutConstraint]?
+    private var underScoreHeightConstraint: NSLayoutConstraint?
+    private var underScoreLeadingConstraint: NSLayoutConstraint?
+    private var underScoreTrailingConstraint: NSLayoutConstraint?
+
+    // MARK: - Init
+
     /// Init with items. Note here, items must be an array of title strings, images segments are not supported yet.
     ///
     /// - Parameter items: An array of title strings
-	override public init(items: [Any]?) {
-		super.init(items: items)
-		if let titles = items as? [String] {
-			setupWithTitles(titles)
-		} else {
-			fatalError("init with images is not implemented")
-		}
-	}
+    public override init(items: [Any]?) {
+        super.init(items: items)
 
-	override public init(frame: CGRect) {
-		super.init(frame: frame)
-		commonInit()
-	}
+        if let titles = items as? [String] {
+            setupWithTitles(titles)
+        } else {
+            fatalError("init with images is not implemented")
+        }
+    }
 
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		commonInit()
-	}
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
 
-	private func commonInit() {
-		// Clear default border color and title color
-		super.tintColor = UIColor.clear
+        commonInit()
+    }
 
-		self.layer.borderColor = borderColor.cgColor
-		self.layer.borderWidth = borderWidth
-		self.layer.cornerRadius = cornerRadius
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
 
-		clipsToBounds = true
+        commonInit()
+    }
 
-        self.addTarget(self, action: #selector(SegmentedControl.zh_selectedIndexChanged(_:)), for: .valueChanged)
-	}
+    private func commonInit() {
+        // Clear default border color and title color
+        super.tintColor = UIColor.clear
 
-	// MARK: - Setup with Titles
+        layer.borderColor = borderColor.cgColor
+        layer.borderWidth = borderWidth
+        layer.cornerRadius = cornerRadius
+
+        clipsToBounds = true
+
+        addTarget(self, action: #selector(SegmentedControl.zh_selectedIndexChanged(_:)), for: .valueChanged)
+    }
+
+    // MARK: - Setup with Titles
+
     /// Setup segmented control with a list of titles, this will removed all previous titles.
     ///
     /// - Parameter titles: an array of titles
-	open func setupWithTitles(_ titles: [String]) {
-		// If existed titles are same with new titles, return
-		if itemTitles == titles {
-			return
-		}
+    open func setupWithTitles(_ titles: [String]) {
+        // If existed titles are same with new titles, return
+        if itemTitles == titles {
+            return
+        }
 
-		// new titles are different, reset
-		super.removeAllSegments()
-		for (index, title) in titles.enumerated() {
-			super.insertSegment(withTitle: title, at: index, animated: false)
-		}
+        // New titles are different, reset
+        super.removeAllSegments()
 
-		setupItemsWithTitles(titles)
-		setupUnderScoreView()
+        for (index, title) in titles.enumerated() {
+            super.insertSegment(withTitle: title, at: index, animated: false)
+        }
 
-		setupItemConstraints()
-		setupUnderScoreViewConstraints()
-	}
+        setupItemsWithTitles(titles)
+        setupUnderScoreView()
 
-	// MARK: - Setup Views
+        setupItemConstraints()
+        setupUnderScoreViewConstraints()
+    }
+
+    // MARK: - Setup Views
+
     /// Setup title labels and separators. This will clear all previous title labels and separators and setup new ones.
     ///
     /// - Parameter titles: titles title strings
-	private func setupItemsWithTitles(_ titles: [String]) {
-		itemLabels.forEach { $0.removeFromSuperview() }
-		itemSeparators.forEach { $0.removeFromSuperview() }
+    private func setupItemsWithTitles(_ titles: [String]) {
+        itemLabels.forEach { $0.removeFromSuperview() }
+        itemSeparators.forEach { $0.removeFromSuperview() }
 
-		itemTitles = titles
-		itemLabels = []
-		itemSeparators = []
+        itemTitles = titles
+        itemLabels = []
+        itemSeparators = []
 
-		let titlesCount = titles.count
-		for (index, title) in titles.enumerated() {
-			let label = itemLabelWithTitle(title)
-			self.addSubview(label)
-			itemLabels.append(label)
+        let titlesCount = titles.count
+        for (index, title) in titles.enumerated() {
+            let label = itemLabelWithTitle(title)
+            addSubview(label)
+            itemLabels.append(label)
 
-			if titlesCount > 1 && index < titlesCount {
-				let separator = itemSeparatorView()
-				self.addSubview(separator)
-				itemSeparators.append(separator)
-			}
-		}
-	}
+            if titlesCount > 1, index < titlesCount {
+                let separator = itemSeparatorView()
+                addSubview(separator)
+                itemSeparators.append(separator)
+            }
+        }
+    }
 
-	/// Setup under score bar view, which is a hightlight bottom bar for selected title
-	private func setupUnderScoreView() {
-		if selectedUnderScoreView == nil {
-			selectedUnderScoreView = UIView()
-			selectedUnderScoreView.translatesAutoresizingMaskIntoConstraints = false
-			selectedUnderScoreView.backgroundColor = titleSelectedColor ?? tintColor
-			self.addSubview(selectedUnderScoreView)
-		}
-	}
+    /// Setup under score bar view, which is a hightlight bottom bar for selected title
+    private func setupUnderScoreView() {
+        if selectedUnderScoreView == nil {
+            selectedUnderScoreView = UIView()
+            selectedUnderScoreView.translatesAutoresizingMaskIntoConstraints = false
+            selectedUnderScoreView.backgroundColor = titleSelectedColor ?? tintColor
+            addSubview(selectedUnderScoreView)
+        }
+    }
 
-	// MARK: - Setup Layout
+    // MARK: - Setup Layout
+
     /// Setup constraints for title labels and separators. It chains labels and separators from leading to trailing
-	private func setupItemConstraints() {
-		// Consider borderWidth in layout margins, this will let under score bar align to border correctly
-		layoutMargins = UIEdgeInsets(top: borderWidth, left: borderWidth, bottom: borderWidth, right: borderWidth)
+    private func setupItemConstraints() {
+        // Consider borderWidth in layout margins, this will let under score bar align to border correctly
+        layoutMargins = UIEdgeInsets(top: borderWidth, left: borderWidth, bottom: borderWidth, right: borderWidth)
 
-		if let itemConstraints = self.itemConstraints {
-			NSLayoutConstraint.deactivate(itemConstraints)
-		}
+        if let itemConstraints = self.itemConstraints {
+            NSLayoutConstraint.deactivate(itemConstraints)
+        }
 
         var itemConstraints: [NSLayoutConstraint] = []
 
-		// Check titles count after cleaning itemConstraints
-		let titlesCount = itemLabels.count
-		if titlesCount == 0 {
-			return
-		}
+        // Check titles count after cleaning itemConstraints
+        let titlesCount = itemLabels.count
+        if titlesCount == 0 {
+            return
+        }
 
-		if titlesCount == 1 {
-			let views = ["label": itemLabels[0]]
-			itemConstraints += NSLayoutConstraint.constraints(withVisualFormat: "|[label]|", options: [], metrics: nil, views: views)
-			itemConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]|", options: [], metrics: nil, views: views)
-		} else {
-			for (index, label) in itemLabels.enumerated() {
-				if index == 0 {
-					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0))
-					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
-					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
-				} else {
-					let lastIndex = index - 1
-					let previousLabel = itemLabels[lastIndex]
-					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: previousLabel, attribute: .trailing, multiplier: 1.0, constant: borderWidth))
-					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .width, relatedBy: .equal, toItem: previousLabel, attribute: .width, multiplier: 1.0, constant: 0.0))
-					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: previousLabel, attribute: .centerY, multiplier: 1.0, constant: 0.0))
+        if titlesCount == 1 {
+            let views = ["label": itemLabels[0]]
+            itemConstraints += NSLayoutConstraint.constraints(withVisualFormat: "|[label]|", options: [], metrics: nil, views: views)
+            itemConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]|", options: [], metrics: nil, views: views)
+        } else {
+            for (index, label) in itemLabels.enumerated() {
+                if index == 0 {
+                    itemConstraints.append(NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0))
+                    itemConstraints.append(NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
+                    itemConstraints.append(NSLayoutConstraint(item: label, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+                } else {
+                    let lastIndex = index - 1
+                    let previousLabel = itemLabels[lastIndex]
+                    itemConstraints.append(NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: previousLabel, attribute: .trailing, multiplier: 1.0, constant: borderWidth))
+                    itemConstraints.append(NSLayoutConstraint(item: label, attribute: .width, relatedBy: .equal, toItem: previousLabel, attribute: .width, multiplier: 1.0, constant: 0.0))
+                    itemConstraints.append(NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: previousLabel, attribute: .centerY, multiplier: 1.0, constant: 0.0))
 
-					// Separator
-					let separator = itemSeparators[lastIndex]
-					itemConstraints.append(NSLayoutConstraint(item: label, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: .equal, toItem: separator, attribute: .trailing, multiplier: 1.0, constant: 0.0))
-					itemConstraints.append(NSLayoutConstraint(item: separator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: borderWidth))
-					itemConstraints.append(NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
-					itemConstraints.append(NSLayoutConstraint(item: separator, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
-				}
+                    // Separator
+                    let separator = itemSeparators[lastIndex]
+                    itemConstraints.append(NSLayoutConstraint(item: label, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: .equal, toItem: separator, attribute: .trailing, multiplier: 1.0, constant: 0.0))
+                    itemConstraints.append(NSLayoutConstraint(item: separator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: borderWidth))
+                    itemConstraints.append(NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
+                    itemConstraints.append(NSLayoutConstraint(item: separator, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+                }
 
-				if index == titlesCount - 1 {
-					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0))
-					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
-					itemConstraints.append(NSLayoutConstraint(item: label, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
-				}
-			}
-		}
+                if index == titlesCount - 1 {
+                    itemConstraints.append(NSLayoutConstraint(item: label, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0))
+                    itemConstraints.append(NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
+                    itemConstraints.append(NSLayoutConstraint(item: label, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+                }
+            }
+        }
 
         self.itemConstraints = itemConstraints
 
-		NSLayoutConstraint.activate(itemConstraints)
-	}
+        NSLayoutConstraint.activate(itemConstraints)
+    }
 
     /// Setup constraints for under score bar view. By default, it's height is zero.
-	private func setupUnderScoreViewConstraints() {
-		if let underScoreConstraints = self.underScoreConstraints {
-			NSLayoutConstraint.deactivate(underScoreConstraints)
-		}
+    private func setupUnderScoreViewConstraints() {
+        if let underScoreConstraints = self.underScoreConstraints {
+            NSLayoutConstraint.deactivate(underScoreConstraints)
+        }
 
         var underScoreConstraints: [NSLayoutConstraint] = []
 
-		// If there's no items, don't setup constraints
-		if itemLabels.isEmpty {
-			return
-		}
+        // If there's no items, don't setup constraints
+        if itemLabels.isEmpty {
+            return
+        }
 
-		let underScoreHeightConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0)
+        let underScoreHeightConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0)
         self.underScoreHeightConstraint = underScoreHeightConstraint
-		underScoreConstraints.append(underScoreHeightConstraint)
+        underScoreConstraints.append(underScoreHeightConstraint)
 
-		let underScoreLeadingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
+        let underScoreLeadingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
         self.underScoreLeadingConstraint = underScoreLeadingConstraint
-		underScoreConstraints.append(underScoreLeadingConstraint)
+        underScoreConstraints.append(underScoreLeadingConstraint)
 
-		let underScoreTrailingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        let underScoreTrailingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
         self.underScoreTrailingConstraint = underScoreTrailingConstraint
-		underScoreConstraints.append(underScoreTrailingConstraint)
+        underScoreConstraints.append(underScoreTrailingConstraint)
 
-		underScoreConstraints.append(NSLayoutConstraint(item: selectedUnderScoreView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+        underScoreConstraints.append(NSLayoutConstraint(item: selectedUnderScoreView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
 
         self.underScoreConstraints = underScoreConstraints
-		NSLayoutConstraint.activate(underScoreConstraints)
-	}
+        NSLayoutConstraint.activate(underScoreConstraints)
+    }
 
-	// MARK: - Overridden
-	override open func removeTarget(_ target: Any?, action: Selector?, for controlEvents: UIControl.Event) {
-		super.removeTarget(target, action: action, for: controlEvents)
+    // MARK: - Overridden
 
-		// If trying to remove all targets, add self as target back again
-		if target == nil {
-            self.addTarget(self, action: #selector(SegmentedControl.zh_selectedIndexChanged(_:)), for: .valueChanged)
-		}
-	}
+    open override func removeTarget(_ target: Any?, action: Selector?, for controlEvents: UIControl.Event) {
+        super.removeTarget(target, action: action, for: controlEvents)
+
+        // If trying to remove all targets, add self as target back again
+        if target == nil {
+            addTarget(self, action: #selector(SegmentedControl.zh_selectedIndexChanged(_:)), for: .valueChanged)
+        }
+    }
 }
 
 // MARK: - Managing Segment Control
+
 extension SegmentedControl {
     @available(*, unavailable)
-    override open func setImage(_ image: UIImage?, forSegmentAt segment: Int) {
+    open override func setImage(_: UIImage?, forSegmentAt _: Int) {
         fatalError("Image segment control is not supported yet")
     }
 
     @available(*, unavailable)
-    override open func imageForSegment(at segment: Int) -> UIImage? {
+    open override func imageForSegment(at _: Int) -> UIImage? {
         fatalError("Image segment control is not supported yet")
     }
 
-    override open func setTitle(_ title: String?, forSegmentAt segment: Int) {
+    open override func setTitle(_ title: String?, forSegmentAt segment: Int) {
         precondition(segment < itemTitles.count, "segment index out of range")
         if let titleText = title {
             super.setTitle(titleText, forSegmentAt: segment)
@@ -328,38 +340,39 @@ extension SegmentedControl {
         }
     }
 
-    override open func titleForSegment(at segment: Int) -> String? {
+    open override func titleForSegment(at segment: Int) -> String? {
         precondition(segment < itemTitles.count, "segment index out of range")
         return itemTitles[segment]
     }
 }
 
 // MARK: - Managing Segments
+
 extension SegmentedControl {
     @available(*, unavailable)
-    override open func insertSegment(with image: UIImage?, at segment: Int, animated: Bool) {
+    open override func insertSegment(with _: UIImage?, at _: Int, animated _: Bool) {
         fatalError("Image segment control is not supported yet")
     }
 
     @available(*, unavailable)
-    override open func insertSegment(withTitle title: String!, at segment: Int, animated: Bool) {
+    open override func insertSegment(withTitle _: String!, at _: Int, animated _: Bool) {
         fatalError("Not implemented")
     }
 
-    override open var numberOfSegments: Int {
+    open override var numberOfSegments: Int {
         return itemTitles.count
     }
 
-    override open func removeAllSegments() {
+    open override func removeAllSegments() {
         setupWithTitles([])
     }
 
     @available(*, unavailable)
-    override open func removeSegment(at segment: Int, animated: Bool) {
+    open override func removeSegment(at _: Int, animated _: Bool) {
         fatalError("Not implemented")
     }
 
-    override open var selectedSegmentIndex: Int {
+    open override var selectedSegmentIndex: Int {
         didSet {
             updateSelectedIndex(selectedSegmentIndex)
             previousSelectedIndex = selectedSegmentIndex
@@ -368,46 +381,47 @@ extension SegmentedControl {
 }
 
 // MARK: - Managing Segment Behavior and Appearance
+
 extension SegmentedControl {
     @available(*, unavailable)
-    override open var isMomentary: Bool {
+    open override var isMomentary: Bool {
         didSet {
             fatalError("Not implemented")
         }
     }
 
-    override open func setEnabled(_ enabled: Bool, forSegmentAt segment: Int) {
+    open override func setEnabled(_ enabled: Bool, forSegmentAt segment: Int) {
         super.setEnabled(enabled, forSegmentAt: segment)
 
         precondition(segment < itemTitles.count, "segment is out of range")
         itemLabels[segment].isEnabled = false
     }
 
-    override open func isEnabledForSegment(at segment: Int) -> Bool {
+    open override func isEnabledForSegment(at segment: Int) -> Bool {
         return super.isEnabledForSegment(at: segment)
     }
 
     @available(*, unavailable)
-    override open func setContentOffset(_ offset: CGSize, forSegmentAt segment: Int) {
+    open override func setContentOffset(_: CGSize, forSegmentAt _: Int) {
         fatalError("Not implemented")
     }
 
     @available(*, unavailable)
-    override open func contentOffsetForSegment(at segment: Int) -> CGSize {
+    open override func contentOffsetForSegment(at _: Int) -> CGSize {
         fatalError("Not implemented")
     }
 
     @available(*, unavailable)
-    override open func setWidth(_ width: CGFloat, forSegmentAt segment: Int) {
+    open override func setWidth(_: CGFloat, forSegmentAt _: Int) {
         fatalError("Not implemented")
     }
 
     @available(*, unavailable)
-    override open func widthForSegment(at segment: Int) -> CGFloat {
+    open override func widthForSegment(at _: Int) -> CGFloat {
         fatalError("Not implemented")
     }
 
-    override open var apportionsSegmentWidthsByContent: Bool {
+    open override var apportionsSegmentWidthsByContent: Bool {
         didSet {
             fatalError("Not implemented")
         }
@@ -415,91 +429,92 @@ extension SegmentedControl {
 }
 
 // MARK: - Helper
+
 private extension SegmentedControl {
-	// Creators
+    // Creators
     /// Create a title label, common setups.
     ///
     /// - Parameter title: title string
     /// - Returns: a new UILabel instance
-	func itemLabelWithTitle(_ title: String) -> UILabel {
-		let label = UILabel()
-		label.translatesAutoresizingMaskIntoConstraints = false
+    func itemLabelWithTitle(_ title: String) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
 
-		label.text = title
-		label.textAlignment = .center
-		label.font = titleFont
-		label.textColor = titleUnSelectedColor ?? borderColor
+        label.text = title
+        label.textAlignment = .center
+        label.font = titleFont
+        label.textColor = titleUnSelectedColor ?? borderColor
 
-		return label
-	}
+        return label
+    }
 
     /// Create a separator line view
     ///
     /// - Returns: a new UIView instance
-	func itemSeparatorView() -> UIView {
-		let separator = UIView()
-		separator.translatesAutoresizingMaskIntoConstraints = false
+    func itemSeparatorView() -> UIView {
+        let separator = UIView()
+        separator.translatesAutoresizingMaskIntoConstraints = false
 
-		separator.backgroundColor = borderColor
+        separator.backgroundColor = borderColor
 
-		return separator
-	}
+        return separator
+    }
 
     /// Add a fade in/out transition animation for UILabel
     ///
     /// - Parameter label: label that needs a fade in/out animation
-	func addFadeTransitionAnimationForLabel(_ label: UILabel?) {
-		let textAnimation = CATransition()
-		textAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-		textAnimation.type = CATransitionType.fade
-		textAnimation.duration = shouldBeAnimated ? animationDuration : 0.0
+    func addFadeTransitionAnimationForLabel(_ label: UILabel?) {
+        let textAnimation = CATransition()
+        textAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        textAnimation.type = CATransitionType.fade
+        textAnimation.duration = shouldBeAnimated ? animationDuration : 0.0
 
-		label?.layer.add(textAnimation, forKey: "TextFadeAnimation")
-	}
+        label?.layer.add(textAnimation, forKey: "TextFadeAnimation")
+    }
 
-	// Others
+    // Others
     /// Perform animation for updating selected index
     ///
     /// - Parameter index: index new selected index
-	func updateSelectedIndex(_ index: Int) {
-		var previousLabel: UILabel?
-		if previousSelectedIndex >= 0 {
-			previousLabel = itemLabels[previousSelectedIndex]
-		}
-		let currentLabel = itemLabels[index]
+    func updateSelectedIndex(_ index: Int) {
+        var previousLabel: UILabel?
+        if previousSelectedIndex >= 0 {
+            previousLabel = itemLabels[previousSelectedIndex]
+        }
+        let currentLabel = itemLabels[index]
 
-		NSLayoutConstraint.deactivate([underScoreLeadingConstraint!, underScoreTrailingConstraint!])
+        NSLayoutConstraint.deactivate([underScoreLeadingConstraint!, underScoreTrailingConstraint!])
 
-		underScoreLeadingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .leading, relatedBy: .equal, toItem: currentLabel, attribute: .leading, multiplier: 1.0, constant: 0.0)
-		underScoreTrailingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .trailing, relatedBy: .equal, toItem: currentLabel, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        underScoreLeadingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .leading, relatedBy: .equal, toItem: currentLabel, attribute: .leading, multiplier: 1.0, constant: 0.0)
+        underScoreTrailingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .trailing, relatedBy: .equal, toItem: currentLabel, attribute: .trailing, multiplier: 1.0, constant: 0.0)
 
-		NSLayoutConstraint.activate([underScoreLeadingConstraint!, underScoreTrailingConstraint!])
+        NSLayoutConstraint.activate([underScoreLeadingConstraint!, underScoreTrailingConstraint!])
 
-		// If there's no selected index, means it's the first time selection, update width and centerX without animation
-		if previousSelectedIndex == -1 {
-			self.layoutIfNeeded()
-		}
+        // If there's no selected index, means it's the first time selection, update width and centerX without animation
+        if previousSelectedIndex == -1 {
+            layoutIfNeeded()
+        }
 
-		underScoreHeightConstraint?.constant = underScoreHeight
+        underScoreHeightConstraint?.constant = underScoreHeight
 
-		addFadeTransitionAnimationForLabel(previousLabel)
-		addFadeTransitionAnimationForLabel(currentLabel)
+        addFadeTransitionAnimationForLabel(previousLabel)
+        addFadeTransitionAnimationForLabel(currentLabel)
 
-		UIView.animate(withDuration: shouldBeAnimated ? animationDuration : 0.0, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.0, options: .beginFromCurrentState, animations: { () -> Void in
-			previousLabel?.textColor = self.titleUnSelectedColor ?? self.borderColor
-			currentLabel.textColor = self.titleSelectedColor ?? self.tintColor
+        UIView.animate(withDuration: shouldBeAnimated ? animationDuration : 0.0, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.0, options: .beginFromCurrentState, animations: { () -> Void in
+            previousLabel?.textColor = self.titleUnSelectedColor ?? self.borderColor
+            currentLabel.textColor = self.titleSelectedColor ?? self.tintColor
 
-			self.layoutIfNeeded()
-		}, completion: nil)
-	}
+            self.layoutIfNeeded()
+        }, completion: nil)
+    }
 }
 
 private extension SegmentedControl {
-	@objc
+    @objc
     func zh_selectedIndexChanged(_ sender: AnyObject) {
-		if let segmentedControl = sender as? UISegmentedControl {
-			updateSelectedIndex(segmentedControl.selectedSegmentIndex)
-			previousSelectedIndex = segmentedControl.selectedSegmentIndex
-		}
-	}
+        if let segmentedControl = sender as? UISegmentedControl {
+            updateSelectedIndex(segmentedControl.selectedSegmentIndex)
+            previousSelectedIndex = segmentedControl.selectedSegmentIndex
+        }
+    }
 }

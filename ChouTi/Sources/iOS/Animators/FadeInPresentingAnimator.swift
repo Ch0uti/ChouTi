@@ -1,26 +1,24 @@
-//
-//  Created by Honghao Zhang on 9/17/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 open class FadeInPresentingAnimator: Animator {
-
     open var overlayViewStyle: OverlayViewStyle = .normal(UIColor(white: 0.0, alpha: 0.7))
 
     /// Whether presenting view should be dimmed when preseting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.
     open var shouldDimPresentedView: Bool = true
 
-	override public init() {
-		super.init()
-		animationDuration = 0.3
-	}
+    public override init() {
+        super.init()
+
+        animationDuration = 0.3
+    }
 }
 
 // MARK: - UIViewControllerAnimatedTransitioning
+
 extension FadeInPresentingAnimator {
-    override public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(using: transitionContext)
 
         if presenting {
@@ -35,8 +33,8 @@ extension FadeInPresentingAnimator {
             let presentedViewController = self.presentedViewController,
             let presentedView = presentedViewController.view,
             let containerView = self.containerView else {
-                NSLog("ERROR: Cannot get view from UIViewControllerContextTransitioning")
-                return
+            NSLog("ERROR: Cannot get view from UIViewControllerContextTransitioning")
+            return
         }
 
         if presentedViewController.preferredContentSize != .zero {
@@ -71,8 +69,9 @@ extension FadeInPresentingAnimator {
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
+
 public extension FadeInPresentingAnimator {
-    override func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+    override func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source _: UIViewController) -> UIPresentationController? {
         let overlayPresentationController = OverlayPresentationController(presentedViewController: presented, presentingViewController: presenting, overlayViewStyle: overlayViewStyle)
         overlayPresentationController.shouldDismissOnTappingOutsideView = false
         overlayPresentationController.shouldDimPresentedView = shouldDimPresentedView

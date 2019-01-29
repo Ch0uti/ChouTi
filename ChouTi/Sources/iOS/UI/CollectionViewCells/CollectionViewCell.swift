@@ -1,48 +1,46 @@
-//
-//  Created by Honghao Zhang on 12/10/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 open class CollectionViewCell: UICollectionViewCell {
+    let textLabel = UILabel()
 
-	let textLabel = UILabel()
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
 
-	override public init(frame: CGRect) {
-		super.init(frame: frame)
-		commonInit()
-	}
+        commonInit()
+    }
 
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		commonInit()
-	}
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
 
-	open func commonInit() {
-		setupViews()
-		setupConstraints()
-	}
+        commonInit()
+    }
 
-	private func setupViews() {
-		backgroundColor = UIColor.white
+    open func commonInit() {
+        setupViews()
+        setupConstraints()
+    }
 
-		textLabel.translatesAutoresizingMaskIntoConstraints = false
-		contentView.addSubview(textLabel)
+    private func setupViews() {
+        backgroundColor = UIColor.white
 
-		let selectedBackgroundView = UIView()
-		selectedBackgroundView.backgroundColor = UIColor(white: 0.0, alpha: 0.25)
-		self.selectedBackgroundView = selectedBackgroundView
-	}
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(textLabel)
 
-	private func setupConstraints() {
-		var constraints = [NSLayoutConstraint]()
+        let selectedBackgroundView = UIView()
+        selectedBackgroundView.backgroundColor = UIColor(white: 0.0, alpha: 0.25)
+        self.selectedBackgroundView = selectedBackgroundView
+    }
 
-		constraints += [
-			NSLayoutConstraint(item: textLabel, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1.0, constant: 0.0),
-			NSLayoutConstraint(item: textLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1.0, constant: 0.0)
-		]
+    private func setupConstraints() {
+        var constraints = [NSLayoutConstraint]()
 
-		NSLayoutConstraint.activate(constraints)
-	}
+        constraints += [
+            NSLayoutConstraint(item: textLabel, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1.0, constant: 0.0),
+            NSLayoutConstraint(item: textLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1.0, constant: 0.0),
+        ]
+
+        NSLayoutConstraint.activate(constraints)
+    }
 }

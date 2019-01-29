@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 4/25/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import CoreGraphics
 import UIKit
@@ -40,6 +37,7 @@ class DropPresentingPresentationController: OverlayPresentationController {
 }
 
 // MARK: - UIGestureRecognizerDelegate
+
 extension DropPresentingPresentationController {
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         // Only response to long press gesture
@@ -66,6 +64,7 @@ extension DropPresentingPresentationController {
 }
 
 // MARK: - Actions
+
 extension DropPresentingPresentationController {
     @objc
     func overlayViewPanned(_ sender: AnyObject) {
@@ -126,7 +125,7 @@ extension DropPresentingPresentationController {
             let progress = yOffset / interactiveAnimationDraggingRange
 
             // If dragging speed is large enough, finish the dismiss transition
-            if longPressGesture.velocityInAttachedView().y > 1_000 {
+            if longPressGesture.velocityInAttachedView().y > 1000 {
                 dropPresentingAnimator?.finishInteractiveTransition(progress)
                 return
             }

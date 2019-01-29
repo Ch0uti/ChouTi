@@ -1,0 +1,5 @@
+--header "Copyright © {year} ChouTi. All rights reserved."
+--indent 4
+
+# file options
+--exclude Pods,Sources/CodeSnippets

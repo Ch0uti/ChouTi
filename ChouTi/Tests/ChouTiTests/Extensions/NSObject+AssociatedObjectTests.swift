@@ -1,39 +1,38 @@
-//
-//  Created by Honghao Zhang on 12/14/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import XCTest
+@testable import ChouTi
 
 class NSObject_AssociatedObjectTests: XCTestCase {
-	var host: NSObject!
+    var host: NSObject!
 
-	override func setUp() {
-		super.setUp()
-		host = NSObject()
-	}
+    override func setUp() {
+        super.setUp()
 
-	override func tearDown() {
-		super.tearDown()
-		host = nil
-	}
+        host = NSObject()
+    }
 
-	func testAssociatedObject() {
-		let associatedNumber = 123
-		host.associatedObject = associatedNumber
-		XCTAssertEqual(host.associatedObject as? Int, 123)
-		host.associatedObject = nil
-		XCTAssertNil(host.associatedObject)
-	}
+    override func tearDown() {
+        super.tearDown()
 
-	func testGetAssociatedObject() {
-		host.setAssociatedObejct("998")
-		XCTAssertEqual(host.getAssociatedObject() as? String, "998")
-		XCTAssertEqual(host.setAssociatedObejct(778) as? String, "998")
-		XCTAssertEqual(host.clearAssociatedObject() as? Int, 778)
-		XCTAssertNil(host.getAssociatedObject())
-	}
+        host = nil
+    }
+
+    func testAssociatedObject() {
+        let associatedNumber = 123
+        host.associatedObject = associatedNumber
+        XCTAssertEqual(host.associatedObject as? Int, 123)
+        host.associatedObject = nil
+        XCTAssertNil(host.associatedObject)
+    }
+
+    func testGetAssociatedObject() {
+        host.setAssociatedObejct("998")
+        XCTAssertEqual(host.getAssociatedObject() as? String, "998")
+        XCTAssertEqual(host.setAssociatedObejct(778) as? String, "998")
+        XCTAssertEqual(host.clearAssociatedObject() as? Int, 778)
+        XCTAssertNil(host.getAssociatedObject())
+    }
 
     private enum TestAssociateObjectKey {
         static var Key = "TestAssociateObjectKey"

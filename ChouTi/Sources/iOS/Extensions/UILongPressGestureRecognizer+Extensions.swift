@@ -1,11 +1,9 @@
-//
-//  Created by Honghao Zhang on 12/4/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 // MARK: - Add Velocity for UILongPressGestureRecognizer
+
 public extension UILongPressGestureRecognizer {
     private enum zhLastLocationKey {
         static var Key = "zhLastLocationKey"
@@ -39,7 +37,7 @@ public extension UILongPressGestureRecognizer {
     }
 
     public func setupForDetectingVelocity() {
-        self.addTarget(self, action: #selector(longPressed(_:)))
+        addTarget(self, action: #selector(longPressed(_:)))
     }
 
     @objc

@@ -1,17 +1,15 @@
-//
-//  Created by Honghao Zhang on 9/2/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 // MARK: - Tint with Gradient Colors
+
 public extension UIImage {
     /**
      Create a gradient color tinted image from top to bottom
-     
+
      :param: colors Gradient colors, from top to bottom.
-     
+
      :returns: A tinted image
      */
     func tintedVerticallyWithLinearGradientColors(_ colors: [UIColor], blenMode: CGBlendMode = .normal) -> UIImage {
@@ -20,9 +18,9 @@ public extension UIImage {
 
     /**
      Create a gradient color tinted image from left to right
-     
+
      :param: colors Gradient colors, from left to right.
-     
+
      :returns: A tinted image
      */
     func tintedHorizontallyWithLinearGradientColors(_ colors: [UIColor], blenMode: CGBlendMode = .normal) -> UIImage {
@@ -33,16 +31,15 @@ public extension UIImage {
      Create a gradient color tinted image
      References: http://stackoverflow.com/questions/8098130/how-can-i-tint-a-uiimage-with-gradient
      https://coffeeshopped.com/2010/09/iphone-how-to-dynamically-color-a-uiimage
-     
+
      :param: colors     Gradient colors, from start point to end point.
      :param: blenMode   A blend mode.
      :param: startPoint The coordinate that defines the starting point of the gradient.
      :param: endPoint   The coordinate that defines the ending point of the gradient.
-     
+
      :returns: A tinted image
      */
     func tintedWithLinearGradientColors(_ colors: [UIColor], blenMode: CGBlendMode, startPoint: CGPoint, endPoint: CGPoint) -> UIImage {
-
         // Create a context with image size
         UIGraphicsBeginImageContext(CGSize(width: size.width * scale, height: size.height * scale))
         let context = UIGraphicsGetCurrentContext()!
@@ -78,18 +75,19 @@ public extension UIImage {
 }
 
 // MARK: - Resize
+
 public extension UIImage {
     /**
      Get a new scalled image with max width or max heigth, image size ratio is kept.
-     
+
      - parameter maxWidth:  max width
      - parameter maxHeight: max height
-     
+
      - returns: image with new size
      */
     func scaledToMaxWidth(_ maxWidth: CGFloat, maxHeight: CGFloat) -> UIImage {
-        let oldWidth = self.size.width
-        let oldHeight = self.size.height
+        let oldWidth = size.width
+        let oldHeight = size.height
 
         let scaleFactor = (oldWidth > oldHeight) ? maxWidth / oldWidth : maxHeight / oldHeight
 
@@ -98,14 +96,14 @@ public extension UIImage {
 
         let newSize = CGSize(width: newWidth, height: newHeight)
 
-        return self.scaledToSize(newSize)
+        return scaledToSize(newSize)
     }
 
     /**
      Get a new scaled image with new size, image size ratio is not kept.
-     
+
      - parameter size: new size
-     
+
      - returns: image with new size.
      */
     func scaledToSize(_ size: CGSize) -> UIImage {
@@ -127,35 +125,36 @@ public extension UIImage {
 //        guard size != newSize else {
 //            return self
 //        }
-//        
+//
 //        let ratio = max(newSize.width / size.width, newSize.height / size.height)
 //        let width = size.width * ratio
 //        let height = size.height * ratio
-//        
+//
 //        let scaledRect = CGRect(
 //            x: (newSize.width - width) / 2.0,
 //            y: (newSize.height - height) / 2.0,
 //            width: width, height: height)
-//        
+//
 //        UIGraphicsBeginImageContextWithOptions(scaledRect.size, false, 0.0);
 //        defer { UIGraphicsEndImageContext() }
-//        
+//
 //        draw(in: scaledRect)
-//        
+//
 //        return UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
 //    }
 }
 
 // MARK: - Factory Methods
+
 public extension UIImage {
     /**
      Create a rectangle image with fill color and optional border color
-     
+
      - parameter fillColor:   fillColor
      - parameter size:        image size in points
      - parameter borderWidth: borderWidth in points
      - parameter borderColor: borderColor
-     
+
      - returns: new UIImage
      */
     class func imageWithColor(_ fillColor: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0), borderWidth: CGFloat = 0.0, borderColor: UIColor? = nil) -> UIImage {
@@ -180,6 +179,7 @@ public extension UIImage {
 }
 
 // MARK: - Mutating Image
+
 public extension UIImage {
     /// Apply a new alpha value for an image.
     ///
@@ -212,78 +212,78 @@ public extension UIImage {
         return newImage
     }
 
-	/// Apply a new tint color for an image, only alpha channel is kept
-	/// Reference: https://github.com/Raizlabs/BonMot/blob/master/Sources/Image%2BTinting.swift
-	/// 
-	/// - Parameter tintColor: new tint color
-	/// - Returns: A tinted copy of the image.
+    /// Apply a new tint color for an image, only alpha channel is kept
+    /// Reference: https://github.com/Raizlabs/BonMot/blob/master/Sources/Image%2BTinting.swift
+    ///
+    /// - Parameter tintColor: new tint color
+    /// - Returns: A tinted copy of the image.
     func imageByApplyingTintColor(_ tintColor: UIColor) -> UIImage {
-		let imageRect = CGRect(origin: .zero, size: size)
+        let imageRect = CGRect(origin: .zero, size: size)
 
-		// Save original properties
-		let originalCapInsets = capInsets
-		let originalResizingMode = resizingMode
-		let originalAlignmentRectInsets = alignmentRectInsets
+        // Save original properties
+        let originalCapInsets = capInsets
+        let originalResizingMode = resizingMode
+        let originalAlignmentRectInsets = alignmentRectInsets
 
-		UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
 
-		defer {
-			UIGraphicsEndImageContext()
-		}
+        defer {
+            UIGraphicsEndImageContext()
+        }
 
-		guard let context = UIGraphicsGetCurrentContext(), let cgImage = cgImage else {
-			return self
-		}
+        guard let context = UIGraphicsGetCurrentContext(), let cgImage = cgImage else {
+            return self
+        }
 
-		// Flip the context vertically
-		context.translateBy(x: 0.0, y: size.height)
-		context.scaleBy(x: 1.0, y: -1.0)
+        // Flip the context vertically
+        context.translateBy(x: 0.0, y: size.height)
+        context.scaleBy(x: 1.0, y: -1.0)
 
-		// Image tinting mostly inspired by http://stackoverflow.com/a/22528426/255489
+        // Image tinting mostly inspired by http://stackoverflow.com/a/22528426/255489
 
-		// Draw alpha-mask
-		context.setBlendMode(.normal)
-		context.draw(cgImage, in: imageRect)
+        // Draw alpha-mask
+        context.setBlendMode(.normal)
+        context.draw(cgImage, in: imageRect)
 
-		// Draw tint color, preserving alpha values of original image
-		// .sourceIn: resulting color = source color * destination alpha
-		context.setBlendMode(.sourceIn)
-		context.setFillColor(tintColor.cgColor)
-		context.fill(imageRect)
+        // Draw tint color, preserving alpha values of original image
+        // .sourceIn: resulting color = source color * destination alpha
+        context.setBlendMode(.sourceIn)
+        context.setFillColor(tintColor.cgColor)
+        context.fill(imageRect)
 
-		guard var image = UIGraphicsGetImageFromCurrentImageContext() else {
-			return self
-		}
+        guard var image = UIGraphicsGetImageFromCurrentImageContext() else {
+            return self
+        }
 
-		// Prevent further tinting
-		image = image.withRenderingMode(.alwaysOriginal)
+        // Prevent further tinting
+        image = image.withRenderingMode(.alwaysOriginal)
 
-		// Restore original properties
-		image = image.withAlignmentRectInsets(originalAlignmentRectInsets)
-		if originalCapInsets != image.capInsets || originalResizingMode != image.resizingMode {
-			image = image.resizableImage(withCapInsets: originalCapInsets, resizingMode: originalResizingMode)
-		}
+        // Restore original properties
+        image = image.withAlignmentRectInsets(originalAlignmentRectInsets)
+        if originalCapInsets != image.capInsets || originalResizingMode != image.resizingMode {
+            image = image.resizableImage(withCapInsets: originalCapInsets, resizingMode: originalResizingMode)
+        }
 
-		// Transfer accessibility label (watchOS not included; does not have accessibilityLabel on UIImage).
-		#if os(iOS) || os(tvOS)
-			image.accessibilityLabel = self.accessibilityLabel
-		#endif
+        // Transfer accessibility label (watchOS not included; does not have accessibilityLabel on UIImage).
+        #if os(iOS) || os(tvOS)
+            image.accessibilityLabel = accessibilityLabel
+        #endif
 
-		return image
-	}
+        return image
+    }
 
-	/**
-	Expand image with insets
-	
-	- parameter insets: inset want to expand
-	
-	- returns: new expanded image
-	*/
+    /**
+     Expand image with insets
+
+     - parameter insets: inset want to expand
+
+     - returns: new expanded image
+     */
     func imageExpandedWithInsets(_ insets: UIEdgeInsets) -> UIImage {
         let newSize = CGSize(width: size.width + insets.left + insets.right, height: size.height + insets.top + insets.bottom)
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
 
-        self.draw(in: CGRect(x: insets.left, y: insets.top, width: size.width, height: size.height))
+        draw(in: CGRect(x: insets.left, y: insets.top, width: size.width, height: size.height))
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -294,9 +294,9 @@ public extension UIImage {
     /**
      Get cropped image with rect specified
      Ref: http://stackoverflow.com/a/7704399/3164091
-     
+
      - parameter rect: rect
-     
+
      - returns: cropped image
      */
     func imageCroppedWithRect(_ rect: CGRect) -> UIImage? {
@@ -313,10 +313,10 @@ public extension UIImage {
 
     /**
      Fill rect on image.
-     
+
      - parameter fillRect: fillRect.
      - parameter color:    color to fill.
-     
+
      - returns: new image.
      */
     func fillRect(_ fillRect: CGRect, withColor color: UIColor) -> UIImage {
@@ -362,13 +362,14 @@ public extension UIImage {
 }
 
 // MARK: - Get Color from UIImage
+
 public extension UIImage {
     /**
      Get the color for a pixel.
      Ref: http://stackoverflow.com/questions/35029672/getting-pixel-color-from-an-image-using-cgpoint
-     
+
      - parameter point: the position for the pixel
-     
+
      - returns: returns color for the pixel.
      */
     func colorAtPoint(_ point: CGPoint) -> UIColor {
@@ -387,10 +388,10 @@ public extension UIImage {
 
         let offset = Int(4 * (point.y * width + point.x))
 
-		let alpha: UInt8 = data[offset]
-		let red: UInt8 = data[offset + 1]
-		let green: UInt8 = data[offset + 2]
-		let blue: UInt8 = data[offset + 3]
+        let alpha: UInt8 = data[offset]
+        let red: UInt8 = data[offset + 1]
+        let green: UInt8 = data[offset + 2]
+        let blue: UInt8 = data[offset + 3]
 
         // Dealloc memeory allocated in createBitmapContext
         free(data)
@@ -401,7 +402,6 @@ public extension UIImage {
     }
 
     private func createBitmapContext(_ image: CGImage) -> CGContext? {
-
         // Get image width, height
         let pixelsWide = image.width
         let pixelsHigh = image.height

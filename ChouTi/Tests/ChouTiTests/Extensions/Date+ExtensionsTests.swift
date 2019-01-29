@@ -1,12 +1,9 @@
-//
-//  Created by Honghao Zhang on 12/13/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import Foundation
 import Nimble
 import Quick
+@testable import ChouTi
 
 class Date_ExtensionsTests: QuickSpec {
     override func spec() {
@@ -97,15 +94,17 @@ extension Date_ExtensionsTests {
         context("Setting/getting date components") {
             var date: Date!
             beforeEach {
-                date = Date(year: 2018,
-                            month: 11,
-                            day: 15,
-                            hour: 12,
-                            minute: 13,
-                            second: 14,
-                            nanosecond: 678000000,
-                            timeZone: TimeZone.pst,
-                            calendar: Calendar.gregorian) ?? Date()
+                date = Date(
+                    year: 2018,
+                    month: 11,
+                    day: 15,
+                    hour: 12,
+                    minute: 13,
+                    second: 14,
+                    nanosecond: 678000000,
+                    timeZone: TimeZone.pst,
+                    calendar: Calendar.gregorian
+                ) ?? Date()
             }
 
             it("should get correct date components") {
@@ -266,30 +265,34 @@ extension Date_ExtensionsTests {
             }
 
             it("should get correct date by setting date components, leap month") {
-                let date0229 = Date(year: 2020,
-                                    month: 2,
-                                    day: 29,
-                                    hour: 12,
-                                    minute: 13,
-                                    second: 14,
-                                    nanosecond: 678000000,
-                                    timeZone: TimeZone.autoupdatingCurrent,
-                                    calendar: Calendar.gregorian) ?? Date()
+                let date0229 = Date(
+                    year: 2020,
+                    month: 2,
+                    day: 29,
+                    hour: 12,
+                    minute: 13,
+                    second: 14,
+                    nanosecond: 678000000,
+                    timeZone: TimeZone.autoupdatingCurrent,
+                    calendar: Calendar.gregorian
+                ) ?? Date()
                 // `year`
                 let year2019 = date0229.setting(.year, with: 2019)
                 expect(year2019?.year) == 2019
                 expect(year2019?.month) == 3
                 expect(year2019?.day) == 1
 
-                let date0331 = Date(year: 2020,
-                                    month: 3,
-                                    day: 31,
-                                    hour: 12,
-                                    minute: 13,
-                                    second: 14,
-                                    nanosecond: 678000000,
-                                    timeZone: TimeZone.autoupdatingCurrent,
-                                    calendar: Calendar.gregorian) ?? Date()
+                let date0331 = Date(
+                    year: 2020,
+                    month: 3,
+                    day: 31,
+                    hour: 12,
+                    minute: 13,
+                    second: 14,
+                    nanosecond: 678000000,
+                    timeZone: TimeZone.autoupdatingCurrent,
+                    calendar: Calendar.gregorian
+                ) ?? Date()
                 // `month`
                 let month4 = date0331.setting(.month, with: 4)
                 expect(month4?.month) == 5

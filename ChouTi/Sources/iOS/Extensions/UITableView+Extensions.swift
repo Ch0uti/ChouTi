@@ -1,14 +1,11 @@
-//
-//  Created by Honghao Zhang on 12/16/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 public extension UITableView {
     /**
      Clear selected index pathes
-     
+
      - parameter animated: whether the deselection is animated
      */
     func clearSelectedIndexPaths(animated: Bool) {

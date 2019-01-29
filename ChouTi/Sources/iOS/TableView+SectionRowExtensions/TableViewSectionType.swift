@@ -1,22 +1,19 @@
-//
-//  Created by Honghao Zhang on 12/15/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 public protocol TableViewSectionType {
     var headerTitle: String? { get set }
-	var headerView: ((Int, UITableView) -> UIView?)? { get set }
-	var headerHeight: ((Int, UITableView) -> CGFloat)? { get set }
-	var headerWillDisplay: ((Int, UIView, UITableView) -> Void)? { get set }
+    var headerView: ((Int, UITableView) -> UIView?)? { get set }
+    var headerHeight: ((Int, UITableView) -> CGFloat)? { get set }
+    var headerWillDisplay: ((Int, UIView, UITableView) -> Void)? { get set }
 
     var footerTitle: String? { get set }
     var footerView: ((Int, UITableView) -> UIView?)? { get set }
     var footerHeight: ((Int, UITableView) -> CGFloat)? { get set }
     var footerWillDisplay: ((Int, UIView, UITableView) -> Void)? { get set }
 
-	var rows: [TableViewRowType] { get set }
+    var rows: [TableViewRowType] { get set }
 
     var shouldShowIndex: Bool { get set }
 }
