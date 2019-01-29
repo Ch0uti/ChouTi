@@ -1,14 +1,11 @@
-//
-//  Created by Honghao Zhang on 6/5/2017.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import UIKit
 
 class ButtonsDemoViewController: UIViewController {
-
     // MARK: - Init
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
@@ -16,7 +13,7 @@ class ButtonsDemoViewController: UIViewController {
     }
 
     @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -25,12 +22,14 @@ class ButtonsDemoViewController: UIViewController {
     }
 
     // MARK: - Life Cycle
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		setupViews()
-	}
 
-	private func setupViews() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupViews()
+    }
+
+    private func setupViews() {
         view.backgroundColor = .white
 
         let stackView = UIStackView()
@@ -100,5 +99,5 @@ class ButtonsDemoViewController: UIViewController {
 
         blurButton1.constrainTo(size: CGSize(width: 240, height: 44))
         stackView.addArrangedSubview(blurButton1)
-	}
+    }
 }

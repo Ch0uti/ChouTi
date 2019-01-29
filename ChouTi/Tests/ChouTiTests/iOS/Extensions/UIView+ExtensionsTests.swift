@@ -1,11 +1,8 @@
-//
-//  Created by Honghao Zhang on 8/12/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import Nimble
 import Quick
+@testable import ChouTi
 
 class UIView_ExtensionsTests: QuickSpec {
     override func spec() {
@@ -18,7 +15,7 @@ class UIView_ExtensionsTests: QuickSpec {
             it("should get correct super view") {
                 let superScrollView = UIScrollView()
                 superScrollView.addSubview(view)
-				expect(view.superview(ofType: UIScrollView.self)) === superScrollView
+                expect(view.superview(ofType: UIScrollView.self)) === superScrollView
             }
 
             it("should get correct super view for more than 2 levels") {
@@ -26,7 +23,7 @@ class UIView_ExtensionsTests: QuickSpec {
                 let superTableView = UITableView()
                 superScrollView.addSubview(view)
                 superTableView.addSubview(superScrollView)
-				expect(view.superview(ofType: UITableView.self)) === superTableView
+                expect(view.superview(ofType: UITableView.self)) === superTableView
             }
         }
 

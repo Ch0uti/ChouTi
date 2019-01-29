@@ -1,13 +1,9 @@
-//
-//  Created by Honghao Zhang on 3/12/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import UIKit
 
 class SearchTextFieldDemoViewController: UIViewController {
-
     let searchField = SearchTextField()
 
     override func viewDidLoad() {
@@ -29,19 +25,19 @@ class SearchTextFieldDemoViewController: UIViewController {
 }
 
 extension SearchTextFieldDemoViewController: SearchTextFieldDataSource {
-    func numberOfResults(forQueryString queryString: String?, inSearchTextField searchTextField: SearchTextField) -> Int {
+    func numberOfResults(forQueryString _: String?, inSearchTextField _: SearchTextField) -> Int {
         return 10
     }
 
-    func resultString(forIndex index: Int, inSearchTextField searchTextField: SearchTextField) -> String {
+    func resultString(forIndex _: Int, inSearchTextField _: SearchTextField) -> String {
         return "Results"
     }
 
-    func resultAttributedString(forIndex index: Int, inSearchTextField searchTextField: SearchTextField) -> NSAttributedString? {
+    func resultAttributedString(forIndex _: Int, inSearchTextField _: SearchTextField) -> NSAttributedString? {
         return nil
     }
 
-    func configure(forResultCell resultCell: UITableViewCell, forIndex index: Int, inSearchTextField searchTextField: SearchTextField) {
+    func configure(forResultCell _: UITableViewCell, forIndex _: Int, inSearchTextField _: SearchTextField) {
         //
     }
 }

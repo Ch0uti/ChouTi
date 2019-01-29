@@ -1,11 +1,8 @@
-//
-//  Created by Honghao Zhang on 1/28/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import Nimble
 import Quick
+@testable import ChouTi
 
 class UIColor_ExtensionsTests: QuickSpec {
     override func spec() {
@@ -36,10 +33,12 @@ class UIColor_ExtensionsTests: QuickSpec {
                 let color2 = UIColor.random()
                 expect(color2).toNot(beNil())
 
-                expect(color1.redComponent() != color2.redComponent()
-                    || color1.greenComponent() != color2.greenComponent()
-                    || color1.blueComponent() != color2.blueComponent()
-                    || color1.alphaComponent() != color2.alphaComponent()) == true
+                expect(
+                    color1.redComponent() != color2.redComponent()
+                        || color1.greenComponent() != color2.greenComponent()
+                        || color1.blueComponent() != color2.blueComponent()
+                        || color1.alphaComponent() != color2.alphaComponent()
+                ) == true
             }
 
             it("should get random color that respects random alpha") {

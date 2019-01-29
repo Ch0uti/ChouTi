@@ -1,12 +1,8 @@
-//
-//  Created by Honghao Zhang on 10/16/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import Foundation
 
 public extension Date {
-
     /// Returns a random date within the specified date range.
     static func random(in range: Range<Date>) -> Date {
         let timeInterval = range.upperBound.timeIntervalSince(range.lowerBound)
@@ -21,7 +17,6 @@ public extension Date {
 }
 
 public extension Date {
-
     /// Era in current timezone & calendar.
     var era: Int { return era() }
 
@@ -167,9 +162,9 @@ public extension Date {
 
     /// Returns a new date by setting date component.
     func setting(_ component: Calendar.Component, with newValue: Int, in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Date? {
-		var calendar = calendar ?? Calendar.autoupdatingCurrent
+        var calendar = calendar ?? Calendar.autoupdatingCurrent
         let timeZone = timeZone ?? TimeZone.autoupdatingCurrent
-		calendar.timeZone = timeZone
+        calendar.timeZone = timeZone
 
         var components = calendar.dateComponents(in: timeZone, from: self)
         switch component {
@@ -214,6 +209,6 @@ public extension Date {
             NSLog("Error: unsupported calendar component: \(component)")
         }
 
-		return calendar.date(from: components)
+        return calendar.date(from: components)
     }
 }

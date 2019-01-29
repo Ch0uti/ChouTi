@@ -1,13 +1,9 @@
-//
-//  Created by Honghao Zhang on 8/7/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import Foundation
 
 class UIImage_AnimatingImagesDemoViewController: UIViewController {
-
     let bearImageView = UIImageView()
     var bearFrames: [UIImage] = []
 
@@ -52,11 +48,13 @@ class UIImage_AnimatingImagesDemoViewController: UIViewController {
 
         // Croppped
         croppedBearFrames = bearFrames.compactMap {
-            $0.imageCroppedWithRect(CGRect(
-                x: $0.size.width * 0.0,
-                y: $0.size.height * 0.25,
-                width: $0.size.width * 0.3,
-                height: $0.size.height * 0.5)
+            $0.imageCroppedWithRect(
+                CGRect(
+                    x: $0.size.width * 0.0,
+                    y: $0.size.height * 0.25,
+                    width: $0.size.width * 0.3,
+                    height: $0.size.height * 0.5
+                )
             )
         }
 

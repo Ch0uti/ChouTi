@@ -11,6 +11,7 @@ let package = Package(
     ),
   ],
   dependencies: [
+    .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.37.2"),
     .package(url: "https://github.com/Quick/Quick", from: "1.3.2"),
     .package(url: "https://github.com/Quick/Nimble", from: "7.3.1"),
   ],
@@ -24,7 +25,7 @@ let package = Package(
         "CodeSnippets",
         "Info.plist",
         "iOS",
-        "Platform.swift"
+        "Platform.swift",
       ]
     ),
     .testTarget(
@@ -36,7 +37,7 @@ let package = Package(
       ],
       path: "ChouTi/Tests",
       exclude: [
-        "ChouTiTests/iOS"
+        "ChouTiTests/iOS",
       ]
     ),
   ]

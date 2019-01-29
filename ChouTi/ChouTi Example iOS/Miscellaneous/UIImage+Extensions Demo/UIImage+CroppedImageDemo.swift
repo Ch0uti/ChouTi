@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 8/7/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import Foundation
@@ -23,11 +20,13 @@ class UIImage_CroppedImageDemoViewController: UIViewController {
             return
         }
 
-        let croppedImage = sourceImage.imageCroppedWithRect(CGRect(
-            x: sourceImage.size.width * 0.0,
-            y: sourceImage.size.height * 0.25,
-            width: sourceImage.size.width * 0.5,
-            height: sourceImage.size.height * 0.5)
+        let croppedImage = sourceImage.imageCroppedWithRect(
+            CGRect(
+                x: sourceImage.size.width * 0.0,
+                y: sourceImage.size.height * 0.25,
+                width: sourceImage.size.width * 0.5,
+                height: sourceImage.size.height * 0.5
+            )
         )
         croppedImageView.image = croppedImage
         croppedImageView.layer.borderColor = UIColor.gray.cgColor

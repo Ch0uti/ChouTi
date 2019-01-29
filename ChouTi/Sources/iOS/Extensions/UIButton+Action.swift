@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 7/3/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -25,48 +22,48 @@ public extension UIButton {
 
     /**
      Initialize a UIButton, using the given closure as the .TouchUpInside target/action event.
-     
+
      - parameter action: The closure to execute upon button press.
-     
+
      - returns: An initialized UIButton.
      */
     public convenience init(action: @escaping (UIButton) -> Void) {
         self.init()
-        buttonAction = ButtonAction(action: action)
+        self.buttonAction = ButtonAction(action: action)
         addTarget(self, action: #selector(UIButton.handleAction(_:)), for: .touchUpInside)
     }
 
     /**
      Initialize a UIButton with the given frame, using the given closure as the .TouchUpInside target/action event.
-     
+
      - parameter frame:  The frame of the button.
      - parameter action: the closure to execute upon button press.
-     
+
      - returns: An initialized UIButton.
      */
     public convenience init(frame: CGRect, action: @escaping (UIButton) -> Void) {
         self.init(frame: frame)
-        buttonAction = ButtonAction(action: action)
+        self.buttonAction = ButtonAction(action: action)
         addTarget(self, action: #selector(UIButton.handleAction(_:)), for: .touchUpInside)
     }
 
     /**
      Initialize a UIButton with the given button type, using the given closure as the .TouchUpInside target/action event.
-     
+
      - parameter buttonType: The button type.
      - parameter action:     the closure to execute upon button press.
-     
+
      - returns: An initialized UIButton.
      */
     public convenience init(buttonType: UIButton.ButtonType, action: @escaping (UIButton) -> Void) {
         self.init(type: buttonType)
-        buttonAction = ButtonAction(action: action)
+        self.buttonAction = ButtonAction(action: action)
         addTarget(self, action: #selector(UIButton.handleAction(_:)), for: .touchUpInside)
     }
 
     /**
      Adds the given closure as the button's target action
-     
+
      - parameter controlEvents: The UIControlEvents upon which to execute this action.
      - parameter action:        The action closure to execute.
      */

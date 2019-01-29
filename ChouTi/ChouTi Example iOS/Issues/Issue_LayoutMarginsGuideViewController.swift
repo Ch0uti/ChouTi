@@ -1,13 +1,9 @@
-//
-//  Created by Honghao Zhang on 7/5/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import UIKit
 
 class Issue_LayoutMarginsGuideViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,23 +59,22 @@ private extension UIView {
         wrapperView.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
         wrapperView.addDashedBorderLine(0.5, borderColor: .black, paintedSegmentLength: 2, unpaintedSegmentLength: 2)
 
-        self.translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
 
         if useAnchor {
             NSLayoutConstraint.activate([
                 self.topAnchor.constraint(equalTo: wrapperView.layoutMarginsGuide.topAnchor),
                 self.leadingAnchor.constraint(equalTo: wrapperView.layoutMarginsGuide.leadingAnchor),
                 self.bottomAnchor.constraint(equalTo: wrapperView.layoutMarginsGuide.bottomAnchor),
-                self.trailingAnchor.constraint(equalTo: wrapperView.layoutMarginsGuide.trailingAnchor)
+                self.trailingAnchor.constraint(equalTo: wrapperView.layoutMarginsGuide.trailingAnchor),
             ])
         } else {
             NSLayoutConstraint.activate([
                 NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: wrapperView, attribute: .topMargin, multiplier: 1.0, constant: 0.0),
                 NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: wrapperView, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0),
                 NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: wrapperView, attribute: .bottomMargin, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: wrapperView, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0)
-            ]
-            )
+                NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: wrapperView, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0),
+            ])
         }
         return wrapperView
     }

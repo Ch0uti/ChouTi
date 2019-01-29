@@ -1,12 +1,9 @@
-//
-//  Created by Honghao Zhang on 11/14/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import Foundation
 
 public extension DispatchQueue {
-	private static var _onceTracker = Set<String>()
+    private static var _onceTracker = Set<String>()
 
     /// Executes a block of code, associated with a unique token, only once.
     /// The code is thread safe and will only execute the code once even in the presence of multithreaded calls.
@@ -15,16 +12,16 @@ public extension DispatchQueue {
     ///   - token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID.
     ///   - block: The block to execute once.
     public class func once(token: String, block: () -> Void) {
-		objc_sync_enter(self)
-		defer {
-			objc_sync_exit(self)
-		}
+        objc_sync_enter(self)
+        defer {
+            objc_sync_exit(self)
+        }
 
-		if _onceTracker.contains(token) {
-			return
-		}
+        if _onceTracker.contains(token) {
+            return
+        }
 
-		_onceTracker.insert(token)
-		block()
-	}
+        _onceTracker.insert(token)
+        block()
+    }
 }

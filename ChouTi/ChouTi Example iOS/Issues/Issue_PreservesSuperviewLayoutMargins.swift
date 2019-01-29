@@ -1,18 +1,14 @@
-//
-//  Created by Honghao Zhang on 8/17/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 
 class Issue_PreservesSuperviewLayoutMargins: UIViewController {
-
     private let containerView = LayoutMarginView()
     private let subContainerView = LayoutMarginView()
     private let subsubContainerView = LayoutMarginView()
-	private let containerViewLayoutMarginsLabel: UILabel = {
-		$0.font = UIFont.systemFont(ofSize: 14); return $0
-	}(UILabel())
+    private let containerViewLayoutMarginsLabel: UILabel = {
+        $0.font = UIFont.systemFont(ofSize: 14); return $0
+    }(UILabel())
 
     private lazy var containerView2: LayoutMarginView = self.containerView.viewCopy() as! LayoutMarginView
     private lazy var subContainerView2: LayoutMarginView = self.containerView2.subviewOfType(LayoutMarginView.self)!
@@ -29,7 +25,7 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
         // Container for `preservesSuperviewLayoutMargins = false`
         containerView.backgroundColor = ColorPalette.texasRoseYellowColor
         containerView.translatesAutoresizingMaskIntoConstraints = false
-		containerView.layer.cornerRadius = 8.0
+        containerView.layer.cornerRadius = 8.0
         containerView.constrainTo(width: 300, height: 200)
 
         //
@@ -71,7 +67,7 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
 
         // Container for `preservesSuperviewLayoutMargins = true`
         containerView2.translatesAutoresizingMaskIntoConstraints = false
-		containerView2.layer.cornerRadius = 8.0
+        containerView2.layer.cornerRadius = 8.0
         containerView2.constrainTo(width: 300, height: 200)
 
         //
@@ -124,8 +120,8 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
             self.updateContainerViewLayoutMarginsLabel(view)
             UIView.animate(withDuration: 1.0, animations: {
                 view.layoutIfNeeded()
-                }, completion: { _ in
-                    self.restore(view)
+            }, completion: { _ in
+                self.restore(view)
             })
         }
     }
@@ -136,8 +132,8 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
             self.updateContainerViewLayoutMarginsLabel(view)
             UIView.animate(withDuration: 1.0, animations: {
                 view.layoutIfNeeded()
-                }, completion: { _ in
-                    self.shrink(view)
+            }, completion: { _ in
+                self.shrink(view)
             })
         }
     }
@@ -146,7 +142,7 @@ class Issue_PreservesSuperviewLayoutMargins: UIViewController {
         let text = String(format: "yellowView: (%.1f, %.1f, %.1f, %.1f)", containerView.layoutMargins.top, containerView.layoutMargins.left, containerView.layoutMargins.bottom, containerView.layoutMargins.right)
         if containerView === self.containerView {
             containerViewLayoutMarginsLabel.text = text
-        } else if containerView === self.containerView2 {
+        } else if containerView === containerView2 {
             containerViewLayoutMarginsLabel2.text = text
         }
     }
@@ -180,6 +176,6 @@ private class LayoutMarginView: UIView {
         layoutMarginGuideView.backgroundColor = UIColor(white: 1.0, alpha: 0.4)
 
         layoutMarginGuideView.addDashedBorderLine(0.5, borderColor: UIColor(white: 0.0, alpha: 0.8), paintedSegmentLength: 2, unpaintedSegmentLength: 2)
-        self.addDashedBorderLine(0.5, borderColor: UIColor(white: 0.0, alpha: 1.0), paintedSegmentLength: 3, unpaintedSegmentLength: 3)
+        addDashedBorderLine(0.5, borderColor: UIColor(white: 0.0, alpha: 1.0), paintedSegmentLength: 3, unpaintedSegmentLength: 3)
     }
 }

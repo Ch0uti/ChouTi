@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 8/4/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -12,7 +9,7 @@ import UIKit
 public protocol SwipeTableViewCellDelegate: AnyObject {
     /**
      SwipeTableViewCell swiped to new offset.
-     
+
      - parameter cell:      SwipeTableViewCell self.
      - parameter newOffset: New offset swiped. Negative value means right side expanded.
      */
@@ -20,7 +17,7 @@ public protocol SwipeTableViewCellDelegate: AnyObject {
 
     /**
      SwipeTableViewCell will expand on a side.
-     
+
      - parameter cell:          SwipeTableViewCell self.
      - parameter didExpandSide: Side to expand.
      */
@@ -28,7 +25,7 @@ public protocol SwipeTableViewCellDelegate: AnyObject {
 
     /**
      SwipeTableViewCell will collapse.
-     
+
      - parameter cell: SwipeTableViewCell self.
      */
     func swipeTableViewCellWillCollapse(_ cell: SwipeTableViewCell)
@@ -38,44 +35,44 @@ public protocol SwipeTableViewCellDelegate: AnyObject {
 /// This is a cell which can swipe to show accessory view. Just like UIKit swipe to delete view.
 /// You need to configue `rightSwipeAccessoryView` to a view with constraint based layout (Require size constrained).
 open class SwipeTableViewCell: UITableViewCell {
-
     public enum ExpandSide {
         case left
         case right
     }
 
-	/// Swipeable content view, normally you should add subviews on this view.
-	/// Discussion: This view is above the `contentView`, so when you swipe the cell, this view moves.
-	///   You should add moveable content on this view and fixed content (like action buttons) on `contentView`
-	public final let swipeableContentView: UIView = {
-		/// A View that you can not set to transparent
-		/// Discussion: Because UITableViewCell make all subViews transparent when it's highlighted/selected. This
-		/// ContentView should not be set to transparent, otherwises, the accessory view behind it appears.
-		/// Check `setSelected(Bool, animated: Bool)` and `func setHighlighted(Bool, animated: Bool)` implementations
-		/// Reference: http://stackoverflow.com/a/15342964/3164091
-		final class NoTransparentView: UIView {
-			override var backgroundColor: UIColor? {
-				set {
-					guard let newValue = newValue else {
-						return
-					}
+    /// Swipeable content view, normally you should add subviews on this view.
+    /// Discussion: This view is above the `contentView`, so when you swipe the cell, this view moves.
+    ///   You should add moveable content on this view and fixed content (like action buttons) on `contentView`
+    public final let swipeableContentView: UIView = {
+        /// A View that you can not set to transparent
+        /// Discussion: Because UITableViewCell make all subViews transparent when it's highlighted/selected. This
+        /// ContentView should not be set to transparent, otherwises, the accessory view behind it appears.
+        /// Check `setSelected(Bool, animated: Bool)` and `func setHighlighted(Bool, animated: Bool)` implementations
+        /// Reference: http://stackoverflow.com/a/15342964/3164091
+        final class NoTransparentView: UIView {
+            override var backgroundColor: UIColor? {
+                set {
+                    guard let newValue = newValue else {
+                        return
+                    }
 
-					if newValue.cgColor.alpha == 0 {
-						return
-					}
+                    if newValue.cgColor.alpha == 0 {
+                        return
+                    }
 
-					super.backgroundColor = newValue
-				}
+                    super.backgroundColor = newValue
+                }
 
-				get {
-					return super.backgroundColor
-				}
-			}
-		}
-		return NoTransparentView()
-	}()
+                get {
+                    return super.backgroundColor
+                }
+            }
+        }
+        return NoTransparentView()
+    }()
 
     // MARK: - Right Accessory View
+
     /// Accessory view to show when swipe from right to left ( <--o )
     /// Note: This view requires constraint based layout. Make sure this view has size constrained.
     open var rightSwipeAccessoryView: UIView? {
@@ -124,23 +121,27 @@ open class SwipeTableViewCell: UITableViewCell {
     private final var rightSwipeEnabled: Bool { return rightSwipeExpandableWidth > 0.0 }
 
     // MARK: - Delegate
+
     /// Swipe table view cell delegate.
     open weak var swipeTableViewCellDelegate: SwipeTableViewCellDelegate?
 
     // MARK: - Private
+
     private final var swipeableContentViewCenterXConstraint: NSLayoutConstraint!
     private final var panStartPoint: CGPoint = .zero
     private final var centerXConstraintStartConstant: CGFloat = 0.0
     private final var isAnimating: Bool = false // whether cell expand/collapse is being animated
 
     // MARK: - Gesture Recognizers
-    private lazy final var panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeTableViewCell.panSwipeableContentView(_:)))
+
+    private final lazy var panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeTableViewCell.panSwipeableContentView(_:)))
     private final let tapRecognizer = UITapGestureRecognizer()
     // This is a so called immediate touch gesture recognizer (no delay, triggers faster than tap gesture recognizer). Set `minimumPressDuration = 0`.
     // This gesture recognizer will be added on tableView. If cell is expanded, touch anywhere on tableView can collapse it. (mimics UIKIt behavior)
     private final let tableViewImmediateTouchRecognizer = UILongPressGestureRecognizer()
 
     // MARK: - Settings when cell's tableView is embedded in a scrollView
+
     /// Unscrollable screen edge width. Default value is 40
     /// Pans on this width of screen edges won't expand cell
     public final var unscrollableScreenEdgeWidth: CGFloat = 40
@@ -154,7 +155,8 @@ open class SwipeTableViewCell: UITableViewCell {
     public final var blockingTableViewWhenExpanded: Bool = false
 
     // MARK: - Methods
-    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         commonInit()
@@ -195,20 +197,22 @@ open class SwipeTableViewCell: UITableViewCell {
         var constraints: [NSLayoutConstraint] = []
 
         // Swipeable content view
-        let swipeableContentViewCenterXConstraint = NSLayoutConstraint(item: swipeableContentView,
-                                                                       attribute: .centerX,
-                                                                       relatedBy: .equal,
-                                                                       toItem: contentView,
-                                                                       attribute: .centerX,
-                                                                       multiplier: 1.0,
-                                                                       constant: 0.0)
+        let swipeableContentViewCenterXConstraint = NSLayoutConstraint(
+            item: swipeableContentView,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: contentView,
+            attribute: .centerX,
+            multiplier: 1.0,
+            constant: 0.0
+        )
 
         self.swipeableContentViewCenterXConstraint = swipeableContentViewCenterXConstraint
         constraints += [
-			swipeableContentView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-			swipeableContentView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-			swipeableContentViewCenterXConstraint,
-			swipeableContentView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            swipeableContentView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
+            swipeableContentView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            swipeableContentViewCenterXConstraint,
+            swipeableContentView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ]
 
         // This resolves `UITableViewCellContentView`'s NSAutoresizingMaskLayoutConstraint or `UIView-Encapsulated-Layout-Height` warnings when setting `contentView` height using constraints.
@@ -223,32 +227,33 @@ open class SwipeTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(constraints)
     }
 
-	override open func setHighlighted(_ highlighted: Bool, animated: Bool) {
-		if let selectedBackgroundView = selectedBackgroundView {
-			if highlighted {
-				swipeableContentView.insertSubview(selectedBackgroundView, at: 0)
-			} else {
-				selectedBackgroundView.removeFromSuperview()
-			}
-		}
-	}
+    open override func setHighlighted(_ highlighted: Bool, animated _: Bool) {
+        if let selectedBackgroundView = selectedBackgroundView {
+            if highlighted {
+                swipeableContentView.insertSubview(selectedBackgroundView, at: 0)
+            } else {
+                selectedBackgroundView.removeFromSuperview()
+            }
+        }
+    }
 
-	override open func setSelected(_ selected: Bool, animated: Bool) {
-		if let selectedBackgroundView = selectedBackgroundView {
-			if selected {
-				swipeableContentView.insertSubview(selectedBackgroundView, at: 0)
-			} else {
-				selectedBackgroundView.removeFromSuperview()
-			}
-		}
-	}
+    open override func setSelected(_ selected: Bool, animated _: Bool) {
+        if let selectedBackgroundView = selectedBackgroundView {
+            if selected {
+                swipeableContentView.insertSubview(selectedBackgroundView, at: 0)
+            } else {
+                selectedBackgroundView.removeFromSuperview()
+            }
+        }
+    }
 }
 
 // MARK: - Expanding/Collapse
+
 extension SwipeTableViewCell {
     /**
      Expand right side to show right accessory view.
-     
+
      - parameter animated: Whether it's should be animated.
      */
     public func expandRightSide(animated: Bool) {
@@ -262,7 +267,7 @@ extension SwipeTableViewCell {
 
     /**
      Collapse self.
-     
+
      - parameter animated: Whether it's should be animated.
      */
     public func collapse(animated: Bool) {
@@ -276,7 +281,7 @@ extension SwipeTableViewCell {
 
     /**
      Update swipeable content view with expand offset. (Offset is positive if expand on right side)
-     
+
      - parameter offset:   New offset to set.
      - parameter animated: Whether it's should be animated.
      */
@@ -303,6 +308,7 @@ extension SwipeTableViewCell {
 }
 
 // MARK: - Gesture Recognizer Actions
+
 extension SwipeTableViewCell {
     @objc
     private dynamic func panSwipeableContentView(_ panRecognizer: UIPanGestureRecognizer) {
@@ -355,8 +361,9 @@ extension SwipeTableViewCell {
 }
 
 // MARK: - UIGestureRecognizerDelegate
+
 extension SwipeTableViewCell {
-    override open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if rightSwipeEnabled == false {
             return false
         }
@@ -390,7 +397,7 @@ extension SwipeTableViewCell {
             }
         }
 
-        if gestureRecognizer === tapRecognizer && isAnimating == false {
+        if gestureRecognizer === tapRecognizer, isAnimating == false {
             // If is expanded, consume this touch, which disables selection of tableViewCell
             return rightSwipeExpanded
         }
@@ -444,27 +451,28 @@ extension SwipeTableViewCell {
 }
 
 // MARK: - Automatic collapsing
+
 extension SwipeTableViewCell {
-    override open func prepareForReuse() {
+    open override func prepareForReuse() {
         super.prepareForReuse()
 
         collapse(animated: true)
     }
 
-    override open func willTransition(to state: UITableViewCell.StateMask) {
+    open override func willTransition(to state: UITableViewCell.StateMask) {
         super.willTransition(to: state)
 
         // Any cell state transition should collapse
         collapse(animated: true)
     }
 
-    override open func didMoveToWindow() {
+    open override func didMoveToWindow() {
         super.didMoveToWindow()
 
         collapse(animated: true)
     }
 
-    override open func didMoveToSuperview() {
+    open override func didMoveToSuperview() {
         super.didMoveToSuperview()
 
         // Setup tableViewImmediateTouchRecognizer to new tableView
@@ -474,7 +482,7 @@ extension SwipeTableViewCell {
         tableView.addGestureRecognizer(tableViewImmediateTouchRecognizer)
     }
 
-    override open func willMove(toSuperview newSuperview: UIView?) {
+    open override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
 
         // Remove tableViewImmediateTouchRecognizer from current tableView
@@ -486,13 +494,14 @@ extension SwipeTableViewCell {
 }
 
 // MARK: - Private Helpers
+
 private extension SwipeTableViewCell {
     /**
      Whether the tableView managing this cell is embedded in a scrollView
-     
+
      - returns: true if there's a such scrollView. Otherwise, false.
      */
     final func isEmbeddedInScrollView() -> Bool {
-		return tableView?.superview(ofType: UIScrollView.self) != nil
+        return tableView?.superview(ofType: UIScrollView.self) != nil
     }
 }

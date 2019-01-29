@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 5/5/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -16,7 +13,7 @@ public class AlertViewButton: Button {
                 return
             }
 
-			isEnabled = alertAction.enabled
+            isEnabled = alertAction.enabled
             setTitle(alertAction.title, for: .normal)
             updateButtonStyle()
         }
@@ -37,19 +34,19 @@ public class AlertViewButton: Button {
         self.init()
     }
 
-    override private init(frame: CGRect) {
+    private override init(frame: CGRect) {
         super.init(frame: frame)
 
         commonInit()
     }
 
     @available(*, unavailable)
-    public required init?(coder aDecoder: NSCoder) {
+    public required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     private func commonInit() {
-        self.clipsToBounds = true
+        clipsToBounds = true
         setCornerRadius(.halfCircle, forState: .normal)
 
         titleLabel?.adjustsFontSizeToFitWidth = true
@@ -67,9 +64,10 @@ public class AlertViewButton: Button {
 }
 
 // MARK: - AlertViewButton Appearance Customization
+
 extension AlertViewButton {
     /// Default button appearance
-    private static var buttonAppearanceConfigurationForAlertActionStyle: [UIAlertAction.Style: ((AlertViewButton) -> Void)] = {[
+    private static var buttonAppearanceConfigurationForAlertActionStyle: [UIAlertAction.Style: ((AlertViewButton) -> Void)] = { [
         .default: { button in
             button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
             button.setBorderWidth(0.0, forState: .normal)
@@ -95,12 +93,12 @@ extension AlertViewButton {
             button.setBackgroundImageWithColor(dangerRedColor, forState: .normal)
             button.setBackgroundImageWithColor(dangerRedColor.darkerColor(), forState: .highlighted)
             button.setTitleColor(UIColor.white, for: .normal)
-        }
-    ]}()
+        },
+    ] }()
 
     /**
      Set button appearance configuration for alert action style
-     
+
      - parameter configuration:    button appearance configuration, this block has no return value and takes a button object as its only parameter. You can configure button title, color for different states. You can set button's height by adding a height constraint with 500 priority or above, setting bounds has no effects.
      - parameter alertActionStyle: UIAlertActionStyle
      */

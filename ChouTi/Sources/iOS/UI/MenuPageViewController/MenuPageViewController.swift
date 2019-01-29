@@ -1,266 +1,273 @@
-//
-//  Created by Honghao Zhang on 10/2/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 // TODO: Adopting delegates
 public protocol MenuPageViewControllerDataSource: AnyObject {
-	func numberOfMenusInMenuPageViewController(_ menuPageViewController: MenuPageViewController) -> Int
-	func menuPageViewController(_ menuPageViewController: MenuPageViewController, menuViewForIndex index: Int, contentView: UIView?) -> UIView
-	func menuPageViewController(_ menuPageViewController: MenuPageViewController, viewControllerForIndex index: Int) -> UIViewController
+    func numberOfMenusInMenuPageViewController(_ menuPageViewController: MenuPageViewController) -> Int
+    func menuPageViewController(_ menuPageViewController: MenuPageViewController, menuViewForIndex index: Int, contentView: UIView?) -> UIView
+    func menuPageViewController(_ menuPageViewController: MenuPageViewController, viewControllerForIndex index: Int) -> UIViewController
 }
 
 public protocol MenuPageViewControllerDelegate: AnyObject {
-	func menuPageViewController(_ menuPageViewController: MenuPageViewController, menuWidthForIndex index: Int) -> CGFloat
-	func menuPageViewController(_ menuPageViewController: MenuPageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController)
+    func menuPageViewController(_ menuPageViewController: MenuPageViewController, menuWidthForIndex index: Int) -> CGFloat
+    func menuPageViewController(_ menuPageViewController: MenuPageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController)
 }
 
 open class MenuPageViewController: UIViewController {
+    // MARK: - Public
 
-	// MARK: - Public
-	open var menuTitleHeight: CGFloat = 44.0
+    open var menuTitleHeight: CGFloat = 44.0
 
-	public let menuView = MenuView()
-	public let pageViewController = PageViewController()
+    public let menuView = MenuView()
+    public let pageViewController = PageViewController()
 
-	private var _selectedIndex: Int = 0
-	open var selectedIndex: Int {
-		get { return _selectedIndex }
-		set {
-			let isValidIndex = (0 <= newValue && newValue < numberOfMenus)
-			assert(isValidIndex, "Invalid selectedIndex: \(newValue)")
-			if isValidIndex {
-				setSelectedIndex(newValue, animated: false)
-			}
-		}
-	}
+    private var _selectedIndex: Int = 0
+    open var selectedIndex: Int {
+        get { return _selectedIndex }
+        set {
+            let isValidIndex = (0 <= newValue && newValue < numberOfMenus)
+            assert(isValidIndex, "Invalid selectedIndex: \(newValue)")
+            if isValidIndex {
+                setSelectedIndex(newValue, animated: false)
+            }
+        }
+    }
 
-	open weak var dataSource: MenuPageViewControllerDataSource?
-	open weak var delegate: MenuPageViewControllerDelegate?
+    open weak var dataSource: MenuPageViewControllerDataSource?
+    open weak var delegate: MenuPageViewControllerDelegate?
 
-	// MARK: - Private
-	private var numberOfMenus: Int {
-		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
-		return dataSource.numberOfMenusInMenuPageViewController(self)
-	}
+    // MARK: - Private
 
-	private var isUpdatingSelectedIndex: Bool = false
+    private var numberOfMenus: Int {
+        guard let dataSource = dataSource else { fatalError("dataSource is nil") }
+        return dataSource.numberOfMenusInMenuPageViewController(self)
+    }
 
-	override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-		commonInit()
-	}
+    private var isUpdatingSelectedIndex: Bool = false
 
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		commonInit()
-	}
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
-	private func commonInit() {
-		menuView.dataSource = self
-		menuView.delegate = self
+        commonInit()
+    }
 
-		pageViewController.dataSource = self
-		pageViewController.delegate = self
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
 
-		menuView.spacingsBetweenMenus = 10.0
-	}
+        commonInit()
+    }
 
-	open func setSelectedIndex(_ index: Int, animated: Bool, completion: ((Bool) -> Void)? = nil) {
-		if _selectedIndex == index {
+    private func commonInit() {
+        menuView.dataSource = self
+        menuView.delegate = self
+
+        pageViewController.dataSource = self
+        pageViewController.delegate = self
+
+        menuView.spacingsBetweenMenus = 10.0
+    }
+
+    open func setSelectedIndex(_ index: Int, animated: Bool, completion: ((Bool) -> Void)? = nil) {
+        if _selectedIndex == index {
             return
         }
-		_selectedIndex = index
+        _selectedIndex = index
 
-		isUpdatingSelectedIndex = true
-		menuView.setSelectedIndex(index, animated: animated)
-		pageViewController.setSelectedIndex(index, animated: animated, completion: completion)
-		isUpdatingSelectedIndex = false
-	}
+        isUpdatingSelectedIndex = true
+        menuView.setSelectedIndex(index, animated: animated)
+        pageViewController.setSelectedIndex(index, animated: animated, completion: completion)
+        isUpdatingSelectedIndex = false
+    }
 
-	open func reload() {
-		menuView.reload()
-		pageViewController.reloadViewControllers()
-	}
+    open func reload() {
+        menuView.reload()
+        pageViewController.reloadViewControllers()
+    }
 }
 
 // MARK: - Override
+
 extension MenuPageViewController {
-	override open func viewDidLoad() {
-		super.viewDidLoad()
-		view.backgroundColor = UIColor.white
+    open override func viewDidLoad() {
+        super.viewDidLoad()
 
-		setupViews()
-	}
+        view.backgroundColor = UIColor.white
 
-	private func setupViews() {
-		// MenuView
-		menuView.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(menuView)
+        setupViews()
+    }
 
-		// PageViewController
-		addChild(pageViewController)
-		pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(pageViewController.view)
-		pageViewController.didMove(toParent: self)
+    private func setupViews() {
+        // MenuView
+        menuView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(menuView)
 
-		pageViewController.pageScrollView.delegate = self
+        // PageViewController
+        addChild(pageViewController)
+        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(pageViewController.view)
+        pageViewController.didMove(toParent: self)
 
-		setupConstraints()
-	}
+        pageViewController.pageScrollView.delegate = self
 
-	private func setupConstraints() {
-		view.layoutMargins = UIEdgeInsets.zero
-		let views: [String: UIView] = [
-			"menuView": menuView,
-			"pageView": pageViewController.view
-		]
+        setupConstraints()
+    }
 
-		let metrics = [
-			"menuTitleHeight": menuTitleHeight
-		]
+    private func setupConstraints() {
+        view.layoutMargins = UIEdgeInsets.zero
+        let views: [String: UIView] = [
+            "menuView": menuView,
+            "pageView": pageViewController.view,
+        ]
 
-		var constraints = [NSLayoutConstraint]()
+        let metrics = [
+            "menuTitleHeight": menuTitleHeight,
+        ]
 
-		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[menuView]|", options: [], metrics: metrics, views: views)
-		constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[menuView(menuTitleHeight)][pageView]|", options: [.alignAllLeading, .alignAllTrailing], metrics: metrics, views: views)
+        var constraints = [NSLayoutConstraint]()
 
-		NSLayoutConstraint.activate(constraints)
-	}
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[menuView]|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[menuView(menuTitleHeight)][pageView]|", options: [.alignAllLeading, .alignAllTrailing], metrics: metrics, views: views)
 
-//	public override func viewDidLayoutSubviews() {
-//		super.viewDidLayoutSubviews()
-//		print("viewDidLayoutSubviews")
-//		setSelectedIndex(selectedIndex, animated: false)
-//	}
+        NSLayoutConstraint.activate(constraints)
+    }
+
+    //	public override func viewDidLayoutSubviews() {
+    //		super.viewDidLayoutSubviews()
+    //		print("viewDidLayoutSubviews")
+    //		setSelectedIndex(selectedIndex, animated: false)
+    //	}
 }
 
 extension MenuPageViewController {
-	private func removeViewController(_ viewController: UIViewController) {
-		viewController.willMove(toParent: nil)
-		viewController.view.removeFromSuperview()
-		viewController.removeFromParent()
-	}
+    private func removeViewController(_ viewController: UIViewController) {
+        viewController.willMove(toParent: nil)
+        viewController.view.removeFromSuperview()
+        viewController.removeFromParent()
+    }
 
-	private func addViewController(_ viewController: UIViewController) {
-		addChild(viewController)
-		view.addSubview(viewController.view)
-		viewController.didMove(toParent: self)
-	}
+    private func addViewController(_ viewController: UIViewController) {
+        addChild(viewController)
+        view.addSubview(viewController.view)
+        viewController.didMove(toParent: self)
+    }
 }
 
 // MARK: - UIScrollViewDelegate
+
 extension MenuPageViewController: UIScrollViewDelegate {
-	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if scrollView === menuView.menuCollectionView {
-			if scrollView.contentOffset.y != 0 {
-				scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
-			}
-		}
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView === menuView.menuCollectionView {
+            if scrollView.contentOffset.y != 0 {
+                scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
+            }
+        }
 
-		if scrollView === pageViewController.pageScrollView {
-			pageViewController.scrollViewDidScroll(scrollView)
-		}
-	}
+        if scrollView === pageViewController.pageScrollView {
+            pageViewController.scrollViewDidScroll(scrollView)
+        }
+    }
 
-	public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-		if scrollView === pageViewController.pageScrollView {
-			pageViewController.scrollViewWillBeginDragging(scrollView)
-		}
-	}
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollView === pageViewController.pageScrollView {
+            pageViewController.scrollViewWillBeginDragging(scrollView)
+        }
+    }
 
-	public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-		if scrollView === pageViewController.pageScrollView {
-			pageViewController.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
-		}
-	}
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if scrollView === pageViewController.pageScrollView {
+            pageViewController.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+        }
+    }
 
-	public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-		if scrollView === pageViewController.pageScrollView {
-			pageViewController.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
-		}
-	}
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView === pageViewController.pageScrollView {
+            pageViewController.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+        }
+    }
 
-	public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-		if scrollView === pageViewController.pageScrollView {
-			pageViewController.scrollViewDidEndDecelerating(scrollView)
-		}
-	}
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView === pageViewController.pageScrollView {
+            pageViewController.scrollViewDidEndDecelerating(scrollView)
+        }
+    }
 
-	public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-		if scrollView === pageViewController.pageScrollView {
-			pageViewController.scrollViewDidEndScrollingAnimation(scrollView)
-		}
-	}
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if scrollView === pageViewController.pageScrollView {
+            pageViewController.scrollViewDidEndScrollingAnimation(scrollView)
+        }
+    }
 }
 
 // MARK: - MenuViewDataSource
-extension MenuPageViewController: MenuViewDataSource {
-	public func numberOfMenusInMenuView(_ menuView: MenuView) -> Int {
-		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
-		return dataSource.numberOfMenusInMenuPageViewController(self)
-	}
 
-	public func menuView(_ menuView: MenuView, menuViewForIndex index: Int, contentView: UIView?) -> UIView {
-		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
-		return dataSource.menuPageViewController(self, menuViewForIndex: index, contentView: contentView)
-	}
+extension MenuPageViewController: MenuViewDataSource {
+    public func numberOfMenusInMenuView(_: MenuView) -> Int {
+        guard let dataSource = dataSource else { fatalError("dataSource is nil") }
+        return dataSource.numberOfMenusInMenuPageViewController(self)
+    }
+
+    public func menuView(_: MenuView, menuViewForIndex index: Int, contentView: UIView?) -> UIView {
+        guard let dataSource = dataSource else { fatalError("dataSource is nil") }
+        return dataSource.menuPageViewController(self, menuViewForIndex: index, contentView: contentView)
+    }
 }
 
 // MARK: - MenuViewDelegate
+
 extension MenuPageViewController: MenuViewDelegate {
-	public func menuView(_ menuView: MenuView, menuWidthForIndex index: Int) -> CGFloat {
-		// Expecting from delegate for width
-		if let delegate = delegate {
-			return delegate.menuPageViewController(self, menuWidthForIndex: index)
-		}
+    public func menuView(_: MenuView, menuWidthForIndex index: Int) -> CGFloat {
+        // Expecting from delegate for width
+        if let delegate = delegate {
+            return delegate.menuPageViewController(self, menuWidthForIndex: index)
+        }
 
-		// If no delegate, use view width
-		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
+        // If no delegate, use view width
+        guard let dataSource = dataSource else { fatalError("dataSource is nil") }
 
-		let view = dataSource.menuPageViewController(self, menuViewForIndex: index, contentView: nil)
-		return view.bounds.width
-	}
+        let view = dataSource.menuPageViewController(self, menuViewForIndex: index, contentView: nil)
+        return view.bounds.width
+    }
 
-	public func menuView(_ menuView: MenuView, didSelectIndex selectedIndex: Int) {
-		// If selectedIndex updating is caused by selection of MenuPageVC, don't update pageVC
-		if !isUpdatingSelectedIndex {
-			_selectedIndex = selectedIndex
-			pageViewController.setSelectedIndex(selectedIndex, animated: true, completion: nil)
-		}
-	}
+    public func menuView(_: MenuView, didSelectIndex selectedIndex: Int) {
+        // If selectedIndex updating is caused by selection of MenuPageVC, don't update pageVC
+        if !isUpdatingSelectedIndex {
+            _selectedIndex = selectedIndex
+            pageViewController.setSelectedIndex(selectedIndex, animated: true, completion: nil)
+        }
+    }
 
-	public func menuView(_ menuView: MenuView, didScrollToOffset offset: CGFloat) { }
+    public func menuView(_: MenuView, didScrollToOffset _: CGFloat) {}
 }
 
 // MARK: - PageViewControllerDataSource
-extension MenuPageViewController: PageViewControllerDataSource {
-	public func numberOfViewControllersInPageViewController(_ pageViewController: PageViewController) -> Int {
-		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
-		return dataSource.numberOfMenusInMenuPageViewController(self)
-	}
 
-	public func pageViewController(_ pageViewController: PageViewController, viewControllerForIndex index: Int) -> UIViewController {
-		guard let dataSource = dataSource else { fatalError("dataSource is nil") }
-		return dataSource.menuPageViewController(self, viewControllerForIndex: index)
-	}
+extension MenuPageViewController: PageViewControllerDataSource {
+    public func numberOfViewControllersInPageViewController(_: PageViewController) -> Int {
+        guard let dataSource = dataSource else { fatalError("dataSource is nil") }
+        return dataSource.numberOfMenusInMenuPageViewController(self)
+    }
+
+    public func pageViewController(_: PageViewController, viewControllerForIndex index: Int) -> UIViewController {
+        guard let dataSource = dataSource else { fatalError("dataSource is nil") }
+        return dataSource.menuPageViewController(self, viewControllerForIndex: index)
+    }
 }
 
 // MARK: - PageViewControllerDelegate
+
 extension MenuPageViewController: PageViewControllerDelegate {
-	public func pageViewController(_ pageViewController: PageViewController, didScrollWithSelectedIndex selectedIndex: Int, offsetPercent: CGFloat) {
-		menuView.scrollWithSelectedIndex(pageViewController.selectedIndex, withOffsetPercent: offsetPercent)
-	}
+    public func pageViewController(_ pageViewController: PageViewController, didScrollWithSelectedIndex _: Int, offsetPercent: CGFloat) {
+        menuView.scrollWithSelectedIndex(pageViewController.selectedIndex, withOffsetPercent: offsetPercent)
+    }
 
-	public func pageViewController(_ pageViewController: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
-		// If selectedIndex updating is caused by selection of MenuPageVC, don't update
-		if !isUpdatingSelectedIndex {
-			_selectedIndex = selectedIndex
-			menuView.setSelectedIndex(selectedIndex, animated: true)
-		}
+    public func pageViewController(_: PageViewController, didSelectIndex selectedIndex: Int, selectedViewController: UIViewController) {
+        // If selectedIndex updating is caused by selection of MenuPageVC, don't update
+        if !isUpdatingSelectedIndex {
+            _selectedIndex = selectedIndex
+            menuView.setSelectedIndex(selectedIndex, animated: true)
+        }
 
-		delegate?.menuPageViewController(self, didSelectIndex: selectedIndex, selectedViewController: selectedViewController)
-	}
+        delegate?.menuPageViewController(self, didSelectIndex: selectedIndex, selectedViewController: selectedViewController)
+    }
 }

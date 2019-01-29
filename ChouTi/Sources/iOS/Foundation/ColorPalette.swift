@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 5/5/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -16,8 +13,8 @@ public enum ColorPalette {
     public static var slackSidebarPurpleColor = UIColor(red: 0.31, green: 0.24, blue: 0.31, alpha: 1.00)
 
     // Blue
-    public static var facebookBlueColor = UIColor(red: 59.0 / 255.0, green: 89.0 / 255.0, blue: 152.0 / 255.0, alpha: 1.00)// UIColor(hexString: "#3b5998")!
-    public static var facebookMediumBlueColor = UIColor(red: 109.0 / 255.0, green: 132.0 / 255.0, blue: 180.0 / 255.0, alpha: 1.00)// UIColor(hexString: "#6d84b4")!
+    public static var facebookBlueColor = UIColor(red: 59.0 / 255.0, green: 89.0 / 255.0, blue: 152.0 / 255.0, alpha: 1.00) // UIColor(hexString: "#3b5998")!
+    public static var facebookMediumBlueColor = UIColor(red: 109.0 / 255.0, green: 132.0 / 255.0, blue: 180.0 / 255.0, alpha: 1.00) // UIColor(hexString: "#6d84b4")!
     public static var madisonDarkBlueColor = UIColor(red: 0.04, green: 0.18, blue: 0.36, alpha: 1.00)
     public static var sapphireBlueColor = UIColor(red: 0.19, green: 0.31, blue: 0.65, alpha: 1.00)
 
@@ -30,6 +27,7 @@ public enum ColorPalette {
 }
 
 // MARK: - Flat Colors (https://flatuicolors.com)
+
 public extension ColorPalette {
     /// Turquoise/绿松石   rgb(26, 188, 156)   #1abc9c
     static var turquoiseGreen = UIColor(red: 26 / 255.0, green: 188 / 255.0, blue: 156 / 255.0, alpha: 1.0)

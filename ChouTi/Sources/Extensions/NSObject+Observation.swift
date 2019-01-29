@@ -1,13 +1,11 @@
-//
-//  Created by Honghao Zhang on 2/11/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import Foundation
 
 // NOTE: Be sure to removeObservation before this object is deallocated
 
 // MARK: - Observer
+
 open class Observer: NSObject {
     public typealias ObserverHandler = (_ object: AnyObject, _ oldValue: AnyObject, _ newValue: AnyObject) -> Void
 
@@ -43,7 +41,7 @@ open class Observer: NSObject {
         handlerDictionary.removeValue(forKey: keyPath)
     }
 
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context _: UnsafeMutableRawPointer?) {
         guard let object = object, pauseObservation == false else {
             return
         }
@@ -77,8 +75,8 @@ open class Observer: NSObject {
 }
 
 // MARK: - NSObject+Observation
-public extension NSObject {
 
+public extension NSObject {
     // Add an Observer to NSObject
     private enum ObserverKey { static var Key = "zhh_ObserverKey" }
 
@@ -103,10 +101,11 @@ public extension NSObject {
     }
 
     // MARK: - Public
+
     /**
      Observe property with keyPath.
      Note: `dynamic` attribute is necessary for Swift classes
-     
+
      - parameter keyPath: keyPath for the property
      - parameter handler: Observer handler
      */
@@ -121,7 +120,7 @@ public extension NSObject {
 
     /**
      Remove the observation for keyPath
-     
+
      - parameter keyPath: keyPath of the observation
      */
     public func removeObservation(forKeyPath keyPath: String) {

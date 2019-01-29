@@ -1,14 +1,10 @@
-//
-//  Created by Honghao Zhang on 5/6/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 /// Button With Extra Presentation Styles
 /// You can set borderColor, borderWidth, cornerRadius and backgroundColor for different states
 open class Button: UIButton {
-
     /// Corner radius attribute, used in CornerRadius .relative case.
     ///
     /// - width: Width
@@ -20,7 +16,7 @@ open class Button: UIButton {
 
     /**
      Corner radius option.
-     
+
      - Absolute:   Absolute corner radius.
      - Relative:   Relative corner radius, calculated by percetage multiply by width or height
      - HalfCircle: Half-circle, capsule like
@@ -32,7 +28,7 @@ open class Button: UIButton {
 
         public func value(for view: UIView) -> CGFloat {
             switch self {
-            case .absolute(let cornerRadius):
+            case let .absolute(cornerRadius):
                 return cornerRadius
 
             case .relative(let (percent: percent, attribute: attribute)):
@@ -49,6 +45,7 @@ open class Button: UIButton {
         }
 
         // MARK: - Equatable
+
         public static func == (lhs: CornerRadius, rhs: CornerRadius) -> Bool {
             switch (lhs, rhs) {
             case let (.absolute(lValue), .absolute(rValue)):
@@ -67,6 +64,7 @@ open class Button: UIButton {
     public var isAnimated: Bool = true
 
     // MARK: - Storing Extra Presentation Styles
+
     private var _backgroundColorForState = [UInt: UIColor]()
     private var backgroundImageColorForState = [UInt: UIColor]()
     private var transformForState = [UInt: CGAffineTransform]()
@@ -84,11 +82,12 @@ open class Button: UIButton {
     private var shadowPathForState = [UInt: CGPath]()
 
     // MARK: - Overriden
-    override open var isHighlighted: Bool { didSet { refreshBorderStyles() } }
-    override open var isEnabled: Bool { didSet { refreshBorderStyles() } }
-    override open var isSelected: Bool { didSet { refreshBorderStyles() } }
 
-    override open func layoutSubviews() {
+    open override var isHighlighted: Bool { didSet { refreshBorderStyles() } }
+    open override var isEnabled: Bool { didSet { refreshBorderStyles() } }
+    open override var isSelected: Bool { didSet { refreshBorderStyles() } }
+
+    open override func layoutSubviews() {
         super.layoutSubviews()
 
         refreshBorderStyles()
@@ -96,6 +95,7 @@ open class Button: UIButton {
 }
 
 // MARK: - Configuring Button Presentation
+
 public extension Button {
     // MARK: - Setting Extra Presentation Styles
 
@@ -110,7 +110,7 @@ public extension Button {
 
     /**
      Set the background image with color to use for the specified state.
-     
+
      - parameter color: The color for background image to use for the specified state.
      - parameter state: The state that uses the specified background image color. The possible values are described in UIControlState.
      */
@@ -135,7 +135,7 @@ public extension Button {
 
     /**
      Set the border color to use for the specified state.
-     
+
      - parameter color: The border color to use for the specified state.
      - parameter state: The state that uses the specified border color. The possible values are described in UIControlState.
      */
@@ -145,7 +145,7 @@ public extension Button {
 
     /**
      Set the border width to use for the specified state.
-     
+
      - parameter width: The border width to use for the specified state.
      - parameter state: The state that uses the specified border width. The possible values are described in UIControlState.
      */
@@ -155,7 +155,7 @@ public extension Button {
 
     /**
      Set the corner radius to use for the specified state.
-     
+
      - parameter cornerRadius: The corner radius to use for the specified state.
      - parameter state:        The state that uses the specified corner radius. The possible values are described in UIControlState.
      */
@@ -220,9 +220,9 @@ public extension Button {
 
     /**
      Returns the background image color associated with the specified state.
-     
+
      - parameter state: The state that uses the background image color. The possible values are described in UIControlState.
-     
+
      - returns: The background image color for the specified state. If no background image color has been set for the specific state, this method returns the background image color associated with the UIControlStateNormal state. If no background image color has been set for the UIControlStateNormal state, nil is returned.
      */
     func backgroundImageColorForState(_ state: UIControl.State) -> UIColor? {
@@ -239,9 +239,9 @@ public extension Button {
 
     /**
      Returns the border color associated with the specified state.
-     
+
      - parameter state: The state that uses the border color. The possible values are described in UIControlState.
-     
+
      - returns: The border color for the specified state. If no border color has been set for the specific state, this method returns the border color associated with the UIControlStateNormal state. If no border color has been set for the UIControlStateNormal state, nil is returned.
      */
     func borderColorForState(_ state: UIControl.State) -> UIColor? {
@@ -250,9 +250,9 @@ public extension Button {
 
     /**
      Returns the border width used for a state.
-     
+
      - parameter state: The state that uses the border width. The possible values are described in UIControlState.
-     
+
      - returns: The border width for the specified state. If there's no border width is set for the state, border width for normal state is returned, otherwise, nil is returned.
      */
     func borderWidthForState(_ state: UIControl.State) -> CGFloat? {
@@ -261,9 +261,9 @@ public extension Button {
 
     /**
      Returns the corner radius used for a state.
-     
+
      - parameter state: The state that uses the corner radius. The possible values are described in UIControlState.
-     
+
      - returns: The corner radius for the specified state. If there's no corner radius is set for the state, corner radius for normal state is returned, otherwise, nil is returned.
      */
     func cornerRadiusForState(_ state: UIControl.State) -> CornerRadius? {
@@ -312,6 +312,7 @@ public extension Button {
 }
 
 // MARK: - Getting the Current State
+
 public extension Button {
     /// The current corner radius that is displayed on the button. (read-only)
     var currentCornerRadius: CornerRadius {
@@ -325,9 +326,10 @@ public extension Button {
 }
 
 // MARK: - Private Helpers
-extension Button {
 
+extension Button {
     // MARK: - Convenient Values
+
     private var normalBackgroundColor: UIColor? { return _backgroundColorForState[UIControl.State.normal.rawValue] }
     private var highlightedBackgroundColor: UIColor? { return _backgroundColorForState[UIControl.State.highlighted.rawValue] }
     private var disabledBackgroundColor: UIColor? { return _backgroundColorForState[UIControl.State.disabled.rawValue] }
@@ -447,15 +449,15 @@ extension Button {
         }
     }
 
-	// TODO: Transparent title color
-	// Reference: https://github.com/purrrminator/AKStencilButton/blob/master/AKStencilButton.m
-	// http://stackoverflow.com/questions/27458101/transparent-uibutton-title
-	// http://stackoverflow.com/questions/23515100/ios-uibutton-with-transparent-title-on-white-background
+    // TODO: Transparent title color
+    // Reference: https://github.com/purrrminator/AKStencilButton/blob/master/AKStencilButton.m
+    // http://stackoverflow.com/questions/27458101/transparent-uibutton-title
+    // http://stackoverflow.com/questions/23515100/ios-uibutton-with-transparent-title-on-white-background
 //    private func refreshClearTitleMask() {
-////        titleLabel?.backgroundColor = UIColor.clearColor()
+//        titleLabel?.backgroundColor = UIColor.clearColor()
 //        let text = titleLabel?.text
 //        let font = titleLabel?.font
-//        
+//
 //        let attributes = [NSFontAttributeName : titleLabel?.font]
 //        let textSize = text.
 //    }
@@ -463,7 +465,7 @@ extension Button {
 
 // MARK: <-? Non-equal Assignment Operator
 
-infix operator <-? : AssignmentPrecedence
+infix operator <-?: AssignmentPrecedence
 
 private extension Equatable {
     /**

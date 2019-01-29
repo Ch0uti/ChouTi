@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 8/17/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -32,6 +29,7 @@ public extension UINavigationBar {
 }
 
 // MARK: - Customization of navigation bar title
+
 public extension UINavigationBar {
     var titleTextColor: UIColor? {
         set {
@@ -42,7 +40,7 @@ public extension UINavigationBar {
                     titleTextAttributes = [.foregroundColor: titleTextColor]
                 }
             } else {
-				// FIXME: revist it when Xcode 8.2
+                // FIXME: revist it when Xcode 8.2
                 _ = titleTextAttributes?.removeValue(forKey: .foregroundColor)
             }
         }
@@ -80,6 +78,7 @@ public extension UINavigationBar {
 }
 
 // MARK: - Transparent
+
 public extension UINavigationBar {
     func setToTransparent(_ transparent: Bool) {
         if transparent {

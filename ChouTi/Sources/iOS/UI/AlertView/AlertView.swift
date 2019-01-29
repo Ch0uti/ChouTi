@@ -1,13 +1,10 @@
-//
-//  Created by Honghao Zhang on 5/5/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 /**
-*  Alert View mimics UIAlertController.view
-*/
+ *  Alert View mimics UIAlertController.view
+ */
 @available(iOS 9.0, *)
 open class AlertView: UIView {
     /// The preferred maximum width (in points) for alert view
@@ -16,7 +13,7 @@ open class AlertView: UIView {
     /// The title of the alert.
     open var title: String? {
         didSet {
-			titleLabel.isHidden = title == nil
+            titleLabel.isHidden = title == nil
             titleLabel.setText(title, withFadeTransitionAnimation: 0.25)
         }
     }
@@ -24,7 +21,7 @@ open class AlertView: UIView {
     /// Descriptive text that provides more details about the reason for the alert.
     open var message: String? {
         didSet {
-			messageLabel.isHidden = message == nil
+            messageLabel.isHidden = message == nil
             messageLabel.setText(message, withFadeTransitionAnimation: 0.25)
         }
     }
@@ -90,7 +87,7 @@ open class AlertView: UIView {
         }
     }
 
-    override open var layoutMargins: UIEdgeInsets {
+    open override var layoutMargins: UIEdgeInsets {
         didSet {
             titleLabel.preferredMaxLayoutWidth = preferredWidth - layoutMargins.left - layoutMargins.right
             messageLabel.preferredMaxLayoutWidth = preferredWidth - layoutMargins.left - layoutMargins.right
@@ -99,10 +96,10 @@ open class AlertView: UIView {
 
     /**
      Creates and returns a view for displaying an alert to the user.
-     
+
      - parameter title:   The title of the alert. Use this string to get the user’s attention and communicate the reason for the alert.
      - parameter message: Descriptive text that provides additional details about the reason for the alert.
-     
+
      - returns: An initialized alert view object.
      */
     public convenience init(title: String?, message: String?) {
@@ -114,7 +111,7 @@ open class AlertView: UIView {
         self.init()
     }
 
-    override public init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
 
         commonInit()
@@ -182,9 +179,9 @@ open class AlertView: UIView {
     private func setupConstraints() {
         setupBackgroundViewConstraints()
 
-		let views = [
-            "containerStackView": containerStackView
-		]
+        let views = [
+            "containerStackView": containerStackView,
+        ]
 
         var constraints = [NSLayoutConstraint]()
 
@@ -199,9 +196,9 @@ open class AlertView: UIView {
             fatalError("Fixit")
         }
 
-		let views: [String: UIView] = [
-            "backgroundView": backgroundView
-		]
+        let views: [String: UIView] = [
+            "backgroundView": backgroundView,
+        ]
 
         var constraints = [NSLayoutConstraint]()
 
@@ -211,13 +208,13 @@ open class AlertView: UIView {
         NSLayoutConstraint.activate(constraints)
     }
 
-    override open var intrinsicContentSize: CGSize {
+    open override var intrinsicContentSize: CGSize {
         return CGSize(width: preferredWidth, height: UIView.noIntrinsicMetric)
     }
 
     /**
      Attaches an action object to the alert view
-     
+
      - parameter action: The action object to display as part of the alert. Actions are displayed as buttons in the alert. The action object provides the button text and the action to be performed when that button is tapped.
      */
     open func addAction(_ action: AlertAction) {

@@ -1,13 +1,9 @@
-//
-//  Created by Honghao Zhang on 8/28/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import UIKit
 
 class DummyViewController: UIViewController {
-
     let label: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.boldSystemFont(ofSize: 24)
@@ -25,7 +21,7 @@ class DummyViewController: UIViewController {
     }
 
     @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -47,26 +43,23 @@ class DummyViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         tableView.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -20).isActive = true
 
-        var section = TableViewSection(headerTitle: "Test TableView",
-                                       rows:
-            [
-                TableViewRow(title: ".Value1 Cell",
-                             subtitle: "Detail Text",
-                             cellInitialization: { indexPath, tableView in
-                                tableView.dequeueReusableCell(withClass: TableViewCellValue1.self, forIndexPath: indexPath)
-                }),
-                TableViewRow(title: ".Value2 Cell",
-                             subtitle: "Detail Text",
-                             cellInitialization: { indexPath, tableView in
-                                tableView.dequeueReusableCell(withClass: TableViewCellValue2.self, forIndexPath: indexPath)
-                }),
-                TableViewRow(title: "Default Cell",
-                             subtitle: "By default Cell Style is .Subtitle"
-                )
-            ]
+        var section = TableViewSection(
+            headerTitle: "Test TableView",
+            rows: [TableViewRow(title: ".Value1 Cell",
+                                subtitle: "Detail Text",
+                                cellInitialization: { indexPath, tableView in
+                                    tableView.dequeueReusableCell(withClass: TableViewCellValue1.self, forIndexPath: indexPath)
+                   }),
+                   TableViewRow(title: ".Value2 Cell",
+                                subtitle: "Detail Text",
+                                cellInitialization: { indexPath, tableView in
+                                    tableView.dequeueReusableCell(withClass: TableViewCellValue2.self, forIndexPath: indexPath)
+                   }),
+                   TableViewRow(title: "Default Cell",
+                                subtitle: "By default Cell Style is .Subtitle")]
         )
 
-		section.footerTitle = "This table view is used for testing user interaction in page child view controller."
+        section.footerTitle = "This table view is used for testing user interaction in page child view controller."
     }
 
     override func viewWillAppear(_ animated: Bool) {

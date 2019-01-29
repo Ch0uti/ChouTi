@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 11/6/2018.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -95,7 +92,7 @@ extension PageViewController: UIScrollViewDelegate {
         beginDraggingContentOffsetX = scrollView.contentOffset.x
     }
 
-    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    public func scrollViewWillEndDragging(_: UIScrollView, withVelocity _: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         isDragging = false
         guard let beginDraggingContentOffsetX = beginDraggingContentOffsetX else {
             return
@@ -115,7 +112,7 @@ extension PageViewController: UIScrollViewDelegate {
         }
     }
 
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate _: Bool) {
         // If dragging ends at separator point, clean state
         if scrollView.contentOffset.x.truncatingRemainder(dividingBy: view.bounds.width) == 0 {
             loadedViewControllers.filter { $0.isAppearing != nil }.forEach { $0.zhh_endAppearanceTransition() }
@@ -175,6 +172,7 @@ extension PageViewController: UIScrollViewDelegate {
 }
 
 // MARK: - ViewController Appearance State Swizzling
+
 extension UIViewController {
     enum AssociatedKeys {
         static var AppearanceStateKey = "zhh_AppearanceStateKey"

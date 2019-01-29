@@ -1,13 +1,9 @@
-//
-//  Created by Honghao Zhang on 8/28/2015.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import UIKit
 
 class CenterViewController: UIViewController {
-
     weak var slideViewController: SlideController?
     var leftViewController: DummyViewController?
     var rightViewController: DummyViewController?
@@ -42,7 +38,7 @@ class CenterViewController: UIViewController {
         print("CenterViewController: viewDidDisappear")
     }
 
-    @IBAction private func exitTapped(_ sender: UIButton) {
+    @IBAction private func exitTapped(_: UIButton) {
         dismiss(animated: true, completion: nil)
     }
 

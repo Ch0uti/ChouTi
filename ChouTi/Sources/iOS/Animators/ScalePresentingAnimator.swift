@@ -1,12 +1,8 @@
-//
-//  Created by Honghao Zhang on 5/9/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 open class ScalePresentingAnimator: Animator {
-
     open var presentingInitialScaleFactor: CGFloat = 1.2
     open var presentingFinalScaleFactor: CGFloat = 1.0
     open var presentingInitialAlpha: CGFloat = 0.0
@@ -22,7 +18,7 @@ open class ScalePresentingAnimator: Animator {
     /// Whether presenting view should be dimmed when preseting. If true, tintAdjustmentMode of presenting view will update to .Dimmed.
     open var shouldDimPresentedView: Bool = true
 
-    override public init() {
+    public override init() {
         super.init()
 
         animationDuration = 0.3
@@ -30,8 +26,9 @@ open class ScalePresentingAnimator: Animator {
 }
 
 // MARK: - UIViewControllerAnimatedTransitioning
+
 extension ScalePresentingAnimator {
-    override public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(using: transitionContext)
 
         if presenting {
@@ -47,8 +44,8 @@ extension ScalePresentingAnimator {
             let presentedViewController = self.presentedViewController,
             let presentedView = presentedViewController.view,
             let containerView = self.containerView else {
-                NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
-                return
+            NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
+            return
         }
 
         presentedView.size = presentedViewController.preferredContentSize
@@ -71,23 +68,26 @@ extension ScalePresentingAnimator {
     private func dismissingAnimation(_ transitionContext: UIViewControllerContextTransitioning) {
         // Necessary setup for dismissing
         guard let fromView = self.fromViewController?.view else {
-			NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
-			return
+            NSLog("Error: Cannot get view from UIViewControllerContextTransitioning")
+            return
         }
 
-        UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut,
-                       animations: { [unowned self] in
-                        fromView.transform = CGAffineTransform(scaleX: self.dismissingFinalScaleFactor, y: self.dismissingFinalScaleFactor)
-                        fromView.alpha = self.dismissingFinalAlpha
+        UIView.animate(
+            withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut,
+            animations: { [unowned self] in
+                fromView.transform = CGAffineTransform(scaleX: self.dismissingFinalScaleFactor, y: self.dismissingFinalScaleFactor)
+                fromView.alpha = self.dismissingFinalAlpha
             }, completion: { finished in
                 transitionContext.completeTransition(finished)
-        })
+            }
+        )
     }
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
+
 public extension ScalePresentingAnimator {
-    override func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+    override func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source _: UIViewController) -> UIPresentationController? {
         let overlayPresentationController = OverlayPresentationController(presentedViewController: presented, presentingViewController: presenting, overlayViewStyle: overlayViewStyle)
         overlayPresentationController.shouldDismissOnTappingOutsideView = false
         overlayPresentationController.shouldDimPresentedView = shouldDimPresentedView

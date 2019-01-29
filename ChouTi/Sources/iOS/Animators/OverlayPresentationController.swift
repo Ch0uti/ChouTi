@@ -1,13 +1,10 @@
-//
-//  Created by Honghao Zhang on 2/23/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 /**
  Overlay View Style
- 
+
  - Normal:  This is a normal overlay view with a customized background color
  - Blurred: This is blurred overlay view with blur effect style and background color
  */
@@ -18,7 +15,6 @@ public enum OverlayViewStyle {
 
 /// Base Overlay Presentation Controller
 open class OverlayPresentationController: UIPresentationController {
-
     /// Whether should dismiss presented view when tap out side of presented view
     open var shouldDismissOnTappingOutsideView: Bool = true
 
@@ -26,13 +22,14 @@ open class OverlayPresentationController: UIPresentationController {
     open var shouldDimPresentedView: Bool = false
 
     // MARK: - OverlayView
+
     lazy var overlayView: UIView = {
         let overlayView: UIView
         switch self.overlayViewStyle {
         case let .blurred(style, color):
             overlayView = UIVisualEffectView(effect: UIBlurEffect(style: style))
             overlayView.backgroundColor = color
-        case .normal(let color):
+        case let .normal(color):
             overlayView = UIView()
             overlayView.backgroundColor = color
         }
@@ -43,9 +40,11 @@ open class OverlayPresentationController: UIPresentationController {
     open var overlayViewStyle: OverlayViewStyle = .blurred(.dark, UIColor(white: 0.0, alpha: 0.5))
 
     // MARK: - Private
+
     private var dismissTapGesture: UITapGestureRecognizer?
 
     // MARK: - Init Methods
+
     init(presentedViewController: UIViewController, presentingViewController: UIViewController?, overlayViewStyle: OverlayViewStyle) {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
 
@@ -53,7 +52,8 @@ open class OverlayPresentationController: UIPresentationController {
     }
 
     // MARK: - Transition
-    override open func presentationTransitionWillBegin() {
+
+    open override func presentationTransitionWillBegin() {
         guard let containerView = containerView else {
             NSLog("Error: containerView is nil")
             return
@@ -79,7 +79,7 @@ open class OverlayPresentationController: UIPresentationController {
         }, completion: nil)
     }
 
-    override open func dismissalTransitionWillBegin() {
+    open override func dismissalTransitionWillBegin() {
         if shouldDimPresentedView {
             presentingViewController.view.tintAdjustmentMode = .normal
         }
@@ -113,7 +113,8 @@ open class OverlayPresentationController: UIPresentationController {
     }
 
     // MARK: - Layout of the Presentation
-    override open func containerViewWillLayoutSubviews() {
+
+    open override func containerViewWillLayoutSubviews() {
         guard let containerView = containerView else {
             NSLog("Error: containerView is nil")
             return
@@ -124,6 +125,7 @@ open class OverlayPresentationController: UIPresentationController {
 }
 
 // MARK: - UIGestureRecognizerDelegate
+
 extension OverlayPresentationController: UIGestureRecognizerDelegate {
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         // Only check for self.dismissTapGesture
@@ -150,9 +152,10 @@ extension OverlayPresentationController: UIGestureRecognizerDelegate {
 }
 
 // MARK: - Actions
+
 extension OverlayPresentationController {
     @objc
-    func overlayViewTapped(_ tapRecognizer: UITapGestureRecognizer) {
+    func overlayViewTapped(_: UITapGestureRecognizer) {
         presentingViewController.dismiss(animated: true, completion: nil)
     }
 }

@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 1/2/2017.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
@@ -15,109 +12,113 @@ import UIKit
 //
 
 public protocol TitleContentTableViewCellViewModelType {
-	var title: String? { get }
-	var content: String? { get }
+    var title: String? { get }
+    var content: String? { get }
 
-	var titleColor: UIColor? { get }
-	var contentColor: UIColor? { get }
+    var titleColor: UIColor? { get }
+    var contentColor: UIColor? { get }
 
-	var titleFont: UIFont? { get }
-	var contentFont: UIFont? { get }
+    var titleFont: UIFont? { get }
+    var contentFont: UIFont? { get }
 }
 
 public extension TitleContentTableViewCellViewModelType {
-	var titleColor: UIColor? {
-		return UIColor(hexString: "#535258")
-	}
-	var contentColor: UIColor? {
-		return UIColor.black
-	}
+    var titleColor: UIColor? {
+        return UIColor(hexString: "#535258")
+    }
 
-	var titleFont: UIFont? {
+    var contentColor: UIColor? {
+        return UIColor.black
+    }
+
+    var titleFont: UIFont? {
         return UIFont.gillSansLightFont(18) ?? UIFont.systemFont(ofSize: 18, weight: .light)
-	}
-	var contentFont: UIFont? {
-		return UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: .semibold)
-	}
+    }
+
+    var contentFont: UIFont? {
+        return UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: .semibold)
+    }
 }
 
 open class TitleContentTableViewCellViewModel: TitleContentTableViewCellViewModelType {
-	open var title: String?
-	open var content: String?
+    open var title: String?
+    open var content: String?
 
-	open var titleColor: UIColor? = UIColor(hexString: "#535258")
-	open var contentColor: UIColor? = UIColor.black
+    open var titleColor: UIColor? = UIColor(hexString: "#535258")
+    open var contentColor: UIColor? = UIColor.black
 
     open var titleFont: UIFont? = UIFont.gillSansLightFont(18) ?? UIFont.systemFont(ofSize: 18, weight: .light)
     open var contentFont: UIFont? = UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: .semibold)
 
-	public init(title: String?, content: String?, titleColor: UIColor? = nil, contentColor: UIColor? = nil, titleFont: UIFont? = nil, contentFont: UIFont? = nil) {
-		self.title = title
-		self.content = content
-		self.titleColor = titleColor
-		self.contentColor = contentColor
-		self.titleFont = titleFont
-		self.contentFont = contentFont
-	}
+    public init(title: String?, content: String?, titleColor: UIColor? = nil, contentColor: UIColor? = nil, titleFont: UIFont? = nil, contentFont: UIFont? = nil) {
+        self.title = title
+        self.content = content
+        self.titleColor = titleColor
+        self.contentColor = contentColor
+        self.titleFont = titleFont
+        self.contentFont = contentFont
+    }
 }
 
 open class TitleContentTableViewCell: UITableViewCell {
-	public let titleLabel = UILabel().then {
-		$0.translatesAutoresizingMaskIntoConstraints = false
+    public let titleLabel = UILabel().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.gillSansLightFont(18) ?? UIFont.systemFont(ofSize: 18, weight: .light)
-		$0.textColor = UIColor(hexString: "#535258")
-	}
+        $0.textColor = UIColor(hexString: "#535258")
+    }
 
-	public let contentLabel = UILabel().then {
-		$0.translatesAutoresizingMaskIntoConstraints = false
+    public let contentLabel = UILabel().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.gillSansFont(20) ?? UIFont.systemFont(ofSize: 20, weight: .semibold)
-		$0.textColor = UIColor.black
-		$0.numberOfLines = 0
-	}
+        $0.textColor = UIColor.black
+        $0.numberOfLines = 0
+    }
 
-	override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: style, reuseIdentifier: reuseIdentifier)
-		commonInit()
-	}
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		commonInit()
-	}
+        commonInit()
+    }
 
-	private final func commonInit() {
-		setupViews()
-		setupConstraints()
-	}
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
 
-	private final func setupViews() {
-		contentView.addSubview(titleLabel)
-		contentView.addSubview(contentLabel)
-	}
+        commonInit()
+    }
 
-	private final func setupConstraints() {
-		contentView.preservesSuperviewLayoutMargins = false
-		contentView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    private final func commonInit() {
+        setupViews()
+        setupConstraints()
+    }
 
-		let views = [
-			"titleLabel": titleLabel,
-			"contentLabel": contentLabel
-		]
+    private final func setupViews() {
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(contentLabel)
+    }
 
-		let metrics: [String: CGFloat] = [
-			"v_spacing": 8.0
-		]
+    private final func setupConstraints() {
+        contentView.preservesSuperviewLayoutMargins = false
+        contentView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
-		var constraints = [NSLayoutConstraint]()
+        let views = [
+            "titleLabel": titleLabel,
+            "contentLabel": contentLabel,
+        ]
 
-		constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[titleLabel]-[contentLabel]-|", options: [.alignAllLeading, .alignAllTrailing], metrics: metrics, views: views)
-		constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-|", options: [], metrics: metrics, views: views)
+        let metrics: [String: CGFloat] = [
+            "v_spacing": 8.0,
+        ]
 
-		NSLayoutConstraint.activate(constraints)
-	}
+        var constraints = [NSLayoutConstraint]()
 
-	open func configure(with viewModel: TitleContentTableViewCellViewModelType) {
-		titleLabel.text = viewModel.title
-		contentLabel.text = viewModel.content
-	}
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-[titleLabel]-[contentLabel]-|", options: [.alignAllLeading, .alignAllTrailing], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-|", options: [], metrics: metrics, views: views)
+
+        NSLayoutConstraint.activate(constraints)
+    }
+
+    open func configure(with viewModel: TitleContentTableViewCellViewModelType) {
+        titleLabel.text = viewModel.title
+        contentLabel.text = viewModel.content
+    }
 }

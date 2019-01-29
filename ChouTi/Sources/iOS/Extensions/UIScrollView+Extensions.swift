@@ -1,14 +1,11 @@
-//
-//  Created by Honghao Zhang on 1/13/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import UIKit
 
 public extension UIScrollView {
     /**
      Scrolls ScrollView to the top
-     
+
      - parameter animated: whether it's animated
      */
     func scrollsToTop(animated: Bool) {
@@ -17,7 +14,7 @@ public extension UIScrollView {
 
     /**
      Scrolls ScrollView to the bottom
-     
+
      - parameter animated: whether it's animated
      */
     func scrollsToBottom(animated: Bool) {

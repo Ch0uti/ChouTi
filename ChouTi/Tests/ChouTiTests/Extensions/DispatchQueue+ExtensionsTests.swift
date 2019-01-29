@@ -1,18 +1,15 @@
-//
-//  Created by Honghao Zhang on 10/18/2018.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import Foundation
 import Nimble
 import Quick
+@testable import ChouTi
 
 class DispatchQueue_ExtensionsTests: QuickSpec {
     override func spec() {
         describe("dispatch queue on main") {
             context("if dispatch from the main queue") {
-                it ("should run async method immediately") {
+                it("should run async method immediately") {
                     var hasRun = false
                     DispatchQueue.onMainAsync {
                         hasRun = true
@@ -20,7 +17,7 @@ class DispatchQueue_ExtensionsTests: QuickSpec {
                     expect(hasRun).to(beTrue())
                 }
 
-                it ("should run sync method immediately") {
+                it("should run sync method immediately") {
                     var hasRun = false
                     DispatchQueue.onMainSync {
                         hasRun = true
@@ -30,7 +27,7 @@ class DispatchQueue_ExtensionsTests: QuickSpec {
             }
 
             context("if dispatch from another queue") {
-                it ("should run async method later") {
+                it("should run async method later") {
                     var hasRun = false
                     DispatchQueue(label: "dummy dispatch queue").async {
                         DispatchQueue.onMainAsync {
@@ -41,7 +38,7 @@ class DispatchQueue_ExtensionsTests: QuickSpec {
                     expect(hasRun).toEventually(beTrue())
                 }
 
-                it ("should still run sync method immediately") {
+                it("should still run sync method immediately") {
                     var hasRun = false
                     DispatchQueue(label: "dummy dispatch queue").async {
                         DispatchQueue.onMainSync {

@@ -1,7 +1,4 @@
-//
-//  Created by Honghao Zhang on 6/9/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import UIKit
@@ -23,7 +20,7 @@ class PageControlDemoViewController: UIViewController {
         scrollView.constrainToFullSizeInSuperview()
 
         scrollView.contentSize = CGSize(width: view.width * 5, height: view.height)
-        for i in 0 ..< 5 {
+        for i in 0..<5 {
             let v = randomView()
             v.x = view.width * CGFloat(i)
             scrollView.addSubview(v)
@@ -51,9 +48,8 @@ class PageControlDemoViewController: UIViewController {
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
             systemPageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            systemPageControl.bottomAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: -40)
-        ]
-        )
+            systemPageControl.bottomAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: -40),
+        ])
     }
 
     override func viewDidAppear(_ animated: Bool) {

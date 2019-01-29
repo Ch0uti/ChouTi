@@ -1,14 +1,10 @@
-//
-//  Created by Honghao Zhang on 5/5/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
 import UIKit
 
 @available(iOS 9.0, *)
 class AlertControllerDemoViewController: UIViewController {
-
     var rotation: Int = 0 {
         didSet {
             rotation %= 5
@@ -69,7 +65,7 @@ class AlertControllerDemoViewController: UIViewController {
     }
 
     @objc
-    func presentDefaultAlert(_ sender: Button) {
+    func presentDefaultAlert(_: Button) {
         let alert = UIAlertController(title: "Default Alert Style", message: "This is system's default alert style.", preferredStyle: .alert)
 
         if rotation <= 0 {
@@ -78,7 +74,8 @@ class AlertControllerDemoViewController: UIViewController {
                 style: .default,
                 handler: { handler -> Void in
                     print("\(handler.title ??? "Unknown") pressed")
-                }))
+                }
+            ))
         }
 
         if rotation <= 1 {
@@ -87,7 +84,8 @@ class AlertControllerDemoViewController: UIViewController {
                 style: .cancel,
                 handler: { handler -> Void in
                     print("\(handler.title ??? "Unknown") pressed")
-                }))
+                }
+            ))
         }
 
         if rotation <= 2 {
@@ -96,7 +94,8 @@ class AlertControllerDemoViewController: UIViewController {
                 style: .destructive,
                 handler: { handler -> Void in
                     print("\(handler.title ??? "Unknown") pressed")
-                }))
+                }
+            ))
         }
 
         if rotation <= 3 {
@@ -105,7 +104,8 @@ class AlertControllerDemoViewController: UIViewController {
                 style: .default,
                 handler: { handler -> Void in
                     print("\(handler.title ??? "Unknown") pressed")
-                }))
+                }
+            ))
         }
 
         if alert.actions.isEmpty {
@@ -115,11 +115,11 @@ class AlertControllerDemoViewController: UIViewController {
         }
 
         rotation += 1
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 
     @objc
-    func presentCustomizedAlert(_ sender: Button) {
+    func presentCustomizedAlert(_: Button) {
         let alert = AlertController(title: "Customized Alert Style", message: "This is customized alert style.")
 
         delay(1) {
@@ -132,7 +132,8 @@ class AlertControllerDemoViewController: UIViewController {
                 style: .default,
                 handler: { handler -> Void in
                     print("\(handler.title ??? "Unknown") pressed")
-                }))
+                }
+            ))
         }
 
         if rotation <= 1 {
@@ -141,7 +142,8 @@ class AlertControllerDemoViewController: UIViewController {
                 style: .cancel,
                 handler: { handler -> Void in
                     print("\(handler.title ??? "Unknown") pressed")
-                }))
+                }
+            ))
         }
 
         if rotation <= 2 {
@@ -150,7 +152,8 @@ class AlertControllerDemoViewController: UIViewController {
                 style: .destructive,
                 handler: { handler -> Void in
                     print("\(handler.title ??? "Unknown") pressed")
-                }))
+                }
+            ))
         }
 
         if rotation <= 3 {
@@ -159,7 +162,8 @@ class AlertControllerDemoViewController: UIViewController {
                 style: .default,
                 handler: { handler -> Void in
                     print("\(handler.title ??? "Unknown") pressed")
-                }))
+                }
+            ))
         }
 
         if alert.actions.isEmpty {
@@ -180,6 +184,6 @@ class AlertControllerDemoViewController: UIViewController {
         }
 
         rotation += 1
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 }

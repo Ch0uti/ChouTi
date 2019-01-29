@@ -1,13 +1,9 @@
-//
-//  Created by Honghao Zhang on 7/2/2016.
-//  Copyright © 2018 ChouTi. All rights reserved.
-//
+// Copyright © 2019 ChouTi. All rights reserved.
 
-@testable import ChouTi
 import XCTest
+@testable import ChouTi
 
 class CGContext_ExtensionsTests: XCTestCase {
-
     // +-----+
     // |     |
     // |     | 50
@@ -18,18 +14,18 @@ class CGContext_ExtensionsTests: XCTestCase {
         let context = UIGraphicsGetCurrentContext()
 
         let matrix = context!.ctm
-		XCTAssertEqual(matrix, CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 50))
+        XCTAssertEqual(matrix, CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 50))
 
         context!.concatenate(CGAffineTransform(a: 2, b: 10, c: 10, d: 2, tx: 5, ty: 5))
         let matrix1 = context!.ctm
 
-		XCTAssertEqual(matrix1, CGAffineTransform(a: 2, b: -10, c: 10, d: -2, tx: 5, ty: 45))
+        XCTAssertEqual(matrix1, CGAffineTransform(a: 2, b: -10, c: 10, d: -2, tx: 5, ty: 45))
 
         context?.flipCoordinatesVertically()
 
         let matrix2 = context!.ctm
 
-		XCTAssertEqual(matrix2, CGAffineTransform(a: 2, b: -10, c: -10, d: 2, tx: 505, ty: -55))
+        XCTAssertEqual(matrix2, CGAffineTransform(a: 2, b: -10, c: -10, d: 2, tx: 505, ty: -55))
 
         UIGraphicsEndImageContext()
     }
