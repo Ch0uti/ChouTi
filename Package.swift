@@ -11,9 +11,9 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.37.2"),
-    .package(url: "https://github.com/Quick/Quick", from: "1.3.2"),
-    .package(url: "https://github.com/Quick/Nimble", from: "7.3.1"),
+    .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.40.6"),
+    .package(url: "https://github.com/Quick/Quick", from: "2.0.0"),
+    .package(url: "https://github.com/Quick/Nimble", from: "8.0.0"),
   ],
   targets: [
     .target(

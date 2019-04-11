@@ -5,8 +5,10 @@ build:
 
 # Generate Xcode project and open it.
 xcode:
-	@swift package generate-xcodeproj
-	@open ./ChouTi.xcodeproj
+	@osascript -e "tell app \"iPhone Simulator\" to quit"
+	@osascript -e "tell app \"Xcode\" to quit"
+	@swift package generate-xcodeproj --enable-code-coverage
+	@open ./*.xcodeproj
 
 # Run swiftformat.
 format:
