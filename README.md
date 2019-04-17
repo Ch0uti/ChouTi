@@ -1,4 +1,8 @@
-# 🗄 ChouTi（抽屉）
+<h3 align="center">
+    <img src="ChouTi.png" width=220 alt="ChouTi" />
+</h3>
+
+# ChouTi（抽屉）
 [![Version](https://img.shields.io/cocoapods/v/ChouTi.svg)](http://cocoapods.org/pods/ChouTi)
 [![Platform](https://img.shields.io/cocoapods/p/ChouTi.svg)](http://cocoapods.org/pods/ChouTi)
 [![License](https://img.shields.io/cocoapods/l/ChouTi.svg)](https://github.com/Ch0uTi/ChouTi/blob/master/LICENSE)
