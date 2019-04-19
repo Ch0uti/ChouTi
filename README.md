@@ -1,6 +1,6 @@
-<h3 align="center">
-    <img src="ChouTi.png" width=220 alt="ChouTi" />
-</h3>
+<span align="center">
+    <img src="ChouTi.png" width=128 alt="ChouTi" />
+</span>
 
 # ChouTi（抽屉）
 [![Version](https://img.shields.io/cocoapods/v/ChouTi.svg)](http://cocoapods.org/pods/ChouTi)
