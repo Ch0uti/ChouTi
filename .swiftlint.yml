@@ -58,8 +58,10 @@ opt_in_rules:
   - untyped_error_in_catch
   - unused_import
   - unused_private_declaration
+  - valid_docs
   - vertical_parameter_alignment_on_call
   - yoda_condition
+  - nslocalizedstring_require_bundle
 
 disabled_rules:
   - cyclomatic_complexity
@@ -87,6 +89,7 @@ excluded:
   - Carthage
   - Pods
   - Sources/CodeSnippets
+  - Tests
 
 line_length:
   warning: 180

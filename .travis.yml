@@ -2,7 +2,7 @@ language: swift
 osx_image: xcode10.1
 env:
   global:
-  - PROJECT_DIR="./ChouTi"
+  - PROJECT_DIR="."
   - WORKSPACE="ChouTi.xcworkspace"
   - IOS_FRAMEWORK_SCHEME="ChouTi iOS"
   - IOS_EXAMPLE_SCHEME="ChouTi Example iOS"

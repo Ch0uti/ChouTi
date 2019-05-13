@@ -75,10 +75,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cocoapods (~> 1.6.0.beta.2)
+  cocoapods
   colorize
   rake
   xcpretty
 
 BUNDLED WITH
-   1.16.2
+   1.16.4

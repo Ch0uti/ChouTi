@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/Quick/Quick",
         "state": {
           "branch": null,
-          "revision": "0b4ed6c706dd0cce923b5019a605a9bcc6b1b600",
-          "version": "2.0.0"
+          "revision": "94df9b449508344667e5afc7e80f8bcbff1e4c37",
+          "version": "2.1.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
           "branch": null,
-          "revision": "a94222c63b5d9e76e14ee84c47f263339e4e7010",
-          "version": "0.40.6"
+          "revision": "8b3e855384f15847915fa3a02019185ee7515107",
+          "version": "0.40.8"
         }
       }
     ]

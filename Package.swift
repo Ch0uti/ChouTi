@@ -11,14 +11,14 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.40.6"),
+    .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.40.8"),
     .package(url: "https://github.com/Quick/Quick", from: "2.0.0"),
     .package(url: "https://github.com/Quick/Nimble", from: "8.0.0"),
   ],
   targets: [
     .target(
       name: "ChouTi",
-      path: "ChouTi/Sources",
+      path: "Sources",
       exclude: [
         "ChouTi.h",
         "ChouTi.modulemap",
@@ -35,9 +35,8 @@ let package = Package(
         "Quick",
         "Nimble",
       ],
-      path: "ChouTi/Tests",
       exclude: [
-        "ChouTiTests/iOS",
+        "iOS",
       ]
     ),
   ]

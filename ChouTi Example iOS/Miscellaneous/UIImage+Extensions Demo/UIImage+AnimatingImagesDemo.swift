@@ -1,7 +1,7 @@
 // Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
-import Foundation
+import UIKit
 
 class UIImage_AnimatingImagesDemoViewController: UIViewController {
     let bearImageView = UIImageView()

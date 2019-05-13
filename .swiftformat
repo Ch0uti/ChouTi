@@ -3,13 +3,13 @@
 
 # format options
 --decimalgrouping none
---header "Copyright © {year} Editor. All rights reserved."
+--header "Copyright © {year} ChouTi. All rights reserved."
 --hexgrouping none
 --importgrouping testable-bottom
---indent 2
+--indent 4
 --octalgrouping none
 --ranges nospace
 --self init-only
 
 # file options
---exclude Package.swift, Submodules, Pods
+--exclude Package.swift, Submodules, Pods, Sources/CodeSnippets

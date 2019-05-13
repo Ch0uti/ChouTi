@@ -1,6 +1,7 @@
 // Copyright © 2019 ChouTi. All rights reserved.
 
 import ChouTi
+import UIKit
 
 class Issue_IncorrectTableViewCellContentViewWidth: UIViewController {
     let cell = UITableViewCell()
