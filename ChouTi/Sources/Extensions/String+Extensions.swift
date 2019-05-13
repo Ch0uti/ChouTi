@@ -45,43 +45,28 @@ public extension String {
     }
 
     /// An `NSRange` that represents the full range of the string.
-    var fullNsrange: NSRange {
+    var fullNSRange: NSRange {
         return NSRange(location: 0, length: utf16.count)
     }
 
-    /// Naively convert NSRange to Range<UTF16View.Index>, the result Range<UTF16View.Index> maybe invalid within a string.
-    private func utf16Range(from nsrange: NSRange) -> Range<UTF16View.Index>? {
-        let utf16Start = UTF16View.Index(encodedOffset: nsrange.lowerBound)
-        let utf16End = UTF16View.Index(encodedOffset: nsrange.upperBound)
-        guard utf16Start <= utf16End,
-            (utf16.startIndex <= utf16Start && utf16Start <= utf16.endIndex),
-            (utf16.startIndex <= utf16End && utf16End <= utf16.endIndex) else {
-            return nil
-        }
-
-        return utf16Start..<utf16End
-    }
-
     /// Returns a substring with the given `NSRange`, or `nil` if the range can't be converted.
-    func substring(with nsrange: NSRange) -> String? {
-        guard let utf16Range = utf16Range(from: nsrange) else {
+    func substring(with nsRange: NSRange) -> String? {
+        guard let range = range(from: nsRange) else {
             return nil
         }
-        return String(utf16[utf16Range])
+        return String(self[range])
     }
 
     /// Returns a range equivalent to the given `NSRange`, or `nil` if the range can't be converted.
-    func range(from nsrange: NSRange) -> Range<Index>? {
-        guard let utf16Range = utf16Range(from: nsrange) else {
+    func range(from nsRange: NSRange) -> Range<Index>? {
+        guard nsRange.location >= 0, nsRange.length >= 0 else {
             return nil
         }
-
-        guard let start = Index(utf16Range.lowerBound, within: utf16),
-            let end = Index(utf16Range.upperBound, within: utf16) else {
-            return nil
+        guard let from16 = utf16.index(utf16.startIndex, offsetBy: nsRange.location, limitedBy: utf16.endIndex),
+            let to16 = utf16.index(from16, offsetBy: nsRange.length, limitedBy: utf16.endIndex) else {
+                return nil
         }
-
-        return start..<end
+        return from16..<to16
     }
 }
 

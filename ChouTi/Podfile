@@ -7,12 +7,12 @@ inhibit_all_warnings!
 pod 'SwiftLint'
 
 def pods_for_framework
-  pod 'LTMorphingLabel', '~> 0.5.8'
+  pod 'LTMorphingLabel', '~> 0.7'
 end
 
 def pod_for_testing
-  pod 'Quick', '~> 1.3'
-  pod 'Nimble', '~> 7.3'
+  pod 'Quick', '~> 2.1'
+  pod 'Nimble', '~> 8.0'
 end
 
 # Targets

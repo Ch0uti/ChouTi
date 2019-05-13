@@ -47,15 +47,15 @@ class String_ExtensionsTest: XCTestCase {
     }
 
     func testFullNsrange() {
-        let nsrange_0 = "".fullNsrange
+        let nsrange_0 = "".fullNSRange
         XCTAssertEqual(nsrange_0.location, 0)
         XCTAssertEqual(nsrange_0.length, 0)
 
-        let nsrange = "123456abc".fullNsrange
+        let nsrange = "123456abc".fullNSRange
         XCTAssertEqual(nsrange.location, 0)
         XCTAssertEqual(nsrange.length, 9)
 
-        let nsrangeEmoji = "123456🤪abc".fullNsrange
+        let nsrangeEmoji = "123456🤪abc".fullNSRange
         XCTAssertEqual(nsrangeEmoji.location, 0)
         XCTAssertEqual(nsrangeEmoji.length, 11)
     }
@@ -96,19 +96,20 @@ class String_ExtensionsTest: XCTestCase {
         XCTAssertEqual(string.range(from: NSRange(location: -1, length: 0)), nil)
         XCTAssertEqual(string.range(from: NSRange(location: -1, length: 2)), nil)
         XCTAssertEqual(string.range(from: NSRange(location: 0, length: -1)), nil)
-        XCTAssertEqual(string[string.range(from: NSRange(location: 0, length: 0)) ?? String.Index(encodedOffset: 1)..<String.Index(encodedOffset: 1)], "")
-        XCTAssertEqual(string[string.range(from: NSRange(location: 0, length: 1)) ?? String.Index(encodedOffset: 0)..<String.Index(encodedOffset: 0)], "1")
+
+        XCTAssertEqual(string[string.range(from: NSRange(location: 0, length: 0))!], "")
+        XCTAssertEqual(string[string.range(from: NSRange(location: 0, length: 1))!], "1")
         XCTAssertEqual(string.range(from: NSRange(location: 0, length: 7)), nil)
-        XCTAssertEqual(string[string.range(from: NSRange(location: 6, length: 0)) ?? String.Index(encodedOffset: 1)..<String.Index(encodedOffset: 1)], "")
+        XCTAssertEqual(string[string.range(from: NSRange(location: 6, length: 0))!], "")
         XCTAssertEqual(string.range(from: NSRange(location: 7, length: 1)), nil)
 
         let emojiString = "1😃23abc"
-        XCTAssertEqual(emojiString[string.range(from: NSRange(location: 0, length: 3))!], "1😃")
+        XCTAssertEqual(emojiString[emojiString.range(from: NSRange(location: 0, length: 3))!], "1😃")
 
         let cafe = "Cafe\u{0301}" // "Café"
-        XCTAssertEqual(cafe[cafe.range(from: NSRange(location: 0, length: 3)) ?? String.Index(encodedOffset: 0)..<String.Index(encodedOffset: 0)], "Caf")
-        XCTAssertEqual(cafe[cafe.range(from: NSRange(location: 0, length: 4)) ?? String.Index(encodedOffset: 0)..<String.Index(encodedOffset: 0)], "Cafe")
-        XCTAssertEqual(cafe[cafe.range(from: NSRange(location: 0, length: 5)) ?? String.Index(encodedOffset: 0)..<String.Index(encodedOffset: 0)], "Café")
+        XCTAssertEqual(cafe[cafe.range(from: NSRange(location: 0, length: 3))!], "Caf")
+        XCTAssertEqual(cafe[cafe.range(from: NSRange(location: 0, length: 4))!], "Cafe")
+        XCTAssertEqual(cafe[cafe.range(from: NSRange(location: 0, length: 5))!], "Café")
         XCTAssertEqual(cafe.range(from: NSRange(location: 0, length: 6)), nil)
     }
 

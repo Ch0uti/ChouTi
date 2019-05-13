@@ -1,26 +1,28 @@
 PODS:
-  - ChouTi (0.4.2):
-    - ChouTi/AppExtensionUnsafe (= 0.4.2)
-    - ChouTi/Default (= 0.4.2)
-    - ChouTi/LoadingMorphingLabel (= 0.4.2)
-  - ChouTi/AppExtensionUnsafe (0.4.2):
+  - ChouTi (0.5):
+    - ChouTi/AppExtensionUnsafe (= 0.5)
+    - ChouTi/Default (= 0.5)
+    - ChouTi/Foundation (= 0.5)
+    - ChouTi/LoadingMorphingLabel (= 0.5)
+  - ChouTi/AppExtensionUnsafe (0.5):
     - ChouTi/Default
-  - ChouTi/Default (0.4.2)
-  - ChouTi/LoadingMorphingLabel (0.4.2):
+  - ChouTi/Default (0.5)
+  - ChouTi/Foundation (0.5)
+  - ChouTi/LoadingMorphingLabel (0.5):
     - ChouTi/Default
-    - LTMorphingLabel (~> 0.5.8)
-  - LTMorphingLabel (0.5.9)
-  - Nimble (7.3.1)
-  - Quick (1.3.2)
+    - LTMorphingLabel (~> 0.7)
+  - LTMorphingLabel (0.7.0)
+  - Nimble (8.0.1)
+  - Quick (2.1.0)
   - SwiftLint (0.29.2)
 
 DEPENDENCIES:
   - ChouTi (from `../`)
   - ChouTi/AppExtensionUnsafe (from `../`)
   - ChouTi/LoadingMorphingLabel (from `../`)
-  - LTMorphingLabel (~> 0.5.8)
-  - Nimble (~> 7.3)
-  - Quick (~> 1.3)
+  - LTMorphingLabel (~> 0.7)
+  - Nimble (~> 8.0)
+  - Quick (~> 2.1)
   - SwiftLint
 
 SPEC REPOS:
@@ -35,12 +37,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ChouTi: b23736615958f7921f9756620fe4bb26a893bb74
-  LTMorphingLabel: e6047354486aa4ba52d36ccc40be8874b50e1ef1
-  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
-  Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
+  ChouTi: e73ebf64c8654c13f6e68b12882505d68b103bfa
+  LTMorphingLabel: 22147fb1ec2b0306537ccc348b36ea8617179b03
+  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
   SwiftLint: 47df60bdea6e7e902b193b6596db8683aafd86a3
 
-PODFILE CHECKSUM: 256b40e49440f9d3f0573fc47e56b56bfdca6123
+PODFILE CHECKSUM: eb73b9a3d0b7e92eeb6ac3c25cc97d5ae90a3ed9
 
 COCOAPODS: 1.6.0.beta.2

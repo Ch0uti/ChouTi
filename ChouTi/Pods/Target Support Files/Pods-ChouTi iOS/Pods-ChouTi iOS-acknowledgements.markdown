@@ -4,7 +4,7 @@ This application makes use of the following third party libraries:
 ## LTMorphingLabel
 
 The MIT License (MIT)
-Copyright © 2017 Lex Tang, http://lexrus.com
+Copyright © 2019 Lex Tang, http://lexrus.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the “Software”), to deal
