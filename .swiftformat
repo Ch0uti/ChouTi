@@ -3,9 +3,13 @@
 
 # format options
 --decimalgrouping none
+--header "Copyright © {year} Editor. All rights reserved."
 --hexgrouping none
 --importgrouping testable-bottom
 --indent 2
 --octalgrouping none
 --ranges nospace
 --self init-only
+
+# file options
+--exclude Package.swift, Submodules, Pods
