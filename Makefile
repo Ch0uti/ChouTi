@@ -1,4 +1,6 @@
 bootstrap:
+	@echo "Install fastlane..."
+	@sudo gem install fastlane
 	@Scripts/bootstrap.sh
 
 # Build.
