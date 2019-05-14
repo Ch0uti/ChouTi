@@ -14,7 +14,7 @@ env:
 before_install:
   # - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   # - gem install bundler --no-rdoc --no-ri --no-document --quiet
-  - cd $PROJECT_DIR && make bootstrap && bundle exec rake update
+  - cd $PROJECT_DIR && bundle install && bundle exec rake update
 
 script:
   - set -o pipefail
