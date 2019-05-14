@@ -1,7 +1,7 @@
 require 'colorize'
 
 XCODE_VERSION="Xcode 10.2"
-SWIFT_VERSION="Apple Swift version 4.2"
+SWIFT_VERSION="Apple Swift version 5.0"
 WORKSPACE="ChouTi.xcworkspace"
 IOS_FRAMEWORK_SCHEME="ChouTi iOS"
 IOS_EXAMPLE_SCHEME="ChouTi Example iOS"

@@ -17,7 +17,7 @@ public struct OrderedDictionary<KeyType: Hashable, ValueType> {
         }
 
         set {
-            if array.index(of: key) == nil {
+            if array.firstIndex(of: key) == nil {
                 array.append(key)
             }
 
@@ -36,7 +36,7 @@ public struct OrderedDictionary<KeyType: Hashable, ValueType> {
 
     @discardableResult
     public mutating func removeValue(forKey key: KeyType) -> ValueType? {
-        if let index = array.index(of: key) {
+        if let index = array.firstIndex(of: key) {
             array.remove(at: index)
         }
         return dictionary.removeValue(forKey: key)
@@ -68,7 +68,7 @@ public extension OrderedDictionary {
 
         let existingValue = dictionary[key]
         if existingValue != nil {
-            let existingIndex = array.index(of: key)!
+            let existingIndex = array.firstIndex(of: key)!
             if existingIndex < index, index >= array.count {
                 adjustedIndex -= 1
             }

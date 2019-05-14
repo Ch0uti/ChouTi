@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1000"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -32,7 +32,7 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1810843FED4F1C9BD6C634A0AC86535C"
+            BlueprintIdentifier = "7CDC1ADFB2966DFE95682857F73A2023"
             BuildableName = "ChouTi.framework"
             BlueprintName = "ChouTi"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">

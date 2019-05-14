@@ -82,7 +82,7 @@ extension PageViewController: UIScrollViewDelegate {
         loadedViewControllers.filter { $0.isAppearing != nil }.forEach { $0.zhh_endAppearanceTransition() }
 
         if let willAppearViewController = appearingViewControllers.first {
-            _selectedIndex = loadedViewControllers.index(of: willAppearViewController)!
+            _selectedIndex = loadedViewControllers.firstIndex(of: willAppearViewController)!
         }
 
         beginDraggingContentOffsetX = nil
@@ -139,7 +139,7 @@ extension PageViewController: UIScrollViewDelegate {
             loadedViewControllers.filter { $0.isAppearing != nil }.forEach { $0.zhh_endAppearanceTransition() }
 
             if let willAppearViewController = appearingViewControllers.first {
-                _selectedIndex = loadedViewControllers.index(of: willAppearViewController)!
+                _selectedIndex = loadedViewControllers.firstIndex(of: willAppearViewController)!
 
                 // Add missing transitions
                 _selectedViewController?.zhh_beginAppearanceTransition(false, animated: false)

@@ -1,7 +1,9 @@
 ignore:
-  - "ChouTi Example iOS"
-  - "ChouTi Example iOS UITests"
-  - "Tests"
+  - "Configs"
+  - "Examples"
+  - "fastlane"
+  - "Playgrounds"
   - "Pods"
   - "Resources"
+  - "Tests"
   - "Vendor"

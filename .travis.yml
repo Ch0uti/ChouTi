@@ -12,8 +12,8 @@ env:
     - DESTINATION="OS=11.4,name=iPhone X"           REPORT_CODECOV="NO"     TEST_EXAMPLE="YES"
 
 before_install:
-  - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-  - gem install bundler --no-rdoc --no-ri --no-document --quiet
+  # - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+  # - gem install bundler --no-rdoc --no-ri --no-document --quiet
   - cd $PROJECT_DIR && make bootstrap && bundle exec rake update
 
 script:
