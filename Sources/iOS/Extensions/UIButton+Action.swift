@@ -2,7 +2,7 @@
 
 import UIKit
 
-public extension UIButton {
+extension UIButton {
     private class ButtonAction {
         var action: (UIButton) -> Void
 

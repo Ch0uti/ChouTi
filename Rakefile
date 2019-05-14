@@ -77,12 +77,7 @@ end
 
 desc "Lint Swift code."
 task :lint do
-  sh "Pods/SwiftLint/swiftlint"
-end
-
-desc "Correct Swift code."
-task :lint_autocorrect do
-  sh "Pods/SwiftLint/swiftlint autocorrect"
+  sh "Pods/SwiftLint/swiftlint --path ./Sources"
 end
 
 #-------------------------------------------------------------------------------
@@ -148,7 +143,7 @@ end
 desc "Clean Xcodes derived data."
 task :clean_xcode do
   puts "*** Cleaning Derived Data ***".colorize(:light_blue)
-  sh "rm -rf ~/Library/Developer/Xcode/DerivedData/iOSScoreESports-*"
+  sh "rm -rf ~/Library/Developer/Xcode/DerivedData/ChouTi-*"
 
   puts "*** Cleaning Module Cache ***".colorize(:light_blue)
   sh "rm -rf ~/Library/Developer/Xcode/DerivedData/ModuleCache"

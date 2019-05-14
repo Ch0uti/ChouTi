@@ -18,15 +18,7 @@ let package = Package(
   targets: [
     .target(
       name: "ChouTi",
-      path: "Sources",
-      exclude: [
-        "ChouTi.h",
-        "ChouTi.modulemap",
-        "CodeSnippets",
-        "Info.plist",
-        "iOS",
-        "Platform.swift",
-      ]
+      path: "Sources/Core"
     ),
     .testTarget(
       name: "ChouTiTests",

@@ -227,7 +227,7 @@ public extension UIColor {
             return nil
         }
 
-        let hexString = String(hexString[String.Index(encodedOffset: 1)...])
+        let hexString = String(hexString[String.Index(utf16Offset: 1, in: hexString)...])
         var hexValue: UInt32 = 0
 
         guard Scanner(string: hexString).scanHexInt32(&hexValue) else {

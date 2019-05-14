@@ -4,24 +4,6 @@ import UIKit
 
 public extension UILabel {
     /**
-     Get exact size for UILabel, computed with text and font on this label
-
-     - returns: CGSize for this label
-     */
-    @available(*, deprecated: 1.0)
-    func exactSize_deprecated() -> CGSize {
-        if let text = text {
-            let text: NSString = text as NSString
-            var newSize = text.size(withAttributes: [.font: font])
-            newSize.width = ceil(newSize.width)
-            newSize.height = ceil(newSize.height)
-            return newSize
-        } else {
-            return CGSize.zero
-        }
-    }
-
-    /**
      Get exact size for UILabel, computed with text and font on this label.
 
      - parameter preferredMaxWidth: Preferred nax width for the calculation.

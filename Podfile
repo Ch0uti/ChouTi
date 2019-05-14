@@ -25,9 +25,10 @@ target 'ChouTi iOS Tests' do
 end
 
 target 'ChouTi Example iOS' do
-  pod 'ChouTi', :path => '../'
-  pod 'ChouTi/AppExtensionUnsafe', :path => '../'
-  pod 'ChouTi/LoadingMorphingLabel', :path => '../'
+  pod 'ChouTi', :path => './'
+  pod 'ChouTi/iOS', :path => './'
+  pod 'ChouTi/AppExtensionUnsafe', :path => './'
+  pod 'ChouTi/LoadingMorphingLabel', :path => './'
 end
 
 target 'ChouTi Example iOS UITests' do

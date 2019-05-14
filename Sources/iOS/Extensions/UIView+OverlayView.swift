@@ -4,7 +4,7 @@ import UIKit
 
 // MARK: - Overlay View
 
-public extension UIView {
+extension UIView {
     private enum zhOverlayViewKey {
         static var Key = "zhOverlayViewKey"
     }

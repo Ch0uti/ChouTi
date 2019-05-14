@@ -14,7 +14,6 @@ ChouTi (抽屉) - a framework for Swift development.
 ## How to build
 
 ```bash
-cd ChouTi
-./bootstrap.sh
+make bootstrap
 rake build
 ```

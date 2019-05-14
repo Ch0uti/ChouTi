@@ -18,6 +18,7 @@ public protocol TableViewSectionType {
     var shouldShowIndex: Bool { get set }
 }
 
+// swiftlint:disable unused_setter_value
 public extension TableViewSectionType {
     var headerTitle: String? { get { return nil } set {} }
     var headerView: ((Int, UITableView) -> UIView?)? { get { return nil } set {} }

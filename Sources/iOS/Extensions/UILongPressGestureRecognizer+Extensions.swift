@@ -36,7 +36,7 @@ public extension UILongPressGestureRecognizer {
         set { objc_setAssociatedObject(self, &zhVelocityKey.Key, (newValue != nil ? NSValue(cgPoint: newValue!) : nil), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
-    public func setupForDetectingVelocity() {
+    func setupForDetectingVelocity() {
         addTarget(self, action: #selector(longPressed(_:)))
     }
 
@@ -74,7 +74,7 @@ public extension UILongPressGestureRecognizer {
         }
     }
 
-    public func velocityInAttachedView() -> CGPoint {
+    func velocityInAttachedView() -> CGPoint {
         if let _velocity = _velocity {
             return _velocity
         } else {

@@ -1,30 +1,34 @@
 {
   "name": "ChouTi",
-  "version": "0.5",
+  "version": "0.5.0",
+  "summary": "ChouTi (抽屉) - A framework for Swift development.",
+  "description": "ChouTi (抽屉) - A framework for Swift development.\n\nThis is a project includes extended data structures, classes, extensions.",
+  "homepage": "https://github.com/Ch0uTi/ChouTi",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
-  "summary": "ChouTi (抽屉) - A framework for Swift development.",
-  "description": "ChouTi (抽屉) - A framework for Swift development.\n\nThis is a project includes extended data structures, classes, extensions.",
-  "homepage": "https://github.com/Ch0uTi/ChouTi",
   "authors": {
-    "Honghao Zhang": "zhh358@gmail.com"
+    "HongHao Zhang": "me@honghaoz.com"
   },
   "source": {
     "git": "https://github.com/Ch0uTi/ChouTi.git",
-    "tag": "0.5"
+    "tag": "0.5.0"
   },
-  "requires_arc": true,
   "swift_version": "5",
+  "requires_arc": true,
+  "default_subspecs": "Core",
   "platforms": {
-    "ios": "11.0"
+    "osx": null,
+    "ios": null,
+    "tvos": null,
+    "watchos": null
   },
   "testspecs": [
     {
       "name": "Tests",
       "test_type": "unit",
-      "source_files": "ChouTi/Tests/*.swift",
+      "source_files": "Tests/ChouTiTests/**/*.swift",
       "dependencies": {
         "Quick": [
           "~> 2.1"
@@ -37,54 +41,65 @@
   ],
   "subspecs": [
     {
-      "name": "Foundation",
-      "ios": {
-        "source_files": "ChouTi/Sources/**/*.swift",
-        "exclude_files": [
-          "ChouTi/Sources/CodeSnippets",
-          "ChouTi/Sources/iOS"
-        ],
-        "resource_bundles": {
-          "Resources": "ChouTi/Resources/**/*.png"
-        }
+      "name": "Core",
+      "source_files": "Sources/Core/**/*.swift",
+      "platforms": {
+        "ios": "11.0",
+        "tvos": "9.0",
+        "watchos": "2.0",
+        "osx": "10.12"
       }
     },
     {
-      "name": "Default",
+      "name": "iOS",
       "ios": {
-        "source_files": "ChouTi/Sources/**/*.swift",
+        "source_files": "Sources/iOS/**/*.swift",
         "exclude_files": [
-          "ChouTi/Sources/iOS/UI/LoadingMorphingLabel",
-          "ChouTi/Sources/iOS/UI/SlideController"
+          "Sources/iOS/UI/LoadingMorphingLabel",
+          "Sources/iOS/UI/SlideController"
         ],
         "resource_bundles": {
-          "Resources": "ChouTi/Resources/**/*.png"
+          "Resources": "Resources/**/*.png"
+        },
+        "dependencies": {
+          "ChouTi/Core": [
+
+          ]
         }
+      },
+      "platforms": {
+        "ios": "11.0"
       }
     },
     {
       "name": "AppExtensionUnsafe",
       "ios": {
-        "source_files": "ChouTi/Sources/iOS/UI/SlideController",
+        "source_files": "Sources/iOS/UI/SlideController",
         "dependencies": {
-          "ChouTi/Default": [
+          "ChouTi/Core": [
 
           ]
         }
+      },
+      "platforms": {
+        "ios": "11.0"
       }
     },
     {
       "name": "LoadingMorphingLabel",
       "ios": {
-        "source_files": "ChouTi/Sources/iOS/UI/LoadingMorphingLabel",
+        "source_files": "Sources/iOS/UI/LoadingMorphingLabel",
         "dependencies": {
-          "ChouTi/Default": [
+          "ChouTi/Core": [
 
           ],
           "LTMorphingLabel": [
             "~> 0.7"
           ]
         }
+      },
+      "platforms": {
+        "ios": "11.0"
       }
     }
   ]

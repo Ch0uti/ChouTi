@@ -5,7 +5,7 @@ import UIKit
 // TODO: Auto dismiss enum, associated with displayingDuration, dismissingAnimationDuration
 //
 
-public extension UINavigationBar {
+extension UINavigationBar {
     private enum StatusBarKey {
         static var Key = "StatusBarKey"
     }
@@ -71,11 +71,11 @@ public extension UINavigationBar {
 }
 
 public extension UINavigationBar {
-    public func showStatusBarWithText(_ text: String, animated: Bool, animationDuration: TimeInterval = 0.3, completion: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
+    func showStatusBarWithText(_ text: String, animated: Bool, animationDuration: TimeInterval = 0.3, completion: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
         return showStatusBarWithText(text, animated: animated, animationDuration: animationDuration, completion: completion, autoDismiss: false, displayingDuration: 0.0, dismissCompletion: nil)
     }
 
-    public func showStatusBarWithText(_ text: String, animated: Bool, animationDuration: TimeInterval = 0.3, completion: ((Bool) -> Void)? = nil, autoDismiss: Bool, displayingDuration: TimeInterval, dismissCompletion _: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
+    func showStatusBarWithText(_ text: String, animated: Bool, animationDuration: TimeInterval = 0.3, completion: ((Bool) -> Void)? = nil, autoDismiss: Bool, displayingDuration: TimeInterval, dismissCompletion _: ((Bool) -> Void)? = nil) -> NavigationBarStatusBar {
         if autoDismiss {
             delay(displayingDuration) {
                 self.dismissStatusBar(true)
@@ -131,7 +131,7 @@ public extension UINavigationBar {
         NSLayoutConstraint.activate(constraints)
     }
 
-    public func dismissStatusBar(_ animated: Bool, animationDuration: TimeInterval = 0.3, completion: ((Bool) -> Void)? = nil) {
+    func dismissStatusBar(_ animated: Bool, animationDuration: TimeInterval = 0.3, completion: ((Bool) -> Void)? = nil) {
         if isShowingStatusBar == false {
             completion?(false)
             return

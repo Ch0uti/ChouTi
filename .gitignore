@@ -4,7 +4,7 @@
 # Swift
 /.build
 /Packages
-/*.xcodeproj
+ChouTi-SPM.xcodeproj
 
 # Xcode
 build/
