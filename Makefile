@@ -17,6 +17,9 @@ xcode:
 format:
 	@swift run swiftformat .
 
+doc:
+	@bundle exec jazzy
+
 # Cleanup.
 clean:
 	@echo "Clean build cache."
