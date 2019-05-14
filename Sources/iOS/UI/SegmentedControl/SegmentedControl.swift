@@ -287,19 +287,19 @@ open class SegmentedControl: UISegmentedControl {
             return
         }
 
-        let underScoreHeightConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0)
+        let underScoreHeightConstraint = NSLayoutConstraint(item: selectedUnderScoreView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0)
         self.underScoreHeightConstraint = underScoreHeightConstraint
         underScoreConstraints.append(underScoreHeightConstraint)
 
-        let underScoreLeadingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
+        let underScoreLeadingConstraint = NSLayoutConstraint(item: selectedUnderScoreView!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
         self.underScoreLeadingConstraint = underScoreLeadingConstraint
         underScoreConstraints.append(underScoreLeadingConstraint)
 
-        let underScoreTrailingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        let underScoreTrailingConstraint = NSLayoutConstraint(item: selectedUnderScoreView!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
         self.underScoreTrailingConstraint = underScoreTrailingConstraint
         underScoreConstraints.append(underScoreTrailingConstraint)
 
-        underScoreConstraints.append(NSLayoutConstraint(item: selectedUnderScoreView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
+        underScoreConstraints.append(NSLayoutConstraint(item: selectedUnderScoreView!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
 
         self.underScoreConstraints = underScoreConstraints
         NSLayoutConstraint.activate(underScoreConstraints)
@@ -485,8 +485,8 @@ private extension SegmentedControl {
 
         NSLayoutConstraint.deactivate([underScoreLeadingConstraint!, underScoreTrailingConstraint!])
 
-        underScoreLeadingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .leading, relatedBy: .equal, toItem: currentLabel, attribute: .leading, multiplier: 1.0, constant: 0.0)
-        underScoreTrailingConstraint = NSLayoutConstraint(item: selectedUnderScoreView, attribute: .trailing, relatedBy: .equal, toItem: currentLabel, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        underScoreLeadingConstraint = NSLayoutConstraint(item: selectedUnderScoreView!, attribute: .leading, relatedBy: .equal, toItem: currentLabel, attribute: .leading, multiplier: 1.0, constant: 0.0)
+        underScoreTrailingConstraint = NSLayoutConstraint(item: selectedUnderScoreView!, attribute: .trailing, relatedBy: .equal, toItem: currentLabel, attribute: .trailing, multiplier: 1.0, constant: 0.0)
 
         NSLayoutConstraint.activate([underScoreLeadingConstraint!, underScoreTrailingConstraint!])
 

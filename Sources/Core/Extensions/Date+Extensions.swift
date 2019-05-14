@@ -206,7 +206,9 @@ public extension Date {
         case .nanosecond:
             components.nanosecond = newValue
         case .timeZone, .calendar:
-            NSLog("Error: unsupported calendar component: \(component)")
+            debugPrint("Error: unsupported calendar component: \(component)")
+        @unknown default:
+            debugPrint("Unknown component: \(component)")
         }
 
         return calendar.date(from: components)
