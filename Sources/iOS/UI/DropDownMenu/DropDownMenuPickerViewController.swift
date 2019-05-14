@@ -218,9 +218,9 @@ class DropDownMenuPickerViewController: UIViewController {
 
     override func dismiss(animated flag: Bool, completion: (() -> Void)?) {
         // Collapse options first then dismiss
-        collapseOptions({ _ in
+        collapseOptions { _ in
             super.dismiss(animated: flag, completion: completion)
-        })
+        }
     }
 }
 

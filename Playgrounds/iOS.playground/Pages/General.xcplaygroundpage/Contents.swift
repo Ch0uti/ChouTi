@@ -39,9 +39,9 @@ for (a, b) in zip([1, 2, 3], ["a", "b", "c", "d"]) {
 let URLComponents = NSURLComponents(string: "http://api.com/resource/1?key1=v1&key2=v2")
 let pathComponents = (URLComponents?.path as NSString?)?.pathComponents
 
-URLComponents?.queryItems?.forEach({ item in
+URLComponents?.queryItems?.forEach { item in
     print(item.name)
-})
+}
 
 // Drop first
 let a = "abvc".characters.dropFirst()

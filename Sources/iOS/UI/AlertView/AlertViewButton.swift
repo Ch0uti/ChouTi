@@ -67,7 +67,7 @@ public class AlertViewButton: Button {
 
 extension AlertViewButton {
     /// Default button appearance
-    private static var buttonAppearanceConfigurationForAlertActionStyle: [UIAlertAction.Style: ((AlertViewButton) -> Void)] = { [
+    private static var buttonAppearanceConfigurationForAlertActionStyle: [UIAlertAction.Style: (AlertViewButton) -> Void] = { [
         .default: { button in
             button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
             button.setBorderWidth(0.0, forState: .normal)

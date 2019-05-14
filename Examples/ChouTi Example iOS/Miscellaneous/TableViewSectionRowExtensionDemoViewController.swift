@@ -6,7 +6,8 @@ import UIKit
 class TableViewSectionRowExtensionDemoViewController: UIViewController {
     let tableView = UITableView(
         frame: CGRect.zero, style: {
-            (Bool.random() ? .grouped : .plain) }()
+            (Bool.random() ? .grouped : .plain)
+        }()
     )
 
     override func viewDidLoad() {

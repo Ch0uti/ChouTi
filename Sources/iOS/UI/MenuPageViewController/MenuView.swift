@@ -86,7 +86,7 @@ open class MenuView: UIView {
     open var selectedIndex: Int {
         get { return _selectedIndex }
         set {
-            precondition(0 <= newValue && newValue < numberOfMenus, "Invalid selectedIndex: \(newValue)")
+            precondition(newValue >= 0 && newValue < numberOfMenus, "Invalid selectedIndex: \(newValue)")
             setSelectedIndex(newValue, animated: false)
         }
     }
@@ -356,7 +356,7 @@ extension MenuView {
         guard let dataSource = dataSource else {
             preconditionFailure()
         }
-        precondition(0 <= index && index <= dataSource.numberOfMenusInMenuView(self), "invalid index: \(index)")
+        precondition(index >= 0 && index <= dataSource.numberOfMenusInMenuView(self), "invalid index: \(index)")
 
         if !ignoreAutoScrollingEnabled, autoScrollingEnabled == false {
             return menuCollectionView.contentOffset

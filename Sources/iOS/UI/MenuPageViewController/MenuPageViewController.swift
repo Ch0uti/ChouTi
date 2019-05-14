@@ -26,7 +26,7 @@ open class MenuPageViewController: UIViewController {
     open var selectedIndex: Int {
         get { return _selectedIndex }
         set {
-            let isValidIndex = (0 <= newValue && newValue < numberOfMenus)
+            let isValidIndex = (newValue >= 0 && newValue < numberOfMenus)
             assert(isValidIndex, "Invalid selectedIndex: \(newValue)")
             if isValidIndex {
                 setSelectedIndex(newValue, animated: false)

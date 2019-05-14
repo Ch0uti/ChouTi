@@ -98,7 +98,7 @@ extension UIView {
     }
 
     private func _setupOverlayView(
-        viewConfiguration: ((UIView) -> Void),
+        viewConfiguration: (UIView) -> Void,
         animated: Bool = true,
         duration: TimeInterval = 0.5,
         delay: TimeInterval = 0.0,
@@ -306,7 +306,7 @@ extension UIView {
     }
 
     private func _setupBlurredOverlayView(
-        viewConfiguration: ((UIView) -> Void),
+        viewConfiguration: (UIView) -> Void,
         animated: Bool = true,
         duration: TimeInterval = 0.5,
         delay: TimeInterval = 0.0,

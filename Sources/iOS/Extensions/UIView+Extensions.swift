@@ -19,11 +19,11 @@ public extension UIView {
     }
 
     func removeAllSubviewsExceptView(_ view: UIView) {
-        subviews.filter({ $0 != view }).forEach { $0.removeFromSuperview() }
+        subviews.filter { $0 != view }.forEach { $0.removeFromSuperview() }
     }
 
     func removeAllSubviewsExceptViews(_ views: [UIView]) {
-        subviews.filter({ views.contains($0) }).forEach { $0.removeFromSuperview() }
+        subviews.filter { views.contains($0) }.forEach { $0.removeFromSuperview() }
     }
 }
 

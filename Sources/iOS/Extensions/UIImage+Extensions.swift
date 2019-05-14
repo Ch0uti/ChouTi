@@ -379,8 +379,8 @@ public extension UIImage {
         let width = CGFloat(cgImage.width)
         let height = CGFloat(cgImage.height)
 
-        assert(0 <= point.x && point.x < width)
-        assert(0 <= point.y && point.y < height)
+        assert(point.x >= 0 && point.x < width)
+        assert(point.y >= 0 && point.y < height)
 
         let context = createBitmapContext(cgImage)
 

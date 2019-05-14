@@ -11,7 +11,7 @@ public extension UILongPressGestureRecognizer {
 
     private var lastLocation: CGPoint? {
         get { return (objc_getAssociatedObject(self, &zhLastLocationKey.Key) as? NSValue)?.cgPointValue }
-        set { objc_setAssociatedObject(self, &zhLastLocationKey.Key, (newValue != nil ? NSValue(cgPoint: newValue!) : nil), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+        set { objc_setAssociatedObject(self, &zhLastLocationKey.Key, newValue != nil ? NSValue(cgPoint: newValue!) : nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     private enum zhLastUpdatedTimeIntervalSince1970Key {
@@ -33,7 +33,7 @@ public extension UILongPressGestureRecognizer {
 
     private var _velocity: CGPoint? {
         get { return (objc_getAssociatedObject(self, &zhVelocityKey.Key) as? NSValue)?.cgPointValue }
-        set { objc_setAssociatedObject(self, &zhVelocityKey.Key, (newValue != nil ? NSValue(cgPoint: newValue!) : nil), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+        set { objc_setAssociatedObject(self, &zhVelocityKey.Key, newValue != nil ? NSValue(cgPoint: newValue!) : nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     func setupForDetectingVelocity() {

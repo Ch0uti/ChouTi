@@ -10,7 +10,7 @@ class SequenceType_ExtensionsTests: XCTestCase {
         XCTAssertEqual(empty.randomSubset(), empty)
 
         let subset = integers.randomSubset()
-        XCTAssert(0 <= subset.count && subset.count <= integers.count)
+        XCTAssert(subset.count >= 0 && subset.count <= integers.count)
     }
 
     func testDictionaryRandomSubset() {

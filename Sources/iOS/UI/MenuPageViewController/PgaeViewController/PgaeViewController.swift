@@ -350,7 +350,7 @@ extension PageViewController {
         loadedViewControllers = newViewControllers
 
         if let oldViewControllers = oldViewControllers {
-            oldViewControllers.forEach({ removeViewController($0) })
+            oldViewControllers.forEach { removeViewController($0) }
         }
 
         if isVisible {
@@ -388,7 +388,7 @@ extension PageViewController {
     private func setupViewControllersWithDataSource(_ dataSource: PageViewControllerDataSource) {
         viewControllers = nil
         // Clean up old view controllers
-        loadedViewControllers?.forEach({ removeViewController($0) })
+        loadedViewControllers?.forEach { removeViewController($0) }
         loadedViewControllers = []
 
         let numberOfViewControllers = dataSource.numberOfViewControllersInPageViewController(self)

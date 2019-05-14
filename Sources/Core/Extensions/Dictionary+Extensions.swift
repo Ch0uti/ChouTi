@@ -50,7 +50,7 @@ public extension Dictionary {
 public extension Dictionary {
     /// Returns a random subsect of the dictionary.
     func randomSubset() -> [Key: Value] {
-        return filter({ _ in Bool.random() }).reduce([:]) {
+        return filter { _ in Bool.random() }.reduce([:]) {
             $0.merged(with: [$1.key: $1.value])
         }
     }

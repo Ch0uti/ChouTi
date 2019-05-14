@@ -3,7 +3,6 @@
 import Foundation
 
 public struct OrderedDictionary<KeyType: Hashable, ValueType> {
-
     private(set) var array: [KeyType] = []
     private(set) var dictionary: [KeyType: ValueType] = [:]
 

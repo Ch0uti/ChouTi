@@ -64,7 +64,7 @@ public extension String {
         }
         guard let from16 = utf16.index(utf16.startIndex, offsetBy: nsRange.location, limitedBy: utf16.endIndex),
             let to16 = utf16.index(from16, offsetBy: nsRange.length, limitedBy: utf16.endIndex) else {
-                return nil
+            return nil
         }
         return from16..<to16
     }

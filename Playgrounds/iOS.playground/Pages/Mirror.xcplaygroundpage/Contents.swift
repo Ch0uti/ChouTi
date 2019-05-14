@@ -10,7 +10,7 @@ extension DefaultReflectable {
     /// Constructs a better representation using reflection
     internal func defaultDescription<T>(instance: T) -> String {
         let mirror = Mirror(reflecting: instance)
-        let chunks = mirror.children.map({
+        let chunks = mirror.children.map {
             (label: String?, value: Any) -> String in
             if let label = label {
                 if value is String {
@@ -20,7 +20,7 @@ extension DefaultReflectable {
             } else {
                 return "\(value)"
             }
-        })
+        }
         if !chunks.isEmpty {
             let chunksString = chunks.joinWithSeparator(", ")
             return "\(mirror.subjectType)(\(chunksString))"

@@ -24,7 +24,7 @@ open class ProgressBarView: UIView {
 
     open var percent: CGFloat = 0.0 {
         didSet {
-            precondition(0.0 <= percent && percent <= 1.0, "Percetn must in range 0.0 to 1.0, inclusive.")
+            precondition(percent >= 0.0 && percent <= 1.0, "Percetn must in range 0.0 to 1.0, inclusive.")
             setNeedsLayout()
             delegate?.progressBarView(self, didSetToPercent: percent)
         }

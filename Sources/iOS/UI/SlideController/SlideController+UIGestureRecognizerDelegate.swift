@@ -61,7 +61,7 @@ extension SlideController: UIGestureRecognizerDelegate {
                 statusBarBackgroundView.backgroundColor = statusBarBackgroundColor?.withAlphaComponent(min(abs(recognizer.view!.center.x - centerX) / (leftRevealWidth ?? revealWidth), 1.0))
 
                 // If revealed width is greater than reveal width set, stop it
-                if shouldExceedRevealWidth == false, (centerXToBe - centerX >= leftRevealWidth ?? revealWidth) {
+                if shouldExceedRevealWidth == false, centerXToBe - centerX >= leftRevealWidth ?? revealWidth {
                     recognizer.view!.center.x = centerX + (leftRevealWidth ?? revealWidth)
                     recognizer.setTranslation(CGPoint.zero, in: view)
                     return
@@ -81,7 +81,7 @@ extension SlideController: UIGestureRecognizerDelegate {
 
                 statusBarBackgroundView.backgroundColor = statusBarBackgroundColor?.withAlphaComponent(min(abs(recognizer.view!.center.x - centerX) / (rightRevealWidth ?? revealWidth), 1.0))
 
-                if shouldExceedRevealWidth == false, (centerX - centerXToBe >= rightRevealWidth ?? revealWidth) {
+                if shouldExceedRevealWidth == false, centerX - centerXToBe >= rightRevealWidth ?? revealWidth {
                     recognizer.view!.center.x = centerX - (rightRevealWidth ?? revealWidth)
                     recognizer.setTranslation(CGPoint.zero, in: view)
                     return
@@ -223,9 +223,9 @@ extension SlideController {
             })
         } else {
             state = .leftCollapsing
-            animateCenterViewController({ finished in
+            animateCenterViewController { finished in
                 completion?(finished)
-            })
+            }
         }
     }
 
@@ -243,9 +243,9 @@ extension SlideController {
             })
         } else {
             state = .rightCollapsing
-            animateCenterViewController({ finished in
+            animateCenterViewController { finished in
                 completion?(finished)
-            })
+            }
         }
     }
 

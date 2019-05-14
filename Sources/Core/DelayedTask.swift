@@ -172,7 +172,7 @@ extension Task {
     @discardableResult
     private class func dispatch(_ task: Task) -> Task {
         let delayTime = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * task.seconds)) / Double(NSEC_PER_SEC)
-        task.queue.asyncAfter(deadline: delayTime, execute: {
+        task.queue.asyncAfter(deadline: delayTime) {
             if task.canceled == false {
                 task.task()
                 task._executed = true
@@ -182,7 +182,7 @@ extension Task {
                     dispatch(nextTask)
                 }
             }
-        })
+        }
 
         return task
     }
