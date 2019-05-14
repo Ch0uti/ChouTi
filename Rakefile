@@ -1,11 +1,11 @@
 require 'colorize'
 
-XCODE_VERSION="Xcode 10.1"
+XCODE_VERSION="Xcode 10.2"
 SWIFT_VERSION="Apple Swift version 4.2"
 WORKSPACE="ChouTi.xcworkspace"
 IOS_FRAMEWORK_SCHEME="ChouTi iOS"
 IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
-DESTINATION="OS=12.1,name=iPhone XS Max"
+DESTINATION="OS=12.2,name=iPhone Xs"
 
 begin
   xcodebuild_version = `xcodebuild -version`
@@ -87,19 +87,19 @@ end
 desc "Lint pod locally."
 task :pod_lib_lint do
   sh "bundle exec pod cache clean --all --verbose"
-  sh "bundle exec pod lib lint ../ChouTi.podspec --verbose"
+  sh "bundle exec pod lib lint ./ChouTi.podspec --verbose"
 end
 
 desc "Lint pod remotely."
 task :pod_spec_lint do
   sh "bundle exec pod cache clean --all --verbose"
-  sh "bundle exec pod spec lint ../ChouTi.podspec --verbose"
+  sh "bundle exec pod spec lint ./ChouTi.podspec --verbose"
 end
 
 desc "Publish pod."
 task :pod_publish do
   sh "bundle exec pod cache clean --all --verbose"
-  sh "bundle exec pod trunk push ../ChouTi.podspec --verbose"
+  sh "bundle exec pod trunk push ./ChouTi.podspec --verbose"
 end
 
 #-------------------------------------------------------------------------------

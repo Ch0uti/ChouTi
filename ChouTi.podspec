@@ -12,8 +12,13 @@ Pod::Spec.new do |s|
   s.author           = { 'HongHao Zhang' => 'me@honghaoz.com' }
   s.source           = { :git => 'https://github.com/Ch0uTi/ChouTi.git', :tag => s.version.to_s }
 
-  s.swift_version    = '5'
+  s.swift_version    = '4.2'
   s.requires_arc     = true
+  s.ios.deployment_target = '11.0'
+  s.tvos.deployment_target = "9.0"
+  s.watchos.deployment_target = "2.0"
+  s.osx.deployment_target = "10.12"
+
   s.default_subspec  = 'Core'
 
   s.subspec 'Core' do |ss|

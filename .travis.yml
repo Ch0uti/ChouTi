@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode10.1
+osx_image: xcode10.2
 env:
   global:
   - PROJECT_DIR="."
@@ -8,13 +8,13 @@ env:
   - IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
 
   matrix:
-    - DESTINATION="OS=12.0,name=iPhone XS Max"      REPORT_CODECOV="YES"    TEST_EXAMPLE="YES"
+    - DESTINATION="OS=12.0,name=iPhone Xs"          REPORT_CODECOV="YES"    TEST_EXAMPLE="YES"
     - DESTINATION="OS=11.4,name=iPhone X"           REPORT_CODECOV="NO"     TEST_EXAMPLE="YES"
 
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   - gem install bundler --no-rdoc --no-ri --no-document --quiet
-  - cd $PROJECT_DIR && ./bootstrap.sh && bundle exec rake update
+  - cd $PROJECT_DIR && make bootstrap && bundle exec rake update
 
 script:
   - set -o pipefail
@@ -32,7 +32,7 @@ script:
   - bundle exec rake lint
 
   ## Build for Release
-  - xcodebuild clean build -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;  
+  - xcodebuild clean build -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;
 
   # Example Tests
   - if [[ $TEST_EXAMPLE == "YES" ]]; then

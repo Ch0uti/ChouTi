@@ -1,0 +1,9 @@
+# ChouTi document generator jazzy settings
+
+copyright: Copyright © 2019 ChouTi.
+author: HongHao Zhang
+xcodebuild_arguments: [-target, ChouTi iOS]
+clean: true
+output: ./Documentation
+exclude:
+  - "Sources/CodeSnippets"
