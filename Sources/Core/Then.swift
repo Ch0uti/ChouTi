@@ -25,9 +25,9 @@
 import CoreGraphics
 import Foundation
 
-public protocol Then {}
+protocol Then {}
 
-public extension Then where Self: Any {
+extension Then where Self: Any {
     /// Makes it available to set properties with closures just after initializing.
     ///
     ///     let frame = CGRect().with {
@@ -52,7 +52,7 @@ public extension Then where Self: Any {
     }
 }
 
-public extension Then where Self: AnyObject {
+extension Then where Self: AnyObject {
     /// Makes it available to set properties with closures just after initializing.
     ///
     ///     let label = UILabel().then {
