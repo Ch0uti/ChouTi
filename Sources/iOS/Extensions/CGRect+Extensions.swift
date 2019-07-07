@@ -43,25 +43,25 @@ public extension CGRect {
         }
     }
 
-  var upperLeft: CGPoint {
-    return CGPoint(x: minX, y: minY)
-  }
+    var upperLeft: CGPoint {
+        return CGPoint(x: minX, y: minY)
+    }
 
-  var upperRight: CGPoint {
-    return CGPoint(x: maxX, y: minY)
-  }
+    var upperRight: CGPoint {
+        return CGPoint(x: maxX, y: minY)
+    }
 
-  var bottomLeft: CGPoint {
-    return CGPoint(x: minX, y: maxY)
-  }
+    var bottomLeft: CGPoint {
+        return CGPoint(x: minX, y: maxY)
+    }
 
-  var bottomRight: CGPoint {
-    return CGPoint(x: maxX, y: maxY)
-  }
+    var bottomRight: CGPoint {
+        return CGPoint(x: maxX, y: maxY)
+    }
 
-  var center: CGPoint {
-    get { return CGPoint(x: midX, y: midY) }
-    set { origin = CGPoint(x: newValue.x - size.width / 2,
-                           y: newValue.y - size.height / 2) }
-  }
+    var center: CGPoint {
+        get { return CGPoint(x: midX, y: midY) }
+        set { origin = CGPoint(x: newValue.x - size.width / 2,
+                               y: newValue.y - size.height / 2) }
+    }
 }
