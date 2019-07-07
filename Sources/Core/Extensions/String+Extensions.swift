@@ -34,6 +34,20 @@ public extension String {
 }
 
 public extension String {
+
+  /// Returns a new string made by removing the provided character from the leading of the string.
+  /// - Parameter character: The leading character to remove.
+  func leadingTrimmed(_ character: Character) -> String {
+    var prefixCount: Int = 0
+    for (i, char) in enumerated() {
+      if char != character {
+        prefixCount = i
+        break
+      }
+    }
+    return String(dropFirst(prefixCount))
+  }
+  
     /// Returns a new string made by removing whitespaces and newlines from both ends of the receiver.
     func trimmed() -> String {
         return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
