@@ -4,6 +4,6 @@ import CoreGraphics
 
 public extension CGPoint {
     func translate(_ dx: CGFloat, dy: CGFloat) -> CGPoint {
-        CGPoint(x: x + dx, y: y + dy)
+        return CGPoint(x: x + dx, y: y + dy)
     }
 }

@@ -2,9 +2,10 @@
 
 import UIKit
 
+/// An animator used for presenting an view controller with sliding up animation.
 open class SlideUpAnimator: Animator {
-    open var presentedViewHeight: CGFloat = 400
-    open var presentedViewWidth: CGFloat?
+    /// Presented view's height, the presented view must have an unambiguous height.
+    open var presentedViewHeight: CGFloat?
 
     open var overlayViewStyle: OverlayViewStyle = .normal(UIColor(white: 0.0, alpha: 0.75))
 
@@ -49,17 +50,10 @@ extension SlideUpAnimator {
         containerView.addSubview(presentedView)
 
         // Initial constraints
-        presentedView.constrainTo(height: presentedViewHeight)
-
-        if let presentedViewWidth = presentedViewWidth {
-            presentedView.constrainTo(width: presentedViewWidth)
-        } else {
-            NSLayoutConstraint(item: presentedView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: 0.0).isActive = true
-            NSLayoutConstraint(item: presentedView, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
-        }
-
-        topConstraint = NSLayoutConstraint(item: presentedView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        topConstraint.isActive = true
+        presentedView.leadingAnchor.constrain(to: containerView.leadingAnchor)
+        presentedView.trailingAnchor.constrain(to: containerView.trailingAnchor)
+        presentedView.heightAnchor.constraint(equalToConstant: 400).priority(.defaultLow).activate()
+        topConstraint = presentedView.topAnchor.constrain(to: containerView.bottomAnchor)
 
         // Add a bottom dummy view to avoid bottom of presented view is off with spring animation
         let emptyView = UIView()
@@ -67,22 +61,17 @@ extension SlideUpAnimator {
         containerView.addSubview(emptyView)
 
         emptyView.backgroundColor = presentedView.backgroundColor
+        emptyView.leadingAnchor.constrain(to: containerView.leadingAnchor)
+        emptyView.trailingAnchor.constrain(to: containerView.trailingAnchor)
+        emptyView.topAnchor.constrain(to: presentedView.bottomAnchor)
         emptyView.constrainTo(height: 100.0)
-        if let presentedViewWidth = presentedViewWidth {
-            emptyView.constrainTo(width: presentedViewWidth)
-        } else {
-            NSLayoutConstraint(item: emptyView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: 0.0).isActive = true
-            NSLayoutConstraint(item: emptyView, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
-        }
-        NSLayoutConstraint(item: emptyView, attribute: .top, relatedBy: .equal, toItem: presentedView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
 
         // Update layout immediately
         containerView.layoutIfNeeded()
 
         // Final constraints
         topConstraint.isActive = false
-        topConstraint = NSLayoutConstraint(item: presentedView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        topConstraint.isActive = true
+        topConstraint = presentedView.bottomAnchor.constrain(to: containerView.bottomAnchor)
 
         // Presenting animations
         UIView.animate(withDuration: animationDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {

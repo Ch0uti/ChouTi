@@ -26,6 +26,12 @@ public extension NSLayoutConstraint {
         isActive = false
         return self
     }
+
+    @discardableResult
+    func priority(_ priority: UILayoutPriority) -> NSLayoutConstraint {
+      self.priority = priority
+      return self
+    }
 }
 
 // MARK: - Auto Layout
