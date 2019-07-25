@@ -29,8 +29,8 @@ public extension NSLayoutConstraint {
 
     @discardableResult
     func priority(_ priority: UILayoutPriority) -> NSLayoutConstraint {
-      self.priority = priority
-      return self
+        self.priority = priority
+        return self
     }
 }
 
