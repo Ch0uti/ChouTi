@@ -123,7 +123,7 @@ public extension String {
     func matchedStrings(
         of pattern: String,
         options: NSRegularExpression.Options = [],
-        matchingOptions _: NSRegularExpression.MatchingOptions = []
+        matchingOptions: NSRegularExpression.MatchingOptions = []
     ) -> [String] {
         let regex: NSRegularExpression
         do {
@@ -132,11 +132,29 @@ public extension String {
             return []
         }
 
-        let matches = regex.matches(in: self, options: [], range: NSRange(0..<utf16.count))
+        let matches = regex.matches(in: self, options: matchingOptions, range: NSRange(0..<utf16.count))
         return matches.compactMap {
             substring(with: $0.range)
         }
     }
+
+    func firstMatchedString(of pattern: String,
+                            options: NSRegularExpression.Options = [],
+                            matchingOptions: NSRegularExpression.MatchingOptions = []) -> String? {
+        let regex: NSRegularExpression
+        do {
+            regex = try NSRegularExpression(pattern: pattern, options: options)
+        } catch {
+            return nil
+        }
+
+        let range = NSRange(self.startIndex..<self.endIndex, in: self)
+        guard let match = regex.firstMatch(in: self, options: matchingOptions, range: range) else {
+            return nil
+        }
+        return substring(with: match.range)
+    }
+
 
     /// Returns captured groups of a regular expression pattern for provided match index.
     func capturedGroups(

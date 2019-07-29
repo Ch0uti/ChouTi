@@ -367,11 +367,10 @@ public extension UIImage {
     /// Get the pixel color at the position.
     /// Ref: https://stackoverflow.com/a/40237504/3164091
     func pixelColor(at pos: CGPoint) -> UIColor {
-
-        let pixelData = self.cgImage!.dataProvider!.data
+        let pixelData = cgImage!.dataProvider!.data
         let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
 
-        let pixelInfo: Int = ((Int(self.size.width) * Int(pos.y)) + Int(pos.x)) * 4
+        let pixelInfo: Int = ((Int(size.width) * Int(pos.y)) + Int(pos.x)) * 4
 
         let r = CGFloat(data[pixelInfo]) / CGFloat(255.0)
         let g = CGFloat(data[pixelInfo + 1]) / CGFloat(255.0)
@@ -380,7 +379,7 @@ public extension UIImage {
 
         return UIColor(red: r, green: g, blue: b, alpha: a)
     }
-    
+
     /**
      Get the color for a pixel.
      Ref: http://stackoverflow.com/questions/35029672/getting-pixel-color-from-an-image-using-cgpoint
