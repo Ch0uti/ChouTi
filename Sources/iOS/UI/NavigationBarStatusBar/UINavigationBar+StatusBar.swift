@@ -60,7 +60,7 @@ extension UINavigationBar {
             return false
         }
 
-        return superview.containSubview(statusBar)
+        return superview.subviews.contains(statusBar)
     }
 
     func clean() {

@@ -2,31 +2,6 @@
 
 import UIKit
 
-public extension UIView {
-    /**
-     Directly contaitns a view, not recursively
-
-     - parameter view: child view
-
-     - returns: true for directly contains, otherwise false
-     */
-    func containSubview(_ view: UIView) -> Bool {
-        return subviews.contains(view)
-    }
-
-    func removeAllSubviews() {
-        subviews.forEach { $0.removeFromSuperview() }
-    }
-
-    func removeAllSubviewsExceptView(_ view: UIView) {
-        subviews.filter { $0 != view }.forEach { $0.removeFromSuperview() }
-    }
-
-    func removeAllSubviewsExceptViews(_ views: [UIView]) {
-        subviews.filter { views.contains($0) }.forEach { $0.removeFromSuperview() }
-    }
-}
-
 // MARK: - Set Hidden
 
 public extension UIView {

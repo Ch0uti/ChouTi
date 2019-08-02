@@ -255,14 +255,14 @@ extension MenuView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(UICollectionViewCell.self), for: indexPath)
 
         cell.layoutMargins = UIEdgeInsets.zero
-        cell.contentView.removeAllSubviews()
+        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         cell.contentView.layoutMargins = UIEdgeInsets.zero
 
         guard let view = dataSource?.menuView(self, menuViewForIndex: indexPath.item, contentView: cell.contentView) else {
             fatalError("MenuView: dataSource is nil.")
         }
 
-        if !cell.contentView.containSubview(view) {
+        if !cell.contentView.subviews.contains(view) {
             cell.contentView.addSubview(view)
         }
 

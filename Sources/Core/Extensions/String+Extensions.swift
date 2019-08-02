@@ -148,13 +148,12 @@ public extension String {
             return nil
         }
 
-        let range = NSRange(self.startIndex..<self.endIndex, in: self)
+        let range = NSRange(startIndex..<endIndex, in: self)
         guard let match = regex.firstMatch(in: self, options: matchingOptions, range: range) else {
             return nil
         }
         return substring(with: match.range)
     }
-
 
     /// Returns captured groups of a regular expression pattern for provided match index.
     func capturedGroups(
