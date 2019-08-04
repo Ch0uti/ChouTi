@@ -2,7 +2,7 @@
 
 import UIKit
 
-open class PageControl: UIControl {
+@IBDesignable open class PageControl: UIControl {
     private var _currentPage: Int = 0 { didSet { sendActions(for: .valueChanged) } }
     /// The current page, shown by the receiver as a white dot.
     open var currentPage: Int {
@@ -20,7 +20,7 @@ open class PageControl: UIControl {
     }
 
     /// The tint color to be used for the page indicator.
-    open var pageIndicatorTintColor = UIColor(white: 1.0, alpha: 0.2) {
+    @IBInspectable open var pageIndicatorTintColor = UIColor(white: 1.0, alpha: 0.2) {
         didSet {
             dots.forEach { $0.backgroundColor = pageIndicatorTintColor.cgColor }
         }
@@ -103,13 +103,12 @@ open class PageControl: UIControl {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-
         commonInit()
     }
 
-    @available(*, unavailable)
-    public required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
     }
 
     private func commonInit() {
@@ -174,12 +173,22 @@ extension PageControl {
 
             // Updating currentPage will also update scrollView's contentOffset, however, we don't want the observation cause setting current page again. Thus, pasue observation for the moment.
             scrollViewObserver.pauseObservation = true
-            UIView.animate(withDuration: animationDuration, animations: {
-                scrollView.contentOffset = contentOffset
-            }, completion: { [weak self] _ in
+            let contentOffsetCompletion = {
                 // Restore the contentOffset observation once animated setting contentOffset ends.
-                self?.scrollViewObserver.pauseObservation = false
-            })
+                self.scrollViewObserver.pauseObservation = false
+            }
+            if animated {
+                UIView.animate(withDuration: animationDuration, animations: {
+                    scrollView.contentOffset = contentOffset
+                }, completion: { [weak self] _ in
+                    contentOffsetCompletion()
+                })
+            } else {
+                UIView.performWithoutAnimation {
+                    scrollView.contentOffset = contentOffset
+                }
+                contentOffsetCompletion()
+            }
         }
     }
 
