@@ -223,11 +223,14 @@ public extension UIColor {
      - parameter hexString: String value represents rgba values.
      */
     convenience init?(hexString: String) {
-        guard hexString.hasPrefix("#") else {
-            return nil
+        let offset: Int
+        if hexString.hasPrefix("#") {
+            offset = 1
+        } else {
+            offset = 0
         }
 
-        let hexString = String(hexString[String.Index(utf16Offset: 1, in: hexString)...])
+        let hexString = String(hexString[String.Index(utf16Offset: offset, in: hexString)...])
         var hexValue: UInt32 = 0
 
         guard Scanner(string: hexString).scanHexInt32(&hexValue) else {
