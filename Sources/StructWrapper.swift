@@ -18,35 +18,35 @@ import Foundation
 // let theStruct = (object as? StructWrapper<<#StructType#>>)?.structValue
 
 public final class StructWrapper<StructType>: NSObject, NSCopying {
-    public let structValue: StructType
+  public let structValue: StructType
 
-    public init(_ structValue: StructType) { self.structValue = structValue }
+  public init(_ structValue: StructType) { self.structValue = structValue }
 
-    public func copy(with _: NSZone?) -> Any {
-        return type(of: self).init(structValue)
-    }
+  public func copy(with _: NSZone?) -> Any {
+    return type(of: self).init(structValue)
+  }
 }
 
 public extension StructWrapper where StructType: NSCopying {
-    func copyWithZone(_ zone: NSZone?) -> Any {
-        return type(of: self).init(structValue.copy(with: zone) as! StructType)
-    }
+  func copyWithZone(_ zone: NSZone?) -> Any {
+    return type(of: self).init(structValue.copy(with: zone) as! StructType)
+  }
 }
 
 public extension StructWrapper {
-    static func structFromObject(_ object: Any?) -> StructType? {
-        if object == nil {
-            return nil
-        }
-
-        return (object as? StructWrapper<StructType>)?.structValue
+  static func structFromObject(_ object: Any?) -> StructType? {
+    if object == nil {
+      return nil
     }
 
-    static func objectFromStruct(_ aStruct: StructType?) -> StructWrapper<StructType>? {
-        if let aStruct = aStruct {
-            return StructWrapper<StructType>(aStruct)
-        } else {
-            return nil
-        }
+    return (object as? StructWrapper<StructType>)?.structValue
+  }
+
+  static func objectFromStruct(_ aStruct: StructType?) -> StructWrapper<StructType>? {
+    if let aStruct = aStruct {
+      return StructWrapper<StructType>(aStruct)
+    } else {
+      return nil
     }
+  }
 }

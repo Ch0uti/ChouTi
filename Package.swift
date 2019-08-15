@@ -18,7 +18,7 @@ let package = Package(
   targets: [
     .target(
       name: "ChouTi",
-      path: "ChouTi/Sources"
+      path: "Sources"
     ),
     .testTarget(
       name: "ChouTiTests",
@@ -27,7 +27,7 @@ let package = Package(
         "Quick",
         "Nimble",
       ],
-      path: "ChouTi/Tests"
+      path: "Tests"
     ),
   ]
 )

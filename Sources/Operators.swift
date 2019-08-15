@@ -20,10 +20,10 @@ infix operator =?: AssignmentPrecedence
  - parameter rhs: an optional value of type T?
  */
 public func =? <T>(lhs: inout T, rhs: T?) {
-    guard let rhs = rhs else {
-        return
-    }
-    lhs = rhs
+  guard let rhs = rhs else {
+    return
+  }
+  lhs = rhs
 }
 
 /**
@@ -36,10 +36,10 @@ public func =? <T>(lhs: inout T, rhs: T?) {
  - parameter rhs: an optional value of type T?
  */
 public func =? <T>(lhs: inout T?, rhs: T?) {
-    guard let rhs = rhs else {
-        return
-    }
-    lhs = rhs
+  guard let rhs = rhs else {
+    return
+  }
+  lhs = rhs
 }
 
 /// Optional String Coalescing Operator
@@ -47,12 +47,12 @@ public func =? <T>(lhs: inout T?, rhs: T?) {
 infix operator ???: NilCoalescingPrecedence
 
 public func ??? <T>(lhs: T?, defaultValue: @autoclosure () -> String) -> String {
-    switch lhs {
-    case let value?:
-        return String(describing: value)
-    case nil:
-        return defaultValue()
-    }
+  switch lhs {
+  case let value?:
+    return String(describing: value)
+  case nil:
+    return defaultValue()
+  }
 }
 
 // swiftlint:enable static_operator
@@ -61,32 +61,32 @@ public func ??? <T>(lhs: T?, defaultValue: @autoclosure () -> String) -> String 
  *  Power Operator
  */
 precedencegroup ExponentiationPrecedence {
-    associativity: right
-    higherThan: MultiplicationPrecedence
+  associativity: right
+  higherThan: MultiplicationPrecedence
 }
 
 infix operator **: ExponentiationPrecedence
 
 public extension Double {
-    static func ** (base: Double, power: Double) -> Double {
-        return pow(base, power)
-    }
+  static func ** (base: Double, power: Double) -> Double {
+    return pow(base, power)
+  }
 }
 
 public extension CGFloat {
-    static func ** (base: CGFloat, power: CGFloat) -> CGFloat {
-        return pow(base, power)
-    }
+  static func ** (base: CGFloat, power: CGFloat) -> CGFloat {
+    return pow(base, power)
+  }
 }
 
 public extension Float {
-    static func ** (base: Float, power: Float) -> Float {
-        return pow(base, power)
-    }
+  static func ** (base: Float, power: Float) -> Float {
+    return pow(base, power)
+  }
 }
 
 public extension Int {
-    static func ** (base: Int, power: Int) -> Int {
-        return Int(pow(Double(base), Double(power)))
-    }
+  static func ** (base: Int, power: Int) -> Int {
+    return Int(pow(Double(base), Double(power)))
+  }
 }

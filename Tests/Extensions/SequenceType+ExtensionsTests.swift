@@ -4,28 +4,28 @@ import XCTest
 @testable import ChouTi
 
 class SequenceType_ExtensionsTests: XCTestCase {
-    func testRandomSubset() {
-        let integers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        let empty: [Int] = []
-        XCTAssertEqual(empty.randomSubset(), empty)
+  func testRandomSubset() {
+    let integers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let empty: [Int] = []
+    XCTAssertEqual(empty.randomSubset(), empty)
 
-        let subset = integers.randomSubset()
-        XCTAssert(subset.count >= 0 && subset.count <= integers.count)
-    }
+    let subset = integers.randomSubset()
+    XCTAssert(subset.count >= 0 && subset.count <= integers.count)
+  }
 
-    func testDictionaryRandomSubset() {
-        let dict = [1: "1", 2: "2", 3: "3", 4: "4"]
-        let subDict = dict.randomSubset()
+  func testDictionaryRandomSubset() {
+    let dict = [1: "1", 2: "2", 3: "3", 4: "4"]
+    let subDict = dict.randomSubset()
 
-        XCTAssertTrue(
-            subDict.allMatch { key, value -> Bool in
-                dict.keys.contains(key) && dict[key] == value
-            }
-        )
-    }
+    XCTAssertTrue(
+      subDict.allMatch { key, value -> Bool in
+        dict.keys.contains(key) && dict[key] == value
+      }
+    )
+  }
 
-    func testUnique() {
-        let integers = [1, 2, 2, 1, 3, 4, 5, 3, 4, 5]
-        XCTAssertEqual(integers.unique(), [1, 2, 3, 4, 5])
-    }
+  func testUnique() {
+    let integers = [1, 2, 2, 1, 3, 4, 5, 3, 4, 5]
+    XCTAssertEqual(integers.unique(), [1, 2, 3, 4, 5])
+  }
 }

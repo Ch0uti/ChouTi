@@ -13,4 +13,4 @@
 --self init-only
 
 # file options
---exclude Package.swift, Submodules
+--exclude Package.swift, Submodules, Carthage

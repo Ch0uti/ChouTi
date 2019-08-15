@@ -3,8 +3,8 @@
 import Foundation
 
 public extension Calendar {
-    /// Returns Gregorian calendar.
-    static var gregorian: Calendar {
-        return self.init(identifier: Calendar.Identifier.gregorian)
-    }
+  /// Returns Gregorian calendar.
+  static var gregorian: Calendar {
+    return self.init(identifier: Calendar.Identifier.gregorian)
+  }
 }
