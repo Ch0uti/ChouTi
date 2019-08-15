@@ -1,40 +1,29 @@
 language: swift
-osx_image: xcode10.2
+osx_image: xcode10.3
 env:
   global:
-  - PROJECT_DIR="."
-  - WORKSPACE="ChouTi.xcworkspace"
-  - IOS_FRAMEWORK_SCHEME="ChouTi iOS"
-  - IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
+  - PROJECT="ChouTi.xcodeproj"
 
   matrix:
-    - DESTINATION="OS=12.0,name=iPhone Xs"          REPORT_CODECOV="YES"    TEST_EXAMPLE="YES"
-    - DESTINATION="OS=11.4,name=iPhone X"           REPORT_CODECOV="NO"     TEST_EXAMPLE="YES"
+    - DESTINATION="OS=12.4,name=iPhone Xs"  REPORT_CODECOV="YES"
+    - DESTINATION="OS=11.4,name=iPhone X"   REPORT_CODECOV="NO"
 
 before_install:
-  # - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-  # - gem install bundler --no-rdoc --no-ri --no-document --quiet
-  - cd $PROJECT_DIR && bundle install && bundle exec rake update
+  - ./Scripts/bootstrap.sh
 
 script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
 
-  # Framework
-  ## Debug with tests
-  - xcodebuild clean test -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Debug | xcpretty;
-  ## Gather code coverage
+  # Generate Xcode project.
+  - rake xcode no_open=true
+
+  # Debug build and gather code coverage.
+  - bundle exec rake build
   - if [ $REPORT_CODECOV == "YES" ]; then
       bash <(curl -s https://codecov.io/bash) -J '^ChouTi$' -t a88d8339-78a4-452f-bf2f-45cc83580e41;
     fi
-  ## Code Lint
-  - bundle exec rake lint
 
-  ## Build for Release
-  - xcodebuild clean build -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;
-
-  # Example Tests
-  - if [[ $TEST_EXAMPLE == "YES" ]]; then
-      xcodebuild clean test -workspace "$WORKSPACE" -scheme "$IOS_EXAMPLE_SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty;
-    fi
+  # Release build.
+  - bundle exec rake build_release

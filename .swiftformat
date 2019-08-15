@@ -5,11 +5,12 @@
 --decimalgrouping none
 --header "Copyright © {year} ChouTi. All rights reserved."
 --hexgrouping none
+--ifdef no-indent
 --importgrouping testable-bottom
---indent 4
+--indent 2
 --octalgrouping none
 --ranges nospace
 --self init-only
 
 # file options
---exclude Package.swift, Submodules, Pods, Sources/CodeSnippets
+--exclude Package.swift, Submodules

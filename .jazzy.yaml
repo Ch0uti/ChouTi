@@ -2,8 +2,6 @@
 
 copyright: Copyright © 2019 ChouTi.
 author: HongHao Zhang
-xcodebuild_arguments: [-target, ChouTi iOS]
+xcodebuild_arguments: [-target, ChouTi_iOS]
 clean: true
 output: ./Documentation
-exclude:
-  - "Sources/CodeSnippets"

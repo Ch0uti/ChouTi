@@ -1,12 +1,12 @@
 require 'bundler/setup'
 require 'colorize'
 
-XCODE_VERSION="Xcode 10.2"
+XCODE_VERSION="Xcode 10.3"
 SWIFT_VERSION="Apple Swift version 5.0"
-WORKSPACE="ChouTi.xcworkspace"
-IOS_FRAMEWORK_SCHEME="ChouTi iOS"
+PROJECT="ChouTi.xcodeproj"
+IOS_FRAMEWORK_SCHEME="ChouTi_iOS"
 IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
-DESTINATION="OS=12.2,name=iPhone Xs"
+DESTINATION="OS=12.4,name=iPhone Xs"
 
 begin
   xcodebuild_version = `xcodebuild -version`
@@ -25,25 +25,18 @@ task :default do
   if $?.exitstatus != 0
     sh "rake setup"
   end
-
-  sh "bundle exec pod install"
-  sh "rake sort_xcode_project_files"
-  sh "open ./ChouTi.xcworkspace"
 end
 
 #-------------------------------------------------------------------------------
 # Setup Environment
 #-------------------------------------------------------------------------------
 
-desc "Setup the build tools environment."
-task :setup do
-  puts "* Installing Build Tools"
-  sh "bundle install"
-end
-
-desc "sort Xcode project files"
-task :sort_xcode_project_files do
-  sh "perl ./Scripts/sort-Xcode-project-file ./ChouTi.xcodeproj"
+desc "Generate Xcode project."
+task :xcode do
+  sh "xcodegen generate --spec .project.yml"
+  if ENV['no_open'] != "true"
+    sh "open ChouTi.xcodeproj"
+  end
 end
 
 #-------------------------------------------------------------------------------
@@ -51,34 +44,30 @@ end
 #-------------------------------------------------------------------------------
 
 desc "Build for Debug and Release."
-task :build => [:build_debug, :build_release]
 
 desc "Build for Debug."
-task :build_debug do
-  sh "xcodebuild clean build -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | bundle exec xcpretty"
+task :build do
+  sh "xcodebuild clean build -project '#{PROJECT}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | bundle exec xcpretty"
 end
 
 desc "Build for Release."
 task :build_release do
-  sh "xcodebuild clean build -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Release | bundle exec xcpretty"
+  sh "xcodebuild clean build -project '#{PROJECT}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Release | bundle exec xcpretty"
 end
-
-desc "Run tests."
-task :test => [:lint, :test_framework, :test_ui]
 
 desc "Run framework tests."
-task :test_framework do
-  sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | bundle exec xcpretty"
-end
-
-desc "Run UI tests."
-task :test_ui do
-  sh "xcodebuild clean test -workspace '#{WORKSPACE}' -scheme '#{IOS_EXAMPLE_SCHEME}' -destination '#{DESTINATION}' -configuration Release | bundle exec xcpretty"
+task :test do
+  sh "xcodebuild clean test -project '#{PROJECT}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | bundle exec xcpretty"
 end
 
 desc "Lint Swift code."
 task :lint do
-  sh "Pods/SwiftLint/swiftlint --path ./Sources"
+  sh "swiftlint --path ./Sources"
+end
+
+desc "Format Swift code."
+task :format do
+  sh "swift run swiftformat ."
 end
 
 #-------------------------------------------------------------------------------
@@ -107,45 +96,30 @@ end
 # Update Dependencies
 #-------------------------------------------------------------------------------
 
-desc "Update all dependencies and libraries."
-task :update => [:update_submodules, :update_pods]
-
-desc "Update git submodules."
-task :update_submodules do
-  puts "*** Pulling Git submodules ***".colorize(:light_blue)
-  sh "git submodule update --init --recursive"
-end
-
-desc "Update pods with repo update."
-task :update_pods  do
-    puts "*** Installing CocoaPods dependencies ***".colorize(:light_blue)
-    sh "bundle exec pod repo update"
-    sh "bundle exec pod install"
+desc "Update Carthage."
+task :update_carthage do
+  puts "*** Update Carthage Dependencies ***".colorize(:light_blue)
+  sh "carthage update --platform ios,tvos"
 end
 
 #-------------------------------------------------------------------------------
 # Clean
 #-------------------------------------------------------------------------------
 
-desc "Clean Xcode derived data and pods."
-task :clean => [:clean_pods, :clean_xcode]
-
-desc "Clean pods."
-task :clean_pods do
-  puts "*** Cleaning Fetched CocoaPods ***".colorize(:light_blue)
-  sh "rm -rf Pods"
-
-  if File.file?('Podfile.lock') == true
-    puts "*** Killing Podfile.lock ***".colorize(:light_blue)
-    sh "rm Podfile.lock"
-  end
-end
-
 desc "Clean Xcodes derived data."
-task :clean_xcode do
-  puts "*** Cleaning Derived Data ***".colorize(:light_blue)
+task :clean do
+  puts "*** Cleaning Derived Data ***".colorize(:red)
   sh "rm -rf ~/Library/Developer/Xcode/DerivedData/ChouTi-*"
 
-  puts "*** Cleaning Module Cache ***".colorize(:light_blue)
+  puts "*** Cleaning Module Cache ***".colorize(:red)
   sh "rm -rf ~/Library/Developer/Xcode/DerivedData/ModuleCache"
+end
+
+#-------------------------------------------------------------------------------
+# Doc
+#-------------------------------------------------------------------------------
+
+desc "Generate documentations"
+task :doc do
+  sh "bundle exec jazzy"
 end

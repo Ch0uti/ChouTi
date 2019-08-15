@@ -33,6 +33,7 @@
 		3B824DD1C205AB1E60F8E227 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A377427401FFEC8EAD21E19 /* DateFormatter+Extensions.swift */; };
 		3CA896503A810051FCC61FC6 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80F0CA4B49BFFD758E4FEE24 /* Quick.framework */; };
 		3F186533A21DD982AC48F8DC /* SequenceType+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5D01158E883F032FA529F /* SequenceType+ExtensionsTests.swift */; };
+		4344B8EC53CF546825CAD7F2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A26B4444E5C181B863C499FD /* .swiftlint.yml */; };
 		458F666FD48E8E8E634A0033 /* ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AA32AFD35F51E75164CEF6 /* ChouTi.framework */; };
 		480DA9FFBC613D579F6AD6AD /* NSObject+AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31071F4D35637B66528237 /* NSObject+AssociatedObject.swift */; };
 		489B9A8709061CF36737BFB0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B9409E1A4E03FD407CE35 /* Nimble.framework */; };
@@ -59,6 +60,7 @@
 		6C1D755A56277240E62143EC /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11EEC2648E5B04FA6897D4 /* Resource.swift */; };
 		6CCB8C9A03F9B1C2206F7F9F /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E7DBAA34E7212F7141FB31 /* DispatchQueue+Extensions.swift */; };
 		6F2AF0EC253CDF03D84E9B3D /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA45F72CBB27462657E55CF8 /* Nimble.framework */; };
+		738F1F351B4BAA35B3F6783F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A26B4444E5C181B863C499FD /* .swiftlint.yml */; };
 		74379FB1E27126AF847F4113 /* CGContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1854B06CFF70B3A498CCFDB /* CGContext+Extensions.swift */; };
 		7506776C6B6DCC0A0350A332 /* Decimal+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91739BDAFB96E13E62AAA708 /* Decimal+ExtensionsTests.swift */; };
 		7F71549536E8AB3B73F4593F /* DispatchQueue+Once.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32726C881C237DC232241A14 /* DispatchQueue+Once.swift */; };
@@ -179,6 +181,7 @@
 		91739BDAFB96E13E62AAA708 /* Decimal+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		99D31454F14AA0B76891A988 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		9A377427401FFEC8EAD21E19 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		A26B4444E5C181B863C499FD /* .swiftlint.yml */ = {isa = PBXFileReference; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A48B9409E1A4E03FD407CE35 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
 		A67710A7F38D5EC48E70EAE9 /* DelayedTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedTask.swift; sourceTree = "<group>"; };
 		A9BDEDE850A5BCB023EC2678 /* ChouTiTest.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ChouTiTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -309,6 +312,7 @@
 		C66A0E6DB77641A905B5B664 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A26B4444E5C181B863C499FD /* .swiftlint.yml */,
 				A67710A7F38D5EC48E70EAE9 /* DelayedTask.swift */,
 				4D0D58E15D9A02BB3B728B56 /* Math.swift */,
 				99D31454F14AA0B76891A988 /* Operators.swift */,
@@ -405,6 +409,7 @@
 			buildConfigurationList = 1240CC35736B84F4A01E6035 /* Build configuration list for PBXNativeTarget "ChouTi_tvOS" */;
 			buildPhases = (
 				A82EBAF0FDF90B65F7192BAB /* Sources */,
+				A061783B1BE0B9CB96F32F5D /* Resources */,
 			);
 			buildRules = (
 			);
@@ -420,6 +425,7 @@
 			buildConfigurationList = 5EFC6F4BE88AF304D378C230 /* Build configuration list for PBXNativeTarget "ChouTi_iOS" */;
 			buildPhases = (
 				472A9A70973F68DFC7DEE35D /* Sources */,
+				534CC290D5AD23FBC6FF9F56 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -474,6 +480,25 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		534CC290D5AD23FBC6FF9F56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4344B8EC53CF546825CAD7F2 /* .swiftlint.yml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A061783B1BE0B9CB96F32F5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				738F1F351B4BAA35B3F6783F /* .swiftlint.yml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4379E2A5312350EE5A62BB28 /* Sources */ = {
