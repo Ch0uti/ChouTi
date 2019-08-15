@@ -28,6 +28,16 @@ task :default do
 end
 
 #-------------------------------------------------------------------------------
+# Update Dependencies
+#-------------------------------------------------------------------------------
+
+desc "Update Carthage."
+task :update_carthage do
+  puts "*** Update Carthage Dependencies ***".colorize(:light_blue)
+  sh "carthage update --platform ios,tvos"
+end
+
+#-------------------------------------------------------------------------------
 # Setup Environment
 #-------------------------------------------------------------------------------
 
@@ -35,7 +45,7 @@ desc "Generate Xcode project."
 task :xcode do
   sh "xcodegen generate --spec .project.yml"
   if ENV['no_open'] != "true"
-    sh "open ChouTi.xcodeproj"
+    sh "open #{PROJECT}"
   end
 end
 
@@ -88,16 +98,6 @@ desc "Publish pod."
 task :pod_publish do
   sh "bundle exec pod cache clean --all --verbose"
   sh "bundle exec pod trunk push ./ChouTi.podspec --verbose"
-end
-
-#-------------------------------------------------------------------------------
-# Update Dependencies
-#-------------------------------------------------------------------------------
-
-desc "Update Carthage."
-task :update_carthage do
-  puts "*** Update Carthage Dependencies ***".colorize(:light_blue)
-  sh "carthage update --platform ios,tvos"
 end
 
 #-------------------------------------------------------------------------------

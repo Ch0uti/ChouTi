@@ -4,7 +4,6 @@
 # Swift
 /.build
 /Packages
-*.xcodeproj
 
 # Xcode
 build/
@@ -33,5 +32,3 @@ Carthage/Build
 
 # Bundle
 Vendor/bundle
-
-Temp
