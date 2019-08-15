@@ -1,5 +1,5 @@
 <span align="center">
-    <img src="ChouTi.png" width=128 alt="ChouTi" />
+    <img src="Resources/ChouTi.png" width=128 alt="ChouTi Logo" />
 </span>
 
 # ChouTi（抽屉）
