@@ -43,8 +43,6 @@ end
 # Development Tasks
 #-------------------------------------------------------------------------------
 
-desc "Build for Debug and Release."
-
 desc "Build for Debug."
 task :build do
   sh "xcodebuild clean build -project '#{PROJECT}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | bundle exec xcpretty"
