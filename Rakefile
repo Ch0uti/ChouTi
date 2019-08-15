@@ -1,3 +1,4 @@
+require 'bundler/setup'
 require 'colorize'
 
 XCODE_VERSION="Xcode 10.2"

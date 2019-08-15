@@ -1,0 +1,30 @@
+name: ChouTi
+options:
+  bundleIdPrefix: com.chouti
+  usesTabs: false
+  indentWidth: 2
+targets:
+  ChouTi:
+    type: framework
+    platform: [iOS, tvOS]
+    deploymentTarget:
+      iOS: 11.0
+      tvOS: 11.0
+    sources: Sources
+    scheme:
+      testTargets:
+        - ChouTiTest_${platform}
+      gatherCoverageData: true
+  ChouTiTest:
+    type: bundle.unit-test
+    platform: [iOS, tvOS]
+    sources: Tests
+    dependencies:
+      - target: ChouTi_$platform
+      - carthage: Quick
+      - carthage: Nimble
+    settings:
+      TEST_TARGET_NAME: ChouTi
+
+# References:
+#  - https://github.com/num42/RxUserDefaults/blob/master/project.yml

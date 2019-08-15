@@ -1,7 +1,16 @@
 bootstrap:
 	@echo "Install fastlane..."
 	@sudo gem install fastlane
+	@sudo brew install carthage
+	@sudo brew install xcodegen
 	@Scripts/bootstrap.sh
+
+carthage:
+	@carthage update --platform ios,tvos
+
+xcodegen:
+	@xcodegen generate --spec .project.yml
+	@open ChouTi.xcodeproj
 
 # Build.
 build:

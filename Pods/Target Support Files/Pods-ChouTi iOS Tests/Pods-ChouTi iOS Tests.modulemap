@@ -1,6 +1,0 @@
-framework module Pods_ChouTi_iOS_Tests {
-  umbrella header "Pods-ChouTi iOS Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
