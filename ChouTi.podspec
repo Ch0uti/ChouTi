@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ChouTi'
-  s.version          = '0.6.0'
+  s.version          = '0.6.2'
   s.summary          = 'ChouTi (抽屉) - A framework for Swift development.'
   s.description      = <<-DESC
                        ChouTi (抽屉) - A framework for Swift development.
