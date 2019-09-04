@@ -20,7 +20,7 @@ targets:
     platform: [iOS, tvOS]
     sources: Tests
     dependencies:
-      - target: ChouTi_$platform
+      - target: ChouTi_${platform}
       - carthage: Quick
       - carthage: Nimble
     settings:
