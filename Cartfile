@@ -1,2 +1,2 @@
-github "https://github.com/Quick/Quick" ~> 2.1
+github "https://github.com/Quick/Quick" ~> 2.2
 github "https://github.com/Quick/Nimble" ~> 8.0

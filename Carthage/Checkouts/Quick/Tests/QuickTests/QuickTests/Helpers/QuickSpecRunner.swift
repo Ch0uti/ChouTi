@@ -1,7 +1,34 @@
-#if canImport(Darwin) && !SWIFT_PACKAGE
 import Foundation
 import XCTest
 @testable import Quick
+
+#if !canImport(Darwin)
+// Based on https://github.com/apple/swift-corelibs-xctest/blob/51afda0bc782b2d6a2f00fbdca58943faf6ccecd/Sources/XCTest/Private/XCTestCaseSuite.swift#L14-L42
+private final class TestCaseSuite: XCTestSuite {
+    let specClass: QuickSpec.Type
+
+    init(specClass: QuickSpec.Type) {
+        self.specClass = specClass
+        super.init(name: String(describing: specClass))
+
+        for (testName, testClosure) in specClass.allTests {
+            let testCase = specClass.init(name: testName, testClosure: { testCase in
+                // swiftlint:disable:next force_cast
+                try testClosure(testCase as! QuickSpec)()
+            })
+            addTest(testCase)
+        }
+    }
+
+    override func setUp() {
+        specClass.setUp()
+    }
+
+    override func tearDown() {
+        specClass.tearDown()
+    }
+}
+#endif
 
 /**
  Runs an XCTestSuite instance containing only the given QuickSpec subclass.
@@ -27,22 +54,31 @@ func qck_runSpec(_ specClass: QuickSpec.Type) -> XCTestRun? {
  */
 @discardableResult
 func qck_runSpecs(_ specClasses: [QuickSpec.Type]) -> XCTestRun? {
-    World.sharedWorld.isRunningAdditionalSuites = true
-    defer { World.sharedWorld.isRunningAdditionalSuites = false }
+    return World.anotherWorld { world -> XCTestRun? in
+        QuickConfiguration.configureSubclassesIfNeeded(world: world)
 
-    let suite = XCTestSuite(name: "MySpecs")
-    for specClass in specClasses {
-        let test = XCTestSuite(forTestCaseClass: specClass)
-        suite.addTest(test)
-    }
+        world.isRunningAdditionalSuites = true
+        defer { world.isRunningAdditionalSuites = false }
 
-    let result = XCTestObservationCenter.shared.qck_suspendObservation {
-        suite.run()
-        return suite.testRun
+        let suite = XCTestSuite(name: "MySpecs")
+        for specClass in specClasses {
+            #if canImport(Darwin)
+            let test = specClass.defaultTestSuite
+            #else
+            let test = TestCaseSuite(specClass: specClass)
+            #endif
+            suite.addTest(test)
+        }
+
+        let result: XCTestRun? = XCTestObservationCenter.shared.qck_suspendObservation {
+            suite.run()
+            return suite.testRun
+        }
+        return result
     }
-    return result
 }
 
+#if canImport(Darwin) && !SWIFT_PACKAGE
 @objc(QCKSpecRunner)
 @objcMembers
 class QuickSpecRunner: NSObject {

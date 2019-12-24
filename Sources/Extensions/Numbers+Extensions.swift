@@ -48,7 +48,7 @@ public extension Comparable {
 }
 
 public extension Int {
-  /// Get ordianl number abbreviation
+  /// Get ordinal number abbreviation
   var ordinalNumberAbbreviation: String {
     var suffix: String = ""
     let ones: Int = self % 10
