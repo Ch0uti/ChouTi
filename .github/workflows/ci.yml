@@ -1,4 +1,4 @@
-name: ChouTi CI
+name: build
 
 on: [push]
 
@@ -19,8 +19,6 @@ jobs:
         bundle exec rake xcode no_open=true
         bundle exec rake build
     - name: Upload Code Coverage
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+      run: bash <(curl -s https://codecov.io/bash) -J '^ChouTi$' -t ${{ secrets.CODECOV_TOKEN }}
     - name: Build for release on iOS - ${{ matrix.destination }}
       run: bundle exec rake build_release
