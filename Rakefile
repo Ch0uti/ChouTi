@@ -1,7 +1,6 @@
 require 'bundler/setup'
-require 'colorize'
 
-XCODE_VERSION="Xcode 11.3"
+XCODE_VERSION="Xcode 11.1"
 SWIFT_VERSION="Apple Swift version 5.1"
 PROJECT="ChouTi.xcodeproj"
 IOS_FRAMEWORK_SCHEME="ChouTi_iOS"
@@ -33,7 +32,7 @@ end
 
 desc "Update Carthage."
 task :update_carthage do
-  puts "*** Update Carthage Dependencies ***".colorize(:light_blue)
+  puts "*** Update Carthage Dependencies ***"
   sh "carthage update --platform ios,tvos"
 end
 
@@ -106,10 +105,10 @@ end
 
 desc "Clean Xcodes derived data."
 task :clean do
-  puts "*** Cleaning Derived Data ***".colorize(:red)
+  puts "*** Cleaning Derived Data ***"
   sh "rm -rf ~/Library/Developer/Xcode/DerivedData/ChouTi-*"
 
-  puts "*** Cleaning Module Cache ***".colorize(:red)
+  puts "*** Cleaning Module Cache ***"
   sh "rm -rf ~/Library/Developer/Xcode/DerivedData/ModuleCache"
 end
 

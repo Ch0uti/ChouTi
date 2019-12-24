@@ -8,18 +8,19 @@ jobs:
     runs-on: macOS-latest
     strategy:
       matrix:
-        destination: ["OS=13.3,name=iPhone 11 Pro"]
+        destination: ["OS=13.1,name=iPhone 11 Pro"]
     steps:
     - uses: actions/checkout@v1
     - name: Install Dependencies
       run: make bootstrap
-    - name: Test on iOS - ${{ matrix.destination }}
+    - name: Build for debug on iOS - ${{ matrix.destination }}
       run: |
         set -o pipefail
         bundle exec rake xcode no_open=true
         bundle exec rake build
-        bundle exec rake build_release
     - name: Upload Code Coverage
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+    - name: Build for release on iOS - ${{ matrix.destination }}
+      run: bundle exec rake build_release

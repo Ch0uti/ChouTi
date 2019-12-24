@@ -9,9 +9,6 @@ echo "> Install carthage"
 echo "> Install xcodegen"
 ./Scripts/brew_install_or_upgrade.sh  xcodegen
 
-echo "> Install swiftlint"
-./Scripts/brew_install_or_upgrade.sh swiftlint
-
 # Install gems.
 function install_gems() {
   if ! command_exists bundler; then
