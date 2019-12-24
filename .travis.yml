@@ -1,12 +1,12 @@
 language: swift
-osx_image: xcode10.3
+osx_image: xcode11.3
 env:
   global:
   - PROJECT="ChouTi.xcodeproj"
 
   matrix:
-    - DESTINATION="OS=12.4,name=iPhone Xs"  REPORT_CODECOV="YES"
-    - DESTINATION="OS=11.4,name=iPhone X"   REPORT_CODECOV="NO"
+    - DESTINATION="OS=13.3,name=iPhone 11 Pro"  REPORT_CODECOV="YES"
+    - DESTINATION="OS=12.4,name=iPhone Xs"  REPORT_CODECOV="NO"
 
 before_install:
   - ./Scripts/bootstrap.sh
