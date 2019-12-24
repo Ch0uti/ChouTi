@@ -40,15 +40,12 @@
 		458F666FD48E8E8E634A0033 /* ChouTi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AA32AFD35F51E75164CEF6 /* ChouTi.framework */; };
 		480DA9FFBC613D579F6AD6AD /* NSObject+AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31071F4D35637B66528237 /* NSObject+AssociatedObject.swift */; };
 		489B9A8709061CF36737BFB0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B9409E1A4E03FD407CE35 /* Nimble.framework */; };
-		4D9DDB8B304B5A84CE81FE04 /* DispatchQueue+Once.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32726C881C237DC232241A14 /* DispatchQueue+Once.swift */; };
 		4DB7BAB0C416B7EBE9C423B4 /* DelayTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D8791AEBAE1E245914DA4 /* DelayTaskTests.swift */; };
 		4F6C52B13CC59894B6AA15D4 /* SequenceType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F453FF386C846673F6214 /* SequenceType+Extensions.swift */; };
 		4FB97E90B0E1FDF354D9CB0F /* Numbers+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF93FF5F1EC0D6764A88DFC2 /* Numbers+Extensions.swift */; };
 		5042856DD2698035C1421C5B /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A48B9409E1A4E03FD407CE35 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5248AF76A09F7E9B03264E21 /* DelayTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D8791AEBAE1E245914DA4 /* DelayTaskTests.swift */; };
-		544B32DFA8BE426F6316EB61 /* NSRegularExpression+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA767FDEA10F97E06DBA594 /* NSRegularExpression+Extensions.swift */; };
 		56ADD8CAEAE068793B6B9635 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA45F72CBB27462657E55CF8 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		56FA4603488B064F974498D3 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2919F5A8B58BB785BA293 /* Optional+Extensions.swift */; };
 		58AB616AF6E266B3C1894C1B /* CollectionType+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5E427D0101E08A2153C2D0 /* CollectionType+ExtensionsTests.swift */; };
 		5A252ED7E250B6C1B3CFB52D /* CIImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C233B51285BE0F2AABD28 /* CIImageFilter.swift */; };
 		5A91FC5817BCA1D4E2D88ECC /* OperatorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E33BF0C846E2055C9E1429 /* OperatorsTests.swift */; };
@@ -66,8 +63,6 @@
 		738F1F351B4BAA35B3F6783F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A26B4444E5C181B863C499FD /* .swiftlint.yml */; };
 		74379FB1E27126AF847F4113 /* CGContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1854B06CFF70B3A498CCFDB /* CGContext+Extensions.swift */; };
 		7506776C6B6DCC0A0350A332 /* Decimal+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91739BDAFB96E13E62AAA708 /* Decimal+ExtensionsTests.swift */; };
-		7F71549536E8AB3B73F4593F /* DispatchQueue+Once.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32726C881C237DC232241A14 /* DispatchQueue+Once.swift */; };
-		80766D6AE4BC07DB380561FC /* NSRegularExpression+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA767FDEA10F97E06DBA594 /* NSRegularExpression+Extensions.swift */; };
 		84B3136C81264ECF2411258A /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131A3B3E5F121255838B0DBC /* CGRect+Extensions.swift */; };
 		85146951FDD4FABB7264948E /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B50A1EB7180C9716D524A6 /* Dictionary+Extensions.swift */; };
 		85A522F74CB1C0E244C3BBC5 /* NSObject+AssociatedObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C8FB897EAF4D91623EBDA8 /* NSObject+AssociatedObjectTests.swift */; };
@@ -104,7 +99,6 @@
 		F4CB71F4ACCACD78D3EEF3B9 /* Dictionary+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562031C69CF71F592DB9425 /* Dictionary+ExtensionsTests.swift */; };
 		F87407A853E6D3A5F2A33924 /* OperatorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E33BF0C846E2055C9E1429 /* OperatorsTests.swift */; };
 		FDA995EAFAE74A1B080325B4 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11EEC2648E5B04FA6897D4 /* Resource.swift */; };
-		FF98BD650DF4AE68598A5388 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2919F5A8B58BB785BA293 /* Optional+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,8 +162,6 @@
 		165D8791AEBAE1E245914DA4 /* DelayTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayTaskTests.swift; sourceTree = "<group>"; };
 		29E33BF0C846E2055C9E1429 /* OperatorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorsTests.swift; sourceTree = "<group>"; };
 		2A9EAFE16F428E0E32312DA1 /* ChouTiTest.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ChouTiTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DF2919F5A8B58BB785BA293 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
-		32726C881C237DC232241A14 /* DispatchQueue+Once.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Once.swift"; sourceTree = "<group>"; };
 		332CEF2A20BFC7CB667CB3D7 /* NSObject+Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Observation.swift"; sourceTree = "<group>"; };
 		36C8FB897EAF4D91623EBDA8 /* NSObject+AssociatedObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+AssociatedObjectTests.swift"; sourceTree = "<group>"; };
 		3B31071F4D35637B66528237 /* NSObject+AssociatedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+AssociatedObject.swift"; sourceTree = "<group>"; };
@@ -188,7 +180,6 @@
 		A67710A7F38D5EC48E70EAE9 /* DelayedTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedTask.swift; sourceTree = "<group>"; };
 		A9BDEDE850A5BCB023EC2678 /* ChouTiTest.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ChouTiTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7EF84A209EBF0309E7555D /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
-		AAA767FDEA10F97E06DBA594 /* NSRegularExpression+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+Extensions.swift"; sourceTree = "<group>"; };
 		AF92EF21E544960068F30FA7 /* CGRect+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		B03C278B667CA774FC4F0E5E /* ChouTi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ChouTi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B53EDD728B1CF1D4E89939 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
@@ -354,12 +345,9 @@
 				0149439EF887B52B49068F87 /* Decimal+Extensions.swift */,
 				E6B50A1EB7180C9716D524A6 /* Dictionary+Extensions.swift */,
 				10E7DBAA34E7212F7141FB31 /* DispatchQueue+Extensions.swift */,
-				32726C881C237DC232241A14 /* DispatchQueue+Once.swift */,
 				3B31071F4D35637B66528237 /* NSObject+AssociatedObject.swift */,
 				332CEF2A20BFC7CB667CB3D7 /* NSObject+Observation.swift */,
-				AAA767FDEA10F97E06DBA594 /* NSRegularExpression+Extensions.swift */,
 				DF93FF5F1EC0D6764A88DFC2 /* Numbers+Extensions.swift */,
-				2DF2919F5A8B58BB785BA293 /* Optional+Extensions.swift */,
 				0B7F453FF386C846673F6214 /* SequenceType+Extensions.swift */,
 				5F69E8D5A0C4684751F95327 /* String+Extensions.swift */,
 				5ECF61AE1956B370C04E325A /* TimeZone+Extensions.swift */,
@@ -544,14 +532,11 @@
 				5B11DFD69EE47B8A7F034D7D /* DelayedTask.swift in Sources */,
 				E78ECAED221A92258472B28D /* Dictionary+Extensions.swift in Sources */,
 				181CB04E7A1B7E64A1E849D1 /* DispatchQueue+Extensions.swift in Sources */,
-				7F71549536E8AB3B73F4593F /* DispatchQueue+Once.swift in Sources */,
 				5F4C38A8D2F4D5B296A3E70E /* Math.swift in Sources */,
 				870D93A399DB1E3ED55E64DD /* NSObject+AssociatedObject.swift in Sources */,
 				1F6C46C31EAAE278D98002A4 /* NSObject+Observation.swift in Sources */,
-				80766D6AE4BC07DB380561FC /* NSRegularExpression+Extensions.swift in Sources */,
 				4FB97E90B0E1FDF354D9CB0F /* Numbers+Extensions.swift in Sources */,
 				2094A27298B6C12772218261 /* Operators.swift in Sources */,
-				FF98BD650DF4AE68598A5388 /* Optional+Extensions.swift in Sources */,
 				A549903995097C3CADA723FF /* OrderedDictionary.swift in Sources */,
 				2E6BDC0E1160E238E79C8115 /* Queue.swift in Sources */,
 				6C1D755A56277240E62143EC /* Resource.swift in Sources */,
@@ -578,14 +563,11 @@
 				04E8BC255BB174E0D2FCC41F /* DelayedTask.swift in Sources */,
 				85146951FDD4FABB7264948E /* Dictionary+Extensions.swift in Sources */,
 				6CCB8C9A03F9B1C2206F7F9F /* DispatchQueue+Extensions.swift in Sources */,
-				4D9DDB8B304B5A84CE81FE04 /* DispatchQueue+Once.swift in Sources */,
 				ABA00CB3FC87E4F79F2FE7CA /* Math.swift in Sources */,
 				480DA9FFBC613D579F6AD6AD /* NSObject+AssociatedObject.swift in Sources */,
 				0B9AEAAA9EC38631D42CF6EC /* NSObject+Observation.swift in Sources */,
-				544B32DFA8BE426F6316EB61 /* NSRegularExpression+Extensions.swift in Sources */,
 				1105D50981F5EBD1453C376F /* Numbers+Extensions.swift in Sources */,
 				1F47AFCABC3A9483EB265C2E /* Operators.swift in Sources */,
-				56FA4603488B064F974498D3 /* Optional+Extensions.swift in Sources */,
 				BFF12211B13547E1867993E7 /* OrderedDictionary.swift in Sources */,
 				A0D092BB344390ED5FEC457C /* Queue.swift in Sources */,
 				FDA995EAFAE74A1B080325B4 /* Resource.swift in Sources */,

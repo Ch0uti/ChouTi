@@ -22,7 +22,7 @@ public extension String {
     }
 
     /// Matching one or more white spaces, tabs and newlines
-    static var whitespacesExtented: String {
+    static var whitespacesExtended: String {
       return "[\\s|\\t|\\r|\\n]+"
     }
 
@@ -34,29 +34,6 @@ public extension String {
 }
 
 public extension String {
-  /// Returns a new string made by removing the provided character from the leading of the string.
-  /// - Parameter character: The leading character to remove.
-  func leadingTrimmed(_ character: Character) -> String {
-    var prefixCount: Int = 0
-    for (i, char) in enumerated() {
-      if char != character {
-        prefixCount = i
-        break
-      }
-    }
-    return String(dropFirst(prefixCount))
-  }
-
-  /// Returns a new string made by removing whitespaces and newlines from both ends of the receiver.
-  func trimmed() -> String {
-    return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-  }
-
-  /// Returns a new string made by removing whitespaces from both ends of the receiver.
-  func whitespacesTrimmed() -> String {
-    return trimmingCharacters(in: CharacterSet.whitespaces)
-  }
-
   /// An `NSRange` that represents the full range of the string.
   var fullNSRange: NSRange {
     return NSRange(location: 0, length: utf16.count)
@@ -86,22 +63,6 @@ public extension String {
 // MARK: - Regex Related
 
 public extension String {
-  /// Check if the string is an email address.
-  var isEmail: Bool {
-    // Ref: https://stackoverflow.com/a/39550723/3164091
-    let emailRegex = try! NSRegularExpression(
-      pattern: "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" +
-        "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" +
-        "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" +
-        "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" +
-        "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" +
-        "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" +
-        "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
-      options: [.caseInsensitive]
-    )
-    return emailRegex.firstMatch(in: self, options: [], range: NSRange(0..<utf16.count)) != nil
-  }
-
   /// Replacing regular expression matches with template string.
   /// Could use `self.replacingOccurrences(of: pattern, with: template, options: .regularExpression)`
   func replacingMatches(
@@ -173,7 +134,7 @@ public extension String {
       in: self,
       options: matchingOptions,
       range: NSRange(0..<self.utf16.count)
-    ).at(matchIndex) else {
+    )[safe: matchIndex] else {
       return []
     }
 
@@ -181,18 +142,47 @@ public extension String {
       substring(with: match.range(at: $0))
     }
   }
+}
+
+extension String {
+  /// Check if the string is an email address.
+  var isEmail: Bool {
+    // Ref: https://stackoverflow.com/a/39550723/3164091
+    let emailRegex = try! NSRegularExpression(
+      pattern: "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" +
+        "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" +
+        "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" +
+        "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" +
+        "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" +
+        "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" +
+        "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
+      options: [.caseInsensitive]
+    )
+    return emailRegex.firstMatch(in: self, options: [], range: NSRange(0..<utf16.count)) != nil
+  }
+
+  /// Returns a new string made by removing the provided character from the leading of the string.
+  /// - Parameter character: The leading character to remove.
+  func leadingTrimmed(_ character: Character) -> String {
+    var prefixCount: Int = 0
+    for (i, char) in enumerated() {
+      if char != character {
+        prefixCount = i
+        break
+      }
+    }
+    return String(dropFirst(prefixCount))
+  }
 
   /// Returns percentage strings.
+  /// "123foo12.1%" -> "12.1%"
   func percentageStrings() -> [String] {
     return matchedStrings(of: RegularExpressionPattern.percentage)
   }
 
   /// Returns a new string by removing leading and trailing white-space from a string, replacing sequences of whitespace characters by a single space, and returns the resulting string.
+  /// " 123   foo  " -> "123 foo"
   func whitespacesNormalized() throws -> String {
-    let whitespacesExceptLastOne = NSRegularExpression.whitespacesExceptLastOne()
-    let whitespacesExtented = RegularExpressionPattern.whitespacesExtented
-    return try replacingMatches(of: whitespacesExceptLastOne.pattern, with: "")
-      .replacingMatches(of: whitespacesExtented, with: " ")
-      .trimmed()
+    return try replacingMatches(of: RegularExpressionPattern.whitespacesExtended, with: " ").trimmingCharacters(in: .whitespacesAndNewlines)
   }
 }

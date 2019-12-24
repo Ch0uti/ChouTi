@@ -27,9 +27,9 @@ class NSObject_AssociatedObjectTests: XCTestCase {
   }
 
   func testGetAssociatedObject() {
-    host.setAssociatedObejct("998")
+    host.setAssociatedObject("998")
     XCTAssertEqual(host.getAssociatedObject() as? String, "998")
-    XCTAssertEqual(host.setAssociatedObejct(778) as? String, "998")
+    XCTAssertEqual(host.setAssociatedObject(778) as? String, "998")
     XCTAssertEqual(host.clearAssociatedObject() as? Int, 778)
     XCTAssertNil(host.getAssociatedObject())
   }
@@ -39,8 +39,8 @@ class NSObject_AssociatedObjectTests: XCTestCase {
   }
 
   func testAssociatedObjectWithPointer() {
-    host.setAssociatedObejct("998", forKeyPointer: &TestAssociateObjectKey.Key)
-    XCTAssertEqual(host.setAssociatedObejct(778, forKeyPointer: &TestAssociateObjectKey.Key) as? String, "998")
+    host.setAssociatedObject("998", forKeyPointer: &TestAssociateObjectKey.Key)
+    XCTAssertEqual(host.setAssociatedObject(778, forKeyPointer: &TestAssociateObjectKey.Key) as? String, "998")
     XCTAssertEqual(host.clearAssociatedObject(forKeyPointer: &TestAssociateObjectKey.Key) as? Int, 778)
     XCTAssertNil(host.getAssociatedObject(forKeyPointer: &TestAssociateObjectKey.Key))
   }

@@ -15,35 +15,7 @@ class String_ExtensionsTest: XCTestCase {
     )
     XCTAssertEqual("1  2 3 ".matchedStrings(of: String.RegularExpressionPattern.whitespaces).count, 3)
     XCTAssertEqual("1\t\t2 3 ".matchedStrings(of: String.RegularExpressionPattern.whitespaces).count, 3)
-    XCTAssertEqual("1   2 3 ".matchedStrings(of: String.RegularExpressionPattern.whitespacesExtented).count, 3)
-  }
-
-  func testTrimmed() {
-    XCTAssertEqual("123".trimmed(), "123")
-    XCTAssertEqual("123 ".trimmed(), "123")
-    XCTAssertEqual("  123 ".trimmed(), "123")
-    XCTAssertEqual(
-      """
-      123
-      abd
-      """.trimmed(),
-      """
-      123
-      abd
-      """
-    )
-    XCTAssertEqual("\n 123".trimmed(), "123")
-    XCTAssertEqual("123 \n".trimmed(), "123")
-    XCTAssertEqual("\n123\n".trimmed(), "123")
-  }
-
-  func testWhitespaceSTrimmed() {
-    XCTAssertEqual("123".whitespacesTrimmed(), "123")
-    XCTAssertEqual("123 ".whitespacesTrimmed(), "123")
-    XCTAssertEqual(" 123 ".whitespacesTrimmed(), "123")
-    XCTAssertEqual("\n 123 ".whitespacesTrimmed(), "\n 123")
-    XCTAssertEqual("123 \n".whitespacesTrimmed(), "123 \n")
-    XCTAssertEqual("123\n ".whitespacesTrimmed(), "123\n")
+    XCTAssertEqual("1   2 3 ".matchedStrings(of: String.RegularExpressionPattern.whitespacesExtended).count, 3)
   }
 
   func testFullNsrange() {

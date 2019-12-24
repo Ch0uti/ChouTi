@@ -8,6 +8,7 @@ open class Task {
   open var canceled: Bool = false
 
   var _executed: Bool = false
+
   /// Whether this task has been called to execute
   open var executed: Bool { return _executed }
 

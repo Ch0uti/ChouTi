@@ -5,7 +5,7 @@ import Foundation
 // MARK: - Merging for Dictionary
 
 public extension Dictionary {
-  /// Merge with another dictionary, existing keys in left dictionary are overrided by keys right dictionary.
+  /// Merge with another dictionary, existing keys in left dictionary are overridden by keys right dictionary.
   mutating func merge(with another: [Key: Value]) {
     for (k, v) in another {
       updateValue(v, forKey: k)

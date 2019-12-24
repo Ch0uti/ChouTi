@@ -61,47 +61,47 @@ public extension Date {
 
   /// Era in specified timezone & calendar.
   func era(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.era, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.era, from: self)
   }
 
   /// Year in specified timezone & calendar.
   func year(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.year, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.year, from: self)
   }
 
   /// Month in specified timezone & calendar.
   func month(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.month, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.month, from: self)
   }
 
   /// Day in specified timezone & calendar.
   func day(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.day, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.day, from: self)
   }
 
   /// Hour in specified timezone & calendar.
   func hour(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.hour, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.hour, from: self)
   }
 
   /// Minute in specified timezone & calendar.
   func minute(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.minute, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.minute, from: self)
   }
 
   /// Second in specified timezone & calendar.
   func second(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.second, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.second, from: self)
   }
 
   /// Weekday in specified timezone & calendar.
   func weekday(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.weekday, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.weekday, from: self)
   }
 
   /// WeekdayOrdinal in specified timezone & calendar.
   func weekdayOrdinal(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.weekdayOrdinal, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.weekdayOrdinal, from: self)
   }
 
   /// Quarter in specified timezone & calendar.
@@ -109,30 +109,30 @@ public extension Date {
     // Ref: https://nshipster.com/datecomponents See: rdar://35247464.
     let formatter = DateFormatter()
     formatter.dateFormat = "Q"
-    return Int(formatter.string(from: self)) ?? getCalendar(timeZone: timeZone, calendar: calendar).component(.quarter, from: self)
+    return Int(formatter.string(from: self)) ?? _calendar(timeZone: timeZone, calendar: calendar).component(.quarter, from: self)
   }
 
   /// WeekOfMonth in specified timezone & calendar.
   func weekOfMonth(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.weekOfMonth, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.weekOfMonth, from: self)
   }
 
   /// WeekOfYear in specified timezone & calendar.
   func weekOfYear(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.weekOfYear, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.weekOfYear, from: self)
   }
 
   /// YearForWeekOfYear in specified timezone & calendar.
   func yearForWeekOfYear(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.yearForWeekOfYear, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.yearForWeekOfYear, from: self)
   }
 
   /// Nanosecond in specified timezone & calendar.
   func nanosecond(in timeZone: TimeZone? = nil, for calendar: Calendar? = nil) -> Int {
-    return getCalendar(timeZone: timeZone, calendar: calendar).component(.nanosecond, from: self)
+    return _calendar(timeZone: timeZone, calendar: calendar).component(.nanosecond, from: self)
   }
 
-  private func getCalendar(timeZone: TimeZone?, calendar: Calendar?) -> Calendar {
+  private func _calendar(timeZone: TimeZone?, calendar: Calendar?) -> Calendar {
     var calendar = calendar ?? Calendar.autoupdatingCurrent
     calendar.timeZone = timeZone ?? TimeZone.autoupdatingCurrent
     return calendar

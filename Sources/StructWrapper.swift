@@ -3,7 +3,7 @@
 import Foundation
 
 // StructWrapper is a generic container for Swift struct/enum
-// This is useful where NSObject is reqired
+// This is useful where NSObject is required
 
 // Sample Usage:
 //

@@ -23,7 +23,7 @@ extension NSObject {
    static var Key = "RandomKey"
    }
 
-   setAssociatedObejct(someObject, forKeyPointer: &SomeKey.Key)
+   setAssociatedObject(someObject, forKeyPointer: &SomeKey.Key)
 
    - parameter object:  an object to be associated
    - parameter pointer: pointer
@@ -32,7 +32,7 @@ extension NSObject {
    - returns: old associated object if existed
    */
   @discardableResult
-  public func setAssociatedObejct(_ object: Any, forKeyPointer pointer: UnsafeRawPointer? = nil, associationPolicy: objc_AssociationPolicy = .OBJC_ASSOCIATION_RETAIN_NONATOMIC) -> Any? {
+  public func setAssociatedObject(_ object: Any, forKeyPointer pointer: UnsafeRawPointer? = nil, associationPolicy: objc_AssociationPolicy = .OBJC_ASSOCIATION_RETAIN_NONATOMIC) -> Any? {
     if let pointer = pointer {
       let currentAssociatedObject = getAssociatedObject(forKeyPointer: pointer)
       objc_setAssociatedObject(self, pointer, object, associationPolicy)
