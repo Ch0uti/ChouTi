@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'fileutils'
 
 XCODE_VERSION="Xcode 11.1"
 SWIFT_VERSION="Apple Swift version 5.1"
@@ -42,6 +43,10 @@ end
 
 desc "Generate Xcode project."
 task :xcode do
+  unless File.directory? "./Carthage"
+    sh "bundle exec rake update_carthage"
+  end
+
   sh "xcodegen generate --spec .project.yml"
   if ENV['no_open'] != "true"
     sh "open #{PROJECT}"

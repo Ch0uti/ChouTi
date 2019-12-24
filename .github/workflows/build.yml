@@ -16,6 +16,7 @@ jobs:
     - name: Test on iOS - ${{ matrix.destination }}
       run: |
         set -o pipefail
+        bundle exec rake xcode no_open=true
         bundle exec rake build
         bundle exec rake test
     - name: Upload Code Coverage
