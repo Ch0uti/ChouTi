@@ -3,14 +3,14 @@
 # Check if a command exists.
 function command_exists() { [ -x "$(command -v $1)" ]; }
 
-echo "Install carthage"
-brew install carthage
+echo "> Install carthage"
+./Scripts/brew_install_or_upgrade.sh carthage
 
-echo "Install xcodegen"
-brew install xcodegen
+echo "> Install xcodegen"
+./Scripts/brew_install_or_upgrade.sh  xcodegen
 
-echo "Install swiftlint"
-brew install swiftlint
+echo "> Install swiftlint"
+./Scripts/brew_install_or_upgrade.sh swiftlint
 
 # Install gems.
 function install_gems() {
@@ -19,6 +19,9 @@ function install_gems() {
   fi
 
   bundle check >/dev/null 2>&1 || bundle install
+  if [[ $? -ne 0 ]]; then
+    echo "> Bundle install failed. Please reinstall bundler"
+  fi
 }
 
 install_gems

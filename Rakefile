@@ -1,12 +1,12 @@
 require 'bundler/setup'
 require 'colorize'
 
-XCODE_VERSION="Xcode 10.3"
-SWIFT_VERSION="Apple Swift version 5.0"
+XCODE_VERSION="Xcode 11.3"
+SWIFT_VERSION="Apple Swift version 5.1"
 PROJECT="ChouTi.xcodeproj"
 IOS_FRAMEWORK_SCHEME="ChouTi_iOS"
 IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
-DESTINATION="OS=12.4,name=iPhone Xs"
+DESTINATION="OS=13.3,name=iPhone 11 Pro"
 
 begin
   xcodebuild_version = `xcodebuild -version`
