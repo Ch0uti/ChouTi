@@ -5,7 +5,7 @@ SWIFT_VERSION="Apple Swift version 5.1"
 PROJECT="ChouTi.xcodeproj"
 IOS_FRAMEWORK_SCHEME="ChouTi_iOS"
 IOS_EXAMPLE_SCHEME="ChouTi Example iOS"
-DESTINATION="OS=13.3,name=iPhone 11 Pro"
+DESTINATION="OS=13.1,name=iPhone 11 Pro"
 
 begin
   xcodebuild_version = `xcodebuild -version`
@@ -65,11 +65,6 @@ end
 desc "Run framework tests."
 task :test do
   sh "xcodebuild clean test -project '#{PROJECT}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | bundle exec xcpretty"
-end
-
-desc "Lint Swift code."
-task :lint do
-  sh "swiftlint --path ./Sources"
 end
 
 desc "Format Swift code."

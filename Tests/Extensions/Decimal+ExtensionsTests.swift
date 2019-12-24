@@ -55,7 +55,7 @@ extension Decimal_ExtensionsTests {
       expect(Decimal(0.235).string) == "0.23"
       expect(Decimal(0.245).string) == "0.24"
 
-      expect(Decimal(0.234).string(maximumFractionDigits: -1)) == "0"
+      expect(Decimal(0.234).string(maximumFractionDigits: -1)) == "0.234"
       expect(Decimal(0.234).string(maximumFractionDigits: 0)) == "0"
       expect(Decimal(0.234).string(maximumFractionDigits: 1)) == "0.2"
       expect(Decimal(0.234).string(maximumFractionDigits: 2)) == "0.23"
