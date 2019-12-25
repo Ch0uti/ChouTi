@@ -36,10 +36,9 @@ public extension Sequence where Iterator.Element: Hashable {
     return filter {
       if seen.contains($0) {
         return false
-      } else {
-        seen.insert($0)
-        return true
       }
+      seen.insert($0)
+      return true
     }
   }
 }

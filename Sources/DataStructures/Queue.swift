@@ -6,6 +6,7 @@
  A standard queue (FIFO - First In First Out).
  Supports simultaneous adding and removing, but only one item can be added at a time,
  and only one item can be removed at a time.
+ Not thread safe.
  */
 public class Queue<Element> {
   private class Item<T> {
@@ -17,23 +18,8 @@ public class Queue<Element> {
     }
   }
 
-  private var head: Item<Element>? {
-    didSet {
-      // When dequeued, from non-empty to empty
-      if head == nil, tail != nil {
-        tail = head
-      }
-    }
-  }
-
-  private var tail: Item<Element>? {
-    didSet {
-      // When enqueued, from empty to non-empty
-      if head == nil, tail != nil {
-        head = tail
-      }
-    }
-  }
+  private var head: Item<Element>?
+  private var tail: Item<Element>?
 
   public init() {}
 
@@ -46,6 +32,9 @@ public class Queue<Element> {
     let queueItem = Item(value)
     tail?.next = queueItem
     tail = queueItem
+    if head == nil {
+      head = tail
+    }
   }
 
   /**
@@ -56,6 +45,9 @@ public class Queue<Element> {
   public func dequeue() -> Element? {
     if let value = head?.value {
       head = head?.next
+      if head == nil {
+        tail = nil
+      }
       return value
     }
     return nil

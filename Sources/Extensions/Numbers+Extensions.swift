@@ -4,19 +4,19 @@ import CoreGraphics
 import Foundation
 
 public extension Comparable {
-  /// Clamp `value` to the range min...max.
+  /// Return a new copy of clamped `value` to the given limiting range.
   ///
   /// - Parameter limits: range to clamp
-  /// - Returns: a value between min ... max
-  func clamp(to limits: ClosedRange<Self>) -> Self {
-    return Swift.min(Swift.max(limits.lowerBound, self), limits.upperBound)
+  /// - Returns: a new value between in the range.
+  func clamped(to limits: ClosedRange<Self>) -> Self {
+    return min(max(limits.lowerBound, self), limits.upperBound)
   }
 
-  /// Clamp `self` to the range.
+  /// Clamping `self` to the given limiting range.
   ///
   /// - Parameter limits: range to clamp
-  mutating func clampInPlace(to limits: ClosedRange<Self>) {
-    self = Swift.min(Swift.max(limits.lowerBound, self), limits.upperBound)
+  mutating func clamping(to limits: ClosedRange<Self>) {
+    self = clamped(to: limits)
   }
 }
 
@@ -66,21 +66,13 @@ public extension Int {
 }
 
 public extension CGFloat {
-  /**
-   Get radians from degrees
-
-   - returns: radians
-   */
+  /// Get radians from degrees
   var radian: CGFloat {
     return CGFloat.pi / 180 * self
   }
 
-  /**
-   Get degrees from radians
-
-   - returns: degrees
-   */
-  func degree() -> CGFloat {
+  /// Get degrees from radians
+  var degree: CGFloat {
     return 180 / CGFloat.pi * self
   }
 }

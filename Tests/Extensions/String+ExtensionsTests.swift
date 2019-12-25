@@ -212,4 +212,9 @@ class String_ExtensionsTest: XCTestCase {
         """.whitespacesNormalized(), "123 foo"
     )
   }
+
+  func testLeadingTrimmed() {
+    XCTAssertEqual("aaabcdef".leadingTrimmed("a"), "bcdef")
+    XCTAssertEqual("  aaabcdef".leadingTrimmed(" "), "aaabcdef")
+  }
 }

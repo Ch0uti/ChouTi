@@ -83,4 +83,29 @@ class CGRect_ExtensionsTests: XCTestCase {
     XCTAssertEqual(frame.width, 300)
     XCTAssertEqual(frame.height, 400)
   }
+
+  func testUpperLeft() {
+    XCTAssertEqual(frame.upperLeft, CGPoint(x: 100, y: 200))
+  }
+
+  func testUpperRight() {
+    XCTAssertEqual(frame.upperRight, CGPoint(x: 100 + 300, y: 200))
+  }
+
+  func testBottomLeft() {
+    XCTAssertEqual(frame.bottomLeft, CGPoint(x: 100, y: 200 + 400))
+  }
+
+  func testBottomRight() {
+    XCTAssertEqual(frame.bottomRight, CGPoint(x: 100 + 300, y: 200 + 400))
+  }
+
+  func testCenter() {
+    XCTAssertEqual(frame.center, CGPoint(x: 100 + 300 / 2, y: 200 + 400 / 2))
+
+    frame.center = CGPoint(x: 150, y: 200)
+    XCTAssertEqual(frame.origin, CGPoint.zero)
+    XCTAssertEqual(frame.width, 300)
+    XCTAssertEqual(frame.height, 400)
+  }
 }

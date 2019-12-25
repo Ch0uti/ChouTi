@@ -37,19 +37,17 @@ extension NSObject {
       let currentAssociatedObject = getAssociatedObject(forKeyPointer: pointer)
       objc_setAssociatedObject(self, pointer, object, associationPolicy)
       return currentAssociatedObject
-    } else {
-      let currentAssociatedObject = associatedObject
-      associatedObject = object
-      return currentAssociatedObject
     }
+    let currentAssociatedObject = associatedObject
+    associatedObject = object
+    return currentAssociatedObject
   }
 
   public func getAssociatedObject(forKeyPointer pointer: UnsafeRawPointer? = nil) -> Any? {
     if let pointer = pointer {
       return objc_getAssociatedObject(self, pointer)
-    } else {
-      return associatedObject
     }
+    return associatedObject
   }
 
   @discardableResult
@@ -59,10 +57,9 @@ extension NSObject {
       // Policy is ignored if new value is nil, thus .OBJC_ASSOCIATION_RETAIN_NONATOMIC doesn't
       objc_setAssociatedObject(self, pointer, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
       return object
-    } else {
-      let object = associatedObject
-      associatedObject = nil
-      return object
     }
+    let object = associatedObject
+    associatedObject = nil
+    return object
   }
 }
