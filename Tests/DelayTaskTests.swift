@@ -83,24 +83,21 @@ class DelayTaskTests: XCTestCase {
   }
 
   func testChainedTask() {
-    print(CACurrentMediaTime())
     var value = 1
 
-    delay(0.05) {
-      print(CACurrentMediaTime())
+    delay(0.2) {
       value = 2
     }
-    .delay(0.05) {
-      print(CACurrentMediaTime())
+    .delay(0.2) {
       value = 3
     }
 
     XCTAssertEqual(value, 1)
 
-    Thread.sleep(forTimeInterval: 0.06)
+    Thread.sleep(forTimeInterval: 0.3)
     XCTAssertEqual(value, 2)
 
-    Thread.sleep(forTimeInterval: 0.05)
+    Thread.sleep(forTimeInterval: 0.2)
     XCTAssertEqual(value, 3)
   }
 }
