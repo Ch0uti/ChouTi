@@ -72,6 +72,11 @@ task :test do
   sh "xcodebuild clean test -project '#{PROJECT}' -scheme '#{IOS_FRAMEWORK_SCHEME}' -destination '#{DESTINATION}' -configuration Debug | bundle exec xcpretty"
 end
 
+desc "Lint Swift code."
+task :lint do
+  sh "swiftlint --path ./Sources"
+end
+
 desc "Format Swift code."
 task :format do
   sh "swift run swiftformat ."

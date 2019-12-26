@@ -86,21 +86,21 @@ class DelayTaskTests: XCTestCase {
     print(CACurrentMediaTime())
     var value = 1
 
-    delay(0.02) {
+    delay(0.05) {
       print(CACurrentMediaTime())
       value = 2
     }
-    .delay(0.02) {
+    .delay(0.05) {
       print(CACurrentMediaTime())
       value = 3
     }
 
     XCTAssertEqual(value, 1)
 
-    Thread.sleep(forTimeInterval: 0.025)
+    Thread.sleep(forTimeInterval: 0.06)
     XCTAssertEqual(value, 2)
 
-    Thread.sleep(forTimeInterval: 0.02)
+    Thread.sleep(forTimeInterval: 0.05)
     XCTAssertEqual(value, 3)
   }
 }
