@@ -53,11 +53,11 @@ public class DelayTask {
 
   /// Chaining a new task.
   /// - Parameters:
-  ///   - queue: The dispatch queue to run on.
   ///   - delayedSeconds: The delayed seconds.
+  ///   - queue: The dispatch queue to run on.
   ///   - task: The closure to run.
   @discardableResult
-  public func delay(_ delayedSeconds: TimeInterval, on queue: DispatchQueue = .global(), task: @escaping () -> Void) -> DelayTask {
+  public func delay(_ delayedSeconds: TimeInterval, queue: DispatchQueue = .global(), task: @escaping () -> Void) -> DelayTask {
     let task = DelayTask(queue: queue, delayedSeconds: delayedSeconds, task: task)
     nextTask = task
     return task
