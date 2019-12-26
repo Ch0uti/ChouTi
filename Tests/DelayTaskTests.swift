@@ -10,7 +10,7 @@ class DelayTaskTests: XCTestCase {
     var stringToBeChanged = "start"
 
     // Task is retained in the expectation closure.
-    let task = delay(0.01) {
+    let task = delay(0.05) {
       XCTAssertTrue(!Thread.isMainThread)
       expectation.fulfill()
       stringToBeChanged = "end"
@@ -20,7 +20,7 @@ class DelayTaskTests: XCTestCase {
     XCTAssertFalse(task.isExecuted)
     XCTAssertEqual(stringToBeChanged, "start")
 
-    waitForExpectations(timeout: 0.011) { _ in
+    waitForExpectations(timeout: 0.06) { _ in
       XCTAssertFalse(task.isCanceled)
       XCTAssertTrue(task.isExecuted)
       XCTAssertEqual(stringToBeChanged, "end")
@@ -33,13 +33,13 @@ class DelayTaskTests: XCTestCase {
     var stringToBeChanged = "start"
 
     // No retain
-    delay(0.01) {
+    delay(0.05) {
       expectation.fulfill()
       stringToBeChanged = "end"
     }
 
     XCTAssertEqual(stringToBeChanged, "start")
-    waitForExpectations(timeout: 0.011) { _ in
+    waitForExpectations(timeout: 0.06) { _ in
       XCTAssertEqual(stringToBeChanged, "end")
     }
   }
@@ -50,21 +50,21 @@ class DelayTaskTests: XCTestCase {
     var stringToBeChanged = "start"
 
     // No retain
-    delay(0.01, queue: .main) {
+    delay(0.05, queue: .main) {
       XCTAssertTrue(Thread.isMainThread)
       expectation.fulfill()
       stringToBeChanged = "end"
     }
 
     XCTAssertEqual(stringToBeChanged, "start")
-    waitForExpectations(timeout: 0.011) { _ in
+    waitForExpectations(timeout: 0.06) { _ in
       XCTAssertEqual(stringToBeChanged, "end")
     }
   }
 
   func testCanceledTask() {
     var stringToBeChanged = "start"
-    let task = delay(0.01) {
+    let task = delay(0.05) {
       stringToBeChanged = "end"
     }
 
@@ -75,7 +75,7 @@ class DelayTaskTests: XCTestCase {
     task.isCanceled = true
     XCTAssertTrue(task.isCanceled)
 
-    Thread.sleep(forTimeInterval: 0.011)
+    Thread.sleep(forTimeInterval: 0.06)
 
     XCTAssertTrue(task.isCanceled)
     XCTAssertFalse(task.isExecuted)
