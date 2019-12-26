@@ -192,8 +192,8 @@ public extension Date {
     case .quarter:
       let formatter = DateFormatter()
       formatter.dateFormat = "Q"
-      let currentQuater = Int(formatter.string(from: self)) ?? components.quarter ?? 0
-      components.month = (components.month ?? 0) + (newValue - currentQuater) * 3
+      let currentQuarter = Int(formatter.string(from: self)) ?? components.quarter ?? 0
+      components.month = (components.month ?? 0) + (newValue - currentQuarter) * 3
       components.quarter = newValue
     case .weekOfMonth:
       components.day = (components.day ?? 0) + (newValue - (components.weekOfMonth ?? 0)) * 7

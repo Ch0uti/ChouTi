@@ -1,12 +1,11 @@
 # macOS
 .DS_Store
 
-# Swift
-/.build
-/Packages
-
-# Xcode
+# Build generated
 build/
+DerivedData/
+
+# Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -15,16 +14,37 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
-*.xccheckout
+xcuserdata/
+
+# Other
 *.moved-aside
-DerivedData
+*.xccheckout
+*.xcscmblueprint
+
+# Obj-C/Swift specific
 *.hmap
 *.ipa
-*.xcuserstate
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+# Package.pins
+# Package.resolved
+.build/
+Packages/
+ChouTi-SPM.xcodeproj
+
+# CocoaPods
+Pods/
 
 # Carthage
 Carthage
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
 
 # Bundle
 Vendor/bundle

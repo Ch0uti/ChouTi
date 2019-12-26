@@ -3,7 +3,7 @@
 import XCTest
 @testable import ChouTi
 
-class TimeZone_ExtensionsTest: XCTestCase {
+class TimeZone_ExtensionsTests: XCTestCase {
   func test() {
     XCTAssertEqual(TimeZone.gmt, TimeZone(abbreviation: "GMT")!)
     XCTAssertEqual(TimeZone.est, TimeZone(abbreviation: "EST")!)

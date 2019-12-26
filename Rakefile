@@ -78,6 +78,33 @@ task :format do
 end
 
 #-------------------------------------------------------------------------------
+# Swift Package Manager
+#-------------------------------------------------------------------------------
+
+desc "Build for SPM."
+task :spm_build do
+  sh "swift package update"
+  sh "swift build"
+end
+
+desc "Test for SPM."
+task :spm_test do
+  sh "swift test"
+end
+
+desc "Clean for SPM."
+task :spm_clean do
+  sh "swift package clean"
+  sh "rm -f ./Package.resolved"
+end
+
+desc "Generate Xcode project for SPM."
+task :spm_xcode do
+  sh "swift package generate-xcodeproj --enable-code-coverage --output ChouTi-SPM.xcodeproj"
+  sh "open ChouTi-SPM.xcodeproj"
+end
+
+#-------------------------------------------------------------------------------
 # Publish Pod
 #-------------------------------------------------------------------------------
 

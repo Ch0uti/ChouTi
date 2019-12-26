@@ -1,76 +1,6 @@
 {
   "warnings": [
     {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/CIImageFilter/CIImageFilter.swift",
-      "line": 7,
-      "symbol": "Color",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/CIImageFilter/CIImageFilter.swift",
-      "line": 8,
-      "symbol": "Font",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/CIImageFilter/CIImageFilter.swift",
-      "line": 9,
-      "symbol": "Image",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/CIImageFilter/CIImageFilter.swift",
-      "line": 19,
-      "symbol": "CIImageFilter",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/CIImageFilter/CIImageFilter.swift",
-      "line": 20,
-      "symbol": "CIImageFilter.Filter",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/CIImageFilter/CIImageFilter.swift",
-      "line": 22,
-      "symbol": "CIImageFilter.gaussianBlur(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/CIImageFilter/CIImageFilter.swift",
-      "line": 34,
-      "symbol": "CIImageFilter.constantColorGenerator(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/CIImageFilter/CIImageFilter.swift",
-      "line": 42,
-      "symbol": "CIImageFilter.sourceOverCompositing(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/CIImageFilter/CIImageFilter.swift",
-      "line": 54,
-      "symbol": "CIImageFilter.colorOverlay(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/CIImageFilter/CIImageFilter.swift",
-      "line": 68,
-      "symbol": ">>>(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.free",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
       "line": 5,
       "symbol": "OrderedDictionary",
@@ -142,22 +72,15 @@
     },
     {
       "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/Queue.swift",
-      "line": 38,
+      "line": 24,
       "symbol": "Queue.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/Queue.swift",
-      "line": 64,
+      "line": 56,
       "symbol": "Queue.isEmpty()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/CGContext+Extensions.swift",
-      "line": 6,
-      "symbol": "CGContext.flipCoordinatesVertically()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -205,58 +128,16 @@
     },
     {
       "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/NSObject+AssociatedObject.swift",
-      "line": 47,
+      "line": 46,
       "symbol": "NSObject.getAssociatedObject(forKeyPointer:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/NSObject+AssociatedObject.swift",
-      "line": 56,
+      "line": 54,
       "symbol": "NSObject.clearAssociatedObject(forKeyPointer:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/NSObject+Observation.swift",
-      "line": 9,
-      "symbol": "Observer",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/NSObject+Observation.swift",
-      "line": 10,
-      "symbol": "Observer.ObserverHandler",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/NSObject+Observation.swift",
-      "line": 22,
-      "symbol": "Observer.observe(_:forKeyPath:withHandler:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/NSObject+Observation.swift",
-      "line": 34,
-      "symbol": "Observer.removeObservation(_:forKeyPath:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/NSObject+Observation.swift",
-      "line": 44,
-      "symbol": "Observer.observeValue(forKeyPath:of:change:context:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/NSRegularExpression+Extensions.swift",
-      "line": 6,
-      "symbol": "NSRegularExpression.whitespacesExceptLastOne()",
-      "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
@@ -268,135 +149,16 @@
     },
     {
       "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/String+Extensions.swift",
-      "line": 141,
+      "line": 102,
       "symbol": "String.firstMatchedString(of:options:matchingOptions:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/honghao/Developer/ChouTi/Sources/Operators.swift",
-      "line": 49,
+      "line": 53,
       "symbol": "???(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Operators.swift",
-      "line": 71,
-      "symbol": "Double.**(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Operators.swift",
-      "line": 77,
-      "symbol": "CGFloat.**(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Operators.swift",
-      "line": 83,
-      "symbol": "Float.**(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Operators.swift",
-      "line": 89,
-      "symbol": "Int.**(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Resource.swift",
-      "line": 7,
-      "symbol": "Resource",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Resource.swift",
-      "line": 8,
-      "symbol": "Resource.sharedResource",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Resource.swift",
-      "line": 9,
-      "symbol": "Resource.bundle",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/Resource.swift",
-      "line": 15,
-      "symbol": "Resource.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/StructWrapper.swift",
-      "line": 20,
-      "symbol": "StructWrapper",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/StructWrapper.swift",
-      "line": 21,
-      "symbol": "StructWrapper.structValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/StructWrapper.swift",
-      "line": 23,
-      "symbol": "StructWrapper.init(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/StructWrapper.swift",
-      "line": 25,
-      "symbol": "StructWrapper.copy(with:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/StructWrapper.swift",
-      "line": 30,
-      "symbol": "StructWrapper",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/StructWrapper.swift",
-      "line": 31,
-      "symbol": "StructWrapper.copyWithZone(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/StructWrapper.swift",
-      "line": 36,
-      "symbol": "StructWrapper",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/StructWrapper.swift",
-      "line": 37,
-      "symbol": "StructWrapper.structFromObject(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/honghao/Developer/ChouTi/Sources/StructWrapper.swift",
-      "line": 45,
-      "symbol": "StructWrapper.objectFromStruct(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     }
   ],

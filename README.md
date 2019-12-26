@@ -8,6 +8,7 @@
 [![License](https://img.shields.io/cocoapods/l/ChouTi.svg)](https://github.com/Ch0uTi/ChouTi/blob/master/LICENSE)
 [![Build Status](https://github.com/Ch0uti/ChouTi/workflows/build/badge.svg)](https://github.com/Ch0uti/ChouTi/actions?query=workflow%3Abuild)
 [![Codecov](https://codecov.io/gh/Ch0uTi/ChouTi/branch/master/graph/badge.svg)](https://codecov.io/gh/Ch0uTi/ChouTi)
+![Documentation](Documentation/badge.svg)
 
 ChouTi (抽屉) - a framework for Swift development.
 

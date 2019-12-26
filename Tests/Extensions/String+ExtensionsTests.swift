@@ -3,7 +3,7 @@
 import XCTest
 @testable import ChouTi
 
-class String_ExtensionsTest: XCTestCase {
+class String_ExtensionsTests: XCTestCase {
   func testExpressionPatterns() {
     XCTAssertEqual("\t123\t abc ".matchedStrings(of: String.RegularExpressionPattern.tabs).count, 2)
     XCTAssertEqual("\t123\t \tabc ".matchedStrings(of: String.RegularExpressionPattern.tabs).count, 3)
@@ -151,6 +151,7 @@ class String_ExtensionsTest: XCTestCase {
   }
 
   func testMatchedStrings() {
+    XCTAssertEqual("foo".matchedStrings(of: "\\d"), [])
     XCTAssertEqual("123foo".matchedStrings(of: "??"), [])
     XCTAssertEqual("123foo".matchedStrings(of: "(\\d+)"), ["123"])
     XCTAssertEqual("123foo".matchedStrings(of: "([a-z]+)"), ["foo"])
@@ -163,14 +164,24 @@ class String_ExtensionsTest: XCTestCase {
     XCTAssertEqual("123foo45".matchedStrings(of: "(\\d)(\\d)"), ["12", "45"])
   }
 
+  func testFirstMatchedString() {
+    XCTAssertEqual("foo".firstMatchedString(of: "\\d"), nil)
+    XCTAssertEqual("123foo".firstMatchedString(of: "??"), nil)
+    XCTAssertEqual("123foo".firstMatchedString(of: "(\\d+)"), "123")
+    XCTAssertEqual("123foo".firstMatchedString(of: "(\\d)"), "1")
+    XCTAssertEqual("123foo".firstMatchedString(of: "(\\d)(\\d)"), "12")
+    XCTAssertEqual("1234foo".firstMatchedString(of: "(\\d)(\\d)"), "12")
+    XCTAssertEqual("123foo45".firstMatchedString(of: "(\\d)(\\d)"), "12")
+  }
+
   func testCapturedGroups() {
+    XCTAssertEqual("foo".capturedGroups(of: "(\\d)"), [])
     XCTAssertEqual("123foo".capturedGroups(of: "??"), [])
     XCTAssertEqual("123foo".capturedGroups(of: "(\\d+)"), ["123"])
     XCTAssertEqual("123foo".capturedGroups(of: "([a-z]+)"), ["foo"])
     XCTAssertEqual("123foo".capturedGroups(of: "(\\d)([a-z])"), ["3", "f"])
     XCTAssertEqual("foo123bar".capturedGroups(of: "([a-z]+)(\\d+)([a-z]+)"), ["foo", "123", "bar"])
     XCTAssertEqual("foo123bar".capturedGroups(of: "(([a-z]+)(\\d+))([a-z]+)"), ["foo123", "foo", "123", "bar"])
-    XCTAssertEqual("foo".capturedGroups(of: "(\\d)"), [])
     XCTAssertEqual("123foo".capturedGroups(of: "(\\d)"), ["1"])
     XCTAssertEqual("123foo".capturedGroups(of: "(\\d)", matchIndex: 1), ["2"])
     XCTAssertEqual("123foo".capturedGroups(of: "(\\d)", matchIndex: 2), ["3"])

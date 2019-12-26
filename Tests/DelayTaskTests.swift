@@ -9,73 +9,98 @@ class DelayTaskTests: XCTestCase {
 
     var stringToBeChanged = "start"
 
+    // Task is retained in the expectation closure.
     let task = delay(0.01) {
+      XCTAssertTrue(!Thread.isMainThread)
       expectation.fulfill()
       stringToBeChanged = "end"
     }
 
-    XCTAssertFalse(task.canceled)
-    XCTAssertFalse(task.executed)
+    XCTAssertFalse(task.isCanceled)
+    XCTAssertFalse(task.isExecuted)
     XCTAssertEqual(stringToBeChanged, "start")
 
-    waitForExpectations(timeout: 0.02) { _ -> Void in
-      XCTAssertFalse(task.canceled)
-      XCTAssertTrue(task.executed)
+    waitForExpectations(timeout: 0.011) { _ in
+      XCTAssertFalse(task.isCanceled)
+      XCTAssertTrue(task.isExecuted)
       XCTAssertEqual(stringToBeChanged, "end")
     }
   }
 
-  func testDelayCanceledTask() {
-    let expectation = self.expectation(description: "delayed task canceled")
+  func testSimpleDelay() {
+    let expectation = self.expectation(description: "delayed task executed")
+
+    var stringToBeChanged = "start"
+
+    // No retain
+    delay(0.01) {
+      expectation.fulfill()
+      stringToBeChanged = "end"
+    }
+
+    XCTAssertEqual(stringToBeChanged, "start")
+    waitForExpectations(timeout: 0.011) { _ in
+      XCTAssertEqual(stringToBeChanged, "end")
+    }
+  }
+
+  func testSimpleDelayOnMain() {
+    let expectation = self.expectation(description: "delayed task executed")
+
+    var stringToBeChanged = "start"
+
+    // No retain
+    delay(0.01, queue: .main) {
+      XCTAssertTrue(Thread.isMainThread)
+      expectation.fulfill()
+      stringToBeChanged = "end"
+    }
+
+    XCTAssertEqual(stringToBeChanged, "start")
+    waitForExpectations(timeout: 0.011) { _ in
+      XCTAssertEqual(stringToBeChanged, "end")
+    }
+  }
+
+  func testCanceledTask() {
+    var stringToBeChanged = "start"
+    let task = delay(0.01) {
+      stringToBeChanged = "end"
+    }
+
+    XCTAssertFalse(task.isCanceled)
+    XCTAssertFalse(task.isExecuted)
+    XCTAssertEqual(stringToBeChanged, "start")
+
+    task.isCanceled = true
+    XCTAssertTrue(task.isCanceled)
+
+    Thread.sleep(forTimeInterval: 0.011)
+
+    XCTAssertTrue(task.isCanceled)
+    XCTAssertFalse(task.isExecuted)
+    XCTAssertEqual(stringToBeChanged, "start")
+  }
+
+  func testChainedTask() {
+    print(CACurrentMediaTime())
+    var value = 1
+
     delay(0.02) {
-      expectation.fulfill()
+      print(CACurrentMediaTime())
+      value = 2
+    }
+    .delay(0.02) {
+      print(CACurrentMediaTime())
+      value = 3
     }
 
-    var stringToBeChanged = "start"
+    XCTAssertEqual(value, 1)
 
-    let task = delay(0.01) {
-      stringToBeChanged = "end"
-    }
+    Thread.sleep(forTimeInterval: 0.025)
+    XCTAssertEqual(value, 2)
 
-    XCTAssertFalse(task.canceled)
-    XCTAssertFalse(task.executed)
-    XCTAssertEqual(stringToBeChanged, "start")
-
-    task.cancel()
-
-    XCTAssertTrue(task.canceled)
-
-    waitForExpectations(timeout: 0.03) { _ -> Void in
-      XCTAssertTrue(task.canceled)
-      XCTAssertFalse(task.executed)
-      XCTAssertEqual(stringToBeChanged, "start")
-    }
-  }
-
-  func testDelayCanceledTaskResumed() {
-    let expectation = self.expectation(description: "delayed task canceled")
-
-    var stringToBeChanged = "start"
-
-    let task = delay(0.01) {
-      expectation.fulfill()
-      stringToBeChanged = "end"
-    }
-
-    XCTAssertFalse(task.canceled)
-    XCTAssertFalse(task.executed)
-    XCTAssertEqual(stringToBeChanged, "start")
-
-    task.cancel()
-    XCTAssertTrue(task.canceled)
-
-    task.resume()
-    XCTAssertFalse(task.canceled)
-
-    waitForExpectations(timeout: 0.02) { _ -> Void in
-      XCTAssertFalse(task.canceled)
-      XCTAssertTrue(task.executed)
-      XCTAssertEqual(stringToBeChanged, "end")
-    }
+    Thread.sleep(forTimeInterval: 0.02)
+    XCTAssertEqual(value, 3)
   }
 }

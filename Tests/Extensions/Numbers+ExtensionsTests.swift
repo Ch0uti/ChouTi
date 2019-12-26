@@ -3,7 +3,7 @@
 import XCTest
 @testable import ChouTi
 
-class Numbers_ExtensionsTest: XCTestCase {
+class Numbers_ExtensionsTests: XCTestCase {
   func testClamp() {
     XCTAssertEqual(120.clamped(to: 0...100), 100)
     XCTAssertEqual(99.clamped(to: 0...100), 99)
