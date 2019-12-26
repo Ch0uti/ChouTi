@@ -245,9 +245,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6ChouTi9DelayTaskC5delay_2on4taskACSd_So17OS_dispatch_queueCyyctF"></a>
-                    <a name="//apple_ref/swift/Method/delay(_:on:task:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6ChouTi9DelayTaskC5delay_2on4taskACSd_So17OS_dispatch_queueCyyctF">delay(_:on:task:)</a>
+                    <a name="/s:6ChouTi9DelayTaskC5delay_5queue4taskACSd_So012OS_dispatch_F0CyyctF"></a>
+                    <a name="//apple_ref/swift/Method/delay(_:queue:task:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ChouTi9DelayTaskC5delay_5queue4taskACSd_So012OS_dispatch_F0CyyctF">delay(_:queue:task:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -263,7 +263,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">delay</span><span class="p">(</span><span class="n">_</span> <span class="nv">delayedSeconds</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="n">on</span> <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="nf">global</span><span class="p">(),</span> <span class="nv">task</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">DelayTask</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">delay</span><span class="p">(</span><span class="n">_</span> <span class="nv">delayedSeconds</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">queue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="nf">global</span><span class="p">(),</span> <span class="nv">task</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">DelayTask</span></code></pre>
 
                         </div>
                       </div>
@@ -274,24 +274,24 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>queue</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The dispatch queue to run on.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
                                 <em>delayedSeconds</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
                                   <p>The delayed seconds.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The dispatch queue to run on.</p>
                                 </div>
                               </td>
                             </tr>
