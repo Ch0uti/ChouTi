@@ -1,0 +1,166 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
+      "line": 5,
+      "symbol": "OrderedDictionary",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
+      "line": 9,
+      "symbol": "OrderedDictionary.count",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
+      "line": 11,
+      "symbol": "OrderedDictionary.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
+      "line": 13,
+      "symbol": "OrderedDictionary.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
+      "line": 27,
+      "symbol": "OrderedDictionary.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
+      "line": 37,
+      "symbol": "OrderedDictionary.removeValue(forKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
+      "line": 44,
+      "symbol": "OrderedDictionary.removeAll(keepingCapacity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
+      "line": 50,
+      "symbol": "OrderedDictionary",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
+      "line": 52,
+      "symbol": "OrderedDictionary.insert(_:forKey:atIndex:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/OrderedDictionary.swift",
+      "line": 84,
+      "symbol": "OrderedDictionary.remove(at:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/Queue.swift",
+      "line": 24,
+      "symbol": "Queue.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/DataStructures/Queue.swift",
+      "line": 56,
+      "symbol": "Queue.isEmpty()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/CGPoint+Extensions.swift",
+      "line": 6,
+      "symbol": "CGPoint.translate(_:dy:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/CGRect+Extensions.swift",
+      "line": 46,
+      "symbol": "CGRect.upperLeft",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/CGRect+Extensions.swift",
+      "line": 50,
+      "symbol": "CGRect.upperRight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/CGRect+Extensions.swift",
+      "line": 54,
+      "symbol": "CGRect.bottomLeft",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/CGRect+Extensions.swift",
+      "line": 58,
+      "symbol": "CGRect.bottomRight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/CGRect+Extensions.swift",
+      "line": 62,
+      "symbol": "CGRect.center",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/NSObject+AssociatedObject.swift",
+      "line": 46,
+      "symbol": "NSObject.getAssociatedObject(forKeyPointer:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/NSObject+AssociatedObject.swift",
+      "line": 54,
+      "symbol": "NSObject.clearAssociatedObject(forKeyPointer:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/String+Extensions.swift",
+      "line": 8,
+      "symbol": "String.RegularExpressionPattern",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Extensions/String+Extensions.swift",
+      "line": 102,
+      "symbol": "String.firstMatchedString(of:options:matchingOptions:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/honghao/Developer/ChouTi/Sources/Operators.swift",
+      "line": 53,
+      "symbol": "???(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/honghao/Developer/ChouTi"
+}
