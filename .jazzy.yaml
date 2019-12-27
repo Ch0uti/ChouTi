@@ -2,6 +2,7 @@
 
 copyright: Copyright © 2019 ChouTi.
 author: HongHao Zhang
+author_url: https://honghaoz.com
 xcodebuild_arguments: [-target, ChouTi_iOS]
 clean: true
 output: ./Documentation
