@@ -26,6 +26,6 @@ class SequenceType_ExtensionsTests: XCTestCase {
 
   func testUnique() {
     let integers = [1, 2, 2, 1, 3, 4, 5, 3, 4, 5]
-    XCTAssertEqual(integers.unique(), [1, 2, 3, 4, 5])
+    XCTAssertEqual(integers.removingDuplicates(), [1, 2, 3, 4, 5])
   }
 }

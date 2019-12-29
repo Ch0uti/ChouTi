@@ -8,8 +8,8 @@ targets:
     type: framework
     platform: [iOS, tvOS]
     deploymentTarget:
-      iOS: 12.0
-      tvOS: 12.0
+      iOS: 13.0
+      tvOS: 13.0
     sources: Sources
     info:
       path: Sources/Info.plist
