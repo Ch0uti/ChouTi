@@ -1,13 +1,16 @@
 #!/bin/bash
 
+currentDir=$(pwd) # store current dir for later use.
+cd $(dirname $0) # cd to the command dir.
+
 # Check if a command exists.
 function command_exists() { [ -x "$(command -v $1)" ]; }
 
 echo "> Install carthage"
-./Scripts/brew_install_or_upgrade.sh carthage
+./brew_install_or_upgrade.sh carthage
 
 echo "> Install xcodegen"
-./Scripts/brew_install_or_upgrade.sh  xcodegen
+./brew_install_or_upgrade.sh xcodegen
 
 # Install gems.
 function install_gems() {
@@ -22,3 +25,5 @@ function install_gems() {
 }
 
 install_gems
+
+cd $currentDir # restore the dir back.
