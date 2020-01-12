@@ -1,4 +1,4 @@
-// Copyright © 2019 ChouTi. All rights reserved.
+// Copyright © 2020 ChouTi. All rights reserved.
 
 import Foundation
 
@@ -51,26 +51,26 @@ public class DelayTask {
   /// Next chained task
   private var nextTask: DelayTask?
 
-  /// Chaining a new task.
+  /// Chaining a new task. By default, the main queue is used.
   /// - Parameters:
   ///   - delayedSeconds: The delayed seconds.
-  ///   - queue: The dispatch queue to run on.
+  ///   - queue: The dispatch queue to run on. Default value is main.
   ///   - task: The closure to run.
   @discardableResult
-  public func delay(_ delayedSeconds: TimeInterval, queue: DispatchQueue = .global(), task: @escaping () -> Void) -> DelayTask {
+  public func delay(_ delayedSeconds: TimeInterval, queue: DispatchQueue = .main, task: @escaping () -> Void) -> DelayTask {
     let task = DelayTask(queue: queue, delayedSeconds: delayedSeconds, task: task)
     nextTask = task
     return task
   }
 }
 
-/// Execute the task closure on specified queue after delayed seconds.
+/// Execute the task closure on specified queue after delayed seconds. By default, the main queue is used.
 /// - Parameters:
 ///   - delayedSeconds: The delayed seconds.
-///   - queue: The dispatch queue to run on.
+///   - queue: The dispatch queue to run on. Default value is main.
 ///   - task: The closure to run.
 @discardableResult
-public func delay(_ delayedSeconds: TimeInterval, queue: DispatchQueue = .global(), task: @escaping () -> Void) -> DelayTask {
+public func delay(_ delayedSeconds: TimeInterval, queue: DispatchQueue = .main, task: @escaping () -> Void) -> DelayTask {
   let task = DelayTask(queue: queue, delayedSeconds: delayedSeconds, task: task)
   task.start()
   return task

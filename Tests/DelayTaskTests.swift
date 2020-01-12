@@ -1,4 +1,4 @@
-// Copyright © 2019 ChouTi. All rights reserved.
+// Copyright © 2020 ChouTi. All rights reserved.
 
 import XCTest
 @testable import ChouTi
@@ -11,7 +11,7 @@ class DelayTaskTests: XCTestCase {
 
     // Task is retained in the expectation closure.
     let task = delay(0.05) {
-      XCTAssertTrue(!Thread.isMainThread)
+      XCTAssertTrue(Thread.isMainThread)
       expectation.fulfill()
       stringToBeChanged = "end"
     }
@@ -85,10 +85,10 @@ class DelayTaskTests: XCTestCase {
   func testChainedTask() {
     var value = 1
 
-    delay(0.2) {
+    delay(0.2, queue: .global(qos: .userInteractive)) {
       value = 2
     }
-    .delay(0.2) {
+    .delay(0.2, queue: .global(qos: .userInteractive)) {
       value = 3
     }
 
