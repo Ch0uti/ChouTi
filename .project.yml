@@ -6,10 +6,11 @@ options:
 targets:
   ChouTi:
     type: framework
-    platform: [iOS, tvOS]
+    platform: [iOS, tvOS, macOS]
     deploymentTarget:
       iOS: 13.0
       tvOS: 13.0
+      macOS: 10.14
     sources: Sources
     info:
       path: Sources/Info.plist

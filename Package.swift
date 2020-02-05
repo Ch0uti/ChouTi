@@ -4,6 +4,9 @@ import PackageDescription
 
 let package = Package(
   name: "ChouTi",
+  platforms: [
+    .macOS(.v10_14), .iOS(.v13), .tvOS(.v13),
+  ],
   products: [
     .library(
       name: "ChouTi",
@@ -12,12 +15,11 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/Quick/Quick", from: "2.2.0"),
-    .package(url: "https://github.com/Quick/Nimble", from: "8.0.0"),
+    .package(url: "https://github.com/Quick/Nimble", .exact("8.0.2")),
   ],
   targets: [
     .target(
-      name: "ChouTi",
-      path: "Sources"
+      name: "ChouTi"
     ),
     .testTarget(
       name: "ChouTiTests",
@@ -25,8 +27,7 @@ let package = Package(
         "ChouTi",
         "Quick",
         "Nimble",
-      ],
-      path: "Tests"
+      ]
     ),
   ]
 )
