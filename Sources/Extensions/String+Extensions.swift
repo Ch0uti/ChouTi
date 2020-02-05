@@ -1,4 +1,4 @@
-// Copyright © 2019 ChouTi. All rights reserved.
+// Copyright © 2020 ChouTi. All rights reserved.
 
 import Foundation
 
@@ -56,7 +56,7 @@ public extension String {
       let to16 = utf16.index(from16, offsetBy: nsRange.length, limitedBy: utf16.endIndex) else {
       return nil
     }
-    return from16..<to16
+    return from16 ..< to16
   }
 }
 
@@ -75,7 +75,7 @@ public extension String {
     return regex.stringByReplacingMatches(
       in: self,
       options: matchingOptions,
-      range: NSRange(0..<utf16.count),
+      range: NSRange(0 ..< utf16.count),
       withTemplate: template
     )
   }
@@ -93,7 +93,7 @@ public extension String {
       return []
     }
 
-    let matches = regex.matches(in: self, options: matchingOptions, range: NSRange(0..<utf16.count))
+    let matches = regex.matches(in: self, options: matchingOptions, range: NSRange(0 ..< utf16.count))
     return matches.compactMap {
       substring(with: $0.range)
     }
@@ -109,7 +109,7 @@ public extension String {
       return nil
     }
 
-    let range = NSRange(startIndex..<endIndex, in: self)
+    let range = NSRange(startIndex ..< endIndex, in: self)
     guard let match = regex.firstMatch(in: self, options: matchingOptions, range: range) else {
       return nil
     }
@@ -133,12 +133,12 @@ public extension String {
     guard let match = regex.matches(
       in: self,
       options: matchingOptions,
-      range: NSRange(0..<self.utf16.count)
+      range: NSRange(0 ..< utf16.count)
     )[safe: matchIndex] else {
       return []
     }
 
-    return (1..<match.numberOfRanges).compactMap {
+    return (1 ..< match.numberOfRanges).compactMap {
       substring(with: match.range(at: $0))
     }
   }
@@ -158,7 +158,7 @@ extension String {
         "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
       options: [.caseInsensitive]
     )
-    return emailRegex.firstMatch(in: self, options: [], range: NSRange(0..<utf16.count)) != nil
+    return emailRegex.firstMatch(in: self, options: [], range: NSRange(0 ..< utf16.count)) != nil
   }
 
   /// Returns a new string made by removing the provided character from the leading of the string.

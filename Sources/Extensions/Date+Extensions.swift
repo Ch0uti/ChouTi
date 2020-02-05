@@ -1,4 +1,4 @@
-// Copyright © 2019 ChouTi. All rights reserved.
+// Copyright © 2020 ChouTi. All rights reserved.
 
 import Foundation
 
@@ -6,13 +6,13 @@ public extension Date {
   /// Returns a random date within the specified date range.
   static func random(in range: Range<Date>) -> Date {
     let timeInterval = range.upperBound.timeIntervalSince(range.lowerBound)
-    return range.lowerBound.addingTimeInterval(TimeInterval.random(in: 0..<timeInterval))
+    return range.lowerBound.addingTimeInterval(TimeInterval.random(in: 0 ..< timeInterval))
   }
 
   /// Returns a random date within the specified date range.
   static func random(in range: ClosedRange<Date>) -> Date {
     let timeInterval = range.upperBound.timeIntervalSince(range.lowerBound)
-    return range.lowerBound.addingTimeInterval(TimeInterval.random(in: 0...timeInterval))
+    return range.lowerBound.addingTimeInterval(TimeInterval.random(in: 0 ... timeInterval))
   }
 }
 

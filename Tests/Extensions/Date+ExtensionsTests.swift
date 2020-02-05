@@ -1,4 +1,4 @@
-// Copyright © 2019 ChouTi. All rights reserved.
+// Copyright © 2020 ChouTi. All rights reserved.
 
 import Foundation
 import Nimble
@@ -26,7 +26,7 @@ extension Date_ExtensionsTests {
           return
         }
 
-        let randomDate = Date.random(in: fromDate..<toDate)
+        let randomDate = Date.random(in: fromDate ..< toDate)
         expect(randomDate) >= fromDate
         expect(randomDate) < toDate
       }
@@ -43,12 +43,12 @@ extension Date_ExtensionsTests {
           return
         }
 
-        for i in 0..<5 {
+        for i in 0 ..< 5 {
           if i == 4 {
             fail()
           }
 
-          let randomDate = Date.random(in: fromDate..<toDate)
+          let randomDate = Date.random(in: fromDate ..< toDate)
           expect(randomDate) >= fromDate
           expect(randomDate) < toDate
           if randomDate.month != 1 {
@@ -70,7 +70,7 @@ extension Date_ExtensionsTests {
           return
         }
 
-        let randomDate = Date.random(in: fromDate..<toDate)
+        let randomDate = Date.random(in: fromDate ..< toDate)
         expect(randomDate) >= fromDate
         expect(randomDate) <= toDate
       }
@@ -82,7 +82,7 @@ extension Date_ExtensionsTests {
         }
 
         let toDate = fromDate
-        let randomDate = Date.random(in: fromDate...toDate)
+        let randomDate = Date.random(in: fromDate ... toDate)
         expect(randomDate) == fromDate
       }
     }

@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 
 import PackageDescription
 
@@ -11,7 +11,6 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.43.1"),
     .package(url: "https://github.com/Quick/Quick", from: "2.2.0"),
     .package(url: "https://github.com/Quick/Nimble", from: "8.0.0"),
   ],

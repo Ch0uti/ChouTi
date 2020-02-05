@@ -1,4 +1,4 @@
-// Copyright © 2019 ChouTi. All rights reserved.
+// Copyright © 2020 ChouTi. All rights reserved.
 
 // Ref: https://gist.github.com/kareman/931017634606b7f7b9c0
 

@@ -79,7 +79,7 @@ end
 
 desc "Format Swift code."
 task :format do
-  sh "swift run swiftformat ."
+  sh "swiftformat ."
 end
 
 #-------------------------------------------------------------------------------

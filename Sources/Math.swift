@@ -1,4 +1,4 @@
-// Copyright © 2019 ChouTi. All rights reserved.
+// Copyright © 2020 ChouTi. All rights reserved.
 
 import Foundation
 
@@ -13,5 +13,5 @@ import Foundation
 ///   - t: The interpolation value between the two floats.
 /// - Returns: The interpolated float result between the two float values.
 public func lerp<T: BinaryFloatingPoint>(start: T, end: T, t: T) -> T {
-  return start + (end - start) * t.clamped(to: 0.0...1.0)
+  return start + (end - start) * t.clamped(to: 0.0 ... 1.0)
 }

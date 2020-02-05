@@ -9,8 +9,9 @@
 --importgrouping testable-bottom
 --indent 2
 --octalgrouping none
---ranges nospace
 --self init-only
+--semicolons never
+--ifdef no-indent
 
 # file options
---exclude Package.swift, Submodules, Carthage
+--exclude Submodules, Carthage

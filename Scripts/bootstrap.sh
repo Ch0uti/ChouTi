@@ -10,7 +10,10 @@ echo "> Install carthage"
 ./brew_install_or_upgrade.sh carthage
 
 echo "> Install xcodegen"
-./brew_install_or_upgrade.sh xcodegen
+./brew_install_or_upgrade.sh xcodegen # 2.13.0
+
+echo "> Install swiftformat"
+./brew_install_or_upgrade.sh swiftformat # 0.44.2
 
 # Install gems.
 function install_gems() {

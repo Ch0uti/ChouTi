@@ -1,16 +1,16 @@
-// Copyright © 2019 ChouTi. All rights reserved.
+// Copyright © 2020 ChouTi. All rights reserved.
 
 import XCTest
 @testable import ChouTi
 
 class Numbers_ExtensionsTests: XCTestCase {
   func testClamp() {
-    XCTAssertEqual(120.clamped(to: 0...100), 100)
-    XCTAssertEqual(99.clamped(to: 0...100), 99)
-    XCTAssertEqual((-20).clamped(to: 0...100), 0)
+    XCTAssertEqual(120.clamped(to: 0 ... 100), 100)
+    XCTAssertEqual(99.clamped(to: 0 ... 100), 99)
+    XCTAssertEqual((-20).clamped(to: 0 ... 100), 0)
 
     var num = 120
-    num.clamping(to: 0...100)
+    num.clamping(to: 0 ... 100)
     XCTAssertEqual(num, 100)
   }
 
