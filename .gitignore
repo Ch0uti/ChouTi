@@ -33,7 +33,6 @@ xcuserdata/
 .build/
 Packages/
 ChouTi-SPM.xcodeproj
-.swiftpm
 
 # CocoaPods
 Pods/

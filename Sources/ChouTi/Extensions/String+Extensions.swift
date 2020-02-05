@@ -144,7 +144,7 @@ public extension String {
   }
 }
 
-extension String {
+public extension String {
   /// Check if the string is an email address.
   var isEmail: Bool {
     // Ref: https://stackoverflow.com/a/39550723/3164091
@@ -186,3 +186,7 @@ extension String {
     return try replacingMatches(of: RegularExpressionPattern.whitespacesExtended, with: " ").trimmingCharacters(in: .whitespacesAndNewlines)
   }
 }
+
+// MARK: - Error
+
+extension String: Error {}

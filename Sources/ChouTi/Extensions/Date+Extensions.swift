@@ -2,6 +2,8 @@
 
 import Foundation
 
+// MARK: - Random
+
 public extension Date {
   /// Returns a random date within the specified date range.
   static func random(in range: Range<Date>) -> Date {
@@ -15,6 +17,8 @@ public extension Date {
     return range.lowerBound.addingTimeInterval(TimeInterval.random(in: 0 ... timeInterval))
   }
 }
+
+// MARK: - Date Components
 
 public extension Date {
   /// Era in current timezone & calendar.
