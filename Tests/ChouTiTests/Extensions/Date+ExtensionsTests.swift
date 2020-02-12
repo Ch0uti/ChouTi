@@ -9,6 +9,7 @@ class Date_ExtensionsTests: QuickSpec {
   override func spec() {
     randomDateSpec()
     dateComponentSpec()
+    startEndSpec()
   }
 }
 
@@ -302,6 +303,87 @@ extension Date_ExtensionsTests {
       it("should get correct date by setting date components in timezone") {
         let hour14 = date.setting(.hour, with: 14, in: TimeZone.est)
         expect(hour14?.hour(in: TimeZone.pst)) == 11
+      }
+    }
+  }
+}
+
+extension Date_ExtensionsTests {
+  func startEndSpec() {
+    context("start/end day") {
+      it("should get start of day") {
+        let date = Date()
+        let startOfDay = date.startOfDay
+        expect(date.day) == startOfDay.day
+        expect(startOfDay.hour) == 0
+        expect(startOfDay.minute) == 0
+        expect(startOfDay.second) == 0
+      }
+
+      it("should get end of day") {
+        let date = Date()
+        let startOfDay = date.endOfDay
+        expect(date.day) == startOfDay.day
+        expect(startOfDay.hour) == 23
+        expect(startOfDay.minute) == 59
+        expect(startOfDay.second) == 59
+      }
+    }
+
+    context("start/end month") {
+      it("should get start of month") {
+        let date = Date()
+        let start = date.startOfMonth
+        expect(date.year) == start.year
+        expect(date.month) == start.month
+        expect(start.day) == 1
+        expect(start.hour) == 0
+        expect(start.minute) == 0
+        expect(start.second) == 0
+      }
+
+      it("should get end of month for 31 days") {
+        let date = Date().setting(.month, with: 3)!
+        let end = date.endOfMonth
+        expect(date.year) == end.year
+        expect(date.month) == end.month
+        expect(end.day) == 31
+        expect(end.hour) == 23
+        expect(end.minute) == 59
+        expect(end.second) == 59
+      }
+
+      it("should get end of month for 30 days") {
+        let date = Date().setting(.month, with: 4)!
+        let end = date.endOfMonth
+        expect(date.year) == end.year
+        expect(date.month) == end.month
+        expect(end.day) == 30
+        expect(end.hour) == 23
+        expect(end.minute) == 59
+        expect(end.second) == 59
+      }
+
+      it("should get end of month for 29 days in regular year") {
+        let date = Date().setting(.year, with: 2019)!.setting(.month, with: 2)!
+        let end = date.endOfMonth
+        expect(date.year) == end.year
+        expect(date.month) == end.month
+        expect(end.day) == 28
+        expect(end.hour) == 23
+        expect(end.minute) == 59
+        expect(end.second) == 59
+      }
+
+      it("should get end of month for 29 days in leap year") {
+        let date = Date().setting(.year, with: 2020)!.setting(.month, with: 2)!
+        let end = date.endOfMonth
+        expect(date.year) == end.year
+        expect(date.month) == end.month
+        expect(end.day) == 29
+        expect(end.hour) == 23
+        expect(end.minute) == 59
+        expect(end.second) == 59
       }
     }
   }
