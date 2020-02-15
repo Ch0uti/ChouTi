@@ -25,3 +25,11 @@ public extension DispatchQueue {
     }
   }
 }
+
+public func onMainAsync(_ block: @escaping () -> Void) {
+	DispatchQueue.onMainAsync(block)
+}
+
+public func onMainSync(_ block: @escaping () -> Void) {
+	DispatchQueue.onMainSync(block)
+}
