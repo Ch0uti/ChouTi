@@ -1,3 +1,7 @@
+See updated package: https://github.com/honghaoz/ChouTi
+
+---
+
 <span align="center">
     <img src="https://github.com/Ch0uti/ChouTi/raw/master/Resources/ChouTi.png" width=128 alt="ChouTi Logo" />
 </span>
